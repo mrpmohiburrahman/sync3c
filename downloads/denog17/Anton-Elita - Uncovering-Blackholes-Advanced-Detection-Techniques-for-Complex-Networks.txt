@@ -1,0 +1,238 @@
+API URL: https://api.media.ccc.de/public/recordings/93199
+Frontend URL: https://media.ccc.de/v/denog17-74351-uncovering-blackholes-advanced-detection-techniques-for-complex-networks
+Title: Uncovering Blackholes: Advanced Detection Techniques for Complex Networks
+
+>> Thank you. Yeah, thanks for being awake for the first session. Really nice to see so
+many of you. Yeah, my name is Anton. I'm part of juniper, but before I had some history
+as a service provider, so I worked for ISPs various sizes. So you see this letter. If you find
+yourself in the list of the ISPs, please comment and we will have a chat. We definitely have
+some things to discuss and to remind ourselves. So currently I'm doing the technical service
+architecture and working with the service providers in the region. So pretty large region.
+And today I will try to have discussion with you on the topic of black holding detection.
+This is a short agenda. We will go through the items quickly. But before we start, I would
+like to first set the goal. So there are many definitions of what is black holding. So not
+>> So if you were looking at the
+definitions, for example, from the context where you want to
+help and you are to mitigate the denial of service attack, that's not
+it. So black holding that I'm going to talk about is actually
+something unintended. Something that happens without you wanting
+to happen. And usually very difficult to catch. So traffic is
+dropped. And let's start to troubleshoot.
+A few facts. Black holding might have a long impact. It's very difficult to find.
+Every occasion of traffic being dropped and intended is too much. So usually get a call
+from your CTO, your name is depending on the size of your company.
+You usually need to escalate it highly both internally as well as externally. So usually
+you would call a vendor, say, say, what's happening. So why are they getting dropped?
+We will start now with a few things. Scary things. Why are the things also complex
+for service providers? So we will be talking about usual landscape of a service provider.
+You will probably find some of your parts of your networks on this large diagram.
+But mainly we will focus on following parts. We will focus on aggregation, edge, core,
+and peering, and maybe some DC edge devices. So this is the goal of black holding
+detection for today's talk. So the complexity of black holding is that,
+well, usually how it happens today, you get a call from an angry customer and then you
+try to understand what is happening. So you try to find out the source address,
+the S numbers, whatnot. And the complexity of finding a black hole is actually hidden
+behind how we operate our networks. Most networks would probably not run today
+the plain AP before APV6. So they would have some type of encapsulation. It can be
+MPLS, it can be a service six, it can be GRE, whatnot, and it can be a mix of those.
+Many funny drafts and RFCs allowing you to put MPLS over UDP, over GRE, over something
+else. Then we have, of course, the control plane. We have a really interesting topologies.
+So if you compare a service provider network to a data center, this would be like two
+worlds, two extremes. Service provider is something growing very naturally, where you
+need connectivity, where you have connectivity, where you have customers, like a snowflake,
+without any distinct definition of where you have the links and nodes.
+So basically the backers can get dropped on any device and let's try to see first the
+complexity brought by overlays. So overlays that I use today usually were created to
+carry a VPN traffic. So we have three VPNs, two VPNs, different types. And they usually
+are encapsulated in MPLS packets. So you would mostly be having two MPLS labels in the
+core of a network and imagine a P node, a core node is dropping something. You would
+not have any awareness of the service on that P node, because the P node would not have
+the prefixes that are carried inside the packet. So this is one part of the complexity.
+Another part of the complexity is equal cost multipath. A bit unexpected, because the
+ECMP is usually something very beneficial. So you can offload your traffic from one
+link and distribute it across parallel links. So ECMP is a good thing. And ECMP is actually,
+to me, it is equal to link aggregation groups, for example, because the mechanism took to
+split traffic across members of a lag of an aggregate data interface is exactly the
+same at least in Junos as you would use for ECMP. And then on ingress nodes, like imagine
+on this PE1 node, you might be having equal cost RSVP or SRT, SRV6, tunneling. So there are
+lots of ECMPs present in the network. And you can imagine that if you want to troubleshoot
+a packet flow from PE1 to PE2 and using it like with a trace route, you would probably not
+get the same path as if you would be sending a customer packets. Even in one customer
+VPN, for example, if somebody is using, as in this example, DNS and HTTP, DNS might
+go over one path and HTTP will go completely different paths. So this adds to the complexity
+of detecting where packets can get dropped. So before we proceed to some advices and best
+practices to remediation, let's see how network service providers, what mechanisms are they
+using today to detect the calling. So you've heard yesterday as well, good talks mentioning
+active monitoring that's basically injecting synthetic flows where you have some test agents
+or some agents actually doing whatever, T1, RPM, you name it, it can be even up to layer
+7, it's like voice over IP traffic injected over the customer's VRF so that you can qualify
+how good is the service offered by this service provider. So this is a good approach because
+it gives you really understanding how good the quality of the service is, but it's pretty
+expensive because, well, first you would need to have those test agents to inject the traffic.
+And second is that, well, if you want to be precise enough and to understand which portion
+of the network is having a fault, you would need to segment and to put so many test agents
+that it would probably be difficult to manage. One way out of this is actually use the embedded
+mechanisms on the routers themselves and we can do it already today with the synthetic
+traffic injection. Another way, a much more traditional one is to do passive monitoring.
+So everybody of you is probably collecting different counters from your routing nodes, it can
+be SNMP, but I hope that you are using a GRPC or the type of streaming telemetry, which is
+much more granular in time, so you are not limited by once in five minutes, like with
+SNMP, otherwise you won't start, you know, burning, but you can stream like once in two
+seconds if you wish, depending on the transport that you have chosen for your streaming telemetry.
+But you could use things like NetConf or even screen scrapics.
+So to make it simple, if you compare passive monitoring and active monitoring, active monitoring
+is a good thing that shows you exactly which services are affected, just because, well,
+you put the traffic into the service itself. But usually it doesn't give you a hint where
+the problem is, because you don't have enough segmentation usually, because the two service
+points are located in different parts of the network. Well, passive monitoring is the opposite.
+It shows you exactly where the problem might be, because the counters are not all right from
+some device, some interface, you know, queue, whatever, but it doesn't give you which services
+are affected, so these two need to be correlated in some way.
+And you actually have seen yesterday, good examples that many companies are working in
+best direction. So before we proceed to remediation, let's first start with prevention.
+So good problem can be a good problem solution is when you prevent the problem and not remediate it.
+So we have two types of categories, two categories, how we prevent the calling to happen.
+So some things can happen on-box, but some things require some external control of some
+external entity outside of the routing node itself. So let's take a few examples.
+You could be worried about, for example, shortest path first convergence on some nodes, like
+IGP, SPF runs. You could be, as well, affected by slow programming of your forwarding plane.
+So nowadays, the routing tables are huge, so you have at least one million routes in AP before,
+250,000 routes in APV6, you have multiple sources, multiple feeds.
+So the time to dissect this information in control plane has been decreasing over the
+last years, because the CPUs are getting faster, you get more cores, the vendors are starting
+to create the software, which is not monolithic and running only on one core, but is distributed
+and threaded. But the forwarding plane is actually the ASIC.
+So we need to push all those routes down to your forwarding path, and this is actually
+what takes more time than the control plane convergence. So what happens if your control
+plane says, okay, I have selected my active routes in VGP, and I announce them to my
+peer, but it takes a few more seconds to push the routes downstream to the forwarding
+plane. Actually, that's exactly what happens. We have black holding, because the forwarding
+plane will receive a packet, but will not know what to do with that packet.
+So nowadays, a few things to prevent this from happening would be, for example, put
+a packet on the route, so you first inject, say, IGP routes into your forwarding, or you
+first inject the golden prefixes, if you wish, like, I don't know, Cloud where I come
+on Amazon's of your choice. Then, in some implementations, we have as well
+acknowledgments between the fib and rib, which is really cool thing that you don't only
+send the route down to the ASIC, but you get acknowledged how many routes have been
+done. And with this related feature is actually delayed route advertising. So if
+you don't get enough acknowledgments for the routes being programmed in the forwarding,
+you delay announcing those routes via VGP. So really cool thing. So if you didn't
+use it before, you might have a look at it. Then, of course, we have human errors.
+Everybody does mistakes. We have, you know, people doing bad configurations, people
+doing bad design, which is even worse than doing the wrong config. Yeah, for this,
+yeah, we can only do the validation of the config in an automated way. You have
+heard as well lots of other people talking on this. I will not stop here for long.
+And, yes, we have hardware and software. And hardware, and we can detect those by
+some means. And that's one of the things that we will be talking in a minute.
+As well, on the topic of prevention, something that is very advisable is to
+analyze your control plane. Like you have your IGP and your BGP, which are, you know,
+main parts of your control plane probably. And in IGP, there are many, you know,
+very dangerous scenarios where you have duplicates, you say these host names,
+prefixes, if you're segment routing, then you need to monitor the SPF runtime. So
+something that not many people pay attention to. But if your calculation of the short
+path in your ISAs or OSPF is getting longer over time, that's a clear indication that
+your network might collapse at some point in the future. So better prevented. So
+take those encounters, analyze them, apply machine learning on this. Because this is
+a perfect example of machine learning where you could detect a sudden increase
+of the SPF runtimes. Similar to BGP. I will not spend much time on BGP, but very
+similar examples can be brought in here. So yeah, trying to help the industry itself
+and our customers and our teams, we have introduced a resiliency interface, and
+part of this resiliency interface is related to sampling the packet and the
+metadata of the packet that is going to be dropped. So really interesting use case,
+like you mentioned, that you have, let's take a simple scenario. Okay. So a simple
+scenario, we have a P node, and it's going to, or it should be forwarding some packet.
+And this packet is an Ethernet encapsulated packet with two MPLS labels because it's
+part of some VPN. And then we have all layer three, layer four information. At the
+end we have some HTTPS data, which is part of this packet. And then something is wrong
+with this P node. So it doesn't know, it doesn't understand the top label, for
+example. Or something wrong on the Ethernet level. So I don't know, wrong VLAN, wrong
+destination, there are tons of issues that can bring the packet to be dropped. And
+actually the worst thing is that usually the ASIC does care about dropping the
+packet and you don't get much feedback in the CLI. This is what usually happens in
+modern operating systems. So we can make this work better. So we can pre-program the
+node that in case it wants or it needs to drop the packet, that it has already a
+pre-configured collector. And it will send part of the packet, so part of the payload,
+say up to 250 or something bytes, all of the headers of that packet and the metadata
+to the collector. So what that brings to you as an operator is actually you get an
+IPv6 packet which is easily easy to decode. And you see which node has been dropping
+on which interface the packet is incoming. You see the direction of the flow. You see
+the exception code. So why the packet has been dropped. For example, I have no route
+to the destination. Or I don't know, so the MAC address is invalid and so on and so forth.
+Or maybe firewall filter. And then you have the full headers of the packet and part of
+the body of the packet. So that in one IPv6 message, you can immediately understand
+the root cause, not the root cause maybe, but at least the exact thing what has been
+happening. So you have all of the details required to react immediately and without,
+you know, involving very difficult troubleshooting on the PFE on the ASIC level.
+Two use cases we see as a primary use cases for such approach. One is that we just discussed
+the black holding event, say we have a packet incoming, decision is a drop, yes or no.
+And if we drop, we could have an action to export. But if we forward, we have as
+well a possibility to export this packet to the collector. This is a good second use
+case where you want to monitor one certain flow out of tens of millions of flows going
+through a router. And you can define the flow by usually using a five tapas or
+destination port address TCP and so on. But you could as well use on some platforms
+what we call flexible offset filter so that you define that I want to start the offset
+from layer four. So the router will know it would find TCP or UDP. And then you say
+you take two bytes from that offset and from those two bytes the last three bits and compare
+them with some number and then it will be a match. So you could actually define, for example,
+if you look for DNS request with a certain name in it, a resolution for an A, then you
+could actually match the exact string inside the packet and then export it to a collector.
+So as we say, a pickup already didn't happen, so I want to see it on the wire. On the wire
+we would have actually this IPv6 packet. You would have it as a, well, you could
+decode it with TCP demo of T-Shark, the outer part of the packet. But then, as I said,
+there is as well a payload of the packet itself with all of the headers, not only metadata,
+but the payload in blue in this case. Well, you could use a string like this on the top,
+really, you know, you might have heard of some of those utilities. Of course, you could use
+some desectors that are available and don't require this amount of pipes in one line.
+So you could go with a Goflow tool or you could go with a PM Act. So both of them understand
+IPv6. Both of them can decode the packets or you could use, again, this string that I
+have used in this example. And then you see, you know, all of the headers. It was two times
+MPLS. It was IPv4 with some UDP inside port, this and that and so on.
+Well, if you trust, you could use as well LLM, right? But then you're on your own. So if LLM
+has some hallucination, it can give you some random results. Well, you need to be careful
+with LLM some of these. But yeah, it's easy to drop a packet into charge and say decode this
+for me. The result is unpredictable, however. So, right, the exception list, just a quick
+overview, you could use this type of localization on your peering nodes. For example, if your
+firewall drops the packets for some reason or maybe if the source MAC address is not in
+your allowed list, you could use it in the core with your service 6, MPLS or what type of
+encapsulation you use and so on. The packet itself, as I said, it is IPv6. So you have, you know,
+three things streamed by the routers themselves. You have the data template, options template,
+and data record itself. In the data record, you would have the packet clip and all of the
+metadata that we discussed. And we are working with IETF to get it standardized. So if you
+are active at IETF, please support. Right. Correlation is a big thing. So that's really
+difficult to understand what is happening. And with correlating things, we need to take
+care that, keep in mind that somebody is doing a change in a prefix list on one side of the
+network, but dropping is happening completely on the opposite side. So that's a tough thing
+to solve. This is something where, you know, there are different approaches you could use,
+for example, for a service dedicated LSP, but then you would, well, you would not have
+ambiguity of ECMP, but then you have back the problems of elephant flows or large amount of,
+you know, LSPs. Then you might be covering your whole network with the point-to-point LSPs,
+but then, again, the amount of LSPs is high, and then, again, you need to correlate it in some
+way. We have some other things that we have seen in the wild that people do inject specific
+cookie in the packets. So some inject packets with some specific bits present in that
+packets, and they catch those packets with filters on the transit nodes. And if you did
+not see this packet, you will be probably looking at the right device that is dropping.
+So now, in the automation side of things, we have as well, we are at the beginning of this, right?
+So you collect this, of course, all of this telemetry. Without telemetry, you don't have
+possibility to do any automation. Then you have some correlation service that will be
+usually some magic source from your vendor, or it could include some of the AI, and we
+have high hopes. So this is something where LLMs are really good at correlating stuff because they
+need to, you know, dissect lots of inputs from many sites and understand what is happening.
+So we really have high hopes on this. And at the end, you will have the service that
+tells you that things are going bad, things are happening, and maybe providing your root
+cost. It was a link event, or it was maybe some BGP update that caused the problem.
+Yeah, we have as well our own software doing all of that. I will not do any marketing on
+this, but at the end of the day, you would be able to see in the UI that things are happening,
+these devices dropping packets, and maybe the problem is because of somebody is doing some
+commit on some device on the network. So the correlation is there, and causality is
+something as well that we are working on. So I have rushed through the couple of slides at the end,
+just because I wanted to give some time for the questions. I didn't want to actually
+leave the stage without letting you ask anything. Thank you, Antoine, for this interesting talk,
+and we do have a bit of time for some questions. So are there any questions? Please raise your
+hand. There is one question. Please state your name and affiliation.
+>> Elmer, quick question, sampling all these dropped packets. Is that cheap native or do you
+need a service card or anything to do that? >> Great question. That's actually exactly
+why we have chosen IPv6. IPv6 is UDP, connection less, doesn't require TCP. You don't need to
+make sure that you have enough bandwidth. >> Any other questions? I do not see any
+raised hands in the room. Do we have anything on Vendulous? Okay. So there are no questions
+online. Thank you again for the interesting talk. That's a wrap up for this one. We will
+be right back with the next talk. Don't forget to rate the talks.

@@ -1,0 +1,297 @@
+API URL: https://api.media.ccc.de/public/recordings/92994
+Frontend URL: https://media.ccc.de/v/megakc25-4-how-to-print-european-train-timetables-on-a-very-long-receipt
+Title: How to print European train timetables on a (very long) receipt
+
+(upbeat music)
+- Good morning everyone here to our first talk
+of Mega Knowledge Camp 2025.
+Good morning internet.
+We have some things to talk about today.
+Like how to print European train timetables
+on a very long receipt.
+If you ever wondered how train schedules
+are managed across Europe and how printers work,
+this talk is for you.
+Go Mani, it's up to you.
+- So hi, thanks everyone for coming to the talk.
+So I'll be talking about, so European train timetables
+and how we can actually get them, pass them and print them.
+So first of all, I'm
+going to put a tiny disclaimer.
+This talk is mainly going to be
+about GTFS. There are other
+formats out there. National
+of like what happened and what I did. Also won't be talking about real-time data because real-time
+data does not work on receipts. And with that out of the way, let's get started. So what's our
+initial problem? We often spend time near railways or in trains, which is very cool because, oh,
+the data, they know what they're going to be talking about, they know the stuff.
+So why not just use them instead of getting the data? Well, well, there's a lot of them,
+some of them maybe not deserving of the name. There's also, so there's a lot of info on these
+about the transit, also real-time info, which is very useful. But it has a very, very important
+con which is it only works as a trip planner or as a planner around stations, which doesn't work
+very efficiently if we're in the middle of nowhere with no stations around. So it's great for info
+about a trip once we already know the trip should be running, but it's not really great for knowing
+what we're going to be looking for in the first place. So let's just get the data ourselves, shall we?
+Turns out there's an EU regulation for this. First thing that comes to mind is what the hell is this?
+So basically there's a lot of stuff in it that isn't really relevant to us,
+but transit authorities and each member state has to set up a national access point where they will
+give access to all kinds of data including transit data. So the netx format which serves as a base
+for the transit. There's also other documents like other feeds in other specs for road traffic,
+air traffic and then also interoperability which we don't really care about in this case.
+So netx stands for network timetable exchange. It's a transit format that was
+developed by the EU to basically represent every single aspect of public transit that could be out there.
+So it has a lot of sub parts which describe various aspects of it.
+But it is very, very complete and allows for a very detailed representation.
+The spec is very long. It's inspired by other EU regulations like a trans model, which is a generic framework for this as far as I understand.
+However, the spec is behind a paywall.
+This is a big hindrance because how are we supposed to know what the data actually means if we don't have access to the spec?
+It should be possible to do a freedom of information requests to get it.
+I haven't been doing this because it's just too much time and maybe there's just something easy we can use.
+So this sounds really cursed and it kind of is. It's a huge XML file.
+The validation files are open, which is good.
+However, we still have no clue what the spec actually is.
+Also most countries use subsets of that spec.
+They call it profiles.
+And you'd think that they're using a standardized subset and everyone uses more or less the same.
+They don't.
+So I am not quite ready to sit through all of this quite yet.
+we do anything simpler? We can. So before the invention of NetX, there used to be a GTFS,
+which was invented way before by Google for their integrations in Google Maps. It's actually
+used worldwide instead of just in Europe. It has timetables as well. It's not as descriptive,
+the data. So, when we actually get the data, the national access points of each EU state contain references or the files themselves, which allows us to get that data. There's also the mobility data. There's also the mobility data. There's also the mobility data.
+other ones out there which allow us to get a lot of feeds. They basically just aggregate and just
+put them in a huge list where we can pick what we want. There's also Gitef SDA in Germany which
+basically takes the raw feed from the Delphi and pre-processes it, optimizes it and gives it
+the data. So we're going to be in a free license in a pretty standardize format. They also make subsets for like rail, city transit long distance rail. So which is actually pretty cool if we're starting out. There's a lot of operators that aren't really required to publish the feeds as GTFS but do it anyway.
+and and so with all these feeds available let's just open one.
+I'm optional, winning details. Conditionally required files because why not? And also conditionally forbidden files.
+Those are for the mostly edge cases parts of it. We won't be looking at them because they are not really relevant for looking at trains and knowing where they go at a given point.
+So how it works? So basically it's a standard database schema except it's all as a CSV.
+As a very very loose approximation. So there's routes and trips which describes what kind of services run. So what lines do they make and what services are running on these lines.
+Then there's also a whole calendar part which is about describing which days do the different services run on actually. So it allows for weekdays and holidays and all of that dynamic planning.
+There's also stops and stop times which allow us to describe when does the when do the trips actually stop somewhere and when do they and where do they actually stop so there's coordinates in there.
+The philosophy behind the spec is that it should be as easy to write as possible.
+The main main reason behind this being that at the end of the day there's going to be more people publishing data than there's going to be people consuming the data.
+So let's look at what a really minimal, minimal feed will have and what we can expect.
+So it's going to have an agency file which is going to basically have a basic descriptor of who's publishing the data.
+It's also going to have line details which in the most basic case just has a name
+and a route type which is important because we actually want to know if it's a train or a bus or a tram or a subway or whatever.
+There's also trips which we've covered before and just has a reference to the services.
+Then there's also calendars which are not both mandatory.
+We can have either one to define what the services are and we have the actual trip call times.
+In the minimal feed we only actually need an arrival time.
+We do not need a departure time so again this is made to be as simple as possible with only one time that's one timestamp that actually required.
+To be like displayed and then we also have the stops which basically just have names and coordinates.
+Now this does seem pretty basic and it is there are a lot of more fields that can be
+filled and they're all optional. We can have multiple transit agencies in a single feed.
+A more descriptive feed info it has metadata transfers which we do not care about but they're also available.
+We can have actual departure times which is good if we're actually looking at when transit moves.
+We also have more passenger friendly descriptions of routes.
+They allow defining colors and descriptions which is kind of better because it's supposed to be
+reflecting what's in the time tables as information.
+There's also short names and head signs which is additional information for a trip.
+That additional info is mainly used as so the head sign is basically a direction,
+a direction indication and the short name is often an identifier and in the case of trains it's
+mostly but not always going to be a train number.
+It's supposed to be a train number at least. We also have the possibility to define detailed
+station layouts. This is often used in bigger cities we don't care about that.
+There's also accessibility issues. Accessibility info which has basically
+a turnary which basically says yes no maybe. None of it is mandatory as per the spec.
+There may be other legal obligations to actually include that data but again if we're looking at
+when transit stops we don't care about that. There's also detailed shapes which allow us to
+say what kind of road does the vehicle take. There's the fares and pickups which
+we don't really care about. Then translations which isn't really our thing.
+And then there's frequencies which we should be able to pass because it's actually important
+information. It allows for describing scheduled transit that runs on a fixed frequency basis.
+While the spec does provide for it it's basically never used by anyone so we can
+pretty much safely leave that out. Not all this is relevant to us and so let's see what we can do
+with the data we get. So we're going to actually use the data. First we do a bit of pre-processing
+for each train trip we get. We basically take all the stops coordinates and make a bounding box
+to have a pre-filter of what trips might be relevant for a given observation point.
+Then from that we can base the pre-filter there. And then for each one of the matching trips we can
+look at the more detailed segments between two consecutive stops and see what it kind of looks like.
+So this should be easy, right? It's nothing really hard to do.
+How do we filter trips actually? If we have a transit leg how do we know if a given point is
+going to be on the path or not? Because most transit agencies don't provide shapes so we can't
+really rely on the data provided by the agency. So there is no perfect metric out there. The
+results are going to vary. The chosen method in this case was checking angles. Basically we can
+check bearings where we look at the bearings between the previous stop and the next stop
+and compare them. The main idea behind this is that if a segment is not going to be relevant for us
+then the bearing from opposition to the two points is going to be very small.
+But if the two points are basically at one and other end of our
+path of our observation point then the angle we get from the two bearings is going to be
+very, very much bigger. There's a bit of fine tuning with the thresholds. It depends on the actual
+basis. This isn't the only way of doing it. There's other methods out there. And we also include
+a radius around stops for good measures because sometimes we just want to be observing at a
+station and we just want to get everything including what doesn't exactly go through
+what the point we're observing. This works well enough for most cases. It's going to be
+basically overestimating what we see but it's better to have a false positive which we can then
+filter out rather than miss a trip which we then don't notice.
+So we can make a pretty simple API out of this, take the feeds, pass them into a database,
+and then from the coordinates we can make an endpoint that takes a point and then returns a
+list of sites which basically each one of them is going to have a source feed and then passing
+times and then all the regular info but the trip which we have in the database.
+So the short name because it's often going to be the train number and then stop times
+because we actually want to know when we might see it and have more detailed info.
+So it works. I did a simple UI for this. This is an example in Belgium.
+So it has sites but this was cheating a bit because it was at a station.
+We can still use it in the wild where there's really nothing around us and we're not at a station
+which does work. However, the bounding box isn't perfect. That method has limitations.
+So here's an example of a trip that runs that has two consecutive stops that are really really
+far away. So here the line is the actual path that's being taken and the blue shape is basically
+the detection radius where our algorithm basically decides we should be seeing it which is very
+much not accurate. So yeah, this will contain errors. Those are mostly force positives
+with massive trip hops. However, there is a fix which I've tried to look into which is
+long distance trains, they often run on the same physical lines as lower distance trains.
+So maybe we can approximate the shape using the smaller trips, take the stations in the
+intermediary stations and then use this as a path. This is theoretically doable. However,
+the way I did it was very, very, very inefficient. It took me a lot of computer memory again
+probably because my implementation sucked. It should be doable in a better way because the
+approach I've tried to do was basically on each request, it would try to build a whole
+graph of every single station it knows of in Europe. So it's not the most efficient thing out
+there but this can be. So that's not impossible to fix. We could compute transit legs at the
+database generation step and we can also use shapes data which can be provided by the feed
+sometimes not always, almost never supplied actually. We can also use open street map data
+which has actual paths and descriptions of where the physical possible lines are but this would
+require integrating something else and I really didn't want to make it more complex than it had to be.
+There's also utils like peddler which allows for generating shapes data. They basically take in
+an OSM data set and a GTFS feed and they apply as a function of the route type,
+they basically generate the shapes data from what they have in OSM.
+So I'm going to need to rework my map at some point to have better routing and produce more
+accurate results but in the meantime it's actually not that bad because it's mostly going to be
+outliers and they can be excluded through a quick hookup we kind of know from a train where it's
+going to run. So at least we can just stay unified info once we have a match, right?
+The data isn't really that standardized. So not all fields contain the same data
+depending on who you ask. So this is an example that happened.
+So there's a lot of ways that feeds can be way harder to process than they need to be
+and there's a lot of things feed providers just choose to do for no reason. Many of them
+ignore the recommendations which we can still pass it. It's just not the recommended way of
+formatting the data. Sometimes just omit data which isn't the best thing ever but
+we can sometimes re-extract it from there. Sometimes they do put the right data but in
+the wrong field which is what we've seen before. We'll see it in more detail later.
+And sometimes they just put out right false information which
+it's the 21st century I guess we just need to bear with it that there's going to be
+passenger misinformation systems now and they're provided by official transit authorities.
+So the feed from GTFSD is an example of data points that are missing. For instance,
+they don't have train numbers but their basic feed is pretty complete overall but it does have
+a lot of pre-processing which can be understandable because they do a lot of pre-processing because
+it has to fit in a pretty small file. So while that's understandable we can actually fix the lack
+of train numbers by getting the original source feed from Delphi which is where they get it from
+and filter it ourselves. So that's doable, no biggie. Then there's SWIFT data which
+is a pretty complete feed, pretty standard. Lots of feeds being filled.
+The road types they used are not standard. This means basically there's an enum in the spec
+which is a number that goes from zero to like I think the maximum is like around 20 ish,
+might have changed since and that's checked but it basically describes the type of transit.
+It is so is it a bus, is it a train, is it a tram, is it a boat, is it a
+what's it called? Monorail, there's possibilities for all of this. Switzerland does not care about
+those types and just puts their own numbers there anyway. They're inherited from another spec
+which is basically more detailed. There's basically a whole class of train types. So while GTFS has
+for instance a very simple train type which is number two. Switzerland has like nine of them
+depending on if it's a high speed train, a regional train, a long distance train, a long distance
+cross border train, a sleeper train, they have a lot of distinctions into it but
+this is still kind of understandable. They also have byte order mugs at the start of their files
+which I was studying, I started writing in parser without taking this into account. It was kind of
+in the, it wasn't fine print of the spec that oh wait actually the files can have byte order mugs.
+You're going to need to deal with that. Yeah so the road types can be converted back to standard
+values, no biggie, well no biggie, still have to rewrite the parser and we can fix the parser to
+better handle byte order mugs and not crash when they see it. Then there's Renfé which
+it's technically a valid feat but they put padded CSV for whatever reason. Not every colon in the
+CSV is being padded, it's just each row is being padded to 350 characters regardless of what there
+is. Same thing as before, very, very, very unnerving but we can just rewrite the whole puzzle.
+And then we get to the funny kid in the club which is SNCF, they do some real bullshit with
+their data. So it's one of the feats of all time. Each one of their service is not
+being input as a regular service that runs on given weekdays. Every single service is a service
+exception. There is no stable calendar. It's all being added on a specific date to being run.
+They do have it in the background, just not in the spec and again this is not following
+recommendations but we shouldn't be getting angry at them for that.
+Yeah, they're the ones who are putting wrong data in the wrong fields. So basically the trip
+head sign is, as the name suggests, a head sign so it's supposed to be a generic direction of
+where the vehicle is going. So it should be a city or a station or a generic direction.
+SNCF does not care about this and just puts the train number here. Although they could very
+much use the trip short name which they do not use by the way, it's not a compatibility issue.
+So they could be doing it but they just don't. And fun fact, this is also why if some of you might
+have looked at SNCF trains in Google Maps, they might have been displayed as having
+a number as a destination instead of a city. That's why.
+Then there's also plainy wrong world types. They have a very, very specific kind of
+route running which is that they have some routes that are hybrid and are sometimes run by buses
+and sometimes by trains. And they should be doing, according to the spec, they should be putting
+two different routes with two different types and then putting the trips on the right routes.
+They don't. And now some of you may think, well, how do we fix this? We have no way of actually
+knowing what the trend is. Well, first, so for the service exceptions and the trip headlines,
+so some of the successions is something we don't really care about. Head signs is something we can
+pass. But for the wrong type, turns out it can be informed of the stop ID which according to the
+spec is not to be interpreted and it's just to be taken as a string literal as a key.
+Turns out they have a prefix on that stop ID and that prefix highlights what kind of
+stop it is, if it's a bus stop or train stop or whatever. And so we can write a converter that
+basically looks at the stop IDs, passes that prefix and then recategorizes the routes into
+two different categories. So that's good enough. Now, how do we print it on the receipt?
+Depends on the receipt, Brendan. So most printers, including this one, which is an off-brand one,
+support ESC posts or variations of it, stands for escape point of sale,
+which, yeah, me too, I want to escape the point of sale.
+So it's a text-ish-based protocol by Epson. Basically, the text that's being sent is being
+rendered as is and that there's also control sequences which can send commands to the printer.
+implementations vary, especially for off-brand printers. We have no guarantee that things are
+going to work as they should, but most of the time it works. So there's code pages where
+the text we send is being rendered as per that code page. We can also change the code pages.
+We can also tell it to just print images, which is pretty cool. We can want this.
+We can also tell it's a cut, the receipt, four cuts of partial cuts, depends on what the printer
+supports. And we can also tell it's a beep. However, beeping has varying
+implementations, and especially for off-brand printers, the code sequence might not be
+consistent across every single model. So that is something that needs to be tested individually.
+So how are we going to render it in a receipt? So what data do we have in a site? Pretty simple.
+What time does the train pass by? What feed does it come from? The actual trip,
+and then all of it stops. How are we going to render it? We're not going to render it as text
+only because that is hard to fine-tune. It depends on the code page and also the exact rendering
+of a code page depends on the printer model. So it's not going to be really consistent across
+models. So we can render it as an image first, and then print that text as an image.
+It's kind of a key workaround, but it works. And thankfully, the library we're using has some
+pretty straightforward image printing. So the printers have several interfaces, often through
+serial ports. So this one has TCP on port 9100, which is pretty standard.
+And so for each site, we basically display all of the info we mentioned previously with
+the four stops that are interesting for us. So the starting stop, the last stop,
+and then the previous and next ones were the timestamps, so we can have a rough idea of
+when the trainers are going to be passing by. So all right, let's test it. So I have a script
+that basically pulls an API I have. And from that, from the API basically renders everything and puts
+it on a receipt. So it should be working. Let me check this. So it should be set to display all
+the trains in the booking hub panel for today from now until the end of the day. I actually did
+not test this beforehand, so this is going to be a big surprise for everyone here. Let's check it
+out. Moment of truth. Is it going to work? Who knows? Did my ethernet cable get disconnected?
+That is also possible. Okay, turns out, ah, yeah. I can just fix this. The ethernet cable to the
+printer did not like me sending tickets through it or like receipts. So we're just going to add
+this in a standard manner. So let's see if this works now. What do you mean it? Oh, yeah. Okay.
+Be with me for a second. This should be working. I have no idea how long it's going to ask.
+Yeah, sure. Thanks. Just make sure not to pull it too hard.
+So we're at 5 p.m. We need to get to like 1 a.m.
+So it should be containing all of the sites it knows about. So yeah, this is going to last
+for a while. It looks like it's still printing right 9 p.m. now.
+10 p.m. Oh, yeah. It's getting thinner in the evening. It should be done pretty soon.
+Yep. There we go.
+Sorry. That's all of the trains in Zaboten hop on off from like now until the end of the day.
+So this can be fine-tuned, obviously. If anyone wants to take a look at it at the end, please come.
+So yeah, this was mainly done as a way to like get insights into like how
+what trains actually go by and how we can look like a medieval know-it-all at the station
+being having the holy scroll of all the trains. I also need to thank a few projects. So there's
+a similar but much more advanced project in mine right there. It's integrated with some real-time
+data and as is always m routing. There's also so badly, which I haven't used, but they did give me
+some valuable insights into GTFS. And then also the library. Thank you to the library because I
+have finally been able to just print it and not have to mess with the internals and also all the
+feed providers for the data because yeah, this is very practical. So there's a few stuff I made,
+so I put sites logic. Again, not the cleanest code out there. This was the first project for me.
+It is very, very hideous, but it does the job.
+And yeah, I've also had like a UI for the for the API, which is pretty simple. It does the job.
+All right, that's about it. Does anyone have questions?
+Yep. Maybe I have a microphone. I don't know if...
+Well, yeah, thank you. Is it just trains or buses or whatever? Does it stop there? Is it also passing
+through? If it just runs through, is it also counted? It's also counted because basically the
+algorithm looks at the two stops like the previous and the next one. And so it looks at the angle.
+And so if it's like in between, that that angle is going to be very large,
+which is going to pass the threshold.
+I think that's it with questions. I have one last one. What did exactly
+that you have to sacrifice to the demo gods in order to make that work untested?
+Probably a few souls. Okay. It's a... I was impressed.
+Fun fact, I had my API server crash like two hours before the talk. I had to reconfigure the whole thing.
+So yeah, a few souls have been lost in the making of this talk.
+Congrats on the looking result. And thank you very much.
+So if you would, you know, the drill, if you leave, blah, blah, take your stuff,
+take stuff with you even if it's not your own and enjoy the event. I've heard the bar is open
+downstairs. So maybe have a look there. Yeah. Thank you.

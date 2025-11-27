@@ -1,0 +1,1262 @@
+API URL: https://media.ccc.de/public/recordings/93495
+Frontend URL: https://media.ccc.de/v/godotfest2025-unlocking-godots-superpower-productivity
+Title: Unlocking Godot’s Superpower: Productivity
+
+[MUSIC PLAYING]
+So if you happen to be a game developer from Munich,
+you probably remember Mimi Mimi games.
+Luca Martinelli worked there with Unity,
+like many studios.
+But now he's working at Pippin Bites with Godot.
+and and and and
+and and and and and and and and and
+and and and and and and and and and and
+so today we'll talk about productivity.
+I'll get into it to a second.
+It will start a bit theoretical, abstract,
+but I will get very concrete and I'll get into our details.
+A bit about myself.
+Somebody on the website said,
+I'm a productivity and workflow expert.
+I have no clue what that means,
+but it's the perfect LinkedIn bio.
+So I'll use that from now on.
+In reality, I'm a game designer and a developer.
+I consider myself a programmer.
+I consider myself a designer.
+And I try to be a generalist, but it's hard.
+Until 2023, I was working at Mimi Mimi here in Munich.
+It's actually just a few minutes from here.
+Very nostalgic.
+And we worked on a nice game called Shadow Gambit.
+But as we heard, it wasn't Unity.
+[LAUGH]
+This is where you can boo.
+Then when the company shut down,
+it was around the time where Unity had some issues.
+And like everybody else, I turned to the prettier girl
+[LAUGH]
+and tried to chase it.
+Afterwards, there was this great opportunity
+to join Bip and Bits and get to work on DomeKeeper,
+post launch on all the new content that we added.
+And this really gave me the opportunity
+to transfer to Godot, a new engine,
+straight into a release product, a production ready product,
+which never had these foundational concepts
+from Unity and use Godot in a different way,
+a way I wasn't used to.
+And by now, I get to work on PBKK,
+[SPEAKING SPANISH]
+which is a great opportunity to further my knowledge in Godot.
+Yeah.
+All right.
+So what does this talk about?
+I'm gonna talk about productivity.
+This is gonna be the high level design stuff.
+And I'm gonna move it forward, start getting more technical
+and talk about how it works in Godot,
+how it interacts with Godot,
+why productivity works well in Godot.
+And finally, I'm gonna talk about how we use it
+at Bip and Bits and kind of our strategies
+to take this even further with very, very concrete examples.
+I'm gonna air all of our dirty laundry
+'cause that's what you should do.
+So to reiterate, I'm gonna talk about
+what makes productivity so important,
+why Godot is so good at it
+and how we as a company try to push it even further.
+Let's talk about productivity.
+So the formal definition is the rate
+at which a company or country makes goods.
+It's a very formal thing comes from,
+yeah, from the industry and it has this beautiful equation.
+Productivity is just the rate of your output
+over your input.
+If we rearrange it, it becomes a little bit more intuitive.
+It's a measure of speed.
+It's a multiplier, a scalar on your input.
+So what is input?
+Well, in the game development context,
+it can be anything, it's time, it's people,
+it's how many hours your employees work,
+what kind of resources you have.
+But the one I really wanna talk about
+is productivity only over time.
+About an individual developer,
+an individual programmer, designer,
+an individual little person working in engine.
+And if you look at this equation,
+some of you will recognize that this is just the equation
+for speed.
+So speed distance is speed over time or speed times time.
+And this is what we're talking about.
+So productivity is just the speed
+at which you create an output.
+To put it into a context, like a game's lens,
+we can take this example and consider
+the game development process as kind of trying
+to climb a hill.
+You start with nothing or something
+and you're trying to make a better game.
+And in this analogy, making a better game
+is reaching the top.
+Productivity would be your movement speed,
+just how fast are you moving?
+Now, until now, we're talking about general productivity,
+just speed, just how fast do you do things,
+how fast does the engine work,
+what kind of environments, like, yeah, just speed.
+But the one that we really care about
+is what I like to call a key productivity,
+which is not the general speed,
+but kind of the speed at which you make a game better.
+So this is a big difference.
+There's a giant difference between just being fast
+and being fast at making a game better.
+In the current situation, we'll know
+it's important to make good games.
+Only a small percentage of games actually make it.
+The amount of games that get released increases.
+So the pressure on making a good game has increased.
+Making a mediocre game, average game,
+just doesn't work out anymore.
+If we go back to our analogy,
+normal productivity is just how fast you walk.
+And the key productivity making the game better
+is kind of how fast you walk towards your destination.
+It's kind of relative to the point you're going to
+in games that's unclear what it is in this analogy.
+It's getting up, reaching the peak.
+And so they can be very different.
+For example, there was a time
+when I started getting good at system development,
+and I started to gain speed.
+I started over-engineering, and I had so much speed,
+I made everything super complex.
+I took systems, and then I made simulations,
+and I added more layers and layers and layers.
+And the reality is that I was faster,
+so normal productivity was up.
+But this key productivity was down
+'cause the games were worse.
+The games just weren't playable, they weren't fun.
+So I was walking, I was moving faster.
+I was just moving in the wrong direction very often.
+So how do we make games better, faster?
+That's kind of the key question for every developer.
+Yeah.
+So there's some kind of naive interpretation
+or emotional responses that often happen.
+One is just by making better predictions.
+You work on a system, it takes you three, four iterations,
+and at the end you say, how could I've made this faster?
+How could I've made this better more quickly?
+And you go, well, if I was better,
+if I made better prediction,
+I would've gotten this on the first iteration.
+I would've gone straight away.
+And the reality is that, yeah, maybe through experience,
+you can develop better instincts,
+get better at making predictions.
+But the reality is that this is not actionable,
+this is not how you should think
+about this kind of process,
+it's not how you gain speed,
+because it's not something you can change quickly,
+this is something you need to build up over a long time.
+The other one is making less mistakes,
+it's the same thing, you build a system,
+then months later you get a bug,
+you spend three days fixing that bug,
+and you think, how could I've done this better?
+Just don't write that bug.
+It's the same thing, yeah, long term with experience with time,
+you get better at this,
+it's really about understanding the space.
+If you've made a game in the genre before,
+or in the space before,
+you're less likely to repeat this,
+but it's not actionable,
+this is not the kind of thing you should work on.
+If you're in that position,
+you're spending a whole day fixing a bug,
+the solution was not to not have the bug that won't happen.
+So the one I wanna talk about
+is by getting faster in general.
+It was a little bit weird,
+'cause I just said, going fast and making games fast
+is not the same, actually can even lead you the wrong way.
+And this is kind of the key of my talk,
+and what I really wanna talk about.
+I think by just getting better at going fast in general,
+how you work, how you use your tools, just the micro,
+you're just gonna make better games,
+you're gonna get better at making better games in general.
+All right, so to talk about this,
+I need to talk about the Flash.
+So the Flash has the super power,
+his super power is just to be fast,
+it's perfect in our analogy.
+But if you think about the Flash,
+and you think about what he actually does,
+he has a set of other superpowers that come from being fast
+that are actually more important than him being fast.
+For example, he can run up walls,
+this is just a consequence.
+There's some others where he just shakes his hands
+and creates tornadoes out of his arms,
+and the one that most of us know is that he can time travel.
+So his power is speed,
+but the consequence of it is he can time travel,
+and that's the way more exciting super power.
+So I have kind of five hidden superpowers
+of tapping into the speed force
+that come from just getting faster.
+The first one is that you get resilient
+against the Sunkos' fallacy.
+Does everybody know what the Sunkos' fallacy is?
+Yeah, raise your hands, if you will.
+All right, there's a definition here,
+but the thing we care about is that Sunkos comes
+from an investment of money, time, and effort.
+It is not a metric of time.
+Oh, sorry, it is a metric of time.
+And what this means is that if you are being faster,
+kind of the pressure, the impact of the Sunkos' fallacy
+is reduced.
+So in a way, you build the form of resistance.
+You're less likely, you're less prone to fall for it,
+and this means you're gonna take less bad decisions
+that are driven by the Sunkos' fallacy.
+You know, often we call this kill your darlings,
+and so being fast makes you better at killing your darlings.
+Being fast allows you to make mistakes.
+Taking, like, taking, exploring the space you're in,
+design-wise, it's a lot about the cost
+of doing this exploration.
+If the cost, like, the pressure of making a mistake
+becomes unbearable or too high,
+you feel forced into getting things right the first time.
+You feel forced into not exploring
+and kind of exploiting the things you already know.
+And this is very counterproductive
+in a kind of discipline that's very dynamic,
+where it's really about, you will make mistakes.
+So it's really about kind of accepting the fact
+that you will make mistakes working from them
+and also using the fact that you make mistakes
+to understand the space you're in better.
+So you make, yeah, you can make mistakes,
+which is very positive thanks to speed.
+The third one, I mean, this is the obvious one.
+We don't really talk about it.
+If you're faster, you can do more iterations.
+If you've seen a video talk yesterday,
+you know the importance of iteration speed,
+being the key of kind of development nowadays.
+And yeah, being fast, more iterations,
+more iterations in a very concrete way
+and kind of agile development leads to better result.
+You just end up iterating,
+end up trying different things, make mistakes,
+shifting your priority.
+And so just by being fast,
+you have the time to make more iterations
+and this will lead to better game design
+without needing to be a better game designer.
+This is a bit of a controversial one,
+but one of the more important one,
+being fast makes you more experienced faster.
+So it goes back to the equation,
+where does experience come from?
+My experience in the definition is a result of effort
+and work.
+It is not a unit of time.
+So you're not experienced
+because you did something for 10 years
+in the sense that 10 years have passed,
+your experience because in those 10 years,
+you've done something very often a lot repetitively.
+It goes back to exploration.
+You got the opportunity to explore space.
+So when you can come back with a problem
+that is in the same space,
+you have witnessed it before,
+you've kind of felt it before.
+And by being faster, you end up doing more things,
+which in the same regard allow you to explore more,
+lead you to be more experienced
+and this goes back to the points I said before
+about making better predictions,
+making less mistakes in general.
+So suddenly being fast does approach those two solutions
+in a very positive way.
+The last one, and maybe the most important one,
+being fast is just more fun.
+And this is not to be underestimated
+because kind of velocity productivity moving
+in game development is one of the most important aspects.
+You want to feel good, you want to,
+yeah, when I get in a state of flow,
+continue kind of your positive development cycle.
+It creates a positive feedback loop.
+And so this is scientifically proven.
+Short reward cycles increase short-term enjoyment,
+kind of just shortening the time
+between you start something
+and you get positive feedback for it,
+or negative feedback, if you're good at the link with it,
+just makes the experience more exciting, more positive.
+It makes, yeah, more enjoyable.
+Right, let me, okay, yeah.
+Right, so quick summary of productivity.
+It's the speed at which you create an output
+in the context of time.
+The key productivity thing we should really care about
+is the speed at which we make games better.
+These don't align, they're not the same thing,
+but being faster because of these hidden powers
+that come with it is actually one way
+to increase the important productivity,
+this key productivity.
+So let's get into Godot.
+And why I'm holding this talk.
+So after I moved away from Unity,
+and I meet my old colleagues and people I knew
+from the Unity scene, they always ask me,
+how's it going in Godot?
+Do you like it?
+How is it?
+And my answer is always, I love it,
+because it's so fast.
+And it makes me so productive that even though
+I'm in a language that I'm not used to,
+I worked in C# six, seven years before now working
+in GDScript.
+I'm faster in GDScript than I was in C#
+very, very quickly.
+For example, the first game jam we made was my first day
+of work, I've only written a week of GDScript,
+and I was at least as fast as after five or six years
+of C#, and this is a big power.
+So how do we make games better, faster?
+By getting faster in general,
+and the one I want to talk about for Godot
+is by just reducing time wasted by the tools
+and the engine.
+So let's break it down, let's get a little bit concrete.
+What does the normal feature development look like?
+Well, you make the feature, you ship it, all right?
+But doesn't mean, well, you have a concept,
+then you make an MVP, and then you do some iterations,
+and then you ship it, okay.
+You make a concept, an MVP, an iteration,
+a second iteration, a third iteration,
+fourth iteration, you make a build, you send it to QA,
+they test it, get it back to you,
+you fix the 700 bucks, you just add it,
+and you ship it.
+So it's getting very minute,
+and we're gonna come to why the engine is important.
+If we look at one iteration, which realistically
+is the biggest part of our time,
+the kind of the most important part of our time,
+and also the part where we do our work,
+we do the things we're good at.
+And we break it down further, well, it gets interesting.
+So, okay, you do the planning for iteration,
+you boot up the project, people always forget the step,
+it's a big step, you make some changes,
+this is where you actually write code or make assets,
+this is your job, then you compile,
+if you see that, you know where I'm going with this,
+you run the project, you test it,
+you find some bugs, so you bug fix, you compile again,
+you test it again, and you run the project,
+you test it again, all right.
+Now you realize you're not done,
+because that's not how we work,
+we don't implement a whole feature in one shot,
+you need to do a pass on it, in an iteration,
+you do many iterations.
+So you make some changes, you compile,
+you run the project, you test it, you bug fix,
+then you compile, run the test,
+and test it to test the fix of the bug fix,
+and you do it again, and until we get to the part
+that's interesting, then you make a build,
+send it to QA in the kind of cycle we work in,
+finally do some kind of higher level testing
+with your team, with external players, whatever.
+So if we look at this, which is what our day actually looks like,
+and I call or code it, there's a bit of a pattern,
+so the green things is what I call kind of scale basis,
+this is our job, the red things,
+well the red things is just the engine
+and the framework you're in, this is most of the time
+has nothing to do with you and everything to do
+with how you're working, and the blue things,
+well are kind of a bit of both, testing is about,
+obviously how quick you are at testing,
+but it's also about how well you can test in the engine,
+how many you have tools to kind of prepare this,
+how much time is just wasted doing nothing.
+The metaphor I like to say is that everything that's red,
+and which is also half of the blue,
+is a cool down between your actual job
+and the next time you get to your job.
+So you can be an amazing programmer, artist, designer,
+whatever, if you're working in an engine,
+and be really, really good at this OP scale,
+and then just go and cool down
+for the next kind of 50% of your work.
+And if you take this, compress it back
+to the slide from before, and look at this
+from the large side, yeah, it's really,
+obviously this is not proportional,
+I didn't get to measure it, which I wanna do,
+and compare the engines, but this is for the next time,
+you actually don't work a lot when you work.
+Yeah, I mean, it's a lot of it.
+And what this means is that the engine
+and tools the environment you're in matter for speed
+as much as your skill.
+And now we finally get to talk about Kado,
+'cause there's some nodes in there
+that maybe you wouldn't consider for Kado.
+So this is kind of the industry standard,
+this is the Unity Unreal,
+and this is, in part, Kado with C#.
+And then we look at Kado with G script.
+So what is happening?
+Well, our boot time is down, and that looks minor,
+but I have a nice story for this.
+I went to visit a friend of years ago
+who worked in a big AAA Unreal project,
+and he will start his day by waking up,
+going to his computer, pulling from the repository we're in,
+clicking play, and then going to a breakfast for an hour,
+because it took an hour to get into playtime
+the first time they run.
+And this is a common thing.
+This is not like a one-off.
+This is what game development looks like
+on the higher levels.
+In Kado, in PBKK, I don't know, five seconds,
+10 seconds, I don't know, because it's so short.
+The second time that is gone,
+which is the most important one,
+there's no compile time.
+You make your changes, you're done.
+This is the most frequent cooldown in Unity.
+When I was at Mimimi on ShadowGambit,
+or kind of compile, well, it's not compile,
+but whatever domain reload,
+whatever you want to call it in C#,
+was about 45 seconds.
+And we spent a lot of time getting it down to 45 seconds.
+It was like, I don't know, 500,000,
+300,000 lines of code code base.
+It has a lot of things happening.
+And most of the time, as a programmer,
+or as a designer, the changes you make are minimal.
+You change two lines of code.
+It's like 17 seconds of work,
+followed by a minute and a half cooldown on your skill.
+And the third one, equally important, the runtime.
+How long are you after the compilation?
+You click play, what's your wait time here?
+And this can easily be minutes in larger projects.
+But in Kado, it tends to be extreme, extremely fast.
+And I'll talk back about this
+when we talk about PBKK and our projects.
+Another thing you might notice is that,
+actually, let me look at time, all right.
+Another thing you might notice is that
+there's a whole iteration chunk missing
+after the first pass.
+So when I showed it earlier,
+you would run your first text, a test, find bugs,
+stop playing, fix the bugs, recompile, rerun tests.
+But with GDScript and the amazing implementation
+of hot reload, you actually don't do this.
+You test the first time, find the bug,
+open the code, fix the bug, you're still in game,
+you get to test that the bug fix works,
+this is 90% of the bugs, and you just keep going.
+So you're skipping this doubling of the compilation
+and running time by just using this amazing feature
+that's the core of the engine.
+So if you look at it, well, that's a very good improvement.
+And the amount of time I'm actually working
+has gone up significantly.
+And so this goes to the name of the talk,
+the superpower of Godot as I like to call,
+or that I just came up with, Godot was Triforce,
+having a primary language with no compilation time.
+I'm interested here.
+How many here use Godot with C#?
+Yeah, that's 20%, okay, that's less than I expected.
+And the rest is all GDScript.
+Can I get a raise hands for GDScript?
+Oh, I love it.
+I don't even need to hold a talk.
+I specify primary programming language
+because you have scenarios like Unreal
+with, I immediately forgot what the feature is called,
+the node-based scripting.
+Blueprints, thank you, which is an amazing,
+amazing way to program.
+But there is a massive difference between a system
+that's built to support versus a system.
+Obviously, yeah, Godot's main language is C++,
+but the user language is GDScript,
+and it's gonna continue to be the way that everything
+that is ported to kind of user land, to developer land,
+will be supported in GDScript.
+And this means kind of contrary to blueprints
+that you're not forced to sometimes go,
+I now need an expert C++ programmer.
+There are some reasons to do it,
+and it's always great to have that possibility.
+But the fact that it's the core and it's still text-based
+is a very, very significant difference.
+The second one I've talked about it,
+this is it, this is Godot.
+Seamless and instant hot reload takes away
+a third of your cooldown.
+It's the greatest upgrade you can buy.
+And the last one, again, fast launch, play,
+and export times.
+On PBKK right now, our build pipeline,
+which includes automatic testing and upload to Steam,
+it's about 30 minutes.
+It's not amazing, but that's like, okay,
+take a launch break.
+And maybe me, it was eight hours.
+So the only way to get a build was to wait
+for the build for the next day.
+And actually without the build pipeline,
+if you run it locally and you have the cache
+already prepared and everything,
+this can be like a minute.
+And it happens more often than you think,
+that you just need to make a build, do bug fixing,
+make a build, do bug fixing,
+or QA has some requirements.
+And bringing that iteration time down as well
+is as important as the other two.
+All right, the Mythical 10x developer in context.
+Does somebody not know what the 10x developer is?
+All right, I'll explain it.
+So by now it's a bit of a meme.
+It comes from computer science production,
+kind of managing large developer teams.
+And it's this idea that kind of the bell curve
+of how fast developers are is a real thing.
+And there's the normal developers 100% one times the speed.
+And there's some mystical 10x developer
+that in the same time does 10 times the work.
+It's become a meme because it's a very unrealistic thing,
+that kind of big tech and Fortune 500 companies
+kind of use as catchphrases and kind of things to look for,
+or to justify, like to use as an AI thing.
+But it's still useful as a reference.
+So if we take the original thing in a generic engine
+and we apply a 10x, we put a 10x developer in it,
+this is what it looks like.
+Obviously, yeah, proportionally, it's not correct.
+But yeah, this is not 10x.
+And what it means practically is that the better your
+developers, the kind of the faster the closer they are
+to this absurd number, the more the slowdown
+from your framework or your tools is gonna impact
+your general productivity.
+You take a 10x developer, these people
+are probably worth millions, at least in Silicon Valley,
+these people are worth millions.
+And you put it in the framework and he's just
+on cooldown the whole time.
+So, reducing, yeah, time wasted by tools in an engine
+matters more the better you get.
+And this is something that professional developers know
+where they get really good at an engine
+and get more and more frustrated with kind of the overhead
+that takes away from their core productivity.
+So, yeah, look at this, if you are set up using C#
+or in general, we're not using hot reload the way
+you really can.
+And think about, yeah, you've fired some amazing people
+and now you've just put them on cooldown.
+How am I doing that time?
+Okay.
+The what is the engine doing time?
+This is another kind of super powerful, though.
+A lot of concepts in game engines, because they do so much
+from so many kind of departments, mathematics, physics,
+simulation, everything, is that engines are really complex,
+they're very difficult.
+But the reality is that most of the code in an engine
+is kind of boilerplate, it's about connections,
+it's about graph, like dependencies and everything.
+And they're really hard systems like rendering, et cetera.
+They're very important, but there's a lot about the engines
+that you can learn very quickly.
+So, I have this example.
+Let's say a scenario, you call this function
+and there's only one node in your whole tree
+that is in the group that you're looking for.
+Who thinks this function is very slow?
+Can I get a raise of hands?
+All right.
+Who thinks it's very fast?
+Who thinks it's faster than having a reference
+in another class and you just go something
+like world.get handler?
+Yeah.
+(laughs)
+And the reality is because we're in Godot and it's open source,
+yeah, step one, you look at the documentation,
+but actually it says nothing about speed.
+And the ones of you that come from Unity,
+they might know that kind of infamous function
+called get find game object with tag,
+which used to be, or maybe still is,
+one of the slowest function you could kind of use
+'cause it would have to crawl everything,
+it would do a disaster.
+And so, the first thing you would learn in Unity,
+never use it.
+And then you come to Godot and you go, never use it.
+And the documentation doesn't tell you,
+it doesn't say anything about it, which is fine
+'cause it's talking about what it does,
+not how it does it.
+And the reality is you can just, you know,
+have Visual Studio or whatever, open up the source code.
+If you can read C++, you don't need to be able to write it.
+If you write C# or have experience with similar languages,
+you can read the source code to a point
+that you understand what it's doing.
+And all you have to do is just kind of take the function name
+you use in GDScript, search with quotation marks
+and you're gonna find the binding
+so you can just look at the function.
+And if you actually look at how it's implemented in Godot,
+well, it uses a hash mark.
+Everything is cached when you add it to groups.
+So there's no searching involved.
+It might be a bit of a misnomer 'cause,
+oh no, actually, yeah, it's called get first node and group.
+So it kind of implies that it's fast.
+This is kind of a programming principle
+to maybe name functions that tend
+to do more complex operations, something like find,
+which is why in Unity, you know,
+it was fine game object attack,
+but here it's get first node and group.
+But this is a big difference.
+This means that this function is very fast,
+as long as there's only one node in it,
+because the moment a lot of nodes are in a group,
+they get sorted again.
+So suddenly the time is very dependent on how you use it.
+And this is the kind of thing that you can't do in Unity at all.
+And this costs a lot.
+And Unreal has a, you can do it in Unreal,
+but it has a very, very logical base
+that is very interconnected.
+You need to understand a lot of concepts.
+And I found in my experience that just doing this in Godot,
+you can understand what a function is doing
+by just spending 20 seconds and reading
+at the first kind of five to 10 lines of code.
+And this is really important because the amount of time
+when making a game, especially when you get closer to release,
+that you get these problems that are just about
+not knowing what's happening under the hood,
+is actually surprisingly high.
+All right.
+So this was a point about Godot.
+We wanna look faster, we wanna make better games.
+Going fast in general helps with that.
+And the way, you know, in regards to tool,
+a really good way to do it, reduce time wasted
+on the framework on the tools you're using.
+And Godot is really, really good at it.
+The other way to kind of make games better faster,
+which is an obvious statement,
+is just reduce the time you're not making the game faster.
+Yeah.
+But what it means is that there's a lot of things
+that you can do very quickly that actually have no impact
+on the game getting better.
+And if you think about back to productivity in the industry,
+is how do you increase production speed
+while you sacrifice quality?
+And this is something that we often watch negatively,
+kind of in that regard.
+But in terms of games, there's a lot of things you're doing
+that are not making the game better.
+They're not for the game.
+They are for other reasons.
+You write code architecture for a coding standpoint.
+You make sure that all of your edges on a drawing
+are really clean and smooth from an artistic standpoint.
+From a design point, you try to find
+the best possible answer.
+And the reality is that there's a lot of shortcuts,
+trade-offs, and sacrifices you can take
+to really kind of feed the big part,
+the most important part, which is just make the game better
+by taking away kind of your pride
+and the love for your job
+and pushing it into making the game better.
+And this is really hard because as a programmer, for example,
+you go to a conference or something like that,
+and you really want to show good code.
+You want to show clean code.
+That's what it means to be a good programmer.
+And the reality is that as a game developer,
+actually should do the opposite.
+They should go to a conference and just be,
+look at how bad this code is.
+I wrote it in one second.
+That's the magic.
+So let's go to Bip-A-Bits talking about that.
+And I'm going to talk very concretely
+about what we do in PVP game.
+So Bip-A-Bits and Godot is very exciting
+because the core Bip-A-Bits team,
+when they kind of did this move or went there,
+they didn't come from the Unreal Unity background.
+They didn't have all of these learnings
+that come from how those engines work.
+So they kind of, and came from much smaller,
+kind of more old-school simplistic engines
+that didn't come with this kind of burden of knowledge
+and techniques that you have in those two.
+And what it means is that they do things very differently
+than I used to do in Unity and without kind of the bias
+of those learnings.
+So I'm going to go through a few.
+These first few are not features or things we build.
+It's just how we use the engine.
+The first thing is we do is we just load assets
+by path in the script, in the middle.
+We just drag, hold, control, drop, done.
+There's other ways to do it.
+You can use UUIDs, don't.
+And you can make an export and then go into the inspector
+and play Unity for a bit and just take the thing
+and drop it in.
+And from a programming standpoint, that more stable.
+It creates like independence.
+And one of the things it does, which happens in bigger companies,
+is if your level designer comes in
+and likes to rename the object because that would make sense
+and they're not aware about how you build,
+well, this just breaks the game.
+And so doing the interaction makes sense in those big engines,
+maybe.
+But it's slow, and this is fast.
+So the advantage, it's incredibly fast.
+It's incredibly easy to read and debug,
+and this is why you shouldn't use UUIDs.
+Because we read this, we know what we're doing.
+You can control click into it.
+Yeah, you can do it on UUIDs.
+But the code tells me everything I need
+to know about what this execution is doing.
+If I do it in direction with export,
+actually, the variable might not be assigned.
+So I read the code, it looks perfect, it doesn't run.
+There's a missing reference.
+Or you might have dropped in something wrong.
+Like, it creates this interaction
+where you have to go back to the engine, look at the node,
+look if the reference is correct.
+You're spending a lot of time for something
+that could just be there.
+It's a very old-school way of writing, making games.
+But I think it's the correct way.
+It's the fast way, in Godot, for the games that we make.
+Obviously, we make certain kinds of game.
+Yeah, everything you know is in code.
+Do not underestimate the importance of that statement.
+When the programmer and the designer are the same people,
+or the designer is capable of reading code to the good degree,
+it makes understanding your code base,
+even on larger code bases, exponentially faster
+and easier than the other case.
+So the trade-off, this might feel dirty.
+And now I have to talk about the feeling of feeling dirty.
+I'm going to show you these dirty things.
+And you can think, OK, this is bad programming.
+And you're right, that's the point.
+But I really want to think about the thing I'm talking about.
+The core, which is the only thing that matters,
+is making the thing you have, and making it better,
+and getting faster at doing that.
+So making better code, or writing good code,
+this feeling of dirtiness from doing something bad,
+because this is bad.
+It's not justified from that perspective.
+It comes from this higher-level understanding
+of programming that comes from a software development
+where you have 500 people making software that's
+supposed to run for 40 years, or run our banks,
+run our satellites.
+But we're making games.
+We're making broken products.
+So what's the trade-off?
+So what's the actual cost?
+Talking about dirtiness.
+What does it actually cost to do this ugly thing?
+Well, yeah, renaming, moving assets breaks the game.
+And renaming, moving assets is slower.
+But if you look at the percentage,
+you use this part more than you rename stuff.
+And it's not that much slower.
+That part is making.
+And all you have to do is create the shared understanding
+that renaming or moving things might impact code execution.
+Just go through the three steps.
+From every time you want to rename something,
+do right-click, see where it's owned,
+see the references, maybe searching code,
+if something like this is happening.
+It's a bit slower.
+But you need to trust your designers
+and kind of non-technical people that are reading code
+to understand such a simple pipeline as don't just
+rename instinctively.
+And GDScript is pretty good at immediately screaming at you
+when you do something like this in a bad way.
+So it's not a high price for something very, very fast.
+Yeah, we reference node in scenes by unique names.
+It's the same principle.
+Just move to the in-scene structure.
+So here you have three choices.
+You can reference with the dollar sign.
+I don't know what that's called.
+You can use the unique names.
+Or you can make an export variable, drag and thing, drop it in.
+And this is really, really fast.
+It has the same weakness.
+If you rename it breaks.
+But it has this advantage that every time
+you see something in the scene tree that has a percent sign,
+you know you shouldn't rename it.
+And you can move it.
+So it's a different weakness.
+Yeah, it's superior to just the dollar sign.
+And it's incredibly fast.
+So very fast, drag and drop.
+Resilience to change hierarchy, which is great.
+And you immediately know where to find a reference.
+And this is not to be underestimated,
+because the interaction that brings kind of code stability
+costs a lot of time.
+Trade off same thing, renaming can break.
+It's slower.
+You just need the shared understanding.
+Let me get faster.
+Yeah, we really use hot reload.
+I've already talked about this before.
+But very often when programming, you find--
+you get programming challenges.
+Is this a times one or a times minus one scenario?
+Do I have to offset-- is this offset by one kind of bug?
+Or what equation will feel good when I play this?
+And yeah, there's some-- if you're really good at programming,
+maybe you know, though, like you can just solve that.
+But it goes back to the fact that getting really good at that
+means takes time, takes experience.
+The other thing you can do is just try, just write some code,
+run it, use hot reload to just change dynamically.
+If it's a pick up animation, just write whatever, run it,
+and go in, just adjust it, tweak it.
+And this happens very often.
+And it's crazy how much faster this is than the classic method
+of trying to understand the kind of interpret experience
+through algorithms and kind of iterating on that.
+The other thing you can do is obviously use it for assets
+as well, just the classic problem is, you know,
+does it look good when I'm in game?
+And you just move it 50 times and just throw it in.
+And just kind of change it while you're playing.
+Now we get a little bit more technical.
+We bundle the engine with the project.
+This is a very dirty thing.
+But in our Git repository, the version of the engine
+we're using is in there.
+How many people are doing this in their projects?
+Ah, nice.
+So what does it mean is that the engine
+comes with the project, and it has
+a lot of positive side effects.
+Very easy to set up and run.
+You can seamlessly change the engine version
+without telling anybody in most of the engine upgrades,
+which you should do.
+And for anybody who has done this kind of in other engines
+or in Godot as well, this can be a very annoying process.
+You have to kind of go on Discord and tell everybody, hey,
+the next time you kind of-- if you pull,
+you need to go to this link, download this version of the game,
+and then run it.
+And also, you can seamlessly change to a custom engine
+or a custom version.
+You need a debug version of the build,
+because you have certain bugs that don't show up.
+You just hot swap this version.
+No more word version, Ariane.
+No more please upgrade.
+And it creates seamless cooperation with freelancers.
+You don't have this thing anymore.
+The first thing, if freelancer comes in, you have to go--
+you have to find this specific version of Godot.
+It's actually, on the website, you
+need to go other versions, find that link, whatever.
+It's incredibly useful.
+And the other thing it's useful for is,
+if you have a build pipeline, you
+don't need to kind of manage two repositories
+or whatever version tracking.
+Just the build pipeline has the build there.
+Everything you need to create a package
+is right there with you.
+The trade off, $5.
+For the whole company, yeah.
+The Bip and Biz runs on $5 Alt-S cost to support that.
+So let's get to the last part of my talk,
+which is kind of the more layering on top.
+That was how we use Godot.
+And this is how do we kind of advance Godot.
+This is the most important one per project start option.
+So both for Don't Keep or MPVKK, we
+don't use the normal play button.
+We have this extension to the editor
+where we just kind of pick where you want to start.
+In Dome, actually, I don't know if cool between Chris
+and Austin did it.
+They actually also support a multiplayer.
+So suddenly, you want to test something.
+You skip the first 30 to 40 seconds of your test session
+where you boot the normal game, and then you go into the loadout,
+and you pick which keeper you want to do.
+And then you load the game by just kind of clicking
+these drop downs.
+And in PVKK, for example, we have a lot of missions,
+and often the thing you want to test
+is just that a specific mission.
+And you can just jump to it.
+And in the future, we might do things like certain bugs only
+happen if you bought certain upgrades, certain specific things.
+Well, we can prepare save files or kind of cheat code for it,
+and then just add an option, what kind of upgrades
+that you want to have, like nothing, random selection,
+things like that.
+And then suddenly, it really speeds up
+that kind of testing iteration loop.
+How many of you are doing something like this in your game?
+All right, good.
+Good.
+Yeah, YAML.
+This is another thing we do, and this, again,
+goes back to the kind of the Unity 2.0 thing.
+When I see Unity developers try good over the first time,
+they try to put all of their data in Engine,
+because that's kind of how you use those engines.
+They try to create these concept kind of structures
+like nested resources references.
+And Godot isn't good at that yet.
+But also, it's just not the best way to do it.
+So another thing we do is we just go very old school
+and take some of these responses away from the Engine
+and move it to something that we have more direct design
+control over.
+In PVKK, what we do, this is our mission definition.
+And what it means is that if you want
+to make a new mission for the game,
+you just kind of take a block, add these properties.
+And actually, the entirety of the level design
+is those four lines and spawn plan.
+That's the level.
+And we do some special things.
+For example, those lines there, like this Lander M 10.0
+minus 1,000, well, that supports kind of dynamic properties
+and we can customize it.
+So this is saying I'm spawning a ship of type Lander.
+This is a class, like a node somewhere a scene, I don't know.
+After 10 seconds at position minus 1,600.
+And we can dynamically add some properties,
+like that ID is equal to target.
+And what this allows us to do is kind of completely speed up
+this design development pipeline by just taking ownership
+of this part of the game, moving it to something
+we have full control over, and then parsing it in Godot
+and kind of stepping over the Engine
+and saying Godot, you're great, but you're not great at this.
+And we can make it tailor-made for us.
+And this is another example.
+We use this system everywhere.
+The shop, every item in the shop is also
+kind of defined in this kind of structure.
+It's a very normal thing to do.
+But we can see that we can customize the data
+and kind of specify the way we want to use it.
+Later on it was, I think I will skip this one for time
+reasons, but well, actually, maybe it's very important.
+So this goes to a very big problem in programming.
+One of the most important thing you do, which is kind of--
+this dependency change of how is your data,
+how is your execution flowing from one point to another.
+And games can be very interconnected in a way
+that we don't like a software engineer.
+So you want your gameplay code to trigger an UI execution.
+And then you want to wait for the UI
+and then trigger the gameplay code again.
+This is hate from a software engineer.
+You don't want this.
+But game design-wise, you should do this more often,
+because often it feels good that the game is more reactive,
+more responsive.
+So you have to write that kind of code.
+And the way we write that kind of code
+is we have this data event bus, which
+create kind of indirect dependencies.
+And here is how it works.
+This is the full implementation of our subtitle system.
+In gameplay, I just say, hey, I want
+to change the UI subtitle to this line of text.
+And the subtitle system just says, yeah, OK, label.text
+is equal to text, end of implementation.
+So I'm skipping the entirety dependency chain of how
+would I get that ROAs?
+Well, the radio system, if we go full software architecture,
+we need either some kind of service provider.
+We need to find a way.
+Or the dependency should be injected.
+So I have a reference to an AI subtitle display
+or an AI kind of UI feedback or whatever you want to call it.
+And I need to solve that whole kind of architecture graph
+and go all the way down.
+Or you just do this stupid thing.
+And it's string-based.
+It's slow, like performance-wise, this is very slow.
+The multiplayer guys might know something about it.
+And you could make it faster, but it's really fast to implement.
+And I will give somebody--
+maybe I won't do that.
+But the amount of times your CPU bottlenecked in modern games,
+you need to do a very specific subset of games
+to be CPU bottlenecked, maybe something
+with a lot of entities doing very complex things.
+But most kind of normal casual games,
+they don't even get close.
+Even with GDScript, they're 20 times slower than writing it
+in C++ or something like that.
+With some insane costs, you never even get close to it.
+So this kind of cost doesn't matter.
+Yeah, necessary factorial reference.
+This is kind of the same problems
+face of having to sort your dependency chains.
+Yeah, and the top left one is if you've played factorial,
+that's clearly the way to do it.
+But sometimes just a little bit of chaos
+doesn't actually impact the high-level kind of side effects.
+And it's just a million times easier to write for moments.
+We have a build pipeline.
+Who here has an automated build pipeline?
+Yeah.
+We wrote it very quickly.
+It runs fully on GitHub.
+It just kind of clones the repo, makes a build,
+runs automatic tests, makes an automatic steam upload.
+And it also does this nice thing that it just tags kind
+of what build on Steam is which version.
+And I have this line down here.
+Because back when I started joined DomeKeeper,
+we had this dynamic where the only person that knew
+how to make builds and made builds was Renee,
+CEO lead designer.
+And he was managing a company, being the lead designer,
+fixing bugs, doing everything.
+And then periodically QA would have to be like, hey, Renee,
+can you stop everything you're doing to make me this build?
+Which he'd do by hand, use kind of the Steam API
+to upload it manually.
+And then if you're fixing bugs, QA would be, was this fixed?
+And you go, I don't know.
+I don't know when Renee made this build.
+Maybe he made it at 11 in the morning?
+I don't know.
+And by doing this kind of steps--
+and it's easy to set up pipelines right now.
+I mean, JetBrains talk yesterday about they
+have their own CI/CD stuff.
+You can use it native.
+There's a lot of tools for this.
+This is not the problem it used to be.
+Yeah, and for us, this has saved us
+an infinite amount of time.
+If you have a big enough company,
+don't do this if you're one guy.
+Don't go like, I'm going to make a beautiful build plug.
+And this is about saving time in the long run as a developer.
+I don't want to ever have to do a build.
+You know, I want to write code.
+I want to do this stuff I'm good at.
+I don't want to be the person that's like, oh, yeah,
+let me go press export.
+And then you-- yeah, another thing that happens, obviously,
+is reliability.
+If it's running with the same architecture,
+same execution every time, they're consistent.
+This is very useful.
+If you're making builds on your machine,
+oh, did you forget a change?
+Did you not revert everything?
+Is there some bad cache that you're
+carrying from seven versions ago that suddenly makes
+his way into your build, and it breaks some kind of data?
+These things happen.
+We have an in-game background reporter.
+What it does is you can just write something in the game,
+click a button, and it uploads it to Jira,
+and it adds a save file.
+It adds a save file.
+It adds the logs.
+It takes a screenshot.
+Yeah, this is everything.
+The amount of time QA spends chasing down reasons for bugs,
+writing people like, hey, but in which version were you,
+what's your platform?
+This is really easy.
+People love it.
+They feel like they're part of the development.
+It has a positive player experience.
+And it's just really, really useful to save me time,
+so that I don't have to do this shit.
+And the last one, but not least, is I've made an audio
+debugger, and what it does is kind of just tells you
+what you're hearing.
+And this is a bigger problem than people think about.
+Because the normal audio development pipeline
+is you have your sound engineer, they want to play a sound.
+Maybe they're not technical, maybe they're technical.
+But often an engineer implements it.
+And then you play the game, and you don't hear it.
+And there's like 10 reasons why you don't hear it.
+The programmer forgot to do it.
+The online engineer forgot to do it.
+They did it, but it's wrong.
+They did it, but there's a bug.
+They did it, but it's restarting every frame,
+so it theoretically is playing, but it's kind of restarting.
+And just by having something like this,
+the audio engineer themselves, when
+they get a ticket or a bug about sound problems,
+they just use this.
+They look, can I hear the saying I'm supposed to hear?
+OK, it's there.
+It's playing.
+I just don't hear it.
+OK, so maybe it's just tuned too far down.
+Or you see it's not playing.
+It's a tech bug.
+So it allows you to kind of skip the whole very iterative,
+complex problem of taking an engineer's time, who's
+supposed to kind of build your game and have him spend kind
+of this time tracing down why the sound wasn't working.
+Last but not least, not an advertisement,
+but it should be U-century.
+They have Godot integration now.
+Godot is really bad at crashes.
+It's really bad at telling you why something crashes.
+It doesn't say anything.
+Century fixes that in most of the cases.
+It's kind of a service, obviously, professional thing.
+And it's made exactly to kind of track
+sources of issues and kind of big software.
+Another way we use it, which you should also do, actually--
+how many people here are using Century?
+OK.
+How many people here know what Century is?
+OK.
+Yeah.
+Obviously, it's not always the case.
+This is a thing we haven't been doing for a long time.
+And it's something that only becomes relevant
+at a specific size.
+But if you are at that size, or even if you just
+need to release-- if you're going to release a game,
+you want to know why it crashes.
+You want to know how often it crashes.
+Right now, this is the way to do it.
+There's not a good alternative.
+I'm over my time.
+I'm going to say a last sentence.
+The other way we use it, which is a little bit
+of a hack, but that's kind of the whole thing of the talk,
+is that we also send safe load failures,
+or safe load issues, to the Century thing.
+And this is a complex problem when
+you release a game that has a long story, which
+is any kind of bug in that system
+is going to be completely experience breaking.
+It can remove like 10 hours of gameplay.
+I've had this personally when ShadowGum had released.
+I spent three days after that.
+I fixed the bug.
+It was an hour.
+It was a stupid bug, but it was just a complexity.
+And then I spent two days manually fixing people's safe path,
+because they lost 10 to 15 hours of progress
+because of the one and of code.
+And normally, you don't get this reported,
+because sometimes the safe just continues.
+It just doesn't realize it failed.
+And then they're playing on a broken version of your game.
+This is like the worst outcome.
+You much rather than just can't play.
+Because then a week later, they go,
+the game is completely broken, but actually broke a week ago.
+And you will never find the cause.
+So we just kind of, when the safe load system fails,
+we just send it to the sentry.
+And then periodically, we can look at it.
+And we just can find out why we're failing.
+And we send the safe file.
+We send where it failed.
+All the data we needed.
+Yeah, last but not least, now I'm
+talking about speed and speed to make better games.
+And now I've talked about tooth.
+But this shouldn't be-- you shouldn't get out of this room
+thinking, oh, now I'm going to build these tools.
+It was really about productivity.
+And I pretty much showed a lot of the tools we have.
+I'm not showing you the top 10.
+I'm kind of showing you like half of our tools.
+Because a lot of the time, especially software developers,
+we love building tools.
+They're fun, they're cool, they're small.
+And we overestimate how quickly we can write it.
+And we overestimate what the return of investment.
+You go like, yeah, we're going to use this every day
+all the time.
+And very often, it's not the case.
+So my rule of the method rule is it should be 10 times.
+You should think that you get 10 times the reward.
+Because the reality is it's going to take you three times
+more to write it anyways, because you don't plan iteration
+time, you don't plan like the whole thing.
+And it's going to be half as useful as you think, so yes.
+All right, thank you very much.
+[APPLAUSE]
+[MUSIC PLAYING]

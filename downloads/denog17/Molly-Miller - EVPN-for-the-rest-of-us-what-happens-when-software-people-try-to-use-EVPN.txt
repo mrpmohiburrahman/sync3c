@@ -1,0 +1,495 @@
+API URL: https://api.media.ccc.de/public/recordings/93142
+Frontend URL: https://media.ccc.de/v/denog17-78820-evpn-for-the-rest-of-us-what-happens-when-software-people-try-to-use-evpn
+Title: EVPN for the rest of us – what happens when software people try to use EVPN
+
+(upbeat music)
+- First speaker today is Molly Miller.
+Molly is a systems engineer at Flying Circus
+in the net operations where she works
+in the platform team on data center networking.
+Please welcome Molly and enjoy the talk.
+(audience clapping)
+Okay, so as well as Guy said, I'm from Flying Circus.
+I'm going to talk a bit about what happens when solved
+for people who try to use EVPN.
+So a bit of quick background on Flying Circus and me.
+So at Flying Circus we do manage hosting
+for bespoke and complex and business critical applications.
+The Pithy marketing line is DevOps as a service
+and what that means is we take over
+operational responsibility for customer applications
+for customers who aren't able to
+or don't want to do this themselves.
+Our founders are both software engineers by background
+with a lot of experience in open source
+and this is a very big influence on our methods and processes.
+I'm a systems engineer.
+I've been at Flying Circus for two years now
+and my focus on the platform
+and infrastructure team is data center networking
+and in particular the EVPN migration we've done.
+So we run our applications in VMs, we do VMs
+and each VM has two network interfaces.
+There's a front-end network for unfiltered access
+to the public internet and then there's a services network
+which is very heavily filtered
+and for application backend traffic
+and some non-public functions like monitoring.
+And there's some other networks like out-of-band management
+or a self-cluster which aren't shown in this diagram
+which also are managed separately.
+These are all shared layer two networks
+which are bridged by the hypervisor
+so the VMs all see each other.
+So how does this look physically in the data center?
+Well, before EVPN this is how it looks.
+Each network had its own physically separate infrastructure
+so we have separate switches
+for every logical network here
+and every server has a separate port on the back
+for every network it needs to connect to.
+This has the advantage that the switch config is very simple
+and if one dies we can just swap it out and replace it.
+Easy as that.
+But there were some pain points with this switch.
+We're starting to be a source of friction
+and well, we wanted to do something better.
+In particular, we don't have any active redundancy
+so if a switch fails that means we have a hard outage
+and we need to send in the remote hands
+to swap over the switch and move all the connections over.
+It's bit of a hassle.
+It also has very per scaling properties.
+If we want to add new networks
+then we need to go and buy a bunch of network cars
+and a bunch of cables and more switches
+and the capital cost is very big.
+And we don't really have a good story
+for per tenant isolation.
+These are all shared L2s
+and whilst we do run a managed firewall in every VM
+this is really a workaround
+and we don't consider ideal.
+So we wanted to build something better
+to address these limitations
+and we wound up going with something based on EVPN.
+And this looks like this.
+So this is a rooted layer three underlay
+with redundant connections
+between the hypervisors and the switches
+and the routing is all done with BGP, IPv4 unit cost.
+We then run a VX line overly on top of this
+and we terminate the VX lines directly on the hypervisors.
+So these are Linux servers
+which have a bridge interface on them
+which the VX line is plugged into.
+And every old layer two network
+which we used to have is now a VX line.
+So we have the front end and services networks
+which are these shared VX lines.
+Some of the set functions are in there
+out of band are still separate because it's out of band.
+And we've got some nice things out of this.
+There were some benefits
+in implementing the network this way.
+We've reduced the number of cables per server
+which is good for the cable salad management.
+And adding new networks
+if we ever have new functions
+that we want to add to the network
+is just a matter of configuration.
+We just updated configuration fell
+and it all happens to work.
+This is also all based on open standards.
+We have a bit of a checker reputation
+when it comes to buying switches from a vendor
+which then gets bought out six months later.
+And then in some cases the prices go absolutely insane
+and we can't afford them anymore.
+And we're a bit tired of that
+and we'd like if this didn't happen anymore.
+And whilst we don't really have pertinent isolation
+we're still running Big Share to L2s but virtualize.
+But we now have a basis on which we can build
+this per tenant isolation
+that we want to have in the future.
+But we can build all this
+nation network in the green field.
+But the real party trick is in the migration
+from the old world to the new world.
+So in terms of time scale
+the initial R&D and lab work
+lasted from September 23 to February 24.
+And then at that point we switched modes
+pulled in some other colleagues to do
+all the rest of the integration work
+and to get it ready to deploy to production.
+And in May 2094 we then did a production rollout
+in the space of a week.
+And a lot of the development work
+and development effort that went into this
+is making the rollout go smoothly.
+A lot of the effort was in the preparation here.
+There's this long tail of little things
+which we have to take care of
+when we're doing this whole migration.
+So we have one week.
+We have not quite 50 servers to migrate.
+So from that we can calculate a hard limit
+on the amount of time we have for each server,
+especially if you want to do a stage incremental rollout.
+We established that rebooting every server
+is actually too slow.
+There is me and one colleague of mine
+in the data center and between the both of us
+working on this.
+If we have to wait for the server to reboot
+which can take five to 10 minutes
+depending on the hardware,
+then we've run out of our time box
+and we don't have any buffer at the end.
+So we put a lot of effort into ensuring
+that we can get robust reconfiguration online
+without rebooting even for complex network changes.
+And we have our centralized control plane,
+our control panel which has all the configuration
+which is then pushed out to all of our machines.
+And the click path there was sub-optimal.
+It was a lot of clicking around
+but this is software we've developed ourselves.
+So we just implemented a magic button
+and you click the magic button,
+say yes on the next form
+and then the network is converted to
+this EVP and VX line set up.
+And that made things go a lot more smoothly.
+Also the actual process in terms of physical data center hardware,
+we wound up in this halfway house
+set up for performing the migration.
+So on one of the VX line switches,
+we terminated the VX lines directly on the switch
+which are otherwise only terminated on the hypervisors
+and then broke out the VX line there
+and bridge it to the old layer two devices.
+And then we could incrementally move every host over
+so we can drain the traffic off of each host,
+live migrate the VMs elsewhere,
+we can then fix all the cabling,
+we can update the config,
+plug it all back in, test it, it works
+and then put the VMs or whatever other workload back on there.
+And with that we can then do every host incrementally.
+And there's a couple of little things in the background here.
+We had this wonderful spreadsheet
+with a very detailed checklist for every server,
+so like 50 columns and some 20 rows each
+with every single step in detail.
+And well, it was mostly smooth sailing.
+For the most part, it went very well.
+There is an asterisk here
+because it wasn't totally zero down time.
+There were one or two false moves and some unexpected issues.
+There was a cable which got plugged into the wrong port
+and the switch in the middle of the migration process.
+And there was one nasty problem
+with a faulty cable dropping only large packets.
+Yeah.
+So there were no major outages though
+and we didn't have our hands forced
+into any planned customer downtime.
+And well, I have here some pictures
+of the cable-style-led dith.
+And...
+(audience applauds)
+(audience applauds)
+And on the left, you can't even see where the switches are
+'cause there's just so many cables there.
+I do have to point out
+that this has grown historically over several years.
+But now that we have physical redundancy,
+if you want to clean the cabling up,
+we can just pull a cable and it doesn't matter.
+It's great.
+So that's the story of how we got to where we are.
+And there's a couple of technical points
+which I'd like to discuss as well.
+So first of all, switch port management philosophy.
+Flag Circus is a netbox-free zone.
+We don't use netbox.
+Now, part of this is that we have
+our own configuration database application.
+We're a bunch of software people.
+We wrote the software during the integration.
+So a lot of the features, which I personally see
+a lot of other organizations using netbox for,
+tracking which server is in which rack,
+with which ports and which VLANs,
+we just implemented all ourselves
+because we have in-house know-how to do that.
+But another part of this is
+that we don't believe in fixed switch port assignments.
+We'd like switch configuration to be as uniform as possible.
+So you can just plug a server into the switch
+on any free port and it'll just work.
+This is also very remote, hands-friendly.
+Our main data center is just up the road in Oberhausen,
+but our main office is in Halizala,
+all the way in Saxon-Anhal.
+So we're not in the DC very often.
+And having this nice, simple switch config
+makes it really easy for the remote house
+to work on this on our behalf.
+So that's that for switch ports.
+And then there's the debugging in the lab.
+So when we were R&Ding this in the lab,
+the packets weren't flowing where they were meant to be flowing
+and we had to work out what exactly was going on
+with all of this VX LAN nonsense.
+And at the time, we were trying to get TCP DOM to do this for us
+because we're a bunch of Unix nerds,
+so we want to trace packets.
+The first thing we type is sudo TCP DOM.
+And so you can type sudo TCP DOM
+with the port number for VX LAN, I hope I got that right.
+And then grep for MAC address.
+And this works, but it's a little bit cumbersome.
+You can't filter watts inside the VX LAN packets.
+And once you start pushing traffic over this
+from multiple sources, that gets a little bit
+a little bit cumbersome.
+And sure, Wireshark can do this,
+but on the CLI that's really fiddly.
+And I happened to be reading through the TCP DOM
+manual page, or rather the libPCAP manual page.
+And I found that a function for examining
+the contents of encapsulated packets already exists
+for Janif.
+I'm not sure I've ever heard of anyone actually using Janif,
+but the functionality is all there
+and already half implemented.
+So in a fit of frustration, I spent three hours
+one afternoon implementing this.
+So you can now say TCP DOM with your interface,
+VX LAN and, and then everything after the end,
+it is matched on the encapsulated packet.
+And I tossed that upstream and it got merged.
+So everyone else can enjoy this as well now.
+We like open source.
+(audience applauding)
+I do have another PR against TCP DOM,
+which has been setting open for a year
+and no one's merged it yet.
+So if anyone knows about TCP DOM development
+and can get me in contact with the right people,
+that will be great.
+So after we debugged it, we had to get it all working
+and part of that in our network is the rotors.
+So we run an active standby rotor pair in every location.
+We don't have any full active for some historical reasons
+which might be called Stateful NAT,
+but we use Bird for BGP announcements to upstreams
+and this is something we brought from the old network.
+And part of the failover automation,
+so if one router becomes unhealthy
+or it just needs to do a reboot for a kernel update,
+this then fails over automatically,
+attributes on the routes are updated
+and then that all works fine.
+But we need to use FRR for the EVP and VX and features.
+And so I spent a long time spending on this.
+Do we keep Bird on the routers?
+Do we implement all this integration for FRR?
+And then a colleague came along and said,
+"Why not both? Why don't we just use both?"
+And yeah, we run Bird and FRR.
+This is output I grabbed from a router yesterday.
+And the benefit of hindsight,
+this actually works really well for us
+because now we have separation of concerns.
+So Bird is primarily responsible
+for everything to the outside world
+and FRR is responsible for everything
+to our inside world.
+And that's actually really nice to have sometimes.
+And as a quick aside,
+we actually have a second Bird in a sense on the routers
+'cause there's some other functions which came along
+which I never got around to integrating
+into the existing configuration.
+So I've worked out how to get two Bird and Sisters
+and running on the same machine
+and turns out this works as well.
+And that's pretty cool.
+So speaking of routing demons,
+we need to talk about FRR, unfortunately.
+FRR is currently the only usable implementation
+of EVP and VX LAN on Linux.
+Now, we're self-for-people
+and we are aware in the broad abstract
+that software has bugs.
+FRR is no exception here.
+FRR does have some bugs because it's software.
+Unfortunately, when it's network software
+sitting at the very basis of everything we build upon,
+those bugs can have a very big blast radius.
+Some are definitely worse than others.
+So the quick version of EVP and,
+for folks who maybe don't know too much about it,
+is it's essentially BGP for MAC addresses.
+There's this thing called the Type 2 root
+which says this MAC address is reachable over here.
+And this is how you then build up a shared layer two network
+by originating and announcing all these routes
+to everyone in a big full mesh
+or through switches or whatever topology you want.
+Optionally, you can also put IP addresses in these routes,
+which then gives you a MAC IP mapping.
+So the neighbor table on Linux are an NDP.
+And FRR will generate and consume these routes.
+So if it gets a MAC IP or if it gets a Type 2 root, rather,
+with a MAC IP mapping in it,
+it will then manage this in the kernel neighbor table.
+There's a slight problem that,
+well, we have these active standby router pair
+and there's a floating gateway address involved.
+And we run into this extremely frustrating problem
+that sometimes when a failover happens,
+the route saying the mapping of the router
+of the floating gateway address to this router MAC address
+gets stuck.
+And this then means that every server in our data center
+has an incorrect mapping for the floating gateway address
+to the corresponding MAC address.
+And for routing this doesn't really affect things
+because the routers all have forwarding turned on anyway.
+This blows up with DNS because these DNS requests
+are then sent to an IP address,
+which is not locally assigned in the machine
+and the resolver is not listening there.
+Now, as far as we can tell,
+this is somewhere in the kernel network handling
+and this is some crazy race condition
+which I don't know the FRR internals well enough to debug.
+The proximate cause, though,
+is that it's something to do with neighbor table management,
+somewhere in there, in that general direction.
+So I came up with a very stupid solution
+and that's, if I call into these two lines of code,
+then FR stops managing the neighbor table.
+All of our Linux machines fall back
+to doing dynamic RPN-NDP discovery over the VX line fabric.
+This just works, thankfully.
+So we've been using FRR for a year and a half now
+and it certainly works,
+but really we feel more home with bird.
+And it'd be nice if we could use bird for this,
+but bird doesn't really have EVPN-VX line yet.
+So we've been on the phone to CZNIC
+who are responsible for maintaining bird.
+And they've been open to collaboration,
+so we're going to collaborate with CZNIC
+to help finalize and test the VX-N function
+at the EVPN-VX-N functionality in there.
+So watch this space.
+We're very excited about it
+and given the complexity of EVPN,
+we're also interested in having a commercially supported
+alternative to FRR as well.
+(audience applauds)
+So some closing thoughts on all of this.
+Can software people use EVPN?
+Yes, of course, well, we did it.
+Our network is now significantly more complex.
+And one of the big changes which came with EVPN
+was actually an organizational change.
+We've had to change how some of the responsibility
+for our infrastructure is distributed.
+And now that we have more software in the picture,
+there's more moving parts and more sources of outages.
+There are more way things can explode.
+But on the other hand, software-defined networking
+is still just software, right?
+And we're software people.
+So we're playing on our home ground.
+We knew application operations.
+It just so happens that we now have
+another application in our network.
+So we're able to lean on a lot of the knowledge
+and experience that we have with that
+for operating our network as well.
+And this includes things like automated testing in QA,
+which is something that we think is good
+because we do software and we think that
+the rest of the networking industry could do that as well,
+and that would be cool.
+So, yeah.
+That's everything I've got.
+[APPLAUSE]
+Thank you, Molly.
+Are there any questions?
+Please show your hand.
+And I will come over with the microphone.
+[INAUDIBLE]
+All right.
+I'm Robin, a great presentation.
+Thank you.
+So my question is, you said you're running
+BERT and FRR and parallel.
+How are you interfacing those?
+Like, are you running separate BGP sessions?
+Or how does that work?
+So they're running separate BGP sessions.
+So BGP talking to our upstream provider
+to announce our prefixes or runs through BERT.
+And FRR is what talks to our switches.
+And we have these bounds to separate interfaces.
+So the interfaces have different functions.
+And the routing dunes are bound to those interfaces
+to ensure that the routing or, well, the BGP sessions
+stay on those interfaces.
+All right.
+Thanks.
+More questions?
+Oh, at the back.
+Hi, Q. So you talked a lot about how things went wrong
+on the Linux side of things.
+But did anything weird happen with the switches?
+Or did the switches mostly just work when you plugged them in?
+We definitely had to spend more brain
+power on the Linux side of things.
+With the switches that we have, which we're using for this,
+those have more or less just worked.
+It hasn't been that we found any game-breaking bugs
+and EVPN implementations on switches, which we've
+then had to get a vendor to fix.
+It's mostly being software has bugs,
+which goes for the switches as well.
+But most of the effort that we had to put into that
+was on the Linux side.
+So you would say that the vendor side on switches of EVPN
+is fairly mature.
+And it's a lot more polished.
+It's definitely a lot more polished.
+Any more questions?
+Any online questions?
+No online questions.
+Any more questions in the room?
+Oh, yeah.
+This is getting exhausting.
+Tom, I think you just made people very, very happy
+with saying there's EVPN coming in broad.
+But can you share a little bit about the timeline
+or how people can test?
+As far as I know, this is a work in progress,
+which is nearing completion.
+And we spoke to them then being sees Edneck
+in the past couple of weeks.
+And we happen to have a lab set up for doing routine work,
+which we're hoping to give them access to,
+and then things might happen something next year.
+It's all still a little bit up in the air,
+so I don't have anything more concrete
+than that at the moment.
+Thank you.
+All right, any more questions?
+Thank you, Molly.

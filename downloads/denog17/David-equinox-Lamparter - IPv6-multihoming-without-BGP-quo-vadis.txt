@@ -1,0 +1,375 @@
+API URL: https://api.media.ccc.de/public/recordings/93333
+Frontend URL: https://media.ccc.de/v/denog17-78841-ipv6-multihoming-without-bgp-quo-vadis
+Title: IPv6 multihoming without BGP, quo vadis?
+
+(upbeat music)
+- Okay, hello everyone.
+Our next presenter is Akui.
+He is an FR routing maintainer since back
+when it was still Quagga.
+He does things at the EITF
+and very rarely submit Linux kernel network patches.
+Please join me in welcoming Iqwee to the stage and enjoy the talk about IPv6.
+[ Applause ]
+>> Okay. Yeah, I am here today to try and get you talk through what does work and what
+doesn't work with multihoming in IPv6 when you don't have your own PA space. I think we
+>> We are looking at n sites, smaller people who still want to have multiple uplinks for whatever reason. This will most likely be either resuncy or having more bandwidth if existing options are good enough. But there's enough entities that are too small to get their own PASI.
+>> So this is in general what we're looking at, a later slide will get to why this is sufficient to cover everything in terms of
+representing the case where one router has multiple uplinks. But the part from that, yeah, we're looking at multiple routers here and we need to get that to the end host.
+I'm assuming everyone knows that this can easily be done with NAT or NPT. I really don't want to talk about that because, yeah, it is the sad way of doing it. This is the way that works.
+And, yeah, I don't know. Do people here have IPv6 NAT deployed? Do you want to raise your hand? Yeah, I want to. Thank you for the courage to raise your hand.
+>> Yeah. Okay. Yeah, let's try and see if we can find better options. The logic kind of dictates what the next slide here will be because the plan is to not do NPT to have actual global IPv6 addresses.
+We do need to route traffic the right way because hopefully everyone has PCP38 deployed by now. I think that's the case. And active passive failover won't be enough to cover all the cases.
+We do want to use more bandwidth than the single uplink can provide. And, yeah, that kind of logically leads to the conclusion that we do need to pull the global IPv6 addresses down to all of the hosts.
+Because otherwise we can't fulfill these requirements. There is no way to do this without NAT that doesn't lead at the end of the day to the host having an address in each of the prefixes that the various uplinks provide.
+This is kind of half working. And I do want to point out here that a lot of this talk is also applicable to just renumbering because you can't just consider renumbering as two ISPs that are just separated in time and are sequential after another.
+And this will show up again. Let's play a little puzzle game. This is the various pieces. You do not need to look up the RFC numbers. We'll go through them.
+And we can start with the easiest one. I assume everyone here knows what the HCPPD is.
+It already starts here in things that aren't completely supported. Not a lot of routers can actually do PD on more than one uplink interface.
+It kind of depends on if you're looking at some plastic router or some small uniper device or something.
+The better ones can do this. The other problem is can they also delegate those prefixes downstream and send RAs and PIOs.
+You see there's two times PIO marked here on the slide. And there's, well, hit and miss. Put it like that.
+And this is really, this is starting easy. So we're already, it's already starting to get iffy.
+The next step is we do need somehow to tie the addresses that we are getting assigned here to be tied to the actual uplinks they came from.
+This needs to happen at the end host somehow because the end host is the one that has all the addresses and that does address selection.
+And the key here is source address selection works in a way that you first look up a route.
+And then you select source addresses already having that route selected.
+There is a rule called RC6724 rule 5.5, which says if you're selecting a source address, you're supposed to prefer ones that were advertised by the router that you have already chosen as your default route.
+It is a single paragraph in the RFC. It is incredibly densely awarded.
+This is a better explanation of what is going on here because this will come up again a little bit.
+We're kind of doing a circular thing because at the end of the day we have to look up the route again.
+But yeah, we start with a normal route lookup.
+Specifically, Linux uses an empty source address here as a lookup key.
+I believe the other operating systems do this a little bit different in that they have a table for the advertised prefixes for the routers.
+But we do have a link local address, which is what identifies what a router is here.
+As in the paragraph in RC6724, when it says advertised by the same router, it means advertised by the same link local address.
+So we select that in the first step and then we have to pick a matching source address.
+And we go from there.
+This entire thing is sort of infinite discussions on mailing lists.
+I'm not joking when I'm calling this a little bit of PTSD.
+And stupidly above no one ever actually bothered checking this until recently.
+I will point out that even so in the original RC, this was only a should.
+And the text was formatted such that it said if the host knows this information, it's supposed to do this,
+but having the information was optional.
+That was changed in the most recent update to RC6724, which is all the way through the ITF process,
+except it's still missing a reference.
+But it will be an RC reasonably soon.
+So that's the host part of this.
+We did actually go and test this at the ITF hackathon in Madrid, I believe.
+That was half a year ago roughly.
+And this diagram is actually kind of gave us hope.
+So both Apple and Windows do support rule 5.5 in general.
+And they can deal with, at least with static setups.
+There are some problems in routing after to policy change.
+Because then you need to make sure that you adapt if something moved around,
+and that part is not quite there.
+But that's not something you immediately need.
+Unfortunately, Linux is the worst of all here.
+There is no rule 5.5.
+There's patches in the works with whom it then works.
+And it's even worse because network manager actively breaks things by converting
+IPv6 default routes into ECMP routes, which is not allowed by the RFC.
+And it makes things just infinitely worse.
+There's a bug open for this.
+I hope they will at some point get to fixing this.
+We have been talking about routes quite a bit here.
+Key to this is that we will need a routing lookup that takes the source address into
+consideration.
+There's no way around having the host pick the correct default gateway that also
+advertised the routes, the prefix.
+And for that, this is the next two RFCs we have here.
+This exists on Linux and nowhere else.
+This is the part that is the bottom row on the previous diagram where windows
+and Apple are not quite there yet.
+The good thing is it's reasonably well specified.
+We have been talking with some Apple and Microsoft people.
+For Microsoft, they don't have people to put on this because Microsoft is a
+pretty small company and they don't have the resources to work on this.
+Apple is more likely to be looking at this.
+If you haven't seen this before, this is not policy routing.
+This is actually the next slide.
+What this is doing is you get in your routing table routes that also have a
+source prefix.
+It's a single consistent routing table.
+And you do the destination lookup first.
+You go to the most specific destination prefix.
+If that's a local network, you're likely done.
+If you have a source specific route with that destination prefix, you do
+another longest prefix match.
+If you don't find anything, you go back up.
+So this is probably on your Linux box that you have running right now.
+I think the kernel option is not enabled by default, but most
+distributions enable it.
+You can just try to see if it works on your kernel.
+And this is a key part of the entire thing.
+Next problem.
+If we have a router that has more than one uplink, the association
+breaks, i.e. rule 5.5 saying you should pick a prefix from the same
+router.
+Now you have two prefixes on the same router with the same link
+level address and you don't have a comparison anymore.
+So there's a pretty simple trick around this one, which is you just
+use multiple link local addresses on the router.
+It makes things quite a bit easier.
+Because what you can do now is you can withdraw the link local
+address and that is now withdrawing the prefix and that is
+something you can do pretty efficiently.
+You can also send a neighbor advertisement with the router
+bit cleared which causes end hosts to just delete routes and that's
+really what you want.
+And unlike PIOs, they have timers in them.
+They have the valid and preferred lifetime.
+But waiting through that to get rid of a prefix is not something
+you can accelerate.
+And for good reasons most hosts try to prevent skipping that
+process out of security considerations.
+You don't want to be in a situation where you get one spoofed
+RA with the PIO in it with lifetime zero and all of your
+connections are broken.
+And this is also what I alluded to earlier about the diagram
+being sufficient to cover all the cases.
+We are now always looking at a situation where regardless of
+where you are in the network, you have one link local address per
+uplink ISP.
+So it always looks like that.
+And yeah, it doesn't matter anymore.
+This also again can handle renumbering.
+You just pick a new link local address.
+You probably wouldn't make these random, you make them a hash.
+So the fact that I'm talking wood here is this is not something
+that is implemented in any router yet.
+We have some experimental code in FRR but it's not shipping
+and it's ugly hacks.
+But this is relatively speaking the easy part.
+So the actual hard part is using multiple uplinks.
+And the only real answer that is floating around on this in
+ITF discussion here is to go with MPTCP and MPQuick which
+natively can use multiple links at the same time.
+MPTCP may be not as much considering you need that to be
+supported on both endpoints and that's going to be pretty rare.
+MPQuick, you can see on the slide it's still a draft in the
+puzzle piece.
+It is close to done.
+When it's done, the way it works, it just goes by
+and it can spread out traffic by whatever path it believes is
+the least loaded.
+Yeah, it is actually to some degree out there, a good thing
+about MPQuick is that it can also recover connections after a
+loss of connectivity.
+And to be clear, all of this is only relevant for interactive
+services like video calls, audio calls.
+You probably don't care if some download gets interrupted if you
+switch over connectivity.
+The problem is the implementations of all of this that we have
+tend to be aimed at, for example, multiple uplinks in your
+phone and Apple can already do that in that they open a
+multipath connection and they use Wi-Fi and 5G at the same time.
+But they don't recognize that having multiple routers,
+multiple link local addresses on the uplink is the same as
+having multiple uplinks.
+Unfortunately, this has some pretty bad downsides.
+There is no way to tell the end host that one of your uplinks
+is supposed to be a backup link.
+You could try to make it bad artificially, like add delay on
+its constraint bandwidth that would make MPQuick put less
+traffic on it.
+There was an attempt by the ITF to work out a thing called
+BPD provisioning domains that kind of died.
+The intent there was to signal characteristics of an uplink,
+be able to tell like this one is DSL, this one is costly, this
+one is free, is a flat whatever, a billing scheme, this one might
+be real time or something.
+And the only thing that is really there as an option to steer
+things is the preference in the RA, which if you think back
+in the whole process of picking the source address, picking the
+route is still the first part and you don't have a source address
+yet.
+So whatever route is preferred at that point is the route that
+will get a source address picked for basically and that will
+end up being the uplink used.
+So it is a very simple tool.
+You can't play with it a little bit.
+You can send unicast RAs to different clients, have them
+prefer different uplinks if you want to spread out things.
+You can use RIOs around information options to set up more
+specific routes, but it's all called it cludgy at best.
+Yeah, the slide is called the ugly for reason.
+If you counted the puzzle pieces, we are at seven of nine.
+There is a RC that tried to describe all of this quite a
+while ago.
+It's missing quite a few pieces like the idea with multiple
+link local addresses was not in that one yet.
+It mostly exists for call it ITF political reasons.
+It is however something you can look at if you want to read up
+on the part of this thing as a whole.
+And I did leave one puzzle piece that doesn't have an RFC on it.
+Which is if you have more than one router.
+You can do the HTTP/V6PD between your own routers in a
+hierarchical way.
+It does cover some setups, but you don't really have a lot of
+control there.
+You can try using relays instead of going hop by hop that makes
+it a little bit better.
+But it's not great.
+It doesn't give you any control really.
+You're basically using it as a routing protocol as well.
+The routes will go backwards the way you did the PD delegations.
+You can't really fix whatever network is numbered in which way.
+And while in theory when a router does the HTTP/V6PD request,
+it can get a reply with more than one prefix in it.
+Support for that is mixed at best.
+So if you have more than one uplink being propagated down,
+if the router only picks up one of them, that's also not helpful.
+And this is also kind of the point where I'm hoping for some
+audience input because I don't know how relevant all of this is.
+And the fact that this doesn't have an RC or draft on it implies that
+there is no ITF approach to this yet.
+And unfortunately the ITF is a little bit blind on middle-sized
+networks.
+Everyone that attends the ITF has a home network.
+Everyone has it at home.
+And the big providers have their own people there.
+But the middle ground is missing and the middle ground is exactly
+where all of this is relevant.
+So, yeah, how important do you think it is?
+How large will these networks get?
+Is it even relevant to have more than one router?
+Will people just get PA at that point?
+And this is actually where we're already getting to the summary
+in question slide.
+I was trying to present that all of this is kind of half done.
+It's a very fast run-through, but you've at least heard of most
+of these things now.
+Every single one of them is half deployed in most things that you
+can buy and deploy.
+I'm not sure I forgot anything.
+I am kind of here trying to carry things back to the ITF.
+I am personally trying to make this better.
+I am happy to write drafts if I need to.
+And this is the point where I think I see if I can get any
+input or questions.
+And, yeah.
+[applause]
+Okay, thanks, Akimi, for this presentation.
+Yeah, we have time for some questions.
+Please, as always, remember to state your name and affiliation
+before asking your question.
+I'm milder.
+I'm speaking as a private individual as a company.
+It does not use IPv6.
+It's from home.
+I do fear your pain points.
+As in Germany, we always have, like, dial-up Internet
+with at most prefix delegation with changes, or after all,
+which basically prohibits to use more than one uplink with, like,
+routed IPv6.
+Therefore, we come to not hell.
+They do very much look forward to the solution to that, because
+it's from hell if you have, like, at least three different
+operating systems at home.
+Many thanks for your efforts.
+Yeah.
+It's not a great situation.
+Hi.
+Greetings.
+Thanks for bringing the update on what's currently being
+considered.
+I'm wondering -- well, I was a big fan of the home net protocol
+to solve the prefix delegation stuff, and I think that's --
+I expected this.
+But actually I wasn't going to ask about that.
+I was asking about DNS, and if you say BVD is pretty much dead,
+then we have DNS left as one of the interesting questions.
+So where do my DNS queries go to?
+I don't know where the packets will go to unless I know what
+DNS says, and if I have different split DNS answers,
+that sounds like the Harry's life.
+Yeah.
+Ideally it wouldn't matter, because you get the same result
+anyway in theory.
+I'm not sure how well this works out in practice.
+I guess you can try fiddling with search remains and things
+like that.
+I will say I am not a DNS person at all.
+I have considered the same problem for multicast, because if
+you have multiple ISPs and you try to get IPTV running,
+where do you send the join?
+That's kind of the same problem, but in green.
+I'm not sure what to tell you there.
+I will add it as a point to whenever I do this again.
+This is the first time running this presentation.
+I'm probably going to do that again.
+And I will ask some DNS people if they have any good ideas about it.
+Oh, sorry.
+I'm Stefan.
+I'm from a local Amazon in Mac to work.
+I'm asking for myself, not for my employer.
+Have you tried to toy around with rubbish things like IoT devices
+or things like decked base stations or Wi-Fi access points?
+How do they do behave in such environment?
+The problem with IoT devices is they sometimes have just a limit of
+the number of addresses they support.
+In which case, they pick one of the uplinks.
+And if you're lucky, they send the packets the right way.
+If you're not, they don't.
+There's two ways to fix this.
+The one is to just implement rule 5.5 again in IoT devices.
+They don't need to use all the uplinks.
+It would, in theory, be the assumption.
+If they can at least pick the correct gateway, that would make it work.
+The other answer is if the routers support source destination routing,
+they can also redirect packets the right way.
+If they are aware of each other, that's what home they try to do.
+That's probably worse.
+There's also an ITF working group called Snack that is working on
+matter thread networking.
+They're looking at how to pick prefixes to distribute in your --
+I don't know what the current technology stack is called --
+matter thread Zigbee.
+It's being discussed, is all I can say right now.
+I guess the solution would be to write down some way for IT devices
+to be intelligent about picking at least one address that will work
+if they only support one global unicast address.
+Yeah, not great.
+>> Hi, Q.
+Speaking with my fellow ITF suffering hat on.
+I think the point made by -- I'm sorry, I forgot your name up there.
+We have a backup dial-up or whatever, DSL connection.
+It's probably the per-tient use case for stuff like this.
+If you're getting into the problems of -- we're using DHCPD as a
+routing protocol, then just use a routing protocol.
+You've probably gotten an advanced setup.
+But the thing that would probably be useful, at least from what I
+have seen of deployments to concentrate on, is just the -- we have
+one or two routers with the primary and the -- everything's gone
+fucking shit, unlink, and making these work together.
+>> The problem if you don't use PD with multiple routers is -- if
+you use the routing protocol, now how do you assign the addresses
+if your prefixes change?
+>> I don't -- I mean like P.D. between routers in your own network.
+I think what you're alluding to.
+But in the case of just the small end user has router one on the
+primary app link and router two on the backup app link, and then
+they do both P.D. to each of their respective ISPs, that's
+probably all you really have to consider for this to be useful.
+>> Yeah.
+Yeah, considering you're forced into routers in some cases, I -- so
+I guess you're saying multiple app links on one router is not as
+relevant?
+>> Probably, well, or just like anything more complicated than
+two routers.
+>> Yeah.
+Solving the simple case first is definitely something that needs
+to happen here, especially since otherwise we just end up in
+home that again.
+>> That's what I'm trying to caution against.
+>> Yes.
+>> Okay.
+Thanks very much.
+There's one question left, but a short one.
+Okay.
+Okay.
+It's not a short one.
+You probably can take this outside to the coffee machine or
+with barista.
+Thank you very much again for your talk and for discussion.

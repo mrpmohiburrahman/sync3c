@@ -1,0 +1,966 @@
+API URL: https://api.media.ccc.de/public/recordings/4501
+Frontend URL: https://media.ccc.de/v/c4.openchaos.2014.09.unicode
+Title: Unicode
+
+Okay, so welcome to the KS Computer Club in Cologne for everybody who's here the first
+time, toilets are straight through the door, drinks are in the fridge, like just through
+the door to the left, prices are outside the fridge, labeled.
+Yeah, we are on Thursdays, we're a public hacker space, like everybody can come here,
+the the phone, it's a lot of fun.
+the other thing, I'm going to talk about the internet.
+When are two strings actually equivalent for some definition of equivalent, and things
+that play into that is encodings, like to make it bit by bit equivalent, normalizing the string,
+checking for characters that are in some way confusable between each other, and there are
+some other special characters that you have to pay special attention to, anyway.
+So by me, my name is Fluggen Sides, or Florop around these parts, we're usually all these
+these are nicknames here.
+I'm Master of Science in Electrical Engineering,
+specialized in computer engineering.
+I usually do lots of things with XMPP,
+also some systems programming, kind of a C, an enthusiast,
+also object to C, and rust lately.
+So history of Unicode.
+I thought it would make sense to sort of see why
+Unicode is something that you want to have take two steps
+back and start at the beginning.
+So one of the first encodings that is today,
+still used on computers, was ASCII.
+And ASCII was published in 1963 by the American Standards
+Association, which is today called ANSI,
+so the American National Standards Institute,
+and was originally sort of designed for data types.
+So if you're not familiar with that, which is likely today,
+That's basically what you'd call an electronic type writer.
+So you have this sort of typewriter-like system
+that also electronic solutions meets the data that's typed.
+And it's a seven-bit character encoding.
+Even though today it's usually stored in, well, bytes,
+rock tats, which have eight bits,
+but the high bit is always zero.
+It is logically based on encodings
+that was used on teletypes,
+and it can with seven bits encode 128 characters.
+That is, you have which are control characters,
+some of them for today rather obscure,
+because they were necessary for teletypes.
+Like few people even though it actually works,
+use a ballot control character,
+which would actually ring a ballot
+on the other end of the nine.
+And then there's 95 printable characters.
+Like the usual alphabet,
+exclamation marks that kind of thing.
+And the first commercial use of ASCII was actually
+in an AT&T teletype write exchange system.
+So a network where such teletypes would connect
+and interchange data.
+And you might be familiar with this.
+This is basically the whole big ASCII table,
+on 128 characters.
+And it starts out with like a lot of the controls
+and then you have loads of printable characters
+in dance with delete.
+So then they're not only people
+in like America and England, right?
+a couple of things.
+So you have a lot of different things.
+So you have a lot of different things.
+And you have a lot of different types of characters
+that you have to use.
+And you have a lot of different types of characters
+that you have to use.
+So you have a lot of different types of characters
+that you have to use.
+So you have a lot of different types of characters
+that you have to use.
+So you have a lot of different types of characters
+that you have to use.
+So you have a lot of different types of characters
+that you have to use.
+So you have a lot of different types of characters
+that you have to use.
+So you have a lot of different types of characters
+that you have to use.
+So you have a lot of different types of characters
+that you have to use.
+So you have a lot of different types of characters
+that you have to use.
+So you have a lot of different types of characters
+that you have to use.
+The brackets are actually the Umaud A and the Umaud U.
+So each time you type the curly bracket,
+you would actually see on your display in A,
+which is not exactly pleasant to read.
+And I don't know if anyone is familiar with trigraphs and C.
+Trigraphs are pretty much a combination of series
+characters that gets replaced with things like a curly bracket.
+And the whole point of that was so that it would be nicer
+for users of these systems to program C,
+because you would not see this strange Umaud character,
+but at least you would say some sensible trigraph.
+So you had your characters, but there were other problems.
+And then some would later, like some might remember, 1987,
+there was an ISO standard.
+And the first time that was actually-- well, probably
+not the first time, but that was actually
+an 8-bit character encoding.
+So you had twice the amount of characters
+that you could encode.
+And again, it has different variants,
+depending on the region it was meant for.
+So you have, in total, 16 parts specified,
+each part handling a different region of the world.
+So part one is the one that would usually be used here.
+There's later been replaced by part 15,
+which introduces nice things like a Euro sign
+instead of a generic currency sign.
+And the first one in 28 characters
+actually kept equivalent to what it is in ASCII.
+So they are completely compatible.
+If you have ASCII, you can just decode it as ISO
+at f9 in any variant of it, actually,
+and still get the ASCII characters out.
+And then there's Unicode.
+And Unicode sort of comes up as a need for a universal character
+encoding, the idea that you don't
+have to switch between 16 different parts to one standard
+and know which of the 16 different parts of the standard
+you're talking with and you're interpreting,
+they actually know which character you have.
+So you have a universal character mapping
+between a number and actually a character or a theme
+that you can identify.
+The first version of that was published in 1991.
+It already supported 24 different scripts
+with 7,161 characters total.
+And it limited itself to 16 bits.
+So you could encode 65,536 characters.
+And the idea was that this should be enough for everyone.
+We can't squeeze all the perfumes
+of the world in there and be all right.
+So not too much later, like they had
+tried to put a lot of Han characters
+and Chinese characters in there.
+And they released the version 2.0 in 1996,
+which supported only one script more,
+but already more than twice as much characters, 38, 950.
+And they got the idea that, well, maybe 16 bits are not
+enough for everyone.
+So this was extended.
+Unicode, and even today Unicode still
+uses 28 bits at most.
+And it's actually not fully 21 bits.
+You get 1,114,112 possible code points.
+And the way to calculate that is you have 17 so-called planes,
+which you can choose with the first five bits.
+So you switch between a plane.
+And inside that plane, you have 2 to the power
+of 16 different code points.
+So that number is actually 2 to the power of 16 times 17
+planes, and not times 2 to the power of 5.
+And this year, Unicode 7.0 was released.
+And it's come a long way.
+Like we have 123 scripts now.
+We have 113,021 characters, which is already more than you
+could represent with 16 bits, right?
+Yeah.
+Still no Klingon.
+Still no Klingon.
+Still no Klingon, no.
+Only another official Klingon standard, yes.
+That might actually be the correct slide to talk about that.
+This is a rundown of the planes that are currently
+in use and defined.
+The first one is the basic multilingual plane,
+which is, yes, for basic multilingual.
+So the most common characters are in there.
+A lot of the Chinese, Japanese, Korean characters
+are actually in there.
+A lot of the variants are in there.
+Obviously, all of the Latin alphabet is in there.
+I'm loud.
+That kind of things.
+Then there's a supplementary multilingual plane,
+which has some less-so-used multilingual characters,
+like from completely different scripts also collected.
+And then plane 2 has supplementary idiographic characters.
+So that's all sorts of other mixed together Chinese,
+Japanese, Koreans, CJK characters that are not used that often.
+Playing 3 to 13 are actually currently
+unassigned and unused, just empty.
+And you have plane 14, which is a supplementary special purpose
+plane, which has all sorts of different, mostly controlled
+characters, so I think, that didn't fit into the BMP
+or that didn't seem necessary at the time where
+most BMP code ones were assigned.
+And then a plane is 50 and 60 in order
+to private use code planes.
+So in principle, fonts actually assign characters to that.
+So this is private use.
+There is no definition for what characters at what code point.
+But it can be used in private spaces
+if you control the font.
+Or fonts can actually use it to store ligatures and tell
+your interpreters that the characters FL are linked to
+something in its private use plane.
+And there is, talking about Lingon,
+a standard that says these private use code points
+should be used for these Lingon characters, which
+is not officially like ratified by the Unicode consortium,
+but which exists to have a semi-interrupt way for people
+who, for some reason, want to encode Lingon and Unicode.
+So talking about encodings.
+So as I said, Unicode assigns each character a unique number.
+But there are still different ways
+to store numbers on the hardest, right?
+And Unicode itself specifies currently
+three different so-called Unicode transformation formats,
+so forms of encoding to store these numbers, which
+are ut of 8, ut of 6, and ut of 32.
+And the number at the end of this ut of specifies
+how many bits are in a basic code unit.
+So the smallest representable unit in that encoding
+has 8, 16, or 32 bits.
+And what that encodes is something
+that conceptually is called the Unicode scalar value.
+That is different from a code point,
+because it includes the range from 0x D800 to DFFF.
+And the reason for that is that these code points are
+so-called surrogates.
+And the reason you need surrogates
+and what surrogates are will become apparent in two slides.
+But for now, just remember, Unicode scalar values
+excludes a certain range, which is
+at the rather end of the basic multi-lingual plane.
+So the first encoding is ut of 8,
+and the currently most widely spent encoding.
+It's basic coding as a set of 8 bits.
+So the smallest thing you can encode is 8 bits long.
+If you need more than one byte--
+so these 8 bits to encode the number you're
+trying to encode to encode the code point--
+the leading ones in the very first byte of the encoding
+of that code point signify how long that sequence is going to be.
+If this seems confusing, now there's
+a slight that makes this a lot clearer.
+And then each further byte starts with the sequence 1, 0.
+It's completely backwards compatible with 7-bit ASCII,
+because if you use a single byte, the first bit of that
+has to be 0, because otherwise you
+would be signifying that you're using more than one
+byte to represent the character.
+And then for everything, you can encode in two bytes.
+You'll agree to the next 20 characters.
+With three bytes, you have the whole rest of the BMP.
+So you can encode 16 bits in Utilate.
+And that includes most of the Chinese-Japanese-Korean
+characters.
+So keep that in mind, you need three bytes for most of CJK.
+And with four bytes, you have the whole 21 bits
+that you can have at maximum for Unicode.
+So the way this encoding looks-- and this
+is the-- that makes it clearer, hopefully,
+slide as it was talking about-- is this.
+So this is the ASCII-compatible part,
+like you have a leading 0.
+And then you have 7 bits completely equivalent
+to what ASCII would do.
+Also, the numbers are completely equivalent
+to what ASCII would do.
+If you need more than one byte, you have two leading 1 bits.
+And then you have a 0.
+Or for three bytes, you have three leading 1 bits and a 0.
+Or for four bytes, four leading 1 bits and then a 0.
+And each continuation byte, as I said, starts with 0, 1.
+And then the rest is used for the actual code point
+encoding, which gives you an order 7, 11, 16, and 21 bits.
+In theories, this actually scales further.
+And I think the original standard actually
+includes first a variance, like with 5 leading 1, 6 leading 1,
+7 leading 1, 6 leading 1, so I think after that,
+it doesn't make sense anymore.
+But since Unicode is currently restricted to 21 bits,
+it doesn't exactly make sense to ever use more than four bytes.
+And they actually point out that the most you can ever
+use to encode a character in any of the three encodings
+is 4 bytes per code point.
+And it is UTF-16, where the smallest possible unit is 16 bit.
+Obviously, this is no longer compatible with ASCII
+because even if you have a small number, like, I don't know,
+20 or something for a space or x20,
+I think, you still have to fill the rest of the bits with 0.
+So you always have 0 bytes, if you would interpret this as ASCII.
+And all Unicode scalar values up to, like,
+FFFF were encoded using a single of those coordinates,
+16 bits, and just straight as the number.
+That means for the whole BMP, including most of CJK,
+you have to use only two bytes, which is a reason why,
+actually, a lot of Asian countries are big proponent
+of using UTF-16 or UTF-8, because it saves you a whole byte.
+I told you to remember that in UTF-8,
+you usually need three bytes to encode anything
+that is in CJK.
+If you have anything above that, you obviously
+need two code units to encode it.
+And the way to do that, which is a bit of a hack,
+is you use specially assigned code points that are in the BMP,
+and those are the so-called surrogate pairs.
+And that's the very reason they also are not included
+in the Unicode scalar values to represent them.
+So you have two of the surrogate pairs,
+and some of the bits in those pairs actually
+represent the code point.
+And this is the way that it looks like if you have the code
+point that has this bit representation, so it always--
+yes, it's 21 bits.
+The use here represent which plane to choose,
+so that goes from 0 up to 16.
+And then the rest of that is the code point within the plane.
+And then you map that to two separate surrogate pairs.
+One of them starts with the 8 to DC, I think,
+and the other one well, with something else.
+And that's a high surrogate and a low surrogate.
+And in that first one, you encode the plane,
+except you can use the number of the plane minus 1.
+Because if you were actually using plane 0,
+you would have an encoding where you don't use surrogate pairs,
+because you can fit it in a single-code unit.
+So you can get rid of encoding plane 0 explicitly
+and just shift everything down by 1, which
+takes your whole bit in this case.
+Oh, yeah, then I think it's still appropriate to talk
+about UCS2.
+UCS2 is a two-byte encoding.
+It's basically very similar to the UCS16,
+except you never have the surrogate pairs case.
+You always only use 16-bit, which
+means that everything else that the basic modeling group
+pain plainly can't be encoded.
+This is what was suggested in, I guess, Unicode 1 and 1.0 1
+and everything before 2.0, because people
+were assuming that it would only ever grow to 16-bit.
+So it's a fixed-length encoding, which makes it sort of nicer.
+You can index efficiently, but you
+can represent a lot of the characters that actually
+part of Unicode.
+And for that very reason, it's being
+deprecated in Unicode 2.0, not for some reason,
+because standardization was such at the time.
+ECMAScript, or probably better known as JavaScript
+the most, may use this as an encoding.
+And I'm not actually sure how much implementations do this,
+but people are constantly telling you
+that you have to be aware of UCS2 if you're using JavaScript.
+Technically, what the standard says
+is you can use easier UCS2 or UTF16.
+And if you're not sure, use UTF16,
+but it is completely allowed to sort of forbid
+most of the higher Unicode planes in an ECMAScript string.
+And then there's UTF32, which is pretty straightforward,
+because it's just encoding your code point
+as an unsigned 32-bit value, like straight integer, which
+reads that the highest byte of that integer is always 0,
+because we're only using 21 bits.
+So everything after the 24th bit is obviously 0,
+which is the high byte.
+And it's the only officially still
+recombinant fixed-width encoding.
+And as I said, fixed-width encoding
+means you can efficiently index a string stored like that.
+Like if you want the tenth character with UTF8,
+you have to actually parse it and see where the character
+boundaries are, because you don't know how many bytes it took.
+With this fixed-width encoding, you
+can just say, OK, I want the tenth character that's 10 times
+4, and read it at that byte offset.
+If you're a bit into systems programming,
+you have probably, at one point or another,
+had to deal with endiness, which is basically
+the order of bytes that a system uses.
+And with any encoding but UTF8, you
+have to take care of this, because you
+don't know if UTF16 is stored with the high byte
+of the low byte first, or if UTF32 starts with the significant
+byte or the most significant byte.
+So the way to do that, usually, is
+beginning a document with the 0 with no break space, which
+is a character that usually is used to join two words together
+such that they won't perform a line break between them.
+So you can use it as a very beginning of a document
+that you don't see any difference.
+And if you use it like that, it's called a byte order mark,
+or a bomb.
+So first thing you can do with that is obviously detect byte
+order, so it's encoded F-E-F-F.
+So if what you read is F-F-F-E, this is little Indian.
+If what you read is F-E-F-F, that's big Indian.
+The other thing you can do with this is, oh, for that very
+reason, the other codeporn, like F-F-F-E,
+is actually unassigned.
+So it's used to just differentiate whether this is
+little or big Indian.
+The other thing you can do with this is detect the encoding,
+because in each of the three different encodings,
+it looks different, right?
+In UTF-8, it's three bytes total, and none of them--
+well, if you read the first two, you
+know that it's not any of the other encodings.
+In UTF-32, you see that it starts with two zero bytes,
+and then these bytes, and you have 16 hits,
+pretty much literally the code point.
+So the I-T-F, just like as a reference point,
+actually discourages the use of the bomb in their protocols.
+Like they say, either just use UTF-8,
+because it's nice, or have a separate mechanism
+to signal, which encodings use, also taking it to account
+that it might not be a Unicode encoding at all.
+So as a small summary, UTF-8 usually,
+if you're encoding any text in it,
+ends up being the smallest encoding for that in scripts,
+because most of it can usually be encoded in a single byte.
+Indexing is rather expansive, because you still need to parse
+the whole string to actually count characters.
+UTF-16, if you're writing Chinese, Japanese, Korean,
+usually ends up being the smallest for that text.
+Indexing is still sort of expensive.
+You can step in bigger chunks, but you still
+have to parse characters in order to know how many you've
+already read.
+It does have vast decoding over it, then you deviate there.
+And then UTF-32 is obviously wasteful,
+because one byte is always completely unused,
+but it's very efficient for indexing.
+So if you have to jump within your string
+and take substrings of it, it's a good encoding
+for that, potentially.
+And it's obviously trivial d2d code,
+because it's just a representation of that very number.
+So normalization, starting with the problem.
+You have a string, why do you need to normalize it?
+And the reason is that different code point sequences
+in Unicode are considered equivalent.
+And there are two kinds of this, like one is canonical
+equivalence, so you have two sequences.
+They are the same, they are displayed the same,
+and they are also usually interpreted the same.
+And they have compatibility equivalence,
+which two strings are considered equivalent.
+But they may completely differ in display
+and be different, the interpreted depending
+on the context they show up in.
+So to make that a bit more obvious here is a slide showing
+different versions of canonical equivalence.
+So what this is, this is like your usual b,
+your usually uppercase a.
+On the right side, you have b and a, a, as standalone code
+points, and the last one is a so-called combining character.
+So it combines with the character that stood before it,
+so it generates completely the same glyph.
+It looks exactly the same as the one on the left side,
+but it's still different data.
+Similarly, with one below you have like a decorating mark
+below and above it, which both combine onto the queue.
+So you get a dot below and above the queue,
+but they could be in a different order.
+So you have to somehow make sure that these mouse
+are still compare equivalent no matter what the order is.
+And then the last one is just on the left,
+you have the ohm sign, like for measuring resistance.
+The right is the omega sign, which are logically different,
+but they are obviously the same.
+They display the same, the preferred representation
+is actually using the omega sign.
+So you need some way, if you have two different strings,
+to perform normalization so that you actually
+can compare them byte by byte to tell
+whether there is the same or not.
+A bit more crass with compatibility equivalence,
+which does things that seem a bit less intuitive,
+like it removes fractals, makes h into a proper h,
+it removes circles from numbers.
+Oh yeah, this is pretty much, it looks like two characters
+in one, which is still equivalent in some sense
+to them on their own, like just a D is that,
+and then a combining mark, but in the strip there,
+it's actually meant for this is a single character,
+so splitting that apart makes no sense at all.
+So for that reason, it's just compatibility equivalent,
+but not actually equivalent equivalent.
+So with that in mind, you get four different forms
+to perform this normalization.
+So they're called, very catchy names, D, C, K, C and K, D.
+Usually, when people talk about it, they say,
+okay, this is normalize to N, F, D, N, F, C, N, F, K, D,
+N, F, K, D, K, C.
+And there, like in order, the first one
+is canonical decomposition, so what you try to do there
+is you split letters apart as much as possible.
+So if you have, A with the irises on top,
+you split that apart into A, combining the irises.
+If you have a C with a cedilla below,
+you split it up in C and combining cedilla.
+And F, K, D does pretty much the same thing,
+but also, there's compatibility decomposition,
+which does those a bit more drastic things,
+like two with circle around it decomposes into just a two.
+I think the ellipsis sign, so three dots decomposes into
+dot, dot, dot.
+The jig character, the dz thing we have there,
+decomposes into dz, combining mark and those kinds of things.
+And then there are the two forms N, F, C and N, F, K, C,
+which also perform composition.
+And composition is always canonical,
+so you never can go back from dz and a combining mark
+to just a single character.
+But you can go back to d and z with a die critical method.
+And yeah, basically the forms are just,
+you do whichever type of decomposition you wanted to do,
+then you recompose it into a canonical form.
+So how do you actually do decomposition?
+It's basically a table lookup.
+Like the Unicode character database contains two entries
+per character, the canonical decomposition
+of the compatibility decomposition.
+Compatibility decomposition might be empty,
+and I think so can be the canonical one
+if it's just the character itself.
+And it potentially maps a single code point
+to multiple code points.
+Like we saw that before, one character can be mapped
+to a character in the combining mark, those kinds of things.
+And actually to sort of safe space in this table,
+some characters decompose into something
+that's again decomposable.
+So you have to iterate this algorithm
+until nothing decomposes anymore.
+If you do compatibility decomposition,
+each of these entries actually specifies
+the type of compatibility decomposition.
+And I won't go through them all,
+but some of the more obvious ones
+like circle decomposition
+is removing a circle around a number,
+like what we saw before, right?
+Or, I don't know, I think font is the thing
+we saw with the age and fracture
+becoming a usual age character.
+And then as a part of decomposition,
+you also get what's called the canonical sorting algorithm.
+So as I said before, if you have a character
+and then multiple combining marks after that,
+you somehow need to make sure
+that the combining marks get a fixed order
+so that you can compare them.
+Like it doesn't really matter what they order,
+they are as the character still looks the same,
+but in order to compare it,
+they need to get a certain order.
+And in order to make that possible,
+each character, each combining character
+has a canonical combining class.
+So that's basically a number, I think 8-bit number,
+and you basically just sort them by that number,
+like between so-called starters.
+So an A, for example, would be a starter
+where you can combine it with something,
+but it does not itself combine with something before that.
+And between starters, you have combining characters,
+and among those, you sort them by the combining class.
+And that gives you a string that you can actually compare
+and get a consistent result between strings
+that look the same, right?
+So you want to do composition, as I said,
+before it's only canonical,
+and it always works on pairs of code points.
+So I think what the algorithm tells you to do,
+which is not necessarily most efficient ways,
+you start at the second character,
+and then you seek backwards.
+And look, okay, can that be combined?
+And can that be combined means,
+is there a decomposition that maps to these two characters?
+And if that's possible, then you do that,
+replace it with that.
+Again, look at the second character.
+If it's not possible, go to the next character,
+and seek backwards, checking that character
+against each one before it,
+whether they can be combined,
+if it can be replaced, and that's the other thing.
+Yeah, oh, and with that algorithm obviously,
+if you have composed the code points,
+so if two code points composed into a thing on one,
+that new code point can obviously be composed again
+with something coming after that.
+So if you have, let's say, an A is usual character,
+and then two combining marks,
+you combine with the first combining mark,
+but then you still have to look
+where there's another one that you can also combine
+onto that character to get a new glyph,
+or a new code point.
+And even if you,
+so the string can, even if it sort of looks like,
+okay, there's nothing I can do,
+can still change you to the ordering of combining marks.
+Like if you write, the D was a dot above,
+and then a dot below.
+There's such no way to combine both of them together,
+but if you decomposes into a single D and then a dot above,
+and you reorder it by the ordering algorithm,
+the two combining marks which places.
+So when you then try to compose them back together,
+the D is going to be composed
+with the dot below instead of the dot above,
+because of the ordering of the combining marks.
+Let me just keep in mind, decomposition can enlarge strings.
+They can become immensely bigger.
+This is sort of the extreme example,
+like the usual maximum is like one character becomes five.
+This is for a very specific code point,
+and only happens if you do compatibility decomposition.
+And that's the Arabic piece B upon him,
+which is sort of uttered after the name of a prophet quite often.
+So it actually has a single code point, FDFA,
+which actually looks like this.
+Doesn't seem like that should be a single code point,
+but it is.
+And if you do compose that,
+you get these 18 code points in order,
+which are just the separate characters of that phrase.
+But it's something to give you in mind also for storage.
+Like if you store data,
+it might make sense to rather store it in NFC
+because it becomes smaller rather than NFD.
+So something to talk about separately is Hangul.
+And I'm probably pronouncing that terribly, but anyway.
+So this is the Korean script or Korean alphabet.
+It's sort of interesting.
+They have 24 separate letters.
+So not that many, like 24 has less than an hour alphabet
+called Yammo.
+And these consists of 14 consonants and 10 vowels, okay?
+But it's written in blocks.
+So as you see on the slide, this is actually Hangul in Hangul.
+So this isn't, well, H, A and N, not really, but sort of.
+And this is a G and O.
+So each of these blocks are actually like three characters.
+And they are a code point on their own.
+Like each block has a code point.
+So if you want to do decomposition or composition
+and do that via a table, your table would just explode
+because basically you have to do each combination
+of those 24 characters in blocks of three.
+That's not technically completely true.
+Like some of those are just not possible.
+And I think each block has to contain one consonant,
+but cannot contain, no, can contain more than one,
+but has to contain at least one consonant
+and things like that.
+But if you do that with tables, they quickly become huge.
+So the way Unicode gets around that is,
+okay, so the question is, can we do better?
+The way Unicode gets around that is by ordering
+all those characters in a sensible order.
+So the YAMU are ordered in such a way
+that you can, just with performing simple aerodynamics,
+compute which block a combination of two or three YAMU generates.
+And I'm not going to go through it in detail,
+but the better idea is you have these predefined constants,
+which is like start of the syllables,
+start of the leading YAMU, vowel YAMU and trailing YAMU.
+So characters that can be at the beginning of a block
+in somewhere in the middle or at the end of a block.
+And then how many of those there are
+and some like multiples of that.
+And for decomposition, you just basically get an index
+within the set of syllables.
+Like this is the answer syllable.
+And from that you can, with modular and division arithmetic,
+just compute the indexes of each of the YAMU contains.
+And they seem pretty much the other way around.
+Like if you have a leading and a vowel,
+you can compute the block that that would be.
+Or if you already have something composed,
+so leading and vowel composed.
+And then a trailing one you want to compose onto that
+is basically just an addition of the index as a trailing one.
+So they're sort of nicely ordered
+so that you can just do very simple arithmetic
+to get the result instead of having huge tables.
+Okay, so let's get to confusable characters.
+And again, the problem is sort of nothing new
+for most of you, I guess.
+Like Eucote does not encode glyphs.
+So glyphs means the way a certain character
+looks, which is obvious, like there are different fonts.
+The same code point in different fonts
+may look different, perfectly natural.
+And many of the characters actually look very, very similar
+or identical, even if you use just one font.
+And that sort of enables an attack of impersonation.
+Like if you're in a chat room, you can impersonate people
+by giving yourself a nickname that looks very, very similar
+to the one he has.
+Or you could craft a domain like something
+that looks very, very similar to papal.com
+to google.com, like something critical.
+Or you could craft a local part,
+so the part before they get an email address
+or jabber address or whatever.
+And make that look there because it's a certain person.
+And then send an email to someone else.
+Or maybe a perfectly legitimate account, right?
+But it just looks like it's a certain person,
+but the actual account is a completely different one.
+And here's some example that you might actually
+know some of them.
+Like Juliet, you have two versions which look
+very, very similar if you don't like squint your eyes
+a bit, but which are on the left with an L
+and then you're right instead of the L, it's a one.
+So that's the very, very typical one
+that I've used in ASCII, right?
+And that's within the same script.
+Like this is just Latin.
+This is a Latin numeral one.
+This is a Latin, smaller, lowercase, letter Rau.
+And they look pretty much the same.
+And then you can do that which makes scripts
+like take a curlic P and I think it's not actually supposed
+to be pronounced P, I think it's R or something.
+But it looks the same like the X and Z and P, right?
+So it both reads as Peter, but it's not Peter.
+And then the last one is actually
+you can create strings that look completely the same,
+but all of the characters are actually not from the same script.
+So the last one is actually all shiruki characters.
+That's not a single Latin character.
+But it looks pretty much the same as the one on the right,
+which is all Latin characters.
+And in this case, I made it a bit--
+I used different fonts and things, right?
+Like the first one is like a turbulent font.
+So they would actually look similar.
+And the last one I made sure that the Latin one actually
+had serifs because the shiruki script,
+even if you render it in a song font,
+has these serify extensions of the letters.
+So solutions.
+There's not really a straightforward one.
+And people are making a point of making it very, very clear
+that there is no real solution to this problem.
+Like it is on some level of social problem.
+And fixing it-- well, if anything,
+it would require glyph encoding.
+So actually encoding into a number
+how a character looks, which for obvious reason just
+doesn't scale.
+So there are some possibilities.
+If you're running a service, if you're running a certain department,
+you can restrict the scripts you allow.
+If you're running a service in Germany or in the UK,
+you can say, OK, I only allow the Latin script.
+I won't allow any CJK characters, anything,
+shiruki or anything because I expect my users to be German.
+And if someone wants something else,
+you should go to a local provider and, OK,
+we'll federate with them, but they should not use our service.
+Which at least avoids the mixed script and whole string
+script versions of that attack, right?
+It still has one and L looking similar, but that's maybe not as bad.
+You can, if you have too much time on your hands,
+obviously that all identifies that someone tries to register with you,
+which might be plausible if it's actually
+like a standard and limited list or if you're, I don't know,
+the yanner and maintaining a registry,
+which, anyway, will only ever get 50 entries or whatever.
+But usually, that's not really plausible.
+And then there's an algorithm called
+the Unicode Confusable Detection, which is obviously not perfect,
+but is what I'm going to present as a better-than-nothing solution sort of.
+So what do you do with Unicode Confusable Detection?
+You create what they call a skeleton of the string.
+So a skeleton in the sense of this is the bare bones of it.
+This is basically what it looks like, right?
+And if two strings have the same skeleton, they are considered confusable.
+So in some sense, equivalent looks the same to a person.
+And the way to do that is that there's a table in a separate file
+actually confuses, we'll start the TXT in the Unicode folder,
+which contains mappings from a code point to whatever
+it should be in the skeleton.
+And there are actually four types of that.
+Like you can do that for a single script.
+Just mapping it to the same script can do that with mixed scripts,
+where they take into account, obviously making the table a lot bigger,
+taking into account things that are confusable when you're using different scripts.
+And then you can do that for either just lower case identifiers or any case.
+So lower case, upper case, and title case characters.
+So how do you compute such a skeleton?
+So first thing you do is you put them into normalization form D.
+So full canonical decomposition.
+And the main reason to do that is that way in the table,
+you only have to decompose characters, right?
+So you can make your table possibly a lot smaller.
+Because you never have to deal with an A, so an R oom-loud.
+You just have to deal with a single R and the combining data
+critics that uses on their own maybe.
+And then each of that decomposed code points.
+You map according to the table, whichever one you choose.
+And then on the result, you can apply NFD.
+And that last NFD step is not actually for decomposition,
+but is to sort the combining marks in a proper order.
+Because if you mapped one of the code points to combining marks,
+those could be in a different order than it would be specified by NFD.
+So you have to re-sort them.
+In order to get the comparison to the proper.
+So here's some examples of what that does for the strings
+we had before.
+So this is Juliet with the Allen with the one.
+And at this time, I used the font where it's a bit more clear
+that this is an Allen with the one, right?
+And they both mapped to just Juliet with now.
+Also, St. Peter in the Cherokee font maps to just Latin characters,
+S-T-P-E-T-E-R, and maps to Latin one again.
+So if you create the skeleton, you very, very easily see
+that these are actually the same in some way,
+so that these are confusable.
+So maybe I should talk about this more.
+This is sort of a way that one can use on deployments.
+I think it was originally created actually for a domain name
+registration, where registers wanted
+to be able to see if someone trying to register a domain, which
+is confusable with something that we already have,
+is someone trying to imitate papal, for example.
+I personally wrote a module for Prodigy and XMPP server
+that would create skeletons for each registered user,
+and then put a new registration check whether the user name someone
+chooses is confusable with that one.
+Unfortunately, I've never actually seen hard numbers
+and how well this algorithm does.
+Like, I'm not sure how easy it is to trick.
+I have not personally been able to trick it,
+like if you just scroll through the Unicode database,
+like, OK, this looks like Latin characters and put it
+into the algorithm.
+It actually maps that to the Latin characters.
+So it's not completely bad.
+It's not trivial to trick.
+But obviously, people might have overlooked something.
+If you have control over the font that a user sees,
+it's obviously very trivial to still get characters
+to look like each other, right?
+But in general, it's an easy approach step
+to do such things.
+So special characters.
+This is sort of-- these are not a lot of the characters
+that are, in some way, special.
+This is, I think, four or four categories
+that are found noteworthy because you often
+feel like you have to treat them, especially,
+or something like that.
+The first one is to zero with non-joiner.
+And well, let's first get to the problem.
+The problem is this is invisibly in many situations,
+actually, in most situations.
+Like, you put that in a string and it's zero with nothing.
+Like, you just don't see that it's there.
+But it means that your strings will be different
+because there's an additional code point.
+For that reason, in many algorithms,
+to compare identifiers, one of the steps is mapping zero
+with non-joiner to nothing.
+So just throwing it away when it's in a string.
+The reason it actually exists is it
+seems to break up ligatures.
+Like, I don't know if you can see that.
+But here in the general world, Alf Lager,
+this is the ligature between F and L,
+so they're joint up here, which is topographically incorrect
+because that's a composed word from Alf and Lager.
+So you need to have space there.
+So if you put zero with non-joiner there,
+you get the typographically correct version of that.
+And then the examples for a version are a bit more like--
+you'd need to know that even if you're not a typograph.
+This is apparently IBM, like the company named Arabic.
+And usually, like, it creates this fancy ligatures
+between characters here in the middle,
+whereas it should be those two two as are pronounced I,
+this is a B, and those two together are the M.
+So the insert here with non-joiners here and here,
+to split that up into like three separate sounds.
+The person, one, is, I think, I wish, translated.
+And the thing there is that, grammatically, apparently,
+there is-- like, this particle represents
+that this is present.
+And in modern grammatically, this is apparently
+no longer joint to the rest of the word for readability
+purposes.
+But your characters would usually do that,
+as you can see on the left.
+So you have to insert a zero with non-joiner there.
+And those are sort of the different reasons
+you might want to add these in different scripts.
+There's also a reason you might want to allow these
+for identifiers if you actually support that script,
+like making IBM able to spell the company correctly
+might be a good thing, depending on their use case.
+But generally, it's one of the more dangerous characters.
+For these very same reason, zero with the joiner is also
+dangerous.
+It pretty much does the opposite.
+Like, it forces ligatures or variance.
+And the more common cases are certainly variance, which,
+in this case, this is, again, arabic.
+And this is like the character bar or whatever.
+And the first one is like the form of it
+if it's just standing there on its own.
+But you might want a different form.
+Like, you might want the form if it's
+at the end of the word, where you just
+would put zero with joiner before it,
+like representing there's something, and then there's bar.
+All right, the beginning of word, which means you put zero
+with joiner at the end, or in the middle of the word,
+where you put zero with joiner on both sides of it.
+And it changes its shape based on what you do,
+which is sort of like for someone used to do that enough
+a bit of this seems quite nonsense.
+But arabic language does a lot with ligatures
+and a lot of having characters look differently
+depending on where in the word they are.
+So this probably makes sense to have.
+And then there is half and full with characters.
+And I'd actually rather start with the Y first year.
+So in CJK computing, so Chinese, Japanese, Korean computing,
+if you had terminals, traditionally, the CJK characters
+would be twice as white as a normal ASCII characters,
+just because you have things to draw, right,
+and would not look good if they were that small.
+And these double with characters sort of were called full with,
+and everything that was as white as one of our characters,
+let's say, was called half with.
+So in order to be able to like print things nicely
+and create tables nicely, Unicode
+includes the whole ASCII standard invariant, which
+is full with, so twice as white as it usually
+would be there's an A, which is still an A, but twice as white.
+And also there's some katakana and hanghur
+in half with version, so which would normally take up
+like two places, but it's made half as white in order
+to be able to be printed together with other normal ASCII
+characters.
+And I guess the problem with them is sort of obviously
+and confusion, right, because they are different code points
+and they have a very different use,
+like just mapping them, if you're typing them into a terminal,
+it would be, well, it would mess up the presentation
+of whatever you're typing, right?
+But still, an A is an A, no matter if it's usual A
+or a full with A. And that's actually all I have for now.
+So thank you for your attention, and I would take questions.
+Nothing.
+OK.
+Then, just thank you.
+[APPLAUSE]

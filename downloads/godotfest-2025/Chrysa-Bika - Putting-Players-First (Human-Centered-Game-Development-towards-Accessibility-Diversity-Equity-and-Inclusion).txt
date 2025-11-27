@@ -1,0 +1,129 @@
+API URL: https://api.media.ccc.de/public/recordings/93407
+Frontend URL: https://media.ccc.de/v/godotfest2025-putting-players-first-human-centered-game-development-towards-accessibility-diversity-equity-and-inclusion
+Title: Putting Players First
+
+(upbeat music)
+- So now from the cold world of video encoding
+from the previous talk,
+we now get to a more human side of our craft and industry.
+Teresa Beaker is a game developer and educator,
+a researcher for games and computer human interaction.
+In this session, she will advocate
+for player centric approaches in game making,
+approaches that have diversity, equity and inclusion
+at their core.
+Please welcome Teresa Beaker.
+(audience applauds)
+- Thank you so much for the kind introduction
+and welcome everybody to my presentation
+on putting players first, human-centered, game development,
+tower's accessibility, and diversity, equity, and inclusion.
+I'm Hrisa Bika, a researcher in games engineering
+and human-computer interaction at TUM,
+a lot of being outdoors and cute animals.
+And yeah, if you want to connect with me,
+there's my LinkedIn.
+You can see more about my journey there,
+or just ask me directly.
+So let's dive right into it, the player experience.
+The player experience arises from interaction with the game
+by playing the game.
+So a game is not really about its systems or its assets.
+A game is about the experiences it makes possible through play.
+The value of accessible games is not just mere play,
+but playing the same games as everyone else.
+And whether an interaction is disabling or not is within the control of the people defining those interactions as designers and developers.
+And these statements remind us that inclusion in games is not simply a technical challenge, it is a responsibility.
+And players should not be excluded because of abilities or their identity or their background.
+So regardless of these things, we should all be able to play the same games just like everyone else.
+And when games enable us to dive into fictional worlds and to identify with fictional characters, games become a powerful medium of empathy and belonging.
+And we will all benefit when games reflect the diverse world that we live in, be it by body types, skin tones, culture, different abilities or gender or no gender, sexual orientation and so much more.
+Because at the end of the day, don't we all just want to be seen and to be heard and to be represented in the games that we play.
+So I'm bringing you the first key takeaways of this presentation.
+for the game.
+Of course, games are a leisure time activity, but they are so much more than just pure entertainment.
+Games can improve mental health and well-being, they can assist us in getting through tough times, they play a huge role in education and cognitive training, and despite a lot of games being quite toxic or having toxic communities, on the other hand, they can also advance diversity, equity and inclusion.
+And they can foster social interactions, connection and belonging, and especially among people with disabilities, they are proven to reduce feelings of isolation.
+And if that wasn't enough motivation on why you should make inclusive games, there's also the UN sustainable development goals that urge you to think in a human-centered way and to think of quality education and gender equality.
+And also to reduce inequalities.
+And if that wasn't enough, there's also legal frameworks.
+Because leading a self-determined life is a fundamental right for everyone.
+And this is not only a moral imperative, but also reflected in, for example, these legal frameworks demanding equal access and participation for everybody.
+And yet, in both everyday life and leisure activities, people with impairments as well as underrepresented groups often face inclusion, sometimes unintentionally, but with lasting impact.
+So I want to ask, how can we make inclusion in digital games more achievable and practical for game developers or game engine developers?
+So we set some goals.
+Our aim is to advance accessibility and diversity, equity and inclusion in digital games by supporting developers with practical tools and guidance.
+We want to ensure that inclusion of accessibility features and today becomes a matter of design intent rather than technical feasibility.
+And we aim to include all people and to create a safe space for underrepresented groups by raising awareness and educating about these topics.
+So my next key takeaway on how do we reach our goals, the key answer is simple by putting people first.
+The key to developing accessible and inclusive games in regards to today is to involve affected people as well as experts in these areas from the very, very beginning of development.
+And their needs, their experiences and their wishes must guide our decisions and be prioritized above features, above the expectations and above the technology.
+So I want to present two case studies, so you get a feeling of what I've been working on so far and how a human centered design and development process can look like.
+So my first case study is on the game Play Discuss Women in Science, and I've already spotted Daniel Dura in the audience.
+He's the team lead for this project.
+And here we developed a multiplayer game through a human centered and co-designed process involving women scientists from diverse backgrounds.
+So the game creates a structured environment that encourages exploration of diverse perspectives supporting players informing their own positions.
+You get to experience the stories of inspiring women and explore the challenges that they have faced in STEM.
+You engage with topics of diversity, equity and inclusion in a playful way.
+So as coming from a research institution, we asked a research question.
+How can we design an educational game that meaningfully addresses the complex and context dependent challenges faced by women in STEM in the absence of universal solutions?
+We conducted an initial two day content workshop with participants from diverse cultural and disciplinary backgrounds ranging from professors, early career researchers, historians of science, game designers and also drama therapists.
+And through storytelling exercises and participatory discussions, we collected personal narratives and identified common challenges women in STEM face such as isolation, exclusion and structural inequality.
+And together we shared and we discussed and developed strategies to overcome these challenges.
+And each of these insights truly informed the narratives and the topics and discussion prompts used in our game.
+Now, these are the three sessions that we developed, each guided by a strong female protagonist.
+And this whole narrative framework was co-designed with experts and individuals with lived experience embedding key themes of diversity, equity and inclusion.
+And the whole game is grounded in co-creation and iteration and continuous feedback across all development stages so that we ensured that the game's narratives, mechanics and visual language throughout the whole game remain authentic, inclusive and emotionally resonant.
+And I brought some more impressions because we didn't stop there, we conducted a lot of play tests, we received expert feedbacks and we went to a lot of developer events to gain feedbacks on the game design and the game mechanics, which is really important and I would advise to anybody.
+But enough about this game, as promised, I brought a second case study.
+This one is on inclusive cinematics, AI based visual dubbing and voice cloning to advance accessibility.
+So for my master thesis, I developed human-centered, easy language, audiovisual prototypes.
+Now what does that even mean?
+Easy language is a simplified, planned variety of standard language with clear rules and a reduction in content and sentence structure and the vocabulary.
+Its primary target group are people with learning difficulties but non-native speakers benefit as well.
+And here, as you might have guessed already, I developed a news broadcast because news are typically quite complex and people with learning difficulties or non-native speakers do not understand them.
+So why don't we create an easier version of them?
+And how did I end up with these final prototypes?
+I had a human-centered design and development process where I investigated expert workflows and my target groups needs preferences and perspectives within this user-centered design approach.
+And this contributes to the identification of areas where AI and machine learning could be leveraged to optimize the film production process to support more inclusive filmmaking.
+How did that look like before development, I conducted semi-structured expert interviews with interpreters of the easy language and with media designers for sound and image.
+I conducted informal expert studies, I also did a think-aloud study with media designers for sound and image. You can see this in the middle where I went to their office space and I also conducted a focus group study with experts on learning difficulties.
+Then I had my iterative development process where I stayed in close contact with all of these people and with my target groups that you can see on this hand side.
+And once I was done with the development and was happy with what my prototypes look like, I conducted user studies. You can see with people with learning difficulties with non-native speakers and also with a control group to identify and observe how these prototypes come across and how I could improve them with the next iteration.
+So the question is, now how can you as a programmer or engine developer put people first? Because all these case studies that I've shown you, they might seem very complex and maybe overwhelming at first.
+And also like trying to figure out how to work with specific target groups that you haven't worked with before. It is of course a lot of work, but it's also a wonderful feeling to include these people and to work on the projects together because we all benefit from more inclusive games, from more inclusive media.
+And that's why I'm bringing you some resources like design patterns and guidelines and frameworks that you can start using today. They are all online, they are free to use, it's super easy and we're going to have a look at them together so it gets less scary.
+And let's start with the accessible player experience design patterns. They are developed by the Able Game as charity and they are a design thinking tool organized into access pattern and challenge pattern.
+And the former support players entering and engaging with the game, while the latter address how players with a disability can overcome challenges and progress in gameplay.
+Let's have a closer look. The access design pattern could be something like clear challenge or second channel, clear text, leave it there or same controls but different.
+Now these design patterns tell us what the problem is. Players cannot effectively use the controls of the game in their standard configuration.
+And they even give us the design solution. Players are able to remap controls of the game so that they can effectively use the controls of the game or its interfaces.
+And you can read even further, they give us the accessible player experience design drivers which explain the context of these problems.
+For instance, players with physical disabilities may need to remap controls to an alternative controller to a keyboard and a mouse on a standard controller in order to reach the controls or players with cognitive disabilities may need to simplify controls to more easily remember the control configuration.
+Now let's look at the challenge design patterns. Here we can find bypass, a helping hand, play alongside, undo, redo or moderation in all things.
+And again we get the design problem. Players cannot engage with strong emotional content. What could be the solution? Players can avoid strong emotional content so that they can continue to play the game at a moderated level of emotional challenge.
+What is the context, the design drivers? Players with mental health difficulties may need to avoid particular types of content. Players who are neurodiverse may need to avoid surprises in the environment. Players may prefer to avoid strong emotional content such as surprise, violence, gore or sexual themes for a variety of reasons.
+Let's continue. There are the game accessibility guidelines. They provide practical recommendations for accessible design structured into basic intermediate and advanced levels.
+For instance on vision impairments you get a whole list of accessibility features that you can implement in your games and once you click on them of course you receive more information.
+There are websites like can I play that that publish accessibility reviews and news and feature updates and they serve both players and developers as a community driven resource for accessibility in games.
+And of course I had to choose a good old specific article where good old 4.5 improves accessibility support including screen readers or one of the most famous example if we talk about accessibility in games is the last of us.
+They provide a whole list of accessibility features for vision, hearing and motor accessibility so if you want to get inspired this is a good way to start.
+And then of course the 4.5 release of the good old engine which states on their website making dreams accessible and they recently included screen readers support.
+And here we see inclusion must also be embedded in the game engine development process from the very beginning and existing guidelines and design patterns.
+They provide a solid foundation but further process and progress requires co-design with people who are directly impacted and they include inclusion across all scales of game development.
+So how can we achieve this for and with good old engine is something I want to talk about in the discussion part.
+But quickly the key takeaways of this talk.
+If you only take one thing out of this talk please let it be put players first and consider all people who would like to play the games that you develop and include people
+in all stages of the development and do utilize existing resources like design patterns and guidelines and frameworks.
+And with that could be good first and thank you very much.
+Thank you so much Lisa for this wonderful talk we now have four more minutes for a Q&A session if any questions arise from the audience.
+Then I would bring up one.
+Would it be possible that by expanding existing design patterns into more inclusive designs that you would still be replicating in accessible design biases that are like baked into the different designs that you aim to make more inclusive.
+Sorry can you repeat I'm sorry.
+By adding inclusive inclusivity features to games that are less inclusive.
+Would it be not possible that certain biases of inclusivity still persist within the game that you then expand and would it be possible that alternatively you start from like inclusivity for your target demographics and then build onto a more general framework.
+Yes yes I think it's important so we want to make games inclusive for all people but we have to start somewhere.
+So for instance with the second case study that I showed you I started with my main demographic being people with learning difficulties and the more I researched into it I started also working with people who are non native speaker.
+And they both benefit from easy language but they do have different needs and preferences so I was trying to find like the golden middle some way a balance of which features to include and which not.
+And I think it's a it's a very iterative process and it's better to start somewhere and to start small and yeah I hope this answers the question.
+Then another round of applause for Lisa and yeah thank you for the talk. Thank you.

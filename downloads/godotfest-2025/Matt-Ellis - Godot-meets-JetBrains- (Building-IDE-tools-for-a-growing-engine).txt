@@ -1,0 +1,620 @@
+API URL: https://api.media.ccc.de/public/recordings/93337
+Frontend URL: https://media.ccc.de/v/godotfest2025-godot-meets-jetbrains-building-ide-tools-for-a-growing-engine
+Title: Godot meets JetBrains: 
+
+[MUSIC]
+Yeah, hi, I'm Matt, I'm from JetBrains, I'm a developer advocate.
+I work with the game development tools and a bunch of other things as well,
+and we're really pleased to be here today to kind of talk about JetBrains stuff,
+, and also take part in the community itself and see the talks, speak to you and get lots of feedback and so on.
+And our support for good though is also open source and so we'd like to kind of show you some of those kinds of things,
+encourage you to contribute if you'd like to and show you what's going on.
+So if you don't know who JetBrains are, quick show of hands actually, anybody know JetBrains?
+That's nice, isn't it? Can we just stop there though, this is good.
+Who knows Rider? Oh, who's using Rider? Now this is good, I'm liking this, this is good.
+Okay, so, I don't need to tell you too much, we build IDEs, we're building that for about 25 years, we've got a whole ton of different IDs, we work in enterprise software, we work for hobby software, we work for games as well, Rider is our IDE for game development, and it can cover a whole bunch of different engines that I will not mention, and good, oh, which is good.
+I'll see what's changed in source control, it'll pull it down, it'll build it, it can package it, it can do the steps you want it to do to be able to produce a finished game or run tests or do whatever it is that you need it to do over time.
+The nice thing is as well that TeamCity has a free tier, so again, if you're doing things from a community point of view, from a hobby point of view, from a learning point of view, TeamCity can help you with this, you can have that running hosted yourself, it's got a free tier, three build agents
+allowed there, you've got a hundred build configurations, unlimited users, for small teams and small projects, that's absolutely perfect, and you've got a free version of TeamCity to work.
+We're also a platinum sponsor as mentioned, this is great, we're very happy to be able to sponsor the Godot Foundation and Godot Fest as well,
+and we're very pleased to sort of be able to contribute back, we like the fact that this is an open source project, that this is something being run in a different way to how some of our other
+sort of partners and engines work, and so it's nice to then be able to help that grow and flourish and expand.
+So, moving on, what is JetBrains Rider? So it is a professional IDE for game development, it supports Godot and a couple of other engines,
+I'm going to try and get through the whole couple of days without mentioning any names, has anybody else dropped the names yet?
+Yeah, shame on you honestly, but it's a professional IDE, that's the point, it's a professional IDE, it's the same IDE that we use for enterprise development,
+for web development, for database support, for all these kinds of things, but it's also got great support for game development as well,
+specific inspections, quick fixes and support for different particular engines.
+And for Godot, what's really useful is that it actually supports multiple languages, so not just C#, but GDScript as well, and C++.
+So however you want to program in Godot, we can help you with that.
+Another kind of key thing to point out is that it is free for non-commercial use, so if you're learning, if you're working with open source,
+if you're doing something as a hobby, in your spare time, if you're doing content creation as well, so if you're doing videos about Godot,
+then it can be free for you to use and work with how you want.
+So enough talking, let's have a look at how you would use it, so this is Godot, I'm sure you're very familiar with it.
+To get started, it's really nice and straightforward, the first thing you want to be able to do is, when you're inside Godot itself,
+open up the editor settings, go to the .NET editor section there, and in the drop down here, you can just choose whichever editor you want it to use,
+you just need to select JetBrains Rider, and you're good to go.
+When you now double click on a C# file, it'll open up the project inside Rider, and we're now ready to work with it.
+One of the key things that Rider does when it first opens up is to index your projects, and so it builds an index,
+it understands what your code's doing, and it allows you to navigate around very quickly.
+So we've got the solution explorer on the left-hand side here, you can see it's listing all of our files there.
+If I click this, show all files, you can see it's also got our UID files, which are a nice way of being able to identify our assets and move them around,
+and one of the things we can do is if I grab that file and move it here, it'll see now that actually, yeah, don't ask again.
+The source control there is moved, not just the C# file, but it's moved the UID file as well.
+So obviously, we understand Godot, we kind of do this as well.
+If you rename a file, we'll automatically rename the UID file with it, and so on.
+So let me just move those back. Yes, yes, source control, it's great.
+Hide that again, and then let's just get rid of that, because we don't want to actually use the solution explorer,
+we want to browse, so we don't want to browse, we want to search, instead searching, it's much faster,
+you can get to where you want to go a whole lot easier.
+Two keyboard shortcuts, if you're just kind of starting out with Rider,
+I always tell you there's two keyboard shortcuts you need to know.
+The first one is search everywhere, shift, shift, you just hit shift key twice.
+You get this little pop up here, and you can now just start typing, and it'll quickly navigate you around.
+We index everything, we index your class names, your symbols, your methods, the file names, the scenes,
+and all this kind of stuff, so we can very quickly go and find things.
+If I want to go to icon collector, I can just start typing, and it'll get there.
+So shift, shift, and I can go to pause menu.
+One thing we can also do though, which is very nice, is just use the initial letters,
+and so I could use ICC to build, navigate around to get to icon collector.
+Once you're in this dialogue here as well, this pop up, you can just hit tab,
+and it'll swap between all classes, files, symbols, and then actions as well.
+Actions is a really nice one, because then you can then work with the ID itself.
+So searching for all classes, files, that finds the code inside your project.
+The actions allows you to use the ID itself, so if I want to zoom in, I can easily do that,
+and I can now sort of change the zoom size of my text.
+So that's not very good, so we'll just stick it 150.
+Where is it? There it is.
+Did that end up at 150? Yes, good, good.
+So shift, shift is a great way of being able to navigate around.
+Once you're in a file, the other keyboard shortcut that you want to use is Alt-Enter.
+This is our kind of "do every thing" shortcut.
+It brings up a context menu of all the things that we can automatically do for you at this point.
+There's a whole load of things we can do pretty much anywhere,
+so Alt-Enter is a great thing to know at any point there.
+So I can do two internal, and it'll quickly rewrite that interface to be an internal type.
+I can even make it file local.
+Well, that wasn't any one of me.
+Good old new C# stuff.
+It's a great way of also learning C# features that you didn't know about before, such as the file keyword.
+I can create a derived type, I can make it a partial class, and so on.
+But the key thing is down the bottom here, these items down here,
+these are entry points to a whole bunch of other functionality for Rider.
+Navigate to refactoring, inspecting, and generating code as well.
+Navigate to code, things like equality methods, and so on, overrides, all this kind of stuff.
+Navigate to is really good because we've got a nice way of then being able to navigate around your code.
+I'm at an interface here, someone's going to be able to implement this interface.
+If I want to find out who that is, I can just go to derive symbols, and it will show me.
+It will show me the hierarchy of what's going on there.
+You can see that iPlayer is actually another interface which is being used.
+I can navigate around there, and I can go.
+You don't have to keep on moving up and down here, by the way, you can just start typing, which is nice.
+So you can find things very quickly, very keyboard friendly, you can type for pretty much everything.
+If you've got a pop-up menu, you can just start typing a little narrow it down and move around.
+We don't want to go to player logic, this one's a good one.
+This player logic is an interesting one because one of the things we can see is that we're using a lot of partials
+in this project, and if you're trying to navigate to somewhere, then it's going to ask you,
+"Well, which one do you want to actually go to?"
+Again, I can just start typing these where I was alive and jump.
+It will very quickly narrow it down and get to where we want to go.
+We can quickly move around our code and find things.
+The other thing we can, of course, do is control click to navigate around.
+In fact, that one's a partial. If I click that, let me just do that one again.
+If I'm at a class definition there, I can actually do control click here as well,
+and this will go and find me the other parts of the partial.
+Because Godot likes to generate a lot of classes there as well,
+then we can go and quickly find the generated code as being created there too.
+Again, a very quick way of being able to navigate around your code.
+Editing is also a good one if I go to collective detector.
+There we can, of course, you know, we get, you know, keyboard completion, keyboard.
+Key word completion, things like, you know, return, I can do gd.load,
+and it'll then start to influence things for me.
+The AI is kicked in and tried to finish that one for me, which is nice,
+but that's not what I wanted to do.
+Other things as well, like, add completions for resources and scenes here too,
+so we can then actually find the classes that you're looking for,
+the resources you're looking for, the scenes and so on, of what it is that you want to load.
+And if I hit semicolon there, the other nice thing is we can see that
+the code is graying stuff out, because we've got a return statement,
+everything following that is now no longer going to be used,
+so I can just use alt enter again, my sort of do everything,
+to remove my unreachable code.
+I can also do things like comment it out as well, if I really wanted to.
+Commenting out might be useful if you're in source control,
+and, of course, we can see we've got a marker on the left here.
+If you don't know if you can just about see that,
+we've got a marker in the editor, which you can click there,
+and then you've got to actually see what has changed in source control too.
+So we've got integration with all the different source controls that you want,
+whether it be Git per force subversion.
+I don't even know if you can do that anymore.
+Who uses subversion anymore?
+Oh no, move, do something different, it's great.
+Git's a lot of fun.
+But yeah, you can do interesting things, I can roll those back,
+and I can very quickly bring my code back to what it was before,
+and so on, I wanted to just come back to this,
+because a couple more inspections have kind of shown up there.
+Is that fun big enough for everyone, by the way?
+Everyone happy? Cool.
+Yeah, because we're kind of showing a couple of things here,
+like we've got this Git keyword just being grayed out there,
+and we can see that Riot is telling us that it doesn't conform to the code style
+that we wanted to use, and we want to use expression-body properties,
+so I can just use Alt-Enter and quickly fix that up.
+We had another one there with that return statement,
+which is pretty much telling me the same thing,
+and you are very quickly Alt-Enter to fix things up.
+We've also got a highlight here for the public,
+it's telling me that it can be made private, which is great, I can do that too.
+The interesting thing about that one telling me it can be made private
+is that we have actually analyzed the whole of your project,
+and we can see that the only place that this is being used
+is inside this method, inside this class, sorry,
+and so we know that that one can be turned into a private property.
+Oh, what else did I want to show you? Oh, yes, some refactorings as well.
+So if I just jump down to the bottom here, down here,
+a number of different refactorings we got,
+as I showed you before, we've got this Alt-Enter action,
+which can do things, it's got a number of different entry points like this,
+navigate to, so you can move up and down a class hierarchy
+if you wanted to, go to definitions, find usages is a good one.
+In fact, let's do that one here, so navigate to and find usages.
+We can see where this is being used,
+and very quickly find that because we built the index there.
+We can see that it's being used here as the...
+Where is that thing? There we go.
+We want to group it by usage there.
+You can actually see where it's being used as being invoked at this point here,
+inside generated code, and we've got more invocation and a read access there too.
+So we understand how the code is being used,
+we can group it by those different usage types and navigate around and work with it.
+So let's control click and get back over here,
+because I wanted to show you some of the refactoring features.
+So refactoring is one of the most useful things you can do then
+with a professional ID like this.
+You want to be able to write your code and then be able to change it,
+but instead of having to change it with find and replace or just typing and editing,
+you can use the automated refactoring that we've got.
+And one of the most simple ones of those is rename,
+and rename just allows me to change this to, I don't know,
+I think that it very quickly fixes up the value there and where it's being used.
+You know, I could do a similar thing here, just jump straight into the keyboard shortcut,
+and we'll suggest the name coin collector sounds good to me.
+We can do that, and we can just put that one back to body.
+We can also do more interesting refactoring as well.
+So let's see if I can just bring that up.
+Let's do alt enter.
+I've got my refactor menu there,
+or I can just use it directly to bring up the keyboard shortcut.
+There we go, we've got a keyboard shortcut listed in the menus there,
+and then I can use that directly.
+Did someone die? Is everyone okay?
+Phew, this is good.
+And we've got all our different refactoring that we can do at this point here.
+One thing I want to do though is I want to introduce a variable.
+So you can see we've got a method call here which is creating a new instance of something
+as part of the parameter.
+It's like, well, I want to split those apart.
+It's like, okay, I could rewrite that and work with it that way,
+or I could actually use my introduce variable and decide what to use.
+Now, we can either create a new variable based on the whole thing,
+on the input call, or just on the new there, and we can do that instead.
+So let's just pull out a new instance there, create a new variable,
+and we'll call that, yep, start collection works for me.
+And now here I could be doing something like start collection, dot, whatever.
+So it's a nice way of being able to quickly change your code safely as well.
+So it's only going to change the bits which need to be changed.
+There's not going to be any typos.
+I'm not going to call the wrong method or anything like that.
+It'll rewrite it for you.
+I can also go back the way as well.
+So if I've got this variable here, I don't need that variable,
+so I can inline it and it can rewrite it and do stuff like this.
+So all these automated refactoring are really useful and a great way to work with it.
+A couple of these things, like the short cut, the completion for some of the magic strings,
+like where we node paths, and I've got to remember where I am in the code for this.
+For node paths and input actions, for example, they are coming from good dough.
+And you might have noticed that we've got a nice little icon up here,
+and that's with a connection to the good dough editor.
+And I really like this icon because if I just swap back to good dough and quit,
+look at that.
+He's asleep now.
+This is good.
+So if you want to start it, you can do start editor.
+That'll fire it back up again.
+And if we go back, there it is.
+It's nicely connected.
+So that's a nice way to just show whether or not you've got a connection to the editor,
+and that editor then can provide some more information to Ryder to be able to give you
+better completion and better features going on there as well.
+And in fact, if I just go over to on physics process, on the player, that's the one.
+Yeah, so for example, once we've got that connection here, we get completion of things
+like your input actions there.
+So that's coming through that connection from the editor itself.
+You can provide useful information for your string literals there.
+This game's actually got them as being source generated, but we can also pull them from
+the editor if we want them there too.
+Similar thing with node paths.
+And then we've also got it for resource.
+I've already shown you the resource paths as well there.
+So there's a whole lot of things there in a sort of C# project which we're using there.
+We do a similar thing.
+Let me just close that editor.
+It is a GD script too.
+So we can work with GD scripts.
+We can open that up as a folder.
+We'll index everything and we can work without.
+We can do a few more interesting things and a few different things as well.
+So it works in a different way.
+We don't necessarily have the same introspection that we've got with C# files because C# has
+got a lot of metadata and a lot of useful things we can do.
+We've also been working on C# for about 20 years.
+So that gives it a bit of a head start of what we've got for GD script at the moment.
+There's a few things that we can do as well.
+We can still do navigation so I can shift, shift and do state manager and that will open
+up my state manager file.
+Or I can do my action shortcuts combo and again just type ASC.
+The initial letters is a very quick way of navigating around and that will open up those
+files.
+Once you're in a file, let's go back to state manager.
+We've got another keyboard shortcut to show you the file members that are available.
+So if I've got a large file and I want to try and find something, I can very quickly sort
+of navigate around and jump to where I want to go to so you can go and see the file members
+that are available there.
+We've also got these features like find usages.
+So if I just use the keyboard shortcut there, or it's only used in one place, that was
+useful.
+But we can see the process key maps is being used here and let's use something a bit more
+useful.
+Time left.
+That one should have a few more usages.
+We can see where it's being used inside your code as well.
+So we can navigate around and find things.
+We can also do something useful here like I can do another refactoring.
+I could rename that.
+Time left.
+I don't know.
+And that will update those usages everywhere.
+So it's again more accurate than I find and replace.
+It's just going to update that particular symbol itself.
+I'll just undo that quickly.
+And the next thing which is be useful to look at, if I go back to main, is because we sort
+of index not just the Gado files, sorry, the DD script files, we've also indexed the
+scenes as well.
+We can actually see that this is being used from a scene here too.
+So we've got a connection to a signal.
+And you can see the method there is on button, on option, on option button item selected.
+We can actually highlight that in the code here as well and sort of navigate back to
+the scene to see what's going on.
+So again we're building up this information about what your project is doing and how everything
+is connected and work with those together.
+Now you might have noticed that while we've got all these lines on the side here, I've
+just highlighting tabs.
+I've turned on the white space.
+So if I, again, shift, shift, very useful, but if I tab over to actions, I can just start
+typing white space and it'll show white space and I can turn that off or turn it back on
+again.
+Because we obviously don't want to have just spaces because that would be bad, but fortunately
+we'll also highlight that's bad.
+I might not be able to see that quite so much, but there you go.
+You can see now then that we're actually, we've got tabs found where spaces are expected,
+which is, of course, really useful when you've kind of copied and paste something from stack
+overflow or wherever.
+And again, a quick alt-enter can fix those up for you.
+So it'll fix those indents, which is, again, very useful.
+Now if I go, I'm in main, let's go to pair scene.
+Now again, we should have things like completion here so we can complete nodes and things.
+If I, nope, let's do that, we've got completion.
+We should have completion here of resource names as well, resource paths.
+And we can also do things like find usages to show me where this is being used down here.
+And we can also bring up our refactoring menu, and we've got some refactoring inside GD script
+as well.
+This, again, is very, very useful.
+We want to be more accurate about how we're changing code.
+So I can rename something, pair scene, whatever, and we can update that.
+We can also do some more of the more interesting shortcuts.
+So if I go and find just randomize shortcuts, I've got a tree here, for example, if I just
+highlight this and if I bring up my refactoring, I can introduce a variable.
+So again, I can do the similar sort of thing as I was doing in C#, and I can do something
+with foo, but let's just call that one tree.
+My indent hasn't quite worked out.
+And I can also do the opposite there and inline this back in again.
+It shows me where this is being used and where it's going to get changed, and I can just double
+check that.
+Click refactoring, and I'm back to the code it was before we sort of get tree.
+You might have also noticed that on the right, we've got a scene preview.
+So we can also look at the scene files that you've got and understand the structure of
+that, the hierarchy of that, and show you that as a sort of a preview.
+So you kind of get to see the same sort of structure as you would see in the editor.
+If I just start that up, that should be quick.
+You can see we've got the main now, we've got things like end screen with the script
+there in just the same way as we've got end script, end screen here with the script, and
+I should be able to click on that.
+Why is that not?
+I think my zoom has broken down a little, but we can normally click on that script thing
+there and that would actually open up the script for us as well.
+So we can again use the scene preview to sort of navigate around your code.
+So that's kind of working with your code, editing, refactoring, and so on.
+One thing you also want to be able to do is run your code, debug your code, and find
+out what's going on.
+So let me just jump back to C# for this one to start with.
+Now, there are several different ways that we can work with debugging, with running your
+code.
+We have this idea of a run configuration, these are also listed in the drop down at the
+top there.
+A run configuration is essentially, I really want to say a configuration for running your
+code, but that's what it is.
+We can set up a multiple sets of different configurations which will run your code in
+different ways, so you can give it different command line parameters, get it to do different
+things, and so on.
+This demo here, it says chicken soft game demo, has got the launch settings.json, and
+we kind of import those, so we can work with that.
+In fact, why don't I just bring this up and edit it here.
+So we've got our launch settings.json files, we import those, and we can run with that.
+So if these are all set up, we'll just use that, and it'd be great.
+Here the game engine itself, Godot is being referred to by an environment variable, and
+that's then set up by chicken soft, go to go.env application.
+We've got a couple of other things that we can do as well, because it's just an executable.
+You can just run the other Godot engine.
+We can actually set up an editor and a player run configuration, we'll set these up automatically,
+and these are to, as it says, run or debug the editor itself or a player.
+The engine itself comes from the config file that happened the last time that you opened
+the project, and so if you update or change or move, your Godot will update and use these
+as well.
+We've got the program arguments there for the path to where it is to use the editor
+instead of the working directory.
+Player is very similar, except it just doesn't have the editor command line there either.
+So we can just select these, let's just do editor, and if I run that, do I have the editor
+running at the moment?
+Let's just close that, because that's the wrong one.
+Then we'll run the project, so we'll build the project, and we'll open up the editor,
+and we're good to go.
+If I wanted to debug it, I can just click the debug button, and now we're going to run
+the editor and start debugging, and I should be able to run this, and hopefully I've got
+the breakpoint setup in the right place, should be, and any second now, maybe not.
+Where did I put my breakpoint?
+Well, it's got a pause menu, and let's just, okay, why didn't that work that way before?
+Because debugging the editor on the player.
+One moment.
+Pretend that didn't happen, and now we should actually, as we debug the player itself, once
+it kind of initializes, it should hit the breakpoints, yes, fantastic, and you can see
+we've got a breakpoint, it's very easy to add breakpoints, you just kind of click next
+to the file there.
+The little tick shows you that we've, you know, it's a genuine breakpoint, and it's
+all good.
+You can see the core stack at the bottom there, you can move up and down the core stack and
+work with it, and if you right-click on the breakpoint, there's a whole load more interesting
+things you can do here as well, so we've set up a condition, not particularly useful in
+this case, but if you're in the middle of a loop, you can say when loop variable equals
+23, then hit a breakpoint at that point.
+You can also uncheck this suspend execution, this one's really useful if you do something
+like evaluate and log, because now you've essentially got a trace point, so I can do
+something here, I can just have a string which is like, you know, breakpoint hits, or I could
+do something like, you know, health is that plus, you know, health dot whatever, and then
+be able to sort of trace my output, so it's almost like having your debug print statements,
+but you're only doing the run time, you don't have, sorry, yeah, run time, debug time, rather
+than having to change your code to work with that, and then of course you can sort of navigate
+around work, step in, step out, and so on, so if I move that I can step into code, and
+there's a whole load of fun things you can do with the debugger, if I, yeah, we should
+be okay, no, where are we, if I jump back over to a GD script project, we've got a similar
+set of things going on here, we've got a GD script start and debug run configuration,
+and this one kind of gives you several different options here, gives you a nice bit of JSON
+which you can edit yourself, and there's a few things you can do, you can change the
+type, whether it's going to be launch or attach, with a debug server, and so on, and then we've
+got a few more options here which are then going to be for good old 4.6, so the number
+of things which have been contributed back and hopefully are going to be merged into
+the good of itself, you can say which scene you want to use when you start the debugging,
+which is very good, so instead of having to always go through the whole process you can
+jump to a specific scene, with a few more sort of pull requests merged, we'll be able
+to pass some more arguments in, so you can debug tool script or use different options,
+and also do things like deploy to devices as well, so there's going to be a few different
+things that you can do, and we're telling us again, we don't have the editor running,
+so let's do that, yep I should just be able to hit debug there, and there we go, okay
+it's broken because I changed something, this is where source control is great, because
+I just fix that up again, there's another error, that's fine, okay I can mostly fix things,
+there we go, and I've hit my breakpoint here now for in my ready method, there is going
+to hit randomize, I could step into that, I can't step into that one, but I can sort
+of step over these things and walk through everything, and you can see the items down
+here, so if I make that a little larger, you can see the locals that I've got, I can just
+look at the layout, and I can open those and see what's going on inside that, and so debug
+my GD script as well, and if I, let's go down to randomize shortcuts, I should then be able
+to step into that one I think, yep, and so I can step in, and again you can see the call
+stack there, I can see how to step, and so on, and also if I just jump back to this, you
+should have very similar options here for breakpoints, so again I can suspend execution,
+so it doesn't actually hit this breakpoint, evaluate and log to it outputs things, I've
+got a similar kind of thing going on there, okay, so very quickly moving on, because there's
+still a whole load of things I want to show you, something which we're adding in the new
+version of Rider 2025.3 is support for chicken soft testing, so if I go to coin test, nope,
+if I can spell, there you can see we've kind of highlight these items here, so I can actually
+debug this particular test, we can see we're marking some items with tests here, and we're
+derived from a particular test class, and that means that we can actually identify these,
+we can look at the code, see how this is being used, and see these are tests, and work with
+that, so I can put a breakpoint in there, and I can click, and I can debug, it'll run
+things, it'll try and run those as tests, and now I can actually debug those tests, so
+you can run them to sort of see how things are going, and if things break, then you can
+actually now debug your tests and see how things are going, and we want to add more
+support for test frameworks as well and integrate those into the IDE, and last thing I just
+want to show you then is AI assistant, obviously we've got, I don't want to heard of this AI
+thing by the way, it's really quite revolutionary, oh just a couple of you, oh that's nice, yeah
+so AI assistant, we've got the sort of features that you're going to expect there, you know
+there's a chat, so you can ask it things, what do you see, how do you, see I can type
+or talk, can't do both, so you can just ask it kind of things, and it will understand
+what's going on, and help you learn and understand functionality, and help you with features,
+and so on, it can also look at your code, it's got integration with the IDE features
+we're built, so we can access the indexes, find items, find somatic search, all this kind
+of stuff, and help you with things there, we can do things like if I just go back over
+to coin, let's do this one, I don't know what's going to happen, AI actions, and you can
+do things like explain code, and it will then have a look at that code and explain what's
+going on for you, so it's a nice way of understanding what your code base is doing, navigating
+around, and learning stuff, so if you're working with a larger project then you can help understand
+what it's doing sort of step by step, and it can explain things, lots of other integration
+across the IDE, so in source control for example, I can right click on a file, and then do explain
+the commit there, and it will then look at the changes and explain what's going on, so
+again try and understand what's going on, you can right click and explain, look for problems
+in a commit as well, so if you think there's something dodgy in this particular commit,
+you can ask it to look for changes and so on, we've also got a Juni which is an agent,
+so you can give it a task and get it to do something like adding new item into a scene,
+and it can sort of automatically do that.
+So I think that's enough about Godot itself, sorry about Ryder and Ryder's Godot support,
+I kind of want to talk a bit about the sort of C++ things, and working with the engine,
+and there's a number of things you can do here, first of all follow the docs, if you
+want to build a custom version of the engine with Ryder, follow the docs, it's got a great
+support therefore, installing all the prerequisites, running SCONs, generating the project files
+and so on, you just open the solution file, Ryder will read it, Ryder supports C++,
+it has the same sort of features there with the indexing and the navigation and so on,
+and it'll give you those to make it work, you can just point the run configuration to
+the game's working directory, so otherwise you'll just open an empty editor, but you
+point it to a game and it'll open up that game, or you can do it the other way around,
+if you've got a game you can point it to your debug custom build and it'll work there.
+We've got mix mode debugging of C# and C++, now this is a new feature, and right now we've
+kind of got it, it's coming in the 2025.3 release, it's not enabled by default, it is hidden
+behind a feature flag, and we can enable that, let go back, don't do that, and to be able
+to do that we need to enable things in the editor here.
+So I've got the Godose solution open here, C++, we've got the same sort of things that
+you'd expect there, so I can type, you know, shift shift, navigate around, I can find my
+debug adapter parser there, I can go my, find my profiler, and it'll find classes, files,
+and so on, and navigate around, I can see what types, methods and things there are inside
+of file, and I can do, where do I want to go, let's go to ED plugin, and find items,
+oh no, no, no, I'll just go to the session, so C++ file, where's the C++, I wanted to
+go to that one, that's where I want it to be, one of the really nice little things we
+got, so obviously we've got the co-completion, and so on, one of the things I find with C++
+is I can never remember when I'm working with a pointer or with a reference, and so I always
+want to use the wrong thing, so if I type dot now, oh that one does work, honestly, oh
+there we go, that's it, dot gives me the co-completion, but when I complete it, it
+gives me the right arrow reference there as well, so it fixes that up for me, so I can't
+make the silly mistakes, and it just kind of works.
+We've got a number of useful features and inspections here as well, so again, quick,
+alt enter can make the method const, there it'll add that there, so we've got lots of
+different sort of C++ inspections that are useful, and again we can do things like use
+AI to explain what's going on, so if I go to update plots, there it is, here I can again
+use my AI actions, explain the code, and it will have a look at that and update everything
+for me, and the run configuration here is set up nicely as well, so we've got something
+set up to automatically work, and you can just change the program argument, set your
+editor there, you can set a working directory, and then you can debug things to run it, you
+can just click, it'll make sure the project is built and up to date, and I'll probably
+just change something and broken something, and it will run the project and work for you,
+right, running low on time, oh I didn't show you the mixed mode debugging, the way to work
+with mixed mode debugging is shift shift, move it over to actions and type registry,
+which brings up a whole bunch of feature flags we've got, and if I just start typing
+mixed mode, it'll bring up this option here, rider, debugger, dotnet, mixed mode enabled,
+and if I check that and close then, I can now do mixed mode debugging and work with C#
+and C++, this is Windows only, this is due to a limitation in the dotnet framework, it
+currently only works with Windows, but it is something which can be very useful if you
+want to sort of step between the two, okay, so to sort of round things off, then I really
+want to talk about the different sort of contributions we got and how things can work
+with open source, so we're very excited that Godot is open source, it means that we can
+help out with things, and the front there gives away everyone, there we go, the event's
+done a huge amount of work on all of the support that we've got in rider, and if you've got
+any questions about the support or any feedback, any issues or anything, speak to Ivan there,
+he'll be able to help you out and be very interested in what you've got to suggest that
+we can add back, so the event's sort of contributed a number of things to the engine, you know,
+fixing issues, raising bugs, starting discussions, working on PRs and so on, so things like improving
+the generation of solution and project files for a rider, and also helping to improve adapt,
+sorry, the debugger adapt to protocol, which is how we talk to and debug GD scripts, and
+how we can make that work better with rider. Our Godot support is open source, it's on
+GitHub, GitHub JetBrains, good O support, and you can contribute to this if you'd like
+to as well, contributions can be simple, you know, tell us what's broken, what you'd
+like to see fixed, what we'd like to see improved, or what would be a really cool feature, and
+of course you can also contribute to if you want to contribute something, start a conversation,
+create an issue, create a PR, and then talk to us, and again, talk to any of us, there's
+a bunch of us here for these two days, come around and talk to us and we'll help you out.
+If you do want to contribute, there's a couple of things you should probably know, the Godot
+plugin for rider is actually three plugins, we've got three different things going on
+there, and they do different things, so we've got a plugin called Godot support, and this
+is the one which provides C# support for Godot, it gives you the run configurations, testing
+and debugging for C#, it gives you some of the magic string completion that you've seen,
+it can use Godot to get the node pass information and the input action magic strings, and then
+it'll also use Godot as a language server protocol for adding GD script, so we've got
+GD script support through Godot running as a language server protocol, but we've also
+got the GD script plugin there as well, now this started life as a community plugin, it's
+now maintained by JetBrains, and this one provides all the information about GD scripts,
+so we pass that information, we index it, we build this, so we don't need the LSP running,
+we don't need Godot running to provide useful information, we can navigate, find usages,
+do refactoring without having Godot running. The GD script plugin itself, it offers completions,
+as I say inspections, find usages, rename, inline variable, introduce variable, all of
+those happen without using the LSP itself. We've also got the scene preview tool window,
+that's part of that there too. We've also got a plugin called Godot supports brackets technical,
+which you don't need to worry about, ignore that one, that's the bridge between these
+two plugins, it kind of, because we've got Godot GD script support in the first one, which
+is provided by LSP, but we've also got it in the second one, which is not provided by
+LSP, we want those to play nicely, so this is the sort of bridge and the glue to make
+sure that they work together nicely. Diving in a little bit deeper for the Godot supports
+item, we've got two parts to this, this is based on the architecture of Rider itself,
+Rider comes from ReSharper, so I don't know if anyone's aware of ReSharper as a plugin,
+I don't know why I'm getting that, yeah, a few people are well done. ReSharper is a plug
+into Visual Studio, it's where our C# support started about 20 years ago, and it is still
+the thing which powers Rider's C# support too, and of course that's written in C# because
+it lived inside Visual Studio, but that can do with the completions, inspections, quick
+fixes, file templates, live templates, unit testing support and so on. However, Rider
+itself, the IDE, comes from IntelliJ IDEA, which is a JVM application, so we've kind
+of got these two parts which we've had to sort of glue together, so we've got a number
+of things written in Kotlin on the JVM based on the IntelliJ platform, and these are sort
+of UI related features which can be icons, actions, the toolbar actions, for example,
+all the things for run configurations, those were handled in the JVM side of things, and
+the LSP support for a good O lives there too, as well as the UID file tracker. The GD script
+plugin is purely an IntelliJ platform plugin, so this doesn't have anything to do with
+the sort of ReSharper, C# side of things, but it is purely on the IntelliJ platform side
+of things, and this one does all the parsing, indexing and resolve for GD script, by resolve
+I mean if you control click something, it knows where to go to, it knows that this is
+a method call, and it knows how to go and find that method. It provides a whole load
+of things there with refactoring and so on, and also an SDK library, so obviously you're
+going to call good O provided functions in your GD script, but we need to know, we rider
+needs to know what those library functions are, and so we have to provide an SDK library
+to rider so it understands what's going on, this gives you tool tip documentation, co-completion
+and so on. And yeah, the interesting thing with this one as well is it's not rider specific,
+so you can actually install this plugin inside IntelliJ IDEA if you wanted to, so you can
+have IntelliJ IDEA working with GD script. And yeah, very small plugin in Kotlin and JVM,
+it's only a few classes, and it's probably not terribly worth diving into it in too much
+detail. Three plugins aren't enough for us, so we're working on a fourth, and this is going
+to be an editor add-on, so this is something which is actually going to run inside the
+Godot editor itself, and this, the idea of this one is going to apply some useful defaults
+for working with rider and GD script, so things like always use the external editor, so instead
+of having to, so if you double click a GD file that will open in rider, things like automatically
+save or import and focus loss and so on, so just kind of set a few useful defaults for
+working there. This is currently part of the Godot support repo, and it's currently in
+a separate branch as it's being implemented. The plan is to release it to the asset library,
+it's in C++ and C#, so it's another mix of different languages here, and it's actually
+a nice useful way of seeing how you can work with a JD extension inside rider. So road map,
+what are we going to do next? Where are we? So rider 2025.3 in honor of Godot Fest is being
+released today, so have fantastic as that. It just happens to be a coincidence that this
+little company called Microsoft is releasing .NET 10 today, don't read anything into that
+is because of Godot Fest, okay? All right, we've got this. We've got further GD script
+support in there, and we're going to be working on this in future versions as well, so in
+this release we've got support for the type dictionaries, the sort of generics that are
+going on there. Improvements to debugging, so for example I showed in that JSON file,
+you can select which scene do you want to choose. We've got support for that inside rider,
+that's going to land in Godot soon, hopefully. Improving our support for testing frameworks,
+you want to support more testing frameworks, integrate it with riders own testing, toolbar
+and so on, and sort of, you know, simplifies the getting started workflow, like with the
+editor Adam that I'm talking about, and there's lots more, we've got lots more plans and things,
+but you know, as we are looking further out, and of course find one of us and let us know
+what you'd like to see inside rider, what you'd like the rider and Godot integration to look for.
+So to wrap up really, this is rider for Godot, the idea is a professional idea for game development,
+supports C#, GD script and C++, refactoring, refactoring is a great, if you are working on
+a decent size code base, do not use find and replace, please don't use find and replace,
+use refactoring, rename is great, introduce variable, inline variable, you can do a lot of
+useful rewriting of your code safely with these kinds of things. Debugging, single click debugging,
+and generally those just working, integrated testing as well. Because it's an IDE, it's got
+a lot of things in the box ready for you, good to go, so integrated version control, support for
+databases as well, I didn't even cover this, but you know, rider is an enterprise development
+tool as well, so if you're doing any kind of backend development for your game, so if you've
+got some server side stuff, we can, obviously we've got web tooling in there, we've got
+database tooling as well, so you can connect to databases, interrogate them, look at them,
+write queries, work on stored procedures and stuff like that too.
+AI and agents, because every has AI and agents these days, but we've also got the context that
+we can provide to those tools as well, so they know that it's a good-do project, they know it's
+GD script project, they know it's a C# project or C++. And importantly, we've got lots of good-do
+specific completions and inspections and there'll be more of those coming as well,
+you know, and again, ideas for those kinds of features, you know, it'd be really good if it did
+this, please let us know useful things there. And I just want to highlight again that this
+is free for non-commercial use, if you're learning good-do, if you're building something as a hobby,
+if you're doing content creation videos and so on, or you're working on open source, whether it's a
+games tooling for the engine or the engine itself, then you can use it free of charge.
+And that then just leads me to say thank you, thank you for your time, thank you for listening,
+if you want the two links at the bottom there, if you want to find out more about rider itself,
+jetbrains.com/ridergoodo, if you want to have a look at the plugin itself and the open source stuff,
+github.com/jetbrains/go-do support, typo right in the very last slide,
+doing so well. But those links, most of those links are very useful and should be able to give
+you more information. We're going to be around for the rest of the conference, please come up,
+ask any questions, give us any feedback, let you know how you're going on, so thank you very much.
+[Music]

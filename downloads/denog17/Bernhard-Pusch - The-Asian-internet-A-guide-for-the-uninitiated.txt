@@ -1,0 +1,517 @@
+API URL: https://media.ccc.de/public/recordings/93229
+Frontend URL: https://media.ccc.de/v/denog17-80750-the-asian-internet-a-guide-for-the-uninitiated
+Title: The Asian internet - A guide for the uninitiated
+
+(upbeat music)
+- Today I have for you,
+Bernard Cusch from Telstra.
+He's been leading the global internet strategy
+of Telstra since 2018 and also is the board of M6 since 2019,
+currently acting as a German.
+And today he will enlighten us
+about the Asian internet and its specialties.
+Enjoy the talk.
+Thank you.
+Good morning.
+Nice to see you all here.
+And it's nice to be at D-Nog.
+It's my first D-Nog.
+Nice to be back in Germany.
+I'm originally from Munich.
+So it's kind of unusual for me to be this far north
+of the vice versa, Equator.
+But it's definitely good to see you all here.
+So what I want to talk to you about really
+is the Asian internet.
+You might ask yourself, what is a big white guy like me
+going to tell you about the Asian internet?
+So yeah, I have been working in Asia for over 25 years.
+I lived in Hong Kong for about four years in the early 2000s.
+Started building the internet backbones
+of some of the American companies at that time.
+And then since then I've been at Telstra building up our business.
+So if we can just go to the next slide, I think we can jump.
+It is.
+Even though I'm based here in Europe,
+my focus has always been Asia.
+So Telstra, about a 50 terabyte backbone,
+mainly focused on the Asia-Pacific region.
+But we do connect into Europe, including Frankfurt and US.
+So talking here, really just framing this up,
+some of you may be in the tech sector,
+some of you may be doing SD-WAN,
+building SD-WAN networks for customers using internet.
+So this is really applying to you
+and is trying to show you some of the differences
+that I see between the European market and Asian.
+So if you're doing a typical tech rollout,
+I guess you'll be putting nodes around different parts
+of Europe, possibly one or many.
+And then each of those nodes will be covering a particular region
+and you're trying to get best latency to the eyeballs.
+Or else, if it's an SD-WAN deployment,
+you'll have various IP ports that you're trying to connect together
+in the most efficient way.
+So that's basically the framing of it.
+So let's look at how internet can apply in Europe.
+And what I see, looking at it from an outside perspective,
+from someone who's mainly focused on Asia--
+so for me, looking at Europe from an Asian perspective,
+it looks kind of--
+I'm sure it's complicated, right?
+But it looks, for us, relatively simple in terms
+of the distances between any two points in Western Europe,
+at least, are relatively short.
+You've got less than-- typically less than 1,000 kilometers,
+so 10 milliseconds of RTD.
+Plentyful, cheap capacity.
+It's definitely not as cheap in Asia-Pacific,
+as I'll explain later.
+Mainly terrestrial routes, that's, I think, important,
+because from a reliability perspective,
+if you have outages, they're going to be fairly short duration.
+That's, again, something that's different in Asia-Pacific.
+And kind of pretty helpful, I think,
+is a very homogeneous regulatory environment across--
+at least, yeah, across pretty much all of Europe, which
+makes it-- you've kind of got a fairly even playing field.
+And because of that, I think you've now
+got a multitude of interconnection points.
+IX is built up around Europe, and a lot of the SASE and cloud
+providers are already deployed.
+So we've certainly found Europe to be--
+from an internet perspective, you can get--
+we found extremely good performance.
+We run some media applications across Europe
+where performance is critical.
+And we found it to be extremely high performance.
+So let's compare that with Asia-Pacific.
+And here, so Asia-Pacific region, the first point
+is that you've got these--
+it's generally quite a highly regulated environment.
+But there are deregulated connectivity--
+what I call connectivity islands.
+So the Japanese market is relatively open for most of us
+to operate in.
+Hong Kong, even though it's part of China,
+is actually a pretty open regulatory environment,
+low cost of bandwidth within the country.
+Obviously, many Western companies
+have kind of pulled back a little bit from Hong Kong
+in recent years, but it still has a very open regulatory
+environment, actually.
+And then Singapore, which has now pretty much turned
+into the major hub in Asia, I would say.
+Primarily because it's kind of so central,
+because you've got from Singapore,
+you can get down to Australia in about 100 milliseconds,
+up to Japan in about 70, 80 milliseconds.
+So you're about as central as you can be.
+So the other thing, because you have these connectivity
+islands, as I call them, generally,
+most of the interconnections between countries
+are done on submarine cables.
+And submarine cables are kind of an interesting way
+of running capacity, but they have
+different characteristics in terms of your outage spectrum.
+Because the problem is that if it fails,
+it's going to fail for at least a month
+whilst the boat gets out.
+And if it fails in certain waters,
+so waters controlled by a particular country,
+it may take a long time to get permits.
+So in some cases, permits have taken up to three, four months
+to get, even to allow the cable ship to go out and repair
+a cable.
+So you have to build in a lot of diversity in Asia-Pacific
+because your submarine capacity can be out
+for quite considerable periods of time.
+So you don't get probably the number of outages
+that you get on terrestrial, but the outage duration
+is much longer.
+So you have to kind of build that into your thinking
+in terms of building the network.
+The other thing-- and this is kind of when I moved to Asia,
+this was something that really kind of got me was--
+this all looks kind of pretty small on a map.
+But the reality is that this distance is a vast, right?
+So the cable route from Hong Kong to Tokyo
+is depending on which fiber route you use.
+You're looking at minimum about 40 milliseconds
+and up to 50 milliseconds, depending on--
+and that's just to Tokyo, right?
+So if you go on to go to Hokkaido or somewhere like that,
+it's going to be significantly longer than that.
+Singapore to Australia, about 90 to 100 milliseconds.
+Well, to Sydney, that is.
+So you've got to remember that Australia,
+the population is very, very much skewed
+towards the eastern side of Australia.
+So out of 25 million people living in Australia,
+least 15 to 20 are on the east side of the country.
+Perth only has a couple of million people.
+The whole of Western Australia only has one or two million.
+So you're talking 100 milliseconds to Australia,
+plus another 30 to get to New Zealand.
+So the distances are vast.
+It's further to go from Melbourne to Tokyo
+than from London to LA, just kind of distances, right?
+Kind of difficult to imagine.
+So the distances are much bigger,
+and there's also a high risk of tectonic activity, right?
+So I've marked on the map the main tectonic plate
+boundaries that are important in kind of that gray color here.
+So you can see that there's tectonic plate boundaries
+going right through the middle of this zone.
+And you get quite regular earthquakes or submarine
+disturbances, which cause cable cuts.
+So that's why I'm saying it's important.
+And then you've also got, because of the Pacific Ocean,
+massive risk of typhoons in the latter half of the year,
+typically, as the temperature builds up in the Pacific.
+And you get storms coming into, especially the Philippines,
+Hong Kong, yeah, Hong Kong, Philippines, South China,
+that kind of area, Taiwan, very common to have typhoons.
+And obviously, when there's a typhoon,
+you can't send a ship out to fix a cable, because it's too windy.
+And then finally, you've got pretty complicated geopolitics.
+So there's no EU to kind of give you
+an overall regulatory environment.
+Many of these markets are quite difficult from a regulatory
+perspective.
+Even they might seem on the surface to be easy,
+but it's kind of complicated once you get inside, right?
+India very highly regulated.
+China, obviously, pretty highly regulated.
+And then you've got these connectivity islands.
+So makes things a little bit more complicated,
+but also interesting, in my view.
+So the other thing I think worth--
+and this is just I put this in really to when enterprise
+purchases may be sometimes looking
+to buy just the cheap internet.
+And you've got to remember that internet, especially in Asia,
+most of the peering managers and ISPs,
+when they're looking at internet,
+it's mainly a residential product.
+So their first focus is building an internet
+for their residential users.
+So it's connectivity to Facebook, and Google,
+and typical Netflix, that kind of stuff.
+They're not so concerned about, is the path taking the best
+path around?
+And so if you are building a network based
+on where you've got a control latency, or RTD,
+between nodes, you need to be quite careful
+what combination of ISPs you put together
+to build your network.
+So yeah, most of the ISPs locally,
+they'll be connected to AWS and Microsoft.
+There are quite a few of those Microsoft, AWS, Google,
+cloud zones across Asia, you can see them.
+So that's not the issue.
+The issue is getting from one country
+to another in the most efficient and shortest path.
+So then, the other thing worth mentioning, I think,
+which is kind of important in Asia, is that--
+so basically pre-2000 to 2010, most of the Asian countries
+basically bought their transit on the west coast,
+or in the US.
+So-- and that, to be honest, a lot of that
+still maintains today, right?
+So certainly the Chinese carriers
+buy a significant connect in the US, quite extensively.
+But also, some of the larger Japanese carriers, Taiwanese
+carriers, even Singtel, buy a lot of transit in the US.
+And we do, as well, buy transit in the US.
+So Telstra being Australia.
+So many-- so you can easily get routes,
+which go between one country and another,
+or even between a pop in one country,
+and the carrier that goes to the US and back.
+So you need to be watching out for any of these kind of routes
+that going in principle that should only be a couple of milliseconds
+was actually going to the US and back.
+That happens quite a lot in Asia, more than probably in Europe.
+I mean, in Europe, I guess you were seeing some of that,
+now that you've got some of these peering disputes
+between cogent and TT and others, right?
+But in Asia, that's kind of probably more common
+than you might expect.
+So in terms of the traffic patterns,
+so basically, based on these connectivity islands,
+the islands tend to be the hubs in Asia.
+So your ISPs in Thailand, in Malaysia, and Indonesia
+are buying their transit in Singapore.
+So traffic from those countries generally
+tends to hub into Singapore.
+In fact, Singapore is becoming a really important hub,
+simply because you've not just got-- you got Southeast Asia coming
+to Singapore, you've got India also connecting into Singapore,
+you've got Pakistan, and even the Middle East,
+increasingly connecting also to Singapore.
+Because as we've seen, there have been quite a lot of cable breaks
+between the Middle East and Europe in the Red Sea.
+And actually, interestingly, the Gulf region, at least,
+is closer from an RTD perspective to Singapore
+than it is to Europe.
+So RTD from Dubai to Singapore is about 80 milliseconds
+compared to something like about 120 to Europe, right?
+So we're seeing quite a lot of content
+being drawn from Singapore, increasingly,
+as opposed to coming from Europe, even for the Middle East.
+You might not expect that.
+And then even Australia tends to connect into Singapore,
+because it's the closest kind of land in terms of to that region.
+So when you're doing your design--
+so the obvious hubs will be Hong Kong, Singapore, and Tokyo.
+But then you've also got to remember
+that which carriers are connected to the different local ISPs
+in those markets.
+So carrier selection in those different locations
+is important, I'd say.
+But to say these days now, most of the cloud providers
+are definitely Hong Kong, Singapore, Tokyo, completely covered.
+They're even increasingly building cloud zones
+into Thailand, Malaysia, Indonesia.
+Also, although Indonesia has a very complicated
+and rather restrictive regulatory environment, which
+is blocking investment in that market at the moment,
+to be honest.
+So yeah, hopefully that helps you in terms of design.
+But basically, you need to remember
+that those are the key hubs of which Singapore is the biggest.
+So most people, if they're coming to Asia,
+the first place they go to is Singapore, typically.
+So other considerations when you're
+thinking about building in Asia.
+So access to China, obviously, inside China
+being inside the firewall, from a Chinese government
+perspective, all that traffic has
+to go through one of the three Cs.
+And so the most non-Chinese carriers getting into China,
+that direct route is kind of expensive.
+So the default route for traffic to go even from Hong Kong
+into China is to go via the US and back into China.
+There are other routes, but they're generally expensive.
+So you need to bear that in mind.
+And I'll talk a little bit more.
+I've got a specific section on China, which
+I want to cover a bit in a little bit.
+So I'll cover more detail, because Telstra actually
+has a network inside the Chinese firewall as well.
+So first of all that, you've, secondly, as I said,
+you've got these indirect routes.
+So sometimes if you're going between,
+you need to check your do some ping tests and stuff like that
+before you build to make sure you
+don't get these indirect routes via the US.
+And also, just to be aware that because of the hubbing,
+generally you might think that Malaysia and Thailand
+would connect to each other.
+They do a bit, but mainly the traffic's
+going via Singapore.
+So don't be surprised if traffic is going Singapore
+and then back if it's going Thailand to Malaysia.
+Yeah, so basically, it's kind of the Asian internet.
+It's been pretty well built out in terms of sassy and cloud.
+Second tier countries tend to connect through one of the hubs.
+And you've also got some of the routes back to Europe.
+Sometimes can go via the US if you're not careful.
+So be careful of that.
+So before I close, I just wanted to add a little bit on China.
+So we have a network inside China,
+and we've got quite a bit of experience in that market.
+So I wanted to just finally share a few things with you on that.
+I don't want to go through too much.
+We've got about 60 pops across the region.
+But so our experience goes back to about 2006
+when we first implemented in China.
+So just as a starting point, the first thing
+is the three major incumbents in China, telecom,
+unicorn, mobile, as you probably know,
+they were split back in the early 2000s.
+The Chinese government split into three.
+So China, unicorn, is mainly north of Shanghai.
+So the region of China, north of Shanghai,
+is more covered by China, unicorn.
+China, telecom, more in the south.
+And then China, mobile, which at the time of the split,
+was mainly just GSM.
+So not much data, obviously.
+Since then, data has become important.
+And China, mobile, has built out a pretty big data network
+across China.
+So they have been probably the most aggressive of the three
+in terms of outside.
+But the other kind of thing about those three China
+networks that's kind of unusual is that there's not
+a hell of a lot of peering.
+Certainly, what we've noticed is the peering between the three
+networks is kind of somewhat limited.
+So getting between one network and another is not always
+that easy, right?
+So you have to be mindful that China, telecom,
+will give you good connectivity to China, telecom, obviously,
+but not so good to the other two.
+So in terms of the Great Firewall, as it's known,
+that's mainly implemented in three locations, three kind
+of access points.
+Shanghai, kind of pointing towards the US.
+Beijing, kind of going towards Japan.
+And then Guangzhou, which is kind of the portal into Hong Kong.
+So all of the traffic coming into China from an internet
+perspective, we would be going through one of those three
+hubs to get into the rest of China,
+because that's where the kind of firewall infrastructure is.
+And obviously, that firewall is kind of doing a certain level
+of deep packet inspection, which can add a little bit
+of latency across the border.
+So that's the basics on that.
+Yes, so at the moment, the carrier kind of neutral DCs,
+like Equinex, that you might be used to in other regions,
+not that easy to come by.
+And then if you're putting any content in China,
+you can't easily take IP addresses
+that you may own, even appnake ones,
+and get them into China.
+The process to get them approved is quite lengthy.
+I mean, some of the Chinese carriers
+will certainly help you.
+But obviously, then remember that if you've done that
+with China Telecom, for instance,
+you may not have great connectivity to China,
+unicorn and China mobile.
+So what we find is sometimes certainly
+our network, which is connected to all three of them
+inside China, we use--
+we provide kind of gateway features
+that allow you to connect to multiple players at once.
+So yeah, and from within China, obviously,
+performance to international content is variable.
+I'd say noting that the government is fairly open
+in terms of access to business applications,
+Amazon, Microsoft, et cetera.
+But anything like Google or Facebook
+is going to be problematic.
+So yeah, just bear that in mind.
+So that's really what I all wanted to say,
+so ready to open it up to questions.
+Thank you for your attention.
+[APPLAUSE]
+Yeah, thank you for your talk.
+And so as I said, we do have some time for questions.
+Do I see any questions in the room?
+Please raise your hand.
+There's one question.
+I do.
+Hi, thanks for the talk.
+That's very impressive.
+Given that Hong Kong has transitioned to China,
+have you seen a move in importance
+to what other locations like Singapore, Tokyo, maybe--
+Yeah, yeah, absolutely.
+Hong Kong has definitely reduced--
+I mean, actually, it's kind of interesting.
+So about two years ago, there was
+a big exodus from Hong Kong, right?
+Because people were kind of afraid.
+But actually, Hong Kong is actually
+from an internet perspective.
+It's pretty open.
+Hong Kong issues much less internet takedown notices
+than Singapore does, actually, weirdly.
+But obviously, people are kind of scared of maybe having
+some of their technology being looked at or whatever
+by your Chinese.
+And so they've been a little bit reticent.
+But what I'm seeing is actually a little bit of return.
+So maybe not critical applications coming back into Hong Kong.
+But certainly, because it's such an important hub point,
+if you want to connect to Taiwan,
+if you want to connect even to northern Vietnam, Hanoi,
+and even the Philippines, connect quite extensively
+to Hong Kong as well.
+So Hong Kong is still a major hub.
+And so-- and it's not inside the firewall, right?
+So Hong Kong is definitely outside the firewall.
+There is no doubt.
+So it is still an important part of the internet.
+And I think it's kind of certainly coming back a little bit,
+but not to the same extent as it was maybe five, 10 years ago.
+Right?
+Yeah.
+Any other questions? I see one more question.
+Please say your name and affiliation for a positive question.
+[NON-ENGLISH SPEECH]
+Thank you very much for the insights.
+Would you mind leaving some words about the connectivity
+of, let's call them, politically interesting countries
+like Myanmar or North Korea?
+Yeah, OK.
+So look, Myanmar, kind of interesting,
+actually surprisingly well-connected to Singapore.
+There's also an increasingly secondary hub building up
+in Thailand, which is a relatively open market.
+So where there's a lot of AI investment.
+So Malaysia and Thailand are drawing quite a lot of AI
+investment because quite a lot of electricity available
+and somewhat availability of land.
+And Singapore, because it's restricted in terms of size,
+is becoming full of data centers.
+There's just not enough power there.
+So Myanmar also can hub into Thailand.
+But most of the Myanmar providers also
+connect into Singapore.
+So that one's kind of easy.
+North Korea mostly connects via China as far as I can see.
+Yeah, there's nothing across the border into Korea,
+so into South Korea.
+But it's mainly connected into China as far as we can see.
+And that may be one of the reasons why
+one of the big sources of DDoS attacks
+is coming from China, actually.
+So from China, we're seeing quite a lot of DDoS activity
+coming out.
+So yeah, combination-- not sure exactly where it's coming from.
+But obviously, North Koreans have
+a reputation for being at the origin of some of them.
+Yeah.
+Yeah, any other questions in the room?
+There's another raised hand.
+Again, do you name an affiliation, please?
+Hi, Mark Weigmeck.
+Here are the renewables.
+So you mentioned the challenging regulations
+in Asia Pacific.
+Do you see any, let's say, try any effort to change this
+and to harmonize the legislation?
+Look, I mean, some of the Asian countries
+have kind of talked about it.
+But the reality is to typically, in most of these markets,
+the incumbent carriers still have quite a lot of power
+with the regulator.
+Obviously, incumbent carriers often
+trying to protect their markets.
+We've seen that everywhere.
+And I'm not pointing any fingers at anyone
+because we Telstra also try and protect our markets.
+I can't tell anyone else the same.
+So look, I haven't seen anything, any harmonization.
+I don't see it happening, quite honestly,
+because there's just too much divergence.
+And so for instance, the Indian government very strongly
+wants to protect their market against Chinese influence,
+against other influences.
+So they very strongly regulate.
+And maybe a little bit of harmonization
+across the ASEAN markets, where they've
+got something kind of approaching the EU, but not
+really quite.
+So it's kind of very light touch, but I don't really see it
+anywhere, getting anywhere near what we've got in Europe.
+Yeah, yeah.
+Too much geopolitics, I'm afraid.
+OK, any more questions?
+If not, then again, Ben Art, thank you for the talk.
+Thank you.

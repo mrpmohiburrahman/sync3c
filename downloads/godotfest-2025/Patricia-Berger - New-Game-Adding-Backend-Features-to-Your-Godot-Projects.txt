@@ -1,0 +1,399 @@
+API URL: https://api.media.ccc.de/public/recordings/93489
+Frontend URL: https://media.ccc.de/v/godotfest2025-new-game-adding-backend-features-to-your-godot-projects
+Title: New Game+: Adding Backend Features to Your Godot Projects
+
+[MUSIC]
+In 2023 at Godofast, I met Patricia during, basically, just at the conference walking around.
+We talked about backends, analytics, multiplayer services.
+At the time I was working on a back-end service myself, or like on a game that uses a back-end,
+it was called News of Tomorrow, it was a user-generated content game where you have
+satirical headlines that the user had to push to the leaderboard and basically be very visible.
+I moved on from the back-end site and unfortunately didn't work on it myself, besides on projects
+with it, but not myself in the back-end code.
+I had a long discussion with Patricia back in the days about everything I wanted to know because she was my go-to expert to basically get my information from today you never stopped like me with the backend development and the backend services on today you will show us more about why everyone of you should add a backend server or backend feature to your Go-Go project. Here's Patricia.
+Alright, thank you for joining me, so a little bit more about me, so I'm not only a back-end developer these days, I'm more of a cloud consultant, so working with public clouds, moved to data engineering, even more and more, working with more databases on the background there, but I was a professional back-end developer for games back in the days.
+There we were, inventing PHP back-ends. It's maybe not the best language to work there, but we'll see later on, and I'm like over 10 years in the engineering field now, I wrote my first lines of code in 2008, and today I kind of want to give you a short introduction on what is a back-end, how can I set it up, how can I scale it, and how can I plan my features.
+Yeah, when single player maybe isn't enough. Can happen, you should kind a plan beforehand if you want to do a back-end or not, or which features your plan, but there are some ideas you can handle with it.
+For example, you can add multiplayer features which are handled server-side, where you, for example, need calculations or anything, like there is no cheating allowed, you can invent achievements, you can deploy your configurations you want for your game, select you want to have fast changes at the runtime and don't want to release any version.
+You can do multi-language support or you can implement features like guilds, chats, parties, where you just need communication between you and other players.
+But yeah, is it that easy? Sorry.
+Developing back-end brings a lot with it. So with this talk, we're leaving the world of the usual good old engine, because we have to work with other technology, it's like other programming languages, like Python, Node.js, C#, PHP and so on, and we have other problems to solve, like servers have cost with it.
+You need to think about how can you scale, because we have one player that plays our game, we have the console or PC in front of it, we have many players we have to work with, and also think that there are more than one player, so from working like a single system, you have to start to get to think in masses, like in users you're working with.
+And also, you have data, and as soon as you start saving data, you have to think about security and privacy too, because, hey, when the EU, especially here in Germany, there are things like the DSG4O.
+It's awesome, and you also have to take a lot of care on the side of security, like you have a server in the public internet.
+You have to take care of it that there are no leaks or gaps or anything, because there could be someone who gets access to it and all your data, so take a lot of care and be warned of it in the whole process.
+But to get the right access to the whole thing, I want to give you some tools to the hand and ways you can go for it. So my preferred tools I use for the whole backend development is like Rider, or any other chat brands too, like Web Store and PHP Store, and so on.
+So I also use Visual Studio Code or cursor for the AI friends here. I also like to work with containers. Containers like Docker containers is pretty known these days.
+It's like a lightweight VM, where you can deploy the whole server process in there with images, and you don't have everything on your host system and can create an environment,
+like it would be on the server later on. You also want to do debugging, like we all make bugs, this also happens in the backend.
+And you kind of want to test the request you're doing, like where is my problem, is the problem on the server side, or is the problem in my project itself, like in the good old game we are doing.
+Here's some cool tools like Postman or Hubscotch. Also talking about data or database tools, like my favorite tool for Redis is another Redis desktop manager.
+Believe me, it's great. It's like the best tool I found so far, like you can really debug and see which data I have, or Studio 3T for document-based databases, like MongoDB, DBVaver for all done with SQL, or also the chat brands tools has the data studio included.
+And what you need to do is a CLI tool, because we are outside of the typical game world and need to spin up those containers and see what's going on in there.
+Yeah, but we also finally have to deal with new things of communication, because we're communicating with the server on the Internet, and there are like two typical or known ways we're working with,
+like the typical HTTP requests are most in REST APIs. It's like a typical server request and we get the responses.
+Like one way, the client sends a request, we get a response. It's like the most common thing we have.
+They're like you open a webpage on the browser, this is a typical HTTP request.
+Isn't the best solution for multiplayer or communication between players, because you always have a header overhead, because you always build up like a connection with the handshake in it, you have a header, and then the actual information you want to receive.
+So besides HTTP requests are really love to work with sockets or web sockets. The best tool I found so far is socket.io, which just takes away all the unnecessary overhead you have usually to deal with it in the whole handshake process.
+So in the end, you're just taking care of that the client is connected to the server, and you can send messages.
+The most awesome thing about it is that it's bi-directional. This means you don't have to wait for a new request that the client sends and you can answer a response or have to start pulling or pulling or anything like that.
+You are able to send messages to your clients from the server, which is a huge bonus there.
+Also, the messages are very small, like you're just sending the content you want to send. It's pretty fast, but not included in most of the backend frameworks you know.
+So there's a bit of overhead and a bit of new learning. I'm going to show you how this looks later on.
+So I spoke a lot about server, backends and typical web development in my ways. Godot is awesome on this side.
+It's all implemented already. I just give you the warning. Please don't put it in your main thread as it can slow down the whole process or make it a bit stuck.
+So just put it in another thread, please. On top, you see the typical HTTP request, screenshot from the official documentation, of course, and on the bottom, there is the important part about web socket communication.
+So just read up the documentation. Everything is there. Just get it going.
+Yes. So, how does the user server application look like?
+On the client side, we have web application, like for admin panels, I like to use it, or the Godot game we are developing.
+But on the server side, that's why we have a straight line here.
+What I most see is I have an application, I have something for memory caching, or server, or session handling, and I have a database.
+This is like the most common setup you have.
+But if we are the lucky ones and have a huge game with a huge community behind it and a lot of active players, we have to think about scaling.
+Because as I mentioned before, you are not dealing with one player on your device, you have many players.
+So there is two ways of scaling, like the vertical way, and the horizontal way.
+At vertical, we are -- oh, I flipped it. Sorry, it's the vertical.
+It's like we give our machine more power, like we increase CPU, memory, or storage.
+This increases also the cost a lot, and there is limitations.
+So somehow, there is an end on how much CPU I can put in a real server.
+That's why we have the horizontal scaling, as I said, sorry, I flipped it up.
+That's like where I start to have multiple nodes for my application, also for my databases or others.
+There is a lot of systems that can handle these these days, like MongoDB, for example, is able to be sharded.
+So the sharding system, so I have also multi-database nodes, which are able to handle the load, and I have multiple application nodes.
+Put a load balancer in front of it, it takes care of it, which user gets to which node in the end.
+Some ways on how you can change it a bit, but it mostly does what it needs to do.
+So to be able to do this kind of scaling, I really, really recommend working with containers, as they are pretty fast in loading up.
+On local developments, I prefer Docker for this, or Podman, if you want to use the open source version for it.
+And on huge production systems, please don't use Docker. There's the big brother called Kubernetes, sorry.
+I won't go deeper into this topic, this would be like a talk for two or three hours to explain what the system is.
+It's a container orchestration tool, so like enterprise section there, but always worth a look.
+But overall, I would really recommend containers, keeps the host system clean, the containers itself encapsulated, can be also scaled.
+You work close to production and pretty lightweight, so they're pretty fast in getting started compared to VM.
+There.
+You have two ways on doing this local to set the whole system up.
+I'm old school, I'm still working with the Docker compose system.
+But these days, especially if you work with the chat brands too as a visual studio code, you can use dev containers, we're like developing inside of the container then.
+And a little note on the side, which is like the mistake I made the most, especially in the early days, is like when you're inside a container,
+you are not on local host anymore.
+So not on your local machine, you're communicating over the service name you chose.
+Makes more sense.
+Soon, if you're outside, so you're on your host machine, you communicate to everything with local host.
+So, it would be boring if I only have a presentation, so I have a little bit of things I can show you, if I can get out of here.
+So, now we're in actual code I'm using.
+This is my Docker compose.
+I kind of always copy paste, so you start up with one new setting up once you take it over from project to project and just make some changes here.
+It starts with service where you define your services.
+Like I have my node for the admin panel, that's for the AP.
+I have another node process, I have my database down here.
+And I also have a Redis service for my in-memory actions.
+I can define things like I can do my ports, which one should be open, where do I want to communicate, I can also remap them.
+Volumes are a great thing there, because I kind of just copy the code or my repository from the host system into the container,
+so I can actually run the code a road.
+And I can also put in environments, like typical environment where we know from all the systems.
+It's like passwords, ports and stuff like that.
+And yeah, you can actually define a .env file, which is directly used in there.
+You also don't only have to use predefined images you have, for example, on Docker Hub.
+You can also write your own Docker files, where you say, I want another software installed, like there is not enough for the native way, which is given it's not what I actually need.
+Okay, so we have defined our beautiful YAML file, indentations are beautiful in there, by the way, keep care of that.
+And then we are switching to the CLI, and it's just say, hey, Docker compose up.
+And I'm hopefully starting everything there, so here we go.
+I mentioned it before, I have a Redis container, I have my database container, and I have two Node.js containers here.
+And I'm still on my host system, everything is clean, and I know it will crash, because I still have a small bug in there.
+But basically, I have a whole server application, I want to deploy on my development system, or a production system, later on, running on my machine.
+And it's like we are close to that what we have later on, and it's not putting anything on my PC, or something of the environment is different.
+It's like Linux containers on my Mac works the same on Windows.
+Ah, there we have the beautiful mistake.
+If this is too complicated or just too much of looking like the takeaway, Docker also has a beautiful overview, graphical.
+Sadly, no dark mode, it seems, but yeah, you can also see the containers you run there and jump into them and do some seal I command.
+But that's basically about how containers work.
+I can just recommend try it on your own, set it up, and get started with it.
+All right.
+That's basically about container.
+Yeah, as mentioned before, with server side and being in the public internet comes responsibility.
+Please keep that in mind.
+You can have visitors.
+Especially when you're working with SSH, please try to use key files over passwords, especially use strong passwords.
+Like nothing related to you, anything.
+Yeah.
+Only open ports you really need.
+You might open a port or something you don't want to, especially port 22.
+Avoid SSH connection as long as you can.
+And what I prefer to say is the less experience you have with backend services, the more managed service you should use.
+The world has changed a lot.
+We're not just working with normal servers or VMs these days.
+There are public clouds and anything where you can get those managed services where you can just send in your image you want or have a registry and they will deploy your service for you and take care of your database and stuff like that.
+If you have the money for it and not the world to learn it on your own and go the hard way, you can always use those.
+Yeah, for the data side, please don't save passwords in clear text.
+Thank you on this side.
+Yeah.
+I mentioned before, I will give you a small overview on what to take care on data privacy.
+A fourth long, if I should even do a page like this and then ended up with, hey, the Gurofest should be a more professional convention.
+So I kind of have to include it so we will go through that pretty fast.
+Data privacy means personal details like name, email or location must be collected sparingly used only for a clear purpose and protected from misuse.
+Take a lot of care on this because user names, for example, or just chat messages could include these informations like, hey, I'm Hanelora and I live in Wutzburg, for example, could be in a chat message.
+So try to not save those at all or keep them as short as possible and also don't include them in analytics, just be warned there.
+It can cost a lot and just brings a huge risk.
+And also it's important to say, you only should get a data where you have a clear purpose to use.
+So not just we are saving everything. Also take care on IP addresses, please. They are only allowed to be saved when they are hatched.
+But that should be the whole important part about it.
+The best practices include gathering only necessary data set before, stay transparent on what you save.
+It's better to give more information on a public view on what you save than not enough.
+Keep a record of consent and restrict access on this.
+And train your stuff with your team or train yourself on this topic.
+So yeah, we talked about data, right? So let's talk about databases because it needs to be saved somewhere.
+These are like the, or two of them are the most common one. The third one is just my personal favorite here.
+Postgres is like a typical SQL database fits most of the needs.
+It's like typical spreadsheet, like so we are working with tables.
+The opposite of that, and this was like the database I used most when I was in game development is MongoDB.
+MongoDB, the name comes from Humongous, so the idea is to store huge data files and documents.
+Interesting side factor about this, all Shakespeare texts fit into one MongoDB document.
+That's like the 16 MP marker here.
+So if you don't really need relations between your data, you just need like, I want to have a safe game or anything like that.
+MongoDB is your way to go. It's just JSON-like and pretty easy to learn.
+Postgres, you have like, we need the normal forms here. We need clear structure.
+We need to directly define how the table should look like with columns and column types and so on.
+And therefore, as I said, I want to do something new and I kind of need relations.
+I chose a MongoDB, which is my personal favorite here.
+This is a graph database which is able to store huge documents like MongoDB, but has relations between data.
+So the world of both combined. Not really known, but worth a try and especially for game development, I think one of the best ways you can do.
+So some other cool side effects because there is no one perfect way to do backends.
+Like in typical development, we have multiple ways we can go.
+I would say do what you ever feel best with or what you're closest with.
+So for example, Python is a good idea to set up your backend with APIs and so on.
+If you want to stick with the JavaScript world, type script, not just.
+Next is kind of cool, which also delivers a front end with it.
+It's also pretty nice and expresses like the web server we need.
+GraphQL is a cool alternative to typically REST APIs.
+Pretty fast forward to be written only has normal requests from my knowledge there.
+And if you're on the site of C#.NET Core already includes everything you need.
+So also worth to work with that.
+So just choose whatever you prefer or feel best with.
+Because you already have new goals and new issues you will face in the world of servers.
+So you don't really need to learn a new language too.
+So also talking about design decisions and general patterns.
+What I always would recommend is working with the repository pattern
+to encapsulate your whole database communication.
+Try to avoid clear SQL code.
+Try to use ORM mapping or things like this.
+Also think about fessates.
+Pretty cool pattern if you want to try out different databases for example and see what fits your needs.
+This is a way of being able to change the database behind pretty fast and use different repositories.
+I personally still use the MVC pattern for having my typical model view control.
+Way of communicating or component based especially on the front and side 10.
+But whatever you go for stick to a clear design and don't mix things up.
+I like typical coding there.
+Yeah, but yeah.
+I used months now.
+I created a beautiful backend.
+I need to host it somewhere because I want to implement it into my game.
+As I said before, public clouds look with a free tier but can get expensive pretty fast.
+So maybe not for the beginning if you knew to this whole word.
+Inside the EU or especially the west part.
+I really liked the head snuck cloud so far.
+I worked a lot with it.
+It's pretty cheap.
+I pay like 10 euro per month for the object storage and virtual machine or service there
+or generally VMOs are a good way to go there.
+All right.
+So as last thing in my talk like we have the basic overview on how to start with backends
+and what I can do.
+Some feature ideas that can be handled with a backend are like leaderboards.
+It's pretty cool to work with set range here with Redis where you can insert your high scores
+and the system itself already sorts it and says like player number one has 10,000 points
+with this time.
+And then you can say like I have a synchronization mechanic which sings the set range or table.
+Every like five minutes to the database itself so you don't have that much overhead on the
+database itself and let it calculate or things.
+Yeah.
+Game analytics.
+A huge topic, actually a huge project I did in the past.
+And like Ben and I talked a lot about it.
+It's always good to know what users are doing in your game.
+Especially for game design and game design decisions.
+It can be a huge advantage to know what a player does over the day.
+Not only for like payment stuff like we used in the past but in general is are they preferring
+the requests.
+Which quest is done at what level?
+Or maybe questions or how much are people mining if like something like Minecraft?
+How many ores are they getting before it even starts to build a furnace?
+This can help you a lot and I kind of found out that the system like action target and
+item is the way to go here.
+These are like the three keywords I'm filling.
+For example, if we're at the mining topic, my action is mining.
+The target is a stone and I'm using a pick x-word.
+And with this system I kind of have all the information I need to know at which time a user
+did what.
+And with a relation to the user itself I also know at which time of the day it was with which
+level and which progress he maybe had or she.
+I would only recommend to start with creating systems like this if like firebase or anything
+existing is not enough.
+This is like a basic question you should answer yourself when you're starting with backend.
+Is it worth the work or are there already tools I can work with?
+I keep this always in mind.
+Another idea for example would be an in-game chat works pretty well with web sockets.
+And there's a cool tool for it to use like RabbitMQ which maybe.
+Which nearly handles everything for you on that already.
+Okay.
+And where I really like the possibilities of backend is the configuration management and
+also translations.
+The game I'm currently developing.
+It's a web game.
+Good old features are coming soon.
+Has its own configuration and supports three languages.
+So we have German, English and Russian.
+And on starting up the whole application in the front that every translation is loaded
+directly into the system.
+So if I have to do updates or anything I can just send out the new information on that.
+Yeah.
+And that's about it and a quick overview about backends.
+If you want to know more about me or backends itself just feel free to come up and talk
+about it.
+Yeah.
+Thank you very much.
+Are there any question from the audience?
+Yes.
+In the front I start with like the ones who don't have the possibility too much.
+Thanks for the talk.
+What's very pretty good.
+What I would like to ask is you said talked about databases but also said a three backend.
+Did you consider that for some game backends or do you like only work with normal databases
+on service?
+Yeah.
+You're talking like about using SQLite for your local database too, right?
+No, it's three.
+It's three.
+It's three.
+It's three.
+A three backend.
+Actually.
+Actually.
+AWS.
+Yeah.
+Great service.
+I'm actually using the other version of it because it provides the object storage.
+I can actually show you.
+I really like to use S3 for images in my case so because this is like the current backend
+I have here and the tool I made and here I have a configuration where I have to create
+a lot of images based on different layers here and these images are directly loaded
+from S3.
+So they are generated with procedural generation based on the real genetics and are directly
+loaded from there in their layers.
+So on data lake systems and just storing images or other assets I can really, really
+recommend working with such services.
+So I like to combine them which I do not really fit into the normal data sets.
+Another question was over here.
+Yeah.
+Thanks for the talk and I have a question on the cloud functions because I'm a full stack
+JavaScript developer.
+So several years ago it was a big thing like Lambda, AWS Lambda or H functions on Superbase.
+Other cases in GaveDef where we can pick them comparing to the standard Node.js based
+for example server when we don't need it and we can only work with the cloud functions.
+Do you have an experience maybe?
+Actually a good idea to use those services and functions too.
+That's kind of a limitation especially on working with web sockets because you have to
+deal with the concurrent connection which can be handled over its own service.
+So for example you can have just a service that has the web socket connections and then
+you trigger for example Lambda function and get back the response and send it back to
+the user.
+That's a possibility and that's why I also included Redis and the whole thing because
+it is able in combination with your own code that you have the whole connection information
+there and store it there.
+So thinking about microservices or general setups and that's why I also added Kubernetes
+to the whole thing is definitely a way to go and a pattern to think about also in the
+game development for my point because it's like the best way to scale.
+Nowadays working with monoliths is a two sided way.
+It's pretty fast to set those tools up, pretty fast to work with it.
+You have everything combined into one application but as I said before if you have a huge player
+base and really need to scale up and you're just done with scaling up vertical you need
+some way to work horizontal and doing a huge refactoring when you have a huge player base
+and your server is like nearly done or firing up you need a solution.
+So beforehand really think about which design pattern is the best for you and in the end
+what I found over my years of engineering and not only being a game engineer also just
+being a normal backend developer for a huge software company or now in the consulting
+areas with data engineering.
+In the end engineering in games is not really different.
+It's still engineering with some features and checks and securities and validations.
+It's all the same.
+So see your game as the same and just have an application in front that just wants data
+that needs to be transformed or saved or something like that.
+Yeah.
+There was another question in front.
+I don't know if it's still active.
+I wanted to ask obviously some people might be less familiar with how would you even set
+up a backend system in Godot or how would you connect to it.
+Do you know about any like example projects on GitHub or some example repository that
+people could check out?
+I'm actually planning on setting up the whole framework of work world over the years.
+I mean you know the backend I created over years which handles WebSocket connections
+and classical HTTP requests I kind of wanted to make it open source like the core of it.
+What I also mentioned before, where's the slide?
+There, these are like classic frameworks which have a huge documentation base.
+We have a lot of tutorials on how to set up and pretty straightforward guidelines and
+how to get the whole thing running.
+And if you have your game on the same instance as your test framework, you can directly connect
+with it and start figuring out on that point.
+On the good old side, sadly not.
+I actually wanted to make it on my own before the talk, but I didn't really have the time,
+so maybe one day.
+Any more questions?
+There's also from the back I would, because you've already had one.
+I had been at good old camp in cards with this year, and there was some guy who's hit
+the tour called seedtable.com, do you know that one?
+That's like a database system where the tables and it's a low code approach, and maybe that's
+useful for people that are not that deep into backend things.
+Sadly, I haven't heard about that one yet, but there's like 500 different databases
+existing and always new systems there.
+Yeah.
+Yes, another, I want to ask a question too when I come to you, but why don't you use
+basically out-of-the-box multiplayer backend like Nakama, like Firebase, like so many others?
+You could.
+If it fits your need, there is nothing that says anything against using a ready to ship
+one on that case, but also in the game development, back in the days, we were like 90% were perfect
+for our needs.
+We could use the ready-to-ship symphony, for example, a huge PHP framework, but the last
+10% are always the problem, and when it comes to special features like we wanted to implement
+guilds back then, like with an interactive chat and quest system and leaderboard systems
+of guilds fighting against guilds, we were at the end of the typical implementation range
+and had to set up our own algorithms, and if you already know beforehand, you can run
+into these problems.
+You should really think about doing the work setting up your own backend service and get
+it all implemented to the state you wish to have.
+That's what I said, it won't be easy.
+Developing backends and taking care of those is really, really huge to do and to learn
+and everything, but it's worth it.
+A few more questions and one is here.
+Thanks for the talk.
+Do you have any advice how legally to make it legally work?
+For example, if a plan to have a leaderboard, people, users can push strings, so there could
+be a legal site that I need to consider, do you have any advice on that?
+Yes, first, consider a lawyer.
+I have to recommend it and it's like you spend some years and you're on the safe side, basically,
+you know how you can save which data how long, so that's not a joke at all, it's a pretty
+good idea to do on that point, and also avoid clear text.
+If you, for example, have your own calculation just allowing numbers, it's very unlikely
+that there will be a lot of private information in there, so that's a way to avoid the whole
+thing, also scanning the whole text is also a possibility, like other words in there you
+don't want to see or don't want to have, or like possibilities, and on the analytics
+side, later on, you can censor those fields and just remove them and anonymize the whole
+information there, which hopefully kind of answers the information.
+As long as you don't store data basically longer than 30 days, you're kind of in the
+safe side.
+So there are those these time limits you can take in mind to be good to go.
+One last question, there was a hand before here.
+One question about horizontal scaling, what is your experience with readers?
+Did you use Sentinel for horizontal scaling or did you use something else?
+I, as a system administrator, have the experience with Sentinel that it's not really good and
+sometimes breaks and that's pretty bad in a game situation, I assume.
+Remind me that I wanted to research something because I had Sentinel in my mind too, but
+I know that it's named differently now because Sentinel was like the synchronization to just
+one other node, but there's like a Master Master System 2 with one command, and I forgot
+to search the name, I already used it in the past and I just forgot how it was named.
+So there is a way that Redis can work in sync.
+Did you have good experience with it?
+Actually yes.
+Especially on working with publisher/subscriber under it because it kind of loads balances
+itself then and really stores the data, spread it around after the whole algorithm, like
+more I'm going to be shouting works kind of, it worked better than I expected at the end.
+Thank you very very much Patricia, a round of applause.
+(gentle music)

@@ -1,0 +1,417 @@
+API URL: https://api.media.ccc.de/public/recordings/93291
+Frontend URL: https://media.ccc.de/v/godotfest2025-making-of-dogwalk-blender-studio-s-game-project
+Title: Making of DOGWALK
+
+>> Yeah. You don't need expensive tools to make nice games. Well, what might have been
+you, you, you, you, you, you, you, you, you, you, you? you? you? you? you? you? you? you? you? you. a bold statement a few years ago is. Simply reality in today's environment. With tools like the Godot engine to create your games and the 3D content creation software blender to create your assets, we have two very powerful open source alternatives to a paid software. And to make the workflow from blender to good to Godot even better the team at Blender studio have created a new software.
+the video game dog walk a four month game production in which you play an adorable little dog in a winter forest. Our next speaker to you has worked on this project and will and will share some insights on this on the development. Please welcome Vivian Wilkowski, Simon Thomas and you and Kaspar.
+>> Meep, meep. Now it's on. I'm not sure if we should feel like headliners or the sacrificial
+goat having to go first, but I'm excited. Welcome to our making up presentation of dog
+walk and before this gets progressively more technical, I want to quickly introduce us
+and give some context for the blender studio and how we operate and how it came about that
+we got to make dog walk. Yes. So this is me. I do concept ads and I
+are directed dog walk. That is you again. He's a 3D artist, character artist, but in this
+case he was the game director and this is Simon our technical artist who got to spend a solid chunk of time working on the pipeline. This is the Blender headquarters. We are always open to visitors so do drop by when you happen to be in Amsterdam. This is where the devs are kept upstairs for the Blender development. And this part of the building is the art department and everyone that is part of a Blender studio.
+the studio. And usually we make animation movies. Blender studio has been making so-called open movies since 2006. That's 15 minutes, 15 movies by now. We're making the 16th one right now. They're always done in a different style and almost all of them are done by a different director.
+and they are open projects in the sense that you can download all the files from the productions, modify them, learn from them, redistribute them after you change them. Amazing.
+Our job at the studio in general is to prove that making movies just with open source software is possible, not just with Blender.
+we we we we we we do have the major advantage that if we run into trouble, the developers are right upstairs and we can ask for help pretty much immediately.
+it could be a special year for us. We wanted to focus on much smaller projects and anyone from inside the studio got to pitch.
+as long as the project would include the whole team and keep us busy for about up to four months.
+now we really really like video games and some people at the studio and from the devs also really really like video games.
+so sometimes there's even game jams at the HQ happening usually for the play date.
+but there's plans to join the good old wild jam this December. That's gonna happen.
+so with all that pent up excitement and after years of wearing down the producers, you can actually try to pitch something interactive, which was dog walk, and three other people also pitched their project.
+Andy pitched a short film, that's the one that is currently in development, almost wrapping up, public or pitched more cowboy.
+and Rick pitched a new character asset, rigged with shape keys for our library, a character that people can then use for animation, and that is almost done as well.
+and the producers actually decided that they couldn't say no to any of these amazing projects, they all got green lids, and we were totally going to pull it off in one year.
+and dog walk was going to be the first one to start this year, and Julian is going to cover why we got to go first, and if that was a good idea.
+thank you.
+so for those that don't know, actually it's been 16 years since Blender last made a game, so there was one before.
+there was Yoke for Anki, which was kind of sort of the tie-end game or follow-up game to Big Bug Bunny, the second open movie project.
+basically no one working on the team right now really worked on this game project, so lots of experience in games going on in the studio right now.
+so there was some uncertainty if we can actually pull it off, especially with the time that we had.
+so early on we decided to call it just the interactive project, because we wanted to essentially shift the focus from making fun gameplay loops to interactive storytelling.
+we have some experience with making stories, so that sounded more achievable.
+games also usually take years to make, so that's quite daunting, so we had to scope it way down to get it done in like half a year.
+I proposed something like what if we make something akin to like a 30 second short film.
+if we reuse as many animations and as much of the assets as possible, we could maybe even get it up to like 10 to 30 minutes of playtime.
+I still have no idea how that math adds up, but that basically makes the project more of a micro game.
+I saw that term being thrown around sometimes online as well.
+I like it, it's like something that is so intentionally so tiny that you can test like one single mechanic and still make it like a functional game.
+I really like as an inspiration the team sock pop in the Netherlands, they make a lot of tiny games.
+if you don't know them definitely check them out, they are amazing.
+to have some sort of collaboration with Godot was of course also a big selling point for the project.
+Blender sadly no longer is developing its own game engine for quite a lot of years now.
+and also in the team we're fans of Godot as a free open source project.
+I'm a big fan. I love all the Godot games out there. I track as many as possible.
+We could have also gone for a more fitting title for our game, but like I said we already decided to keep it simple and short.
+But there was actually one interesting point of friction earlier on and that's that we're the Blender studio.
+Usually we make our short films with as much Blender as possible to stress test the software, even down to like the final editing of the movies.
+So it's kind of insane, but then if you make a game in Godot, you're actually working mostly in the engine.
+That's where everything ends up being what's running the end product.
+So we thought, okay, how do we do this? What if we do, what if we manage to make at least 51% of the work in Blender?
+That's perfect. So we still play to our strengths. We still get to use all the tools that we have developed.
+But to be honest, it's actually looking way different than that even. We're using so many open source tools.
+We're running everything on Linux. I see as more as an open source studio the way how we work.
+So it's just, it's basically a chance to add one more amazing tool to our pipeline, to our tool belt.
+For our projects, we also usually pick some Blender specific development targets. We always have these.
+And it's about like, okay, what existing or new upcoming features can we stress test since we're always working with the alpha build.
+Our plan was already to do as much of the asset creation, animation and level assembly directly in Blender.
+So that means it's all about how do we seamlessly get these into Godot. It's all about Blender, Godot, interoperability.
+At first we already had our eyes on like, okay, the GLTF file format is perfect.
+We just had to build our own pipeline on top of it.
+So what this basically showed to the management team was just like, okay, so all of the features that we need already exist.
+And we were already prototyping the game. So it seemed like our project had the most momentum. That's why we were up first.
+Basically with one month of preparation time, no pressure at all.
+Here's the trailer, which is coming from my speaker's grade. To give you a little bit of an overview of what the game is about,
+like it was already said, it's a dark working game, but you play as the dark. It's a huge unstoppable dark with a tiny kid in tow.
+The goal that is established in the game is basically to decorate a snowman with colorful trash that you find in the environment.
+The kid really wants to finish that snowman, but you as the dark are basically just up to do whatever you want.
+The goal is just a vehicle to make you intact with a kid along the way in interesting ways.
+You can just run around, get the kid stuck on everything, but in the end you need the kid to progress.
+So does the kid need you? It's about playing together in a short amount of time and learning a bit of responsibility, sharing control and a bit of a relationship building exercise.
+And based on the reviews that we got and how we saw people play it, there's all kinds of relationships that you end up in the game.
+He has an early prototype, by the way. I really love working with 2D cutouts for previous.
+It basically looks like a playable animatic. It's great.
+To make the project feasible, we really tried to focus on a single mechanic, a single central mechanic, which ended up really being the leash.
+Everything else is really built around it, the movement, the navigating, the environment, interactions with the kid and the levels, and also the challenges that we build up in the game.
+That way we really got to focus on just making that good before our time runs out.
+Also a little shout out. We based the leash code on Ivan Bushman's code from Robot Detour.
+He actually gave a talk here in Munich two years ago. I can really recommend it.
+Thanks again to Ivan. We wouldn't have finished the game, probably without that to build on top of.
+Also thanks to Zier aka Major MacDoom on GitHub for making the Line 3D plugin code that also came really in handy and we used it a lot.
+But now actually with that out of the way, let's talk a bit about the art direction.
+At the end of last year we had a pretty clear concept, some prototyping as you just saw, and the timeline was pretty much set for us.
+Then we only had to find an art style that would fit the project or not spiral the format production out of control.
+We had this artwork and some 2D sprites. They were for mock-up purposes only in the default style because we didn't decide on anything yet.
+To come up with a good art style, we then tried to hit our requirements and also match them with our own preferences.
+What were those important requirements?
+As already mentioned, it was important that everyone on the team could contribute.
+If you have a bunch of 3D artists and 3D animators, that means 3D for sure.
+So we also thought about how we don't make anyone miserable, what could be fun to build and fun to mess around with and fun to animate.
+Although animators will definitely tell you in advance if something doesn't look fun to animate.
+And the style needed to be something that is quickly mass-producible almost and something that wasn't hard to match design-wise.
+So that people would be enabled to produce assets even if there was no design sheet.
+The style also needed to look similar in Landau and Godot for previewing and pipeline reasons, more on that later from Simon.
+Another concern was that Julian was pretty much the only person dedicated to decoding and we wanted to save on Simon Time, TM.
+More fancy shading allowed so that he could switch from setting up the pipeline to contributing to game code.
+And of course we also have our preferences and we wanted to match the project kind of in that direction.
+Let me show some of them that is resumed in vain.
+Julian kept bringing those up because he liked the low-poly style with a unique twist on the stylization.
+We hoped that if we go more stylized, clipping would be more forgivable, which to 3D animators is a very hard concept to sell.
+If they come from movies and not from games, clipping is pretty much a sin.
+So even if you tell them they can save themselves work, they don't like that, but we ended up with some clipping anyway thanks to procedural animation.
+From the pool of games that we love, we also looked at the games of Rex Crawley.
+I really like his work and his inclusive design philosophy because he designs the games in such a way that anyone on the team can contribute to the outside.
+And I also looked at Don't Staff a lot because I like the seemingly scribbly style, but it's refined, it's recognizable, I modded the game a lot, so I keep referencing it still.
+I also collect picture books for all the wild traditional art styles, so some references were definitely pulled from countless picture books.
+And Julian also found this amazing paper craft artist, Kelly Busette, and we had a closer look at her work specifically for the lighting cues, the snow textures,
+and how stuff doesn't really sit flush on the ground, there's imperfections all the detail.
+And after taking all of those things into consideration, I tried making something, I made this tree.
+And everyone loved this tree, thank God, there was a lot of approval, so we just decided to roll with this style.
+And with this mega approved paper craft tree, we pretty much then just had to deduce the rest of the universe from this keystone asset.
+And overall the style came together pretty well, very little wasted effort, almost everything that was made in paper craft in real life also made it into the game.
+And each type of tree or 3D bush could be made into a whole library of trees and bushes thanks to just cleverly rearranging the snippets.
+So after just two weeks, we had this initial test scene with a couple of trees, rocks, bushes, boulders, and shrubs, which gave us quite a bit of confidence.
+And it was very cool to see how much variety you can get just from remixing a few scanned textures.
+But although we wanted to lean into the imperfections of small-scale paper craft, we quickly realized that you also have to very much redirect the noodle there to make it feel authentic.
+Like the imperfections of 3D are different from the ones from paper craft.
+So there was a good amount of drawovers, there was defining bevels exactly for the paper thickness, placing paper cuts, and yeah, a lot of nitpicking.
+But people over time really adapted to the style and it enabled them to be more efficient and even work without the real-life reference.
+But often enough I could just, which is nice, I could just bring the paper model to someone's desk instead of having to do a drawover.
+And then they could just, you know, look at it closely and reference it.
+So the style after a while became second nature to people.
+They didn't need the paper model and sometimes we just work from flat concept. So like the bridge, the camping table, the shared defense, people just needed a scribble or a drawing and then they could reuse textures that we already had.
+So we made quite a few libraries of environment assets, of smaller-scale environment assets, because scattering all these little random assets was really important to make the world come alive.
+And thanks to Blenderdev Jacques Luka, we were able to apply the geonauts modifier and still have instance collections of these assets and further tweak them by hand in Godot.
+And most of the biggest addressing had to still be done by placing individual assets, like the trees and the rocks, all of that is placed by hand.
+But for the reeds and grasses, we could use this.
+And also more procedural geometry was needed, for example, with the snow patches.
+So that was also done with geometry nodes.
+We used these scanned little islands at first, but then we needed more variety and to adjust the shape based on gameplay to build the level.
+And keeping unique textures for all of these different patches would have been a waste of memory.
+So instead, the snow islands were generated with a curve and had automatically generated UVs, and then they used the tileable paper textures.
+Also collision shapes were generated pretty much automatically on export, and it was all baked down to meshes.
+But what took by far the longest is the two main characters, almost the whole production time pass before we can call them final, final, final, really.
+And unlike the birds and the fish, which you could pretty much print out the UVs from and then bend them and put them together, and they would look exactly like in the game.
+We cheated quite some aspects for the dog and the kid. They are not quite print and build, but we did our best to have some authentic detail.
+I also had to make some compromises to keep us sane and on schedule, like simplifying the fur of the dog.
+At first I really wanted something like this, really shaggy, really very moving fur.
+But we had to keep ourselves humble in that regard.
+Also because the animation style by that point was already set by the animators.
+And the rigging had to be fairly lightweight to run in real time.
+And we did want to figure out how to do real time physics simulation in the form of production, maybe not.
+So instead we ended up using this kind of paper fur.
+One thing that the team also had some concerns with were the sticker mouths.
+They worried that they would look a little bit weird from different angles, or they wouldn't be expressive enough, or that they would look to robot chicken.
+And originally the dog was also going to have a taped on mouth, but we ended up going for a more dimensional job for Shokomare, the dog, and only used the paper mouth for the kid.
+And Julian will continue with some technical difficulties of the animation style, and that's it from me.
+Okay, so far the art style kind of made sense.
+Of course we had like three animators to keep busy, so with the animation style we had a few different ideas,
+but we wanted to do something that is animated on twos.
+So essentially 12 FPS, because the baseline for animation is 24 FPS.
+And I didn't quite anticipate how tricky this would be, because it turns out this is very rare in games.
+I couldn't find many examples of developers doing this, maybe because it's kind of antithetical to this super responsive 60 FPS that everyone wants.
+But there are actually some examples out there that do this animation style, and that's primarily with 2D animated games.
+And they go even lower, like they animate on like every third or fourth frame, so six or eight FPS.
+And they still manage to feel incredibly responsive.
+What we noticed is a long trick to it is really knowing what to animate choppy, and what to interpolate.
+So for example, the position of the character is always super smooth and responsive.
+But in general, input feedback and state changes need to be communicated instantly, it cannot wait.
+Everything else that is more visually, you can animate it choppy.
+So we thought, okay, couldn't be that hard. Let's do that in 3D.
+Turns out if you use stepped animation and import it directly, and then you do linear blending, you get this by default.
+And yeah, that's a bit of a clash in animation styles. It's subtle at first, but it didn't really feel right.
+So there was lots to figure out. We really needed to figure out how do you do this really with bone-based animation?
+How do you figure, how do you handle blended and composed animations, putting them together?
+And also if you throw in some procedural animations on top.
+And like I said, there's basically no resources online that we could find, only some examples.
+This is the end result that we had. It's a bit unpolished.
+I can only see the issues of course, but it's close.
+One important trick was to update any of the visual elements, any of the visual movements only when they are perfectly timed with the keyframes of the main animation that's running.
+So even with the character rotation, it's timed to update on the keyframes.
+So we actually wrote a class for this that is purely there to just like track the current animation that's playing
+and signal to anything else that like if it's a past one of the keyframes.
+Okay, now update any important variables that the visuals rely on.
+But if you just do that, it still doesn't look quite right.
+We had another class that is there to snap values along a range to specific slices.
+So basically to quantize a range. And this is to make sure that the visuals update only like evenly spaced apart or to very specific values that we wanted to have.
+Because if you just update your animation on 12 FPS that you've already made, it's just going to look laggy.
+It's going to feel off. But if you also only updated once it's surpassed a certain movement and only two specific poses, then it looks intentional.
+We use this almost on anything that's moving, rotating and also for blending animation.
+So when you blend to one pose to another, it's also chopped up.
+For rotations of characters, it was even a bit more complicated.
+We swapped out the number of possible angles of the characters depending on how fast you rotate.
+So this was depending on the angular velocity then and this was also snapped to like three slices along a range.
+So it's just everywhere at this class.
+And this really made sure that if you have like small, slow changes, it only snaps to specific angles and then also on fast, large rotations.
+It always has roughly a consistent frame rate and it's always two specific angles that we wanted the characters to be in.
+All of this together might seem a bit complicated, especially if you throw it on everything, but it actually managed to work to make the character still feel incredibly responsive to player input.
+And yeah, to be closer to actually a hand animated animation on two's.
+I really hope that more games, more 3D games would do this in the future.
+While we tested this, not just implementing this, but also importing animations into Godot, we noticed a bunch of issues also with the Blender export.
+So luckily all of those that we could find are now fixed.
+That's also a huge thanks to the Godot F developer Julian Durour.
+He was very active in fixing any issues that came up, but it's also the typical story of only after we're done with the project.
+Does the software actually support what we wanted to do?
+Yeah.
+You can find out more on the Blender website, on the Blender Studio website.
+I posted an article that is quite a long read with a bunch of code snippets to just try to document as much as possible of how we put this together.
+And hopefully we can revisit this at a later point and actually polish it up more and focus on making it really, really work great.
+But yeah, that's it for the animation. Let's talk a bit about the pipeline.
+Yeah, enough about look and cute yard style. Let's talk about pipeline.
+So as has been mentioned a couple of times before, the style that we chose was largely also in service of how we wanted to work with it.
+Like going for something that's PBR based in its rendering style makes it a lot easier for us to rely on the existing tools and pipelines for transferring PBR based looks from Blender to Godot.
+And also on the end of just the members of our team, the idea was to focus as much as we could on working in Blender and then having a smooth seamless transfer of everything to Godot.
+So we could focus as much as we could on our strengths. And that was basically the general philosophy that we followed when setting up the pipeline.
+And here is an example of how this looked like for us in Blender. This is a part, like a piece of the world, the whole world map we could actually look at in Blender and had it extracted into different parts of the world that were kind of
+bordering natural borders like the river in the world. And those were all instantiated into each other. So we had a concept of an asset on the Blender side, which was basically the unit of a collection.
+And then we could instantiate other assets within that. So the world had the different parts of the world instantiated in them.
+And then those would have different layers, like for example, the trees, the ground, things like that, things that would need different game logic also.
+For example, the different snow patches where the characters would slow down in when they walk through them were on different levels that were instantiated all on the Blender side already.
+So we could basically one-to-one recreate that relationship in Godot. And that was one of the main core philosophies that we followed when setting up the pipeline for this, which basically took like half or more of the project.
+For me to work on before I could actually jump into working on the game code with Julian.
+But as I kind of mentioned already, this was really very much about mirroring the functionality between Blender and Godot on the side of how we set this up.
+So a forest would just be an asset that would instantiate other assets like trees.
+And those would in turn instantiate their branches, which are also assets. We would really have this very simple nested structure.
+And that's how we're used to working with for the Blender Studio for our movies already in Blender, where everything is just a collection and then you link it somewhere else.
+You instantiate that collection into something else and you can just arrange it.
+Use it as many times as you want to make your asset and then put that in your set.
+And to make that work on the Godot end, we, as Julian mentioned before, set on using GLTF as our exchange format.
+And while the Godot internal Blender file support also uses GLTF behind the scenes, which we could have used,
+but it made it a little bit more flexible for us to just set on GLTF itself because then we could have a bit more control over the exporting and importing process.
+But the way that we represented everything in GLTF was then just with the TSCN.
+So everything was just a GLTF scene and then those would be instantiated into each other in the nested same way, just the same way as in Blender.
+So we'd really have the same setup.
+And that really allowed us to make it easier for our artists to go into the individual assets or parts of an asset, make changes, all in Blender, hit a button and everything would export and re-import in GLTF.
+And basically make it so that a big chunk of our artists that are just used to asset creation could only work in Blender and focus their work in GLTF mainly just on verifying that everything is working fine, and they wouldn't actually have to touch anything.
+And this process made it also very simple for us to attach game logic to different elements in the world.
+So we would have different classes that we could define just with scripts and attach them to the different scenes.
+And then just copy that over to the different elements and still make it editable from the Blender side.
+So we would just be able to re-export everything all the time, or just be a live connection.
+Whenever you re-export something, it still works because there's an additional layer of the game logic as an abstraction layer on top of the assets that we export in the GLTF.
+So this is just an example where we had a bunch of elements like the reads in the grass in the environment that would topple over when you run over them.
+So we just find a topple entity class that would just be on everything that's supposed to topple over. It could be inherited by everything and put it on all the different little elements and be able to live update them on the fly.
+And here's how the whole process looks in action. So this is just in Blender. We had an extension for the GLTF export set up for just this project specifically.
+And that made it easier just to give us the button in the user interface, for example, that would take care of some pre-initialization.
+So whenever we create a new asset, it would be registered into the global library. That would be known by Blender and by Godot.
+And to give us a button for the artists to just press and then it would put it into Godot.
+I think I talked a little bit too slow because there's much more happening already, but you would make changes to the asset itself.
+Press export and you would be able to make changes to the set that uses those assets, reorganize them, press export and everything in Godot, which is import automatically.
+And now you can go through the different levels of instance nesting and see how all of these things are recreated in Godot.
+So it's not really reusing all the data and not duplicating everything.
+And there were some smaller checks that we needed to do to make that work. And the future is hopefully going to be a bit more smooth.
+I'll talk about that a bit later. But yeah, it was really about like streamlining this process and making it as simple as possible for us to work on this.
+And yeah, just to talk about a little detail of this, the idea was really to replace all of the instances that we had on the Blender side just with a dummy that would remember a hash of which asset is actually representing.
+That hash in the library somewhere that could be read by Godot as well and then remove all the actual data of the instance assets and then recreate that instanceing relationship on the Godot side.
+So there was an add-on with a hook to the exporting process on the Blender side and then a hook on the Godot plugin on the importing side that would recreate that relationship.
+And they would really work together to make everything automatically set up.
+And the same process we also used for some other things, like for example for collision shapes, we want to set up actually in Blender.
+And I was with this process pretty simple to do because GLTF makes it very easy for us to write metadata into the file format, like any metadata that we might want to use on the import side.
+So I created a jumping notes setup on the Blender end where you could just choose the different collision shapes you might want to use for the primitives, make parameters, setups, place them in the world as part of the asset.
+And on the importing process, that node would be replaced with collision shape and would just get the properties that we write on the exporting process as metadata.
+And that's basically how this whole pipeline was set up. It's really just running our own custom metadata and reading it out back on the import side.
+And that GLTF was basically perfect for that because it's written to be extended in this kind of workflow.
+Then this is more a little bit about shading. So for shading, I already mentioned we are kind of specifically setting or going with APBR workflow because we didn't really want to reinvent the wheel when it comes to recreating the shaders automatically in Godot because the render engines just work very differently from Blender and Godot.
+So to kind of pick our battles, we said let's just stick with PBR and use what's there out of the box. But then there was still a little bit of time to make some custom adjustments.
+So I also made a setup where we could basically reimplement a shader that we had in Blender in Godot and then have a representation as a node group in Blender where we could have the same properties.
+And that would just be picked up on the importing process just in the same way with the metadata from GLTF so that we could have additional things like the color of the backside of the paper, for example, or the thickness or some wear of the paper.
+Then we could preview in Blender and then actually have apply in Godot but this was no automatic process. We would actually have to manually recreate these shaders but we only had like three shaders in the whole game so that wasn't too big of a deal.
+And then there was still a little bit of time to do some extra shading magic to make it look a bit nicer so one of those things for example was to add some fake paper thickness.
+It was pretty simple to do. I did something in the beginning just for some testing. There's some building parallax occlusion mapping in Godot which was very nice to just take the standard material converted to a GD shader so we could do more customization.
+For whenever we had alpha maps on the paper like with the grass on the right here, for example, the geometry of this looks a lot more simple, it's just a card.
+And then we had a texture that would actually define the alpha of this grass and then that alpha map was just used as a depth texture for the parallax occlusion mapping.
+And then we had an additional other effect to make the fake paper thickness happen where you actually make cuts into the geometry.
+So we would just resample the depth buffer to add this little edge wherever the geometry just ends to make it look like there's a little bit of thickness.
+And those two effects together kind of blend together to make it look, depending on your view angle that there's a little bit of thickness.
+Yeah, so here.
+It's a bit hard to see with a quality like this trial. The game may be there. It's a bit better.
+In general, there were some things we needed to cut down on because we needed to kind of pick our battles.
+Like it's been said many times, this was a very quick project. We only had four months for the whole thing, including writing the pipeline.
+So we needed to really pick what we wanted to work on, what we would need to set up the sidelines,
+especially because we don't really have a lot of game development experience and wanted to ship this game.
+But it was very useful for us to just find out what the current state of the game development process in open source is,
+to have a better idea as the blender foundation also about what we need to focus on for compatibility and interoperability with Godot.
+And yeah, mainly for example, the shading and lighting, those were things that we really tried to just keep as it is in working mainly in Godot,
+rather than making everything possible with run with blender and just focus on the things that were really important for us.
+Yeah, like I mentioned a couple of times, there were some extensions that we wrote in this process.
+We have all of the code for that also available on our website. It's not really made to be reusable super easily.
+It's really made for us for the specific project. It doesn't mean it's not adaptable to be working for any kind of project.
+But yeah, it wasn't really made with that in mind because that would mean a lot more effort on our end.
+So now, how much, half a year later, what came out of this project?
+Well, it's been mentioned also like a lot of things have been fixed, have been improved from also the blender side.
+For example, Julien who Julien already mentioned worked really hard on making things work for us.
+And that obviously benefits everybody working with interoperability between blender and Godot.
+And Godot team also have been super helpful jumping on some things that we found were some issues on the Godot side.
+And I've mentioned some of the interrupt stuff that we wrote into our add-on.
+The Kronos group is also working on some of these things being able to support them more natively.
+So for example, this whole thing is of nesting GLTFs into each other that we kind of worked around.
+There's a project officially going on to make that possible which is called the GLTF complex scenes or GLTFX.
+So that will hopefully be super simple to do in the future.
+For example, and there's also some more community-driven development on things like the collision shapes that I mentioned
+with more officially supported GLTF extensions.
+So there's already smart people working in this kind of stuff which is super great to see.
+And for some stats we have like 350,000 licenses from, well it's a free game,
+but people adding it to their library which is super nice and more importantly people like it.
+There's like 1900 reviews with 98% overwhelming and positive.
+And yeah, like I said, a free game.
+If you haven't already tried out download it, have some fun playing in the snow.
+Yeah, we hope that people have as much fun playing the game as we have making our projects.
+And it's been mentioned a couple times.
+We have also more information about this on our blog post, on our website, studio.bend.org.
+And I'm making a short film again currently and yeah, we'll have to see what comes up in the future
+but there's going to be definitely more and more projects coming up.
+So thank you.
+[applause]
+Very good.
+Yes, thank you.
+This is a really great project.
+I have to say I love this.
+And we still have some time for some questions.
+So if you have questions, I come with the microphone to you and please be good to the microphone.
+Hi, first of all, congratulations for the whole project.
+It's been like only four months, it's impressive.
+I am impressed.
+And my question for you is about if you had any optimization issue with instantiating too many nodes
+with all the nesting operation with Gado.
+And that's my only question.
+Thank you.
+Yeah, so we ran into optimization issues, of course.
+The end of the project, I think you always do.
+With the nesting specifically, we had some trouble in that regard also.
+There wasn't too much overhead for most of our world but with some of the active elements,
+like the top-able elements that would fall over, it was just too much.
+So like all the process functions running for the game took a bit too much.
+So we did switch to a different workflow of not using everything nested but having a global manager
+and a game logic itself that would make all of them fall over rather than everybody taking care of themselves.
+So yeah, we did have some optimization problems but those were relatively easy for us to address
+once we figured out what the violin egg was.
+For like any static asset, it's a bit hard to say how much quicker things would have been if we didn't go with this
+because we just don't have the metrics for that but I think that didn't add too much overhead from what I can tell.
+There was basically just one problem that we ran into was with the import process
+that sometimes it would take quite a while especially if you do a fresh import for the first time
+and then sometimes there were just some hiccups with our pipeline where the materials wouldn't just quite load correctly
+but then you re-import and it would fix it.
+But yeah, there were still a few unknown things that we still need to look a little bit into.
+So we obviously were in contact also with the Condole Foundation people and we're still hoping to set up a workshop
+where we can talk about some more detailed things.
+But yeah.
+So I'm teaching software development for game development
+and I basically spend a lot of time bullying my students, right?
+Good codes, used classes, but in reality what you see, you made such a project in four months
+and my question is, in your opinion, if you have to give it a score,
+are you satisfied with how clean the code is?
+I would give my code like a one out of ten.
+If you see the class for the kid character, it's just like 3,500 lines of code.
+It's this insane mess that we just never had time to properly clean up.
+I'm glad it's running at all.
+The stop motion stuff is really interesting and I wonder, you talked about some imperfections.
+Honestly, I couldn't really see.
+And I wonder, did you use a reference or something like a test animation
+and if you can quickly say like what kind of imperfection you see?
+Or did you just like do it on the fly like my eye?
+There are some problems in the game with syncing up multiple animations
+that are playing at the same time, but they actually update also at the same time.
+There is a manager in there that's meant to do that,
+but since sometimes there's a bit of like a feedback, like a cyclic dependency going on there
+like you first need to like actually mix the animations to tell like if it should properly update.
+Sometimes like updates to one animation would just like happen one frame too late.
+So you notice that sometimes with a bit of jittering in the animations.
+But yeah, it's a bit subtle, but we notice it.
+I think early on when we were exploring the animation style,
+our two main animators for the project, Rick and Pablo, they had this battle of the animators
+and one tried to do this marionette style, and the other one tried the actual stop motion style
+to match those things and in a way we picked what we like from both
+and combined them and then we got something like this.
+Yeah, we actually dodged a bullet there.
+We noticed that whenever we blended more animations together,
+we noticed that the way how we did rigs for film production such as didn't translate properly for games,
+we did a bunch of mistakes there with a parenting hierarchy.
+And sometimes you notice when we blend animations like the dark barking or turning around,
+that the snout would just like clip into the rest of the face.
+So if we would have done way more blending and animation linear interpolated,
+we would have had to redo our rigs probably.
+And with the stop motion style, oftentimes we just instantly transition to another animation.
+There's no blending and it's just completely forgivable.
+Hello. My question is more regarding the Blender Studio itself.
+What is the application process over there or the hiring process and how did you three up and there?
+How did you three end up there?
+That's a good question.
+Yeah, so it used to be very different like if you go back ten years ago or before that,
+all of the open movie projects were just like a team was assembled.
+First some funding was obtained by selling DVDs and then you get together like applications from the community.
+But at this point it's more tightly knit.
+We have a relatively small team of artists hired full time.
+And then usually that is enough right now for the projects.
+When we do bigger productions, we try to get people, we hire more people when needed.
+That's usually animators and concept artists.
+But right now we are not so much because we also scaled down the projects so much more.
+Almost every department is just one person.
+Let's go talk to the rigging department.
+Let's go talk to the lighting department and sometimes that's one person's multiple departments.
+So I think you would have to bring an insane portfolio.
+But also there's not going to be games for now.
+Yeah, this garage at the next game will be up.
+But for now we already have like a bunch of movie projects lined up for the next two years.
+Yeah, we'll have to see.
+Hello, you said you didn't use Godose internal GLTF importer or like the blend file importer,
+which uses GLTF, but instead like wrote your own import pipeline for GLTF.
+I was wondering if you think it makes sense to like adapt the internal importer so that it supports all the features that you've implemented.
+Or so that I have the convenience of just working with the blend file instead of having to export GLTF all the time.
+Or do you think it's not worth it, just export GLTF from Blender and then have your custom pipeline?
+Yeah, I think to actually make this something like this natively supported needs to be supported properly on both ends.
+It needs to be like an official feature.
+Like I mentioned, there is from officials side from the chronos group side development going on for this nesting of GLTF files.
+I think that should definitely be supported and also by the native importer.
+The reason why we didn't go with just the band file format was to also just have an explicit publishing step.
+So we would explicitly split the working file that people work on for the band files.
+And then the game files that actually are used live in the game to have a separation between the two and those would be GLTF.
+And that was partially also for the pipeline, so we'd be able to do that explicit exporting step so that somebody could check on the files,
+could press the button, and then on export things could be prepared for the export specifically and not have everything automatically handled by the GLTF import.
+So yeah, it was partially for a process of how we set up our pipeline to make things more customizable on our end.
+So we could actually decide what exactly happens when you press the export button, which doesn't exist if you just import the band file directly.
+But also just because it's nice to have this explicit publishing step of separating between the working file and the file that actually is used in the game.
+Yeah, unfortunately the time is already over again, but I guess you're still here and if you have any more questions, feel free to ask them.
+Yes, we'll hang around. Definitely. See you guys out.
+Thank you very much for the insights. This gave a round of applause to Vivian, Simon and Gu Yan.

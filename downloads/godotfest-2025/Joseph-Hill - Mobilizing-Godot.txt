@@ -1,0 +1,530 @@
+API URL: https://api.media.ccc.de/public/recordings/93488
+Frontend URL: https://media.ccc.de/v/godotfest2025-mobilizing-godot
+Title: Mobilizing Godot
+
+[MUSIC PLAYING]
+So has any one of you a mobile phone?
+And if so, did you ever consider making games for it or on it?
+I might introduce you to Joseph Hill,
+who is not only an active community member helping,
+for example, organizing the Godokon in Boston last year.
+Notice here.
+He also helped funding the submarine company.
+And now is working on bringing the Godot engine
+to iPhone and iPad.
+And he thinks he should consider mobile.
+So please welcome Joseph Hill.
+[APPLAUSE]
+Thank you.
+Thanks for that introduction.
+I have some mood setting questions,
+but like I was sitting here looking at you
+thought, this is going to be a very Windows-centric audience.
+So I borrowed myself a Windows machine,
+and I made sure all my demos would work well on Windows.
+So those of you that use Macs, you can tell your friends,
+like there's nothing I'm going to say is particularly
+Apple-bound, but that's my frame is coming from Apple.
+But anyways, another mood setting question.
+I just want you to-- you don't have to answer,
+but think a little bit about why you're building games.
+Ask this question to people.
+Ask it here at the conference.
+You get a range of answers.
+And everybody kind of has their own itch to scratch.
+But I think it's important to think about as you think
+about this broader question like we had at the panel this
+morning about what platforms do you want to target,
+what order, how do you want to take things on,
+what is your goal, and how can you meet that goal?
+So with that in mind, I will tell you a little bit about myself.
+I was introduced, but yeah, I'm an organizer of the Boston
+Godot Meetup.
+And due to that, helped organize the first Godotcon
+in the US in Boston earlier this year.
+And I work on Sago, which is a product that we announced
+at Godotcon earlier, which is Godot running on an iPad.
+So if you want to develop games on iPad or even now on iPhone,
+we have the engine.
+That's not what this talk is about, for the most part.
+But it certainly ties into it a bit.
+So more relevant to the topic at hand,
+my background is largely mobile.
+I started-- I was a C# developer,
+and I started working on Mono as an open source project
+in my spare time, and that got me into the community.
+Where Mono, for those of you who don't recall,
+that was the original open source implementation of .NET
+to run on Linux.
+And at the time, getting Windows developers that were all
+the C# developers to think about targeting Linux
+was kind of a tall order.
+And they were like, why would I target Linux?
+But then the iPhone came out, and suddenly all the C#
+developers were like, can you get me on the iPhone?
+Because Microsoft's not going to make that happen.
+So we made a company, Xamarin.
+We put C# on the iPhone.
+We also, through Mono, helped.
+In fact, that was what led us to see the opportunities.
+The first place we put Mono for the iPhone was for Unity.
+They were already using Unity.
+Unity was already using Mono, having replaced Python,
+interestingly enough.
+And they needed help getting around the technical limitations
+of the iPhone.
+We helped them do that, and then the demand surged,
+and we made a company, which Miguel and I sold the Microsoft
+and spent some time at Microsoft before leaving to do--
+we didn't know what.
+So we were pretty excited about Godot.
+And Unity created an opportunity for Godot
+to see some serious growth.
+And so here we are.
+So all right, back to questions.
+I love pulling the audience.
+How many of you are targeting mobile already?
+OK, that's pretty good.
+I would think with a title like mobilizing
+that would draw in a little bit more than the average segment.
+But I think this is pretty representative
+of the Godot community.
+This is the Godot survey from last year.
+And I guess it was a yes or no question,
+which platforms are you targeting?
+And you can see iOS is pretty low.
+And Android's not really doing too great either.
+It only 30%.
+Another way to slice the data is this year's Godot survey,
+which kind of asks, what is your intent?
+Like, how interested are you in it?
+And iOS wins the most actively not interested category,
+barely edging out the Epic Games Store.
+So anyways, but Android is not particularly high either.
+It's kind of just sort of a ho-hum.
+But like, why is that?
+This seems surprising to me.
+This has been surprising to Miguel and I.
+So because when you look at the business,
+you look at the market, like this is
+where the money is being made.
+This being it fairly.
+And I think this is 2024 data.
+So there's a lot of money to be made in mobile.
+There's a lot of eyeballs there.
+But Godot developers, which I get-- the image
+in itself is pretty well-suited to mobile.
+But another way to look at it that I
+stole the slide from Apple's own presentation,
+I couldn't get just the slide, so I had to steal the whole thing.
+But anyways, 800 people go to the App Store every week at 800--
+sorry, million.
+That's important.
+And yeah, so like, there are a lot of eyeballs.
+There's a lot of opportunity there.
+But people-- you people, Godot developers
+aren't necessarily going there.
+So why is that?
+So I went out and looked on Reddit.
+I talked to every developer I can.
+Everybody I've tried to shop the idea around.
+And these are the general answers I get.
+And I think they're all pretty valid.
+And I think what I'll do is I'll just take them on one
+at a time.
+So the first thing people claim is that their app isn't
+necessarily map well to mobile.
+And that could be true.
+But the fact is, is if there's a wheel, there's a way.
+When there's a breakout success invariably,
+you see that people do start thinking about mobile.
+And if they don't, somebody else is often
+willing to step up.
+I mean, go search for any popular game on another platform
+that's not in the App Store.
+You'll find varying levels of rip-offs of them.
+So that's a thing to keep in mind if you're making something
+novel.
+There are legitimate differences.
+When you're targeting mobile, you had simpler controls.
+It has to be touch.
+It can be landscape or portrait.
+And Bugado itself provides the facilities,
+if you're not aware.
+Emulate mouse from touch works pretty well.
+Scaling, if you think up front about your layout,
+you can handle both landscape or portrait,
+or you can just decide to lock into one or the other.
+So there are plenty of genres of games
+that really just make sense everywhere,
+that if you're working on any of these kinds of games
+on the desktop, they probably map well.
+There are legitimately genres that maybe don't map as well.
+What comes to mind for me is an RTS, especially
+if it's a keyboard-heavy one, even or anything
+with complex controls that's multiplayer.
+So I think there are plenty of first-person shooters
+that are successful on mobile.
+But maybe you don't want to enable cross-play
+between your mobile players and people
+that are sitting behind a power station
+with a full keyboard mouse setup.
+Dealing with Google and Apple is a pain.
+Again, we talked about this a little bit
+at the panel this morning, but just repeat it
+for those that are near it.
+Yes, there is an approval process.
+Most markets you want to be in, you
+do have to go through an approval process.
+Apple's notoriously hard on people.
+But most of that, generally, is aimed at the larger app space.
+A lot of the frustration I think you generally hear
+from people about apps publishing through the app store
+is that you have to jump through a lot of hoops
+around data collection if you're dealing with finance.
+So Apple's pretty aggressively interested in game developers,
+and it's not as challenging for game developers
+to get through approval as it might seem
+if you haven't done it.
+Platform tax, again, everybody--
+one of my favorite ones is when people say, well, it's 30%.
+Apple takes a 30% cut, and that's just too much.
+And there's a tendency with developers
+to optimize for problems they wish they had.
+And I feel like this is a definite case of that.
+It's like, yeah, if you need to avoid the 30--
+when that becomes a problem to you,
+that's certainly the discussions are happening
+at that level as well.
+But if you're a small business, if you're an indie developer,
+and you don't have a ton of revenue from your game,
+you can get into the small business program.
+And that's a 15% cut.
+It's a 30% cut, which is pretty reasonable
+for what you get with it, which is access
+to storefronts in every country, 2 billion devices,
+little languages.
+I mean, I wouldn't undersell what you actually
+get from Apple and Google both in terms
+of the facilities that they actually are providing you.
+So the next thing-- and I've heard these things directly
+from people that have actually made a go
+at taking a game and publishing it,
+which is that you can't necessarily
+take the business model that you have on the desktop
+and take it straight to the app store,
+because there is a sort of expectation of free.
+And that's how you end up with--
+so if you have a paid game, you have
+to be very successful on another platform
+so that the marketing is aware.
+If you're a bolotro, yes, you can charge up from it,
+because people are going to be looking for it,
+and you can charge for it.
+But a lot of people just assume that they
+have to re-engineer their game to a freemium model
+if they want to make money with the game.
+And I don't think that's necessarily true.
+It's certainly an option, but if you
+want to preserve your gameplay and your integrity
+and not really change the mechanics to be
+around the way the downloadable content or whatever
+and that purchases are, there is another option, which
+is you can do free trials.
+And that's something where you actually
+have the ability to control what it is you're free trialing.
+Is it a couple of levels?
+Is it a limited amount of time?
+I mean, you can get creative with that, I think,
+because it's really up to you what
+triggers actually hitting the paywall.
+And then, of course, there's ads.
+And I left it off because people aren't excited about ads,
+but that's a way to get freemium.
+You can pay to remove the ads.
+I was talking to a developer that
+had a pretty popular puzzle game on the web.
+And I was like, why are you not publishing this to the app
+store?
+And that was his response, is I don't like--
+I just like it seems like the only thing that would work
+would be ads.
+And I don't want to have my beautiful experience
+muddied up by having the ads around it.
+And I said, I think I almost convinced him.
+I don't know if he's going to do it.
+But I said, well, what you should do
+is you should make the ads part of the game.
+And so you could have the option to in-app purchase
+to remove the ads.
+But you could also say, hey, if you get the high score,
+I'll remove the ads for free.
+And then it kind of becomes an aspect of everybody
+who plays it's trying to get the high score.
+If you get it, there's a definite reward.
+And your most dedicated players, all they have to do
+is get the high score once.
+Or however you want to control what the high score is.
+And you can probably get a certain amount of volume with ads.
+And also, the people that can really appreciate your app
+will have a mechanism to get an ad-free experience.
+Anyways, that's me just making it.
+I'm just shooting from the hips here.
+So that's-- anyways, and then the other big one
+I've heard is that it's harder to market.
+And I mean, it is true.
+Marketing is hard.
+It's hard everywhere.
+But the strategies that you would employ to, for instance,
+market your game on Steam are actually
+pretty translatable to marketing it to mobile.
+It's just a different audience.
+I think that there's a lot of people
+that drive interest through having the wish list.
+Put my game on your wish list in Steam.
+Apple has the same thing with the ability to pre-order.
+They also have a test flight service that works pretty well
+if you want to beta and build up a community of users
+and get feedback prior to releasing.
+So just be aware that those facilities are there.
+So anyway, so I've done my best to address
+like what I hear is the main issues.
+Maybe if there's other things that are holding you up,
+you can share with me what you think they are.
+But what I think really is true is
+that there's something else that drives people to not
+want to be mobile, which is that they're already
+comfortable in the space they're in.
+The desktop market is big and well established
+in North America, in Europe, Lesso, in Asia, Mia.
+And so it's easy to just focus on those parts of the world.
+But at the same time, going back to those questions
+I asked at the beginning, like if you
+want to bring the light to all the users you can reach,
+there are big parts of the world where mobile is the only game
+platform.
+Like I have a switch.
+I love it.
+I don't want to brag, but I also have a PlayStation 5.
+But many parts of the world, like having a phone
+is the source of all entertainment and functionality.
+So yeah, so those people, they want your games as well.
+So the other big one, the most legitimate one,
+and the one that, of course, I come here
+to attempt to answer today, is that there
+is also the technical challenges.
+And I think this is what is the counterbalance to the momentum.
+You develop on the desktop.
+It's easy.
+You can iterate right there in one place.
+And the thought of going and figuring out Xcode or exporting
+from Godot to Xcode or to publish to Android
+and having to bring up a different set of tools and publishing
+and have a pipeline that's a lot more convoluted
+is a bit of a put off.
+And I think those are legitimate concerns.
+And so that is what we're attempting
+to solve with Zago today.
+We just announced Zago Connect.
+I just pushed the blog post live as I was walking up on stage.
+But it's up in the asset library.
+And you'll be the first people I'm demoing it for.
+So let's all hope that goes well.
+Here's my demo.
+I'm on Windows, so bear with me.
+This is not-- OK.
+So I have a project here that you might be familiar with,
+which is the Kinney Starter Kit.
+And via the asset library, I have installed Zago Connect,
+which you can see was just--
+it's pretty recently published, so it's there.
+And when you install that and enable the plug-in,
+you get a new tab over here, Zago.
+Man, if I knew how to change my screen size, I would do it.
+But hopefully you can all see that.
+So Zago is this app, which, like I said,
+it's a full editor on the iPhone.
+But if you're not into writing code on the iPhone
+and you want to do it, you want to stay in good O
+to do your work, we've added a remote tab at the bottom here.
+And when that's on, it advertises itself as being
+available.
+So if I search for peers--
+and we're on the same network--
+there it is, OK.
+So it found my phone.
+And I can now go up to the Remote Deployed button button
+that good O already has.
+And I can now select my iPhone.
+And pushes the-- pushes over the changes, whatever.
+And so it also enables on-screen controls.
+And I'll show those a bit more in a moment.
+But if I-- Kenny's Starter Kit has already configured
+for Bluetooth controllers.
+So before I turn my back on you, and just
+try to explain that whole thing.
+So if you have a Bluetooth controller input map already
+set up, you can enable through project settings.
+I'll show you in a moment on-screen controls, which
+provide-- it's part of iOS that it emulates Bluetooth.
+So you're getting these controls.
+You may not love them.
+We'll get to that in a moment.
+But it gives you a quick way to take
+a game that you've developed with controller support
+and get it running on the device.
+So if I come over here, I have a breakpoint set,
+that coin collect.
+And you can see, I'm now able to inspect my stack,
+step through code, and continue running.
+And I also have the ability to browse the remote scene tree.
+And so if I select, for instance, the player here,
+I can-- let me see here.
+Where is it?
+I'm searching for something I shouldn't be searching for.
+How do I get rid of that?
+No!
+Man, what did I do?
+Anybody who knows what I've done, you can tell me, why is my--
+why is my inspector limited to just the coin here?
+Anyone?
+Oh, my gosh.
+I only did the demo like four times
+right before coming up here, so who knows what I did in that one?
+All right.
+Well, OK.
+So long story short, you can, in theory, inspect variables on the--
+here we go.
+Well, here we go.
+Now things are working.
+OK.
+There it is.
+There it is.
+And I'm on the camera.
+OK.
+So if I come in here, this will be--
+you'll have to look very closely.
+But if I come in with the player selected,
+I can change the variables.
+And it's all-- it's all live.
+So if I want to-- if I want to test how something's behaving,
+I have the ability to do that directly.
+So as I mentioned, we have on-screen controls
+added to the project settings.
+So once you install the Zago extension,
+if I look for the virtual controller,
+you can actually configure whether or not
+the controls are visible.
+Left thumbstick, right thumbstick, up to four buttons.
+And those will just map directly to the Xbox controller
+mappings and input maps if you have those set up.
+I think one way to view this is it's a facility for moving
+quickly.
+If you already have that set up, then this
+is a way to get over there.
+And then you can think about how you might
+want to change your inputs.
+For instance, if you have mouse look already,
+you can use emulate touch.
+And then instead of using the right thumbstick,
+you would just have mouse look--
+would automatically work, which I could probably demo,
+but I don't have time.
+So I can demo afterwards if anybody wants to see that.
+And what else could I show?
+I feel like I have like four other demos that are way too big
+to get two in three minutes.
+And none of them that I can do.
+All right, so I'm just going to go back to the slides.
+I think I'll call it, and we can do Q&A, right?
+You can handle that.
+All right, let's do that.
+OK, so with that, I will open it up.
+I'll say thank you to everybody, and open it up to Q&A.
+Yeah, very good.
+[APPLAUSE]
+All right, I see the first question.
+Hi, thank you for your great talk,
+and thanks for making Zogot.
+I've seen people using it, using game jams and stuff,
+and it's a really amazing project.
+So just two kind of points.
+First of all, I didn't see you talking about the Quest 3
+on your slides, or X-word development
+as being something that God of developers are targeting.
+But it's also-- you know, that's a growing platform,
+and we should be trying to make games for X-word.
+And also, there's an awful lot of innovation in that space.
+So if you want to make like a totally new experience,
+which has never happened before, you know,
+you can develop it for X-word.
+You can have holographic things,
+and you can interact with the real world.
+So just wondering if you've any thoughts on that
+as something that we should be doing more as God of devs.
+And just related question, I've seen some devs
+on YouTube complaining about God of Android performance.
+God of three apparently is faster than God of four for Android,
+and I'm just wondering if you've any thoughts on that.
+Well, I can speak to the first one definitively.
+I probably can't speak as well to the second one.
+But-- so when Miguel and I decided to do this ago thing,
+we were actually looking at the Vision Pro.
+We knew it was coming out, and we
+were starting to play with the SDKs.
+And so it was good timing that Unity
+said that that would be a good time for us to check out Godot.
+And so we definitely-- so I think the area of VRXR,
+that is something Miguel and I are very interested in being
+in that space, and getting Zago onto iOS and iPadOS
+is kind of a necessary step on that journey,
+and also happens to have a much larger market.
+And I also think that you make an excellent point with Quest,
+both as being capable of running Godot
+and being accessible hardware.
+And so we don't currently have a way to target that directly,
+but it is something that we're looking at,
+because it would-- it makes a lot of sense,
+like totally agree.
+The only thing I can say on Android
+is that I have a Chromebook that I
+run the Android version of Godot on.
+It runs fairly well for me.
+So I haven't-- I don't have a lot of direct experience
+for it when I want to check how a behavior is in an iPad or iOS
+versus how it is on Android and how they're handling touch.
+I fire it up pretty often.
+It works pretty well for me.
+Godot Con in Boston, we had the metagies
+they were speaking about Android adoption,
+and it's pretty wide and pretty popular.
+And people-- again, sort of the message I had from earlier,
+like that is the computing device that they have.
+And they use it for that.
+So, yeah.
+Is there another question?
+Ah, yeah.
+This is really amazing.
+I did the iOS game with Godot.
+And it's a huge hassle to get at working.
+And even from a Windows, testing out iOS games is amazing.
+This is also work with C#, or maybe knowing Miguel.
+It works with Swift.
+Yeah.
+So both are possible.
+I think it's more likely that we would do Swift earlier.
+But realistically, GDScript is very popular.
+And it's pretty useful for iterating quickly.
+So we're going to be pretty focused on that for a while.
+C# would bring a lot of dependencies in, unfortunately.
+So I can see where in this world where you're developing
+from Godot, and maybe Godot, and Visual Studio,
+it might make a lot more sense.
+So I was like, I wouldn't say it's off the table.
+It's totally doable, as is Swift.
+But right now, we just want to be pretty focused on delivering
+a great experience for what we currently support.
+With that, the time is up.
+So please give another round of applause.
+Thank you.
+[APPLAUSE]

@@ -1,0 +1,343 @@
+API URL: https://api.media.ccc.de/public/recordings/93486
+Frontend URL: https://media.ccc.de/v/godotfest2025-beyond-the-loop-a-primer-on-interactive-music-in-godot
+Title: Beyond the Loop: A Primer on Interactive Music in Godot
+
+Hello everyone! Wow, that's a full room now! No pressure! That's the worst way to start a
+talk, right? So let's take a deep breath and welcome Paul. Paul today has a talk called Beyond
+the Loop. And when I read that title, I was very intrigued. I do a lot of game shams and oftentimes
+music and audio is like a second class citizen when things get stressy. And then we end up a lot
+of times with a simple loop. So now I'm really curious to hear what's beyond the loop, what we
+can learn from you. So give a warm welcome to Paul and let's get into the talk.
+Thank you everyone. If Peter before me with a Fmod talk for Godot hasn't kicked you over the
+edge to get a composer today, I hopefully will do the trick just now. Before we dive in though,
+I want to show you a little bit of a video clip as an introduction, which I hope now plays with sound.
+Yeah, I'm sorry for that. We'll have to go back and change more settings.
+No, that's completely fine. I'm sure everyone has the same mess on their desktop. Okay, let's see. That sounds better.
+So if you were thinking nice music that you wrote to this video of this very small indie title, I'll have to disappoint you.
+I didn't bring my film scoring 101 slides today, and I think you might also be at the wrong conference for that stuff.
+the music is listening to them instead of the other way around.
+You're definitely in the right room today because I want to present you an option how to build a system that like this musically encapsulates the essence that all games share and common in a musical way, which is interactivity of course.
+the game.
+a a a a a a a a a a a a a a a a a a
+generating oracle chat GPT. So according to chat GPT, interactive music is music designed to change in real time in response to listeners or systems actions inputs like touch movement choices or game states rather than a fixed recording.
+It's built from a modular or generative system, generative elements with rules enabling a depth of non linear playback. Jesus Christ, that was a mouthful.
+So you know everything, right? So you can go out and build your your audio system now.
+So I think we need to unpack that a little bit before we dive into it.
+So what do we actually mean when saying the music reacts to inputs?
+Well, usually we have a certain context that we use to discuss interactivity and in the context of music that is within one track or between tracks.
+The latter is probably the most most immediate and simple form of interactivity.
+If something happens in the game, do we change to a different musical track or do we start to stop the music, right?
+On the within the same piece of music part, it's a little bit more nuanced and complicated.
+So in order to discuss that, we'll have to look a little bit at music theory.
+Not going to go through scary parts, just assemble stuff and talk about musical structure a little bit.
+So every piece of music we essentially have is made up of what we call a section,
+which is usually audibly very distinct or logically distinct from one another.
+I think you've all heard terms like bridge, chorus or verse from pop music before, right?
+So that's going to be the labels that we're going to be using today, essentially,
+because it's the easiest way to label a musical section.
+So if we have a piece of music, we can say, okay, I can divide this up into these sections.
+For example, they're even visually very distinct, and then we can label all of them all the way through.
+Great, so how the hell does this help your game now, right?
+Like, what does this have to do with anything?
+Well, usually in interactivity, we refer to how any of these sections interact with themselves
+and with other sections in the same piece of music.
+It might sound really complicated, we'll shed sunlight on it step by step, but broadly speaking,
+we only have pretty much two different types of interactivity in music,
+and that is horizontal and vertical interactivity.
+So maybe let's start with the vertical part first.
+Every section that you've just seen is made up of what we call layers or stems,
+which could be an instrument or instrument group, essentially.
+So if we look at our track that we have had, we could say, oh,
+this section is made up of drums, strings, winds, and synthesizers, right?
+So looking at a more concrete example here, we could say we have these layers in the track,
+which are essentially our bass, our drums, our piano, and strings.
+This presents us with a very unique opportunity,
+because these are all vertically stacked on top of each other, playing at the same time.
+So we now can essentially adaptively decide to only play a certain amount of these,
+like we only play the drums and the piano, for example, or we only play,
+or we play everything except for the drums.
+This is what we call layering, actually, in interactive music,
+and it is essentially how a section interacts with itself without interacting with any other section.
+So it doesn't matter what any other section is doing, it just matters that what this section is doing with itself.
+Looking at our whole track overview, now we'll have to look at how we can make sanctions interact with one another, right?
+So seeing this, you're probably thinking like, yeah, the layout is always the same, right?
+You would play this over and over and over again, and it might get pretty stale really quickly.
+So how can we actually maybe change this up a little bit?
+What if we go from the chorus one to our verse three instead of our verse two after?
+So we have the unique opportunity to change up the horizontal layout of our track as well,
+which, as you might have guessed, is called horizontal interactivity,
+which brings me, essentially, to a decision you have to make every time you come to the end of a section,
+which is one of two options that you have.
+First, do you want to repeat the section?
+This is what we would call looping, essentially, in horizontal interactivity, so we can repeat a section until a certain condition is met, for example.
+On the other side of that, if we come to the end of a section and we have the opportunity to go to many different sections,
+depending on a certain condition you've set, for example, that is what we refer to as branching.
+Great.
+So now we have all this knowledge about music theory and interactivity, but how does this communicate with your game at all?
+Like, how do you make this react to anything?
+For this, since I know that every single game that you guys are in this room building today is very different from one another,
+I just want to go over three very basic principles that we use to set up this form of interactivity.
+The essential cornerstone of this is an event.
+Events can be triggered by virtually anything.
+Maybe your player hit a crit in combat, or the train is running into the section, the train station, for example, as we saw before.
+We can communicate that thing happening to our music system using events, essentially, and then set up behavior happening upon that.
+Closely tied up with that is what we call the game states, which is essentially also just a parameter that we set up to be saying something
+about the current state of the game, as the name suggests, which could be like, am I currently in combat?
+Maybe am I currently under a certain threshold of health? And that is probably the most interesting way you can set up your audio system in general,
+like finding certain game states that make your game unique is probably a good way to go about structuring your entire system.
+On the most granular level, then we get the real-time parameter controls.
+These are our most immediate weapon of choice, so you can directly connect any parameter in your game to, essentially,
+something happening in the music system. Might that be a filter opening up or closing down, or a certain layer coming in?
+Could be virtually, essentially, anything.
+Great. Now we have our game connected to our music system.
+How do we make this sound good? Like, imagine you're in the exploration layer and you're walking around and then combat happens,
+but you're like halfway through your exploration section, right?
+That would be pretty jarring, essentially, if you just switch to a new track and do something completely different.
+So, in order to smoothen that out, we have a couple of weapons of choices.
+The most immediate one, basic one, maybe, would be what we call a stinger, which is a short musical effect that we can use to break up music,
+high transitions, or even start or stop the music altogether. I also have a little audio example that hopefully plays.
+Very dramatic, I know. If you do that over and over, since you've heard it's quite noticeable, that would probably get not only draining for your ears,
+but also very, like, annoying over time, right?
+So, instead of doing that, what if we had a shorter musical section that we only play when we go from one to another that are very contrasting between them?
+That is what we usually call a transition, or a connector, or a transitional material.
+Now, having these two in place, you are essentially 90% of the way there.
+But that doesn't mean you have spent 90% of the time, which means there is something that you always have to do,
+which is usually cross-fades or certain types of envelopes you have to set to hide for one technical issues, maybe.
+So, you don't want to get clicking in your audio, for example.
+But then, also, you want to smoothen out every transition, every stinger that you use and blend them together.
+So, this part probably takes the most amount of time when implementing something,
+and audio people are also very, very picky about that stuff, and we spend the most time nudging very small values to another small value.
+But also, this kind of, all of this depends on the audio middleware you were using.
+You saw a lot of the stuff that Peter did in Afford earlier, if you were here for that.
+So, how do we actually build something like this in Godot natively without needing to take on middleware?
+Before we dive into that, let's have a quick recap.
+So, we've talked about what vertical techniques are, what horizontal techniques are, how we connect our audio system to our game,
+and then also how to smoothen out some of the bumps in between with some basic techniques.
+For this purpose of the next section was essentially the main event on how we can build all of this in Godot natively
+within your audio stream players introduced in 4.3 and beyond in Godot.
+I have prepared a little demo, which I hope plays.
+Before we dive into that though, I kind of want to present you the structure of the track a little more just for you to know where we are going and what we are doing.
+So, we essentially have a bunch of different sections here, which the first one is our main menu.
+So, you can imagine after pressing the start button you essentially go to our exploration layer,
+then that goes into a combat section which branches either between a winning or a losing state,
+wraps around to our main menu in the end.
+We also have one string layer and one piano layer in there to make a little bit more, create more variety for the player in the exploration phase.
+All right, so let's hopefully give this a listen and see how that sounds.
+Okay, great.
+So now we are in our main menu, you can imagine the player is pressing start, so we go to game.
+Stinger in between, as you could hear, now we are essentially in our exploration layer.
+Let's imagine we want to add some strings to this.
+Oh shit, I'm so sorry.
+Okay, that looks better.
+Great, so let's imagine we go to add some strings now.
+Let's imagine we also want a piano playing step now.
+And then we go maybe to combat actually now.
+Small transition in between.
+Maybe now the player is using health, so we have a real-time parameter control here that is attached to a filter.
+Which we can dynamically close or open.
+Very, very simple stuff.
+And then let's say we still got one shot somehow and we lost the holding counter.
+So now we are in our sad outro section, you have lost.
+Please refund the game on Steam, you had your two hours of fun.
+Great, so this should bring us back all the way to our main menu.
+Right.
+So what does, what makes this essentially possible is the new audio stream players that were introduced.
+And Godof 4.3, which namely are these two beautiful things.
+First, the audio stream player is synchronized, which essentially allows you not only to import one audio stream,
+but multiple at the same time and place them as the name says back synchronously.
+On the other hand of the spectrum, sorry, that first one, if you remember verticality, right?
+Multiple stacked on top of each other.
+On the other hand, the audio stream interactive allows you essentially to import multiple different clips
+and transition between them or switch between them and employ certain rules
+for how transitions between certain clips are to be handled.
+That very much is our idea of horizontal interactivity, right?
+You can also stack them inside of one another to create very, very complex stuff if you'd like to for today.
+As you've seen technically, I'm also just to keep the smaller, reducing it just to the audio stream interactive.
+So if everything you've heard so far is only the audio stream interactive.
+Great.
+Before we can dive into how we actually set that up in a good old,
+you will have to take care of your music files though, because they need to be in a certain file format,
+which is the OGD voice format.
+It's the only one that currently is supported to attach all of the BPM beat and bar count information to.
+So if you want your audio stream players to work correctly and you don't know what's going wrong,
+it might be the audio clips that you've imported into that one.
+So let's know.
+I hope I can just scoot this over.
+Take a look at the audio stream interactive that we've set up here.
+I hope this is somewhat visible for everyone in the room.
+So essentially here you can import all of the clips that are needed for your music system.
+It's super simple.
+It's just essentially an array of all the stuff going on.
+If you click on one of them, you can also see all the information that need to be imported.
+So if your beat count, bar beats, your loop that can be enabled or not.
+And then also you get one more feature, which is really cool, which is the auto advance.
+So essentially if you want at the end of the section always to play certain other section,
+you can just put that into the auto advance.
+A little disclaimer, if you do more complicated stuff, the auto advance is still a little bit buggy.
+So if something doesn't work as intended, it might not be you.
+It might still be a little bit icky with that.
+But essentially that is all you have to do.
+You really just have to throw them in there.
+You have this array, but nothing happens, right?
+If you say switch from one track to the other, all it would do now is essentially stop the old track,
+start the new track, would be super abrupt, nothing happening.
+So you'll have to do one more thing, which is opening your transition matrix here,
+from which you have a whole lot of options to choose from.
+These are all of our clips to transition from and to.
+So let's pick maybe one here, which would be from our main menu to the exploration layer.
+So here you can see you have to enable the transition essentially.
+You can choose a transition starting point.
+So when a transition is triggered, do we want to make the transition on the next beat,
+the next bar, or at the end of the clip, for example, same you can do with your transition to.
+So do you want to go to the same relative position on another clip, or do you want to go to the start of it?
+Then you get all your crossfading options, which are unfortunately still a little bit limited.
+But you can essentially choose which fade option you want to choose and how many beats you need to crossfade between two clips.
+The last one is a really interesting one. This is our filler clip.
+So from our origin to our destination clip, you can insert one more small audio clip
+that you would like to play in between every time.
+So in our case, for example, I chose the stinger just to hide the transition and make it a little bit smoother.
+Overall, but that is essentially everything you would need to do to pull that off.
+So as you might have noticed, we have done something very weird.
+We have done vertical stuff from which you thought, oh yeah, that's the order play is synchronized.
+All the stuff stacking on top of each other.
+We still did something vertical.
+We added a layer on top of an already existing track, namely the piano or the strings.
+And we haven't even used the audio stream player synchronized.
+So why is it better to use the audio player and track to fear than using the audio stream synchronized?
+Well, it's quite simple, actually.
+It's the material that we use to layer on top.
+As you could hear before, both the strings and piano are essentially melodic material,
+which means if you want to pull off something musical there,
+you want to have at least a certain amount of the melody playing
+before you can logically stop it and go to the next thing.
+So in my case, it was much easier to actually just slice that up into two bar frames
+than put that into the audio stream interactive and transition between them.
+I could, of course, also cross fade in between that with the audio stream synchronized,
+but since that one is not really synchronized to the beat unfortunately in that way,
+I would have had to write a helper function that tracks my play head
+and then does a bunch of calculations where I'm in my track right now just to essentially cross fade between them.
+So there is an easier option that is more consistent essentially in the audio stream interactive.
+Great. So now, essentially, we have a pretty good understanding, I would say,
+of what the new audio stream players do and how we can pull that off.
+So all that is missing is the question why a lot of people are here, which is the code, right?
+I've seen a lot of different ways of working with GDScript and stuff like that,
+which is exactly why I'm not going to expose my source career,
+and I'm just going to talk the on paper approaches basically how I would pull that off.
+The first one is super simple. For game jams and anything that's small on scale,
+I would definitely just recommend going with the stuff that you have here.
+The audio stream players don't expose a lot of functionalities apart from these,
+but they're already powerful enough to turn essentially any game jam game
+still into an interactive score that you could turn out essentially in '72, '48 or one week maybe.
+So really just the set sync stream volume on the audio stream synchronized
+and the audio stream interactive on the interactive player you can either switch by name or by ID.
+On the other hand, if you want to build something bigger,
+I would definitely recommend you build a wrap around the whole thing
+to give you some more flexibility for bigger projects like we have, for example,
+with FMOT where we have a lot of fallbacks, a lot of safety, a lot of flexibility
+that we simply don't have here out of the box.
+So I'm just not going to expose my shitty spaghetti code here on stage.
+Instead, you can go into that yourself if you want to.
+I'm just going to show you on paper how I did it for the demo essentially.
+So like we've discussed, I'm going to use the events as our incoming signal for our music system,
+which then go to an event bus, which is essentially kind of a dispatcher,
+so it enriches it with our note hierarchy and stuff like that so that we know where everything is,
+which then finds the corresponding blueprint for the event that we've just pushed,
+which essentially is just a list of actions.
+So stuff like transition to this clip, change my game state,
+do X, Y, Z, open the filter on that or apply effect X to another bus.
+The actions are then a little bit more concretely bound to our game states,
+which essentially make the system react more consistently,
+more depending on the game than rather than the event that was called.
+But the actual heavy lifting is then done by the controller in the end,
+because it interfaces between our more abstract music system that is here on screen and the actual notes.
+So that is what's executing essentially all of that.
+The big advantages essentially are these. You have a single trigger with multiple effects,
+just like we would have that in FMOT essentially.
+You get a lot of consistency in guardrails, loose coupling,
+reusability in composition, and also safer fallbacks.
+I think those were enough buzzwords to get that across.
+After talking so much about super technical stuff,
+I kind of want to touch a little bit on the human side,
+especially on the aspect of working with the composer,
+getting your hands on that nice music for your game,
+and making them understand what you essentially want out of your audio.
+So the first step of how do you find a composer?
+Usually that's the easiest part. If you have a game studio,
+you just check your inbox usually. There's already a good selection there.
+If somehow no one has ever reached out to you,
+you also have a bunch of options in Discord, communities,
+or game jam servers to even try out working with people.
+That's something I would recommend doing.
+The third one is one part of the ad. I think that doesn't belong there anyway.
+Also events like this one. We have a bunch of composers sitting here front row,
+so if you want to get one, grab one.
+And also third party platforms like for example Twine,
+if you're really, really brave and you have a deep pocket essentially.
+For the actually working with the composer part,
+I want to propose an acronym that I came up with called KEPT.
+Because it's easy to keep in mind, right?
+To just streamline your process a little bit with onboarding and everything.
+So the first part of KEPT, which is the K, is know your game.
+It's essentially the essence of all game dev. You need to know what you're building.
+When you're onboarding someone, you need to make them understand what is your vision.
+Talk about your narrative, your game mechanics.
+All that stuff is really important to us as composers,
+because we want to interact with your game as much as possible in the stuff that we're doing.
+And then also on the extension of that,
+we also need to know who your player is.
+Who are we writing the music for in the end the same way who are you building us for?
+The next one, which is the actual collaboration part, is emotional first.
+I get asked quite often, do I need musical knowledge? No, you don't.
+It's nice to have sometimes. Sometimes it's even a little bit hindering, depending on what you're building.
+But you don't need it.
+For one simple reason, and that might sound really morbid right now, but composers are emotional, master manipulators.
+I know. Not very nice thing to say, but it's true.
+So rather than talking about, oh, I want the music to sound like XYZ at this point in the game,
+talk to us about what the emotion is you want your players to feel, how you want the gameplay to feel,
+maybe what the narrative arc is or what the characters are experiencing in that moment.
+That is way more important for us, because all the translation from emotion to music,
+that's why you get us, essentially. That is our job. That is what we're good at writing music.
+Yeah, which brings us to P. Music, like any other art form, is about taste.
+We need to know yours, to a certain extent.
+Which means that if you have a musical ear, you have a concrete vision for how you want the game to sound,
+please do create a playlist. That's the easiest way to establish a common language between your composer and your death.
+Essentially, which means that, well, with everything in life, a quality playlist goes over a long one any day of the week,
+and you get big brownie points for even writing down why that track is on that list.
+Tell me you like the drums at 30 seconds on that clip.
+Tell me that you like how that emotional stuff feels at two minutes on that clip,
+that maybe this particular piece of music would really fit for this boss fight, for example.
+That's the easiest way to communicate that. Once you've done it, please do write that down,
+maybe into an audio bible or an audio design document as a single source of truth,
+for you to always come back to with your composer and update constantly, essentially.
+Speaking of process, the word associated with that the most is probably trust.
+You need to find someone that you can lay your visions, you can put your vision into good hands with,
+so you need to get along with them personally, that would be great,
+and also someone who maybe gets your ideas, that would be even better.
+Because in the end, as composers, we do know when we miss the mark, for example.
+We know how to write music, so if something in the process usually isn't clear,
+it's more of an understanding issue than it is a music writing issue for us.
+We have to also play test your game, that's what that means.
+We have to figure out an experiment with your music system
+and try to really come up with something that fits like a glove,
+and to do that we'll need to have two things, your trust and your time.
+We need to fail experiment just like you do in the game development process,
+which also means the earlier we are on the team, essentially the better your score is going to be,
+because we have the time that you also have to build the whole thing.
+The last point that is not in the framework, which is a footnote that was there all along,
+is that you shouldn't get to have fun with this process.
+As you saw in the earlier talk, there's a lot of challenges in audio that you need to get through,
+that you need to have discussions about, so keeping that light and trusting your composer
+is probably the most important stuff.
+I hope that after all of this rambling from my side, you walk away with a curiosity,
+or maybe even a subtle understanding of the importance of music for your game,
+and maybe are a little bit keen to dive into the whole good though music system
+and build one yourself at home.
+Big thank you to the good office organizers for having me,
+also to the game teams that I get to work with on a daily basis for their trust in my process
+and to roaming out for the nice slide designs.
+If you want to get the slides, they're at the QR code,
+and if you want to get your hands on the demo, please find me, hunt me down,
+and I can give you a list where you can enter your email and we'll send it to you after the talk.
+Thank you very much, everyone.
+[applause]
+[music]

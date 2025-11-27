@@ -1,0 +1,478 @@
+API URL: https://api.media.ccc.de/public/recordings/71301
+Frontend URL: https://media.ccc.de/v/dgna-56139-netzpolitischer-abend-zu-kuns
+Title: Netzpolitischer Abend zu «Künstliche Intelligenz: Hoffnung oder Hype?»
+
+Hello. Okay. So good. Hi and welcome everyone. So about tonight's evening, that's called
+Councilion Telegance or artificial intelligence, hope or hype, chat to BT's consumer introduction
+has forced AI into the media, academic and regulatory spotlight. Self-proclaimed security
+experts warn of an apocalypse, privacy activists label it as marketing hype and investors are
+rubbing their hands together. What is so intriguing about AI? How does it work? What are its
+potentials and limitations? And what role should Switzerland embrace as the world begins
+to govern AI? We're very excited to be here tonight, where we will hear from our special
+guest, Dr. Maria Grazia-Tufreda from the Swiss National Supercomputing Center. My name
+is Roberta Fischli. This is Daniel Donuch, and together we will host tonight's event
+on AI. As you might have noticed, we host this evening in English. Our guest is from
+And she feels more comfortable giving this talk in English and since this topic is so international, we figured it can't hurt to try something new.
+All right.
+So many things are new, but a few things stay the same in this format, so that's also how the
+evening will go. So it's about one hour, which we also record and live stream. So whenever
+you're asking questions, you're free to ask questions, but be aware this will be recorded
+and saved in the internet forever. But you can't be seen. So the cameras are mounted and placed
+in a way that no person from the audience should ever be seen. Yes. So we will have an introduction
+and then we will discuss the topic after the one hour, where you say bye to our guests from
+live stream and to recording, and we can keep talking here casually. The bar will open again
+and we can enjoy ourselves. And of course, also keep talking with the evening. That was a topic.
+So also, still the same are the three partners. They are very loyal, even though I try to
+would like to thank them and mention them. So first of all, there is Karl Grosse,
+so which is the actual building we're in now. Then we have a media partnership with bots.
+So people which are physically present have the opportunity to take a watch home
+and read on their on the train ride, train ride, whatever, a free example.
+And last but not least, I would like to thank the video operations center from Kale's computer
+club without them. So no live stream is possible. So they provide us with the infrastructure,
+basically the server infrastructure for the recording and the live streaming.
+So but now, where is our guest? And what is all about her? Please, Roberta, tell us.
+Okay. So I met Maria Grazia this summer when we both participated in a science communication boot
+camp hosted by Swissnecks in San Francisco. And I very much remember her shock reaction when she
+told us that she was working for this national super computing center. And that Switzerland
+was building this national AI infrastructure. And most of us were just like, what? We've never
+heard of this. So I'm extremely excited that she will be here tonight and tell us more about AI,
+its origins, the future and also what it all is about when it comes to Switzerland's role
+in this new AI governed world. But first, let me tell you a bit more about our speaker.
+So Maria Grazia is associate director at the Swiss national super computing center in Lugano.
+She studied computational chemistry in Belgium where she received her PhD in 2001.
+After that, she was a postdoc at ETH Zurich in the computer aided chemistry group. In 2006,
+Maria Grazia started to work at the Swiss national super computing center as a user
+and application support specialist. In 2013, she became associate director of the user program
+and in charge of the user engagement and support unit, as well as the account management for the
+for paying customers. And since 2021, she's responsible for and coordinates the strategic
+roadmaps of the center. Apart from that, Maria Grazia is also in charge of the national calls
+for proposals and the review process for the selection of the scientific project and the
+distribution of compute and data resources. And she's responsible for the communication with the
+user community and outreach. On top of that, Maria Grazia loves to read, travel, writing
+and the mandatory leisure activity for everybody who swiss. That's hiking. So thank you again for
+being here tonight. Maria Grazia, and we are excited to hear from you.
+Well, being here is relative. Maybe you also want to say something. Can you hear us? We can't
+hear you at least. You had a lot of fun by hearing your introduction. I hope it wasn't wrong.
+Thank you very much. That was perfect. Thank you. And thank you also for allowing this evening
+to be in English. Grab the German. Yes, we wish that we would have you here in person. Maria Grazia
+had to go to Paris for a really important appointment, very last minute. So she prerecorded her talk
+and will join us live again after her presentation. But where is Switzerland positioned in this AI
+initiative? Well, this was federal. This looks better.
+But where is Switzerland positioned in this AI initiative? What's wrong?
+But where is Switzerland positioned in this AI initiative?
+Good evening. And thank you very much for inviting me to this evening where we are going to talk
+about the consumer intelligence opening other type. What I'm going to do in the next few minutes
+is to give you an overview of what I believe is artificial intelligence, how it works,
+a little bit of history, AI today, the future of AI, and then what comes next?
+What is artificial intelligence? Well, I must say that artificial intelligence is a relatively
+young discipline, especially if you compare it with physics, chemistry, and very well-known
+scientific disciplines, because in our understanding of the artificial intelligence is about 60 years
+old. This is basically a set of sciences, theories, and technologies that basically are aiming to
+imitate the cognitive abilities of the humans, and also their abilities to making decisions.
+So pretty much what we are trying to do is teach computers to perform certain tasks,
+to make choices following rules and patterns, and in the end behave like the human brain.
+But how does AI work? Actually, the AI is only a complex set of equations or algorithms
+that is known as neural networks, where you have a lot of parameters, thousands, millions,
+and sometimes you can even have billions of parameters that need to be adjusted in a process that is
+called machine learning. And why do you need to adjust these parameters? Because the ultimate
+goal is that you get reliable answer for a large set of input data where you know your
+output. So basically everybody knows the story about the muffins and the dogs. So your input data
+might be actually images, and every pixel of your images and then your output will be whether you
+have a UC, a cookies, or a dog. There is no magic. I mean, this has to be clear. There is no magic
+behind artificial intelligence. There is just an enormous computational effort to try to find the
+best parameters for the machine to give always reliable answer to a certain set of problems.
+This is nothing that in my personal opinion, this is nothing than the trial and error approach,
+with that you try just to make it smarter and clever with certain mathematical approaches so
+that it is actually less random. So in the beginning, it was cybernetics. Actually, this was cybernetics
+was an attempt of unify mathematical theory, electronics, and automation. So this was an interdisciplinary
+field where they were studying systems, controls, communication, in many things, animals, machines,
+organization. And the first scientist that was actually talking about cybernetics was
+no better to be in his book cybernetics of control and communication in the animal and the machine.
+And actually cybernetics come from a great words that is used as very common nowadays,
+because they are new tools called Kubernetes. And the word is exactly Kubernetes, which means
+guide, the statement, exactly to give this idea of control and regulations. But it was actually
+later on than a few years later than a group of scientists led by John McCarthy came out with
+these terms artificial intelligence because they had to write a proposal for a conference and they
+used these new terms. Some rumors, but I don't have scientific confirmation about this, said that
+John McCarthy came with artificial intelligence because he simply didn't want to use the terms
+cybernetics. But actually, we need to thank John von Neumann and Alan Turig that they did not come
+up with the terms artificial intelligence, but they actually came with a technology that is
+behind the artificial intelligence. So basically, these two very great scientists formalized and
+finalized the architecture of a contemporary computers. And they actually proved that this
+machine could do was able executing what it was programmed for. And then it was in 1950 that Alan
+Turig was writing this computing machinery and intelligence article where it was actually putting
+together for the very first time the words intelligence with computers. And it was describing an imitation
+game where actually the human should have been able to distinguish whether it was talking with
+a human or with a machine. And despite the controversy about this paper and about Turing,
+it was the very first time that we started to discuss what were the boundaries between computers
+and humans. But when are we today? Now, in the next couple of slides, I'm going to flood you
+with a number of examples that the show simply showed you that we are living in a world where
+artificial intelligence is actually a very important part of it. I'm not sure how many of us would be
+happy to go back to the times where all what I'm going to present did not exist. What about the
+virtual assistants, Siri, Alexa, Google assistants? These are simply assistants that use artificial
+intelligence to understand and then respond to our voice commands. In this picture, this is how
+Siri looked like in the Big Bang Theory. If any of you is a fan of it, well, actually,
+the Kutrapali fell in love with her. But what about search engines? We all know Google, Safari,
+Bing, Yahoo, and all the things that came before that. They are using artificial intelligence
+algorithm to actually answer our search recommendation system. Why do you think that when you
+switch on networks or Amazon, you are immediately flooded with recommendations to your liking.
+So basically, they are artificial intelligence algorithms that look at our past behavior and
+our preferences and come up with similar suggestions. I don't know this vehicle. There is no car
+anymore. Or maybe there are still some very old one driving around perhaps not in Switzerland.
+We have artificial intelligence in our car when we are head to drive to park and things like this.
+I was recently in San Francisco and they are these little cars without driving or driving around
+the city. You can book them because they are available as a taxicab. Also, the drone business
+is progressing very, very fast. Very recently, I was at a talk when they were presenting the results
+of a drone that was for the very first time faster than a human dream and drone in, of course,
+in a controlled environment. But what about manufacturing and robotics? You know that in the
+industry, they have automated a lot of things. And this automation is nothing else than the result
+of AI. Also, we want what we call our smart homes, where we control whether the windows are closed,
+whether the doors are closed, or whether devices are switched off. And this is all artificial
+intelligence. At care, in medicine, they are already using artificial intelligence to assist
+with medical imaging analysis or drug discovery. Also in the personalized treatment. What about
+the energy? We all know that AI helps optimize energy consumption, optimize the grid management,
+the prediction of maintenance in the energy sector. So the AI is already there. And even in
+agriculture, they are starting to use what they call precision agriculture, optimizing crop yields,
+and also they are monitoring livestock. Again, even in the environmental monitoring,
+we received a lot of data from satellite sensor and AI helps us monitor the environmental changes,
+help us understanding the climate patterns, which are all very important to our survival.
+Inside the security, AI helps us to detect and prevent security threats to identify
+patterns anomaly in finance, credit cards, risk assessment. There are algorithms for trading.
+There are algorithms for fraud detections. And we as not used at least once these checkbox
+or language translator, how happy are we that we can go in Japan? Even if we don't speak Japanese
+in very rural places, and we can communicate with these people by using Google Translate,
+which translate in real time in the language. Maybe not in perfectly, but still good enough
+to allow communication. So with this, I am just saying that despite all the hype and all the fears,
+we are living since decades in a world that is AI driven. But what is the future of AI? I was very
+recently in a one day event co-organized by the AI center already at Zurich. And actually,
+some of these things were presented and discussed there. The future of AI certainly is generative
+AI. Up to now, AI applications were always using what they called predictive AI. So basically,
+you make prediction and provide insight based on existing data. And you do not generate new content.
+With this generative AI, actually, what we are doing is teaching the machine to create and
+by teaching the machine, the machine is actually learning to create a new fresh output. And
+that are coming from learned training data. And basically, example are the AI-generated text.
+Now you can have a chat GPT that generates text for you or generate new images. So from
+human description, language description, AI generate new pictures. Or we have
+generated speech. Now you have AI voices that can speak and can translate in many languages
+and can simulate several accent or AI generated videos. So generative AI is the direction that AI
+has now taken. Another one is the multi-modal AI models. So basically,
+models, this new AI idea is to train models to discover relationship between different types
+of modalities. And different types of modalities could be text, images, video,
+audio. So the idea is to be able to combine all these models to have a better picture,
+to have a more refined picture. And this could be a very, very useful, for example,
+in medicine, where we could, where actually, doctor or the healthcare personnel professionals
+could actually understand better what's going on and also come up with better predictions.
+Another aspect of the AI that we need to deal with, because it is here, this is what it is,
+is the democratization. Basically, democratization means that AI is available and accessible to
+everybody. We all know that AI, that to access the tool of AI, you just need a browser.
+These tools are very user-friendly. You don't need any special training to use these tools.
+And they are actually quite inexpensive. Yes, it's true. From some of them, you have to pay,
+but usually the financial investment is minimal that the majority of people can afford if they want.
+So AI has a lot of implications. This democratization of AI has a lot of implications and impact on
+individuals or business, but ultimate on our entire society. Another aspect that is very
+dear, and I think it's also the cause of very, very heated, sometimes discussion, is the workplace
+AI. It is absolutely true that once you adopt AI in a workplace, you are going to, of course,
+improve processes, productivity, incomes, and of course, this will have an impact on replacing
+jobs, but also, and I'm pretty convinced of this, creating new jobs. So what is going to
+happen, and it's already maybe started to happen, is that certain skills will no longer be useful,
+and then we are in need of new skills. So there will be job disappearing, but certainly new jobs
+appearing. So workforce, we need to acquire new skills to adapt, to change, and the new skills
+might be as exotics, as analytical judgment, emotional intelligence, creativity, critical thinking.
+So basically what I'm trying to say is none of us has lived an industrial revolution, but we have
+certainly started in school, and we don't even know basically where the jobs that these people had
+before the industrialization, but I'm pretty sure that we would not want to go back to do those
+kinds of jobs. So of course, the generations that lives the transition will suffer, but new jobs
+will certainly be created. If people are willing also to acquire new skills, there is plenty of
+opportunities out there. And because AI has many aspects that make it more efficient than
+human being, it's scalable. So AI can be more accurate than compared to human. AI can perform
+a lot of monotonous tasks in freeing the human resources for more challenging
+tasks. And of course, AI can be also faster than human beings. But if we accept all this,
+there might be a new world opening up where humans have to be used for what they are good at,
+thinking, taking difficult decisions, navigate very complex situations.
+I'm just giving you some very small examples in healthcare. AI power robotic process automation
+could be extremely relevant if this will reduce the output, reduce the effort of the personnel,
+because they will perform out the tasks like data entry, scheduling, administering process.
+And this will have an impact of reducing human hair or better workflows, and of course,
+having more time to ensure more accurate patient treatment. Also, they are thinking of AI algorithms
+that look at the patient data, such as genetic information, medical history, real-time
+physiological data that can be put together and understood and analyzed to then come up with an
+optimized drug delivery system, so an optimized cure. Or again, if you can, as already mentioned,
+if you can automate certain tasks, then you will free healthcare professional times,
+and they will focus on what is really relevant from them, the complex decision-making.
+The AI can have diagnosis images. It will be the resolution. The AI helps in improving
+resolutions. And improving resolution means to see better, understand better, diagnose better,
+and ultimately intervene faster and more target in a more targeted manner.
+Or what if they are thinking, everybody in the world will be able to go around with the AI smart
+device. Some already are doing this wearable AI devices. They take your data in real time and
+then can alert both the users and the healthcare providers and understand better the risks and
+now actually to minimize them. So with this, I'm just saying, yes, it's true. AI is going to change
+our old world. Probably AI has already changed our world without us even fully recognize this.
+But what comes next? Well, the next part is a demanding part because AI needs
+ethical regulations and laws. AI comes with great power, and as usual, with great power
+comes also great responsibilities. I will not deny by any circumstances that they are in risks,
+and they are very important risks. They can always be bad actors that they are misusing
+AI's. They can always use it to manipulate people, to misinform people, creating fakes,
+breaching privacy. They can be lack of transparencies. They are AI bias that we need to deal with.
+And these are all risks that they are there, partially we are already seeing it. So we need to
+do something. And actually, I'm very, very happy to say that the European Union
+is leading this regulatory initiative. They are already at a document where they want to put in
+place a regulation of the AI that they are going to present in 2024. So we need laws,
+we need the regulations, because this is part of human history. We can go throughout any
+invention, any discovery. And for each one of them, we have an amazing, beautiful applications,
+but we will always have also a very bad one. Because I am afraid without being,
+I think, too philosophical. This is a bit also the human nature. So this reflects human nature.
+So with this, I hope that I have given you some ideas for discussions, and I want to thank you
+for your attention. It will help me to do this opportunity. My knowledge is unique,
+good, good, and unique. This is a discussion on the President's decision.
+How the eco-fed us English is output, so fin and dank.
+English is definitely good, right? Yes, yes. Thank you so much for this presentation.
+We're going to start with some questions. And then please, if any of you wants to
+chip in or have something that you want to ask or comment on, please let us know.
+All right, I'm going to start. So you gave us a great overview over the history and kind of
+different application contexts of AI. So I was wondering, what's one of the
+application fields that you are most excited about? And then also, what's an area where you
+think that we see a lot of hype currently and where the expectations might be a bit overstated?
+Well, in my personal view, I think that there is a lot of hype and fear because there is a lot
+of misinformation. I mean, if rather than clarifying and explaining to people what the
+artificial intelligence is, it's not really an artificial, it's not even an intelligence.
+It's just, I mean, it's a machine that still does what we tell human, tell the machines to do.
+So I think that much of the hype and the fear is due to the unknown, as usual, again, this is
+human nature. But it's also due to the fact that we don't explain in clear and understandable terms
+what this entire business is about and what we are trying to do and why I'd be useful for us.
+I was mentioning briefly my presentation about the Industrial Revolution. I mean,
+do we have an idea of what kind of unhealthy jobs these people were having because nothing
+was automated and they had to do everything by end in the worst condition or the worst situation.
+Of course, the times are changed, so I fully see that. But I still believe that there is too
+much misinformation and too much crazy talks allow me to say this, too much crazy talks that simply
+people don't understand anymore what we are talking about.
+So when it's said, a lot of jobs got lost in industrialization. So I don't know,
+so for people who are afraid now of losing their jobs because AI could step in,
+do you have something in mind or do you have ideas what kind of new jobs will be? I mean,
+as a person also working a little bit in machine learning, I know there is a job
+called data labeler and it's not a job I would like to have. I don't think that's really the
+bright new future if many people are going to work as a data labeler.
+So from this perspective, or where do you see here hope for more jobs, more interesting jobs?
+Or, yeah? I mean, I totally see the problem there and this is why I also mentioned in the
+presentation, I do see that unfortunately the generation that lives the transition
+will be the one that will suffer a little bit because not everybody will be willing to acquire
+new skills or not only willing, but maybe not everybody will be able to acquire new skills.
+And so I don't try to minimize the impact at all. I do realize that for certain people,
+this will have a huge impact. The thing is that we have to in a way be a bit
+fatalistic and accept the fact that I don't think we can go back is as simple as that.
+I don't think we can stop. With my example, I only wanted to show we are living in an AI-driven
+world right now and since decades and jobs have been changing already. Of course, the new skills
+that they are needed are of course technical skills, computer-related kind of skills and
+at least from my perspective, this is what I see. And I'm not even saying that at a certain
+point there will not be still some sort of routine kind of jobs for us even though there is an AI
+involved. But there is the world that is evolving and unfortunately, I don't think you can stop it.
+If you whether we like it or not, we cannot stop it. What we have to be very careful though,
+in my personal opinion, is not to lose the focus of teaching our young people to have
+critical thinking because the danger that I see is that with this chat GPT, all this chat box and
+this kind of things, these tools are by no means precise, by no means they tell you always the
+correct information but the problem is that they require knowledge from the user.
+So if you are not knowledgeable of what you are or if you don't have a certain understanding
+and a certain knowledge, the answers to the question that you pose to these tools can be
+completely wrong and if you do not teach our new generation to be critical, to ask questions,
+to not accept anything for granted and always wanting to go deeper and understand better,
+we risk to create a generation that lives in a fake reality in the end because you believe
+in something that actually is basically wrong. I don't know if it's clear what I'm trying to say
+otherwise I can explain better or try to explain it better. I think it is. I do want to push back
+though a little bit and ask, well, the way that you've been presenting the latest technical
+developments and it's this unstoppable force and it's already here and all we can do is adapt.
+If I'm playing devil's advocate, it could also a position that's very much being
+taken by big technology companies that say, well, it's already happening so you might as well adapt.
+I was wondering with all these big technical revolutions, there was also always civil society
+that played a very active role when it came to either protesting or organizing or trying to shape
+what this revolution will look like. Right now what we've heard so far was very much
+kind of the technical advances and then, well, the way that we can mitigate the harmful effect is
+when we educate citizens and we educate like children and then also we need to have very strong
+laws and we need to have regulations but I'm wondering what can be the role in of society and
+maybe of activists in also shaping this development or do you not really see one?
+Well, this is a difficult, an important question but still is a difficult question because
+the way I see it, of course, my starting point is what I know and what I do in my daily life,
+the point is that the artificial intelligence business has grown already exponentially.
+Now there is a race between big companies to actually build a super duper compute infrastructure
+to do the actually to do this AI. The thing that I see it as a big big risk that nobody has actually
+grabbed and nobody is complaining about is that these big companies are actually making money
+by using public data and this I think is a big issue but nobody, not a single one, is complaining,
+is yelling and shouting about these activists, they are not doing anything. We allow big private
+companies to use public data to make money. Why is that? Why no one's complaining?
+Why are we happy to give all our information, all our data to Google, whatever,
+chat GPT tells you whatever you tells me becomes my property, not chat GPT, but Microsoft
+is behind it. So I think there are certain aspects, again, please do understand I'm not
+the expert. So this is what I mean. I try to follow a lot of the discussions that are ongoing
+in this field and I fully agree with the fact that this is a big issue but nobody seems to really
+pay attention and to really complain about this. From which side would you expect
+here action or counter action? So would it be the people who donate or should it be
+more kind of politics for the law or researchers others or from which side would you expect most
+here? I think that there is really a very, very urgent need for laws and regulation to really
+put a stop to all this and say, guys, we need to really think what we are doing and how we are
+doing it and not allow this wild world to do whatever they want basically.
+So I think one side is for sure our politicians, the regulators and the lawmakers, that's true.
+But also we users, we need to be aware of what we are doing. We need to be aware of how we use all
+this infrastructure and all these tools. We are becoming like, I don't know, robots but in the
+worst sense because we do things just automatically without asking ourselves, what are we doing?
+What are the consequences of what I'm doing? What are the consequences of telling Facebook every
+second where I'm going, where I am, what I'm doing, I mean, I don't want to shift the
+responsibility on users but users have to be conscious of what they are doing.
+I agree. I think it's a very difficult point here and I would like to hear actually your opinion.
+It's easy to say, well, no one is forced to use Facebook or no one is forced to use whatever
+but in nowadays life it's quite difficult if you're not using this. I mean, I can tell you from my
+private normal life so I'm not using WhatsApp for all these reasons because there is relatively
+easy way out. There is three months signal, right, and signal is even for free but for some of my
+friends that's a showstopper. They say, oh, I have one app on my phone and that's enough and if you're
+not there then I'm not texting you anymore. I was like, what? So telling the people need to be aware
+with whom or where they share the data is kind of simple even though I think they should be.
+But on the other hand, making a law and say, well, it's not allowed to use WhatsApp anymore is,
+I don't know if this would lead to the target as well so we cannot forbid everything. So
+it's very difficult to balance this. Well, I do agree with you. I mean, if you don't use all
+these apps, you basically sometimes you can't do anything. I mean, now, now there is, you can even
+book a hotel without having an app or the things like this. So I do see that it's difficult to live
+in a world that is AI driven and not using all these, all these facilitators, let's call it like
+that, all these tools and all these things. But the bottom line is we have to be conscious of what we
+are doing. We have to understand that what we are doing have consequences. I agree with you. It's
+a bit, I mean, it's an easy answer in a way, if you want. But I, these are the instruments that we
+have as a human beings, we have regulations, we have laws that allow us to do or not do certain
+things. And in a way, I think that that's the way to go. We need to regulate what is allowed,
+what is not allowed, we need to regulate our data are used, we need to regulate our data are used
+so that these companies do not make money out of those. Or maybe they make money, but not a huge
+profit at the expenses of public data. This is my point. I'm sorry, I don't have a more, a smarter
+answer for you. I'm, I am, I don't know, I wouldn't know. I would have to think what are the other,
+the other possible approaches and possible aspects. But awareness and understanding
+what we are doing is definitely important. Not us, maybe our generation still has a critical
+approach to these things. But I'm afraid that the younger the people, because they are born in this,
+they were born in this world. And they, they don't know a different world. They don't consciously
+understand what are they doing when they, when they share every aspect of their life
+with these tools, with these artificial intelligence. I mean, maybe one thing
+that we could also think about is that, again, coming back to this potential role of civil society
+or activists, I think one of the big problems is also that we often lack alternatives in the sense
+that we can't even ever, the way that we envision, for example, a digital future is so heavily
+shaped by the corporate narratives, because there aren't really a lot of attractive alternatives.
+And one of my favorite examples was this case in Barcelona a couple of years ago, where
+there was kind of a project that emerged out of the activist scene, where they ended up actually
+having government support, where they tried to create a new system where companies that were
+using public data and, or collecting data about the public had to kind of return the data that
+they collected to the city, so that then people could democratically choose what they wanted to do
+and that you could actually use these insights to improve public life. But these are extremely,
+and they're trying to do a similar thing in Hamburg right now, but these are such small and kind of
+niche initiatives, and they're often also supported by the same individuals, so that I also think
+that's probably something that we should really try and just push much more.
+Yeah, Roberto, but this is the point of our society. Unfortunately, we are no longer driven for the
+well-being of human beings, but we are driven by big corporations companies making money.
+I mean, I'm sorry, I say something that is obvious, but this is exactly the point.
+The alternative that we have is to not accept everything, no matter what, and try to really
+expect from our politicians, from our lawmakers that there is a regulation and that we are not
+simply forced to go in a direction because big companies have to make money out of this.
+And also, please remember that this machine learning, this AI, okay, machine learning,
+because from my point of view, it's always machine learning, it's never AI, but this AI business
+requires an enormous amount of computer resources, enormous.
+You know the impact of the enormous amount of computer resources on the environment.
+Because we are not talking about Swiss National Supercomputer Center and the machine that the
+Swiss National Supercomputer Center puts on the floor, that this is not what we are talking here.
+We are really talking about the huge compute power that will have an impact.
+Without this huge compute power, there is no training in the machine learning.
+There is no data because the enormous amount of data required also, enormous compute power to
+analyze, to find patterns and everything that machine learning requires. So I think it's
+an obvious simplification to say that everything, I mean, of course, these companies have enough
+money that they can build huge facilities in the desert and nobody really realized that they are
+there and that there is an impact and that they are consuming power. This is also the other aspect
+of the business. And again, I'm not talking about single machine that Switzerland put on the
+ground, but I'm talking about really big, big, big compute facilities. I mean,
+facilities that probably would need a power plant, a dedicated power plant to power them.
+In the United States, this is not an unknown thing. There are certain big labs that they have,
+they own a specific power supply, dedicated, not specific, so dedicated power supply.
+So now, when you kind of made your own or our own super compute,
+being centered a bit smaller than it actually might be. So I still wonder,
+and actually I was thinking all about this all the time, so where can then Switzerland make an
+impact? Or why does it make sense for Switzerland, for the government, for universities and so on,
+to invest in AI, if you're such a small country and you're fighting big players like Google,
+Apple, Amazon, and all them, and they have so much more money, so much more compute power and so on.
+So where does it make sense? Or where do you see that also the purpose of
+this international super compute center? Thank you. This is actually a very important
+question and thank you for asking it because I wouldn't want to give the wrong impression.
+First of all, Switzerland by no means is competing with this big corporate world because this is
+not what we are doing. We don't have the resources, we don't have the power. I mean,
+there is no comparison, but with our infrastructure, what Switzerland is trying to do is to lead the
+direction that AI is taking. So basically, because Switzerland, as you said correctly, is a small
+country, and because Switzerland doesn't really have a lot of resources that they can use,
+they always, Switzerland has always always invested in innovation technologies and has always tried to
+have a leading role in the development, in the direction that this innovation is taking.
+And I think that this is exactly the role that Switzerland is taking. So Switzerland does not
+want to compete with the big corporate world. And by no means wants to put an infrastructure
+that can solve the AI for the world. What we are trying to do is to put there an infrastructure
+that will help Switzerland being in the leading role of where AI is going and the direction that
+it is taking. I know that that might seems like a big thing, but I mean, Switzerland has always
+had this role also in high performance computing. We are small, but we are really playing a leading
+role. And we want to do something similar with the artificial intelligence. So really be there,
+be present, but to steer the development and direction that artificial intelligence is taking.
+In a sensible, what Switzerland thing is a sensible direction, there is a guidelines that
+has been provided by the federation actually on how AI should develop. And I really recommend
+all the people that they are interested to read these guidelines. It's not a very long document,
+but it's very interesting actually to have a look at it. Could you maybe tell us a bit more about
+the specific work that the century is doing and what might be one of the innovative parts of it?
+Is it just the fact that it exists? Or what do you think makes it so special?
+Sorry, Roberta, I didn't fully understand. Can you repeat your question?
+Yes. So basically, when you were talking about the role that Switzerland can take, you said, well,
+we're doing all this, like Switzerland again is investing in this very innovative technology,
+and it should assume a leading role. And so I was wondering, what are some of the projects,
+or what is some of the work that the century is doing that you find particularly innovative?
+Is it the fact that the center exists and kind of that Switzerland has this national project that
+invests into AI? Or are there some more concrete applications or projects that you could tell us about?
+So, but first thing, the Swiss National Supercomputing Center existed as high performance in Israel
+as the leading infrastructure for high performance computing. So this is a very powerful scientific
+calculations that are now used in many disciplines. And the fact that we were changing the
+computing infrastructure and going more towards this AI infrastructure has been due to some very
+important use cases that we had in mind. So we have not simply gone in a different direction,
+because we were bored with what we were doing before. But there is one of our use cases that
+has convinced us that this was the direction to go is, of course, everybody has heard the climate
+change problem. So basically, climate is in need of the climatologists really now have to make an
+effort to really be able to recreate virtually what they call the digital twin of the earth
+so that they can understand actually how the climate is evolving and how it's moving.
+Now, the explaining a digital twin seems an easy thing to do, but actually they still have to work
+on the model. But the other problem is that they will produce an enormous amount of data,
+enormous amount of data. So we talk about a petabyte of data per day. So it's really something
+enormous. And so with this idea in mind that we need to understand how we can intervene in this
+world where the climate is changing. I mean, we are seeing the consequences.
+Middle of October, it looked like summer. It was 30 degrees also in Zurich. I was in Zurich.
+We were still swimming in the lake. I mean, this is really something that can be nice,
+maybe for if it happens once, but if the climate is changing and this will have enormous consequences.
+So one of our driving use cases as being the climate, because we really also, you have to know
+that Switzerland is very strong in the weather and climate. And because also of our long-term
+collaboration with Matthew Swiss, because we are also offering the infrastructure for Matthew Swiss,
+this has been the use, one of the use cases that has been driven the direction of going
+towards this big new Alps infrastructure, where data is the central part. And this is what AI means
+for us. So how to deal with the data flow and so applying machine learning to the climate data.
+So this has been the driving force to build this new infrastructure. I hope that I answer more
+your question. Yeah, I mean, that was really fascinating. Do you have
+some more open questions, or should we open the? Yeah, we can. I actually have one, but I guess
+there's anyways one question you don't want to have recorded in the end. So we pushed this question
+to the part afterwards. So then we stop here for the live stream and the recording part.
+Would you please continue to be online? I just want to announce when the next time,
+when we meet the next time here for the next let's put it a job that's in roughly one month
+in, on November 23rd. Hopefully then also is the guest live here. It's going to be
+Gerhard Andre, who is then likely still to be a Natsan Alarath. We will find out next weekend.
+And we are talking with him about Dikitade Suwanetad. And then another event I want to
+advertise is the Winter Congress, so the largest gathering of Dikitade Geserseft
+in the right. So this will be on Friday and Saturday, first and second of March.
+Then we are at the moment we are running a crowdfunding campaign to collect money for all our
+law cases which are ongoing. So as an example I'm not sure if what it would be
+correctly short, so I'm saying it in German. So things like Kabul alfklerung or the
+Afroldstadmeshvajirung, which we are fighting on the lawsuit case against them,
+which are one of them is even now at the stage of the European court. So they are
+costing a lot of money if you want to support them. So now it's the time to support our
+crowdfunding campaign to support these and the other law cases where we are
+we as Dikitade Geserseft are fighting the mode. And for people which are new here,
+so there is a whole long list of ways how you can stay connected with us as Dikitade Geserseft.
+So the QR code will send you directly to the page where you can register for a newsletter,
+which shows up once per month. People who like to listen instead of read, I can recommend the
+net podcast, and then we have on many better and less good social media channels at presence.
+So here is Masudom, Instagram and the former Twitter link, and mentioned that we are also
+available on others. Well, and if you want to become a member, then this is the way to do it.
+Dikitade Gespongteon/ishmochamit. So I'm joining basically on German. We're happy of every active
+and passive member who ever is part of the new digital society. Well, in one of the order case
+you're anyways, because the society is becoming digital. But yeah, that's it. So then I want to
+say goodbye for the online audience. Thank you for watching. And of course, thank you, Roberta,
+to joining the team today, and I hope you're not just today here. You will be on
+further nets for the show up in here. And last but definitely not least, thank you very much.
+Maria Grazio for being with us tonight. Thanks.
+Thank you very much. And thank you again for allowing these to be in English.

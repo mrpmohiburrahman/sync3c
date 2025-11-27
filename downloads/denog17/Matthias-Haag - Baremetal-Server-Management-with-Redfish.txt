@@ -1,0 +1,190 @@
+API URL: https://media.ccc.de/public/recordings/93239
+Frontend URL: https://media.ccc.de/v/denog17-79083-baremetal-server-management-with-redfish
+Title: Baremetal Server Management with Redfish
+
+(upbeat music)
+- Okay, so our next lightning talk series
+starts with Matthias Hark.
+He's the bare metal enthusiast and co-founder
+of a hero tech providing open source cloud platforms
+to their customers.
+And today we will learn about bare metal management
+with Redfish.
+- Thank you.
+Yes, hello, I'm a TS, I'm founder and CEO of Verutac.
+I have a long history in Unix-Linux stuff
+and not that much network stuff that most of you
+probably have, yeah. (laughs)
+But always look from the server side of the network
+and keep keen in bringing open source to enterprises
+and I meditate every morning and I say, yeah,
+if everyone would do that on his own will,
+I think you would have peace on world, yeah, but we'll see.
+So, why did we come into this bare metal provisioning
+with Redfish?
+So first we wanted to have Kubernetes and bare metal
+in order to run open stack there
+with Kubernetes operators.
+And we wanted to have completely automatic provisioning
+of the bare metal service with operating system
+Kubernetes on it.
+We wanted to have the firmware updates
+automatically done from some engine
+and also do the firmware settings.
+And we want to have a free web networking on the host.
+So we have a FR demon running on the host,
+peering with the leaf switches
+and propagating the routes there.
+We made some decisions.
+They said, okay, let's use open source
+as much as possible.
+So we did not want to reinvent the wheel
+or do things on our own when it's not necessary.
+So this is Pragma, we live in our company.
+We wanted to use existing tools.
+So this was KVUs, Kubernetes, of course.
+And then we found a tool upstream,
+which is called Metacute.
+It's basically in Kubernetes operator,
+which has open stack ironic standalone inside.
+And this ironic instance is managing the bare metal service
+and it's ironic, it's very good in doing that.
+So re-implementing all the stuff
+which is in there would have been very, very much work.
+And unknowns, which are already solved by ironic,
+you would have to solve by your own on your own.
+And this is something we did not want to do.
+So that's why we decided for this path.
+And we decided to use Redfish rather than AIPMI
+because it's decided a newer protocol
+and has advantages.
+So it has more features, basically.
+And I'm excited you will see what we are doing there.
+And AIPMI is so-called deprecated.
+It has security leaks here and there.
+And so we said, okay, let's go for the Redfish way.
+And yeah, so on this slide you see the data flow
+when you do a inspect with ironic with a server.
+So the red arrows, you see the redfish calls.
+So, but let's go from top to bottomed.
+So a user adds a bare metal host to the Kubernetes
+which is handed by the bare metal operator.
+It tells the ironic server here.
+This is a new node.
+Please check if you can access it.
+The ironic says, okay, let's check.
+Is there other credentials valid?
+And if everything is fine, information goes back.
+Afterwards, it started inspection.
+And for this inspection, for the start of the inspection,
+ironic can create a customized ISO image
+for booting the servers.
+This helps to bring the layer three networking configuration
+for the first boot, for the inspection boot of the server.
+So you be basically at their networking information.
+So ASN numbers, BGP secrets, whatever is needed,
+for the connecting to the network.
+And this ISO image is pushed to the ironic HTTP server.
+So this has several components in the ironic there.
+Then we have this, then ironic turns off the server
+to be sure we have a clean state.
+Then it mounts this prepared ISO EPA image.
+EPA stands for ironic Python agent.
+We are redfish to the BMC.
+And this BMC now has to pull this ESO
+from the HTTP server.
+And basically this is already the first point
+where you get nice, interesting things.
+If the implementation of the BMC,
+then the boot device is set.
+We are redfish and the server is turned on.
+And if everything goes right,
+you boot the server with this ISO.
+And you don't need the data fabric of the server first
+until this point to spin it up and to make an inspection.
+Only, and then you see in the last lane line,
+then this RAM disk image is booted
+and it inspects the hardware and sends back this image
+to this data which was gathered to the ironic server.
+And after that you can handle it
+and you can say, okay, what do I want to do
+if the server I want to have it as a Kubernetes control plane
+or whatever, and you can provision it
+and then the next flow goes on.
+This is just an inspection.
+And you already see there are just a few redfish calls
+which should work out of the box for every BMC.
+But this is not the case here.
+So for AMI implemented, AMI implemented BMCs,
+you can only boot from Samba or Sifs or NFS for example,
+which is not covered by ironic for example,
+there's only HTTP boot possible and so on.
+Then we want to have some,
+want to do some other management with the BMC as well.
+So from simple stuff like you have an initial credential
+for a BMC, you want to set a password
+to change the password, sometimes works,
+sometimes not from the before the BMCs,
+which is really basic stuff in my opinion.
+And set a static network configuration, same experience.
+Yeah, you have at the beginning you have a DHCP configuration
+on the BMC, you want to switch to a static one.
+It says, okay, everything is fine,
+but it does not set the configuration.
+Beers parameters works well, for example,
+with super micro but other implementations, yeah, so, so.
+And updating BMC and BIOS is interesting as so.
+So what is the total sum up for us?
+So we have we got documentations from the vendors,
+which say, okay, this should work, this works like this,
+this endpoint is there in redfish,
+but these features are not working.
+So this is, it's just documented, but it's not working.
+So in a form project, we had a lot to work
+with the Thomas grand dies.
+They are very close to the hardware vendor
+and they were able to fix the stuff, yeah, so, but,
+if you are, for example, using a Dell or whatever,
+yeah, you're just a number, yeah, so this is really hard.
+And yeah, and getting okay means nothing, yeah,
+so this is really, you get an okay from the redfish API
+and use, but it does not work, it does not do anything.
+Firmware updates, we had really less BMC,
+so we had to turn off the servers and flash them.
+We are worked cable, yeah, again, so this was really hard, yeah.
+And this interaction with firmware vendors
+is not always possible, yeah, so we would love
+to give feedback to these vendors and,
+but if you are just a consumer,
+you are not in the way to, yeah, to interact with Dell or HP
+or something and to give this constructive feedback there.
+And yeah, and I always say, yeah,
+this redfish specification is just treated as an idea
+by most hardware vendors, yeah, they say, okay,
+we have this tree for us and we do it on our way
+because maybe we know it better and yeah,
+that's a little bit annoying for if you do automation, yeah,
+so because you want to treat the servers all in one.
+But there is light on the horizon, yeah,
+so we, there is an open BMC implementation,
+there is core boot and this implementation,
+we had the luck to have them in hand already
+and this is different, it works, it just works, yeah,
+so it's so, I say, it's possible and,
+but we have to take care because AI for example
+is also capturing this open BMC
+and they do their own open BMC implementation,
+which is of course different.
+And yeah, so if you have the opportunity to talk
+to any hardware vendor, if you are asked,
+what would you prefer, tell them open BMC
+from the upstream project and contribute
+to the upstream project, this helps everyone at the end,
+I think, and yeah, that's it.
+Thank you.
+(audience applauds)
+- Thank you very much, yeah, we are on top of the hour
+so we don't have time for questions, sorry,
+but I'm sure people can find you in the break.
+- Yeah, of course.
+(audience applauds)

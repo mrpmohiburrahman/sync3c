@@ -1,0 +1,807 @@
+API URL: https://api.media.ccc.de/public/recordings/35193
+Frontend URL: https://media.ccc.de/v/c4.openchaos.2019.04.the-35c3-ctf-nokia-phone-challenge
+Title: The 35C3 CTF Nokia phone challenge
+
+I'm really glad to have Andy here today, and he is talking about the last "Captural
+Flack Challenge" from the last "Cals Communication" Congress.
+So we've known each other quite long, so we visit the Congress together like every year,
+and you're normally there doing some CTF, and I'm only there to talk and drink.
+But you're doing some really cool stuff there.
+And this year we talked a lot about your CTF challenge, where you built a nice challenge
+around mobile phones, and especially quite new ones.
+So it was pretty awesome, and I guess it would be a very, very nice presentation today,
+having you here, Andy, and telling everything about the CTF challenge.
+So yeah, give some big hands for Andy, please.
+Thank you.
+Okay, first a few words about me.
+Who am I?
+I'm Andy.
+When I'm not doing stuff at night, hacking stuff, I am a security researcher at Rapid7.
+We're doing, in the research team, we're doing internet scanning/zero internet scanning,
+and I am doing mostly honeypot research there.
+You can reach me on Twitter or on IRC, usually.
+I am part of the CTF team called Eat Sleep Pone Repeat, or ESPR in short.
+We are one of the biggest German CTF teams, three teams fusion after some time, and yeah,
+we have been responsible for the C3 CTF of the past few years.
+We've always been doing this, I don't know, I think six years by now, with different,
+with different, under different names like Strato Mohur, or whatever there is CCCAC in
+the beginning, and yeah, the talk is going to be about my challenge that I did, a two-stage
+challenge based around GSM stuff.
+During the CTF, so when I developed this, I made a video as a progress report to the
+other team members, and I tweeted this during the C3 CTF, and that thing went viral.
+That thing went more or less viral, because it looked like that.
+What you can see in the back is all my development debug consoles and all that stuff, the different
+programs running, the base station running, and all that stuff, and the window you can
+see in the middle is what I built, and it looks like a Nokia phone, but it really isn't.
+I built this thing completely by myself, and it's even able to talk to real phones over
+a GSM network.
+That is just to show off, I can show that later working actually, and explain you how I did
+that, but the phone itself is more or less GSM compliant.
+The only feature it has is it can send and receive SMS and log on to a network.
+That's it, but that was enough work already.
+The story behind that is, well, that looks great, me.
+What is it doing?
+As I said, I always wanted to build a GSM challenge.
+The problems I had was I didn't know shit about GSM.
+Of course, I played around with it, because they were open source tools available, but
+I didn't really know anything about the inner workings of it, like how is an SMS sent from
+a GSM base station, sure, and it worked, but as soon as I encountered some kind of problem,
+I was just not able to properly debug it because I didn't know enough about it.
+Also as I said, the inner protocol is no idea about that.
+The C3CTF has the problem that remote teams need to be able to participate.
+Teams all around the world want to play, and I cannot just set up a GSM network using RF,
+because then it would only be locally available, and there are regulatory problems, because
+I would need a license for that and all that kind of stuff.
+Then the question is, what should I implement?
+I can't build everything from scratch.
+I can't build a base station and a baseband and the UI and everything from scratch.
+In the beginning, in the 31st, the C3, I built a similar challenge, which already used the
+UI code that I wrote, but that was much simpler.
+This is a video from the Polish Dragon Sector team, where you can see the thing booting.
+What that was is you log on by your telnet, and then you see a text UI that resembles
+a Nokia phone.
+This is actually the exploit already.
+It looks like a Nokia phone.
+There was a bug.
+This is the SMS editor.
+You can see that there is some text being written there.
+The bug there was that you could fill up the SMS space with 160 characters, and then you
+can add a template, and add additional 160 characters into that buffer, which would overflow
+the buffer, and you would exploit this.
+What you can see here, this garbage that shows up on the screen is the shellcode that
+is being written into that buffer, which contains the exploit, essentially.
+You get a shell.
+There is a small command prompt in the bottom, and there's the shell.
+This was the first iteration of that challenge.
+And now it's back to weirdness again.
+Yeah.
+This thing didn't have a real baseband.
+It didn't do any GSM stuff.
+There were two CPUs in a virtual environment.
+The first one running the UI using the telnet ASCII art interface, and the second one was
+the baseband, which was really a baseband, which was just some film we're running, and
+the UI talked to this over some shared memory interface, and you could send SMS and the
+SMS would be printed on a SQL port, that's it.
+And then I found Osmocom and Virtual UM.
+Osmocom is a project, I think it stands for open source mobile communications.
+I'd better start it that years ago when he reverse engineered a GSM base station, and
+out of that effort, he founded a company, and he's doing all kinds of open source GSM
+stack and UNTS stack work there.
+Virtual UM is the solution for our RF problem.
+These people need to do unit tests.
+And because they can't for every unit test spin up a real base station, they replace
+the RF layer with UDP multicast traffic.
+So instead of sending traffic over an RF interface, it's being sent over UDP multicast traffic
+in one direction, and the base station would send it to the phone, like broadcast it to
+all the participants in the network, and the phones would broadcast everything over a multicast
+channel back to the base station for the other direction.
+This is a block diagram of a typical Osmocom based phone network containing GSM and UMTS.
+On the right side, you can see the core network.
+We don't really need to care about this.
+It contains the mobile switching center, which is all the call rooting.
+It contains the Osmo HLR, which saves the subscriber data like the crypto keys and your
+identity, your phone numbers.
+So if you log in, the network knows who you are.
+And on the left side, usually the core network just exists once per network provider.
+There is, of course, some redundancy if the HLR would break, then you wouldn't have any
+possibility to log on to the network anymore.
+So that's there multiple times, but it's one big entity in general.
+And then on the left side, you have the radio access network, and this is usually there
+multiple times.
+The lower blue box, the H node B is for UMTS.
+We don't need to care about that because we are not using any UMTS.
+Then there is the Osmo H node B gateway that's the interface from the UMTS base station,
+which is the H node B to the core network.
+And then on the top, there is Osmo BTS.
+BTS stands for base transceiver station.
+This is what does all the RF.
+This is what you mount on a cell phone tower and attach a tenorster.
+And then there is the Osmo BSC, which is the base station controller.
+And this is kind of like the zookeeper for all of the base transceiver stations you have
+because you might have multiple of them on a radio pole.
+And that's where the word cell comes from.
+Every cell or multiple cells even are controlled by the base station controller.
+And all of this stuff is available in open source.
+You can just download it, compile it.
+There are even devian packages by now, so you can just install it if you have the right
+hardware and devian-based Linux system.
+This is what I'm usually using.
+If I'm using real phones with my GSM network, I set one up here in this small arm box.
+It's just an old ride that I had lying around.
+It doesn't even need to be that powerful to it.
+Because I don't have a GSM base station at home, people came up with nice ideas just
+to use software to find radios.
+I have one here.
+This is a Lyme SDR.
+It looks pretty normal.
+I just built a black box around it because it just comes as a PCB.
+So you have the Lyme SDR on the left.
+And as a bridge between the base transceiver station and the software defined radio, you
+have something that's called Osmo TRX.
+TRX stands for transceiver.
+This is what takes GSM radio bursts, like small traffic packets essentially modulates
+them so that you can send it over in antenna and communicates with a software defined radio
+to transmit this over the year.
+And then there are phones like old-school Nokia 3310, 3330, whatever.
+Or special ones like the Motorola one you have here.
+I also brought one on eBay, which is nice because on this one you can run an alternative
+the firmware with an open source phone stack, and also made by the Osmo Comp people.
+And that's how you would build a GSM network at home.
+You just need to be a bit careful where you're transmitting and don't make it leave the room
+because you would disturb other people.
+And it's illegal usually to transmit on these bands.
+Yeah, in the case of the challenge, we are replacing that whole radio infrastructure
+with a GSM tab multicast thing.
+The cloud I drew in there in that diagram is just some random network.
+It might be a VPN, it might be just some local network, whatever.
+And then there is this work-fi thing which replaces the RF layer and uses UDP multicast
+to transmit traffic around.
+And then you can attach Osmo Comp Bb again and then you have a phone on the network.
+Of course you can't use real phones because they do RF.
+You can't tell them to transmit UDP multicast, so you need to have a custom solution for that.
+But for unit tests, that's fine because you need to control all the different components
+anyway.
+And you would write your test case some way, control Osmo Comp Bb, run your test cases and
+then observe log output crashes, whatever your unit testing involves.
+You can also combine these two just by starting a second base transceiver station.
+So you have one doing the UDP multicast stuff, you add a second one, you tell the base station
+controller, hey, you are now controlling two base transceiver stations.
+And then you would add the second one which talks to the software defined radio and the
+first one which does the UDP multicast stuff, which I also set up here so I can show that
+in a minute.
+Okay, so we solved the first two problems.
+I know stuff about GSM now because I had to set up everything and I can look at that stuff.
+Wireshark has some nice detectors for that UDP multicast thing.
+It's called GSMTap.
+That's the equivalent to radio tap headers if you ever sniffed Wi-Fi.
+In monitor mode on Linux, you get the Wi-Fi packets encapsulated in something called radio
+tap which contains meta information like what network it belongs to, what was the signal
+strength of that packet, all that kind of stuff.
+And GSMTap is equivalent because the problem, it contains different metadata because GSM
+is time slot based and there are no source and destination addresses like in TCP/IP.
+And the source and destination of a packet or burst called in GSM is implicit by the
+time when it was sent.
+Okay, so what should I implement and I can't build everything from scratch.
+I still have the UI code, so it was clear that I wanted to build a phone because the
+GSM network, usually if you're a hacker and you want to attack some targets, you would
+want to attack a phone.
+I already have the UI code from 31C3, so I figured I would just use that.
+I can edit SMS already, so I can edit them, send them, receive them, all that kind of
+stuff is there.
+I then added FBDef graphics instead of the telnet ASCII art thing.
+I just added FBDef graphics and libSDL for my local development efforts because it was
+easier just to have a small window with a UI in.
+And then the idea was to run this on an ARM CPU because traditionally phones are ARM-based.
+Even these Nokia phones, by the way, are ARM 7-based.
+Big endian, by the way, it's weird but that's the case.
+Okay, so we can use QAML for that.
+And I took QAML and added my own hardware platform because I needed to screen the default
+platform on QAML didn't have a screen, so I looked around and I thought I'd just use
+the screens, the Nokia phones use as well because funnily enough, the Linux has a driver
+for these.
+There is a subsystem called TinyFB or something like that that's used for, I think it's still
+in the staging area, but it works.
+There are multiple backend drivers implemented for these small displays that you would hook
+up to Raspberry Pi or whatever else and these things are used by makers a lot.
+If they use a display, it's just an SPI interface, you can hook it up.
+If you have an SPI controller somewhere on some microcontroller or an application controller,
+you hook it up, you configure the kernel correctly and you have a small console actually on these
+displays.
+So I implemented a QAML backend for the display because QAML didn't support that, attached
+to the SPI interface, configured the kernel correctly and I had a frame buffer console,
+which is the reason why I implemented the FB dev backend because that communicates with
+the frame buffer console and you can draw pretty pictures on there.
+How do we let remote teams participate?
+I just traded an open VPN network so you could just log into an open VPN tunnel and you have
+access to the BTS because it's just IP traffic after all.
+Okay, the baseband, that's a problem because basebands are complicated, but there is Osmocumbie
+B for these small Motorola phones.
+The problem with Osmocumbie B is it's not a phone.
+It behaves like a phone partly, but it's not a phone, it's a research tool and it doesn't
+have any kind of UI graphical user interface, it just has a remote text interface, which
+by the way is modeled after the Cisco VTY interface where you have to enter enable and
+so on, you will see that later.
+So I somehow had to take this thing apart and remove all of the debug stuff that you
+would use that usually for, all the text UI interfaces and so on and I removed all of
+that, at least the code is somewhat layered.
+The goal was never to create a phone, so I had to somehow make this work and I'm very
+sorry to the Osmocumbie people, but I completely bullshit this thing.
+The code is not very, very nice because I built this thing in the course of four to five
+weeks and I also ran somewhat out of time as usual, so initially I also wanted to make
+phone calls work, unfortunately the UDP layer doesn't support traffic channels where the
+voice would go over, so I removed that in the end.
+So I ripped out the complete call support in Osmocumbie.
+And also I needed to rely on ready-made stuff because the CTF goes over the course of 48
+hours and I can't expect teams to completely reverse engineer at GSM stack in that time
+span.
+They are perfectly capable to do that, but not in 48 hours.
+And to do that, I split the UI and the baseband into two different processes and made these
+things talk to each other over a unique circuit.
+So you have one process for the baseband, which then over another socket talks to the
+lowest GSM layer, which does the UDP stuff, and then you have another socket from the
+baseband to the UI where UI events go over.
+For example, hey, you received an SMS.
+Here is the raw SMS payload and then the UI parses this, writes it into SQLite database
+because it was the convenient thing to do.
+And it shows on the screen that you received a new SMS.
+Same goes for network events.
+You've got network connectivity or you lost network connectivity stuff like that.
+As I said, I bought your OsmocomBB, removed the call support, the CLI support, added the
+socket interface, tight UI events to it.
+There was already something they called primitives because they have a Lua scripting interface
+there which you can use to write scripts to send bulk SMS and so on.
+For example, if you have been to a congress and you were on the GSM network, you might
+have gotten some SMS involuntarily, I would guess that people used exactly that stuff
+for it.
+You can also do this with Nokia phones, but that is just to write some Lua scripts.
+And these primitives, they used for this were somewhat usable for that socket interface
+as well.
+Essentially, I'm just passing around union structs for every event.
+I have a struct in a union and then a type in the front which says, okay, this event is
+an SMS.
+This event is a network event.
+This is, I don't know, a shutdown request for the software to exit all that kind of stuff.
+And I got a phone.
+It was a lot of work.
+I got all of this, as I said, three, four, five weeks on and off.
+I had to work during the day and I had a bunch of sleepless nights before Christmas.
+On the journey to the C3, I added the box and started writing the exploits.
+On day zero, I built the rock chain for the shell codes together with Nicholas.
+And on day one, I deployed everything on our infrastructure because we had some servers
+where the challenges are supposed to be run.
+And I had to, so that not everybody was able to start GSM based stations because every
+team which wanted to play needed their own GSM based station, we needed some infrastructure
+where you click on a button, it would start a GSM based station or add you into a queue
+if enough base stations were running already because we don't have unlimited resources
+to run that stuff.
+But at the end of, or during day one, everything was deployed and the CTF started on day one,
+so it wasn't too bad.
+Okay, so problem solved.
+Everything ready?
+Now I also needed a SIM card.
+I had the phone but I didn't have the SIM card.
+I looked around and I didn't find any kind of open source SIM card implementations.
+I decided to implement my own one in another process and it implements the real APD use
+for communication.
+And APD use is just a byte string that goes to a smart card or comes from a smart card.
+This interface is standardized and every smart card, your banking card, whatever card
+implements this APD interface and on top of that you have an application layer with different
+messages that implement different things.
+And all of that for GSM is standardized in GSM 11.11, that's the specification you can
+download on the Etsy website and I implemented almost all of the necessary functions.
+So now there is an open source SIM card if you would like to call it that way.
+The banking store for the SIM card, the SIM card implements a file system, I have some
+slides for that as well.
+It's just a JSON file because I needed to be able to edit this and it was just convenient
+to just use a small JSON C parser and use that as a banking store.
+APD use look like that, the green boxes are a byte or multiple bytes and the first, this
+is just a byte string that you would send to a smart card.
+CLA stands for class, that's where magic value is in if you want to talk according to the
+GSM 11.11 standard, INS is the instruction, that's the upcode basically, P1 and P2 are
+parameters for that instruction, P3 is a bit weird because it's as far as I understand
+it, I'm not sure I did this completely right, is either a length of the payload that you
+attach to that APDU or a length of an answer that you expect back from the SIM card.
+In total there are five cases with different encodings available in different length with
+the fields either are the length of the sent data or the expected data and I think I implemented
+two of them, maybe three and I'm not sure if they are correct but it worked good enough
+for us to be for the GSM stack to talk to the SIM card so I didn't care.
+The response that you get back from a SIM card is payload optionally and then two status
+words that tell you did the operation succeed, did it fail, what was the error code and so
+on.
+The different instructions that USM 11.11 specifies are select, you can select the file
+on a SIM card by a 16-bit integer, you can get a status response which tells you which
+file is currently selected, what are the access permissions, how much free space you
+still have on the SIM card, all that kind of stuff.
+Then there is read and update binary, that's just for a binary file you can read and update
+the file, you can read, update, seek or increase record files, there are sequential files,
+for example if you think about SMS you can store 10 SMS on your phone, then this would
+with seek you would address the record that you, the record number that you would like
+to read, write or update, increase is I think just setting a pointer to the next entry and
+yeah, there are also, there's also a third file type that I didn't implement because
+I didn't need it, I forgot what that was.
+And then there is a verified change enabled disabled and unlock CHV, CHV stands for can't
+hold our verifications, this is what usually is known as a pin, you can verify it, that's
+basically entering the pin, you can change it, you can enable or disable it and you can
+unblock it, unblock is if you enter the pin three times wrong, then you need to unblock
+it with that PUK or whatever it is called in CHV speak, yeah and then there are a few
+special ones run the GSM algo that's for generating crypto session keys because the crypto key
+that you're using on GSM is stored securely stored on the SIM card, you can't extract
+it, but you can generate session keys, every time you do a call, an encrypted call or do
+some encrypted transaction, you run the GSM algo not every time, but nowadays the specification
+is open, providers were able to not run this every time and reuse the session key because
+the SIM card expires after a while, you can only run this crypto operation for a certain
+amount of times and providers wanted to save, well, some cards essentially because if that
+is depleted that amount of times you can run the algorithms, then you would need a new SIM
+card due to security problems, by now they should request a new session key for every
+single transaction they are doing, I don't know if they really do this but I think they
+do, sleep just sleeps, that's some smart card thing and get response is special because
+if you look at the APU as far as I understand it, if you send data with a payload, you set
+P3 to the data to the data of the length of the payload and then the SIM card, the smart
+card doesn't know how much data to send back, so what it does is it replies just with SW1
+and SW2 I think and SW1 contains, yeah, everything's fine and SW2 contains the length of data
+that you can then fetch using the get response and then you would issue another APU with
+the get response instruction and P3 would contain the length that you would like to
+read from the previous request to this smart card, at least that's how I implemented it,
+I don't know if that's correct but yeah it works, this is what the file structure looks
+like on a SIM card, the files don't really have names, they just have, they have names
+for human readability but they're not saved on a SIM card as far as I know, you have a
+master file that's just file name OX3F00 and then you have this tree structure where you
+can save the ICC ID for example that's an elementary file, it's just a binary file that
+you can read or write and this contains the card ID and then there is a directory file
+called telecom for example you can save stuff like the SMS center address or I don't know
+call counters your phone number, that's mostly for informational purpose I think and then
+there is the GSM directory which contains stuff for the network, this contains what
+is your home network, what is your emcee, your subscriber identification, all that kind
+of stuff and what I implemented for example I think that's the least minimum that you
+need is the ICC ID, then the GSM subfolder, then the last used location, the phone saves
+which cell it used last where it logged in so that the network search if you turn it
+on is faster because it looks up that file, tries to find that cell on the network and
+tries to log on and if you are for example a different country that would work so your
+network search would kick in the full blown network search which could take a few minutes
+because it then needs to scan all the bands and find the new cells and all that kind of
+okay see for example is the current session key for the crypto, PLM, PLM and cell is the
+home network and HPLM and specify some search interval for new cells if you're onto a cell
+I think if you're traveling around that specifies a timeout every n minutes or seconds it starts
+a scan and tries to find better cells that have stronger reception, the SIM card looks
+like this in the JSON, it's just a big JSON block here, it's just a big JSON object files
+the master file table, the file type, all the constants that you see here for the example
+the file type and the name and all of that stuff is according to the specification it's
+just decimal because JSON doesn't support hexadecimal, then you have the MC file that's
+file name, decimal, 28,423, file type 4 means it's an elementary file, file type 2 means
+it's a directory file, file type 1 means it's a master file and then you have the values
+that the size and the values in there, if that thing is valid, access conditions, we
+will see that later, what that means under which circumstances are you allowed to perform
+certain operations on the file, you may need to authenticate first and these are all the
+different files, the location file where it stores the last locked-in location, the session
+key, all that kind of stuff.
+Yeah, CHVs, that's specified in the JSON file below as part of the meta information
+for example, you can see the pin 1 is 1, 2, 3, 4 in this case, you have three remaining
+tries, it's enabled and if you are correct, we set the remaining counter to three and
+for the un-block CHVs, that's the PUK, if you enter the CHV 1 or 2 three times wrong,
+then you would need to un-block that CHV using 1, 2, 3, 4, 5, 6, 7, 8 and you have 10 tries
+for that, if you mess that up, then your card is blocked forever and you can throw it away,
+that's the theory at least, NKI is the secret crypto key that would be used during a run
+GSM algo, it gets a challenge response, I think a nonce and all that kind of stuff and then
+a5 comp 128 V, whatever algorithm runs on the SIM card and generates the session key which
+is then saved in that KC file here, yeah, card holder verification as I said is the pin,
+if CHV 1 is enabled, the SIM is locked after reset and every transaction, if you would
+like to redefine it, it's blocked, you need to enter CHV 1 and then you would do the
+verify CHV 1 and you gain more privileges and the standard access levels for file operations
+are either CHV 1, CHV 2, ADM which stands for Administration, it's a special one, if you
+provision SIM cards for example, or always which is without any kind of authentication.
+Okay, so we got a phone now, the environment that I gave to the teams looked like this,
+we have the QAMU and in that QAMU we have that FB dev device which is responsible for
+key input and the screen and we have the networking layer which is just open VPN which gets started
+and you get access to the base station UDP multicast network.
+In between, in the middle we have the baseband, the baseband communicates or something that's
+called trust zone interface with the SIM card because the SIM card lives in a trust zone
+environment, what this is, I'll have a slide later, then there is a socket for the UI and
+the baseband to talk to each other and the socket for layer 1, the GSM layer 1 and the
+baseband to talk to each other.
+The phone, okay now starts the fun part, this, as I said, this is my GSM base station, if
+I plug this in here, I can start it.
+Disclaimer, this RF doesn't leave the room, I checked before.
+So now I started the transceiver, the transceiver talks to the core network now and if I turn
+on this phone it should get a network.
+This is the, the upper one is the, is the thing that talks to the software defined radio,
+so that was the first GSM base transceiver station which uses the SDRs now, is now online
+and this phone should work.
+Now on the bottom terminal, I am going to start the virtual, oh I'm way too close to
+the radio, it's clipping, on the bottom terminal I can start the virtual, the virtual BTS,
+that's running as well and I should see multicast traffic.
+If I now go into my development environment for the phone, I just compiled everything
+to run on my x86 notebook, that's how I mainly developed this stuff.
+I can just start layer 1, I can start the baseband, I can start the sim card and I can
+start the UI and then you see the phone that starts up, I enter the pin and now you can
+see a bunch of messages flowing around and it already has a network.
+On the top left side you can see the GSM bursts that are sent using UDP multicast, on the
+top right you see stuff that's going on in the baseband, on the higher protocol layers,
+on the top left I see some debug output from the sim card, you can see that for example
+I'm getting APDUs, I'm replying to them and so on, on the top right, on the bottom right
+you can see some debug output of the UI.
+Now this is what the thing looks like, it resembles a phone of famous manufacturer back
+in the 90s.
+The only thing it can do is send and receive messages and you have the phone book.
+If I were to write a message now, so this phone has a phone number 1004, if I send an
+SMS to 1004, this is what you saw on the earlier video, we should receive a message
+shortly on this phone.
+I can also reply, of course, because why not.
+This thing doesn't have T9 by the way, it's a bit cumbersome.
+The phone number 999, I'm sending it now, you should see some traffic showing up there
+soon, ah yeah, there we go, and we received a message and I can also read it and it says
+Hi C4, yeah, okay, that was essentially only to show off, I'm just going to stop everything
+and just to be sure, we move the plug, okay, okay, so I got the phone, now where would
+I add bugs, the phone is only reachable via GSM, that was part of the challenge.
+You don't have a user interface, you have nothing, you have, and I gave the teams an
+environment for local development, which runs the phone in the QAMU, it was three Docker
+containers in total, one ran the QAMU, one ran the complete base station with the word
+phything, and one ran the complete, ran two Osmo.com BB phones as part of the network.
+So you could communicate with the target phone over GSM.
+The phone only has one essential feature, it's sending and receiving SMS.
+As you cannot interact with the UI, sending SMS is absolutely useless for you as an attacker,
+so something must be wrong on the receive SMS side.
+This is what an SMS looks like, on the highest level SMS are just byte strings that are transmitted
+over some GSM channel, to be honest I didn't even care how the inner protocol layers worked
+on GSM, I just looked at the application layers.
+All of that SMS stuff is specified in GSM 3.40 and there are different TPDUs for sending
+SMS, receiving SMS, for status reports, telling the core network, hey I received that SMS,
+you can remove that from your database, now all that kind of stuff.
+Because SMS are stored and forwarded, if you send an SMS to somebody, it is saved in the
+core network and then once your phone locks on it gets an SMS and then it tells the phone,
+it tells the core network that received the SMS and it gets purchased from the queue in
+the core network.
+Okay, so interesting for our case is the SMS deliver TPDU which is sent from the SMS service
+center to the phone.
+The first one to 12 bytes is the SCA, that's the, oh I didn't write that in the legend,
+good question what that is, the service center address, right, then there is a PDU type,
+it contains a bunch of flex, what kind of TPDU that is, is it an SMS receive and so on.
+OA is the originating address, that's the sender address, PID is, yeah I have no idea,
+usually you just set this to zero for a store and forward SMS, these CSS data encoding scheme
+and SMS, as you can see UD, the user data is 0 to 140 bytes but we can send 160 bytes
+over an SMS.
+The reason for that is that you can either 8-bit encode or 7-bit encode, the ASCII text
+and if you use the 7-bit encoding, if you do the math, you get 160 characters.
+So that's specified in the data coding scheme, SCTS is the time for delivery when the SMS
+is, I don't know which time, either the send time or the receive time, I'm not sure.
+UDL is the length of the following user data.
+So that's what the phone receives from the core network and it needs to parse this.
+The standard SMS is relatively easy, you just fill out all these fields and you can have
+an optional header in the user data in the end.
+If that header is present, you set a bit in the PDU type, if that is not present, you
+just don't set the bit and you don't have that header in there.
+This is used for stuff like ringtones and operator logos and SMS also support formatting.
+Nobody ever implemented this as far as another, you can have both text, italic and so on.
+And all of that stuff, you can have pre-defined animations, emails, all that kind of stuff,
+the spec is cool to read.
+And all of these features would be configured using or specified using this user data header
+that is in the user data then, if that bit is set.
+For normal SMS, as I said, it is either 7-bit ASCII encoding or UCS2 for Unicode-like encoding.
+I think there are different character sets for Arabic and Turkish and all that stuff in
+ASCII.
+But you can also use something like unicodes if you do the 8-bit encoding and set the data
+coding scheme to UCS2.
+And then UDL and UD just contains the data that you want to send around.
+For the special SMS, as I said, there can be logos, ringtones, concatenated text and
+so on.
+And in this case, the user data header is present to set this bit and the data coding
+scheme is usually set to 8-bit.
+That's actually not true, I think.
+Because I think you can also set it to 7-bit.
+It's been a while since I implemented that.
+The Nokia phones, the later ones, this doesn't, but this already supports concatenated SMS.
+You could concatenate up to three SMS if you couldn't express yourself in 160 characters.
+And the way this works is exactly by using a user data header.
+That means you set this bit in the PDU type that the header is present and then the structure
+in the user data looks like this, I just drew this below the user data field.
+UDHL is the header length that's following in bytes.
+IEI is the information element identifier.
+That's what this header describes.
+Zero means concatenated SMS, OXOA means it's text formatting, all that kind of stuff.
+And then based on the type, the following data has different lengths.
+So because of that, they added in information element length.
+In the case of concatenated SMS, that's three because three bytes are following.
+And then a reference number follows the total number of parts and the current part number
+of that concatenated SMS.
+That means in the Nokia case, if you fill up the complete SMS buffer and you would send
+three SMS, ref number would be some number so that the receiving phone can see that these
+three SMS that it received belong together.
+Parts would be set to three and part number would be set to either one, two or three.
+And then the payload follows.
+The payload can be in different data coding schemes.
+Padding one is the seven-bit ASCII again because it's seven bits.
+You may need to add padding.
+In this case, it's one bit because that is horrible to parse and horrible to build.
+Because you have first byte-wise structured header, then you need to add padding bits
+to make the address in the SMS, the offset in the SMS where the text starts, seven-bit
+aligned, and then the seven-bit text follows, which might not always align with a byte boundary,
+so you need to shift stuff around and concatenate it and so on.
+Luckily enough, Osmocom, the Osmocor, it's a library from the Osmocom guys which contains
+a lot of parsing code and all that kind of stuff already implements almost all of this.
+Yeah, in my case, the bug was in the SMS reassembly that Box was supposed to be a Unicode error,
+I guess Unicode is hard.
+So when the phone receives an SMS to my phone, it checks if the UDH present bit in the PDU
+time is set.
+If that's not the case, it's just going to interpret this as a normal SMS according to
+the data coding scheme and deliver this to the UI, or save this in the UI, the baseband
+forwards the raw string, like everything in green here, this string would be delivered
+from the baseband to the UI and the UI would parse this.
+So the phone then, if it sees that there is a header, it checks the information element
+ID, if that's type zero, that which means it's a concatenated SMS.
+If that's the case, the SMS gets put in a queue identified by the reference number until
+it sees that all of the parts arrived.
+If all arrived, it's mem copied into a buffer and it's presented to a user, like the big
+text that's now concatenated.
+If parts are missing still, it leaves it in the queue because there might be more arriving
+later.
+This is the appropriate code for that, just a small snippet, it's the function that would
+be called to reassemble and deliver an SMS that was deemed to be received complete.
+We have a character array with 460 bytes.
+You can have 459 characters in a concatenated SMS with three parts in total.
+So the character array is 460 bytes long because of the terminating zero byte.
+It's initialized with zero.
+Then I'm iterating over that list with the concatenated SMS parts.
+I am checking the data coding scheme in the case that it's 8-bit encoding, which wouldn't
+fill up the complete buffer.
+I'm copying stuff with a mem copy into that payload buffer, defined on the stack, identified
+by the part number, times 160 bytes minus 6, the 6 bytes is because of the 6 bytes header
+in front of the SMS.
+So we would copy 136, either in the payloads at index 0, 136 times 2 and so on, based on
+the part number, the SMS defines.
+Because I can't just copy it with 1, 2, 3 sequentially because the SMS might arrive in
+a different order.
+The data is being copied from the received SMS here at the payload data at index 6, which
+is directly after the user data header and the length is either the complete length minus
+the header that would be this case, or the length that is in the last SMS.
+So if you would have the last SMS not completely full, it would just copy a chunk of that.
+Afterwards, it calls some DB helper function which saves stuff and displays stuff in the
+UI.
+Now, where's the bug?
+Any ideas?
+Yes?
+No.
+That is correct.
+The last one, if it's not completely filled up, this term here is not, so the payload length
+minus the header is not larger than 136.
+So it would use this part, which is the length in the SMS minus 6, yes?
+The part number is not bounced checked, which means this part number can either be 1, 2,
+or 3.
+If I set this to 4, I would copy stuff at the end of this buffer.
+And because stacks grow downwards, I would copy behind that buffer where local variables
+are in the return pointer.
+So if I send an SMS, a concatenated SMS with, for example, part number 1, 2, and 4, then
+it would try to re-assemble this because it received three SMS and the total part number
+was 3.
+And by copying the data, it would copy the first two SMS into this buffer and the third
+SMS behind that buffer and overwrite the return pointer, which upon return of that function
+would be overwritten, and I can point this to my raw gadgets and get code execution that
+way.
+Yeah.
+Yeah, that's what I just explained.
+Yeah, okay, I have a demo for that.
+The idea behind that is I gave the team's netcat on the target device so that they would just
+need to execute a program on there and get a reverse shell back.
+A few teams tried to send the flag back using an SMS, but that would be the nicest solution
+of all, but the problem is you need to keep the UI from crashing.
+If the UI crashes, the baseband sees that the socket is closed and you can't do any
+kind of GSM transactions anymore and that caused a bunch of people problems.
+Also one interesting fact is a few people, especially from China, playing remotely had
+problems connecting to the base station over the VPN because GSM is time-critical.
+And if you have a lot of delay, then stuff might not arrive in time and you lose bursts.
+Okay, now what I gave the teams were a bunch of scripts to start all of that stuff.
+I'm going to start the base station now, that's just a Docker container, and the phone and
+you will see what's going on.
+This is the development environment I gave them with fake flags.
+So the flags won't be the real ones, but the environment apart from having a compiler
+and everything in the QM image, it's completely the same.
+Okay.
+So that's the base station and then...
+That's the phone booting, it's going to take a while.
+Okay, the pin code is one, two, three, four, hopefully it gets some network, yeah, okay.
+So it has the network connectivity, it's the only phone on the network right now.
+I am now, I built my own Docker container with a patched Osmocom BB in there, which allows
+me to send my three exploit SMS that I doctored in a way that the header is what I need it
+to be.
+That's just that run script, and now I need to copy and paste some stuff because I was
+too lazy to put this in a script.
+That's just to connect to the VPN, because all these containers don't have a direct connection
+that they have this VPN stuff, so that you can just use this against the development
+environment during the CTF as you would against the final challenge.
+This top right window contains the Word file layer one for Osmocom BB, the lower left is
+the phone, so that's running now and it's getting network access, that the output looks
+familiar because it's the same code I'm using essentially.
+And now you can turn it onto that phone and use the Osmocom BB UI.
+There was a way how to maximize a window in Tmux, does anybody know how?
+Yeah, control B, I know, whatever, I'm just going to do it that way.
+Okay, enable.
+We can see the subscribers, this is the first phone that's also on the network now.
+I can send SMS to the phone.
+We can test if that works, SMS 1, and then I can send an SMS to 999 and then it wants
+some text, and that should arrive now, yeah, okay, that works.
+No sound, sadly, also no snake, that's, yeah, okay, if we look at the exploit, it's dirty
+and I could have made this nicer.
+This is the function I'm calling soon over the text user interface.
+I'm building this SMS header with the user data header length, the information element
+which has zeros and concatenated SMS, the payload length, the ref number which in this
+case is 0x23 and three parts.
+And then depending on the parameter which is 1, 2, 3 or 4, I give it on the text UI, it's
+going to either send this SMS with this payload, this SMS with this payload or this SMS with
+this payload.
+The teams I saw playing this change did this way nicer, they created a proper command where
+you could just paste hex strings into the UI and it would send this, but I was just too
+lazy.
+Yeah, okay, we are going to have a connect back shell.
+So that means I need to start a netcat listener on port 1, why you would see in a minute.
+And so that's listening now, and I can send the SMS, I call this command exploit.
+I want to use phone 1 to send the exploit to telephone number 999, send SMS 1, so it's
+going to send the SMS, we need to write a bit, successful, now the phone is idle again,
+we can send the second one, and we can send the third one, and now I need to switch fast
+enough to that terminal, because hopefully I'm going to get a connection, yeah, okay.
+And that's the connect back shell.
+This is what it would look like doing a CTF, and you would open a beer now.
+If this was a real challenge, you would find the flag here, you paste the flag into our
+web interface and you gain points.
+The exploit itself, I mean, this is pretty boring, this is just some hex strings, that's
+the ROP chain.
+This handy script here builds all of this, Nick last thankfully worked with me on this,
+because he's way better at doing ROP chains, and yeah, this uses so-called gadgets from
+the application itself, and builds a stack that executes specific, it always returns to
+that address to the end of a function, and then it executes a bunch of instructions that
+we documented here in the comments, and in the end what it's going to execute is this
+command here.
+This looks weird, does anybody know what this is, that weird long number there, yeah, it's
+an IP address, it's just an IP address and decimal form, because we didn't have enough
+space to put it in there in octet form, that's a nice trick if you have limitations in code
+that you can execute, also -esh, the -e is a parameter which tells netcat to execute a
+command up on a successful connection, we didn't have enough, usually you would write
+it that way, right, we didn't have enough space for that, so we tried some things and
+that works as well, because sh is in the path and you can leave out the space, and then
+also port one, why port one, because it's short, yeah, okay, I'm going to leave this running
+because we're going to need this soon for the second stage, the second stage is the
+SIM card, now to make this a bit more challenging for the teams, usually you can't read out
+files on a SIM card, you can't read the crypto key, you can, because it's a black box, you
+have this APD interface, you can't do anything more, so I figured that I would put the SIM
+card in something that's called trust zone, modern ARM CPUs have two words, divided in
+the normal world and the secure world, the normal world is where your standard operating
+system runs on, for example android with a Linux kernel and whatever, the secure world
+runs a so-called TEE, the trusted execution environment, and this thing is on modern
+smartphones mostly used for DRM, stuff like Netflix with white vine and all that kind
+of stuff, which decrypts encrypted video feeds, they hide keys in there, so that you
+as a pirate cannot gain access to these keys and decrypt the video streams that you might
+get in 4K resolution from Netflix, they're using this for other stuff as well, some security
+features, I think Samsung does this for secure key storage, all that kind of stuff, and I
+figured that I would just run this SIM card in this special mode, the memory or parts of
+the memory and certain devices like a serial port reader that would communicate with the
+SIM card, all that kind of stuff, you can assign this exclusively to the secure world,
+so even if you want to from the normal world, you would be able to access that, you can't
+because the hardware will prohibit accesses to this stuff from the normal world and only
+from the secure world, in the secure world, I'm using a secure kernel called Opti, that's
+an open source project, which is a runtime environment for the trusted execution environment,
+and you can load so- you can load so-called trustlets in there, the trustlets are applications
+running in the trust zone, the SIM card is just one trustlet that you can load, and then
+you have a defined interface using some companion demon on the Linux, which can forward data
+from the normal world, in Linux user space over to the trust zone, you can get responses
+back and so on, yeah, so I built this API, the API was pretty easy, send an APU, receive
+something back, that was the only API endpoint I had to implement because that's a normal
+SIM card interface. The trustlets can access parts of the Linux file system using this
+companion demon, and the files in the Linux file system are encrypted, so the key is stored
+securely in the secure world, you can get it, you could get the SIM card files from that
+target that you just popped the shell on, but you couldn't read them because you don't
+have the key, yeah, and the SIM JSON that I showed earlier is just in this encrypted
+file system, and only the trustlet can access this. The challenge, challenge takes to the
+second stage was after you compromised the phone you need to dig deeper, there is a flag
+on the SIM card and file OX4333 which you need to get, so we can talk to the SIM card
+now because we popped the shell, we can't replace the trustlet because that's signed,
+we can't just add our own trustlet there which would open the file, read it out and present
+it to us because we can't load it because we don't have the private key. The trustlet
+is not encrypted though, I'm not sure if it's optional, you could certainly build it
+and encrypt it, but in this case it's not encrypted so we can grab the binary, throw
+it into a disassemble and see how it works. Usually you would spend a night doing this,
+I just copy and paste the code that I wrote onto the slides just to give you an idea how
+you would go through the code and find the bug. So we need to open a file. I implemented
+a C program that opens the interface and sends an APDU to select and read file OX4333. Here
+you can see what an APDU looks like typically. First we are selecting the file, we're sending
+7 bytes, this is A0 is the class that is defined in GSM 11.11, so we want to do some
+GSM stuff. A4 is the select instruction, then P0 and P2 is 0, that's by definition. O2 means
+length of the following data is two bytes and then we have two bytes, that's the file ID.
+And we received back two status bytes, OX9F, OF means, 9F means success and I now have
+15 bytes for you in response. That's the F. Then we are executing the get response call
+which will give us some information about the file, we are sending the get response,
+APDU with an expected length back from the SIM card of 15 because that's what we got here,
+we received back 17 bytes this time because it's 15 bytes payload plus 2 bytes status report,
+that's SW1 and SW2. In this case we got back some stuff and a success error code. So the stuff
+in here means this is the file then OX2A, this is the file ID and here is some information about
+the file, I think the access rights, all that kind of stuff. And then we are issuing a read request,
+we are receiving a length with, we want to read a byte with a file with byte length 42,
+that's coincidence by the way, we're sending the read request, we receive two bytes back
+which in this case is an error code. So what does OX9A, OX4A mean? This is from the spec,
+it means access condition not fulfilled, it's a security management error,
+access condition not fulfilled, unsuccessful CHV verification at least one attempt left,
+unsuccessful unblock CHV verification at least one attempt left or authentication failed.
+So we're not verifying a CHV, we're not unblocking a CHV, an authentication fail,
+we don't care, so access condition is not fulfilled. The pin was entered by the user of the phone,
+we just pawned the CHV1. So we can conclude that we need to verify CHV2, but we don't have that,
+we need to enter the pin2 to access that file. So now we need to reverse engineer
+what's going on in the SIM card and find if we can somehow bypass that authentication.
+If we are trying to read a binary file from the SIM card that's the appropriate codes,
+with some debug output, I left that debug output in there so that teams who disassemble that stuff
+can have some pointers what they're looking at. That's a nice trick, if you see an error message
+and it says somewhere access right, not sufficient in an if clause, then most likely this function
+checks the access conditions. So we're checking if we have a file selected, is there even a file
+open right now? If not, we're replying with an error, are we allowed to access this? If not,
+we reply with a security application error, otherwise we are checking if that is an elementary file
+because you cannot read directories, all that kind of stuff, and it goes on and on and on and on.
+So file access allowed, this is most likely where we are running into problems.
+This lengthy function is the verify CHV command, this is what you would do
+if you would enter a pin, this would be called. Utisimprepair is just a weird function if you have
+zero bytes in a pin, so it means the pin is, it's the end of the pin, it's replaced with OXFF.
+This function just replaces OXFF with zero bytes so that you have a normal ASCII string.
+It might also be BCD encoded, something weird. Utisimprepair thing just makes an ASCII string
+out of the pin. We're checking if we either want to verify CHV1 or CHV2, we're checking if
+it's enabled, if it's not enabled, that operation always succeeds. If the JSON is wrong, we're
+playing with an internal error and then we're calling CHVVerify. If CHVVerify returns success,
+we also return a success to the user. So what's this function doing?
+And that's by the way, the way you would reverse it, you know, that's why you would try to find
+the handler of that CHV verification function and it would dig deeper and deeper and deeper into
+the places where that CHV is actually compared to the one that's stored on the SIM card.
+CHVVerify does not match. It's just a wrapper function around JSON formatting stuff. So we
+dig into this function. After that, this does some JSON parsing. So it checks if the remaining
+counts, we can enter the pin is zero. If that's zero, bad luck, we return that the pin is blocked.
+Otherwise, we are comparing the pin we got from the JSON object here to the stuff we supplied
+in the parameters. And we're using SER and compare for that. Where's the bug?
+By the way, Intel did this as well, I think. We control CHVvel, which is passed from the user
+to the SIM card. If we just give it an empty string, this SER and compare will compare zero bytes
+of string length. And because every string starts with starts with the empty string,
+this check will succeed. So if we just send an empty pin, this authentication will be bypassed.
+The thing is, you can't do this over the phone UI. The phone UI expects you to enter at least
+four digits because that's how phones work. But if we give it the empty string, then that
+authentication succeeds. And that's what I'm doing here. It's the same stuff below here is
+again, select, getting the response with the file length and reading the length.
+And here we are verifying an empty CHV2. A0 is again the class that we are sending to the SIM card.
+20 is the command to verify the CHV. Two means we want to verify CHV2, and then we have a length,
+and we have all Fs, which means nothing. It's the pin is empty. And a correct SIM card would
+reject this because I think by specification, it needs to be at least four characters or four
+digits. But this is not a correct SIM card. So this was succeed. And we get a response code back
+of 90 zero zero, which means success. Now we authenticated, we have the access rights for
+CHV2, and then we can read out the flag. And this is the OX2C bytes here that we received back.
+And this is the S key representation. This would be the flag if you're looking for.
+I again have a demo for that. That's why I left the shells open. We still have that shell.
+What you would do now is you would write the C program. You would compile this in this
+development environment I gave to the teams, and just copy that over. You have W get, that was nice.
+And you can just start an HTTP server.
+You can just start an HTTP server, and then you would do this on some public host,
+and on the congress, that's easy because you just get a public IP address.
+Oh, you're right. Sorry. Here.
+Okay.
+There's no tap completion because the terminal is messed up. And that worked.
+Yeah.
+And that was the second stage. And with that, you solved the challenge,
+and you owned the GSM phone. In retrospective, oh, yeah.
+I would like to thank the Osmocom contributors, all of them, because without them, I wouldn't
+have been able to implement that. And the experience of building that was actually quite fun,
+even though it was a bit stressful, especially Vladimir Nitsky, who is a contributor to
+Osmocom and Osmocom BB, he helped me. I wanted to get voice calls running,
+and I bothered him a bit on IRC and on the mailing list, and he helped me.
+But in the end, I had to ditch that because it just wouldn't work in the environment,
+and I personally wasn't able to make it work. And Nicholas, team member, who helped me writing
+the, the, the ROP chain, because without him, I would have gone crazy. Yeah,
+source code is available. If you're interested in that stuff, I want to set up your own virtual
+GSM network, run the code, do whatever with the code. Feel free. Yeah. In retrospective,
+the challenge could have been way cooler with, I don't know, stealing secrets from a sim card,
+and decrypting encrypted voice calls after that, and so on. But I ran out of time,
+and also, as I said, teams only had 48 hours. And the setup was already quite cumbersome.
+You had to have all these Docker containers with the, with the base station in there,
+and the QMU, and the Osmocom BB. And if you never use something like that, that was challenging.
+But if people solved it, I think two or three teams solved, I think three teams solved the
+first stage and one or two solved the second one. So yeah. And thanks to all the teams who played
+and put up, put up with my shit. Yeah, any questions?
+Do you have slides available? I can share them. Yes. That would be nice.
+Thank you. Twitter or wherever. I'm just going to drop. All right, thank you.
+Talk. I have one question. Given the situation that you hacked a lot of stuff,
+did the team solve the challenge as intended? Yes. Yep.
+As far as I know, I don't have any unintended bugs in there, but even if there are unintended
+bugs, that's part of the game. We also solved challenges in the past where there was some
+oversight, some misconfiguration. We also had this happen to us where, I don't know,
+past WD-L, under Debian, for the root password, that's something different than on Ubuntu and
+suddenly you have no root password and you can log in without a password. Stuff like that always
+happens that you have unintended bugs. Sometimes it happens that you have unintended bugs, and that's
+part of the game. But that was not the case. Thank you.

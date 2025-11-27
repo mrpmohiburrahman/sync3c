@@ -1,0 +1,267 @@
+API URL: https://api.media.ccc.de/public/recordings/93184
+Frontend URL: https://media.ccc.de/v/denog17-78822-forwarding-packets-at-scale-building-a-cloud-data-plane-using-ebpf-xdp
+Title: Forwarding packets at scale - Building a Cloud Data Plane using eBPF/XDP
+
+Welcome to the last talk in this afternoon session here in this room.
+With me on stage here are Maximilian and Marcus.
+They are doing quite some hot stuff with Ethernet, EVPN and automation.
+This time Max is not doing any EVPN, this is cool, then it's even more interesting.
+So please give a warm applause for Max and Marcus.
+Thank you.
+Luckily we don't have to deal with EVPN directly.
+So welcome to the Internet to this talk.
+We know we are between you and the social.
+We will make this interesting, think as well.
+Also shout out to Thomas in the other room, so I've heard this was quite the choice where
+to go and some folks are still coming in.
+Today we'll be talking about forwarding and also dropping packet at scale, which we will
+the cloud.
+And maybe you want to put them together by private network so I guess it's called VPC and other vendors so obviously we also have that some low balances, which may offer a lot of
+of the network.
+So obviously, we want to put them together by private networks.
+So obviously, we want to put them together by private networks, I guess it's called VPC and other vendors, so obviously we also have that.
+So obviously, we want to put them together by private networks, I guess it's called VPC and other vendors, so obviously we also have that.
+So obviously, we also have that.
+Everything we do and offer as features is happening on the cloud hosts, so keep that in mind.
+Besides all that, we have the usual stuff like some block storage, recently edition S3 and DNS, which today was G8 in the console, so new fancy interface and much more.
+Where we, as the onset, I'm Max, this is Marcus, we are part of the SDN team, which has been founded in 2022 with Marcus and Tobias being the founding members and also founding fathers of everything we will see today.
+Nicholas and myself have joined later on, so we are for folks who are building everything.
+And, in general, in Hetzna, we love to build custom solutions for ourselves, which we also have done here.
+What are the goals?
+Well, we are engineers, so we like resilience.
+Everything should be performance, so you as customers are happy with us.
+We as operators want to be able to observe everything we build, so in case there would be an issue, we can see what's happening, and if we have tickets we can figure out what's wrong.
+Also, we want to be able to extend this and offer cool new features, for example, IPv6 and private networks to prefetch a question that would have been come later, and that's why we think dual stack everything, it's 2025.
+Sadly, the existing stack we currently have, which is based on open v-switch, so open source software, which is readily available, works.
+It's still in use for over a million cloud servers in our six locations, but it does not satisfy us very much, and we don't see a future in that.
+So when the team was forged three years ago, the initial task or the initial request was, hey, what will we do with our stack, where do we want to go with it, and the decision was after looking into some technologies like DPDK, VPP, etc.
+Hey, we build something on our own, let's go with the eBPF and HTTP, and Marcos is going to take it from here and tell you all about the funny details with them.
+>> Thank you. What we can see on the right is the logo or we can stack which we build, that's the microphone work.
+Okay. So we build on it, very good stack, and we use eBPF and HTTP for that, but first let's begin with what this is.
+Let's begin with what eBPF is, which we use to extend the Linux kernel, and it allows us...
+>> Okay, that's not better.
+>> Okay, so what is eBPF next, that starts with eBPF first.
+eBPF is a technology which allows us to extend the Linux kernel at one time using eBPF programs.
+eBPF programs are made of eBPF instructions as a custom instruction set, and we compile to this instruction set using C code.
+It's a limited version variant of C, and we can use C link to compile to eBPF instructions, and then we can use this instruction set loaded into the kernel,
+and the kernel will verify if this eBPF program is safe to execute, and if it is, then the kernel will load into the kernel,
+and then we can attach it to specific attached points within the Linux kernel.
+There are many different attached points. One particular interesting for us is the HTTP touch point.
+But first let's start with what we see on this page.
+I think many of you will probably know this picture. It shows the network stack, the network stack, the packet flow within it.
+But I'm not sure if you also noticed the very first part of it. You can see the box which we had launched on the bottom.
+And there's a box, the very first stage of the packet flow is eBPF, and there you can see an arrow that skips all of that and transmits the packet to another interface.
+So we can bypass all of that using eBPF.
+Here we have a picture that shows a little bit better how HTTP works in the client, how we use it.
+So as we have seen, the user space program can load an xtp eBPF program into the Linux kernel, and can attach it to an xtp hook.
+These xtp hooks live within the networking drivers.
+So we can load an xtp program within the networking driver of our external NIC, and every packet which the NIC receives will be processed by the xtp program.
+This program with three wall packets, just the plain bytes of the packet, it can access it in any way, it can modify it in any way, and it can decide what should happen with the packet in the end after we've done with it.
+One thing we can do is return xtp dx to return the same way it came in, so send it out the same way it came in.
+We can redirect it to another interface, and that's a really interesting part which we use a lot, because this allows us to bypass a wall in a static stack, and redirect a packet from one network driver to another one.
+Also, what we can do, we can pass a packet to a wall in a static stack, this way the data processing is contained in a normal way, as if xtp program never happened, or we can drop it and make it go away forever.
+On the bottom right, we can see an example for how this would like in a very, very simple secret.
+This is just a very simple secret program which you can compile which will drop every packet coming in, not very useful, but you can do way more of it.
+Of course, we also need state, and for that, eBPF maps access, this is like tables inside this kernel, and these tables, eBPF maps, can be accessed from the user space as well as the kernel space.
+With xtp gives us a lot of flexibility, this means we can pass packets anyway, can implement when iterating stack, et cetera, which we call it in any way we want, and we have a lot of flexibility.
+But of course, with great power comes great responsibility, this also means we have to pass packets ourselves and have to implement a lot of protocols.
+So here you can see an overview of some protocols we had to implement.
+Of course, we didn't fully implement that as they are implemented inside of the network stack.
+We don't want to win the network stack, we want to build a very specialized one which is exactly optimized for use cases.
+So the implementation of these protocols are not fully featured, they are very focused on what we needed to make the use cases we have bringing VMs online in the internet work.
+So here you can see a very simplified example of how our cloud node works.
+These cloud nodes, as Max already mentioned, are the instances which run over VMs.
+So on the left, we can see the app link interface or in reality, it's multiple.
+Of course, we have the regular Linux networking stack running on these nodes.
+It's also highly used to bring the node up connected to the internet.
+It does all the RPP stuff, of course, we also use the TCP stack of the Linux kernel for control, plane, stuff, storage and so on.
+But what we do not use of Linux kernel is the routing, which we use to connect VMs to the internet.
+This is what we have done fully in XDP.
+So we can see a lot more boxes here with our VXDP programs.
+And the first boxes that we write are right after the VMs interfaces.
+It's an XDP program which does everything where the VM needs to be happy.
+So it responds to RPP packets and then replies for them.
+Of course, it also replies to actual requests.
+A lot of people will be very mad, I think, I hope.
+It also supports security and if everything looks right, we have decided that the package should go out.
+When it passes our stay-through firewall, which we also put in XDP, I will come to that when I'm admitted.
+And it will come to a public network gateway program we have.
+Or in the case of private network interfaces, we also have a private network where we enter fit.
+And this is where we do the routing in our own C code.
+And we use EBPF maps to store the routes and look up routes and decide where the package should go.
+And in case I mentioned we have private networks, we are based on VXLAN, so we also implemented our own VXLAN encapsulation in XDP as well.
+What the VM also needs is DHCP because often they don't know where they appear.
+It's not statically configured.
+We ask for it and we tell it which it is.
+We could have implemented a DHCP server fully in user space and somehow pass packets through it from the VM.
+But when we would have to securely tell the user space DHCP server from which VM the DHCP request came.
+Of course it would have been possible, but we figured it's even easier to just respond to the DHCP request inside the Linux kernel in EBPF.
+So we implemented our own DHCP server.
+It sounds a little bit more ambitious than it is because we don't have to do any dynamic uses.
+We know which VM will get which IP.
+We don't have to remember leases.
+And in the event that we are doing, we are receiving a DHCP request,
+transforming it into a DHCP response, and send the packet back out using the information which we already had about this VM interface.
+And which we also have is a metadata server.
+It's an HTTP server running on our nodes, which gives the VM information about its environment --
+limited information.
+Of course, we did not want to implement a DHCP stack on our own.
+We supported a little bit too much.
+Instead, we have done another solution.
+We are running an HTTP server in the user space and we found a way to tell the DHCP server from which VM interface request is coming to securely identify it.
+As we mentioned, we built our own HTTP stateful firewall.
+First, why did we do that?
+It sounds a little bit fun.
+We are bypassing Linux kernel.
+This also means we are bypassing that Git.
+This means that we have to implement our own firewall, but this also means that we can implement our own firewall.
+And we can specialize it to do exactly what we need.
+And that's what we did.
+So when a customer defines a firewall in our cloud console, first, we validate it, of course.
+And when we normalize it, so we can detect changes.
+When the firewall didn't change, we don't have to do anything about it with it.
+When it changed, when we built a graph out of this customer we said.
+And every node in this graph describes something about matching a packet.
+And this graph can be used to automatically optimize it.
+And after we optimize it, when we can compile this graph into an eBPF instruction set.
+These eBPF instructions that we are generating using Go code are inserted into an eBPF template program.
+Because what we also need to do in a firewall is the fragment tracking.
+And we did not want to do all of that using generated instructions.
+Instead, we have it in a sleep program which contains placeholders for the dynamic rulesets
+which are coming from the customer.
+And when we use these compiled templates, insert the instructions which are dynamic into them.
+And then we have a finished firewall program.
+And this firewall program is then loaded into the new kernel.
+And this happens per VM interface.
+So it's completely isolated.
+What is also completely isolated is the fragmentation tracking and connection tracking tables.
+This is a really interesting feature especially compared to the regular met filter stack.
+And also makes something easier and helps us to fully isolate customers.
+Here we can see an example of how this will look like in the end.
+Here we can see the compiled eBPF instructions which we generate using our own Go code which match a packet.
+Here it's very simple, customer will set which allows all ICMP and SSH from specific IP prefix
+for IPv4 and IPv6.
+And this is instructions which are coming out of this program and will end up in the Linux kernel.
+The Linux kernel will ship them and execute them for every packet.
+Of course, we also need our own diagnostic tooling because the Linux tooling does not work for us.
+We have built a lot of command line tools using Go.
+I have just figured, featured a few interesting of them here.
+The first command is HTML describe interfaces.
+It shows us all the interfaces which are currently defined on our C node or workload node.
+The second command, HTML data pane starts, allows us to view statistics about the packet processing
+happening in our data path.
+We built a lot of counters in our data path which is used to give us insights into how packets are being processed
+when something is going wrong and so on.
+Here are just a few examples.
+For example, you can see when the firewall for a given VM interface dropped a packet, accepted a packet
+or a time exceeded came because of a trace board on something, some counters will be increased.
+But we have way more counters when fit on this page and we also export them all to primiters.
+This gives us deep insights into what is happening in our cloud and why something is happening.
+And also we have a command to print our contract table.
+It's similar to the utility tooling with Linux kernel, but it's for our own VPN maps and prints
+all the connections which are currently active for this given VM we created the table for.
+One more diagnostic tool we wanted is the ability to capture packets.
+Normally, you do this in TCP dump, of course, but this does not work for us.
+In fact, if we would use TCP dump to capture packets on a VM interface, we would not see a single packet.
+Because we do skip the DNS kernel and release the TCP dump hook within the DNS kernel will not even be reached.
+To solve this, we built our own HTML capture tool and to explain how this works,
+I first will explain what you can see on the slide.
+On the left and the right, we have interfaces for the opening interface and, for example, one popling interface of one VM.
+And we have eBPF programs attached to these interfaces, XTP programs.
+And we do the packet matching and processing.
+And as you can see, we have multiple programs and our data plan is built modular.
+And we call one program from the other one using eBPF calls and we have a jump table which describes how these packets are shamed together.
+The really cool thing about this is this also allows us seamless updates.
+So we can update our data plan seamlessly without losing a single packet, which is also really a new feature of that.
+And the colorful boxes and the top and the bottom, these are the final XTP programs.
+These are programs that just return the final XTP action like drop it, pass it redirected.
+Now what we have implemented is that we can hook into every single one of these errors.
+So every one of these errors is called our term transition.
+And we can hook into that to see all packets going through it.
+This way we can just use HTML capture, specify at which transition we want to see the packets.
+And we can specify a TCP filter which we compiled into our hook program which specifies which packets we want to see.
+And we can also write it into a pickup file or filter by interface and so on.
+And this is a really, really useful tool.
+One more -- no.
+Well, as Marcus said, we are directly hooking into the drivers of the network cards.
+So the physical ones and the virtual ones, meaning also the ton driver for the interfaces falling out of the QML process.
+It's obviously running on Linux machines.
+And well, there are always challenges.
+As this is fairly new compared to the whole history of the Linux stack, also the XTP support of the drivers is fairly new.
+And well, if you go on path which are not beaten out, then you find surprises.
+The nice example is a bug we found in the Intel driver.
+I think it was IXB.
+And within 24 hours maintainer on the mailing list said, "Hey, I reproduce this in my lab.
+I see this is a bug.
+I'll fix it."
+And one to two weeks later it was fixed and everyone lived happily ever after.
+However, there are other vendors where we are in back and forth for two and a half years.
+Now I will not name them, but you may guess.
+So there are dragons.
+Another thing is offloads.
+Currently we support offloads as the open research network stack supports them.
+So all the, as I said, over one million custom VMs use offloads to send packets like GSO and stuff.
+And we don't want to shut them down to migrate them to the new network stack.
+I guess you as a customer would appreciate that.
+So the goal is to also implement offloads in XTP which is a bit bleeding edge.
+And it's a feature which does not exist yet.
+Also it's not possible to signal the offloads to the network driver which will emit the packet in the end.
+That's basically the missing link and some stuff in the ton driver.
+However, as I said initially we like to build shit ourselves, excuse my French.
+And so we tried or more precisely Marcus tried to add some features and also looked into the metadata support to signal the wish for offloads.
+So we are also actively developing on the Linux kernel side of things and tried to upstream as much of that as possible.
+In that realm of the metadata support other big players also using XTP have some proposals on the road but it seems that there is no one way to go.
+So maybe we'll build something internally and match that when it comes up in the vanilla kernel.
+You might be wondering what this funny server is you're looking at for validation and development.
+We have one server which hosts all our network cards we have in the fleet which I believe are six.
+And this one also got some fame on LinkedIn recently so this is one of two test servers we have to test all those programs.
+And all the nicks are just connected back to back to shut them packets through.
+Bandwidth is not an issue but we want to see that the box does not explode which may or may not have happened at the past.
+Also to test the ton driver and all those nice things and to not have to have a virtual machine to test this.
+We mostly markers build the VIT I/O goal library which we have also open source recently so we have some foundation to go on.
+With that we have a new network stack it's also running in the internal cloud and also hosting applications which are publicly usable right now.
+So you may have interacted with this new network stack it's not rolled out globally yet we are working on that.
+Most likely the first place where this will go are the local answer notes which also use the open V switch stack currently.
+This may require using the TCX entry point so if we remember the network stack graph a bit later in the process but fairly early too.
+That gives us off loads and then we can go from there but the end goal would be that we have the whole picture and have feature parity to the whole stack.
+If there is a public beta we will let you know.
+That's all from us for today thank you.
+Thank you Marcus and Max.
+I think we have some time left for some questions.
+Let me start with a question from my side.
+I am just wondering if you are doing this development work on the networking start how often did you lock yourself out it had to use out of band to access.
+It happened a few times especially we also experimented on technologies like DPDK and something.
+With this technology it happened even more often but of course we have our ways to access the note and we have testing notes for exactly this case.
+Okay thanks question.
+I am curious about one thing you did not mention between the public internet gateway and the rest of the internet.
+How does the packets find back to your note is there some sort of BGP or something.
+That's just an IP fabric as I said the physical network is as dumb as they get so it's an IP fabric where all the cloud notes are connected and we do BGP from the host to announce the IP addresses of the servers.
+So the host has one BGP session for all the VMs running and then the XTP packet just grabs the right IP address for itself.
+Yes the stack as Marcus has said we use some eBPF maps so we have a fit in the stack.
+So the eBPF map is basically the line card if you will and so it knows what to grab and where to send it and everything we don't know we passed to the host.
+Cool stuff.
+Oh I got two of you are speaking from my room.
+Yes nice work and it seems that this is fifth or so firewall implementation for Linux.
+But my question is how often can you update eBPF program and what happens in between this update with the forwarding traffic.
+This is a really cool feature about the tail cards that we use to change these programs.
+The tail cards use an eBPF map to look up which program is coming next and changing the program address within this map is atomic.
+So one packet can just arrive in one program and then the next packet will arrive in the updated program.
+And updating the program is not very expensive of course we have to render a new program using Go.
+And we have to look into the kernel and the kernel has to verify that it's saved execute but the overhead is not that big that it's an issue.
+And if it was we would have a little bit of it.
+Any more questions from the audience?
+And to add to that yes it is the end implementation.
+However as I love an ed filter it has one central contract table and a lot of shared state.
+So if you have an virtual service on the same host and one of the customers is naughty that might happen then we do not want this machine to interfere with others.
+So in our design it's completely coupled as Marcus said on contract table on fragment table.
+So there is no interference between systems.
+An important thing to note is if you wanted to build a fully generic proposed network stack you would have just useful use kernel because it's a really great network stack.
+But what we have wanted is a stack which is completely specialized to what we needed and exactly this feature set and this is why it sometimes makes sense to build things in a wall.
+Hi Mr. Manser from Decakes. I have just interested in did you have any look at BP filter when implementing your firewall on the XCP?
+Or did you just like take a look at the existing BP folder code that you just like implement everything at your own from scratch?
+We implement it on our own but the general idea is quite similar.
+So in the end we are compiling a rule set and matching it how you do that will probably develop a lot but the end result is quite similar I think.
+Any more questions from the audience?
+No.
+Then let's give a warm applause for this awesome talk to Max and Max.
+[BLANK_AUDIO]

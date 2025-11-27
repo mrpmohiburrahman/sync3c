@@ -1,0 +1,540 @@
+API URL: https://api.media.ccc.de/public/recordings/93425
+Frontend URL: https://media.ccc.de/v/godotfest2025-art-direction-crash-course-for-non-artists
+Title: Art Direction Crash Course (for non-artists)
+
+[MUSIC PLAYING]
+All right.
+Hello, and everybody who just joined for the next talk.
+Yeah, the next one is going to be about a cool topic
+that I also experienced.
+I think everybody who works alone or develops alone
+or in a small team knows the problem where you just
+have an idea.
+You start working.
+You use some temporary assets or some stuff
+from the asset store.
+And then at some point, you look at it
+and it's kind of completely off.
+So yeah, that's why I'm really looking forward
+to the talk about how to fix that issue.
+We have Zimono Mandel with over 15 years of experience
+and concept design and art direction.
+So give her a big applause.
+And thank you.
+[APPLAUSE]
+All right, yeah.
+Thank you, everyone, for showing up.
+When I submitted this talk, I wasn't sure.
+Like an art talk at good old fest,
+like how many people are going to find this interesting.
+But yeah, super quick intro, like you've
+already done a fantastic job.
+My name is Zimono Mandel.
+So you can find me under this handle on most platforms.
+I did art direction for indie games for a long time.
+I also did graphics and motion design.
+I did concept art and 2D graphics for games.
+And since 2020, I'm making games together
+with my partner, Joseph.
+This is our company name.
+Cats organize neatly is probably the most well-known game
+that we've made.
+We also did some other stuff.
+The virtual cottage was like my first project
+that I did with Godot, which was really fun.
+And it also got decently popular.
+Then just for some artists' street credit,
+like this is some of my personal work.
+Very colorful, very stylized.
+And then this is some stuff I did for clients.
+This was a background for an animation.
+And then this one I also got to Art Direct,
+where we made this little chicken Tamagot she thing.
+And then week after week, I got to do concept art
+for outfits for that chicken.
+And this was a really fun project as well.
+All right, so disclaimer.
+I cut a lot of slides because I picked the 25-minute slots.
+So I want to focus on the absolute basics and essentials
+and just really drill some concepts into your head.
+So if I'm sounding repetitive, that's why.
+I also can't make you an Art Direct and 25 minutes.
+Like, that's not going to happen.
+But I can try and give you enough tips
+that hopefully you can make a better call
+when directing your next game.
+All right, so what does Art Direct do?
+Most people think of style guides.
+These are two style guides that I've worked on.
+That is one big part, and that is also something
+that you do if you work with a bigger team.
+But most of the job actually looks like this.
+The snipping tool is my best friend,
+and I just snip things and draw arrows.
+And if you talk to any Art Direct that they can probably
+confirm that that's like 90% of the job.
+So today, I want to kind of teach you
+like, what do I look for when I draw these arrows?
+Oh, so this is from yesterday's talk.
+Like, I had to-- from the Blender talk,
+I had to take a photo of that because I found it really cute.
+All right, let's start with, in my opinion,
+the most important concept that you need to grasp.
+And that is if you have a game, just take a screenshot
+and turn it to black and white and look at the contrast.
+This is the first thing I often do if I am Art Directing a game
+or if I'm asked to work on a game and just check it.
+Because Art Direct is all about keeping your art stack
+consistent, but it's also about visual clarity.
+And like, can you even find your character, right?
+So contrast is like the most important thing
+that's like even more important than like keeping
+all of your outlines the same thickness
+or like keeping the pixel count, the perfect amount.
+So in most cases, this is also more important than color.
+I have an example here.
+If you have, for example, a side scroller or 2D
+platformer environment, in the daytime,
+if you just look outside, things are darker,
+the closer they are to you, and lighter
+the further they get away from you.
+This is because there's particles in the environment,
+there's fog, there is stuff.
+At nighttime, this is kind of reversed.
+Of course, there is no light, things are dark.
+The further they are away from you,
+the darker they are.
+If we kind of put numbers or values to this darkness
+and lightness stuff, in the daytime,
+things have more contrast because there is light,
+obviously, at night they have less contrast,
+which also makes sense.
+So what happens if you want to add platforms to this?
+Okay, daytime, things are closer to me.
+I still have the whole range of like from 55 to 100% darkness.
+I can just slap some platforms in there, easy, problem solved.
+But what happens in the dark scene?
+That doesn't really work, platforms aren't really bright
+because they're very close to me.
+So what we do here is we just create the highest point
+of contrast where we want the gameplay to be,
+where we want the focus to be.
+And I brought this example from Celeste.
+They also do this in their light scene.
+You can see the really nice transition from
+the closer the assets are to you, the darker they are,
+and then they get further away and become lighter.
+And then with their dark scene,
+which I find very interesting, they use snow
+and the high contrast metal grades to just communicate.
+These are platforms.
+And this stuff is way more important
+than every asset looking perfectly consistent with one another.
+I'm gonna gloss over this fairly quickly
+because we also do this in art.
+This is a wonderful concept from Guild Wars II.
+And what we do is we call it value grouping.
+We basically decide like, hey, if this thing
+is very close to us, then we're not gonna add
+like more highlights than it needs to.
+We stay within that group.
+And then we also do that for background stuff.
+If you put that together,
+this is what creates the visual clarity.
+Like each element is readable,
+but it has enough detail and shading in itself.
+So just that you've heard that term,
+but let's move on to games.
+Silksong is a perfect example
+because what they do is they actually have
+these four different layers.
+Like they have their black silhouettes,
+the one in the front,
+then they have their gameplay layer
+and their gameplay layer actually has like thick outlines.
+It has black next to white.
+Like that's the highest contrast, right?
+Then they have the layer behind it,
+which I'm guessing uses the same asset,
+just softens a lot.
+Like the contrast is way lower.
+And then they don't even have outlines in the background.
+Like what is that?
+That's not really consistent.
+But what they do is they blur everything.
+Like it doesn't need any outlines.
+It just needs to be there to like give some depth.
+And then also like that layer has the least contrast.
+Okay.
+Now that we've talked about contrast,
+I quickly want to move on to colors.
+Color is pretty interesting.
+It's made up of three things.
+Hue, which is your color names.
+It's like your red, your orange, your blue,
+then saturation, also kind of self-explanatory.
+Is it like very saturated or is it not saturated?
+And then brightness, is it light pink
+or is it like a dark burgundy red?
+And what color your game is really depends on you.
+There is no right or wrong choice there.
+What you have to keep in mind is that red
+is very, very prominent in most cultures.
+So red kind of has a significance as humans.
+If we see red, we automatically look at it more than like a green.
+Green is also kind of a special case
+because in digital art,
+if you see the color wheel at the top,
+like we can go so green.
+Like the green that we have in digital art
+is like not normal.
+Like if you ever look at nature,
+the green that you see in nature is very desaturated.
+It's almost like yellowish.
+Like, yeah, you get it from those two pictures.
+That's also why I picked the picture from Hades
+because they actually use that digital art green,
+but they use it in a kind of desaturated way.
+So yeah, if you do nature, blue and green are kind of your friends
+and keep you a saturation in mind.
+And now,
+colors are affected by their environment.
+If we talk about saturation,
+like everything that's not black and white
+and like the color at full saturation is already
+like in that circle of desaturated.
+And I want you to kind of guess how red the coat
+that Hornet is wearing is,
+because when I actually color picked it,
+it's not that saturated.
+And if we put it to full saturation,
+like I'm guessing on the beamer,
+it's not that extreme, but if you see this on the screen,
+like it looks so wrong.
+And that is due to colors affecting one another.
+There is this concept of complementary colors.
+So if you put a red on green,
+the red is ultimately going to pop more.
+If you put an orange on blue, the same thing happens.
+So for example, if we put the red on green,
+like of course, the visibility is automatically way better
+than if we put it on a brown,
+but then you'll be saying like, oh, Simone,
+but I can still see the character and everything very clearly.
+Ha ha ha.
+And that is because silk song looks good in black and white
+and that is why that is so important.
+Okay.
+Color is relative.
+I wanted to guess the front plane of that torso.
+You already know what's coming.
+Trick question, it's all the same color.
+It's just your mind does not compute color.
+Next slide.
+This is also really nice painting.
+It has these lovely greens in sunset.
+They're not greens, they're all yellows.
+And I'm pretty sure if we were to color pick that sky,
+that's not a blue, that's a gray.
+So don't trust color.
+But the good thing is like because it's all relative,
+like you can really play around with it.
+Okay.
+Last learning lesson about color, brightness.
+So how bright versus how dark is your color?
+And you would guess like this is all of the hues,
+like all of the colors at full saturation, right?
+So what happens if we turn this to black and white?
+You would expect everything to just be like the same key,
+the same gray, like 50% gray.
+It's not, unfortunately.
+Even artists struggle with this when they first realized this.
+Like it's all this YouTube thumbnail.
+Like yeah, blue is kind of, just kind of wet.
+But the good thing for you,
+the only thing that you kind of need to keep in mind
+about colors is be careful when using blue or yellow
+because these two will increase your contrast
+and in turn affect your game's visibility.
+I brought some examples.
+Blue is really cool if you want to create rich
+and deep shadows without adding just a ton of black
+to your game versus yellow is really good
+because sun, the light from the sun is, as you know,
+white but because it gets scattered in the atmosphere,
+here on Earth, we perceive it as yellow, yellow orangish.
+So if you add yellow light,
+you're automatically creating that warm atmosphere.
+And if you pair that, for example,
+like townscaper is doing with reddish shadows,
+then you're automatically having like a very soft, nice look.
+One more note about blue, as you can see with Hollow Knight,
+blue is a very dark color by itself.
+So if you pair that with white,
+you can really use that to bring in more contrast.
+So the white character on a blue background
+automatically sticks out more.
+Yeah, this is just one more note
+about how to shade your game.
+Just make a deliberate choice of like,
+this is gonna be my shadow color,
+this is gonna be my light color.
+If you can avoid black and white
+because that muddy colors and like,
+makes them very desaturated and grayish.
+And if that's a look that you're going for,
+then just do that.
+But if you can, just experiment around with light
+and shadow colors because that can automatically
+make your game like way more stylish.
+Okay, last slide about like design basics,
+and then we move on to stylization.
+There's basically only three shapes.
+Triangles are very like dynamic,
+they communicate like things that are fast
+or that are dangerous, like spiky.
+Boxes are very sturdy and unmoving
+and like round shapes are bouncy and mostly harmless.
+We use this a lot in character design,
+but you can pretty much use this for anything.
+And of course there is other shapes,
+but you can pretty much make any shape
+by combining or subtracting these three from one another.
+And yeah, I brought another example
+from Ori and the Blind Forest.
+Which of these can you walk on?
+Yeah, it's the round mushroom, of course.
+And it's not the spiky red, whatever this plant is.
+So this one does damage, this one's a platform.
+Also notice the rim light contrast,
+like this communicates, you can collide with these.
+All right, stylization.
+Okay, so we talked about contrast color and shapes
+and these are kind of the three basics
+that you need in order for, for example,
+create a character design.
+And now I wanna look at some tips
+of how we keep track of stylization.
+You probably all know this character
+that's Misty from Pokemon.
+Her character design is pretty iconic,
+she has the orange hair color.
+She doesn't always dress the same way,
+but it's usually like some kind of swimwear.
+But like these two characters, they look,
+they don't look that similar.
+And what's happening here is like the design is the same,
+but the proportions are different.
+And one thing that we do is we always keep
+the head size in mind.
+So for the one design, I noticed that like,
+oh, her torso to like her belly button,
+like her torso is the same size as her head.
+And that's consistent in both designs.
+But then if I look at the legs, I'm like,
+oh, one design has like three heads
+and the other one is like two and a quarter maybe.
+And this is a ratio that you can use to, for example,
+keep your characters consistent
+because if I make more characters in that style,
+I'm like, oh, I'll just keep that ratio in mind.
+This is also kind of important
+and it's going to affect everything in your game.
+In Animal Crossing New Horizons, for example,
+your characters are like these little chibi blobs basically,
+but they need to enter and exit a house.
+So of course your door needs to be the size
+to accommodate the character.
+Okay, then I'll just make the house the whole door basically.
+But then we move on to an example like the fan.
+Like characters can actually interact with that fan.
+And what they did here is like,
+if you look at a real-life fan, it's very, very detailed.
+So they just started removing details
+and making the buttons bigger and chunkier
+until it looked like the character's hand
+could actually push one of the buttons
+without touching the whole panels.
+And this is kind of the secret, I would say,
+of how you go about stylization.
+The best thing you can do is find a real-life reference
+of what you're stylizing
+and then have a stylized thing next to it.
+Because I can give this to another artist
+and they will know, okay,
+I'm just gonna look for a building front
+from whatever setting we decided on.
+And then, okay, like the house walls,
+they're not gonna be straight.
+Okay, I'm gonna like slightly tilt them.
+Okay, we don't have any round windows.
+So I'll just make them angular, I guess.
+And the same thing here, this is an example
+from a game that we're currently working on
+over to a cottage too.
+You can kind of see like I removed a lot of the detail
+from the desk and basically just kept the elements
+that I think are necessary
+and I can give this to our working student
+and give her a photo of another desk
+and she can pretty much emulate that.
+Yeah, this is the secret.
+So this is how you come up with an art style
+and there's no, not really a guaranteed way of like,
+there's no secret recipe.
+Like you just try to find a really good reference image
+that you like and then you actually you just sit down
+and write down what you like about it.
+You just take a lot of notes.
+Like art direction is a lot about looking at things
+and are they looking right?
+Yes or no?
+And if I can't answer the question,
+I'm just gonna check my sheet.
+Does the thing have a strong silhouette?
+Yeah, okay, check.
+And this is pretty much how I go about designing
+each and every element.
+And this is kind of the secret.
+Like you just have to work on it.
+If you have one asset from your game
+and you really like that asset,
+you just write down, you start looking at it
+and you write down what you like about it.
+Is it rounded corners?
+Is it the colors?
+Is it like the way that it's modeled?
+And then you compare every other asset
+to the list that you just made.
+And that's the whole secret.
+And the more you do this, the better you get at it.
+Now I wanna talk about the part that I've also done
+a couple of times and which is probably also really interesting
+if you're making a new game from scratch.
+So world building refers not to how your game looks
+but the world that it takes place in.
+So for example, undertale, the world would be the underground
+and nowhere would it say that it's pixel art.
+And world building, I usually start with the setting
+and it always helps if your setting is grounded in reality.
+For this project, it was like 1950s America.
+We split it into small town, farmlands
+and then something else.
+And we were just looking up references from that era
+and then separating them further.
+Like what do the buildings look like?
+What's the special thing about the buildings?
+Can we have any like the details down below
+and we just add to that?
+So this is how you would kind of do it for a smaller game.
+And then for a bigger project, this style guide,
+I don't know, I think it was 100 pages at the end.
+We needed to design seven different kingdoms
+or seven different regions.
+So what we did, we had this main slide
+where we were like, this is the shapes
+that we are going to use for the design.
+This is the materials that the people from this region
+are using, this is the color.
+And then we also had separate slides
+for the whole architecture, for the environment.
+And we did that for all of the regions.
+So like you had to read like five pages
+but then afterwards you had a pretty good grasp
+of like what this place is versus the other region.
+And I think the last thing that I really want to talk about
+is mood boards and reference boards
+because those two often kind of get mixed up.
+And mood boards, I would say are mainly about vibes.
+So I put this together for like a hypothetical,
+cozy, cafe, nature, theme, cat, whatever game.
+And for mood boards, I would probably,
+I would use colors, I would use patterns.
+I've done mood boards where I've embedded videos and music
+because this is about creating atmosphere, right?
+I want to use this to communicate the vision
+to the whole team, not just to a creative director
+or to the other artists.
+Like I probably would add even more stuff to this.
+And like if I show this to someone,
+like I want them to understand what the atmosphere is
+of walking into this fictional cafe that we're gonna create.
+And if I then move into reference board,
+like I'm still trying to find stuff
+that kind of has the same vibe
+but I'm being very, very thorough with marking like,
+hey, this photo, the tiles are what is important
+and that everything is stacked neatly.
+This photo, this is what's important.
+The last one, don't look at the coffee machine,
+don't look at what's down there.
+Like it's about that the owner of the shops
+chooses quirky art, like this is the most important part.
+Like with your references, you want to be super intentional
+and actually tell people like, this is what I mean.
+With the mood board, for example,
+you can be a bit more like it's vibes, it's vibes.
+Like you get it.
+And then for style references,
+I'm also trying to be very, very thorough of what I want.
+Like this image is used for perspective that I want.
+This is the line art that I like
+and this is the colors that I want.
+And for example, for this hypothetical project,
+I would probably even take that image in the middle,
+put it into Photoshop and slap some color filters on it.
+And like don't take other people's art,
+mess with it and then post it back online.
+Like that's not that cool.
+But you can totally, if it's for communicating
+within your own team, just take other people's art
+and like mess with it.
+Like try to understand why they made it the way that it is
+and like use it to communicate your own vision.
+Yeah, I think that was a lot.
+And I probably forgot a lot about it, things.
+And if you take away like two things from this talk,
+always check your game in black and white
+because this is so much more important
+because then like all of your assets being perfect,
+perfectly consistent with one another.
+And grab real life references
+because that just elevates your setting.
+Like if you sit down in front of a paper,
+you're like, I don't know how to make an asset.
+Like just look it up.
+Just look up like what the real life thing looks like
+and then you can probably go from there.
+The extra bits, study other games.
+Cirksong is a really great game.
+Orient the Blind Forest is like a master class
+and like how to do the whole black and white contrast thing.
+Use 100% white and black very intentionally
+because it's gonna grab attention.
+The same with 100% saturation.
+Like I think if you have a game that's very like in your face,
+just toning down some of the saturation
+can sometimes make it a lot more pleasant to look at.
+Yeah, I don't know if we have time for the Q&A
+but I promise I'll be around for the whole day
+and if you just wanna show me screenshots
+and talk more about like stylization and detail,
+I'll be around.
+(audience applauds)
+(audience applauds)
+- All right, thank you, Simone.
+- Thank you.
+- If that doesn't make us an art director yet,
+at least we have a big step towards being an art director.
+Thank you again.
+And just about in a few minutes,
+we have a continue our art journey with Janus
+who talks about ray tracing for 2D games, right?
+Thanks again.
+- Do we have time for the Q&A?
+Probably not, right?
+- No, it's not.
+- Okay, then just catch me.
+- Right, thank you.
+- Thank you.
+(audience applauds)

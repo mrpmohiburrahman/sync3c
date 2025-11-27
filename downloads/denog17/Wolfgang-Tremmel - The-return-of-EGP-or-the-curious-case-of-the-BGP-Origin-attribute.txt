@@ -1,0 +1,132 @@
+API URL: https://media.ccc.de/public/recordings/93238
+Frontend URL: https://media.ccc.de/v/denog17-79498-the-return-of-egp-or-the-curious-case-of-the-bgp-origin-attribute
+Title: The return of EGP or the curious case of the BGP Origin attribute
+
+(upbeat music)
+- Our first presentation today is Wolfgang.
+Wolfgang is from Decakes and I think everyone knows
+that he loves BGP and this time he only has 10 minutes.
+So let's go.
+- All right, let's get started.
+Let's get started.
+Good morning, I'm Wolfgang and spoiler alert,
+This talk does not answer any question.
+it merely raises a question to perhaps some of you have the answer to.
+It's the slide I used to have in my workshops all the time.
+A rich in type, I say it's a historical attribute.
+A rich in type tells BGP how the prefix was injected into BGP.
+It has three possible values.
+One is IGP, that means the prefix came in via a so-called network statement.
+The next one is EGP, EGP stands for exterior gateway protocol.
+the
+In complete means the prefix was
+imported from some other routing
+protocol into BGP that can be a static route.
+It can be OSPF.
+It can be ISIS.
+It can be anything.
+And because BGP doesn't know what it really was,
+it is often used as a question mark in the table.
+And I always used to say this rule isn't really important.
+Because nobody cares about it.
+The originator, the autonomous system injecting,
+the prefix is setting that and nobody looks at it, nobody cares.
+And in the preparation of this year's workshop,
+I had a look, as I always do, at the global routing table.
+And I found this.
+I had a look at the origin type.
+And I really found a number of prefixes marked with an E in the global routing table.
+And like I said, E stands for EGP.
+So if somebody out there using EGP again, I really doubt that.
+I found over 900 prefixes in the IPv4 table.
+I found 62 prefixes in the IPv6 table.
+So EGP and IPv6, not really.
+So who's doing that and why?
+In IPv4, I found 118 different AS's originating prefixes with the origin type of EGP.
+In IPv6, I found 19 different AS's.
+And keep in mind, I have a small stub AS behind the D-Kix main AS.
+I appear at a lot of IXPs, but I really have only a small autonomous system.
+So if you, in your AS, look at your routing table from your point of view,
+the results might be different.
+Highlights, Google announces 348 IPv4 prefixes with marked as origin type EGP.
+I tried to find someone in Google who gives me an answer, but I couldn't find anybody.
+Second one, also Google, third one, somebody called Hive Logic.
+And this would be my question when I'm finished to the audience if you have any clue what
+is happening there.
+I don't know.
+Please don't give me your best guessing.
+I can do myself.
+So later on, if somebody really knows why somebody is marking their prefixes with EGP,
+let me know.
+Okay.
+Yeah, an IPv6, we have again Google and we also have Hive Logic.
+I'm sorry, I already said that.
+Now, another thing, getting mixed messages.
+Like I said, the origin type is set by the originator, by the autonomous system injecting
+a prefix into BGP.
+And if you read the RFC about BGP, it says the origin type should not be changed by any
+autonomous system forwarding the prefix.
+But somebody does.
+I found this prefix here, somebody changed the attribute on the way.
+There is an I here.
+It's EGP because that's what I was looking for, but somebody changed it to IGP.
+And keep in mind the best pass selection, it says IGP over EGP over incomplete.
+So somebody wants to attract more traffic.
+And this is right of the BGP dirty tricks department.
+If local preference and AS pass are equal, the one who changed the attribute attracts
+more traffic.
+So if you have more than two transit providers and you set the same local preference on your
+router to all of them, and you receive the same prefixes, of course, from all your transit
+providers with the same AS pass length, which is quite likely.
+And the one who rewrites origin type to IGP gets more traffic.
+Yeah.
+At right 91, there was a fantastic presentation by James Bensley.
+I don't know if James here today.
+Yeah.
+He's sitting here and I'm using his slide with permission.
+And he found out which tier ones actively rewrites the origin type to IGP to attract
+more traffic.
+So BGP dirty tricks department.
+Countermeasures or should I even care?
+Well, if you are a leave AS, a stop AS, a simple customer with two or more transit providers
+and one of you is playing dirty tricks, perhaps you should care.
+Talk to them.
+Talk to their sales.
+Tell them this is against RFC of BGP.
+They won't listen to you.
+Forget it.
+But what can you do?
+Well, if you are a stop AS and I think the origin type has lost its meaning.
+It was intended that the originator can set that to distinguish between different sources
+of prefixes and then it simply passed on through the announcements.
+But nowadays, if anybody can re-write it and use it for these dirty tricks, it has lost
+its meaning.
+I checked if the BGP best pass evaluation, if you simply can turn it off, I didn't found
+any implementation where you can turn it off.
+Strangely enough, you can turn off AS pass length stacking but not the origin type.
+So if you have more than two BGP transit providers and no BGP customers, what you can
+do is you can simply re-write it yourself, re-write it to IGP and whatever your upstream
+provider does, you don't care anymore.
+If you have BGP customers, you perhaps should not do that if they have another transit provider
+because then you would be one playing the dirty tricks yourself as well.
+So that's it for today from me.
+And like I said, I raised the question, why would anybody mark a prefix being injected
+from EGP?
+So if anybody of you knows, let me know.
+Thank you.
+And actually, we were good in time, so if anyone knows, anyone wants to say something
+very quick?
+Any questions?
+Okay, make it very quick.
+Thank you.
+That's actually not on the EGP issue, but just first of all thanks for presenting, raising
+the awareness of this issue that people are doing dirty tricks.
+I think not enough people know about it.
+So thank you, Wolfgang, it's a good presentation.
+And also just to say that this is not the only dirty trick that your transit providers
+are playing.
+You should look very, very careful into your table.
+I'm not sure I can say it on the record, but if you want to have a chat later on, there
+are more dirty tricks being played that you should maybe be aware of.
+Thank you.
+Thank you, Wolfgang.

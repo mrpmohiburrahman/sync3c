@@ -1,0 +1,95 @@
+API URL: https://api.media.ccc.de/public/recordings/93511
+Frontend URL: https://media.ccc.de/v/god2025-56471-welcome
+Title: Welcome
+
+Good morning.
+Dusseldorf and everybody.
+Welcome to the 15th edition of German overstay since 2008.
+I hope you all had a great time so far.
+Yesterday evening.
+Okay.
+Everybody's quiet.
+Okay, we try our best to amuse you and entertain you.
+I'm Dirk from Hamburg and I give you a short introduction what's going on in this program
+today.
+But before I dive into that I have somebody standing next to me which is the reason why
+you are here in Dusseldorf because he raised his hand one year ago and said okay I'm volunteering
+to do the local organization stuff in Dusseldorf so that's the reason why you're here.
+So give a round of applause to Christian.
+So hi also from my side and welcome to Dusseldorf and on the behalf of the whole organization
+team it's awesome that you are all here and we're looking forward to a really exciting
+conference I think.
+We are completely sold out this year with 200 people so please 201, 201 okay.
+So please do not block any seat and try to move as close in as possible so that people
+can take the seats on the sides.
+This year I think it's the first time that we have two parallel tracks in the German
+overstay.
+Well in Munich like 2010, 2011.
+Okay so it's the second time.
+But as we talk about the tracks I want to give you some organizational notes here.
+So you clearly found track one that's great so perfect.
+Track two is right behind this wall.
+You can only change tracks through outside so go outside and then into track two.
+The program for each track is printed on sheets in front of the room and it's also of course
+outside in the web on the website.
+We had one change though for the program Martina is sick who wanted to talk about pass keys.
+Clemens Hupner is stepping in with the same topic so there won't be any glitch for you.
+Just the person who's standing on the stage is different.
+Okay great and we try to group the sessions between the brakes.
+So in theory there should be a little reason to change the tracks between the brakes and
+as we have a really full program we would ask you to if possible not change the room
+between the brakes and also we have the seat three VOC here, one applause for them.
+And they are recording the program and they are also live streaming it right now in the
+internet.
+And so if you miss one talk you can also of course hopefully look it after this event.
+Here we are at the brakes.
+If you hear the gong please come in here quickly because we have not so much time.
+And the emergency exits that's of course something we do in Germany every time.
+They have signs and don't block them and yeah.
+So brakes and lunch will be in the entrance room where you just came in and we have also
+a second break from besides track two we can ask you to not use this room beside track
+two during the sessions because you don't want to interrupt session two by noices.
+Okay then one note as every year our sponsors who make this event possible like this have
+prepared some goodybacks for you.
+They are on the chairs if you if it happens to you that you don't get a goodyback then
+please come to us at the front desk and we will give you another one.
+We will be taking photos during the event if you feel uncomfortable with that and just
+talk to the volunteers and they are easy to spot they will read badges as Dirk and myself
+too or a little bit there.
+And as we talk about the volunteers I give a warm applause for all the volunteers helping
+here to get this conference running.
+And of course if you have any questions during the event please contact one volunteer and
+we will help you with that.
+And one last more thing we really rely on your feedback to get this the impression of
+the conference and what we can do better next time and we have QR codes around the place.
+Please do that and if you provide feedback please make sure that you submit the form you
+don't need to answer every question but submit it because otherwise we won't see it.
+All right so that's enough for the logistics enjoy the conference have a fantastic time
+here in Dusseldorf and with that back to you Dirk.
+Okay thank you very much.
+As Christian said also this year this program this year's program marks the change for the
+vendor we have two tracks which we didn't have before and as I said we worked out.
+And we also have a keynote which I come in a sec to that and yeah the number of submissions
+this year is again getting higher so we had even trouble to find the right balance between
+the submissions and getting a place on the stage.
+So as a result we needed also for some speakers to condense the presentation time a little
+bit and we had to say sorry to some really good proposals.
+But there will be a conference next year so all of you who submitted and didn't get a
+feed into the door please try again.
+So coming to the topics which are awaiting you.
+So Germany is very strong as far as the research community is concerned.
+So we have a couple of talks from researchers in Germany but we also have over projects
+which are strong in Germany there are some two new overs project.
+One is the over secure code box and the other one is the overskumulus which we present
+here and the overstop 10 is not a German thing but we have a participant from Germany who
+is presenting the current status of the upcoming overstop 10 and finally in the end we will
+have some fun certainly with the Jus shop who is sending us home and as every year James
+John sorry yeah so that we have a final a good end of the conference.
+Other than that we have a good mixture of topics for developers, breakers, defenders
+and so on just a quick survey so who is more on the developer side please raise your hands.
+Okay that's not so bad, who is on the breakers side, penters and so on okay that's equal
+defender, deaf ops, managers kind of good okay quite a good mixture this time I would
+say yeah one topic which is unavoidable these days is the thing called AI.
+I think you always had some experience with it everybody from you probably sitting in
+the audience so last year we introduced related overs projects to AI this year it's a little
+bit orthogonal to that because it's basically in the couple of talks and topics here.

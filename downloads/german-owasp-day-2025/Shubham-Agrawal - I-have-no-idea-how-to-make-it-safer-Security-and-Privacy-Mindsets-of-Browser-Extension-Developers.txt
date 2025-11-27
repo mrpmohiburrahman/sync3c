@@ -1,0 +1,244 @@
+API URL: https://api.media.ccc.de/public/recordings/93604
+Frontend URL: https://media.ccc.de/v/god2025-56488-i-have-no-idea-how-to-make
+Title: "I have no idea how to make it safer": Security and Privacy Mindsets of Browser Extension Developers
+
+>> Thank you very much for the long introduction, and welcome. I'm going to talk about browser
+extensions. So before I begin, I just wanted to understand my audience. How many of you
+actually use browser extensions on a daily basis? Okay, quite many. Maybe a less popular
+>> I'm going to talk about the first part of the talk. I'm going to emphasize on the fact that this is not a developer bashing talk. This is a developer helping talk.
+self-bosting slide could help. So yes, I do academic research. I'm doing post-doc at MPISP.
+Security and privacy, yes. And I like to do web application security, but now I'm also interested
+in other things like, you know, talking to people, as I'm doing here, talking to people about what
+sort of security and privacy practices that they do and sort of harms that security and privacy
+issues couldn't go. But that's about me. Yes, since I already asked, I'm assuming that you might
+be familiar with at least one of these extensions that probably you used at some point of your time
+on web. Yes, this was just to bring some familiarity. Now, why do we care about browser extensions?
+Yes, we use them, but why is it so interesting for security and privacy?
+Just looking at it from like perspective of recent things that happened with browser extension,
+it seems like it may not be interesting for the community like who's developing them,
+but it's definitely interesting for attackers in the wild. They've been trying to exploit this
+because, well, extensions are frivolous. They could do a lot more damage than in native web
+applications. And that's kind of scary of it. Talking from the resource perspective, what do we
+know about them? Well, there are a lot more things, but to take a step back and think on high level,
+what sort of things could go wrong with browser extensions? It's very much similar to what you
+have seen in the web. You see cross-site scripting, extensions could have that too, unfortunately.
+And then same goes for fingerprinting and then information leaks. And some of our previous works
+also tell us that extensions could modify headers to allow JavaScript execution and other functionality
+that they desire. Unfortunately, unfortunately, these are not malicious extensions. They just want
+to execute desired functionality, but we call them benign, but buggy because they could still
+incur these damages that we have, like, for example, cross-site scripting. So the highlight of this,
+the rest of the talk is going to be benign, but buggy extensions. We know for a fact that, okay,
+there are some problems that exist. What do we do about it? We asked ourselves, when a developer,
+a person who wants to write an extension for themselves or for their friends,
+do that. What sort of security and privacy decisions do they take? Or what is the security
+privacy mindset to a level of abstraction? And then we talked to these people.
+In essence, we talked to 21 of these extension developers, spanning across reasons, countries,
+even continents. I guess the number was, like, all of them had cumulative user count of 6 million,
+so they were also, like, very popular extensions. With them, what we talked about is, like, okay,
+what is your experience? What have you done so far? What sort of technical and professional
+background and blah, blah, blah, that happened? But more importantly, we also asked them to
+kind of work on some of the tasks that we had curated to understand what exactly goes into
+practice, rather than what they talk about. Like, okay, what are the security and privacy
+decisions do they take when they have to implement a bit of a piece of code or, you know, a task?
+And then we try to understand, like, the overall mindset through this. And, well, yes, we don't,
+we did not want to understand, like, how they arrived to this, what exactly the solution would
+be, but rather the solution strategy in terms of security and privacy. But that's pretty much
+about the research side of things that I'm going to talk about. Now, I'm going to talk about the
+results. Before that, yes, I forgot. So this used to be the case, like, pre-LLM era, where,
+you know, these used to be the information sources or ground truth for developer development purposes,
+but now we also have these, which we actually allowed developers to consult when they were
+actually coding because that's the game, right? That's the ground truth. We don't learn code by
+heart. We consult sources and then we write code. And we try to be as real-world as possible when
+we were trying to understand or gauge their mindset in sort of sense. So we had two tasks here,
+and that's what we're going to talk about. One was kind of privacy-aware task, and then the other
+one was security-aware task. Talking about the privacy-aware task, we built a website,
+like a mock website or mock task as well. We just asked developers that, hey, here be the webpage,
+which asks you for an address. Can you write an extension, not from the scratch? Can you fill
+the stopcode here, which kind of saves your address and also auto-fills whenever you come back to,
+you know, buy another product from the same website? Pretty simple, pretty straightforward.
+We gave them all the information as such, and then we asked them to just fill this stopcode,
+like how they would go about storing semi-sensitive privacy-aware data in this situation. That was
+essentially the goal. Interestingly, we found actions which were differing, of course,
+but I think the underlying reasons were quite interesting rather than just the results.
+I'm not sure how many of you are familiar with the local stories or the web stories API,
+how it functions on the web, and then for extension side of things, there's also a dedicated API,
+which is chrome.stories API, which we had seen in our previous research that local stories
+API or any web stories API for that matter be it's session stories or index DB, in fact,
+can be used to fingerprint extensions on the client side. So this was basically the premise
+to understand, okay, what and why do extension developers choose what they do?
+And surprisingly or unsurprisingly, most developers actually chose local stories because
+it's convenient. The documentation helps, and well, not many people are aware of the differences
+that may exist between, you know, the web stories API and why there is like a dedicated browser.stories,
+the Mozilla world or chrome.stories in the chrome world that there exists. So what I'm trying to hint
+with this whole experiment or the task is, well, there are APIs, there are multiple APIs to enable
+certain same functionalities, but then of course, the overall goal could be different there.
+But this definitely is not clear to most developers that we interacted with.
+And I'm just talking to terms of the 21 developers that we talked to.
+So yeah, the security and privacy benefits are unclear, is what we kind of understood from this
+experiment. What do, of course, these developers consulted the documentation, even charge GPT or
+another code assistant and such. So what do the documentation has to say about this?
+Actually, we looked at Mozilla, we looked at Chrome because, well, browser extensions,
+these are the two most popular information sources. Surprisingly, again, or unsurprisingly,
+the documents are not explicitly specific about what sort of S&P games or losses do you incur
+when you choose one over the other. And that, in our opinion, is a bit problematic.
+And that's what, when we talk to developers about, like, okay, now when you see this and this,
+like, how do you decide this? Well, the response was, this is pretty vague and ambiguous. It doesn't
+really help us decide what is even security and privacy problem here. Whatever works for us works.
+Unfortunately, that was the case. I talked about AI assistance and, yes, many developers actually
+use them. So we could also gaze, like, okay, how do they integrate, you know, the LLM bits and
+pieces nowadays or AI bits and pieces. So I have this because, like, I just wanted to show you that
+how co-pilot used to work back, you know, even now, is like you prompt something and then based on that,
+you get a solution. Or in some other AI assistance, like, Superman, when you write a piece of comment
+and then based on that comment, you get the solution. What I'm trying to say with this is,
+like, AI assistance in practice could be only as smart as the seed that you give them or, you know,
+the developer themselves. To set more light on this, we have an example. So if you look at it,
+the gray side of the code was something that was generated by co-pilot because the seed here,
+local storage was given by the developer themselves. Which was different from one particular case
+that we observed. This was supermanvin, by the way. The AI assistant by itself generated the whole
+piece of code without giving any seed. But I don't know. Maybe it's just the AI assistance-based
+difference or they maybe extract all the context like where this code is going to execute and what
+not. But in essence, the seed could very well determine where the solution would end. And that's
+what we kind of observed at scale in our experiments. And now talking about the second task, which was
+more like about security mindset or like how do people think of problems which could have
+security repercussions. We went back to our experiment or our previous work on header
+modifications and we designed our experiment similarly. So we asked developers that, hey,
+here be our website and we want to embed Amazon in an iframe. How do you do that?
+For example, we had a mock bookstore and we asked like, okay, compare prices with Amazon.
+How it would look like ideally is that the iframe is embedded. But Amazon actually includes
+x-frame options header by the way to give you some context. If you're not aware of what x-frame
+options is, it basically disallows framing based on the policy that is set. And in this case,
+it's same origin which essentially tells that, okay, Amazon.com or Amazon.de cannot be iframed
+across origins. So this was basically the nickel here and we wanted developers to look at this
+and try and understand or give us some insight how they would tackle this problem.
+Actually, we saw differing results from the first task.
+A lot of people could solve the task somehow towards the end, but they were like, yeah, okay,
+this does not seem to be a perfect solution. Yeah, we are not really sure how to get through
+this in a more secure manner. And then there were a lot of people who also mentioned that, yeah,
+okay, this sounds hacky. I am doing this here, but I actually won't do in my extension.
+And then, yeah, some people were just like, yeah, okay, scratch that. I'm not going to do it.
+I would think of better alternatives like, yeah, why the hell do I need an iframe?
+I can just open in a new tab and that should work. This does not look like a use case.
+But again, to emphasize that we were not actually after the solution, we were actually after the
+solution strategy, like what sort of mindset that people have. And in essence, it's actually
+much better than what we thought of initially that okay, probably developers might not be
+wary of security issues, which was not really the case when it comes to overly security
+critical implications, developers were actually on the game. So yeah, that was about the iframe
+side of things. But then again, because this was more difficult than the first task, people
+heavily used LLMs for this. And interestingly, we observed a pattern which might be
+relatable to you guys as well. I'm not really sure. So if you look at the highlighted part,
+there are some security reasons or suggestions or legal suggestions that have been given by
+the charge GPT here at least. What we observed in general was when there are these strong
+suggestions given by charge GPT, at least in this case, people were yeah, okay, I trust this
+whatever that charge GPT has given. And I take this as a strong indicator of correctness. I'm not
+going to question what it is. So what I'm trying to say here is people did not really wet what was
+given as an output, especially when there were words like security and you should not do something
+in terms of like, okay, this could be dangerous and such. And the more interesting thing was,
+when people used these like took help, they had to ask like, okay, what do you think about the
+solution? And they kept asking the same question three to four times during our interview or during
+our discussion. And then eventually, charge GPT came up with, yeah, okay, this could be dangerous,
+by the way, which could actually be factually incorrect. If you look at the second example,
+which says that security, due to security reasons, Chrome does not allow these extensions.
+That's actually factually wrong, because there are many extensions, even newer extension which
+could modify headers. It's just that they are processed more rigorously. So it's factually
+incorrect. But people take it, take these indicators as terms of correctness. Okay, this was all about
+the two experiments that we have had. But we also wanted to understand the overall pattern and
+things that we understood during the discussion with these developers. And, well, when we talk
+about security and privacy, sometimes it's more often about compliance, because, well,
+our product needs to run, our product needs to make money, and that's all that we care for.
+Not us personally, but just saying in general. Well, this also comes with extensions, because,
+well, B8, Mozilla, or Chrome, they have certain rules for extension developers,
+and they have been trying to make this better every day, every week, every month, and so on.
+Right? So just going to one of these regulations, which says that, okay,
+to any of these browser extensions, they should not have any remote code inclusion.
+That means that all the JavaScript that in extension needs to execute should be packaged,
+sent to whatever vendor that we're talking about, and they should be vetted.
+So that's pretty much the goal here, that every code should be vetted, and there is no remote
+code inclusion. Actually, we learned about some of the patterns which could be interesting.
+What happens if an extension injects an iFrame into the page, and that iFrame then
+injects or kind of tailored its JavaScript execution?
+And yes, and this is something that we learned from one of our participants, who was trying to
+be perfectly benign, but also heavily modular, which is very, very much needed in software
+practices, that, well, I need to be very modular with all kinds of users, all kinds of websites,
+but still compliant, because, well, my extension also needs to be hosted.
+So the goal itself was just to execute JavaScript in a custom manner to each website with different
+JavaScript might be needed, and that pretty much was the goal, and, well, the participant did it
+through iFrames. The question is, is it too bad? Well, it's compliant. Chrome knows what they're
+doing. Mozilla knows what they're doing, right? Not really sure, because I've been doing security
+research for a while now, and I could think of an attack like within a minute, like how this could
+heavily go wrong. I could have, I don't know, an iFrame, which is just like even on the same
+origin through source doc, and then, you know, just execute JavaScript, contact even third parties,
+which won't be seen by Chrome during wedding, and then do the damage. And, well, if you're still
+wondering how this whole thing fits in, you have an iFrame, you have PostMessage API, and then you
+have, like, the extension-based interaction, and all of this becomes, like, pretty neat bypass,
+but also very dangerous for the user, because, well, we don't know what sort of JavaScript would
+execute. So this was actually problematic, but in the end, the extensions were still compliant,
+and when I was preparing for this talk, I spoke to one of my colleague yesterday,
+who was also a researcher, and they said, yeah, actually, we are also doing this. Thank you for
+sharing. I like your talk, but I don't like what you suggest. This is a problem. Yeah, compliance
+could actually be different from security and privacy. We know that from very, very many domains,
+but in this case, well, we saw that here, too. We learned about set modeling of a couple of talks
+before, and I just wanted to give you some high-level idea about, like, what browser extension
+developers think about them, well, that's what they think about them. Websites cannot do anything
+with extension, which is, again, no threats, no problem, is what their mantra was, at least,
+that's what prevalent among those 21 developers that we interviewed, which is kind of dangerous,
+because I also use at least two to three extensions on a daily basis. I hope they are not, like,
+none of these developers are actually thinking in this manner. So, as I said, like, there's been
+constant development in terms of security and privacy enforcement. There are isolation boundaries,
+but the developers are actually not aware of this. So they think that whatever JavaScript that they need,
+whatever sources that they refer to this copy paste things, and that works, and so be it,
+we don't really care about how this works underneath, because we don't have to things work, and that's
+pretty much it. The problem is, this leads to various threats that I mentioned in the beginning,
+like cross-site scripting, fingerprinting, and even information leaks, especially for
+password managers and such. That's a bit problematic, yes. Then, talking about what the definition
+of security and privacy itself means to people. A lot of people that we talk to, like, actually
+confuse what security and privacy could be to trust and safety, because, well, they just want
+the users to trust themselves, the users to feel safe, even though the extension might not actually
+be safe, but the users should just feel safe, and that's pretty much that they care about,
+because, well, user base is important for popularity. Yes. And the other thing was, yes, we need to be
+future-proof, so we add as much code as possible. We don't care so much about what the bloat could
+do, or what sort of damage it could incur in future. Like, looking at all of this, and trying to
+understand why this happens, we realize that, well, these developers are not really, you know,
+these extension developers are not developers. They are citizen developers. Or, in the keynote,
+we heard about wipe coders. I guess this is still going to go higher, even, because we have LMS now.
+They would probably be wipe coders in the coming days. And they don't really understand about
+the web development, even. Like, security and privacy is even next level, I would say.
+So that's, again, this is problematic. I don't expect everyone who's writing a piece of code to
+be security and privacy experts as well. They are already wearing a lot of hats. But, again,
+if I'm a standalone extension developer writing a password manager, this could be problematic for
+my users. And this is all that I wanted to say with this. And then there were some other
+miscellaneous remarks that we captured, saying that, well, when we asked about what privacy policies
+and stuff that they consider, well, they said probably none, because it's the responsibility of
+the store. And we don't really understand how this works. We try to be as transparent as possible,
+but they don't really understand the threat modeling there, or like the third
+party scripts that they may include and such. So they just give up at some point,
+because it's apparently too hard for them. Yeah. And then one other pattern probably
+known to many people, but this was revealing to me that, you know, extensions, there are people
+who just want to buy your extension. If you're wondering for how much, this is what an average
+number looks like. You still have the control and everything. It's just that they would ask
+you to inject one script for analytics purposes and whatnot. And in practice,
+we interviewed a person who actually worked in such a company and said, like, no, none of these
+vendors can actually detect these scripts. So it was kind of dangerous. And just to give you a
+disclaimer, I forgot to write in the slides, we disclosed all of this to all the browser vendors,
+like Opera, Mozilla and everything, so that they know what's going on. And then the last good part
+that we understood from developers was actually they don't help users in contempt. They don't
+really see them being also aware of everything. But then the bigger question is who actually should
+be on their toes to make this better? I don't have an answer for this, because I'm towards the
+closing of my talk now. Yes, to summarize things. Well, as we saw, the definition of security and
+privacy is highly objective to individual developers. And well, in most terms, it looked like they
+just want their user base to stick around. And that's all. They call it trust, they call it safety,
+they call it sometimes security even, but that's pretty much about it. Yes, set modeling is hard.
+And for extension developers who are not actually developers, it's harder. So yeah, it's a bit of
+thing. I guess it requires a set of community effort, like all stakeholders coming in to make
+this a bit better. Yes, I don't know. We attended a lot of talks this since this morning and learned
+a lot about LLMs again, but unsurprisingly, well, LLMs are only as good as people using them is
+what my opinion here is. Yes, with the second experiment, the security header dropping experiment,
+we saw that many people, you know, ended up doing the right thing, but they have no clue about the
+processes. And this could be a dangerous and real world is what we can assume at this point.
+Yeah. From the first experiment, there are multiple options. Some of them could even be
+deprecated, but then if they are still around and supported by browser for backwards compatibility
+and whatnot, but the documentation doesn't really help, it is again problematic. Yeah, lastly.
+Yeah. There were instances where we saw that people only wanted to choose a certain solution
+because Chrome likes it or Chrome could just erase it at some point of time.
+I don't want to do vendor bashing as well, but just just giving you some ideas like,
+okay, this could be problematic as well. With that, thank you so much for listening and holding on
+after lunch. And I'd be happy to take questions now.

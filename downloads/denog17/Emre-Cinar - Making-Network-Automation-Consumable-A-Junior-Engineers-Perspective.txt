@@ -1,0 +1,491 @@
+API URL: https://media.ccc.de/public/recordings/93196
+Frontend URL: https://media.ccc.de/v/denog17-78242-making-network-automation-consumable-a-junior-engineer-s-perspective
+Title: Making Network Automation Consumable: A Junior Engineer's Perspective
+
+(upbeat music)
+- Our first presenter today is Emira Sinar from Nokia.
+Emira is a junior automation sales engineer
+for IP networks at Nokia,
+supporting network automation sales activities
+across the European market.
+Please join me in welcoming Emira to the stage
+and enjoy the talk.
+(audience applauding)
+- Thank you guys, happy to be here.
+So welcome to my presentation,
+Making Network Automation Conceivable
+at Junior Engineers' Perspective.
+So first of all, who am I?
+That's the question everybody always asks.
+So I'm Emira Sinar.
+I'm a junior automation sales engineer at Nokia Germany.
+I'm specifically part of the NSP automation team,
+NSP stands for a network services platform,
+which is our IP1 controller.
+And yeah, normally at this point,
+people start to talk about how long they've been
+in the industry and how much experience they have.
+I'm sorry, but I will need to skip that part.
+I've just finished my bachelor's degree last year
+and I've been working for a year now.
+So there's not a lot to tell about that, unfortunately.
+But yeah, by the past year, I've been just trying
+to navigate the space of network automation somehow.
+And the more I got into it, the more I was like,
+okay, there's a lot to cover.
+There's really a lot to cover as a junior engineer.
+And I thought I want to make this aware
+to senior engineers so that they can support
+there's junior engineers better.
+So a couple months ago, my boss came up to me
+and was like, Emera, please prepare a service provision
+and use case for a customer of ours with his tools.
+And I was like, okay, what do I need to do for that?
+What do I need to know for that?
+And I started talking to a few senior colleagues
+and the more I talked to them,
+the same question kind of appeared
+throughout all the people I've talked to,
+which was if you could start over,
+what would be the first thing you'd learn?
+Or if you could talk to your younger self,
+what would you tell them?
+I know this kind of question usually leads
+into telling their younger self
+into buying Bitcoin right away,
+but let's focus on network automation here now.
+So the more I talk to people about this,
+the more I was able to kind of pinpoint three different,
+I call them pillars, three different elements.
+So which are, I call them network infrastructure knowledge,
+cloud tech, native technology,
+as well as software engineering.
+So first of all, we have network infrastructure knowledge,
+which is straightforward.
+If you want to automate something,
+you should know how it works, right?
+You want to know what you automate.
+So this includes everything around hardware fundamentals.
+So you want to know whether what is an SFP,
+what kind of CPM cars do I have in a router and so on.
+As well as on top, we have the different operation systems
+across maybe multiple vendors across one vendor
+and separate COIs as well.
+And last but not least,
+the network architecture and protocols
+that you need to know.
+You need to start somewhere, right?
+You need to know what IGP is.
+You need to know what MPLS is.
+And yeah, I remember I was in a discussion
+with a couple of friends and I just finished learning
+about IGP and they were talking about LSPs.
+And I was like, I finally know what you guys are talking
+about, link state, PDU.
+And they were like, yeah,
+I'll give you a couple of months more.
+You're getting there, but you're not there yet.
+So that's the first one.
+The second one is cloud native technology,
+which is all about containerization.
+How do I put my application into a container?
+How do I scale it off towards using Kubernetes?
+And how do I do that in a methodology
+that helps me improve it continuously over time?
+So CI/CD continues, integration continues,
+development methodology.
+So this kind of is appearing everywhere for me as well
+when it comes to automation
+because you don't want to test on hardware anymore.
+You want to have some virtualized way
+to test your routers or automation as well.
+So this becomes even more important because of that.
+So this is another complete pillar
+that you need to focus on when working in automation.
+And last but not least, we have software engineering.
+This is probably the one I'm most familiar
+with just out of university
+because you do basic software engineering university as well.
+But this still covers some complexity as in,
+I saw Python go where like the most popular as far
+as I've seen in the network automation space
+as well as all the packages and all the ecosystem on top
+that you need to cover for this,
+like Netmico, PyTest and so on.
+And last but not least, we have the data formatting
+which for me is basically how do I convert everything
+that I'm getting into JSON.
+So we have the three pillars.
+There is quite a lot of ground to cover.
+Technically, there's a new player as well.
+I'm just not gonna cover that out of simplicity.
+Like we've been hearing about AI everywhere.
+How do I use AI agents for this?
+How do I use MCP to connect to a network controller and so on.
+But as a junior, usually you first need to know
+what you're doing before you get to that level of automation.
+So out of simplicity of all this talk,
+I'm just gonna skip it for now.
+But the focus, though, what I'm trying to underline
+is that the network automation field is just vast.
+There is a lot to cover.
+There's a lot of ground to cover here.
+And there's a lot of topics that you need to kind of have
+an idea on to be able to pull off automation.
+And to get to my point of this presentation as well,
+imagine on top of these three pillars,
+we still have loads of tooling
+that is supposed to help us on our journey towards automation.
+And imagine if that tooling is so complex,
+it turns into a ball neck to actually pull off
+the automation in the first place.
+Let me give you an example.
+Imagine you would like to learn about an IGP protocol,
+SPF, ISS, whatever.
+And you wanna configure it on a router.
+But just setting up that network takes you multiple hours
+or multiple days depending on if you need to get hardware as well.
+Then that tooling or that step turns into your ball neck
+for actually trying to learn IGP in the first place.
+That's why I'm getting to my conclusion here,
+which is consumable tooling is crucial for juniors.
+So what do I mean when I say consumable tooling here?
+What are consumable tools?
+I kind of summarize that for myself with four attributes.
+The first one is minimal dependencies.
+It seems quite straightforward.
+I had a situation where I was trying to install
+a monitoring solution in a security environment.
+So no access to the internet.
+And at that time I tried to download all the RPM packages
+I needed for that manually,
+put them on a separate server and rewrite the YAM repo.
+Let's just say that it took me one and a half weeks
+to install that one software
+because I just had dependence issues.
+And nowadays I know I can pull it off easier with Docker,
+but at that time I didn't know that.
+I had to do it myself somehow.
+And yeah, I spent two weeks on that,
+but the only thing I actually wanted to do
+was learn how to do proper monitoring of my infrastructure.
+But I wasn't able to get to that until two weeks later.
+So documentation, this is quite straightforward.
+Nobody likes to reverse engineer how a tool works.
+I think we've all done it at some point,
+but yeah, I think that's why documentation
+is quite straightforward.
+Real world examples.
+I like to compare this to school actually.
+For example, physics felt more meaningful to me
+than maths because I was actually able to actually knew
+what I was using these equations for in the field.
+And the same applies to tooling.
+If you teach a junior on how to teach him about a new tool
+and if you tell him how to use that tool in the field as well,
+he's much more likely to be able to use that tool
+in the field as well because he has an idea
+and a vague idea in how to use it later on as well.
+And supportive community.
+I think this one is technically not a direct part
+of the tool, but it's something that the creator
+or the publisher of the tool can foster.
+And so that you have a way to ask questions
+because let's be honest, you could be junior on expert,
+you will always have some questions
+and that's what these communities are for.
+So I talked about consumable tools.
+What are tools to help me in the beginning especially?
+So the first one is Container Lab.
+I hope you joined our workshop on Sunday by Gordon
+over there, it was a really good workshop.
+If you didn't have access to it yet,
+let me know, I'll share the GitHub repo.
+But basically, Container Lab is a tool
+to deploy virtualized networking topologies
+and networking operation systems.
+It helped me a lot in the beginning.
+Just to be able to say, hey, I want to learn this,
+I can deploy right away and just test
+whatever I need to test.
+And it actually fulfills the attributes I was talking to beforehand.
+So we have a quick start guide so it's no dependencies
+because I can just deploy it right off the box.
+I have real world examples of how to use Container Lab
+through pre-prepared labs.
+I have an active Discord server for community help.
+So all these factors make it really easy
+to use Container Lab for me.
+And the second one for me is Netbox.
+Let's be brutally honest here at first.
+I know inventory management can be quite miscellaneous at times.
+But especially as a junior at first,
+when you start recording serial numbers and do that for a while,
+you know, I want to automate this.
+I don't want to do this anymore.
+And that's where Netbox comes into place.
+And it's a great tool to do that.
+And the same principles apply to Netbox as well.
+So we have a quick start guide for exploration.
+We have great documentation.
+Warrior was working a lot with the swagger UI, love that,
+and an active Slack rep for community help.
+So we have these two tools.
+You might have noticed these are open source tools.
+So on top of that, obviously, we also have the commercial tools,
+which add another layer of complexity, all of this.
+I just want to spend two minutes on this real quick,
+because I've been talking about the service provisioning use
+case beforehand.
+And it's a mixture of both.
+And what I want to underline here is that open source
+is powerful because it's fosters innovation and collaboration.
+But obviously, it requires effort for a specific use case.
+Commercial tools are efficient, but they come at a price.
+I don't want to have a discussion here between the two of them.
+I would say for most of them, it's less about choosing sites.
+It's more about choosing works, choosing what works.
+Because in the end, reality demands it.
+And that's where the balance lives before all of us.
+So I was talking about the service provisioning use case
+in the beginning.
+So what was that about?
+What did I need to do over there?
+And I would just want to do a quick run through of how
+the tools I've been talking about beforehand
+made it easier to pull this off in the first place
+and give it a user as an example to underline that.
+So the use case was basically about a layer 3VPN service
+that you can see over there.
+And they have multiple provider edges or PEs connected
+to separate customer edges CEs.
+And the idea was that the customer previously
+was recording the connection between the PE and the CE
+manually in an Excel file.
+And that can be quite tiresome over time, right?
+Nobody wants to sit there and say, hey,
+there's a new link.
+I want to need to connect it in an Excel file.
+And over time, it just gets tiresome.
+And the idea was to automate the association
+between the two of them to get more visibility
+for the customer edge.
+With the requirement that these two
+are separate to be managed.
+So the tool that manages the PEs is not managing the CEs.
+I was able to--
+kind for myself, I was able to sum that up
+into two different parts, which were, how do I
+get the data to associate the CE with the PE?
+And how do I use that data afterwards, which
+I'm going to get to now?
+But first of all, regarding the pulling this off,
+for example, setting up the testing of work
+worked out of the box with Container Lab.
+I would say this was probably the easiest part
+of the whole thing.
+Because it just works out of the box.
+I had a graphical user interface as well.
+So nice.
+And we get to the first question, which
+was how to get the data.
+First of all, we had the Container Lab network.
+We talked about this before.
+And secondly, I said this before, I work at Nokia.
+So I also work with Nokia equipment, which in this case
+was Nokia NSP, or one IP controller,
+which was managing the PE notes in this case.
+And now the question is, where do I associate the PE with the CE,
+which I manage separately?
+For that, I was using Netbox.
+I talked about Netbox beforehand.
+And Netbox was used as the inventory source
+for the whole network in this case.
+How do I get the data into Netbox?
+There is a lot of tools around it.
+I decided to go with the Netbox Dios service, which
+is used to discover nodes and can
+able to populate data via SSH afterwards.
+And for NSP to get the data out of NSP into Netbox,
+I was using a Python script because they
+have a diode SDK as well to populate that data into Netbox.
+And all of this data afterwards was
+then via the diode ingestion service
+populated into the Netbox.
+As you can see here, this especially
+covers all the three pillars I've been referring to beforehand
+just to test this one network automation use case.
+So first, we have the containers.
+We have the cloud native technology for container
+lab that you need.
+On the other hand, we have the network infrastructure knowledge.
+So you still need to know what kind of network operation
+systems you've been working with and what kind of service
+you need to know to be able to understand the use case
+in the first place.
+And the other one is the Python script
+with the software engineering to be able to properly query
+that data and give it forward to Netbox.
+So this use case, that's why, that way,
+it includes all of the three pillars
+just to be able to prepare a demo in this case.
+And secondly, how to use the data we all
+know have it in Netbox?
+How do we use that afterwards?
+In this case, we have the same starting point
+with the network in NUCIA NSP.
+And in this case, I was using it the other way around.
+So in NSP, we have a workflow manager,
+which is based on OpenStack Mistral.
+So OpenStack Mistral is open source.
+You have a lot of documentation on it.
+You have commercial NSP documentation on top.
+And I was using that to query the Netbox API
+to get all the needed CE data and incorporate
+that CE data into my NSP data model,
+so that the user, when he deploys a service,
+can see right away that he--
+which CE the PE is connected to in that case.
+And this was afterwards provided to service provisioning,
+where I save that data in a Yang model,
+I have to change the Yang model for that
+and deploy it onto the network.
+So happy days, the customer had some visibility
+for the CE PE association afterwards.
+And this use case in my eyes serves as a nice example
+of how do I combine or how a typical network automation
+use case incorporates all three pillars I was referring to
+beforehand.
+So lessons show in just an outlook.
+So I would say I had two main challenges out of this.
+The first one was striving for perfection,
+can keep you from achieving results.
+I'm the kind of person that just likes to dive into problems.
+Something is not working.
+I'm going to spend two hours on trying to get it to work.
+But let's just say that way I wasted a lot of time.
+Sometimes I could have just done it differently.
+It would have taken me five minutes,
+but I wanted to solve this.
+Sometimes it's just inefficient that way.
+And I need to accept that.
+And the second one is for preparation and research is key.
+I was talking about the Netbox quick startup guide beforehand.
+Let's just say I found out about this one
+after trying to do it myself for half a day.
+So if I would have just Google it beforehand,
+it would have saved me lots of time.
+But yeah, you learn it the hard way, right?
+Regarding challenges, I had, first of all,
+maintainability.
+I would say the main part that you learn in university
+is how to script stuff.
+Like I missed for my case at least.
+I didn't learn like proper software developing.
+And the issue is how do I build something
+that is maintainable and manageable afterwards?
+That's quite a big challenge.
+And lasting impact.
+This is something I've been seeing with a few juniors,
+actually, is that we get a topic which is nice to have.
+And the senior engineers don't have time for it.
+We work on it.
+It's nice, right?
+But it's not something they immediately need.
+And then it's shelved.
+So in that case, I always, it was for me.
+It's nice to learn stuff, but we still
+want to work on something that is meaningful afterwards.
+So that's something to provide something meaningful
+that the team can use right away is quite a challenge.
+And the outlook is, how can I apply the same kind
+of mindset to other problems?
+As in, we have the three-player mindset.
+How can I break down other use cases like that
+to simplify them for myself and for customers?
+Because not everybody is into network automation right away.
+And if you're able to break it down to this,
+you're much more likely to be able to probably portray
+what you want to do to your customer.
+So this was my perspective, at least, on things,
+on what I think I should learn.
+I want to know, what's your perspective?
+If you could help somebody starting out,
+what would you recommend?
+To question towards the audience,
+if you have a question, please raise your hand.
+If you have it on, please raise your hand.
+Thank you.
+(audience applauds)
+- Thank you very much for your talk.
+I think what I would recommend to start
+is with actually Linux.
+Just dive into Linux, also Git.
+- Okay, okay, thank you.
+(mouse clicking)
+- Mark Haber, freelance IT consultant.
+Thank you for this talk.
+It was enlightening to see the view of a junior person
+with me being quite senior.
+I would also recommend learning Linux
+and to talk to your older and more experienced colleagues
+and see whether you can find a mentor
+and literally sit on the lap of that person
+for a week or for two weeks to learn the ropes, like.
+And learning a new tool without real life documentation,
+which is very common, happens to older people as well.
+That's not the junior problem.
+- Sure, sure.
+Okay, now that there's one more person over there.
+- Hi, thank you for your talk.
+My name is Ahmed.
+But also what I recommend is making support,
+go on the knock or something like this
+and learning about the network.
+Because there you learn really about real networks,
+real issues, because then you have a feeling of it,
+what happens in a network and what kind of issues
+you will get and how to solve this.
+- Okay, thank you.
+Okay, thanks a lot, guys.
+That was it, actually.
+Thanks a lot for your attention.
+Are there any questions?
+(audience applauding)
+- Thank you, Emera, for these insights.
+We have time for some questions.
+Please remember to state your name and affiliation
+before asking your question.
+We will also relay some questions
+from Vennulus if time permits.
+- No questions?
+Open.
+- Hi, also a question from me.
+My name is Florian.
+What would you recommend?
+I mean, now that you have learned about that,
+what are quick wins?
+Would this, where can you get results fast
+and see, okay, I can actually achieve something?
+- Regarding quick wins,
+I would say one main point is I know it sounds tedious at first,
+there's quite some good research material you have out there.
+Some people are writing very amazing blogs
+where you can just learn everything that you want to learn
+and they're explaining it in an easier way
+than just reading some product documentation.
+We've all been through that.
+And these blogs, at least in my case,
+it helped me a lot to be able to grasp some stuff better
+because it was just, let's say, explained on a human level.
+Does that make sense?
+Yeah.
+Okay.
+Okay.
+Thanks a lot.
+- Well, all right.
+That's a wrap for this presentation.
+We will be right back with the next one.
+Thank you.
+- Thanks a lot guys.
+(audience applauding)

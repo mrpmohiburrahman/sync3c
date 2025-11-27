@@ -1,0 +1,375 @@
+API URL: https://api.media.ccc.de/public/recordings/86868
+Frontend URL: https://media.ccc.de/v/c4.openchaos.2025.01.psylink
+Title: PsyLink
+
+this talk is going to be held in English. I hope that's okay for you. Warm welcome to
+my talk on Silink. This is an open source electrode arm band. And just a general overview
+of the presentation is I'm going to show you what Silink is. Just some general information
+about neural interfaces and biology, and then the implementation in detail, the plans for
+the future and the demonstration at the end.
+So first of all, what is styling?
+It's a modular open source.
+It's a non-invasive electro-myography project, and electro-myography is the discipline of
+reading signals, electrical nerve signals, from the surface of the skin usually, although
+the nerve signals are relatively weak and you cannot use them very well to do what's happening in the brain. But when you read out the signals on the arm, you have the advantage that there's this, there's this, um,
+the, and that's raising the signal quality by orders of magnitude, and you can read them much better through the skin.
+So basically what it does is it takes the electrical signals on the skin, which look a bit like this, and turns them into this key presses.
+the device is modular and you can have as many, like, um, like, different
+amounts of these electrode modules here, and those are in contact with the skin and then
+transmit the electrical impulse further down into the processing stream.
+This is not a new idea, and it has been done for quite some time, and the state of the art of this would be the myo arm band by Thalmic Labs.
+And when I started out with this project, I didn't really want to build something like this because I thought, obviously, this is a solved problem.
+I don't want to concern myself with hardware. I'm more of a software person.
+And I just wanted to tinker with this, to just experiment with the signals and see what I can do with it.
+Um, but the state of the art has, just has some big problems, and I'm going to go into more detail later on why I couldn't use this.
+Um, Silink comes with open source, the, like, the electrode arm band schematics are freely available, you can replicate it and even sell the device for all I care.
+The, the Arduino firmware is included, and, um, signal processing software that runs on the laptop or PC, written in Rust and its platform independent.
+And, uh, it has open data sets that help you, if you're just interested in analyzing the data and you don't have access to a Silink right now.
+And a photograph of the device and the signal processing software, um, very rough overview or top level overview of the project.
+Um, it uses the Arduino Nano 33 BLE. You can also use the sense variant.
+Uh, it has 16 electrodes. Um, that's sort of the maximum that you can use. You can also go lower.
+And I hope to have more in the future.
+Uh, those 16 electrodes are turned into eight signals.
+Uh, those are sampled at 500 megahertz with a precision of eight bit and the whole device runs at five volts.
+It uses a special instrumentational amplifier, um, to amplify the biosignals.
+And yeah, here's the list of the rust, of the rust packages, if you're interested.
+And it runs on Linux, but Windows Mac and, um, the Android port is in progress.
+It already compiles and starts, but the Bluetooth part is not working yet.
+And the cost, um, is about 150 euro.
+It keeps rising with every year, even though I don't even change this, the hardware because of, um, yeah, the, the prices of the microchips is just exploding.
+It was about a hundred a couple of years ago.
+Uh, the biggest contributor to this is this amplifier, the INA 128, cost about 18 euro at this point.
+Um, so what got me interested in this subject at all is that I've been fascinated with neural interfaces for quite a while because there is an immense potential to shape the content, the, the contents,
+of our minds with it.
+Um, it's not science fiction technology, it's already there with us.
+And probably many people of you know somebody today that uses one of these cochlear implant that is sort of a neural interface that, um, interfaces with the auditory nerve in order to provide a sense of hearing to the people that have a hearing defect
+or particular types of hearing defects, um, and for neural interfaces there are a couple of easy entry points, I would call it, uh, the easy is in quotes because it's still neurosurgery and so on.
+So you cannot do this at home exactly, I wouldn't recommend it, and, um, the entry points are the auditory nerve, as an example I've shown before, uh, also the retina, um, the primary visual cortex, the sensory cortex, these are things that are well mapped already and well understood, and you know exactly where you have to put an electrode in and what kind of pulse you have to deliver in order to produce a certain response.
+In the subjective mind of the patient, the primary motor cortex is an area where if you have the intention to perform an an action, even if your, maybe your body doesn't comply because you have a severed spine, this primary motor cortex will still activate and you can read out information there.
+And so on, if you stimulate the amygdala, you can produce fear, the nucleus accumbents can be used in treatment of depression and so on.
+And here's just an example of how well those entry points are understood.
+Um, this is the sensory homunculus of the primary sensory cortex and it just shows where you have to poke with an electrode in order to produce which kind of tactile sense of touch stimulus.
+It is the region that extends from the middle of your, like the top of your head down to about your ear and in both directions, you have two of these basically.
+And with these by just interfacing in those areas that I just described, you can also, you can already build quite fascinating things that will give you the knowledge of the world at your sinuses, not at your fingertips but your sinuses even faster than that.
+But I think that many people, when they think about brain computer interfaces and neural interfaces, they stop thinking there because they are a little bit stuck in this metaphor of a smartphone, that the smartphone is the ultimate thing.
+And all you want for the future is to have an implanted version of the smartphone.
+And I think that there's much more potential for brain computer interfaces that are both fascinating and scary.
+So, for example, consider this idea that all you perceive is implemented in your brain.
+So for everything that you are aware of, that you feel that you sense even your own, like the inner sensations of your body, they have some sort of corresponding event inside of your brain.
+And if you can change those brain events, then you can change everything about your subjective reality.
+And this includes even things that you take for granted every day, such as your whole personality, memories, preferences.
+There has been cases where people had their brain changed through some sort of accident and they gained a completely new personality.
+The concept of a "you" in the first place, the sense of time passing, the sense of being embodied in a human, also the first person perspective, like, why is it centered at your head and not somewhere else?
+Why not at your hands, since you're interfaced with your hand so much in the world?
+And there are certain conditions that people have, for example, ego-death experiences, out-of-body experiences that change this actually, and you will, in such a case, you will perceive your sense of first-person perspective completely, completely differently.
+Also, another example is your sensory fields. Like, when you think about what you are looking at right now or what you're seeing, then you typically describe it as the contents of your sensory fields.
+For example, I see this purple lamp right now and it has these LEDs and you don't really think about this sensory field in which everything takes place.
+And for example, I had an experience where for about a minute or so, this sensory field was fractured. It was quite a strange experience that it's a piece of glass and it had a fracture in the middle.
+And one side of the sensory field of this visual field would go back into the direction of my head and the other would go outward.
+And this lasted for a minute and I saw everything as if I was looking through glass, but not just that.
+It was also the perception that my visual field itself has moved. And this was so strange to me at that point that I'm not sure if I would really appreciate the fact of how much can change in the perception of yourself.
+And yeah, if I didn't have this experience. And that's great, right? If you can change so much, then you can create entire realities from scratch. You can create utopias without suffering.
+Yeah, the limit is really your imagination. And I wanted to just push your imagination a little bit with what I talked about.
+But of course we're living in the world where we have things like the tragedy of the commons. We have things like people in power, try to perpetuate the power and don't care much for your well-being in particular.
+And so I was really excited about neural interfaces for a long time. And then I realized that just it kind of dawned on me that it's just going to be used for stuff like this.
+The delivery of propaganda, as you can see with smartphones already.
+Although with brain implants, you can actually skip the step of propaganda. You can just change the behavior directly.
+And it creates dependence. You're basically depending on what's exactly happening with the implant. But one scenario would be that your sense of self is kind of defined also through the brain implant.
+The existence of your sense of self would then depend on whether Elon Musk approves right now or not. And he can just turn it off.
+And also unimaginable torture, of course. And yeah, I just invite you to read some first hand accounts of genocides. And it just shows that sadistic people are just with us.
+And they're still with us today. And if you can change everything about what you perceive inside of your hand, inside of your mind, then just imagine what kind of tortures could exist.
+So with all these risks that are associated with neural interfaces, I just ended up thinking that maybe the good old brain is not so bad.
+And these kind of tortures, actually, they might not even be created through sadists intentionally. They could just be created through malfunctions.
+Imagine if your brain implant works as good as your printer and then just produces very strange outputs.
+And this is actually already happening today that people go to the hospital with very strange symptoms, like emotional distress and convulsions in their muscles.
+And the hospital staff has no idea what's happening until they figure out they have a brain implant.
+And then they have to research who's the manufacturer, get a technician on the phone that tells them how to reboot this thing.
+Obsolescence is also a problem which I want to describe in this example. This is a company called SecondSight, which provided retinal implants.
+And this allowed the blind patients to have a sense of vision again, and that was great for a while until the company went bankrupt.
+And then they had these implants that after a while stopped functioning. They couldn't get any technicians to fix them.
+And in the end, they're blind again, just with very expensive trash in their eyes.
+Another example is the myo armband that I was talking about earlier. This is also a victim of obsolescence.
+So it was the state of the yard for a very long time, and there is about 6000 papers written on it.
+Although probably the search is not perfect. I don't know the exact number.
+At some point, I forgot when, like, around 2018, 2020, this was sold to Facebook.
+And since then, it has been taken off the market, and you cannot really get this anymore.
+This was given to me by a friend, and I wouldn't know where to get one of these these days.
+I surely didn't have this when I started out with this project.
+So all of these researchers that have been working to basically push the price of this device for free
+until the company could cash out for about a billion dollars by selling the product to Facebook.
+For this, I can just assume that it was for the metaverse.
+Because they're interested in providing new types of input for the virtual reality software.
+Yeah, so I have very mixed feelings with regards to neural interfaces.
+And there's times when I really don't want to have anything to do with it, but just the idea still stuck in my head.
+And I was thinking about maybe can I do something related to neural interfaces in a harmless way?
+I was thinking of open source of some hardware that you can control yourself.
+Hardware that you can build yourself maybe even on a tiny budget and please no surgeries.
+And there's lots of people that think like this, except some also don't really care about the no surgery part.
+So there's actually one person that's called Phil Kennedy, who is still alive.
+And to be honest, that surprised me when I found that out that he's still alive.
+So he was at about 20, I don't know the year exactly, about 20 years ago, I'd say.
+He implanted this electrode into his brain and he kind of ran out of patients.
+Like sick people, I mean, not the other patients.
+And he ran out of funding, he didn't get new grants and so on.
+But he still had this idea that he wanted to test this electrode.
+And what he ended up doing was to hire a surgeon with his remaining money.
+To like he built this in his laboratory or at home in his basement, I don't know.
+And he just paid a surgeon to implant this into his own brain.
+And this actually even worked and it captured some useful data about how speech exactly is functioning in the brain.
+Though he had to remove it after two weeks because of the swelling, but it worked.
+But I am not that committed.
+So what I did instead, it kind of dawned on me that I can just use this electromyography technology
+or this idea of reading electrical signals on my skin.
+I don't have to go invasive.
+So I just taped some aluminum foil on my skin and hooked it up to an oscilloscope.
+And it turns out that the data that I get from that is actually quite usable if you look at this video.
+So when I, as I move my arm around, you can see that things are changing.
+And when I saw this, I was impressed at the amount of information I could extract from there.
+And I thought I can use this to build a device that I can use to control the computer.
+So I turned it into the second iteration.
+And just bit by bit, I learned new things and pushed my knowledge because I started out really knowing nothing about electronics.
+And it's kind of a wonder that this thing even made it that far, to be honest.
+But yeah, so this is the second prototype where I had a sleeve with four electrodes connected to an Arduino.
+And at some point, I was at the point where I had to do some signal processing, some analog signal processing.
+This is an amplifier circuit and filter circuit.
+And I really didn't know much about PCBs, so I tried to do it in a freeform circuit.
+And I tried soldering this for about an hour.
+But whenever I would connect the last remaining two parts, then another part would fall off.
+Because everything heats up at the same time, of course, and the solder gets liquefied again.
+It was not working. I was at a dead end.
+So I started developing this first PCB for the project, which I then connected to the sleeve.
+And it was set up in a way that you could daisy chain them.
+And each of those PCBs was connected to two electrodes each.
+And amounting to 16 electrodes, I think.
+I still have this here.
+Actually, the sleeve, but if I look at it, it's already falling apart.
+And the quality was not very great.
+The worst part about the sleeve was when, for the first time, somebody came to me and wanted to have a copy of it.
+Because this was custom tailored to my particular muscles.
+And the sleeve was also custom tailored for the width and so on.
+And much of this was not automated.
+So I was sitting there for about 20 hours to replicate this, and it was just torture.
+This is a view from the top.
+I think it's still the top, but it's with the circuitry removed.
+And you see which electrodes are capturing information about which muscle exactly.
+Because basically, I had this set up where I would make a map of my musculature.
+And based on images I found on the internet, and then I would go along my arm with those two electrodes and make various movements and see which movements I can capture with which electrode position.
+And made the map based on that.
+Maybe it's a good time to tell you about some biology basics so you understand more about what's going on here with the electric signals.
+Inside of a muscle, there is several muscle fibers that are combined into what you call motor units.
+So for every motor unit you have exactly one neuron that's coming out of your spine to the muscle.
+And it's going to activate a set of those muscle fibers at once.
+Whenever one neuron fires, a set of multiple muscle fibers will also activate.
+And if you would stick a needle into one of those muscle fibers, you could read this kind of motor unit action potential.
+However, since we're not sticking needles into muscle fibers, what we are seeing is this.
+It's the noise that you just read out by having all of these signals, not just combined as they accumulate across all the arm.
+But it's also the first go through the different layers of the skin, the fat tissues and so on.
+So it's a bit akin to deducing information about earthquakes from a set of seismographs.
+And this is just the entire process in an overview.
+With the siling, I go all the way up to the part that says high density EMG.
+And then what's also an active area of research is that from those measurements that you take on the skin, or in this case, I think it's subdermal measurements.
+So the active area of research is that you take those signals and turn them back into the spikes of the motor neurons.
+It's a process called deconvolution, or here it's called decomposition.
+And through this you could really get to the base signal of the neuron and maybe do more exciting things about that.
+But that's beyond the scope of siling.
+My approach is rather that I collect as much information as possible and I don't use specialized algorithms, but I use a neural network instead.
+Because, to be honest, I'm not a researcher in this field, but the neural network is able to pick up patterns and cluster the information
+without even having any specific domain knowledge in this field, so I can take advantage of that.
+So how I implemented it is that so I have different modules, right?
+This is the power module, which houses the Arduino and the slot at the top left.
+There's a battery slot also on the top right and some power conversion circuitry.
+Here's photos of the power module and the circuitry.
+I'm not going to go much into detail unless anybody here is particularly interested.
+Just basically on the left you have the battery, then the voltage of the battery is converted from 1.2 volts to 5 volts
+because that's what the electrode amplifiers need.
+And on the right side there is this reference voltage generator that creates a voltage at 2.5 volts, which will serve as the baseline for the signals.
+And also the ground electrode is connected to that.
+This power module alone can already be used for a variety of things.
+For example, I had this case where I had the need to detect when water was somewhere.
+So I attached two wires on the power module and a speaker, and I would have a firmware running on it that would detect the resistance between the two wires.
+And if it would exceed a certain threshold, then it would place some sort of sound on the speaker as an alert mechanism.
+It can also be used as just a basic power source of 5 volts if you don't even need the Arduino for that.
+The electrode module on the other hand, of which you can have multiple in parallel, they have these eight holes on which the dome nuts are mounted with screws.
+It's these round shaped nuts that I am using as electrodes here. They turn out to work quite well and are relatively comfortable compared to what I had before.
+So this is the amplifier circuit, just very roughly, you have a gain of about 250 through the circuitry. On the left side, there is the high pass filter, which is filtering the constant voltages out.
+And on the right side, you have this triangle shape, which looks a bit like an operational amplifier, but it's not actually an operational amplifier, it's an instrumentation amplifier, which is actually this thing.
+This turned out to be quite useful in this project because it's a specific arrangement of operational amplifiers that allows you to particularly well to read out biosignals.
+Because the charge that you have on your skin is so tiny that when you start reading it out, it disappears very quickly because you cannot draw much charge out of it.
+So what you need is basically a very high input impedance, it's called, so that there's no voltage drop when you read out the voltage.
+And this is implemented through this arrangement of three operational amplifiers, the left ones, they're basically, you can think of them as buffer amplifiers if that's a term, you know, it's just more or less, it's just taking what you feed in
+and they output the same thing, except that you can draw as much current as you want without disturbing the thing on the left.
+So you can process it much better.
+And on the right side, what it does is just taking the difference between the first input and the second input.
+Then however this has certain problems, this chip, first of all it's very expensive these days, it started out at 8 Euro, now it's 18 and from a German retailer.
+You can go get a better price if you accept shady sources, but that comes with its own problems.
+The other problem is that, yeah, so the minimum voltage of this chip is 4.5 volts, but the Arduino's limit of the analog to digital converter, where the signal goes in, is 3.3 volts.
+So I'm not running this according to spec right now, so I assume that there is small degradations in the circuitry of the microprocessor over time that just accumulates and at some point it's just going to be broken.
+But so far I haven't noticed anything, but in the long run I want to replace this with a better one.
+So the firmware that runs on the armband itself is relatively simple, you don't have to read this, but here at least you can see that there's some configuration options, the sample rate is set to 500 samples per second for example.
+What the firmware does is basically it's just reading the voltage at the analog inputs, it's packaging the data with a simple protocol that's then passed over Bluetooth at about 20 packages per second.
+So it's just very dumb basically, but this dumb firmware also means that I can still use old devices with new software without modifying them.
+Basically they don't really get bad over time, and I don't really have to update them or upgrade them.
+Everything that changes in the software is usually happening in the other part, the software part.
+I used to have this Python user interface for the software where you could see the signals.
+There are various problems with this user interface.
+One was that it was written in Python and uses machine learning and Bluetooth and all these things combined, it just makes it relatively hard to set up.
+I haven't used a Docker container for this, but maybe I should have, because I had several situations where I just couldn't get the software to run because the dependencies were just too many.
+And you have to have the right version and so on.
+It adds up to about two gigabytes of dependencies.
+And then thanks to the prototype fund, which funded the development of a new piece of software that runs much better than the old one and is rewritten in Rust.
+I could rewrite it in Rust, and the new version uses a slint front end.
+I don't know if you have heard from slint, but it's quite a convenient user interface framework that's available for C++, Rust, also Python and different languages.
+And it's also platform independent.
+It has some sort of a domain specific language that you have to learn first.
+It's only used in the slint framework with which you describe how the widgets are arranged and what the widgets do.
+But once you get a grip on this, it's pretty easy.
+In the software, I don't know if you're familiar with Rust, maybe this is not interesting to you.
+But I use Tokyo for async.
+That's a Rust package.
+And through this, I can do multi-threaded asynchronous execution of all the different modules, like the Bluetooth module to receive the data, the plotting module to draw the data, and so on.
+You see it written down here already.
+For the machine learning part, I use burn, which is Rust creates that has reimplemented many of the features that the Python equivalent would have, like TensorFlow or PyTorch, and it's rewritten in a way that it compiles down to a very small size.
+And runs fast, even on -- it could theoretically even run on embedded hardware, but I run it on my laptop.
+And here.
+And just a general overview of the software, again, it's in Rust, the libraries.
+It works on Linux, Windows Mac, and has set Android compiles and runs, but no Bluetooth.
+So what I -- maybe I should just point out how amazing it is that these days you can write one single application, one single code base, and it will run not just on the different operating systems that run on a laptop, but also on Android.
+And it compiles down to 10 megabytes of executable size.
+And for the whole project, I haven't even written a single line of Java, and I think this is a great achievement for humanity.
+And I have to say, on Android, Bluetooth is missing, and for this, I fear that I'm going to need Java.
+So there's also open data sets, as explained already, where I have compiled different data, like the videos and screenshots of the data recording process as I'm using the device.
+There's descriptions of the data structures, metadata, and everything you would need in order to process and work with the data, including sample code.
+Then the plans for the future that I have for the device is -- well, you can see it as the devices in sort of a garden of low-hanging fruits.
+In every direction you see, there is something that you can immediately change in order to provide a significant benefit.
+You just have to do the work, and I have to basically just figure out what the priorities are.
+But one area would be the quality improvements, lower cost of -- I could swap out the chip for a different one -- change the design so the assembly time gets reduced.
+For example, one significant problem about this is I cannot have this produced in a factory right now because there are some components that are through-hole.
+And that would normally, I guess, not really be an issue, except this device you are wearing on your skin.
+So if it's a through-hole component, it sticks through, and the bottom will scratch your hand, and you cannot have this.
+So basically, any through-hole components, I have to do myself, and I sit there at home cutting off the ends of the pieces that I will solder in before I stick them in and solder on so that there is nothing to scratch the skin.
+And surely, this can be done better. Then another direction where you could go would be applications, such as music synthesis, connecting it to a media bus, maybe.
+But mostly, I'm looking for people who are interested in this project and who want to contribute and to collaborate in some way.
+So if you have any idea for a project or you just want to use it or give it a try to tinker with it, please reach out to me, and we can arrange something.
+And just one major flaw of this device is, for example, that the wires are very long, and what they transmit is analog signals.
+And you know what happens if they're not really insulated, it's just basic wires. And you know what happens if you have very long wires with analog signals, it's basically antenna.
+So depending on whatever is around here, even light could have an impact.
+There's going to be noise introduced into the system, and it's going to be picked up by the analog to do to convert them.
+I plan to change it so that digital information is transmitted on the wires through the I2C protocol.
+Okay, and then the last bit would be that I show you a demonstration of how this thing works.
+Let's hope that everything goes well, because sometimes it just doesn't work.
+So when you start the software, then immediately it's going to start scanning for Bluetooth devices that have the name "silink".
+And there's different ways you can wear it.
+These electrodes, they work on every part of the body that has any sort of muscle.
+I'm going to use it on my upper arm right now just to get the best signal for the demonstration.
+And then if I turn it on, then it should automatically find it, and there you go. There you see the signals.
+And the upper eight are the EMG signals that change when I move my arm around.
+But also, you have this kind of hidden by the image.
+Then the lower six signals, they're the gyroscope accelerometer, those two.
+And they are built into the Arduino and provide additional data that's actually from the quality, I would say, of the data.
+This might be even better than the EMG signal itself.
+But, well, the gyroscope accelerometer is kind of boring.
+You have it in the smartphone already and smartwatches.
+You're familiar with it, but I am particularly interested in the EMG signals here.
+So if I would move my arm, you can see that the signals change.
+And it's a bit chaotic sometimes, and the signals are not even necessarily there to be understood.
+It's mostly just to extract as much data as possible from the surface of the skin.
+And then so that the neural network in the end will have as much data to deal with.
+So, in contrast to other devices, for example, that have elaborate filtering mechanisms on the board already.
+To clean up the signal, for example, the MAIO does that.
+It has a much clearer signal because of the pre-processing involved.
+I do as little pre-processing as possible, just so I have as much of the raw data available as possible.
+And I just let the neural interface do its thing, and usually that works quite okay.
+So, then for the demonstration, there's also this machine learning part I'm going to show you.
+And for this, I'm just going to go into the Deaf Tools mode and disable the accelerometer and the gyroscope because they are boring.
+And then the way that it works is that it's going to show you some instructions that you do different types of gestures,
+and you can select any amount of up to four different actions.
+For the demo, let's just stick with one, and you can select what kind of button will be pressed in the end.
+You see here that it says sound. This was an experiment. It's not working yet.
+You can also say whether it's going to be a quick tap or if it's going to be a continuous press.
+And then basically, the idea is that first you find one to four gestures that make a clear change in the signals.
+Let me just find a sort of, okay, that makes a clear change in particular the green one.
+I'm just going to use this as a gesture.
+And when I start calibrating, okay, it says prepare to rest your arm. Rest your arm now.
+Prepare the gesture for the key W and do the gesture now. I was a little late there.
+That means that the quality of the data has been degraded through my inattention basically.
+Okay, that was maybe a little better.
+Okay, so the data has been collected and now I can press the train AI button.
+And I just hope that this is going to work. It's a stochastic process.
+And sometimes it maybe learns the wrong patterns and it's going to be useless.
+But you know this from chat GPT already. Sometimes it just produces nonsense.
+But this looks okay. Actually, the red line goes all the way up to 100.
+But actually the blue line is more relevant. Let's just see what happens.
+So we can now ask it to predict the action by pressing this button.
+And right now it predicts a zero there, which means the rest mode.
+And when I move my arm, it should change into a one. That means it predicts the one.
+Okay, so it did the learning well enough. When I move it back down.
+And if you would have a game now that uses the key W as an input.
+You could use that to control the game. Right now I'm just going to show you in the terminal that's going to actually input the key W.
+There's a little bit of a lag there. Okay.
+That's it for the demo.
+This is just a summary. You have seen this before in another slide.
+If you have any questions, please let me know.
+Yes?
+Currently I'm in a phase where I'm reaching out to people try to get them excited for it.
+And because I don't want to build something that's not going to be used in the end.
+So if anybody has any idea, I can help you build this.
+But right now I'm not working on this project.
+The last thing that I have built was about four months ago the software that you've just seen the user interface.
+The signal that you're measuring there are these charts.
+Those are measuring voltages against time.
+Yeah.
+You've asked for your transport to see what it would look like on the frequency chart.
+Yeah, I did that in the very early experiments.
+Sadly I don't remember anymore what they looked like.
+But yeah, the range of frequencies is between about a hundred and five hundred.
+You could see some stuff there.
+But I don't remember details. Sorry.
+I mean, the Arduino is also would be a bottleneck if I go much higher than that.
+But right now this is more of an arbitrary boundary.
+It's just good.
+You need to kind of double the frame rate to get the right sampling rate, right?
+And it doesn't go much higher than 250 megahertz.
+Wait. Oh, sorry. I have to make a correction here.
+This has megahertz. It's actually hertz.
+Yeah, it's hertz. I'm sorry for that.
+Yeah?
+The most difficult part of the body to measure and why?
+The answer to this question would cause unsettlement in this room.
+Did you think about something specific when you had this on mind?
+So wherever you have muscles, especially the muscles close to the skin, those are great.
+When you have bones, there's not going to be much there.
+One area that is particularly interesting I think is the wrist because this is where many people are already accustomed to wearing a watch.
+And there have been papers that are doing progress in measuring even information here, even though there's no muscles at all.
+So they're basically measuring the nerves underneath, which is quite impressive.
+But I don't think any product has ever come out of it so far.
+So the first part about how dependent the signals is on the environment,
+also regarding synthetic clothing.
+I haven't tested it with different clothing exactly.
+I usually wear no clothing over it because it's a bit too bulky for that.
+But it would fit underneath a jacket, I suppose.
+Yeah, static discharge sounds like a problem.
+As long as the clothing is not conductive, it should be fine, but static discharge should be avoided.
+But in general, the device is indeed sensitive to the environment.
+So as I said, even the lights could make a difference.
+I did a test run earlier where my hand was moving and if it would be closer to my laptop, then there would be quite significant noise on it.
+And this is really one of the things I want to change about this thing because these long wires with analog data, it's not a good idea.
+So I want to have analog to digital converters directly on the electrode module.
+And then I could transmit the signal digitally.
+And the second question was about the model that I'm using for the neural network.
+I wanted to make a slide about this, but I kind of forgot.
+But what I can say from memory is that the model is very small.
+It has an amount of parameters on more or less like a million and has, I think it was two layers of convolutional layers, followed by four layers of fully connected neurons.
+And all of them have about a hundred or so neurons, I would say, each.
+And it's a relatively small model, which is why you could train it on a regular laptop in such a short time.
+And I'm also hoping that it's going to be small enough to run it on an Android device.
+And that would be great, yeah.
+Any more questions?
+Yes? Thank you.
+Yeah?
+No.
+I had a flooding situation that sometimes my kitchen would flood, and I wanted to detect that automatically.
+No, it was not.
+So the question was whether the water detector earlier was for a leaky roof, or for what?
+And yeah, for the kitchen sink.
+Yeah.
+Okay, if there's no further questions, then thank you very much.

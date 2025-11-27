@@ -1,0 +1,491 @@
+API URL: https://api.media.ccc.de/public/recordings/34342
+Frontend URL: https://media.ccc.de/v/c4.openchaos.2019.02.eu-copyright-reform
+Title: The EU copyright reform
+
+Basically, I want to talk a bit about the current copyright reform package as announced.
+And I'm doing so on behalf of Edry, European Digital Rights.
+And well, due to the wonders of open source, a Libra office doesn't really talk very well
+to the beamer.
+So you have to make do with always the bottom 20% being opened off on the slides.
+So basically, I want to talk a little bit about Adri.
+I want to talk slightly about how,
+say, major topics in the EU corporate library
+from work currently.
+There's more than just those two topics,
+but these are the big contentious issues.
+Try to explain a little bit or guide or answer questions
+about how these so-called articles 11 or 13 work.
+Oh, by the way, I will, I have a tendency
+to go technical in terms of using jargon,
+abbreviations, and so on.
+Again, just wave your hand and ask for my understanding.
+What does that mean?
+I will try to get into how this will affect normal people
+and close off more than what we can do.
+And the sixth point on the list is basically
+questions and answers, but I'd like to do so
+in the meantime anyway.
+So feel free to interrupt me.
+I'm Dutch.
+interrupting out with other people. First, Adri. It's an umbrella organization. You must be an
+NGO to be a member of NGOs. One of the founding members is CCC. Not necessarily the most active
+member all the time, but we're very, very pleased by seeing Cologne, Berlin having street marches on
+the the EU and the EU and the EU.
+the EU. It's also the Council of Europe. So we also have Turkish and Macedonia members. And we do not prefer the term lobbying but we do advocacy. What we call it. The talk on behalf of the public.
+the. The other bit we try to do is aside from having the office and Brussels and talk to politicians all the time is to be kind of a hub between the members. For example, quite often something is going on in one member state that affects another member state or is interesting to see how they did that.
+how this affected that, for example. Some people are now very terribly concerned about the German
+state of Saxony introducing facial recognition on the border. If Czechia are talking to other
+members in every way, they have an experience with facial recognition in border control.
+But another question was just an echo. That was an echo, sorry. Typical topics are data protection
+privacy, freedom of expression, net neutrality, privatized law enforcement shooters. I mean,
+trade agreements we've been active on in the past may be some of the future, transparency in general.
+But next to the next topic. If you're talking about copyright on the Internet, there's an
+interesting concept called intermediary liability. I will get into that two slides further down.
+And another bit that is relevant in the context of copyright reform is that in most EU member
+states, new facts have never been copyrightable, have never been part of copyright.
+The reason for that, and that brings me to the next slide, because this really doesn't work out very well if you have poor eyesight like me, but basically, I may be mistaken, but this is roughly only Germany that really has been pushing a lot, especially new German news publishers have been pushing for about the century for to have some protection for little pieces of news, little snippets of news.
+And every time everyone else in Europe said, please, let's not have this. For the same very simple reason, if one newspaper has a scoop and the other newspapers cannot mention this news fact, because it was already published in one that will be to the detriment of news and freedom of expression and people getting their news.
+The initial push for this protection was because of this horrible new disruption caused by the telegraph.
+As a new medium, which obviously was killing the news, and later similar push came in the 20s because of this horrible new disruptive invention called the radio, which was also going to kill the newspaper as we knew it.
+So there's a little bit of background of history, which we're talking, he talked not here about copyright per se, but something called ancillary copyright.
+I don't know the proper German term, I'm very sorry.
+But that's how it works. Now, for most of Europe, if you say this in this newspaper report, this is news and just mention a few of the news facts, there's nothing that can be done against it.
+And that's a good thing. That also helps in having things like, well, I hate Google, but I like Google News or similar news aggregators online.
+You can do that.
+The other topic I want to talk about briefly is this phenomenon called intermediary liability.
+What if you have a platform or a service and someone else is using that platform, that service, to spread information that does infringe copyright?
+Well, under the e-commerce directive, which I misspelled here, and I forgot the year in which it was introduced, I think it was 2001.
+There are specific exemptions for the telcos, for hosting platforms, and for caching providers.
+Because already back then, there was a bit of a fight going on.
+People felt, and Canada actually experimented for a while with rules that said that if you were, for example, providing an HTTP cache, that was a copy of the other pages you were putting in the HTTP cache and copying files on the copyright, and you should pay for that.
+That was a bit of not really a success in Canada, I can tell you.
+But basically in Europe we decided early on that as long as you don't bother too much with the content, unless you're made aware of any infringements, not necessarily on copyright, but also talking about other liabilities.
+Then you have to act as a service provider, but as long as you don't know and you just don't bother with the content, you're immune basically.
+You don't carry any liability.
+That has results in regimes like notice and take down.
+This is not necessarily a happy story either.
+And it gets interesting when you run a platform that actually does interact with the content you pass on, like giving people recommendations or show them algorithmically what the watch and what not to watch.
+Then it turns more murky, are you an editor or just a passing thing through?
+And especially if you earn a lot of money with that, then some people become very unhappy, very fast.
+So fast forward a little bit to the now.
+We have a proposal for a European directive.
+Does everyone know what a European directive does?
+See, some people shake their hats.
+But does it?
+Yeah, it's basically a shopping list of you must do this and this in your national laws and regulations.
+The other beast we have in the European Union, it's called so-called regulations.
+And that basically says from that data on the rules are this.
+The GDPR is an example of that, the general data protection regulation.
+But this is done through directives, so it's a shopping list.
+And that alone makes it interesting because every member state will get some playing room to implement things the way they see fit.
+But it arranges for a bunch of things. The idea was that we should propel Europe into the 21st century.
+Copyrights should be updated.
+There are interesting exceptions in it for data mining, for education.
+There are some good things in there.
+But the big topic that everyone is angry and upset about is this is so-called Article 11.
+That introduces an ancillary copyright for little bits of news.
+And the interesting bit is it creates that ancillary copyright for the publishers, not for the journalists who wrote the articles.
+And it lasts for 20 years.
+So basically if you were to run, if you were to have a startup and you want to be the next Google news and you were to scrape little bits from newspaper websites and just link it from there to them.
+You would have to have to get a license from all those newspaper sites beforehand and pay them money for that.
+Germany already has it.
+So the Spain, especially the Spanish situation was funny because Google basically said, "You give me free license or I will just delist you for my search engine."
+That would be terrible if that had happened, boom, that's all.
+So there was a mess of disaster.
+So a tanger who was then responsible with the European Commission nonetheless put it in, who said, "Let's try this again then all across Europe."
+The other bit is the so-called Article 13.
+Here it gets funny because in the start of the current compromise text it says, "Nothing in this text changes the e-commerce directive."
+And then Article 13 said, "Despite the immunity granted in the e-commerce directive to hosting platforms, anything that is uploaded by someone else that you should get a license for that from the copyright owners."
+And if you don't do that, you must take effective technical measures to prevent such uploading.
+But thou shalt not monitor generally, basically it says, "No, no, there's not a general monitoring obligation, but you should still stop these awful, awful internet people from unbloating things that they don't have a proper copyright license for."
+And also, if you have received a takedown notice, you should take measures to prevent that content from being uploaded again.
+And it also says that should not result in any impact on the privacy of the end users.
+It feels a little bit like Brexit to me, as in. There's a bunch of red lines there, and none of them are really compatible with each other, but nonetheless it's being pushed through.
+And that's what people have been marching with seats in Cologne recently, mostly, especially about this one.
+And also, politicians have said, "No, no, no, there should not be a problem. Your memes are safe.
+People should just get a license. That's easy-peasy. You don't make mistakes about copyright easily."
+I'm choosing, "Oh, gamma, our favorite collecting rights society."
+Recently, I tweeted this. This is a very difficult time to do this, because it's a very difficult time to do this.
+I didn't want to have any idea of why they mentioned that they believed that a computer can recognize parody.
+Is that actually a parody?
+Well, yes, several people, including myself, asked on the retweet, "Is this satire?"
+As in, "Are you serious?" No, they were serious. And hell got triple from the Greens.
+The Greens tend to be fairly progressive on these topics, except hell got triple, still firmly believes things like this.
+The reason why one of the criticisms of this, what we call the upload filter, is if, for example,
+I upload the famous scene with Hitler in his bunker, and we have seen all these memes with the little film clips, et cetera,
+which is quite often clearly a parody. And quite a few EU member states have exceptions for parody,
+where you can practically copy quite large bits from other people's content and reuse it in a way that is paralyzing it in a satire.
+That's an exception. We are now expecting those effective technical measures.
+And by the way, in the last text it says that these technical measures should still take into account the various exceptions that may be in place.
+From popular Chris-like exercise, if you know about, assuming that you know about copyright exceptions, what is your favorite one?
+Anyone? No citation, no paradigm of satire?
+My favorite is sing songs in church during a religious ceremony.
+Both Germany and the Netherlands have an exception for that in copyright.
+You can sing a copyrighted song in your congregation, in your church, your old church members, obviously.
+And you can also stream that on the internet. And there's no issue copyright-wise.
+In Germany, you still have to pay gamma for that. The Netherlands is not even that.
+Like, don't touch gold, basically. At least that's my understanding. I may be mistaken.
+Does the officer work for the church of the spaghetti monster?
+Yes, it does. It certainly does. I don't think copyright can make any difference between any religion.
+I will result in interesting other experiments. So, if you were to have a church full of memes as part of your church or the flying spaghetti monster,
+this might be an interesting exercise, if you were to stream that.
+That's one of my favorite ones. The exceptions for education, to use it different from member-state to member-state.
+Finland, until recently, did not have a copyright exception for reuse of copyright material in classrooms.
+So, schools always had to pay to collecting societies for any use of that.
+Some member-state have home copying exceptions, some don't.
+The Netherlands didn't have a right to set time until the mid-70s, and which was done in jurisprudence.
+Later on, put into static law. So, the technical measures must also understand about the jurisprudence that may not be
+re-encoded into law at the same time.
+So, and another one I wanted to show you is Axel Vos, the serial reporter on this topic.
+Basically, the lead MEP on this legislative dossier had about 16 or 17 photos on his Facebook profile,
+for which it was unclear how they licensed, and he has removed about half of them,
+so we can guess those who did not have a license.
+But nonetheless, he always says it's very easy to notice that something is infringing or not,
+unless it's your own Facebook page.
+Sorry for jumping a bit back and forth.
+Yeah.
+Basically, my problem is there will be lots of false positives.
+As in, things recognize as being copyrighted or not.
+For example, you make a little video of your toddler dancing to music.
+That music is probably copyrighted. There has been a court case about it in the United States.
+Similar things will happen in Europe.
+It does not make any difference in the type of content.
+What about GitHub?
+GitHub may have to install a filter to detect copyright and finishing materials,
+but then the filter must also understand all the open source licenses.
+This will be fun.
+Savannah, similar, I just wanted to mention the GPL/GODist version as well.
+So, since I'm talking way too much, I'm going too quickly through my slides.
+What kind of counter-arguments have you heard in conversations you had about this?
+I mean, you're here. I suppose you're interested and already had conversations with your friends,
+neighbors, family, your favorite, say, you, politicians.
+Hello? Yeah.
+No counter-argument. Just a question. What about peer-to-peer networks?
+There is a peer-to-peer network I've not mentioned.
+What it does mention is that platforms that have less than tens of thousands of users
+and are younger than five years are exempted.
+So, if you have been running your lovely peer-to-peer network for more than five years,
+I would have to look it up. I can't look it up if people want me to show it instantaneously.
+I think three to five years, but let's assume that you were running a nice peer-to-peer network for several years.
+My understanding of the text is that you would fall underneath that.
+Of course, the next battle will also be that everyone running their network may at some point
+run into the likes of Gamma, telling them this is illegal technology because you don't have the means
+to prevent people from uploading things.
+Any other questions, remarks about that?
+I'd like to add, a lot of the peer-to-peer technology we use tends to be kind of hyper-specialist, geeky stuff.
+So, you may be able to still upload stuff, let's say, on peer-to-peer, like federated peer-to-peer,
+3D distribution networks.
+What's not only about your ability to upload, it's also about all those other people
+receiving a new barrier to entry to publishing things and people you could learn something from.
+If the Spanish experience is an example and I'm moving back to Article 11,
+it's all original newspapers will just be dropped out of search engines.
+If you want to start a new video-sharing platform like YouTube or Vimeo,
+I'm not even sure Vimeo will continue operating in Europe.
+Vimeo is not exactly that successful and that big in Europe.
+They might just block European users from uploading their content because they can't be ours to do so.
+The big ones we have, the technology to do this are YouTube and Facebook.
+The ones that are supposed to suffer from this, at least that's how it's being sold.
+They've both been quietly lobbying in favor of this.
+If you have to believe Axel was, then it's all in order to crush the crushing duopoly of a Silicon Valley.
+I've already shown these ones.
+Then we get to the point of what can I do.
+The first thing you always have to do is to get informed.
+I did not mention that.
+On this moment's light, the other bit is talk to politicians.
+As in, call them up, be nice and friendly.
+There's a very nice tool for that, pledge2019.eu, which you just can go to to the website
+and it will show, they'll recognize your IP address as a German bond
+provided that you're not using Tor or something like that.
+It will show you your nearest MEPs and will ask you whether you want to call them.
+You probably will learn into an assistant.
+That's not the problem, assistants are sometimes more important than the MEPs themselves.
+If you don't feel like calling people, send them letters.
+If you don't feel like sending them letters, give money to people who do and so on.
+Street protests, version EU member state to member state, Germany has a nice demo culture
+and you already are doing this, please keep on doing this.
+It draws attention, maybe not outside Germany, at least inside Germany.
+Right now, the big problem is the likelihood of French, Spanish and Italian MEPs voting against this.
+It tends to be lower.
+Culturally speaking, the South and European countries tend to be very much in favor of copyright.
+Interestingly enough, the five-star movement and Lego and Northern Italy are against it.
+Italy has already as a country in the Council of Ministers, also voted against this, that may change it.
+But France, not likely.
+If you happen to have Polish friends, or it's also not exactly a normal form for a European citizen to also call MEPs from different countries.
+We need a lot more German MEPs to be against this.
+The vote will be on March 26th in Strasbourg.
+And basically, if that vote goes through, then the member states have to implement it.
+And then you will have to fight it at a German level, and it will be much harder.
+So that is, at least so far, what I have prepared, slide-wise.
+Again, do ask your questions.
+Tell me if I was wrong or not.
+I would like to know if they plan to make these upload filters also at the ISPs.
+And if there could be some problems with bringing news, or if you put your informations on blogs or something like this.
+Because I think this would be a good problem.
+I would say if your ISP allows you to host your own web content, some ISPs don't some do.
+If you are with an old-fashioned ISP that allows you to have your own little profile on their website, like mine is, they will fall under it.
+So I would not say ISPs per se, all of them will provide what's called access providers.
+But that would fall under the definition of a platform that allows for user-generated content for user content.
+And I also should add similar text accurately in the regulation on terrorist content.
+Again, platform providers are supposed to put in effective technical measures that will recognize whether content is terrorist or not.
+But that's a different legislative package.
+I have a question. Let's suppose I have a platform where I want to make effective measures to detect the content myself.
+How do I get access to the content?
+That's also very funny. There's no real obligation for the corporate holders to share the library with you so you could create effective measures.
+To even do that or to do it myself, some definition of how to get access to it.
+No, there's the corporate holders have to cooperate, but where that ends or stops or a clear obligation to say, they will go to gamma and say, "Oh, what artists do we actually represent?
+What's in their libraries? Please, let me have copies of that content so I can make nice fingerprinting."
+I don't think you can do that based on the text in there.
+I would disagree on that.
+I think the text after the trial log actually includes specifically that you only have to do this effective measures according to what content owners did actually provide you with.
+Shall we get the text?
+Based on text. I would also actually contest your definition on whom falls under that directive. It's one thing at a time, I guess.
+We're going to the text anyway. I knew at some point that would happen.
+It's very fascinating that despite having 8GB of RAM, the computer is as slow as it used to be in 1991 with Windows 3.0.
+This is the latest known text.
+Currently, there are linguist lawyers igniting their teeth and trying to translate it into different languages because it's not a pretty thing.
+You were saying that, sorry if I mentioned this, could you repeat what you were contesting?
+As far as I remember, let's say it's like that.
+It mentions in, I don't know exactly, probably somewhat after 4, actually, or at 4.
+It is supposed to, if there is no authorization, like what it says on the 4, I think, if no authorization is misgrained.
+Yes, that is in 4, no authorization is granted.
+You have to somehow filter this, right?
+But this is, if no authorization is granted, shall be liable for unauthorized acts of communication to the public of copyright.
+We're planning to reverse AMF, other subject matter.
+This also could include, let's say, parity on a trademark.
+Unless the service provider demonstrate that they have a, made best effort to obtain authorization, and so you have to make your best effort to get the authorization, but you've failed.
+Made in accordance with high in the sea incentives of the professional diligence, best efforts to ensure the unavailability specific works on other subject matter for visa rights.
+The right holds have provided the right of the relevant and necessary information, and in any event.
+You could dispute what is on the relevant and necessary information.
+Well, at any rate, what is necessary to build a sort of filter, right?
+Yeah.
+So, it's not like you would have to filter anything, even though you are completely unaware of this content even existing.
+I think that's very hard to say from that text.
+Yeah, but there's another thing, what is in the text and how it will in practice will be used.
+Because all these players in the market are not there to do the fine details and fine nuances of copyright.
+They will typically err on the side of caution.
+And again, they also have to take into account what the unauthorized act means for a specific member state.
+Or their specific member state.
+And you do right, you still have 28, well, soon, probably 27 member states.
+And you have to trust me on the say that there's 27 different regimes there.
+I would rather doubt that this would go any further than just a catalog of titles and types of work and not the actual content itself in our allowed for fingerprinting like techniques.
+And again, fingerprinting is, the problem with fingerprinting is it does recognize something is a copy of something.
+But it does not necessarily mean it's an unauthorized copy.
+Because of exceptions, because of the creative commerce licensing.
+Quite a fun case is that YouTube took down a video of NASA because NASA and the space agency was publishing its archives with Apollo footage.
+And since the bleep and a little speech of someone on the moon was reused in a Pink Floyd album, the content gets flagged as a copy of that Pink Floyd album, Dark Side of the Moon.
+And indeed, it was there was identical audio in both pieces.
+The problem was that under American copyright rules, this video footage of the moon landings is public domain and Pink Floyd clearly is not.
+But they had been reusing other bits.
+And you're not going to solve that with this.
+With relevant and necessary information, even if you were inclined to do so.
+That's like a question of, I agree.
+But I also think it's necessary to like make the fine details, like talk about the fine details because if you're saying we can't even build a filter because right hold us won't tell us what's necessary to build a filter.
+I think that's pretty plainly just the opposite of that.
+The opposite of what's really important.
+I think what the text says is pretty much the opposite of the right hold us won't give us a necessary detail to build a filter.
+Now you're right that the text assumes that it will all be done in good faith and so on.
+And if they don't, then also this obligation does not apply as the text is written.
+So I don't know what the relevant and necessary will be up to interpretation.
+And the right roles will usually take a much more limited view on what's a new filter builder.
+At which point it obviously becomes a question of with the courts.
+I would argue courts won't take that limited view because that seems like stupid.
+You want me to build a filter but you won't tell me what that song actually sounds like.
+I wish I could share your rosy outlook on courts not never being stupid.
+You should drink more with lawyers and they will tell the endless stories of courts being stupid at some point.
+I would know definitely but also...
+I don't want to be in court to begin with.
+That's the...
+There was something else I think you wanted to contest.
+The definition of online content sharing provider actually.
+Among other things I think that says quite plainly it includes source code sharing platforms
+and you explicitly listed GitHub.
+Which also seems a bit off to me.
+Online content.
+I think it's article two paragraph five or something like that.
+I mean that term is all over the place.
+The reason I was saying it was in the earlier components text of article 13.
+There was specifically in article 13 itself.
+I mentioned there were exceptions for we could be online.
+Right now it's actually in the definition I think.
+That's the...
+Yeah.
+But that's still open source software developing a sharing platform.
+GitHub also has a massive business in not open source sharing platforms.
+You're quite right.
+It was slightly ahead of.
+And there's no definition of open source either.
+Right.
+It's no reference to the OSI definition so I have ideas what it should mean.
+But what the court have.
+Not for profit online applications that assumes that media falls outside it.
+Because it's not for profit and doesn't online experience.
+But the Wikimedia Commons is not really an encyclopedia.
+It's just a lot of content which happens to have mostly creative comments or similar licenses.
+Again, not for profit education section.
+The not for profit business also.
+Which is also to my mind only a clarification of what the first progress says actually.
+Because promotes for profit making purposes as part of that.
+So anything that's by definition not for profit falls out of the definition.
+Yeah, but you're running to an old conversation about do you derive any income from the content being shared.
+Or what corporates all the successfully have argued in the past.
+You benefit for example from an advertising model.
+And after you're for profit even though the income from the advertising revenues was roughly equal to your expenses on hosting.
+Right.
+So I mean the thing is I'm not a lawyer.
+So you can basically tell me anything right.
+I don't argue in favor of this would say is for profit pretty plainly means do you pay taxes.
+At least under the German interpretation that that term usually has.
+Yeah, and there's 37 other member states.
+Right.
+There's a very interesting that you can find it online.
+It's a bit old, but creative commons did a survey and the users of the creative commons license users meaning artists publishing creative content and creative commons licenses.
+And they wanted to ask them because as the creative commons non commercial license.
+How they understood non commercial.
+Which translates to not for profit here or.
+And there was a massive divergence across the artist how they understood that.
+As in.
+And you can actually expect the court to take quite different views on this as well on this as well.
+Yeah, I think so.
+I would like two things that to my mind at least would be very hard to do under this legislation is say that my freedom box at home actually falls under this.
+That seems off and also pew to pew sharing.
+There is not a single platform that even could be over than three years is not a single platform making profit from that that's people interacting with each other directly.
+I would agree with you that you would be a sufficiently small fry that you will be lost in the line of the big content holders to go after it.
+But when you realize that, for example, most of the instances, there are a few hosting party parties that will give you a dedicated master don't VPS and.
+And then you get already in this kind of because they may go after that hosting provider.
+Your freedom box, I would agree would still be last in line, but I will still argue your freedom box will be very niche.
+It's a bit like saying, I'm not on Facebook, but if all your family is on Facebook, you will be sucked towards Facebook.
+Slightly different conversation, but this is not only about us, the geeks, it's also about other people.
+Yeah, but exactly I can say different conversation.
+And I'm different if it's like last in line or if you're claiming these things fall under this legislation and I give you that as an example where it's absolutely absurd.
+And I would like to give you a very principled account argument. I think freedom of expression is for everyone.
+We would reduce it to people more technically aware and inclined than most other people.
+You're creating a new barrier, you're creating a prior restraint for freedom of expression, and I think that is a fundamental humor, right?
+And it's now been taken away from us by players in the media market who are just have had themselves taken by, especially the big advertisement platforms.
+Absolutely, but I feel like that's also grossly misrepresenting my argument.
+I can't get around that by using a freedom box.
+I'm saying claiming a freedom box is affected by this.
+Yes. No, I am willing to concede that your freedom box may not be affected by it, but I don't really care about your freedom box.
+Okay.
+As in your freedom box will not be the answer to this problem.
+Right, which is not what I was saying.
+No, no, no, of course, you're quite right.
+But the reason I put it in there is you run quite often to arguments here, but technically I could circumvent this.
+You're technically you could, but most other people couldn't.
+And these are things that you have to fix on both levels, on both on a legal level, an economic level, and on a technical level.
+That's what I believe.
+I don't believe you can isolate yourself from these kind of mechanisms of society or these kind of developments of society by being very smart, clever and technical.
+But we can also just agree to disagree.
+Anyone else?
+Yeah, thank you.
+From a product perspective, you couldn't think that this is something for controlling content and internet.
+Can you hear me?
+Yes, I can hear them now.
+From a product perspective, you could say this is something for controlling content in the internet.
+This uploading field, as you already mentioned, the terror regulation, which can easily be used for some kind of Russian propaganda regulation or hate speech regulation or whatever regulation.
+So this is exactly tackling freedom of speech, as you already mentioned.
+And then you already mentioned that, for example, peer-to-peer networks may be tackled by saying, it's not the right technology for providing the right filter for being legal.
+Another thing I should have, by the way.
+Yeah, just let me for the whole thing so I can answer completely.
+I was thinking where we're heading to, so next step could be that maybe Aladdin is providing some kind of YouTube, similar platform where we could upload Aladdin not inside the EU regulation, which can be only prevented by telecom putting in some kind of filters.
+I cannot access Aladdin platforms, something like this.
+The first question, do you have any knowledge that something like this is intended or in preparation?
+And second question, is this what we see right now?
+Is it primarily about, can we be relaxed?
+It's about copyright?
+Or is it the whole other thing that may be possible, like freedom of speech, tech link, free journalists, take them out of the internet?
+Is this just fantasy?
+Is it all about copyright?
+So a question can be, who is behind pushing it?
+I would say the fundamental driver behind itself has been that, on one hand, news media and the other hand, other publishers have noticed that they've framed it wonderfully, it's called a value gap.
+And they basically have noticed that they are used to be the old gatekeepers in the old media ecosystem.
+But if you look at what's the amount of money that Google takes out of all the advertisement on, let's say, the Spiegel online or Builds item, if that's more your taste and so on, if you look at that advertisement model,
+the traditional model for newspapers has always been advertisement as an important source of revenue apart from the subscriptions.
+And on one hand, their subscriptions have been going down and down.
+Also, their online subscriptions tend to suffer from some competition from news aggregators.
+And on the advertisement side of things, they have been completely undercut by Google and Facebook, who also tend to own the so-called real-time bidding platforms, like DoubleClick.
+If you visit a website and protect it, so to speak, with a normal browser and no privacy-enhancing extensions on it, and you visit, let's say, the local newspaper which has a deal with DoubleClick,
+and DoubleClick will probably sell you as a male in his 30s, probably highly allocated with an interest in electronics and computers and other gestures, who wants to pay most for showing that person an effort.
+So, traditionally, you would have to figure out what audience was catered for by a typical medium, you would have to go to that medium and buy advertisement space there.
+That has been completely taken over by the Attach ecosystem, which is also quite fraudulent and extremely privacy-invasive with cross-context tracking, et cetera.
+But what the old media players do recognize is, hang on, there's billions going around there, and I'm getting hardly any of it.
+Something must be done about it.
+And if you all have ever known as a tool is copyright, then you're going to use that tool.
+I'm generally believing that the understanding of, let's say, the actual spring of air lag of what is in their best interest is completely flawed, and they're pushing for something they believe is in their best interest, but it's actually playing into the hands of Google again.
+It's not unknown that economic actors in policy environments actually are pushing for measurements that in the long-term turn out to be detrimental to themselves and have been fighting against measures that have been very good for them in the past.
+And you were about, I think, to ask another question. I also want to mention on the bit of for profit, because I realized something a bit later on.
+Everyone available with the CODI box, are you familiar with that? Some people are, but yeah, basically they're kind of Raspberry Pi's with preloaded and nice field C client and a torrent that allow you to easily obtain, well, let's say, copyright infringing
+content and other content, which is not copyright infringement.
+The copyright holders have been going after the coders of that software with the argument, you're making a profit out of copyright infringement.
+So do realize that profit is quite often understood in a way that is much further removed from directly profiting from things.
+And that's, I think, something that might put still people in jeopardy in the peer-to-peer scene, despite not owning a platform or actually controlling a platform and not actually profiting from it.
+Because in the past it already has been understood, and at least the copyright holders have been pushing for interpretations that way, way beyond that.
+Yeah, you again, to be clear, from your knowledge, is it just about copyright, is it just about money, or is there some kind of agenda which goes to terror regulation, which obviously goes to freedom of speech?
+That is my question. Can we be relaxed just about money or is it more about control and I believe that they have to be the kind of exit, not necessarily from a censorship perspective, at least not initially, but you already mentioned
+that there are no European countries using notions of fake news to already start limiting the space for free speech.
+I would say it is not necessarily the intent, but I will believe it will inevitably lead to censorship.
+It is happening in the past with, in some EU member states, there were mandatory fieldries for against child abuse material, and it turned out that sometimes just political adversaries ended up on those lists and sites were blacklisted.
+And these happened in fairly well-functioning democracies, but those blacklists were kind of secret and only at the ISP level.
+We will see how things happening at some point that are quite Orwellian, I believe.
+Anyone else?
+I was wondering, is there anything foreseen in the law about having a way of penalising people for saying something is copyright protected when it actually isn't you, making false claims?
+Is it even allowed, even if it's not in the law here, let's say I'm a content hosting provider and I put in my terms of service that if you make a false claim of copyright, then you will be responsible for costs or whatever.
+Is that allowed or is that completely not possible?
+My understanding of the text is, and we have been pushing for elements for that, but it has not survived the process, so making a false claim is not as punishable as, or punishable as considered as problematic as putting infringing material or at least copy of it.
+Regarding terms of service, this also includes text to the extent that platforms have to mandatory enforce the terms of service.
+And again, again, because all providers have, that's my specialty being, yeah, Acrobat doesn't really adhere to the screen same story.
+I was taken by a remark about terms of service, one of the things the copyright holders complain about all the time is, they say, yeah, the terms of service of all these platforms forbid a blouse of copyrighted content, but they're not really doing anything about it.
+And there is text in there that says, if you forbid something in your terms of service, you should actually enforce that.
+So that's more the other way around to your question, so mind you.
+Yeah, my question is what would happen when the service is not located in Europe, for example, when it's located in Britain and Britain is not a member of the European anymore.
+So what happened with this, with the content which is located there or uploaded?
+Yeah, that's an interesting question.
+I would say the directiveness has nothing about, I mean, there's a territorial scope to EU legislation and there's nothing in there that expands a territorial scope to players that aim for European markets, but they're not really based inside it.
+So yeah, if you were, at the same time in the past, there has been expansion, courts have sometimes taken expensive views on territorial effect.
+I wouldn't want to be a commercial platform that having offices inside the European Union and having a hosting operation outside the European Union that kind of ignores this legislation, because people will go after your operations inside the common market.
+Maybe not really the answer you were looking for. Yeah, that was my question, but I have another one. And what about B2B for business to business cooperation?
+For example, if someone is consuming services from RVS and they upload some information which are copyrighted and related, RVS responsible to scan this content, even if they might content some sensitive information.
+For example, if an ensuing company uploads information about their consumer, it's obvious and the responsibility to scan the information and this information.
+My understanding of the text will be that it will be the case. Yes, but this again, one of those fake bits you could argue both ways. Well, you can always argue both ways, but my understanding will be the AVS would have to implement that regardless of the kind of end user they've contracts with.
+Yeah, the text is not great in terms of clarity anyway.
+But when I try to equip my content, it's obvious for us to decrypt my content.
+I would not go that far. I would claim that there's an obligation in there for AVS to do so. On the other hand, it should take effective technical measures.
+And effective would mean it would have to prevent you from uploading corporate protected materials. So being the devil's advocate, I would also argue still you're not effective. You should do more.
+Anyway, I'm sorry. I have a question.
+It's about notice and takedown. In the beginning, you mentioned it or you made it sound like it was a flawed system in general.
+But what's wrong about notice and takedown?
+It's flawed from both perspectives. In case of a in bad faith acting actor, it doesn't really work fast enough.
+Especially for let's say from the perspective of the corporate holders, let's say the Bundesliga has basically the corporate holder of all football matches being streamed online.
+In the current notice and takedown model, by the time they notice is being processed and there's action, the match will be over.
+So you understand why the football people hate it. At the same time, conversely, from a, especially for a small service provider, it's really impossible to understand whether a certain notice is a valid claim or not.
+One of the Dutch members of Edry, called Bits of Freedom, did 10 or 15 years ago, they sent out takedown notices to any ISP that was hosting books written by someone called Adewa Dawes-Decker.
+It was a famous Dutch novelist and we wrote about the problems of having a colony in Indonesia. His books have been in the public domain for the better part of 50 years already.
+So this was public domain content and they claimed it not to be public domain and it was infringing copyright. It was taken down everywhere immediately or almost immediately, quite quickly.
+So, from a perspective of freedom of expression, it is a system that allows for a lot of abuse and there have been a great deal of examples of abuse of takedown notices for political reasons or just shakedown people.
+Nobody is basically happy with a notice and takedown at the moment.
+Couldn't upload filter type systems like those which would be implemented if Article 13 is actually used?
+Wouldn't those also be able to be abused in the same way as people who do not actually own content could also upload stuff into these filters and claim it's theirs?
+I expect that to happen. I expect, for example, certain museums to put in the complete collection into fingerprint databases because there are museums that claim that because they hold the artwork, they should still get some licensing revenue from that.
+So, certain museums are digitizing their collections and putting it online, quite often using a CC zero license to indicate this is part of the main, but there are museums that claim that because it's in their collection, there still would hold some form of copyright, which I think is an obviously
+false claim, but those would be kind of the kind of players that I would expect to at least use this as well.
+Anyone else?
+Which is asking myself if there's maybe a legal advantage of the whole thing because in the past was always difficult to get a legal handle on companies like Google or Facebook in means of data protection, user data protection or paying taxes,
+because always when it came to that was for data protection, you have to go to Ireland, the Germans have to go to Ireland, you have asked their data, paying taxes was not possible because some companies didn't have a legal dependency in Germany.
+So, from your knowledge, it says something being developed in legal means that will give, okay, if you get access to these companies in means of data or copyright protection, you could use that as well for paying taxes and data protection.
+I would say that these may live all away from different planes of existence. As far as data protection is concerned, there has been quite strong statements by the Court of Justice, the European Union that if you're active in Europe, you should fall under European data protection legislation.
+The whole trick of being an Ireland, as you can't get to me, it's kind of over with the GDPR, you can logic complaint about Google's data protection issues with your DPA, which will be known kind of as Valia, in northern Australia, if I'm correct.
+And that won't you take it on with Google, but that's the so-called consistency mechanism that is not really proven yet but I would say data protection issues.
+I tend to live in rather different spheres than corporate issues in law, usually.
+So, my answer would be to say, I don't think so.
+For clarifying, until now, as always, if you wanted to get a hand on Google, for example, or Facebook.
+I would expect Google to keep YouTube based in Ireland and that the corporate holes still would go through Irish corporate law to go after YouTube, if I understand your question correctly.
+So, I don't think the kind of value established legally will change by this.
+So, systems like IPFS, can they maybe kind of infects them or of IPFS?
+By IPFS, I assume you mean the interplanetary file system.
+They are community-hosted, all the files everywhere, all the community.
+Yeah, that's basically a peer-to-peer file system where you have community-hosted content.
+Like I said before, I would expect at some point corporate holes to go after the makers of IPFS.
+And not necessarily after individual nodes in that network.
+But I think the speculation, and I would also consider it kind of a edge case.
+Okay.
+I think that's it for questions then, is it?
+Yeah, then thank you very much for being here. Talking about this with us.

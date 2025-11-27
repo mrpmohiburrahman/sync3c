@@ -1,0 +1,737 @@
+API URL: https://api.media.ccc.de/public/recordings/93380
+Frontend URL: https://media.ccc.de/v/godotfest2025-don-t-ship-the-wrong-game
+Title: Don't ship the wrong game!
+
+>> Yeah, don't ship the wrong game, something everyone wants to do, right?
+So a few key assumptions for this talk, I assume we have commercial intent, like I'm
+saying some things, but if you're just doing this for fun, you can do whatever you want.
+I assume we want to do this long-term and sustainable, which is a difference to just doing it one
+off.
+So we want to keep making games, and that's a different motivation than just making this
+one amazing game.
+And this is from an indie perspective, maybe most useful to other indies, I think AAA works
+>> I'm going to run, start, and run, and, don't keep on, PVKK, already introduced, thank you. Disclaimer, all of that's my opinion, my experiences, and everything I say could be wrong, and could especially be wrong for you. It's also not a template to make every type of game, if you make a grand strategy game, I think you want to think a little bit differently about.
+But maybe you can, and there are always exceptions, like, no matter what general thing you say, there are always exceptions to it.
+And I also like to be challenged on the stuff that I say, so if you have a different opinion or experience, tell me, and say that I'm wrong, okay, don't trip the wrong game, what's a wrong game, for me there are three types of wrong.
+And I'm not even talking about, the game is not fun, or the game is super buggy, like, these are the obvious things we have to get right, so that's not even interesting, like everyone knows, you want to make a quality game that is fun.
+Okay, three types of wrong, wrong, undesired, a game that no one wants, this is the typical, I go on Reddit and they are supposed, I quit my job, made five years, my dream game, and released it, and no one cares, no one bought it, what do I do now?
+So the game no one waited for, then we have a misaligned game, a game that is popular to a degree, but somehow really flops on launch because people expected something else.
+And also a classical thing, the overdeveloped game, where the game can be successful, but production stretched out way too much, and now basically the amount of units it would need to sell is so high that it will never recoup its cost.
+Anyone here making one of these?
+Yeah, thank you, yeah, I think maybe I also made each of those at some point.
+Okay, and how do we avoid this?
+To motivate that, I'll go a little bit about how we made Dombkeeper.
+Dombkeeper started as a game jam game, in Ludumdara, made in three days.
+It looked like this, so basically you are in a mine, you dig down into the ground, fetch some resources, bring them up,
+to your dome, where even monsters are attacking your dome and you buy upgrades, and then you spend those resources and get better at basically digging and defending.
+And that was our tenth Ludumdara, actually, and with that we already had some kind of prototype validation, because people were feedbacking this game, and what they told us was very different than the nine other games we made before.
+So they were really excited about this game.
+And it wasn't intended as a ten minute experience, but people kept playing for hours, sometimes two hours, sometimes across multiple days, and playtime doesn't really lie.
+If someone tells you the game is great, but they only want to play it for five minutes and never see it again, it's not really great, maybe.
+But here we saw the opposite.
+And eventually there were also these Ludumdara ratings, where your jam game gets rated by other jammas, and they also did really well.
+So we had this validation from the prototype, so after three days we had a working game, and we knew it worked, it was popular, it was fun, and lots of people were kind of attracted to it.
+What we did then is we were working on a bigger game, the game jam was just like a creative break, but we abandoned the bigger game immediately, and went to, okay, let's work on the game that already is kind of proving itself.
+I expanded it, no, we expanded it, it was only a two-person team and a composer.
+We added new monsters, built out the dome, added new upgrades, and this was about a month of work or two months.
+And we stayed after that, we eventually ended up releasing on Steam just without any campaign or anything.
+There's an event going on, games made in Germany, it has a section for demos, that's released the demo we already have.
+And it kind of blew off at that point, so Retromation made the first video about this, and then other YouTubers, he played the demo, he just saw it on Steam, we didn't even write to him.
+And then other YouTubers picked this up, and they basically all over the world, YouTubers played it, lots of impact here, and that was a good week for us, so basically it was a 50,007% increase in wishless, a good day.
+And there's actually, that's the whole time I marketed the game, I did Reddit posts and Twitter and nearly a year, and I gathered like a thousand wish lists, and that was the waste of time.
+And there was one best indie games, Clemi, we were in one showcase of him, and that was this pump, and that was a really happy day for me.
+I mean, if you have always zero to two wish lists a day, and then you have a day with 170, it's crazy, I thought, yeah, we've made it, it was a good day.
+But that's also part of, some games just want to super well on social media, they need to be played to build a fan base hype.
+And with that, with the Steam demo, we had also demo validation, we could see, okay, not only 500 people are playing this, but many thousands of people are interested in this.
+And on YouTube it also proved this virality, so it basically propagated itself.
+So we went into production, made it, developed it further, made it look like this.
+Production was relatively short, only nine months, which was cut shorter by events like PAX East and Gamescom needing to make demos for that and such.
+And we released, which was released, that was more popular than I think anyone expected, we were in the top 10 sellers globally on Steam, only shortly, but that's still a good release.
+And that's basically the stages I just showed, right?
+So we had the jam game, refined the prototype that led to the first demo, we made another demo, and then eventually we had the release.
+And what's important here, the duration's increased, so we had this working game after three days, then we expanded it for eight weeks, and then we had nine months of production.
+So you see the time scale is scaling up.
+And the player base also scaled up, so initially it was, of course, only the developers in the first three days, and then it was on itch, and the who doesn't know what itch I always.
+Oh yeah, yeah, okay.
+It's something like Newgrounds from, I'm not sure if you know Newgrounds.
+It's website where you can upload your game and it's playable in the browser and you can download it.
+It's basically Steam, but a hundred times or a thousand times smaller.
+So I call it the kind of the controlled public because it's so limited.
+We build a community in that time and then gradually basically opened up who got to play this game.
+And the key thing here is we had these validation points.
+So after the jam game, after the prototype, after the demo, we always considered, okay, we let people play the game and we considered their feedback, and it's all, okay, how does it change our plans now?
+And from that, I kind of documented this framework, so it's not a framework we thought about and then decided let's work like this framework tells us to.
+It's more of a documentation of how we run it.
+I'm not saying this is like a completely novel thing or great invention, it's just this documentation.
+And the key thing here is that I already described, like this increasing scale, this increasing opening up to people.
+And to have these validation points where you already decide, okay, now we release the demo on Steam and no one cares, we probably should kill the project.
+Because if no one cares about the demo, most likely no one will care about the full release.
+And that's a hard decision to make, but it's kind of built into this process.
+And we also have that we make easily five times as many prototypes or ten times as many prototypes, then we actually continue.
+Like most games we stop at the first validation point already.
+This has this strange word in it, the fancy core.
+And that's basically, it just means it's the core of the game that looks fancy enough so we can show it off.
+It's not a vertical slice, and that's really important, because a vertical slice usually has 100% of the features, or most of the features at least.
+But with the fancy core, you can get away with just a tiny fraction as long as you deliver on the intended experience.
+Yeah, just to contrast this to how we made a P4 Cup, I need it for typing on commandant.
+This was based on an old prototype that looked like this, then we made the fancy core that looked like this.
+A slight improvement in which was, thanks Raffa.
+And then we announced it, we did test it a lot before that, but we didn't release it publicly anywhere.
+Also the demo, the prototype was not made in the game jam, that's also important.
+But the announcement was so popular, so we thought we would make a game for very few people who would be very interested in this, like a super niche.
+It turns out that way more people were interested in this, and with the announcement, we already got this kind of big validation.
+So after that, we don't have this pressure anymore to bring out the demo super quickly to validate it again.
+Yeah, already said that.
+Okay, let's look in detail at the wrong types of game.
+There might be a fourth type of wrong game where everyone is sad and burnt out, so the game worked out, but now you cannot make a second game.
+So it's not sustainable, but I won't talk about that.
+It's another talk, I guess.
+Okay, undesired games, what does it mean?
+No one wants this game, so you can look at some metrics, and it often looks like this.
+This is the follow world chart in Steam.
+Followers correspond very closely to wish lists also.
+I guess it's probably a little bit too small to see, but the section I highlighted has 159 followers, which is maybe 2,000 wish lists, which is not enough usually to sustain a studio or commercial game.
+And you see that during the marketing period of that game, there are not really these great bumps and not a great speed up.
+And you have a release with 35 concurrent players, and that's a problem here with the undesired game.
+We don't have any positive validation throughout the death cycle.
+We have these low metrics launched with low wish lists, and I guess this might be the most common thing for games, just to not get this kind of traction that you need.
+We already have this unsustainable launch, and what can be the causes for this?
+It's never validated against the market, so people just sit down, develop the game for three years, release it, and then find out, okay, no one actually wants this game.
+Or maybe the developer, we did release a demo, and we saw that no one cared for the demo, but we still kept on going, just doing the same thing as we had before.
+And that ends up in a release that is probably not the one we wanted.
+How do we avoid it?
+It's validation points, and that's the short answer to this.
+If we would take an honest look at every stage at the game, okay, do we need to fundamentally change this game or kill the game, we would avoid releasing an undesired game?
+Second type misaligned game, so this is a game where people want what they thought this would be, but it came out different for some reason.
+And I have a specific game here, also that I'm not sharing which game it is, but it has 12,000 followers, which is easily 150,000 wish lists.
+So prime for good release, right? But you see that where the markers, this is already past release, and you see that essentially the graph after release is flat.
+That's not something we necessarily want to see.
+What are the symptoms of this game?
+There's lots of positive validation throughout the death cycle, so the response is quite good.
+The metrics are good.
+There is a decent launch day, like 274 CCU concurrent players on launch day, but it basically immediately dies off.
+So there was interest, it was released, people didn't like it, and then the game is dead.
+And this is how a healthier game looks like, so you have the green marker roughly in the middle of this graph is the release, and you see that the follower graph after release also still goes up.
+That's a difference to the other one.
+Okay, what are the potential causes of this?
+Communications on the game is off. It's not super easy to make a steam page that tells everyone exactly what this game will be.
+So some people come in and expect something different from this game.
+And we have that to a degree also with Don't Keeper, where people keep coming in and saying, yeah, this is the tower defense game, and I want to give this tower defense tag, but it really has little to do with a tower defense game actually.
+So, yeah, we also struggle with that, but in this case, people don't mind so much, it seems.
+More importantly, the devs didn't understand or respect player sentiment.
+So the assumption here can be that they got this feedback about this game, where they made something, they had a playtest, and the playtest pointed towards problems, what they didn't like, where there was friction.
+And then either the developer didn't really act on this, or they misunderstood it, or didn't respect the player sentiment in the sense that they were going like, yeah, you just don't get it, the game is not for you, and the game is also not for you.
+And that's a problem.
+And the last cause that I think can happen for this is that you tested only with a closed in group, and that's a really dangerous thing.
+That if you have a core group of playtests on Discord, and you have them from the start of the project, and they test the game over two years, and you refine it, and you make it better and better for this group, you end up with a game that's usually really hardcore and tailored towards this tiny group of people.
+And then you have new people come in, and for them it's way too hard, or there's way too much friction there.
+And that's a big danger. So the most important playtest you always want to repeat also is the first time user experience test.
+A small side note on experience goals is that, yeah, I'll mention a phrase that we call experience goals.
+That's something like design pillars, but it's not really design pillars, because design pillars are often already about mechanics, like how does this game mechanically work.
+And I find it really useful to rather think about, okay, what should the player experience be? What should the player feel? What should the dynamic be in this game for the player?
+Because usually, if you go on that level, design pillars derive from this, because you can think about mechanics that support this experience you intend.
+Yeah, and I'll talk a little bit more about this missile-lined problem here.
+Okay, how do we avoid this? Basically, by opening up the game, as we talked before.
+We initially test with friends, but we open up the game to more and more people.
+We don't test it for three years, just with our closed hardcore discord playtest group.
+And there are two parts to this. So, on one hand, you have this discovery part, where you figure out, okay, what is the game? What do people like about it?
+If you understand these things really, really well, it's much easier to make a game that's not missile-lined.
+Defining experience goals can help a ton, because you know what experience you intend, then you can check, okay, do we actually deliver on this experience?
+And aligning the team towards these ideas what this game should be.
+Sometimes you have a team where, if you ask, if a team of three people, and you ask each of them individually, what the game is, sometimes you get a different description.
+And what's important about this game, and that's a danger.
+And then, in the second phase, after discovering what game you're making, you're building it, that's some overlap, of course, but also building the game.
+You want to playtest? You can keep playtesting, especially first-time user experience.
+And a big thing is also keeping it playable.
+So, if you have this break in your project, where for a year no one can play, there's a risk of something going off of the development work you do in that year.
+Not ending up contributing to what you actually intend with the game.
+So, it's super valuable if you can keep it playable throughout the dev cycle.
+Of course, you check against the experience, because if I want to make a game that has, I don't know, emotional impact in regards to some emotion.
+Like, I want to make players angry, yeah, I can check, am I actually achieving this?
+And the last thing, maybe the most important thing, is a build for the players.
+And what I mean with that is sometimes we have an idea of what game we want to make, and we have some pride in our great idea.
+But then we get feedback where players are like, yeah, I don't like it so much, I want something else.
+And then you can go, yeah, you don't get it, it's not for you.
+It's my fantastic idea, I'm making the game for myself, or you're a little bit more flexible and actually make what people want to play.
+And it's not super easy because you have this sort of pride about it also.
+And I had this with DomKeeper.
+I initially designed the upgrades in DomKeeper in a way that you would get something really positive and a small negative with each upgrade.
+And people didn't like that.
+They didn't want these negative effects.
+I thought it was interesting because you had to reason about what negatives I can endure, so it's more complex and interesting.
+But they just want the good stuff, they didn't want any problems.
+And I thought it made for the less interesting game, but I still made it that way.
+I changed it so that we only have positive upgrades basically.
+And in retrospect, it's easier for me to see why this was actually correct.
+And I was wrong thinking this would be the more interesting game.
+Maybe it would be the more interesting game from a design perspective, but not the more coherent experience from a gameplay perspective.
+Because DomKeeper itself is kind of this relaxed thing that you can play without thinking too much.
+You can get into it a little bit, but you don't need to think super deeply.
+So these complicated upgrades are not the best fit for this.
+So the players were right, and I was wrong, despite thinking I was right.
+But I had at least the modesty to listen to them and change it.
+OK, third type of wrong game, overdeveloped.
+And that's also a tricky one that can easily happen.
+So the game is set up for success, but production ballooned and now we are bankrupt.
+The symptoms for this is, OK, we have some positive validation.
+There is indication that people actually want to play this game.
+We have medium metrics.
+We don't have a million wishlists.
+Maybe if we have a million wishlists, it can hardly, like, it doesn't matter so much if we take three times as long, I guess.
+But we don't.
+Maybe we have 20, 30, 40,000 wishlists or something like that.
+So we have a solid audience, but not huge.
+But we made this huge multi-year project that has no chance of being profitable, despite a launch that fits.
+What has happened here, potential causes?
+It can be the devs love the game too much.
+They just cannot let go of this.
+They have this bar of quality they have to hit, and they just keep working on it.
+I guess sixth song is the case here.
+They wrote about why they took so long, and they said we just love working on this.
+So it was less intended about what's a good way to bring this to release.
+They just wanted to work on it for long, because they had fun making it.
+That was their driver.
+Which is also easier if you have 100 million in the bank, like them.
+Two little production constraints.
+If you don't have constraints, like, 100 million in the bank, then you don't have a constraint there.
+You don't need to release this.
+But not saying they had scope creep.
+Maybe they had, I don't know.
+Yeah, at least it's an invitation to scope creep.
+If you do a project, if you have a full-time job, and you do this on the side,
+you're in a similar situation of not having this heart constraint.
+It has to be out in August or something like that.
+And often these kind of constraints can help keep this in check.
+One thing can also be an insecure or opinion-volatile developer.
+And I've seen this in a few projects where they basically are at the third version of the combat system.
+That's completely overhauled.
+And every two years the dev discovers that they don't love the combat system
+they made two years ago and now redo it completely.
+And that happens like five times the game will take ages.
+And another, I think, interesting bit is overspend on art.
+It's very easy to invest a ton of money in the game looking great.
+But not every game profits in the same way of looking great.
+For some games it's totally right.
+Some games are artful and they work because they are so beautiful.
+But I think more games could get away with really cheap art that's easy on production.
+That allows them to go harder on the content and do this for much cheaper.
+One example of that is Schedule 1.
+It's not a beautiful game, but it's very functional.
+And it was made super quickly.
+I don't think if the developer would have sat down for five more years
+and made a more photorealistic graphic that the game would have done better.
+So I think he was smart about this.
+Okay, how do we avoid an overdeveloped game?
+We take this validation point that we have early.
+And that should inform the scope of the next stage.
+So if I make a prototype that's incredibly successful or popular,
+I can take a bit more time with the next stage.
+If I release a demo and the demo is not doing great but also not terrible.
+So not as terrible that I want to kill the project but also not so great that I think,
+yeah, of course this game will work out.
+I adjust the release, the production time for the release.
+I want to shrink it down and not extend it.
+What helps with this is retaining a prototyping spirit in the stages.
+And the same way you think about the processes in the game jam of trying to be
+super efficient doing shortcuts, this definitely helps here.
+If you want to let a stage inform the scope of the next stage,
+you need a flexible scope.
+If you set out initially and this is my game, these are all the content pieces
+that have to be in there.
+It will be hard to be flexible on this.
+And also having these experience goals and not a list of features
+makes it way easier to cut features.
+Because sometimes it's hard to think about, okay, we have a leaderboard.
+Do we really need a leaderboard?
+That's a cool feature.
+But if you think about the experience goal, how much does it pay into making
+players angry if that's your experience goal or something like that?
+It gets easier to evaluate and to cut them.
+Yeah, these were the three wrong types.
+I have two more topics I want to talk about.
+I want to talk about validating a prototype.
+So you made a prototype, now you want to see if it's good or bad.
+And then about making a prototype or what helps us make prototypes fast.
+Okay, validating a prototype.
+Basically the first validation point we had.
+So we made a game in three days or a week or something like that.
+How do we find out if it's real or something?
+I have a metaphor for this from one of our gem games.
+It's similar with prototypes.
+Sometimes you have a prototype that's very needy.
+One's already dead in the water.
+And one is just fat and healthy and is developing well and satisfied.
+Probably it's a bad metaphor.
+Okay, how do we validate this?
+We form a holistic view about a prototype.
+We take as many sources as we can and form a big picture from this.
+And I don't think we can have a really holistic view without releasing something.
+This was our first game, the first game, gem game.
+So we have to let people play your game.
+Especially these unfriendly internet people.
+They give the most honest feedback.
+And the thing is we learn with every playtest.
+We are already at Pippen bits.
+We are playtesting super early.
+But still, we are playtesting often.
+I don't think I ever had a playtest where I thought,
+"Oh, this playtest we had was way too early.
+We didn't learn anything.
+We should have delayed the playtest."
+But I had plenty of playtests where I thought,
+"Yeah, we should have done this two months ago, actually."
+So it's always useful.
+And it's also actually motivating as developer.
+Because sometimes you have this situation where you worked for half a year on a thing
+and you are not sure if it's good.
+It does feel a little bit good but also a little bit bad.
+And you have this uncertainty and uncertainty is really bad.
+And doing a playtest, you usually quickly see,
+"Okay, what are the things that I can improve?
+What are the things that are not working out great?"
+And it brings this clarity and focus.
+So that's super helpful also to just stick to a project.
+And sometimes you can do a playtest to see the game is just horrible
+and you can kill it with good conscience.
+There are these common fears of preventing validation.
+Like feeling it's not good enough or only two more months
+and then we can playtest and missing key features
+and won't be representative.
+But the thing is it doesn't need all these things to be a valuable playtest.
+Because the result of the playtest doesn't need to understand if the game is good or bad.
+It's just about, "Okay, what can I improve in the game?"
+And I can learn what I can improve way earlier than understanding
+if this works as a whole or not.
+Oh yeah, there's another line here. Is that even readable?
+It's not a greatest contrast, right?
+Yeah, and sometimes people have this fear that this damages their reputation
+and then you have people who played it and they played it and it was bad.
+So they will never look at it again.
+That might be true, but it does not matter.
+It's so few people that end up playtesting.
+It does not matter.
+Okay, validation.
+Now we can look at the game jam results if this was a prototype from Game Jam.
+And I want to make an example here.
+So we had a DOM keeper in this game jam.
+By then it was called DOM Romantic, which is just a pun on DOM Romantic.
+And we had 11 of hits.
+Another game game we made a few gems after this,
+where you are this Fennec farming for Lavender
+and you employ your friends to help you with the work.
+Recruits to harvest and such.
+But at night these gnomes come and they trample your fields
+and abduct your friends and steal your lavender.
+So naturally you pull out your gun and shoot the gnomes.
+Only logical consequence.
+Yeah, and you build this nice little kingdom here.
+And these were the results for this game.
+And you can see that in the ratings Lavender fields
+is generally a better game than DOM Romantic.
+So it was rated higher, it was a better experience.
+But I would still very much rather do the left game
+because it has 270 ratings and the other one only has 60 ratings.
+And we did about the same in terms of marketing for each game.
+So if I made a blog post about Lavender fields,
+five people went in and played the game.
+So they did a blog post on the Ludum Dachau webpage about DOM.
+30 people went in and played the game.
+So it already has the sort of pull.
+It brings people in relatively effortlessly.
+And I'm very convinced also that we can make the game better.
+We can make the game more fun.
+That's just like the craft of making games.
+But making a game more appealing is way harder.
+Like understanding what brings and pulls in people.
+Okay, HIO stats.
+HIO is the website where we released this.
+And we can look at the statistics there.
+So we get ratings, star ratings.
+So we know both like the amount of ratings,
+but also the average of stars.
+And I don't actually care about the average of stars.
+I never look at this.
+Only the amount of ratings I care about.
+And on HIO you also have these collections.
+These lists that you can make of games with whatever,
+for whatever reason.
+And these are the statistics for our games.
+Or at least when I made the presentation half a year ago.
+Something like that.
+And you can see, okay, it's sorted by views.
+And views correspond.
+Like all of these games are browser playable.
+And like 80% or 70% of views convert to browser playlists
+where people play this in the browser.
+And some of them just downloaded.
+And some of them don't do anything.
+So you have games.
+All of these were made in Ludumdara.
+All of these were like marketed in roughly the same way.
+But you see a factor of what is that?
+A thousand?
+Is that a hundred?
+A hundred difference.
+Like two orders of magnitude.
+So yeah, of course, big numbers is good.
+The top games are the best.
+But we can learn something more from this.
+So we can look at Lavender Fields here and Dom.
+And you see Dom was way more popular.
+So is Lavender Fields just a bad game?
+We can investigate this a little bit more.
+So we have these ratings and collections.
+And with that we can think about this metric for engagement.
+And the assumption here is that if you have a desire for the game,
+you just play it.
+You will leave a rating or review.
+Or you will save this for later in some way in the collection.
+The worst case is if someone is interested in a game,
+checks it out, starts it.
+The game is horrible.
+They immediately do not care in any way about the game.
+They will just go away.
+They will not leave a rating or review.
+And what I did is then just calculate basically how many plays
+did the game need to generate one rating or one collection.
+And we can see that Lavender Fields actually has quite good engagement.
+So from that, I think we can deduce that Lavender Fields is not -- oh, sorry.
+I should not -- I did drink this before the talk.
+I should not have done that.
+It's a beginner mistake.
+Yeah, Lavender Fields is an engaging game.
+So people who play it really like it.
+They are very likely in comparison to the other games
+to leave a rating, to leave a comment or review.
+So if we want to, for example, think about Lavender Fields,
+we know the mechanics work so we can think -- so it's more clear.
+Somehow the appeal is not there.
+So either the fantasy does not work.
+Maybe it's not interesting for people to farm in that way.
+Maybe the graphic style is not working.
+And we could try to switch this up, make this a 3D first-person game,
+and see if it works then if we are still super interested in this.
+In contrast to, for example, the game above or below,
+they have similar numbers like Lavender Fields in terms of how many
+plays did they get, but they have quite terrible engagement.
+So we know, okay, these are just not fun games.
+And it might be a little bit confusing that Dom has a bad engagement,
+but that's basically down to the number of plays being so much bigger
+and to the crowd.
+So generally there's the strength of the more plays the game gets,
+the worse the engagement is.
+When Dom had similar numbers like Lavender Fields,
+it also had this quite good engagement.
+So for this it makes sense to compare only games with similar numbers
+that all have some complicated math to normalize them in some way.
+Player comments are also a source for validation.
+Sometimes we get comments of this type, hey, this is a nice game.
+The graphics are great, it was fun, and that's the worst one.
+It's a cool concept, it's a great idea.
+If you hear that, it's not good, usually.
+So they are friendly and polite.
+It's a bad game, players do not care about this game.
+We want comments of Type B, bring this to Steam, expand this.
+I played for 60 minutes and keep coming back.
+We have some games where people play it once a year or something like that.
+I'm angry that there's no safe system.
+We also have that regularly people complain.
+Maybe it's also down to this game being two hours accidentally
+and crashing from time to time.
+But they are invested, right?
+If the game was bad, it wouldn't matter if this game is two hours and crash.
+They would not play it and they would not leave angry comments.
+I demand feature Axio, ladies and difs.
+Also happens.
+They paid nothing for it, but they act like paying customers.
+And this is great.
+So it feels rude, but it shouldn't be.
+It's a great feedback in the sense that, okay, the player is hooked.
+They are in love with this game, they want more of this, which is really what we want to see.
+Sometimes there can also be something like media pick up.
+We had this for one of our games for Tristan.
+We had a small rock paper shotgun article, which was a little bit insane to have that for a game-jam game,
+which is in itself a positive validation, right?
+If the idea is interesting enough to warrant some sort of media article,
+it's a good validation point.
+You can also check that on YouTube, do people play your game on YouTube
+that you made, your prototype.
+You can only check that if you release the game.
+If it appears on YouTube at all, it's a good sign.
+But you can do another step.
+We can check, okay, what does the media and video of a given YouTube channel have in views?
+For this channel with 50,000 subscribers, it was about 20,000.
+Some of his videos would get more views, some less, but media was about 20,000.
+Again, for Tristan, he made a video and it had 400,000 views, which is a great validation point.
+It was 20 times his normal amount of views.
+We know, okay, this is a great positive validation point.
+It has this traction on YouTube, and this is down to the YouTube algorithm promoting this video,
+because it probably had good retention, good view rates.
+Another important bit about validating a prototype.
+Do we feel passionate about this? Does it not let go?
+Is it an idea that keeps coming back to us?
+By now, we've made 19 gem games, I think, and most of them we never think about.
+We still like even the ugly ones, but it's not like we think about continuing this.
+For some ideas, you might feel this idea keeps coming back to you.
+That's a good thing to have for a game.
+You don't have to make your passion project, especially as a first game,
+but I think to make a successful game, you need some passion for the game you're making.
+Also, do we even have a vision for the full game?
+Maybe you make a prototype, but it's unclear how this would look like as a full game.
+This one was even intended as never becoming a full game, just being this prototype.
+Also very important, do our skills match what we need to make this game?
+Each game has different requirements from the team.
+For example, we just had a prototype that we continued to develop,
+and the more we developed it, the more we understood,
+"Okay, this is actually a narrative game with some gameplay elements."
+We don't have a right or narrative designer on our team, so we killed the project there
+because we didn't want to change the team.
+We understood, "Hey, we don't have the skills to make this game, actually."
+Also, talking about the game, does anyone know who this is?
+No one ever knows.
+I've had this talk a few times now, and I always ask this, and no one ever knows this guy.
+It's Chuck Pallano, he's an author, he writes books.
+His most popular book, I think, is Fight Club,
+and he does something interesting with his ideas.
+He basically goes to a party and presents the idea,
+but he doesn't say, "Hey, I'm writing a book, it's about this."
+He tells the idea as if this actually happened to him.
+So on Fight Club, he might tell, "Yeah, I got into this fight because I was just coming out of Walmart,
+and this one guy wanted me to punch him, and I did, and it felt nice,
+but then he also punched me, but it also felt kind of nice,
+and now we are meeting once a week to punch each other."
+And the thing that he did notice that with this book,
+that was his most popular Gala movie also,
+that people would add on to this story.
+They wouldn't go like a cool story and turn around and leave.
+They related their own experiences to that and talked about when maybe something similar happened to them.
+And we noticed that too.
+With PVK, we especially noticed that when we talked about the game,
+we thought it was a kind of stupid and silly idea.
+But we noticed like whenever we talked about them, people got quite excited and layered in their own ideas,
+how this should look like and feel like and what could happen in the game.
+And that's a positive validation.
+And the beauty of this is you can do this before writing a single line of code.
+It's just about the concept.
+So that's the holistic view.
+All of this combined, hopefully, tells us if a prototype is worth pursuing.
+And I did this talk recently and someone wrote that this is a numbers driven approach.
+There are some numbers in there, but I still think most of what factors into this decision are not numbers.
+The numbers are easier to understand and easier to grasp,
+but really it's more of a gut feel around this whole, like combining all of this.
+So last bit, making a prototype, at least how we do it.
+And with this slide, I want to motivate a little bit.
+So these are all like three day games.
+And in three days to make a game that looks decent,
+you have to have a process that is decent.
+So you have to be clever about scope and cutting corners.
+And I want to share three pillars that we have for making prototypes.
+The first is keep it simple.
+Yeah, that's old and boring in a way.
+Everyone knows this, but it's way harder to actually do.
+Speed really beats everything.
+Games get good by iterating.
+Everything is bad at first and becomes good by iterating on it.
+So iteration speed is absolutely key.
+And in a prototyping setting, if it's stupid and unoptimized and feels bad,
+but it works after a few minutes, that's great.
+And that's sometimes really hard, both for engineers to write shitty code
+or for artists to draw something they don't even like.
+That's super -- that's not up to their skill.
+For prototyping, it's actually good to not push that too much.
+And I have one example where I did this wrong.
+Does anyone know this game?
+No, it's -- oh, yeah, yeah.
+It's -- I think it should be like 25 years old now.
+I think it was called Shif Po from Dirk Plata.
+Like some super early game, like 10 years before Steam,
+or something like that.
+And I played this as a kid, and I wanted to make a game like this,
+like Robin from Kuzu, like a game.
+So I started -- I recruited my girlfriend to draw a pixel art for this.
+And I built this 3D map, but I didn't know, like,
+how big does this island need to be?
+So I thought, okay, then I'll just do a flexible system.
+I'll create this quadtree where I can basically infinitely scale the map.
+And I'll make it a height map also because the old game had a height map
+and height maps are cool.
+And I thought, okay, now I'm not using the height map,
+so I add this water system with a water flow.
+So I thought that I can maybe use something with that
+because the height map had no game purpose.
+And that was really bad.
+Like, I took six months to make all of this --
+it was also a different age in technology.
+Like, nowadays you could do it quicker, but this was still a time
+where you would handcraft a byte array and manually push it to the GPU
+and then change it in the GPU memory directly,
+and also without an engine, just with OpenGL bindings.
+So that's why it took a while.
+And it was super stupid.
+I didn't know what I needed, so I built something flexible.
+So the thing is, we have to clarify requirements as soon as possible
+or stay as simple as we can.
+And the problem is in prototyping you never know the requirements
+because you don't know the game yet.
+So you have to stay as simple as you can.
+And I should have just said something like,
+okay, the island is 200 by 200 tiles.
+That's not no flexibility.
+And I can adopt the game design around this or scale it up a little bit.
+And only if I understood, okay, I need the scaling.
+I need these infinite maps like in Minecraft.
+Yeah, then I should have done it.
+Even Minecraft would.
+Minecraft also has these infinite worlds.
+Who uses that?
+It would get away with so much smaller worlds.
+And I have another example where I did it, right?
+In DomeKeeper you have these, oh, that's not really visible.
+This is the screenshot of the mine below DomeKeeper.
+So you have this sort of area that you can dig out.
+And this is procedural-generated.
+It obviously needs to be because every run in a row
+like needs to be a little bit different.
+We only had nine months of production.
+And I know this would be probably a month of work for unclear needs.
+So I didn't understand what I needed from this.
+How big do the resource clusters need to be?
+How far do they need to be spaced?
+How big does the map need to be?
+I didn't really know that.
+So what I did is I just took the map, cut it into three layers
+that were increasingly wide.
+And I basically hand-painted three versions of each layer
+and horizontally flipped them randomly.
+That was a few hours of work.
+And all the players thought this was procedurally generated.
+Like, they didn't know the difference between a month of work
+or four hours of work.
+But with that, I could really fine-tune this.
+And then once I understood what makes a good map
+was very interesting, what's the actual size I need to have,
+I did end up writing the procedural map generation
+in any way that supported the game in a good way.
+It still ended up taking a few weeks,
+but the result of that was way better
+than what I would have done initially.
+Okay, another prototyping guideline.
+The alternative shortcut.
+Sometimes there's a very easy and quick alternative
+that has a similar effect than the thing you intend.
+So if you want to build something,
+it's worth it to take a step back
+and think about not jumping onto the first solution
+that comes to mind.
+But if there's something really, really cheap
+that may be not as cool as the thing you intend,
+but it's done quickly.
+And usually it's worth doing the cheapest thing first.
+And this is true for all aspects
+for programming game design audio.
+And I have an example where I did it badly.
+This was our second game, Gem Game,
+where you are this hamster.
+And you earn these seeds here
+that your hamster babies are eating.
+And I thought about, okay, these seeds are sunflower seeds.
+So how does it work in real life?
+I thought, okay, there you have this hamster cage,
+and then you probably have this ramp
+where someone pulls in seeds.
+So I did model in this framework.
+It wasn't even an engine.
+It was just a strange framework.
+I did model this ramp,
+and it took hours to get this right,
+to get the friction right.
+And it didn't have a graphical interface,
+so I just programmed the positions of the colliders
+and checked if it worked, and it was super horrible.
+And then I realized, okay, now I need graphics.
+So now I need to tell the pixel artist,
+okay, I need these two layers for this ramp,
+and what dimension should that be?
+And that was the moment I realized
+I'm wasting a ton of time for something super unimportant.
+Like the way these seeds enter this cage.
+That's your wife sleeping in bed.
+So you go to work, of course, in a wheel,
+and I had the seeds just drop in from above.
+That was basically zero work,
+and I wasted hours in a jam that goes three days.
+So that was really stupid.
+Yeah, stupid.
+The third thing we do that's really helpful
+is to say like 80% quality is enough.
+It has to be good enough.
+Let's save time, move on, leave it at 80%.
+Come back to it later if there's still time.
+That's never time.
+And usually it's also you don't even care about it anymore
+after you are, like a few hours removed from making this.
+There are very few exceptions to that.
+Like the player controller, like how the player moves,
+that should always feel really good.
+Like they'll make sense to go like hard on quality.
+But what this also does is it basically frees up the team
+from this expectation.
+So if I have an artist on the team,
+and they have some pride and they also don't want to look like,
+okay, this is the shitty drawing is the best I could make.
+They want to make something good.
+But if everyone in the team understands,
+this is not to the best of their ability.
+That's to the fastest of what was possible
+and it's low quality intentionally.
+That makes it much easier for everyone to make something
+that's not fantastic in itself.
+But in the combined picture, you are just faster
+and you can make it good later.
+And I have one example from Dumbkeeper.
+This is the loadout.
+It's a roguelike, so you choose some sort of setup.
+It's not super visible.
+You choose some set of what you want to take with you
+for this run.
+And the problem here is, I'm not too bad at annoying.
+The thing here is this background that you see a little bit behind.
+It looks like this.
+Basically it's this world.
+But actually the worlds in Dumbkeeper look more like this.
+This is not 80% there of this.
+It's way less.
+And this was never intended to go into the game.
+This was just a test.
+When we tried to figure out the layering of how we want to structure the game,
+the world, how many layers do we want to have, parallax.
+This was just an art test.
+And I've ruled in just as in the loadout as a placeholder.
+And the whole loadout itself was only intended for the PAX East demo.
+It was also not my intention to release this.
+So it was super low quality.
+And we released like this and no one cared.
+No one cared that this was a placeholder that was never intended to be seen by anyone.
+We got away with it.
+It was no problem.
+And we could have spent two weeks of some artist's time to polish that.
+But it didn't matter.
+In this case, way less than 80% was enough.
+Yeah, guidelines.
+With that, I'm finished.
+[APPLAUSE]
+Yes, thank you very much for this presentation.
+And I think you showed very well that why game chem games might not
+be all based good.
+A small game production always has a small game.
+The best results come from a small game production.
+That's what I wanted to say.
+Unfortunately, we don't have any more time for questions.
+But you'll be around.
+Yeah, just come here and let's talk about this.
+Please challenge the assumptions here.
+Or I'll be outside.
+Feel free to talk to me, please.
+[LAUGHTER]
+[APPLAUSE]
+[MUSIC PLAYING]

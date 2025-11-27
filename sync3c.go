@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"path/filepath"
 	"sort"
 	"strings"
 
@@ -58,6 +59,11 @@ func (a ByDate) Len() int           { return len(a) }
 func (a ByDate) Less(i, j int) bool { return a[i].EventLastReleasedAt > a[j].EventLastReleasedAt }
 func (a ByDate) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 
+type eventTask struct {
+	event     Event
+	recording Recording
+}
+
 func priorityForMimeType(mime string) int {
 	for i, v := range preferredMimeTypes {
 		if strings.ToLower(mime) == v {
@@ -79,6 +85,34 @@ func findConferences(url string) (Conferences, error) {
 
 	err = json.NewDecoder(r.Body).Decode(&ci)
 	return ci, err
+}
+
+func gatherEventTasks(conf Conference) ([]eventTask, error) {
+	events, err := findEvents(conf.URL)
+	if err != nil {
+		return nil, err
+	}
+
+	var tasks []eventTask
+	for _, e := range events.Events {
+		media, err := findMedia(e.URL)
+		if err != nil {
+			continue
+		}
+		rec, err := selectBestRecording(e, media)
+		if err != nil {
+			continue
+		}
+		if len(rec.RecordingURL) == 0 {
+			continue
+		}
+		tasks = append(tasks, eventTask{
+			event:     e,
+			recording: rec,
+		})
+	}
+
+	return tasks, nil
 }
 
 func listConferences() {
@@ -171,72 +205,78 @@ func main() {
 	// Sort conferences by date (newest first)
 	sort.Sort(ByDate(ci.Conferences))
 
-	// Pre-scan to count total videos and size
-	fmt.Println("Scanning conferences to count total videos and size... (this WILL take a while)")
-	totalVideos := 0
-	var totalSize int64 = 0
-	conferenceEvents := make(map[string]Events)
-	eventRecordings := make(map[string]Recording)
-	totalConferences := len(ci.Conferences)
-
-	for i, v := range ci.Conferences {
-		if len(name) > 0 && name != strings.ToLower(v.Acronym) {
-			continue
-		}
-		fmt.Printf("\rScanning conference [%d/%d]: %s", i+1, totalConferences, v.Acronym)
-		events, err := findEvents(v.URL)
-		if err != nil {
-			continue
-		}
-		conferenceEvents[v.Acronym] = events
-		
-		for _, e := range events.Events {
-			media, err := findMedia(e.URL)
-			if err != nil {
-				continue
-			}
-			rec, err := selectBestRecording(e, media)
-			if err == nil && len(rec.RecordingURL) > 0 {
-				totalVideos++
-				totalSize += rec.Size * 1024 * 1024 
-				
-				eventRecordings[e.URL] = rec
-			}
-		}
+	// Load existing status JSON (if any)
+	statusMap := make(map[string]map[string]VideoStatus)
+	if data, err := os.ReadFile(statusFile); err == nil {
+		_ = json.Unmarshal(data, &statusMap)
 	}
-	
-	// Convert total size to bytes for display if it was in MiB
-	// Actually, let's keep totalSize in MiB for now to match m.Size, 
-	// but for "Storage consumed" we might want bytes.
-	// Let's normalize everything to Bytes for the progress display.
-	// If m.Size is MiB, then totalSizeBytes = totalSize * 1024 * 1024.
-	totalSizeBytes := totalSize // totalSize is ALREADY bytes because we multiplied above
-	
-	fmt.Printf("\nTotal videos: %d, Total Size: %s\n\n", totalVideos, SizeToString(uint64(totalSizeBytes)))
+
+	currentAcronyms := make(map[string]bool)
+	for acronym := range statusMap {
+		currentAcronyms[strings.ToLower(acronym)] = true
+	}
+
+	restrictToCurrent := len(name) == 0 && len(currentAcronyms) > 0
+	var targetConfs []Conference
+	var remainingConfs []Conference
+
+	for _, conf := range ci.Conferences {
+		acronym := strings.ToLower(conf.Acronym)
+
+		if len(name) > 0 {
+			if acronym == name {
+				targetConfs = append(targetConfs, conf)
+			} else {
+				remainingConfs = append(remainingConfs, conf)
+			}
+			continue
+		}
+
+		if restrictToCurrent && !currentAcronyms[acronym] {
+			remainingConfs = append(remainingConfs, conf)
+			continue
+		}
+
+		targetConfs = append(targetConfs, conf)
+	}
+
+	if len(targetConfs) == 0 {
+		targetConfs = ci.Conferences
+		remainingConfs = nil
+		restrictToCurrent = false
+	}
+
+	if restrictToCurrent {
+		fmt.Printf("Resuming %d conferences with existing progress. Remaining conferences skipped for now: %d\n\n",
+			len(targetConfs), len(remainingConfs))
+	}
 
 	found := false
-	currentVideo := 0
-	var currentConsumedBytes int64 = 0
-	
-	for i, v := range ci.Conferences {
-		if len(name) > 0 && name != strings.ToLower(v.Acronym) {
+	totalConferences := len(targetConfs)
+
+	for idx, conf := range targetConfs {
+		fmt.Printf("Conference [%d/%d]: %s (%s)\n", idx+1, totalConferences, conf.Acronym, conf.Title)
+
+		tasks, err := gatherEventTasks(conf)
+		if err != nil {
+			fmt.Printf("  Error fetching events: %v\n\n", err)
 			continue
 		}
-		fmt.Printf("Conference [%d/%d]: %s (%s)\n", i+1, totalConferences, v.Acronym, v.Title)
+
+		if len(tasks) == 0 {
+			fmt.Println("  No downloadable videos found.\n")
+			continue
+		}
+
 		found = true
 
-		events, ok := conferenceEvents[v.Acronym]
-		if !ok {
-			continue
-		}
+		fmt.Printf("  Videos queued: %d | Remaining current conferences: %d | Deferred conferences: %d\n",
+			len(tasks), totalConferences-idx-1, len(remainingConfs))
 
-		for _, e := range events.Events {
-			rec, ok := eventRecordings[e.URL]
-			if !ok {
-				continue
-			}
-			
-			currentVideo++
+		for videoIdx, task := range tasks {
+			e := task.event
+			rec := task.recording
+
 			desc := strings.Replace(sanitize.HTML(e.Description), "\n", "", -1)
 			if len(desc) > 48 {
 				desc = desc[:45] + "..."
@@ -244,15 +284,50 @@ func main() {
 			if len(desc) > 0 {
 				desc = " - " + desc
 			}
-			
-			// Calculate remaining
-			remainingBytes := totalSizeBytes - currentConsumedBytes
-			
-			fmt.Printf("Video [%d/%d]: %s%s\n", currentVideo, totalVideos, e.Title, desc)
-			fmt.Printf("Storage: Downloaded: %s | Total: %s | Remaining: %s\n", 
-				SizeToString(uint64(currentConsumedBytes)), 
-				SizeToString(uint64(totalSizeBytes)), 
-				SizeToString(uint64(remainingBytes)))
+
+			alreadyProcessed := false
+			if confStatus, ok := statusMap[conf.Acronym]; ok {
+				if vidStatus, ok := confStatus[e.Title]; ok && vidStatus.Downloaded {
+					alreadyProcessed = true
+				}
+			}
+
+			author := ""
+			subtitle := ""
+			lang := ""
+			if len(e.Persons) > 0 {
+				author = sanitize.BaseName(e.Persons[0]) + " - "
+			}
+			if len(e.Subtitle) > 0 {
+				subtitle = " (" + sanitize.BaseName(e.Subtitle) + ")"
+			}
+			if e.OriginalLanguage != rec.Language {
+				lang = " [" + rec.Language + "]"
+			}
+			path := filepath.Join(downloadPath, sanitize.Path(conf.Title))
+			basename := fmt.Sprintf("%s%s%s%s", author, sanitize.BaseName(e.Title), subtitle, lang) + "." + extensionForMimeTypes[rec.MimeType]
+			fullVideoPath := filepath.Join(path, basename)
+			txtPath := strings.TrimSuffix(fullVideoPath, filepath.Ext(fullVideoPath)) + ".txt"
+
+			if !alreadyProcessed {
+				if _, err := os.Stat(txtPath); err == nil {
+					fmt.Printf("  Found existing transcript for %s. Updating ledger.\n", e.Title)
+					if err := updateStatus(statusMap, conf.Acronym, e.Title, fullVideoPath, rec.URL); err != nil {
+						fmt.Println("  Error updating status JSON:", err)
+					}
+					alreadyProcessed = true
+				} else if _, err := os.Stat(fullVideoPath); err == nil {
+					fmt.Printf("  Found existing video for %s. Transcribing.\n", e.Title)
+				}
+			}
+
+			if alreadyProcessed {
+				continue
+			}
+
+			fmt.Printf("  Video [%d/%d]: %s%s\n", videoIdx+1, len(tasks), e.Title, desc)
+			fmt.Printf("    Remaining videos in this conference: %d | Remaining conferences (including deferred): %d\n",
+				len(tasks)-(videoIdx+1), totalConferences-idx-1+len(remainingConfs))
 
 			if rec.Width == 0 {
 				fmt.Printf("\tFound other/audio (%s): %d minutes (HD: %t, %dMiB) %s\n", rec.MimeType, rec.Length/60, rec.HighQuality, rec.Size, rec.URL)
@@ -260,14 +335,27 @@ func main() {
 				fmt.Printf("\tFound video (%s): %d minutes, %dx%d (HD: %t, %dMiB) %s\n", rec.MimeType, rec.Length/60, rec.Width, rec.Height, rec.HighQuality, rec.Size, rec.URL)
 			}
 
-			err = download(v, e, rec)
+			filename, err := download(conf, e, rec)
 			if err != nil {
 				fmt.Println("Error downloading:", err)
-			} else {
-				// Only increment consumed if download successful (or skipped)
-				currentConsumedBytes += rec.Size * 1024 * 1024
+				continue
 			}
 
+			if err := transcribeAndCleanup(filename, e.Title, rec.URL, e.FrontendLink); err != nil {
+				fmt.Println("Error processing video:", err)
+			}
+
+			if err := updateStatus(statusMap, conf.Acronym, e.Title, filename, rec.URL); err != nil {
+				fmt.Println("Error updating status JSON:", err)
+			}
+
+			fmt.Println()
+		}
+
+		if totalConferences-idx-1 > 0 || len(remainingConfs) > 0 {
+			fmt.Printf("  Remaining current conferences: %d | Deferred conferences: %d\n\n",
+				totalConferences-idx-1, len(remainingConfs))
+		} else {
 			fmt.Println()
 		}
 	}
@@ -276,5 +364,17 @@ func main() {
 		fmt.Println("Done.")
 	} else {
 		fmt.Println("Couldn't find any conference with acronym", name)
+	}
+
+	if len(remainingConfs) > 0 {
+		fmt.Printf("\nRemaining conferences not scanned in this run (%d):\n", len(remainingConfs))
+		maxPreview := 10
+		for i, conf := range remainingConfs {
+			if i >= maxPreview {
+				fmt.Printf("  ...and %d more\n", len(remainingConfs)-maxPreview)
+				break
+			}
+			fmt.Printf("  - %s (%s)\n", conf.Acronym, conf.Title)
+		}
 	}
 }

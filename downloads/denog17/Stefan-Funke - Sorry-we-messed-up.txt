@@ -1,0 +1,116 @@
+API URL: https://media.ccc.de/public/recordings/93152
+Frontend URL: https://media.ccc.de/v/denog17-75474-sorry-we-messed-up
+Title: Sorry we messed up
+
+(upbeat music)
+- Okay, the next presenter is Stefan Funker.
+He's talking about how he messed up.
+Stefan is the head of network at Interlink
+and head of network and infrastructure at Interlink
+and he and his team are responsible
+for developing operating and expanding interlinks global network.
+Thank you very much. Hi, everyone. I don't see any one of you because the light is so bright, which is great because I wanted to ask some questions, but nevertheless.
+So this talk is about how we messed up, how we route lead basically everything to everyone.
+due to a fun rista buck. To make it short, this talk is not about blaming a rista, quite
+in controversy. We actually have a very good relationship with the rista. They help us
+very fast and very good to solve this buck, actually. This talk is more about what Zasha
+said in this morning during the opening, such as an IPHA said, we should share knowledge.
+should transfer knowledge and what we did good or what we did wrong to the younger generation
+and we believe in that. So that's where we share this talk with you and we want to share
+our experience with this buck because this is something that you can possibly also step
+in if you're using a list of hardware in the same way we do it. And then so this is for
+you just a heads up. If you're planning to do the same thing, don't do it unless you have
+a fix for it. So, the magic device is not doing magic. Next slide please. I open the magic
+box, cables, more cables. Yes, now it's working. Thank you very much. So, this talk, I guess
+when we talk about internet and we talk about BGP and networking and broader spectrum and, you
+know, AS, network talking with other AS networks, every one of you is doing your job to make
+,. So, I guess every one of you is,
+, >> I'm not going to be able to do it.
+>> In reality, not everyone is doing this, so not every downstream we have is doing it,
+which is fine if you're a smaller company, but if you don't do, please check if you can
+do some safeguarding and configurations. Not every tier one provider is doing this, especially
+not one with speech routes, not calling out any names. And, well, we learned pretty fast,
+So if you freak something up in the internet, people will notice it very, very, very fast.
+So this is a story about something called routing control functions.
+This case, it's about a Rista.
+Routing control functions, but RCF is not limited to a Rista.
+It also exists in other vendors like Nokia.
+And this is about specifically this buck.
+So you can find the slides online, right?
+So you can just look at the buck case, the buck number.
+And in case you haven't heard about this, so what is RCF?
+RCF is a routing control function.
+It's a language that can be used to express route filtering attribute modification, logic
+in a powerful and programmatic fashion.
+Obviously, this is not my text.
+This was copied from Wikipedia.
+It's basically a script language you can use on your routers or switches to do magic
+So, we use RCF to check for max,
+prefix length to control and manipulate BGP sessions in general. We do manage BGP flow-spek rules with it. We set the next hop, check for BGP, bug on announcements, drop app, RPK in ballots, check the S prefix and the S and path list of peers. And we filter 41 paths.
+We use RCFs to do so.
+We have a lot of RCF functions defined and we have BGP sessions, obviously, and then we just add those RCF functions to BGP sessions.
+In our case, those RCF functions have specific names.
+In this example, you see the names are the IP version, then the S number, and then we have something like in and out.
+If you live in a Juniper world or somewhere else, you probably have some apply rule set or whatever and we do this in RCF.
+This was okay until there was one customer who said we like to have multiple BGP sessions with you on the same device.
+But every BGP session should have a different config.
+For example, we wanted to have one session with a default route, one with a default route in a full table, and probably another session where they wanted us to filter based on a different AS set.
+Which is fine, so all we had to do was just rename all the RCF functions.
+We came up with a new magic RCF naming convention, which included not only the IP version.
+The new name machines should also include the PRIP and include the IP BGP session type or function type because we have multiple versions or multiple kind of BGP sessions.
+If you do this, you will notice, okay, if you want to add IP to the function name, there are some IPs who use dots in it and some people even use colons and IP addresses, I don't know what those people are.
+But you have to do some string manipulation, right?
+You have to convert numbers and dots and colons into something machine-readable.
+And after we did this, so now those BGP sessions look a bit different.
+For example, now we have a BGP session type is now FlowsBag with still V4, then the SDS number, then it's the IP address, and then it's in and out.
+So now we can have multiple functions for the same peer, but with different functionality in the background.
+So all we have to do now is apply the new function names to the existing BGP sessions.
+Obviously, we don't do this manually. We do everything automated.
+Poor talked about this earlier, so we generate a config where Ansible.
+Copy to generate a config to the device, then get a configuration session on the device.
+Copy to generate a config to the queue and configuration.
+Copy to generate a dual configuration checkpoint and commit the new config to the commit timer on the device.
+And obviously, we're just renaming things, but we should possibly go wrong, right?
+You just rename something, you didn't change any of the functions, so nothing should happen.
+In reality, this happened, so my phone didn't stop.
+And the word was totally screwed.
+What happened is, I got the message, I have to be faster.
+Although I should have three more minutes.
+So the expected behavior was, if you apply a new function name to a BGP session,
+what happens is that the RCF agent picks us up, compiles the new functions,
+and while it's compiling, the existing BGP session points to an undefined rule set,
+which then should withdraw anything but not leak anything.
+In reality, something different happened, so while the BGP,
+we were still compiling all the sessions with unknown new configuration functions
+pointed to the same empty memory space in the back end,
+and we basically have high volume BGP groups and low volume BGP groups,
+and the device decided to take one of the higher volume BGP groups
+and then leaked all the routes to all the other BGP sessions,
+which obviously is not good.
+Obviously, we tested this in a lab, so while testing it that had no impact,
+then we then decided to roll it out over the whole network.
+And at the beginning, we didn't see any impact, so that's why we started with lower populated pops,
+and the lower populated pops we didn't see impact.
+Let me get into higher populated pops and then hell break loose.
+I guess I said to work around for this is where you can read a duplicate
+RCF functions, do this and do that and do a work around or just shut down BGP sessions
+and then bring it up again with a new name.
+This is what we decided to do, so we called into our customers, told them,
+hey, we will do a maintenance, there will be a disruption of a few seconds,
+and then it will come up again.
+So, if you're interested in this, I rest up, fix this bug actually very, very fast,
+so there is a release.
+This issue was fixed very fast.
+If you plan to rename RCF functions in your environment,
+make sure you have the latest version running,
+or at least one of the versions mentioned on the slide,
+check in with the lovely artists that people behind me on the venue space.
+And again, sorry that we broke the internet,
+sorry that our devices didn't do what we want them to do.
+It will probably happen again.
+That's what we do.
+Thank you.
+(Applause)
+Okay.
+Okay.
+Thank you, Stefan.

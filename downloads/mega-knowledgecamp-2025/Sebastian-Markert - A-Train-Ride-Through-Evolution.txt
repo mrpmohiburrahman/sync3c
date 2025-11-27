@@ -1,0 +1,524 @@
+API URL: https://media.ccc.de/public/recordings/93012
+Frontend URL: https://media.ccc.de/v/megakc25-12-a-train-ride-through-evolution
+Title: A Train Ride Through Evolution
+
+Welcome back to the next talk. This one will be in English, so I announce it also in English.
+Unlike other chaos events, this is a bit too small for life translation, so I'm happy that we also have English speakers.
+For this talk, we have Sebastian Markhart, a local junior professor from this University of Applied Sciences, here in Zaprucken.
+His field of research, I have to look that up, is Interactseons, which are known as "Gavibu" or "Tashnicians" in the statement.
+Or in English, interaction between neural tissue and technical systems, you can abbreviate it as "neurobiology".
+the channel has already more than 1000 subscribers and since this is about the same topic, I hope that you will be able to see the channel.
+I hope that we will get some more during or after the show.
+If you look really long and dig deep in YouTube videos, you find videos without the bow tie, but now it's his signature asset, so yeah, look for the bow tie.
+And yeah, given that, give him a welcome, and we start with the show.
+Okay, thanks for Go! Right, so indeed we will do just that. We will go on a train ride through evolution, basically go for the whole tree of life on a train on the evolution Eisenbahn, which is special because it's also a time machine.
+So we can actually start at the beginning of life and then travel to the present and on the way past everything that happened there in evolution.
+In my YouTube videos, usually this is very different because my YouTube videos, we always start at the beginning and then we go to one station, one station only and then discuss that.
+Today we will go through the whole tree of life, pick one route and basically go through the whole of evolution, so it will be a bit different, but if you're interested in individual stations, of course you can check out the YouTube channel.
+Well, but before we can go on this journey, I want us to be all on the same page, so I want to start with us with like a quick intro, what even is evolution?
+Because most people think they know what evolution is, but then when it comes to the details, usually it's pretty shaky, so just so you're on the same page, I would like to start with just a very simple refresher to remind you how evolution works.
+And we will do that of course with my favorite example, the giraffes.
+Very simple and often used example for evolution, because you can just imagine, right, long ago the ancestors of the giraffes looked maybe more like this.
+They had like a normal, they looked normal, quote unquote, so they had like a normal length neck, because of course nowadays giraffes have absurdly long necks and somehow evolution has done that.
+How did that happen?
+Well, it's very simple, right?
+Here these giraffes are very happy, but then one day some sort of selection pressure occurred, which in this case might be, okay, they've eaten all the food that they can reach, and the only other food that is there is too high up.
+So the necks are too short.
+Now, as much as they try, the neck will not get longer, right, as they cannot make the necks longer, so they cannot really change themselves.
+But what happens is, obviously we have a population of proto giraffes, and they, in their neck length, this trait is variable.
+But just like, I don't know, our nose size or our height or eye color, so many traits that are variable, meaning not all are exactly the same.
+Just some giraffes just happen to be a bit taller than the others, because every trait is kind of like a distribution, right?
+And that means this giraffe has a longer neck, and that means it will get more food, and that means it will get more children.
+That means we now think, okay, next generation.
+There's one here, where these giraffes might get off spring, then maybe these very short giraffes, this year will not get any off spring, because maybe they died, or maybe they just didn't have enough energy to produce off spring.
+And then this giraffe, that just happens to be very tall, gets a lot off spring.
+Very easy to understand, and that means that from generation to generation, just the average neck length goes up, just because it's always the ones with the longest necks that produce off spring.
+So over time, all population necks get longer, very easy, that's all that it is, and that means that if we take these giraffes and apply this selection, natural selection pressure, we will come from these giraffes to today's giraffes.
+And in order for evolution to happen, we really only need these three things. So evolution happens when we have a trait that is variable, right? Different heights, for example.
+A trait that gives more off spring, given a certain pressure, right? So this trait of longer neck gives more off spring if the trees are too tall.
+And third, this trait must be inheritable, at least partially. Then if these three things are there, evolution will happen if you want to or not, and that's all that's needed for evolution to happen.
+Okay, so now we know how species change, how animals and other life forms, how they change through evolution.
+But there's another part that's kind of missing, because this just showed us how the giraffes changed over time. But what evolution is even more about is how we get new species.
+I mean Darwin's famous book is called "On the Origin of Species". So how do we get all the species that we have?
+Here the giraffes just changed, but it was a giraffe, and now it is a giraffe with a longer neck, there's no new species, so how does that work?
+Well, really it's the same just for separation. Let's do a thought experiment. So let's take today's giraffes, right? One species of giraffes, one population, and let's separate the population.
+Randomly in the middle, so these giraffes populations will never meet again.
+And now we apply a new selection pressure, and let's be extremely mean, and give them some selection pressure like this, only give them narrow bushes.
+So now their long necks are kind of a pain. So now we have a new pressure, and now the giraffes have to adapt to this new environment, and evolution will happen in after thousands of years.
+What do you think? What will happen now? What will happen now? How will giraffes look like in a couple of thousands of years? Any ideas? What will happen? Yeah?
+Yeah, that could be that the necks go shorter again.
+Yeah, or the legs go shorter. Yeah, that's a good idea. If the food is on the ground, what can I do? Well, shorter legs would help.
+What else? What else could happen? Yes, been back.
+Ah, the neck position changes, yes. What else?
+More bendable neck, love it, yes, okay, perfect. Very good idea. Anyone else?
+Interesting. None of you said, "Oh, the necks get shorter again," because that would be evolution kind of going in reverse, and that's probably, you know, of course we don't know.
+But I would predict that this will not happen, because usually evolution doesn't go backwards. Evolution always goes forward, right?
+And the food is so far down, having a neck that's just a little bit shorter doesn't really do that much, or as being able to bend down, or like, I don't know, on your knees or something would do more.
+So it would probably go in a different direction, so obviously we don't know.
+But my scenario that I present today is, after thousands of years, maybe we have two different species of giraffe that might be the neck bend giraffe.
+And the neck bend giraffe, and the stub leg giraffe.
+No, of course, I don't know that that happens, but it could be. This giraffe is just very, very good in bending down, and this giraffe has just very, very short legs, helping them.
+And why they separate into these two species is kind of coincidence, right?
+I also changed their colors a little bit just to make the point that evolution is always also a little bit random.
+Their colors might kind of drift apart for no other reason than it just happens because of random mutations.
+And it just might have happened that in this population, the neck bending kind of took off, and in this population was more the shorter legs that prevailed.
+And we have now two different species just because they were separated.
+If there was not this separation and they would interbreed, they would not separate into two new species.
+So basically, new species arises just by, again, species changing over time.
+But if they're separated, they will change in different ways because evolution is also always a little bit random.
+And this is how we get new species.
+Okay, so I hope this is pretty clear. This is evolution.
+And now, let's get ready for the train ride.
+So we're already now in the train station in the beginning. Well, this is our map kind of for today.
+The white line here is the present. This is the now, right?
+The blue is the past and the gray at the top is the future, which we know nothing about.
+But in the now, in the present, we have, we observe there are life forms.
+So all kinds of life forms. And then now represent all life forms that are alive today by these groups here, these representatives.
+Bacteria, fungi, jellyfish, starfish, frog, pig, bird.
+Yeah, models snail in this case, the tree for plants.
+So these are now supposed to be representatives of all living things on earth.
+And they all live today, right?
+But because of research of the, yeah, of phylogenetic research where we have this, like, tree of life, we know how they are related to each other.
+So we can draw the tree, right? We know that a bird and a pig are more closely related to them, a pig to a bacteria.
+We can have this, like, this tree that shows us how they are related to each other.
+And this is exactly this tree is basically now our map, our railway system, where we can drive on with our evolution, Isonbahn train, to go from the present to the present, from the past to the present.
+Well, this is where we are now. We're now at the train station. We were already in the train, but, yeah, it will take a few minutes before we can start.
+First of all, you have to go to the boat, be strong and get a steaming bowl of primordial soup while it's still hot.
+And if we now look out of the window of our train, what do we see?
+What do we see if we look out of the window? Maybe something like this. Yeah, the earth is, well, not very hospitable.
+There's no, nothing green. There's no soil. There's no oxygen. Lots of volcanoes and asteroids. Looks horrible.
+That's why maybe we first turn to the ocean. If you look in the oceans, there we have, like, underwater volcanoes, underwater hydrothermal vents.
+And somehow we think, according to my current popular theory, this is where life emerged.
+Now, this is a talk about evolution. Unfortunately, like the creation of life, the emergence of life, a biogenesis is a completely different topic that I cannot really go into today.
+So we just have to pause it. Okay, life has emerged. However, that worked. But probably it was maybe somewhere here, right?
+Like underwater volcanoes. There's heat. There's all sorts of chemicals bubbling out of the ground. There's water.
+And maybe here in this condition, somehow the first proto cells assembled. However, that worked. Right? It's still a huge mystery.
+Yeah, but we will just assume that it did. Obviously it did. And so, when we are here, right? Right? When life has emerged.
+And okay, when we look out the window, even if you're in the ocean, we don't see much. But if you take a microscope and we look at these first life forms, what will we see?
+Some sort of very primitive cells, right? Obviously we don't know much about them. Almost nothing. However, there's one very special cell.
+There's one cell that we know. It even has a name. Anyone has any idea what I'm talking about?
+Amoebas are already extremely further on. Amoebas are extremely complex compared to this very proto cell.
+Now there's one cell that is extremely old that we even know the name of. Any ideas?
+No, but that's a good point. And we can talk about that later with a bunch of hundred Efas. Not idea.
+That's Luca. Yes, exactly. This cell, there's one cell that we, there's one extremely special cell in the early ocean that is called Luca.
+We know her name. And Luca stands for last universal common ancestor. We know that Luca has existed because it's a mathematical certainty.
+Right? If we go back to the through the tree of life, we know there's a common ancestor of humans and chimpanzees. Must be. Must be. Has to be.
+We know there's a common ancestor of all mammals. We know there's a common ancestor of all vertebrates. We know there's a common ancestor of all animals.
+And we know there's a common ancestor of all life that is currently alive. That is Luca.
+Luca is basically the seed from which the tree of life would grow. The last universal common ancestor, the ancestor of all life that is alive today.
+Now does that not mean that Luca is the first life form? There probably may be, there were other life forms, but their descendants have all died out at some point.
+There was probably life before Luca and the long side Luca and maybe even new life being created after Luca, but only Luca is the last universal common ancestor of all life that exists today.
+So we know that Luca existed and we don't really know how Luca looked like, but we know that she must have existed.
+Yes. And how do we know? Well, basically we have the genetic code. All life that we know has the same genetic code and the same code randomly occurring out of nothing twice.
+The exact same code is pretty much mathematically impossible, right? Like it would be, I don't know.
+It's so unlikely, practically it cannot happen, so that way we know life must come from one single ancestor, that's Luca.
+Okay, and with that out of the way, we can finally get going.
+Let's start our tour.
+So now we're driving on, always towards the present, alongside evolution.
+This train is running on fusion power, by the way.
+So it's very clean. What's coming out though, it's not like smoke, but it's more like water vapor.
+It's a very sustainable train.
+Okay, now we've driven a bit. So we've driven from here, from Luca to here.
+Now we have a bifurcation.
+The rail splits, we could now either go right or left.
+What shall we do? What shall we do? Well.
+So this is how it looks like. This is right, we have to decide now, do we go right or left?
+Here is the split. If we now go left, we will end up, eventually, at today's bacteria.
+Whereas if we go right, we will end up with today's eukaryotes.
+So this is the split, bacteria or eukaryotes.
+Now, of course, we can go wherever we want.
+But today I decided to go towards the eukaryotes. So let's continue there.
+Next bifurcation. Okay, what's the next big milestone evolution now?
+So these are both eukaryotes that are somehow separated, right?
+We have a split here, a new species will occur.
+Now, what could happen next? We have single cell eukaryotes here now.
+So cells with a nucleus and mitochondria, right? Not bacteria, but the eukaryotes.
+There's basically everything else. Okay, now let's think about it.
+We have two individual, like first identical single cell eukaryotes.
+Now, what would maybe be an advantage to get ahead?
+Might be if you're able to move, right?
+It may be either move like that with like one long flagellum at the back,
+or potentially you could also move by having two flagella in the front
+and doing kind of like this swimming motion.
+One is not better than the other. They're just two solutions to the same problem, right?
+Think of the giraffes. One of them is not a better strategy than the other.
+It just happens to be two different solutions.
+So both of these strategies were viable, were a good idea.
+And indeed, if we would follow now, towards the right,
+we would end up at today's plants. See here, when we continue here, we arrive at the plants.
+Plants are the ones with the two flagella in front.
+And we can still, I can still prove it.
+Here, look at, this is a moss, blasiapusilla, moss species,
+and moss still has sperm. Moss and fern still have sperm cells, right?
+Like your regular cherry tree lost the sperm. They have no pollen.
+But let's say the older plant groups still have sperm.
+And look at this sperm cell of this moss.
+First of all, it looks like a Chinese dragon, to me at least, which I find really cool.
+And look, these long red filaments here, those are the flagella at the front that they used to swim.
+So to this day, plants still have that.
+But this strategy here, if you continue here, we will go to the fungi and animals.
+And of course, we know that's our group, because humans sperm looks like this, not like this.
+But this was the first huge split in the eukaryote line, where they basically decided how we want to swim.
+Okay, let's continue here on the side of the fungi and animals.
+Next bifurcation. Okay, what will happen now?
+Now we have, right, we have now, single cell eukaryotes with one flagellum at the back.
+Now, what could be a next step in evolution to basically get ahead?
+Well, potentially when you live in a world of single celled organisms,
+right, we're already 2 billion years in, and every life so far has been single celled organisms.
+It's like incredible, like half the time life existed was just single celled organisms.
+But now, finally, some innovation is due. We need something cool.
+So, how could we get ahead in a world of single celled organisms?
+I guess it would help if you're bigger. If you're bigger, you cannot get eaten so easily by other cells.
+Problem is you're a single cell. You cannot, there's a limit to your size.
+A single cell can only get so big because, yeah, it's a limitation.
+You only have like one nucleus with the DNA and if it's just too much volume,
+it cannot really produce enough proteins for the cell, whatever.
+Let's just say cell size is limited. So the only thing we can do is basically collaborate with other cells.
+With our daughter cells, preferably because they share our same DNA.
+So, again, think of the giraffes, two strategies for the same problem.
+You could either just clump together into a ball to be like a big thing, right,
+that cannot be eaten by other single celled organisms, which is kind of very straightforward, right?
+You just don't separate. You do cell division, but then you just clump together into a clump.
+That is the ancestor of the animals. And the other strategy is also pretty straightforward, actually.
+You divide it, but then you kind of form long chains.
+You basically hold hands with the other cells and form these long chains and filament networks.
+And that is the ancestor of the fungi.
+To this day, all fungi, also the mushrooms, are made up of strands of cells that are exactly one cell thick, right?
+So even when you look at like a champagne or a portobello mushroom that you would eat on a pizza,
+it's made up entirely of these thin strands of one cell thickness.
+So, again, this strategy of forming a network is not inferior to that one.
+It's just a different solution that also works amazing because obviously fungi are everywhere, maybe even more than animals.
+But of course, you are an animal just, you know, they form like a clump, which was also an interesting idea.
+All right, so let's continue here on the path of the animals' next split.
+What happens now? What's the next step? Now we have a clump, which is nice. We cannot be eaten.
+But the problem is we cannot, now we cannot get even bigger because the cells in the center are so far away from the ocean water
+that they don't get enough oxygen and they don't get enough nutrients.
+So, what do we need in order to get even bigger? Any ideas?
+What do we need? So, the cells in the center can get the nutrients that they need.
+Organs, yeah, that's already pretty far ahead. Think much simpler.
+We need a mouth. Again, there's two strategies.
+Either you could just have one big opening for that stuff can get inside.
+Or you can have two openings, right? And then, like, this is kind of like a Pac-Man.
+And then food goes in and goes out. In this case, or in this case food goes in one end and goes out the other end.
+We know exactly how that works because we are also bilaterians.
+It's a wise-eyed interior. So, animals with two sides, like as a left and a right and a top and a bottom and a front and a back.
+Whereas, these animals don't have two sides. They are the ancestor of the nesserter, the niderians.
+So, that means jellyfish. Because jellyfish to this day is kind of this Pac-Man just with some extra stuff.
+That's attached to it. And jellyfish, they don't have two sides. They are radially symmetric, right?
+They don't have a left and a right. They just have a round depth, just like mouth wood and away from the mouth as directions.
+And that is why these animals here are called two-side animals, the bilaterians.
+And, yeah, here's a simple worm, right, where this is still true opening in the front. Food goes through, opening in the back, food goes out.
+But, of course, this is also still true of us, but basically just a hollow tube with stuff around it.
+Yes. So, let's continue on this side here, or for the two-sided animals today.
+Here, next bifurcation. Okay, now we do have a mouth and we even have an extra bonus opening where the stuff can get out again.
+Um, what's next? Now that we are so big, because, you know, we have a digestive system, we're so big that just,
+swimming with flagella just doesn't cut it anymore. Now we need real swimming.
+We need to move this body, right, that we just invented, this new body. We need to move it.
+So we need muscles and we need a nervous system. So the next step is nervous system and something like a brain.
+Brain is always in the front. Makes sense, because in the front, we have a front, other than the jellyfish, we have a front.
+So that means this is where it makes sense to put all the sensory organs, like eyes, or like taste buds and stuff,
+because that's always what comes in contact with the environment first.
+So the brain will always be in the front, because this is where all the sensory organs are, or at least most of them.
+And now again, there's two possibilities. Yes, we have a brain in the front, but then we also need, of course,
+all the circuitry that goes in the rest of the body, and that comes from some sort of cord, right?
+You could even have a spinal cord that goes along the back, or we could have a ventral cord that goes along the front.
+It really doesn't matter, right? Both ways are equally as valid.
+These are the ends of the deuterous domes, noi munda, and the protostomes, or munda.
+So these are just two different strategies.
+Well, you already can guess which side we are on, because we have a spinal cord, so we are on this side.
+But who's on this side? Well, pretty much everyone else.
+So this is a very popular strategy to have a ventral cord, because pretty much all insects, all molluscs,
+cephalopods, octopuses, worms, like everything that's really much is not like a vertebrate, has actually a ventral cord.
+And why not? As we've seen, it's a very good strategy.
+And, I mean, you could even make the case that this group is more successful than this one,
+because, I mean, at least for the case of insects, they're everywhere, right? At least beetles alone have so many species.
+It's eclipsing vertebrates by a lot.
+Okay, right.
+But today we will continue here with the Tudor stones, the ones with the spinal cord.
+Next, bifurcation. What will happen now?
+Now, we are extremely big. We can move around. We have a nervous system.
+Now, what is the next limit to our size? Basically, stability.
+We need some stability to have that our gigantic bodies don't collapse, because they're made of soft material, right?
+So we could either have like a hard shell, that's something that the protostomes, right?
+The thing of the snails and such, they also have this strategy, but we are now at the Tudor stones,
+so basically we had to invent it ourselves. Either a hard shell, something tough on the outside against stability,
+or maybe some sort of scaffolding, some hard bits on the inside that keeps the body from collapsing.
+Obviously, if we continue this path, we will eventually arrive at modern day starfish and sea urchins.
+They are called echinoderms, or shtachlhoiter in German, so they have like a prickly skin that's very hard,
+and this gives them the protection and stability that they need,
+and obviously a very successful strategy, because these guys are everywhere in the ocean.
+Yeah, but this one was a cool idea.
+Particularly because having like an internal scaffolding that keeps the body stable,
+kind of made it pretty, let's say, possible to leave the water and try your luck on dry land.
+May I introduce your great, great, great, great, great grandma, called Tiktalik?
+Well, this is of course, this is definitely how one of your grandmas looked like.
+Of course, we've seen, this is just one page in the family album.
+Of course, the first page of your family album, your first grandma basically is Luca, right?
+And then, when all the journey we just did until now, you've always seen also your grandma,
+but this is a particularly cool incident because now we have a grandma that actually has a face and lifts out of the water.
+So, Tiktalik is my second favourite fossil that was found.
+It's kind of the missing link between the fish and the amphibians.
+Basically, it was a fish that dared to go out of the water, and it's our ancestor.
+And the coolest thing is that it was predicted, right?
+Like evolutionary biologists were like, "Hmm, in this, this and this, such and such, layer of sediment."
+So, meaning at this geological time, we should find like a fossil that's kind of between a fish
+and an amphibian.
+And then they looked and they found Tiktalik.
+So, one of the greatest successes of evolutionary biology, because they could actually predict to find exactly such a creature, and they did.
+Right.
+So, that's a nice thing. With an eternal skeleton, it's easy to live outside of the water.
+Well, let's say it makes it possible.
+So, let's continue here on the vertebrates side of things.
+Now, the next split, of course, now what's coming now.
+Now, we can either go towards the amphibians, or the M-neodes, in German "Nabeltier".
+So, these are all animals that have basically a belly button.
+Why do they have it?
+Well, the M-neon, the other name, is actually the name with all the animals that have like a protective shell,
+like a protective layer of pretty much a skin around the embryo.
+Basically, to be able to live outside of the water and to have, right, the amphibians still lay the eggs in the water, so that works.
+But all of these land vertebrates don't have to do that, because they put the water in the egg.
+Right, you have an egg, and there's water inside, and it's kept inside by this membrane that's called the M-neon.
+That's why we're all M-neodes.
+And, well, right, we still have it.
+If a pregnant person, if their water breaks, in German we say the "Fruchblasseplatz",
+this is then when the M-neon ruptures and the water rushes out.
+This is the water that was there to basically bring the ocean to the embryo.
+Hmm, yeah.
+But then as soon as the water breaks, of course, now it's time for the young embryo to leave the ocean and go actually on dry land.
+This is the adaptation of the M-neodes.
+Whereas the amphibians decided to stay in the water.
+Which, again, does not mean that the strategy is inferior.
+Right, it's just different.
+Obviously, we still have amphibians to this day.
+There's frogs and salamanders and the nudes everywhere, so it's definitely a good strategy.
+But this one has other possibilities, let's say.
+Okay, so let's continue here on path of the M-neodes.
+Now, there's a last split.
+Now, we could go either to this side or this side.
+Of course, this split is between the mammals, the soil material, and the sauropsids.
+Mammals, obviously that's what we are, right?
+Mammals don't lay eggs.
+Well, not exactly true.
+There's some mammals like a platypus that actually still lays eggs.
+But what absolutely all mammals have in common is that they produce milk to feed the offspring.
+So all mammals produce milk.
+But the platypus doesn't have teeth like this.
+No, no nipples.
+The platypus actually has a skin that exudes milk.
+It's almost like it's sweating milk, which is very weird, but the platypus is very weird in many aspects.
+But it does produce milk.
+That makes it a mammal.
+All mammals produce milk.
+Whereas the sauropsids, which is basically all the animals that lay eggs and don't produce milk.
+So, like lizards and birds and crocodiles and snakes and whatever.
+They just put a lot of food inside the egg, and then that's enough.
+When they're born, they have to find food for themselves.
+They don't get any milk.
+Yes.
+All right, and where should we go today?
+Well, I decided we'll not end up at the mammals at us today, but let's go here.
+Let's go to the birds.
+Just because, you know, the path we take, obviously, is kind of arbitrary, right?
+We could take any path we want, and each path is equally as valid, right?
+We could have, in the very beginning, could have gone here towards the bacteria.
+Now, you would probably think, oh, that would have been a boring talk, right?
+Like, oh, bacteria and poop were there.
+Nothing happened.
+It's just bacteria.
+It's just bacteria now, but that's just chauvinism on my part to show the bacteria like that.
+Oh, there's nothing interesting happening with the bacteria.
+I'm just saying that because I am not a bacterium, right?
+If you look at a different tree of life with bacteria in mind, like, look, this green stuff here,
+this is the eukaryotes.
+So, this is everything, and everything else is single cell organisms that appear as all the bacteria.
+So, obviously, the tree that I've shown here is arbitrary, and if you want to, and you want to look at the bacteria,
+you could make a whole different talk that's just talking about all these cool adaptations
+and cool inventions and milestones that the bacteria came up with.
+So, it's really the case that all life from our life today are equally as evolved.
+Bacteria had four billion years of evolution, exactly like you.
+So, it's not like you're more evolved than bacteria, it's just different adaptations.
+The bacteria today are much, much, much cooler than the bacteria back then.
+They have gained so many cool abilities and features, they're just as evolved as you and me, just differently.
+Okay, that was the right.
+We are at the present, the train stops.
+Now, what was still missing?
+Something that you would have expected to see that it kind of didn't.
+Oh, that's a good point, viruses. Not considered a life, so some of them were outside of this tree.
+Yes, we didn't see viruses, so what else?
+Is there anything you were hoping to see?
+Dinosaurs, yes, where are the dinosaurs?
+Well, I did not skip the dinosaurs.
+I talked about the dinosaurs.
+You see a dinosaur right now on this slide.
+Well, okay, I mean, you guys, of course, are thinking of these things, right?
+Dinosaurs, but those are all non-avian dinosaurs.
+Or, as we would say in German, "Nicht Fogel de Nusaria."
+Because birds are dinosaurs.
+No, I'm not saying birds have a common ancestor with the dinosaurs.
+No, they are dinosaurs.
+So, even I talk about birds, I do talk about dinosaurs.
+You don't believe me?
+Okay, let's see.
+Here, my favorite fossil, Erky Optorix.
+Pretty much the fossil that convinced most people that evolution is true.
+Because it's like, okay, this obviously bones of a small dinosaur, but it has feathers.
+So, it was always seen as, oh, it's this missing link between the birds and the dinosaurs.
+Today, no, we know it's not true.
+This is not a missing link between birds and dinosaurs.
+It is just a dinosaur, because birds are dinosaurs.
+But, back in the day, this was kind of like this eye opener.
+Like, oh, wow, like species really do change a lot.
+And birds are dinosaurs.
+Well, okay, if you reconstruct...
+So, what I just wanted to add is that that's why Erky Optorix is my favorite fossil, right?
+Because it kind of sparked this idea of evolution in the long term.
+Like, species changing a lot.
+That like, you get birds from lizards, basically.
+It was a revolutionary concept back then.
+This kind of helped convince people that it's actually true.
+It's crazy, as it sounds, actually true.
+Anyway, so if we reconstruct how Erky Optorix looked like in life, maybe something like this.
+You don't really know the colors, but this, you know, is the best guess.
+Well, kind of looks like, I mean, it looks like a bird, right, but also kind of not.
+Let's continue to convince you that birds are, in fact, dinosaurs.
+Here, one of the most famous dinosaurs, the lossy raptor, right?
+A star in Jurassic Park and whatnot.
+Back in the day, amazing movie, amazing, like, depiction of dinosaurs.
+They try to make it really realistic.
+But now, after some more work of paleontology, we know that this reconstruction is very wrong.
+This is not what the lossy raptors looked like.
+Now, the modern understanding, they looked more like this.
+Like a big turkey or something.
+Right, like this is our best attempt now to depict the lossy raptor.
+Completely covered in feathers, little wings.
+Obviously, they couldn't fly, but they were useful in balancing.
+And, yeah, we figured this is the habitat that they lived in.
+So, there's actually many, many, many dinosaurs that have feathers, and birds are just one of them.
+Birds are just the last remaining dinosaurs of this group of feathered dinosaurs that survived.
+The birds are just one of many feathered dinosaurs.
+Even T-Rex, well, T-Rex doesn't have feathers, but we think that the T-Rex chicks might have feathers.
+Kind of like, you know, big animals like elephants and rhinos, they don't have fur anymore because they are so big for thermal regulation.
+So, they probably T-Rex lost the feathers, but probably the chicks of T-Rex might have been like little, you know, little chicks with little feathers.
+Yes.
+So, we imagine, right, they lived there.
+They could use their small wings, not for flying, but for balancing and then living in this environment where they would hunt for prey.
+And, I mean, yes.
+It looks like a bird.
+And, lastly, I want to show you this reconstruction of dinosaur walking.
+This is Bapiarosaurus, who finds somewhere in India.
+This is our best guess how it walked, and if this doesn't look like a bird, then I don't know what.
+So, yeah, we really have to update our thinking.
+Birds are dinosaurs, just the last surviving group of dinosaurs.
+And you can really tell that birds are dinosaurs because dinosaurs, non-avian dinosaurs still look like birds, at least many of them.
+Okay.
+This is basically the end.
+There's three take-home messages I want you to take home.
+First, take-home message.
+Evolution happens when?
+These three things, right?
+A trait is variable.
+It gives more offspring, and it's at least partially inheritable than evolution happens.
+Second, take-home message.
+All life forms that are alive today are equally as evolved.
+There's no such thing as a primitive life form.
+Unless you're talking about life forms of the past.
+These ancestors here today are more of their day.
+You could say they're more primitive.
+But today, a starfish is not more primitive than a human, equally as evolved.
+Just a different path.
+And third, take-home message.
+Birds are dinosaurs.
+Yes, and that's it.
+If you're interested in finding my YouTube channel, you could search for evolutionizing one, as one word, or maybe a side version.
+And then you can find the channel.
+Soon, there will be a new video on fungi evolution, which I'm really proud of.
+We'll see.
+If you don't want to miss that, you can subscribe.
+Otherwise, I will thank you very much for your attention, and I'm open for questions.
+We've got a question.
+Thank you so much for the amazing talk.
+I just have one question.
+You said why one solution could be two different solutions.
+And we start with the giraffe example that you gave.
+But why not more than two?
+Very good question.
+Why is it always two?
+Basically, of course, sometimes you might have the situation that you split a population in three parts.
+Right?
+And then you could have conceivably have a tri-formation, like three paths.
+Actually, Charles Darwin considered that.
+Well, I brought some extra slides, including Darwin's first tree that he drew.
+Look at that.
+He has like four at once.
+So, Darwin, that was Darwin's idea.
+Oh, yeah.
+News pieces arise kind of at the same time.
+Yeah.
+However, in modern, do we have the slide two?
+Like in modern times, we kind of went from this to this because we figure, well, okay, maybe these four species here, they evolved almost at the same time.
+But will never be exactly at the same time.
+It would always be the case that maybe A and B are just a little bit more closely related than A and B are to C.
+So we just have a convention in modern phylogeny that we always have bifurcations.
+Even if it's, basically, if you zoom out, it basically looks like this.
+When you zoom in, you will always see, yeah, but this one was just slightly ahead of the others.
+That's why we decided, okay, let's have always two, even if they can be very close together.
+More questions, yeah.
+Hi, you have said that bacteria and everything is basically equally as evolved.
+Right.
+What I was thinking is maybe, or correct me if I'm wrong, but bacteria might be more able because there are more, the life form of bacteria is so much shorter, and they have a much shorter reproduction cycle than, let's say, humans have.
+Right.
+I say what you're getting at, right?
+They had many more generations to change. However, it's not so much about that because even if you divide fast, it doesn't necessarily mean that you have more selection pressures.
+Right.
+Like the rate at which the environment changes might be the same for bacteria and us.
+Even if it's not bacteria have more generations, but we have something else.
+We have sexual reproduction.
+We mix and match our genes, which bacteria don't do, so really, biologists pretty much decided, no, it's all equal.
+We just say, no, every life form that is alive today is equally as evolved.
+They all had four billion years of evolution behind them, and then what happened happened and we will just say, right, they're all the same level of involvedness.
+Yeah, I really argued with a friend who even was like a heated argument almost, but it's this friend and says, no, but a fly is more primitive than me.
+No.
+A fly can do so many things that you cannot do.
+It's just that you can do things that you value more, right, like have, I don't know, a social life or whatever, or like, I don't know, do mathematics.
+So the things to value, of course, you can do more, but the fly can, like, if you didn't put in a fly society, the flies would probably be piteous.
+They're like, oh, they can't even fly, right, they cannot, they have such short reaction span and they can have only so little offspring.
+Yeah, so there's many things that flies can do.
+So yeah, hope that answers the question.
+And a fly can annoy you much more than you annoyed a fly.
+That's true.
+That's true, totally true.
+More questions.
+Of course.
+Maybe it's stupid, but yeah, the giraffes, he said, there's no way the neck can grow shorter again.
+Well, I'm not saying there's no way.
+I'm just saying it.
+I think it would be unlikely.
+Yeah, so going by that train of thought, why did the t-rexes of springs decide to go smaller and smaller?
+Oh, it's not really the case.
+It's more like that t-rex is a branch, and then it died out.
+And it's just that the small dinosaurs and t-rex have a common ancestor.
+But of course, yeah, it sometimes happens.
+It's species grows smaller again, but usually not in the exact same way.
+My favorite example is think of whales and dolphins, right?
+So obviously our ancestor was a fish.
+We are mammals.
+Dolphins are also mammals.
+So that means a fish went out of the water, got four legs, then went back into the water, turned into a dolphin.
+Now it looks kind of like a fish again, but not really, right?
+It's still a mammal.
+It's still breathing air, and now the back fluke is not like this, but like this.
+So it's kind of similar, but different.
+The mammal would have just reverted back to a fish.
+Maybe it was back in the ocean, but it didn't, right?
+Instead of getting the gills back that fish used to breathe, the dolphins just evolved, so they can hold their breath longer.
+That's why I think the giraffe wouldn't just go back to a short neck.
+It would come up with something else.
+Evolution always goes forward, no, never backward.
+Yeah.
+Okay.
+More questions.
+That doesn't seem to be the case, and we've just hit the mark.
+Yeah, perfect.
+50 minutes.
+Thank you.
+[applause]

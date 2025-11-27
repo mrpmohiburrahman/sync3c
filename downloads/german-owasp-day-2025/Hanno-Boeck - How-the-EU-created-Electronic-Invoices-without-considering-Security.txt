@@ -1,0 +1,276 @@
+API URL: https://api.media.ccc.de/public/recordings/93535
+Frontend URL: https://media.ccc.de/v/god2025-56476-how-the-eu-created-electro
+Title: How the EU created Electronic Invoices without considering Security
+
+Okay, the next speaker is HanoBook and many of you here in the audience probably know Hano.
+Hano is a free journalist and likes to have some nice things.
+And for example, last year he presented also a talk about how to have RSA keys and how
+to extract private keys out of key pairs and today he prepared also a talk which is slightly
+related to the previous talk he will show us how to hack new electronic invoices and
+he will also include some XML tricks and so on and so on.
+So please Hano, the stage is yours.
+[APPLAUSE]
+Yeah, hello.
+As you guys said, I want to talk to you a bit about electronic
+invoices and what the EU created there.
+But as a bit of a philosophical introduction,
+Bruce Schneier once said-- and that was a long time ago--
+complexity is the worst enemy of security.
+And I think within the security community,
+many people would agree with that.
+Maybe not like 25 years ago,
+but I think today this is a pretty common principle that, yeah.
+And what I find interesting is also like
+in software development, they have caught up a bit to this.
+There's something called the Yuckney principle,
+which means you should not add extra features
+because you think you might need them at some point,
+because then you just have additional complexity
+to deal with and you may never need them.
+Or also, I only learned about this
+during preparation of this talk.
+There's something called do the simplest thing
+that can possibly work, which I think is also
+like a good design principle for robust
+and more secure systems.
+But of course, not everyone agrees with that.
+And also, I don't know, I have studied computer science
+in the early 2000s, and that was really not what we learned.
+like there were a lot of things like add more abstractions to more like I would really argue this is not like a consensus about this and there are people using and developing technologies that are based on ideas that are more or less the exact opposite where they like to add more features whether they need them or not or even maybe they are needed for extreme corner cases.
+and they like to use technology that is more complex than it should be.
+this was primarily used for public procurement which means like the the
+state is buying something from a company so if you're providing services for the
+government you may already be required to support these electronic invoices but
+it's coming that you will probably if you have a business and you deal with
+other businesses that you will also have to support these electronic invoices and
+by electronic invoices I don't mean like a PDF file I mean like invoices in a
+structured data format that is machine readable and in principle I think this
+is not a bad idea I mean of course having invoices that are machine readable you
+can do automation you may be able to have your payments done more efficiently and
+also one of the goals the European Union has with this is to reduce tax fraud so
+I think the long-term plan is kind of to automate supplying your tax information
+to the authorities and that enables to prevent some forms of tax fraud okay so
+does that mean we have now a standard for electronic invoices in Europe it's
+more like we have a complex system of many standards it's kind of a bit like
+a fractal like you have standards and you have meta standards you have
+different syntaxes for the same standard you have profiles and extensions and
+this can all be very confusing so there's for example this EN 6931 which is kind
+of a standard which is developed by the Zen which is European European
+standardization organization this has two mandatory XML syntaxes because I
+don't know makes it more complicated to implement whatever they couldn't agree
+on one and there are also optional syntaxes so if you want you can define
+your own then you have to agree with the person you're sending your invoice
+whether they are okay with that but you can do that then they can you can
+restrict these invoices which is called a SEUS or you can have extensions to these
+invoices and like in Germany you have x-regno which is both a SEUS and an
+extension and we have another standard which is called subferd which is because
+they couldn't agree on having just one standard in Germany and that has
+different profiles and some of these profiles are compatible with this EU
+standard and one of them is also compatible with x-regno I am inclined to
+say that this is more complicated than it should be and when I say that I mean
+people may argue invoices are inherently complicated because text law is
+complicated and if it's European you have many different countries with
+different text laws so there's some inherent complexity in that but when you
+try to understand these electronic invoices you get the impression okay
+there's the inherent complexity but they add additional complexity to it like
+having two different XML syntaxes that do the same thing that's not due to
+text laws or some inherent requirement that's just because they couldn't agree
+on just having one syntax something I also experienced when trying to just
+learn about these things is I saw a lot of these things so this is like there's
+a web page from the Bundestuchar guide like the German what's it called the
+institution that prints our passports and they have a web page where for a
+certain public authorities if you want to submit an invoice to them you go to
+this portal and then there's on the start page there's a link if you want to
+learn how to do this click here and then you click here and then you get an error
+message and it's still the case I tested it this morning and I told them
+several weeks ago and of course that happens occasionally you have a broken
+link but the thing is I saw that all the time when I was dealing with this and I
+saw things like software examples that aren't working software that isn't
+working and plenty of broken downloads broken links etc yeah just appears not
+very professional yeah and so I said there are these EU standards kind of
+standards and there's a part one which defines the how do they call the the
+semantics which means it doesn't really define how to write that in a document
+but just what kind of information needs to be in there and how it needs to be
+in there and then there are additional parts that bind that to specific XML
+part one and two of these standards are free and the others cost money okay you
+may disagree with the cost money part but that's how it is the part one the
+current version is that's the current version so I would argue the version
+number is also more complicated than it should be not sure why 2017 plus A1
+etc so let's say we want to get these free standards at least the free ones
+there's a web page at the European Union where you can see a list of these
+standards and then you click on the link and that link also does not work I
+told them months ago they still haven't fixed it but even if you find the right
+page at the European standardization organization the send they don't give
+you the download they only say you need to go to the national standardization
+organizations which each EU country has won and there you can get these
+standards okay let's say we go to Dean which is the German standardization
+organization and then you can find this standard here and it says free of charge
+at least in German if you want to have it in English it costs 374 euros that's
+a bit unfortunate but if you search a bit more you will find and there's an
+other version also in the shop of Dean which is like the the Spanish version
+and there's an English version of the Spanish version and that's free so for
+the same document like each standardization organization made their own
+version and I'm not really sure if they are different in any way and some of
+sometimes they are in different languages and some of them are free some of them
+are not okay a tip like if you really need to access these documents the
+Estonian standardization organization they don't require you to register an
+account you can just download them at the Dean you can register an account you
+can also do that with bogus data don't even verify the email address so okay but
+the easiest way to get them is at the Estonian standardization organization
+and also they have cheaper prices so if you require the the parts of the
+standard that are not free in Estonia they are cheaper than in Germany yeah
+okay um let's say you want to create such an invoice with a price of 99.99 euros
+and in Germany with German standard text you cannot do that because the
+standard has rounding rules and if you want to have 99.99 euros with text of
+19% there's no way to have a price that ends up this price so that's not
+possible that's kind of a sign that this came more from the B2B side where
+you have prices and add the text on top so but like if you end up then this
+can cause problems like if you let's say your company and you're buying books
+and books have price binding so they need to have a certain price this was
+pointed out by Raffa, it literally did a talk at the Meterein mine course days
+which I also can very much recommend if you want to learn a bit more about
+other aspects that I'm not covering here yeah okay all of these invoices are
+XML XML is also more complicated than it should be and of course as we're here
+at the security conference and we also have already heard about XML and
+security a bit before so we need to talk a bit about XML and security or the
+lack thereof so one of the kind of classic XML attacks is the so-called
+billion last attack so in XML you can define an entity that just means you have
+this and sign something and that you can define one and that will be replaced so
+we define an entity a that will be replaced with lol and you can do that
+recursively so this then we define an entity b that is just many times what
+is in the entity a and then we do see which is many times what is in b etc so
+this just ends up being a lot of data and if your XML parser is not implementing
+any countermeasures this may just crash your XML parser and what's interesting
+about this is okay this I mean this was discovered 20 years ago but there are
+constantly new variations of this discovered and for example there's
+currently an unfixed issue in expert that it's it's publicly known that this
+issue exists the the specific payload is currently not disclosed and there this
+is prevented by kind of every XML library implement some kind of heuristics
+some do like some level of nesting is not allowed or they do some if the output
+is that much bigger than the input then that will be rejected but it's really
+one thing that I find quite notable is that there's not really any
+standardization how to prevent these kinds of vulnerabilities and that also
+means kind of different XML libraries behave in different ways but this is
+kind of only denial of service the more interesting XML security issues are so
+called XXE attacks which stands for XML external entity injection we already
+heard about them in the previous talk so what you can do is you can define an
+entity that reads the content of a file on the system and then the entity will
+contain the content of the file so here's a very simple example you have an XML
+file at the top that reads the ETC pass wd file and if you run that through an
+XML parser that will support supports these entities then you end up having the
+content of the file in the output and this is not really a solved problem so
+this has also been known for more than 20 years but and like some XML
+parsers have decided yeah okay we should do something about this and
+implement some secure defaults and there are different ways to go about this
+some will just not load any external content some will just not do entities
+by default at all but most parsers have done something so that they are
+not vulnerable by default but others don't have secure defaults yeah this is
+from the Java documentation so they have something called feature secure
+processing if you read something like that or sounds a bit suspicious so for
+for their XML library okay it says yeah feature for secure processing true
+instructs the implementation to process XML securely this may set limits on XML
+constructs avoid conditions such as denial of service attacks yeah I'm not
+sure I don't I don't find this very specific I don't really know from the
+documentation what this does so yeah this documentation about features a cure
+processing doesn't really say exactly what it does it actually does prevent
+exactly attacks but it doesn't say so in the documentation and also it doesn't
+say whether it's on or off by default and if you have something that's called
+features the cure processing I would say that should be on by default but it's
+actually off by default and but there's something kind of special with these
+invoices that adds even more security problems the same security problems but
+it makes them more likely so there are she might run files she might run us some
+kind of XML validation language so you can define that an XML document has to
+fulfill certain conditions that certain fields need to be present or their
+values need to have certain properties and these shame-a-tron files get converted
+into XSLT and then you can check an XML file whether it is compliant with this
+shame-a-tron and the EU provides such files to check your invoices if they are
+correct which sounds like a reasonable thing to do and these validation files
+require XSLT2 now XSLT like XSLT is this kind of XML transformation language and
+it has three versions 1.0 2.0 and 3.0 and the version 1 is the one that is
+supported everywhere and the other versions are not really supported widely
+there's basically just one major implementation that everyone is using
+which one may argue whether that's really a standard if there's only
+primarily one implementation and everyone else doesn't implement it and
+also I had a bit of a discussion with the W3C because they have a recommendation
+for this and I find that problematic but they don't want to do anything about
+it here's a link to the discussion about that so the one implementation that
+basically everyone uses when they want to do XSLT in version 2 or 3 is software
+called Saxon it's written in Java but it also has bindings for C PHP and
+Python so they kind of compile the Java code to binary and then you can load
+that as a Python module yeah so yeah and may not surprise you Saxon is also by
+default vulnerable to XXE attacks I had a discussion with them they were not
+really receptive to changing that so I don't expect that to change yeah so to
+summarize yeah we have electronic invoices kind of standardized by the EU that
+are all based on XML XML is complex it has inherent security flaws and those
+flaws are not really dealt with properly everywhere most software in this kind of
+invoicing ecosystem is Java because of course its enterprise and enterprise is
+often written Java and Java when it comes to XML is insecure by default and if you
+want to do validation of these invoices it relies on XSLT which almost
+everyone uses Saxon to process and that is also insecure by default when it
+comes to parsing XML and the result is as you might expect you find plenty of
+vulnerable implementations dealing with these invoices like this is an example
+this is the official recommendation from the Zookford community if you want to
+validate an invoice and like this is a classic XXE attack you create an invoice
+that reads the content of the pass VD file and then you add it to a field in
+this case just the name of the seller and then the file gets printed here of
+course I have reported that it's now fixed but yeah here's another one like
+here you can generate a PDF out of these invoices and also vulnerable to XXE
+injection there's also something called a blind XXE attack which is when you
+don't see the output you might be able in some situations to generate a URL where
+you append the content of a file to the URL and then you can see the content of
+the file in your web server logs that I say you might because that it often
+doesn't really work because you need something that doesn't have new lines in
+it Java is a bit more tolerant it accepts if you have a trailing new line so it
+for example often works with the hostname file but yeah I found a few of those as
+well yeah overall I reported 13 vulnerabilities while preparing this
+talk and I absolutely expect that there are more like because most of these
+software that deals with these invoices is not really publicly available it's
+often like it's commercial software and they say if you can have a test version
+but then you need to talk to our sales team and I didn't want to talk to any
+sales team so I haven't dealt with that so there's definitely more out there
+that should be tested yeah and also I I didn't have the impression that anyone
+who was involved in standardizing this has even thought about this like these
+standards don't have security considerations like if you read like RFC's
+IETF standards usually these days they have a chapter security considerations
+and people write okay blah blah blah this standard could have the following
+security implications this is what you should do about it they don't have that
+they don't have security contacts nobody there there are no like guidelines for
+a secure development of electronic invoicing software or anything like that
+yeah so yeah I have some suggestions how to improve things here I mean first of
+all of course these implementations should be tested for XSE vulnerabilities
+and in order to make that easier I have shared a test suite with some just
+example invoices with XSE attacks freely available so I really think that
+probably should have been done by other people but yeah reduce unnecessary
+complexity like the first thing I would do is get rid of one of these syntaxes
+unfortunately what I've heard just a few days ago is that they will probably add
+a third syntax the reason for that is that there's something called ad fact
+which apparently is used a lot in industry and the industry is really
+pressuring them to support that as well so it might even go in the opposite
+direction ideally I would argue move away from XML and use something safer and
+like I mean Jason isn't perfect it has like positive differences and issues but
+it's definitely better than XML I know this is a controversial statement yeah
+avoid pseudo standards like XL T2 or if you think you need them then maybe make
+sure that such standards are widely implemented before using them particularly
+for something which you expect many people to implement and also just
+implement good IT security practices which is kind of totally obvious but
+like if you have a standard think about what that means for security have
+security context like security TXT files give some guidance for secure
+implementation and if you know that their potential security issues have
+like some publicly available tests for them and the suggestion to oracle make
+your XML parts are secure by default also for Saxon but I don't have much
+hope that that will happen and also to everyone like avoid XML if possible I
+don't think there are many legitimate use cases for XML these days there's a
+reason why people are not using it that more anymore yeah yeah yeah thanks for
+listening yeah I've put up a webpage where you can find a link to the test
+suite and some more information so okay because of time constraints oh
+everybody's making photos of that because of time constraints they are time for
+one short question is there anybody interested in invoices using them or
+here there we have one thank you for the target first what are you what are
+your thoughts about protecting integrity of invoices by digital signatures I know
+that PDF signatures are kind of a mess and you heard about that in the previous
+talk and like the experts are like these three people here I think it's not my
+topic of expertise ask him he knows a lot about PDF security and XML security
+you've written your thesis about XML yeah I wrote something like this he's the expert
+XML signatures looks terrible don't use it okay good okay so thank you very much
+once again Hannah for your talk and enjoy that coffee break
+[BLANK_AUDIO]

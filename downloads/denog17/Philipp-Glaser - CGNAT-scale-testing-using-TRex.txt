@@ -1,0 +1,204 @@
+API URL: https://media.ccc.de/public/recordings/93240
+Frontend URL: https://media.ccc.de/v/denog17-78247-cgnat-scale-testing-using-trex
+Title: CGNAT scale testing using TRex
+
+(upbeat music)
+- Hi, thanks so much.
+Yeah, as stated, I'm Philip.
+I'm working as a solution architect at Santara.
+And I wanna talk to you today
+about how we can use T-Rex for CTIS testing.
+So, first.
+Um, yep, presenter doesn't know.
+Yeah?
+Okay, so how did I even end up in this situation?
+We wanted to test Juniper's essay solution for Zhi-Shiniat,
+and there we had a device that had a throughput capability
+of up to 400 gigs.
+So of course we needed to generate those 400 gigs
+and stateful traffic.
+But the challenge with that is our existing node generator
+wasn't able to generate 400 gigs of stateful traffic,
+since we mostly use it for layer two or in protocol testing.
+So we needed to find a solution.
+OK, we looked around, we searched a bit,
+and then we chose T-Rex.
+T-Rex is an open traffic generator.
+It is backed by Cisco.
+But you can use it as you will.
+And it emulates servers and clients.
+The best thing about T-Rex, though,
+is that you can run it on off-the-shelf
+and widely available hardware.
+This includes x86 servers and, for example,
+NVIDIA or mallanox nicks.
+The only thing you have to keep in mind here
+is that you need to use nicks that support
+the right DPDK feature set.
+This is because T-Rex does use DPDK
+to achieve the high throughput and high session count
+that you need to test those bigger devices.
+So T-Rex also has some operating modes.
+They act quite differently.
+I will get to those later.
+But for now, there's the STL, STS in advanced dayful mode.
+Good.
+This is a lightning talk.
+I can't go in depth about T-Rex, how T-Rex works.
+But I do recommend looking at the D-Knock 14 talk of Plumbam
+Pal.
+He spent about half the talk talking about T-Rex,
+or he forced them talk of Hall of Huym.
+A quick run through about the different modes
+that T-Rex can run them.
+There's the status mode.
+This is focused on router or layer through switch testing.
+It's packet based and it works like ostinato.
+So everyone that knows that basically knows how this mode works.
+There's the original mode that was dayful.
+This was focused on not on firewall testing.
+So it had a limitation.
+You could only really test that if your application does
+look into layer 1, 2, 3, and 4, but not everything past that.
+And other limitations, a lot of features
+have been deprecated in this mode.
+This, for example, set includes all natural data features.
+But there's a solution.
+The advanced data for mode is there.
+It's basically like the state for mode,
+but you can emulate layer 7 data, for example,
+Citrix HTTP sessions.
+And it has a better automation API
+and is able to support devices that interact with your application
+data, for example, local answers or local answers that
+do encryption of loading.
+OK, quick run-through about how the advanced data for mode
+works.
+You have a full PCP stack per thread
+that you assign to a source and destination port pair.
+This is based on BSD 4.4 Lite.
+It's now been modified quite a bit.
+But this enables you to emulate layer 7 data
+and have all the built-in error handling
+the TCP stack provide.
+So ramp down, ramp up.
+It's all handled by the stack.
+And of course, as every good testing solution should,
+you can provide values for digital latency or drop rates
+that will be introduced.
+As you can see in the right side, there's
+a quick overview of how the communication works.
+You assimilated apps talk to your TCP stack, which then reads
+and writes from the DPDK buffers.
+OK, if you want to test, we, of course,
+need to define our traffic.
+For this, there are two approaches.
+You can first define a list of pickup files that
+have a capture of a client talking to a server.
+And to your extent, we'll learn your TCP parameters,
+like an MSS, the window size.
+And it will take over the application data that gets
+transmitted in the payload.
+And we'll rewrite everything like the IPs and the--
+basically the IPs.
+You'd provide the list of how many connections
+per seconds you need.
+And the second option is manual layer 7 emulation.
+Here you can actually define the payload data yourself,
+either as a string or as a byte string and Python.
+And you then, again, provide a list of how many connections
+do I need until you translate the IPs, how you need them
+for your workers.
+OK, so now we basically know how we define our traffic
+and how modes work in T-Vix, we get to how we can actually
+run our testing.
+Of course, you can just start the tests,
+sit there, watch the error counts, and see if it's fine.
+But this is quite tedious, quite error-prone,
+and isn't really a lot of fun.
+So can we automate this?
+Of course, we can.
+There are two approaches.
+T-Vix comes by the forward with non-drop-bit benchmark.
+This originally was introduced for the stateless mode,
+but got support for the advanced stateful mode data.
+Here you can extend it by your plugins
+if you want to modify the error handling
+and your plugins can run before your iteration--
+during your iteration and after your iteration.
+And it uses a binary search algorithm
+to find your max multiplier.
+So you start with a min and max model,
+it goes in the middle.
+It's binary search, but not really search.
+The second option is just split the script yourself.
+You can use the full API implementation.
+This is the way that I did it here.
+OK.
+You can see the topology.
+We had a server connected with eight times
+so on our gigs to a QFX10K.
+This was just used because it had a level
+of one-on-kick reports, nothing special there.
+And all our DOTs connect to this.
+OK.
+First, the script that I wrote, you
+need to provide with a min multiplier, a max multiplier,
+iteration, a traffic profile, and your error tolerance.
+I will get to why we need an error tolerance later.
+The min and max multiplier, again,
+are used for a binary search-like method
+to find the right multiplier.
+So we run the first iteration in the middle,
+see if it's fast enough or if we have too many errors.
+And after that, depending on if we
+see a lot of errors in the packet or not,
+we continue with a higher or lower multiplier.
+The error detection here just looks
+that I wrote how many packets did I send
+and how many packets of this had errors.
+OK.
+And of course, we need to lock all the results
+so that we can later analyze and visualize them.
+OK.
+Of course, I did some testing for three junior promises.
+And I brought some results.
+The tests here were done with an iteration
+for each iteration of 10 minutes and an error percentage
+of 0.1%.
+Keep in mind, the throughput that you
+see here is an aggregate of clients and servers that traffic.
+And the traffic pattern is quite heavy and large packets.
+So the SX 1500 was able to produce about 8.88 gigabits.
+The SX 2300 was able to do a bit more than 37 gigabits.
+And then we have the outlier, the SX 4600,
+which actually has a PFE in it that the handling
+can be offloaded to, which is able to do 389 gigabits.
+Yeah.
+If you use an iMix, subtract about 10% of those results.
+OK.
+Yeah.
+As I said, express path on the SX 4600 is a huge benefit.
+I have one lessons learned.
+Getting an error percentage of 0% is nearly impossible.
+This is stated in the T-rex box.
+This is also the reason why the non-drop rate test from T-rex
+uses 1% by default.
+This was a bit too high for my liking,
+so I used the 0.1.
+So you need to really keep in mind
+if you use multiple sockets that you
+map the right nicks to the right flats.
+Otherwise, you overload the inter-socket connection
+and your throughput just plummets.
+And getting more than 200 gigabits in ASTF mode
+is really hard.
+If you ever try this and struggle,
+just split your nicks in two servers, it will really hope.
+OK.
+That's it.
+If you use T-rex before, if you want to use T-rex,
+or if you have any experience with T-rex, please talk to me.
+I want to know what you've done or what you're looking to do.
+Thanks.
+Thank you.

@@ -1,0 +1,133 @@
+API URL: https://media.ccc.de/public/recordings/93137
+Frontend URL: https://media.ccc.de/v/denog17-81766-newcommer-session
+Title: Newcommer Session
+
+(upbeat music)
+- Good morning, everyone.
+Welcome to the newcomer inter-discussion session
+of D-Knock 17.
+I think we missed the qualification part
+of who is a newcomer and not,
+but we're inclusive and happy to have everyone
+wants to do a recap after last year or the last 10 years before. So, good to see you all of you.
+Quick show of hands. Who is here for the first time in person at D-LAC? That's huge. Very good
+to see you. Happy to have you. Thank you for making the space and time and traveling to Iceland.
+the. So my name is Patrick Busman. I'm the chairman of the DNAC EV foundation and the association that is behind this. I'll walk you through 21 slides in now I think 14 minutes. So we'll be fast. I'll try to get to the end very quickly. So that we can have Q&A at the end. All of you at the end have a choice to either stay here and watch the opening in the comfort of this room. Or.
+We're trying to finish early so that you can move over to Zala and see it there. At least I have to go to Zala. So you're in decently good hands. That they don't start without you.
+Good. Let's do this. Next slide, please.
+Again, this is me. Next slide, please. So we're going to talk quickly about DNAC and how this is separated. Let's try this again. It does not work.
+The next. And next. And next. Let's see the full slide. Good.
+And what you see up here is what DNAC is not an association. DNAC is not a company. DNAC is not
+anything that runs. DNAC is all of you. That's a community. It's an open and inclusive community
+of network professionals. Many of us, many of you here in the room plan and run networks.
+The idea of this is to have a forum where you can all work and discuss about problems.
+You can talk about what's happening and you live this mostly throughout the year on the mailing list
+and the IRC cheddar and the metrics. Just for the, I'm guessing someone knows up there but it would be
+lovely if I can read my slides. It's very tiny. Okay, I'll do this from up here.
+The other part is the DNACIV. So the DNACIV is the foundation behind what is DNAC. That's the
+commercial legal entity, the one who will get there. His goal is to generally improve the quality
+of internet. So roughly eight years ago and nine at this point, we realized that DNAC is growing so
+quickly. We actually had to have a commercial entity, something behind it that runs it. It is
+not a company. It's a foundation. It's run by members. All of you have control over it.
+That is general DNACIV. You can become a member. It can be part of plenty things that DNACIV
+deaths throughout the year. I'll list them up here. Today, DNACIV has roughly 300 members.
+If you want to become a member personally, that is an option you have for about 30 euros a year.
+If you think your company would be interested in becoming a member,
+the membership opportunity is there, started 500 years a year. That is generally how DNAC is
+funded and we are able to run those conferences, meetups and all of that throughout the year.
+Think about that. From a general idea, it's like how can I participate in DNAC if you want to be
+part of it? Number one, you made it here. That's awesome. That's really good. We're really happy
+to have you. It's like we're doing this conference so that we can bring new people to it. We're
+traveling like a circus every two years through all of Germany to make sure new people can come in.
+Awesome. Fantastic. Happy to have you here. The challenge for all of you newcomers this time
+would be like it said one goal. Don't try to take it all in. We have six floors. We have three days
+of conference. There's so much going on. Try to experience it but figure out one goal that you
+want to achieve. Meet new people and make that one new contact. The person you always wanted to talk
+to, the appearing person you always wanted to yell at, not literally. We want to be decent and
+nice to each other but the person you want to always talk to. It's like find your spot. See what's
+going on. If you want to go a tiny bit further, there's options that we have. You can volunteer
+throughout the year. You can volunteer to organize the conference. You can volunteer to run for the
+program committee. The candidates are still up and you can still do that until the end of the evening
+or if you want to, you can become part of the event worker and even contribute to organizing
+this conference. Plenty of options. If you want to contribute throughout the year, we have working
+groups and mailing lists and if you want to, you can create your own working group inside Dnock
+and come up with something. Two of the working groups are actually physically meeting here today
+so if you're interested in something, check it out. It's on the calendar and you should be able to
+see it on the website. If you want to go further than that afterwards, it's like we have two rough
+tracks that we're going for. One is the ORGA track. You volunteer at the conference or
+somewhere else. You go and work in the working groups. At the end, you join the board and make
+sure I get kicked out finally and can do something else with my life. Awesome idea, please do.
+Or you decide you want to be a speaker and share your knowledge. That's a very good idea as well.
+Come to our meetups where you can easily start, get in. It's like 20 people usually. It's a very
+easy setup. If you feel you're a bit more experienced and want to share more knowledge with more people
+come to the conference. We have lightning talks for 10 minutes. Take that, attend. And then we're
+always happy to have plenty of new camera talks at the conference by itself. We have plenty of
+options for you to -- for the PC to help you get ready. If you want to, we had a speaker coach
+yesterday here on site the whole day for all of the speakers who were coaching them through
+their first experience to their seventh experience. And even people who've been doing this for 20
+years did this. So plenty of options there. We're spoken about the meetups generally. We just want
+to touch on that for two seconds. Meetups are what we do throughout the year. So in all of Germany,
+we host meetups roughly around 10-ish a year. We're trying to do two or three a quarter. And the
+idea is that inside of companies who host by offering space on site, we have two or three technical
+talks and then have a nice gathering and networking. If you're interested, we're going to have roughly
+10 of them as well next year. If your company has space and wants to host a meetup, please reach
+out to event at the end of the day. We're always interested in having new spaces. And then last but
+not least, this conference couldn't be organized and couldn't be run without the angels. So we have
+a core crew of about 15 people who do this all year long. And then we have about at this point
+80 people who run this conference on a volunteer basis, additional throughout the days. Those we
+call angels. You can still sign up to be an angel here on site. You can pick up shifts for two hours,
+three hours throughout the day. And you basically get a view behind the scenes. You meet new people,
+you get introduced to a lot of new people. You have a chance to attend the event from a completely
+different site and make plenty of new connections. So if you want to do that, if you're interested,
+go to the info point and talk to them. They're happy to have you. I'll click through the other
+slides quickly and turn my radio off which I apparently left on so that all of you can listen to it.
+So the engine part we had, if you want to go back and look at the other things that we did before,
+you can look at the previous events from the last years. They're all on the dinner website.
+But you can also look in the GitHub repository if that's your preferred choice. And all of the
+talks are recorded by our awesome live streaming and video team here on site. They produce them
+in near real time afterwards on the YouTube channel. And if you prefer on media CCC as well,
+you can go in there and see the talks from today. Not while I'm talking afterwards, preferably.
+But you can also see the last 10 years of talks. So I highly recommend to check that out.
+The ISC we spoke about, the mailing list you most likely know as well, well-being is important.
+For one of the main things that is really important for us is that everyone feels safe
+at this conference. Denock has a clear code of conduct that is published on the Denock website.
+We do not tolerate any behavior against the code of conduct. If you haven't read the code
+of conduct yet, I highly recommend you do. There's sane and normal thinking things in there.
+The general idea is we want to have as little rules as possible. So in order to do that,
+we need all of you to be decent people. Think. Think again. And then behave friendly to each other.
+We highly encourage a professional exchange of ideas. That is completely possible.
+And absolutely should be done on a topic basis. But we absolutely want to guarantee that we're
+excellent to each other and respect each other's position. And also the fact that people have to
+get paid and therefore sometimes have to have a company position as well. If you have any
+questions, please reach out. If you have any issues throughout the days here, whatever happens
+whenever a situation is where you're uncomfortable, where you don't feel safe, where you think that
+something needs to be addressed. Or you have a question. Option number one, go to the info
+point downstairs. They're always there. They're happy to help. They can get you anyone. If you
+don't want to go to the info point, you can go to the crew room here on 609. People will help you
+there as well. If you don't want to do that, write an email to forestand@denarkd or if you want to
+address a specific person on the board. All of them are listed on the slide, so reach out directly
+to one of us. Everyone is brief at the same level. Everyone is happy to help you.
+With that, I think I'm nearly in time. Do we have questions?
+Yes, sorry. Harold. Do that myself, apparently.
+All right, thanks. So who do I have to talk to for a lightning talk?
+We have the PC. You can write an email to PC@denarkd or you can talk to the PC who's going to give an
+introduction at the welcome session. If you want to reach out to them directly, come to the crew
+room afterwards. We'll make an introduction. Any other questions? Any Harold? All good? I'm fine.
+Good? Anyone else? Questions? Oh, sorry. That was it. I'm misunderstood.
+To join the community, I can join as a person for sure. Maybe attend to the conferences and
+being a member of the EV, but when I want to join as a company, and maybe I want to have
+speakers here, and I want to have some, a little booth there. What's the best way to apply to that?
+So we separate between two things. Everyone is welcome to be part of the community, even companies.
+If you don't have to do anything, you don't have to be a member. Everything at Denark is free and
+accessible for everyone. If you want to enter into a membership relationship with the association as
+a company, talk to me or anyone from the board afterwards. Find us on the website or at the
+booth. That's an easy one. If you want to do sponsoring, we have -- we're in the lucky position
+of selling out insanely quick. I'm sure Moritz is going to talk to that in the opening, so I'm not
+going to spoil that. But I highly recommend doing that, absolutely. Read out to sponsoring
+at Denark. If you want to, you will be helped there, or talk to anyone of us.
+Good. I think I'm during the other stage unless we have other questions.
+And we're not doing this again, that I do this day to talk here and the other one as well.
+Questions? Awesome. For everyone who wants to go to Azale, we're going to line up in twos
+outside and then walk -- sorry, couldn't resist. See you in 10 minutes on the other side. You can
+stay here. It's going to be streamed here as far as I understand. Otherwise, walk over and see
+you in the other floor. Have a good one. Thank you.

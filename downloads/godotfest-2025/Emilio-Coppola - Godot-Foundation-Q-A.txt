@@ -1,0 +1,1092 @@
+API URL: https://api.media.ccc.de/public/recordings/93372
+Frontend URL: https://media.ccc.de/v/godotfest2025-godot-foundation-q-a
+Title: Godot Foundation Q&A
+
+[MUSIC PLAYING]
+Our first speaker today, Amy, is executive director
+at the Godot Foundation.
+And he is leading the organization's mission
+to advance the Godot engine and to support developers
+all over the globe.
+He has been part of the development,
+and he's working with Godot since a very long time.
+Even he can't remember.
+And therefore, he has also very extensive knowledge
+about the development, about the future roadmap, future events,
+and initiatives of the Godot Foundation.
+He's also the host of the weekly livestream, Godot tomorrow,
+and where you can, that's Q and A livestream,
+where you can ask a lot of questions,
+any questions about Godova, about Godova Foundation,
+and today he will do a live session here on the stage for us.
+And...
+(audience applauding)
+And what better way to start Godova's 2025,
+with a Godova Foundation Q and A, with Emi.
+(audience applauding)
+(audience applauding)
+- Okay, can you hear me all right?
+Okay, so I'm gonna do like a little introduction
+about some of the topics,
+some of the things that we are working on.
+So to remind you, if you have any questions,
+you know, you can ask about any of those.
+I will preface with, I will not go
+into any super technical answer.
+Usually those are better on GitHub,
+but feel free to ask anything you want.
+Okay, so, it's a bit hard to see right now,
+but I guess everybody knows by now,
+but I have to say, like the Godova Foundation
+is a nonprofit organization,
+and like the intro said,
+we are basically the team that's behind the engine
+and receives the donations
+and hires people to work on making it possible.
+So, you know, the main thing that we do
+is the Godova Engine that everybody uses,
+but there's other things that we need to do
+to further our mission.
+One thing is all the infrastructure
+to receive those donations
+and to actually, you know,
+distribute it in the way that the community wants us to.
+I just wanted to mention this is the fun side.
+This is where you can go and donate.
+We recently made this change.
+So in the first square over there,
+like it's the one-time donations.
+Next to it, you have the euros per month.
+If you remember from before,
+we only used to show how many the donations per month we have.
+The issue is that once we had a big donation for a year,
+then we split that donation into 12 months
+and we showed all that.
+What happened at the end of the year,
+the donation ended and everybody was panicking,
+oh my God, God lost a lot of funding.
+What's happening on?
+So I think this is a better way of displaying it.
+And we've seen like a huge increase in previous year
+when we enabled one-time donations.
+We enabled it in December and we had like 100K
+from all the sponsorships and individual donations.
+And this year, it's gonna be way bigger than that.
+So yeah, if you have any questions about donations,
+please let me know.
+Then there's also, I should have picked the light theme here.
+But then there's the asset store,
+which is something that we've been working for a while.
+And many of you who are not so much
+into the making games of it,
+but also the other side, like making assets,
+making music and all that.
+I know that it was a bit confusing
+where to find these sort of assets or where to publish them.
+It's going very well.
+We have like a lot of new users.
+Of course, it's still in beta,
+so a lot of things are changing.
+You can visit the website here.
+We have links to the change log and the roadmap.
+Which if you want to know what's coming,
+it's always you to have there.
+And we are probably gonna be replacing the asset library,
+which is the one that you have on the engine very soon.
+We wanted to do it kind of painless.
+So you don't have to think about if the asset
+that you want to use, it's already on the asset store node.
+So we're gonna be contacting many of you.
+If you have an asset published on the asset library,
+you should try this out and give us feedback.
+But there was like a very small game called Battlefield 6,
+who decided to send a lot of users to us.
+And they are all using the asset library.
+So we have to make sure that that transition is smooth.
+Then other things that we do was recently,
+like at the beginning of last week,
+I think it was, no, on Friday.
+We released the show reel,
+and how the show reel is made is historically,
+we got like all the submissions,
+and then all the maintainers and the people
+who are contributing to it got to vote
+in terms of like which ones they like.
+And from those, from the top ones,
+we made the yearly video.
+This time, we made this new platform,
+which basically lets you vote.
+And also, if you are donating to the record of foundation,
+you can participate and you can also donate,
+which has to be very cool because, you know,
+people wanted to know which were the submissions,
+and we wanted to let people in.
+And I think the barrier of entry of being someone
+who donates also helps a lot with the spam.
+You know, we cannot open it to everybody
+and get the crazy things from the internet.
+And the priority list,
+how many of you know about the priority list
+that we have on our website?
+Okay, not so many.
+Yeah, that's why we need to do a bad job here.
+So with the priority list, we want to do the same.
+Basically, there's a lot of things
+that different teams that are working on the road decide
+that, you know, this is something that this area needs.
+So they create these different items
+in which you can see more or less what will happen.
+This doesn't mean that it will come in the next version,
+but it means that eventually we want to get to it.
+And it's a bit hard for now to know what the people
+who are donating want us to work faster on,
+and maybe some things that we have on the priority list
+have been there for a long time.
+So what we want to do is kind of like a mix match
+of the voting on the showreels and the priorities.
+So you will be able to vote,
+like which ones you think are the best priorities,
+you know, for us to work on.
+And hopefully we want to, you know,
+incorporate more feedback from everybody
+to make it, you know, better.
+And yeah, know who we have to fire, to fire, to hire, thanks.
+Yeah, okay.
+Other things that we started doing is the website.
+We added some analytics to it.
+It's been a long time.
+It's very controversial in many places to do this,
+but we finally did it.
+It's also hosted by us.
+We want to expose it as much as possible
+so everyone can check the status of it.
+And once we did that,
+we found that China was the second,
+like most visited country.
+We had all these data is from July until now.
+We had this blind spot because everything
+that we've been checking up until now
+was coming from sources like YouTube or, you know,
+all the places where you cannot disable it.
+And in those platforms, you know,
+they are banned in China.
+So we couldn't see anything.
+So, you know, this led us also to maybe explore
+different users that we have a lot,
+but we are not maybe paying a lot of attention to.
+We also see Brazil third and Germany fourth,
+who has been always in the top three, like for a long time,
+until now China came.
+So, you know, you have to keep up here in Germany.
+But that also helped us inform some decisions, for instance,
+like localizing the website to different languages.
+It's already in German, in Portuguese, Spanish, Chinese.
+There's also Japanese one, Korean, I think.
+And it was a little bit of an experiment,
+so only the home bridge is mostly translated,
+but we're gonna keep working on making this easier for everybody.
+Yeah, some other stuff that we do,
+and of course you should get one flashy.
+This was, you know, one of the collaborations
+people really want to merge from us,
+but if you have done any sort of metrics,
+you see that it's kind of difficult
+to find it in a, like, sustainable way,
+that you don't have to be spending a lot of time
+and resources in getting all the stuff shipped to you,
+and then you shipping to everybody,
+and all that, this was a good compromise,
+because, you know, they take care of everything,
+and, you know, people can enjoy the flashy.
+So, this, you can get it now after my talk.
+And yeah, we do a lot more, and as it was said,
+I do weekly stream on Wednesdays, where it's kind of like this,
+but, you know, from the comfort of your house.
+So, if I didn't get to answer your question today,
+happy to answer it on Wednesday.
+But next week, and that's, I want to ask all of you,
+we have a Q&A with the rendering team.
+So, Kajung will be there answering all your rendering questions.
+I know there's a lot of rendering questions all the time.
+So, if I want for that, it would be nice
+to save it for next week on stream.
+Otherwise, feel free to ask anyway.
+So, we're ready to start.
+Just, you know, raise your hands.
+I don't know how we, they're gonna get the microphone to you,
+but before we start a Q&A, I have to ask you,
+we have video recordings.
+So, I come with the microphone to you,
+and please speak into the microphone.
+So, any questions, any hands?
+I see some hands over there.
+Oh, yeah.
+- Hey, hey, oh, that is, sorry, a little bit loud.
+Hey, I was wondering, so,
+all the time volunteers choose what they work on,
+or the core team decides what's the most important,
+but I'm wondering overall, for all the budget,
+how do you decide what's the next step to scale,
+and in which region you would like to go into?
+- And sorry, the last part.
+- And what region do you think is the most important
+from time to time, and where would you spend
+all the budget you're getting bit by bit?
+How do you scale this?
+- Yeah, yeah, so, one of the things we use to inform that
+is the feedback that we get from users,
+and that's something that we try to get
+from different channels.
+Like, we get a lot of GitHub issues and reports.
+We also are in touch with some studios
+that are using a lot internally,
+so they can give us feedback.
+But also, we do check, more or less,
+like what people talk about,
+and what complaints are very common,
+and we see time and time again,
+so that's what we try to address.
+Unfortunately, we do have more things
+that we would like to improve,
+that things that we can actually improve,
+so that's why always getting more donations
+helps us get more people on the team.
+But ideally, how this works is that the users want something.
+The team that's working on that area of the engine,
+let's say the, I don't know, the rendering team,
+like I mentioned, they identified that,
+and they added as a priority,
+and when those do match,
+we know we can assign someone to work on it.
+For a long time, there has been some areas
+who have been neglected,
+but usually it's areas where the people
+who are struggling with are not communicating with us,
+and that's why I want to encourage everyone
+to tell me what your issues are,
+and I know that not everybody wants to go into GitHub,
+write a very boring report, filling out all those fields
+for something that maybe doesn't apply
+to more technical topics,
+so that's something that we need to improve as well.
+But as I mentioned before,
+with the roadmap voting, hopefully we will also get
+a very signal in terms of what to prioritize.
+I don't know if I answered the question, okay.
+- Hello.
+So looking at it from the outside,
+or looking at Godot from the outside,
+I would expect a large challenge
+to be coordinating these large features
+that really have to fit together.
+So let's say the node system or the UI system,
+how do you handle with so many different people
+contributing to Godot?
+How do you handle the stuff that really needs
+to fit together and have an overarching design?
+- Yeah, yeah, that's a good question.
+It's one of the challenges,
+especially because a lot of volunteers,
+you cannot really rely on them,
+like they do a lot of work, like tons, tons of work,
+but sometimes they disappear,
+and you don't know where they are anymore,
+and somebody else needs to pick up where they left it.
+So what we are trying to do is to have at least one person
+from the foundation in each team.
+So whenever that happens,
+we know that somebody else can fill in that gap.
+It is starting, I think, to change a little bit
+how the engine was made at the beginning,
+when it was smaller, when there was less people involved,
+when there were less people making the living out of it.
+Everything was, I think, simpler.
+There were less features, there were less stuff.
+Now that everything is started to grow
+and get more and more complicated,
+we're finding it harder to get volunteers
+to contribute into those big areas.
+So that's why we are focusing on this
+and getting at least one person on each team
+that can actually handle that area,
+because you've all seen like a million GD script requests,
+and everybody wants like a million features in GD script,
+but GD script is already quite complicated
+as it is right now, and keep adding to that.
+It's gonna make it harder and harder to keep adding stuff.
+So we need to take a step back and think,
+okay, what's really needed?
+What's actually like preventing you from shipping a game?
+And that's what we focus on, because yeah,
+it would be nice to get structs.
+I know many of you want structs,
+or like traits or namespaces, many things like that.
+But then it's like, we already see that many people
+are able to ship games with no problem using using GD script.
+It's not that they are not coming, right?
+Those features.
+But maybe something else, like a bug
+or something that's actually preventing people to get there,
+it's more important.
+So that's how we can balance this sort of situation.
+Hope I answered the question.
+Okay.
+- Yeah, I saw you showed the priorities page,
+and I had the feeling like between 3.0 and 4.0,
+there was a big push on multiplayer.
+But then now it's not on the priorities page.
+I just wonder why.
+- Yeah, yeah, well, multiplayer is complicated
+because there's different things you can do in multiplayer
+to make your game happen.
+And for us, we need to pick one
+that could benefit the majority of users.
+So if we say this is how you should do multiplayer in Godot,
+then all the other options are kind of being left behind
+or neglected.
+It could be better, but the reality is like
+we don't have many active maintainers in the area.
+And there's currently no one working on the foundation
+in multiplayer specifically.
+There are some solutions that people use
+and have been integrating, and that's, you know,
+part of the asset store would be to incentivize
+other people to provide better multiplayer systems
+or better terrain editors or better things like that
+because we cannot get to all of them.
+But the reality of it is that we just don't have anyone
+at the moment working on it.
+And yeah, there are some cool tutorials
+and stuff like that, but I know that it's not as easy
+as it could be.
+But then again, when you give an option that's very easy,
+it usually comes with compromises.
+And depending on the game you're making,
+that might not be the right idea.
+And then you start a building, all that.
+And then you find that that roadblock.
+And then, yeah, it's quite tricky.
+But it would be something to, you know,
+if we don't have an area that has any priority list,
+it would be nice to add it just so people can vote.
+Like we want better multiplayer in general
+and then try to explore what would be
+the most way of doing it.
+So, yeah.
+- Hello, I hope my question is not too technical,
+but I was thinking about encryption.
+Like at the moment, it's very easy
+to reverse engineer the games.
+And yeah, it's not no obfuscation, oh my God.
+And are you aware of this?
+Are you doing something about this?
+Because I mean, I have a BFFC,
+but every time compiling the whole engine by myself
+and also the templates with an encryption key
+is quite annoying.
+- Yeah, yeah, no, we've seen it many times.
+It happens at least once a month in Reddit,
+somebody's like, how would I protect my game
+if there's no encryption?
+The reality is like, yeah, we could do better in that area.
+I'm not saying not, but we cannot do it perfectly.
+And there will always be ways of decompiling your games.
+And that's also happening to real, to game maker, to Unity.
+So it depends on how much you want to invest in it.
+I think that's something that for the mobile users
+is more of a concern because of people
+kind of like pulling it and polishing.
+But at the end of the day,
+it's really tricky to find a solution
+that will actually be bulletproof.
+And if we do find something that could improve it
+and we say, you have no encryption,
+then a lot of people are gonna say, okay, that's it.
+I don't have to do anything else.
+And everything is fine.
+Nobody will be able to copy it.
+And that's not true because it's a cat and mouse game
+and an enormous race of who can decompile it faster.
+So is this preventing you from shipping a game?
+No, would this help your business
+not to get cannibalized by the system?
+Yes, but I haven't seen it as often.
+Like it reaches the headlines and it's very nice
+because you can put some of these headlines somewhere
+and you get a lot of clicks, you get a lot of comments,
+a lot of engagement of what if they copy my perfect game
+and they make millions of it?
+But I haven't seen it happening with the existing engines.
+So that tells me that it's maybe a little bit more
+of a concern of a hypothetical
+and we try to fix the concerns that are far
+like more addressable and more like concrete.
+So I think some improvements can be done,
+especially in obfuscating, G-descript, things like that.
+There are some plugins that you can use.
+Going back to the asset store,
+I'm sure that they will be better once in the future.
+So yeah, it's a bit tricky.
+You cannot really, as long as you're giving them the code,
+you cannot really prevent them to do whatever they want with it.
+So yeah, kind of weird answer, but you know.
+- Hello?
+- Yeah.
+So this is the first I've heard that there was a good O stream
+and I looked through and I didn't see announcement in the blog
+so that I would never have found it there.
+Can you sort of say what the best way
+to get questions into you?
+'Cause I can't see it.
+I can only see the YouTube channel.
+And then do you have each program?
+Do you have like a theme or a topic?
+Because my particular interest is in audio
+and voice over IP and I've had one year working on
+trying to get the microphone fixed
+and that's kind of like something
+where you might be able to mobilize a bit more force
+to get things happening.
+- Yeah, well, like I started this more or less,
+the last one I think was the 10th stream I did.
+So only 10 weeks ago, a little bit more
+because I skipped a couple because of conferences.
+And I didn't want to make a big announcement about it
+until the format was kind of like right.
+Basically I started bouncing off of the idea
+of Blender today, which Pablo does for them, you know,
+like biweekly and it's great
+because there's a lot of community there
+going and asking things and it's also a good way for us
+to get what are the most common questions
+and then we know what kind of thing people are thinking about.
+But I'm still touching the format
+in terms of like, should I showcase more like own hands
+of how the new features look like?
+Should I just answer questions?
+So once we know the format a little bit more,
+we're going to be making a better announcement.
+And regarding the themes, next week,
+it will be the first one that we do a themed one
+for the rendering team.
+But if that works out, I think we can do others.
+And yeah, for asking the questions,
+you can go and ask on the chat
+or there's a thread on our forum
+where if you ask it there,
+I will go through them at the moment of the stream.
+But yeah, it really depends on what the people want to see
+and I've been noticing that people want to see
+like when we merged the new SSR,
+the screen space reflection,
+that got a lot of like interest
+and people wanted to see how it looked like.
+So I did a very little demo and everybody was happy.
+So maybe we should do more of that.
+But yeah, it's an evolving thing, so.
+- Hi, our studio uses Z# very heavily.
+We're interested to know what the sort of next steps
+for C# are because I feel like the conversation around it
+has dropped away quite a lot.
+So interested in hearing the next steps
+and also where to find that info.
+- Yeah, so it's a good time to ask that
+because we will probably something about it very soon.
+For a long time, we've been working
+on the GD extension side of things,
+moving it to GD extension.
+We want to time it with the 4.6 releases
+to show like an experimental build that people can try
+and they can play around with it.
+There will be a couple of changes,
+but they shouldn't be too hard.
+Maybe if your project is already way too advanced,
+you should stick to the current implementation.
+We're gonna still support that one
+until we know that everybody's happy with the new one,
+kind of like what we did with Jolt.
+So it's not gonna be the default,
+but then eventually it will come with a single binary.
+It will download, there will be no other version
+that you need to download.
+The problem with that, and I have to be super honest,
+is like most of the got of maintainers
+and most of the people that the foundation don't use C#.
+So for us, it's a big mystery.
+We too hired a person to work on this
+and there are a couple of maintainers
+that are very passionate about it,
+but it's not going as fast as it should be, right?
+Because again, like for us,
+I think most of us are using GD script
+and are focusing on that,
+but I think it will be very interesting,
+not only for the C# people,
+but also for the people who are doing
+other language implementations,
+like the Rust got out or Python or JavaScript,
+because once we do this integration,
+any other language will be able to use the same system,
+the same GD extension system, right?
+To also include their other implementations of languages.
+So hopefully with that,
+it will get a little bit more of a boost in interest,
+and it will improve also how it is working right now.
+So yeah, expect for when we get maybe two beta
+and maybe by the end of this year
+to see like an experimental build
+and Raoul will make a blog post
+about what the changes are and what you can expect.
+And yeah, if you are working with C#,
+please get in touch with us,
+because that's also not a thing, right?
+Like we don't hear a lot about people working on C#.
+We know for instance the people
+that who are making a slight aspire,
+they are using C#,
+but when we ask them, they are like,
+(audience laughs)
+Okay, so I guess it's fine,
+but then other users have different expectations
+and they tell us,
+"I don't know, like I cannot do anything with C#."
+And I feel there's a lot of misconceptions
+that you're gonna just do the same
+that you did in Unity, but in Godot,
+and that's not the case.
+But if we still see, you know,
+this feedback of people wanting to do certain things
+in a certain way,
+we need to adapt to that,
+but we need to hear from you.
+So, yeah.
+- Hey, Emmy, thank you for being here.
+I was wondering,
+what is something that the community doesn't do
+or doesn't do enough of
+that the community could do,
+though it would make your life easier?
+Like what are things that the community can do?
+- I think it's your sound a little bit biased coming from me,
+but donating.
+That couldn't help a lot.
+(audience applauds)
+Like, there's many things in terms of like, you know,
+I've seen it as I'm doing all these dreams,
+answering questions and all that.
+I see that people are now understanding some points better
+so they can answer other people as well.
+There is, I seen something that happened during the last year,
+which I felt like a lot of newcomers don't really know
+that you can actually talk to us.
+They are like, oh, they got other people, right?
+And I'm working on my game,
+and then there's they got other people.
+It's kind of like, you can come and talk to us.
+And I feel like the community is not explaining that well enough.
+Usually in the open source communities,
+like you complain about something,
+it's like make a PR, shut up.
+No, contribute it yourself.
+But it's like, that's not usually like a good answer.
+So yeah, getting better, like, we hear people like,
+we are struggling with this at our studio.
+Okay, can you let us know?
+Like, you can send us.
+It doesn't have to be through the usual methods.
+They can send us an email or message on this code
+on rocket anywhere, but explaining what your issues are.
+And that's very valuable for us,
+because even if it's, you know, two or three paragraphs,
+that's good enough for us to understand
+that we can aggregate all that feedback to actually react.
+So yeah, I would like everyone to know
+that we are not a huge organization
+with thousands of people that is working on this,
+and we are not hearing you.
+It's more like a community.
+And yeah, we've been very thankful
+that some of the games are supporting, you know,
+like here we have like,
+blood fish games who's doing brotheto,
+chasing carrots who's doing a new game,
+but also like a host of torments.
+We have the developer from Berkshire roulette
+who are donating right to us, and that helps a lot.
+But if you check the list of people who are donating to us
+and the successful growth games, there isn't too many.
+So I will leave it there.
+- Yeah, what's the deciding factor
+for a major release for Godot?
+And if you have like a Godot 5 in the future,
+would you support Godot 4 and Godot 3 like forever?
+- Yeah, would be nice.
+For the deciding factor is mostly timing.
+We try to keep like a release window of four months,
+maybe six months of development depends.
+But there's so many things happening
+that it's good to put like,
+like the reason I like a checkpoint, like, okay,
+from here on out, like we try to stabilize,
+and then this is a release is 4.6, 4.7, whatever.
+There are some things that people want us to do
+that don't qualify for this,
+because we want everybody to be on the latest version
+all the time, and we try to do a very good job of,
+if you have a project in 4.5 and you open it in 4.6,
+you are gonna have no issues with it,
+to incentivize people to be on the latest one.
+So we don't have to keep releasing all point releases.
+But some of them don't fit,
+and they are the candidates for a potential, I got at five.
+The problem with that is that,
+it's really hard to say now it's got at five,
+because then that means you will have this transition,
+like we had that was very rocky from Godot 3 to Godot 4,
+where many of the tutorials didn't work at all,
+many of the systems were different,
+some knows didn't exist anymore,
+like there were many different things happening
+on a big change.
+I don't think if we ever do a lot of five,
+it will be like that, I don't think anybody wants that.
+But if there's a way that something needs
+to break compatibility with the past,
+that's when enough of those happen,
+we will consider it.
+What we want to experiment a little bit more
+is trying to make some changes that are like the jolt one,
+or like the parallax know that we did,
+where we still leave the other one on legacy mode,
+but then we replace it with the new one.
+But we know that if your game depends on something,
+we are not gonna be taking it away.
+That's a great opportunity for Godot 5, right?
+And Godot 5, we can take away a lot of things
+that we know that people are not using,
+they are making other things more complicated.
+But I don't think that it's a priority right now to do that.
+Godot 3, for instance, is still maintained,
+but the work that we do at the foundation for it is minimal.
+Minimal, it could be like a few hours
+on doing the releases and maybe checking the posts
+before it goes on the website, things like that.
+But that's mostly done by the community,
+specifically Don Jelly, who's being like unstoppable force
+of getting new stuff from Godot 4, to Godot 3.
+But it's not on our priorities at all,
+like we're not hiring anyone to work on Godot 3.
+And I don't think that that would be the case
+in case like a Godot 5 happens,
+we will still support Godot 4,
+because if you started your project in Godot 4,
+you will want to finish it in Godot 4.
+And yeah, I think right now at the moment
+where most games that come out, where most,
+like if not all games are already Godot 4,
+so we're very happy to leave Godot 3 more on the background.
+But if you're starting right now,
+you need to make sure that you will be able to carry
+the entire development, and that could be,
+I don't know, three years.
+So it's not going away anytime soon.
+- Hi, I got a question about leadership
+and the Godot Foundation and the future of Godot.
+Right now there's a lot of investments coming,
+like the host explained, to make it more business appealing,
+which is a well-lit course.
+And my thoughts were about,
+well, my question is about,
+will you keep the engine like small,
+as in size, because the engine is very small,
+compared to the other good engines.
+But also in kind of way, the fun,
+it is right at the moment,
+because right now it's very much fun to me.
+And there I want to hear your thoughts about it.
+Maybe we have already talked with the other members
+about this direction of the Godot engine,
+because I think there's a lot of different interests
+in this topic.
+Thank you.
+- Yeah.
+Yeah, so regarding the direction and stuff like that,
+I think our goal is always to give it as tiny as possible.
+That's why it's so important for us
+to get the asset store right.
+So we can outsource part of that complexity
+because we can even publish extensions
+that people might need there.
+So it doesn't have to come pre-built for everyone.
+So that's will always be a priority.
+It's impossible to keep it always as small as it is
+right now as it was,
+because computers are getting more and more complicated
+for some reason that nobody knows.
+But you know, let's make Bullcan,
+and then Bullcan will solve every problem,
+and then Bullcan doesn't solve every problem.
+So now, for instance, we're gonna have to default
+for DirectX on Windows, things like that.
+So we keep adding those things that are crucial
+if you want to ship your game in Windows,
+and you know, same with many other topics.
+I'm regarding the funding from companies and stuff like that.
+Most of us at the foundation or members
+who are contributing for a long time
+are not too into VR or XR,
+but that's where we get a lot of funding to work on that.
+And that's why those features exist.
+So I think that's how the companies can interact with us,
+like they might not be donating for us
+to change the entire direction of the project,
+but if there's something that they are interested in
+that it's not good enough,
+they can contribute money for us to work on it.
+And we've seen it, you know,
+with meta helping us at the beginning,
+and other companies like Chronos,
+which is an organization also that gave us,
+like some time to work on it and improve,
+implement OpenXR and all that.
+I don't think that the community will have given us that.
+As the foundation, we wouldn't have prioritized that
+because of the tiny market of XR applications.
+And same, you know,
+Apple contributing the Apple Vision Pro,
+like I don't think any of us at the foundation
+even considered about it.
+My second companies want to come and give that support.
+And that also comes with some monetary incentive for us
+to make sure that at least it works.
+And, you know, it doesn't get abandoned,
+which is the hard part.
+We were gonna keep doing it.
+But our priority is always the developers.
+And that's also some things that we still have to announce.
+But at the foundation board as well,
+like we wanted to include more people
+that represent the community.
+And that's why we added people who have been more hands on,
+making games and publishing games,
+because we believe that that's really important.
+Same with the Android or iOS export,
+like mobile has been kind of neglected for a long time.
+We thought that the businesses were going to provide
+that support themselves, like, you know,
+maybe the big companies were going to give their own SDKs
+for you to use their platforms.
+But that doesn't seem to be the case.
+And we are not waiting for Godot anymore.
+And we said, like, let's do it.
+And, you know, let's fill that gap
+for many of our users that want it.
+So yeah, I don't think that the direction is changing too much
+in that sense since the beginning.
+But maybe we can do, like, a barrage of showing
+which sponsor is sponsoring what.
+And, you know, I've seen some companies doing it already
+in PRs that say, like, this PR has been sponsored
+by this company, so you can know where they're investing.
+But yeah, generally speaking, like, if I answered that,
+like, keeping it very small,
+and I don't think that it will change a lot in the future.
+>> Speaking of PRs, the GitHub has a large number of open PRs.
+Does the foundation have any plans to work on throughput?
+It seems like there are a small number of people triaging.
+You have plans to add more people, more folks review.
+What's the thoughts on that?
+>> Yeah. Yeah, so the numbers of PRs is something
+that at the beginning when you start contributing to it
+or, like, on the organization keeps you awake at night.
+Like, oh, my God, there's how many thousands?
+But if you check, like, the amount of closed issues
+and open, like, the ratio is not about, like,
+if there's 5,000 open, there's 25,000 closed.
+So the number usually is very controversial
+because many projects have been out of closing issues
+that nobody reacts to in some time.
+So they say, okay, if nobody interacted
+with this in 30 days, we close it.
+But that doesn't mean that the issue is fixed.
+And maybe none of us have run into it yet,
+but then somebody stumbles upon it
+and they want to contribute to it.
+If you find that, you know, the issue is closed,
+but then, like, it's not really fixed.
+Like, it's really hard to orientate yourself
+into the status of things.
+So we don't see any upside on closing those issues.
+Of course, we still need to triage them
+and that having that happens with all the issues
+that get open, all the PRs, they get their proper labels,
+they get their proper, like, boards for, you know,
+our contractors to work on or, like,
+community members organized to fix specific ones.
+So it's not like we are not looking at it
+and pretending it doesn't exist.
+But I still haven't seen any argument for closing them.
+That makes sense other than the number is now lower,
+which I don't think is a good metric.
+So we haven't.
+I don't know if that answers the quiz.
+Do you, sorry.
+Oh, yeah.
+- The question was more about throughput.
+The rate that they're getting--
+- No, oh, okay.
+Yeah, the problem with that as well,
+like we have some services of how long
+the usual time for closing an issue is
+and it varies a lot, like, a lot of them get close hours,
+days, some of them throw all that away
+in terms of like, maybe in six months,
+nobody said anything.
+We don't have any internal KPI in terms of saying,
+like, you know, this is the amount of time that we want to do.
+But the triaging happens very, very fast
+after they get open.
+And we have people hired to do that.
+After the triage, it really depends on the team.
+If we have someone hired working on that,
+or if it's a priority for the community for us to,
+you know, find that.
+So, yeah.
+- Morning, morning, Amelia, everyone.
+So as an indie studio that's working for Godot for a year,
+but by the way, amazing community,
+amazing job you're doing over there,
+we're struggling with SDKs and big companies
+that you were talking about,
+'cause we are mobile and, well, another trend of mobile,
+which is more lifestyle, health,
+incentivize people to move more.
+What are the general priorities for the mobile development
+in Godot, like SDKs, integrations,
+on all of that to ease up our lives a bit?
+- Yeah, so we are at the moment collecting all that feedback
+in terms of which are the most important ones,
+and trying to get to those first.
+Some of them already existed and the community contributed.
+So if they were abandoned, we took over and then we fixed them.
+Some of them were just not done,
+and others are maybe hard to find.
+But there isn't at least a final list of SDKs that we have
+that we say, yes, these are the ones that you can expect,
+but as soon as we have it, we're gonna start showing them.
+On the asset store, we're gonna start on the beta one.
+We're gonna start adding like a tag,
+which will be like official,
+which is basically something that we officially support,
+and you will be able to visit,
+they've got a foundation page with all those SDKs.
+If there's some missing for us, as I said before,
+let us know why it's important to you,
+and we're gonna try to first, what I do,
+is I try to ask them to do it if they can.
+If not, I try to ask money for us doing it.
+And if all that fails and the community really, really needs it,
+then we consider developing in-house.
+But yeah, there isn't any list of that, you know.
+What you're expecting in terms of like getting the stores,
+the Play Store or the Apple Store to run,
+be able to do like the transactions that you need,
+you know, to buy stuff inside of the game,
+things like that, some analytics like for the usual platforms.
+I have to say they are better than before,
+there's more like SDKs than before,
+but still many of them are missing, so yeah.
+- Hello.
+On the GitHub of something is in a milestone,
+like for milestone 4.6, does that mean if it's a PR open,
+it'll get reviewed before that by one of the core team members
+for merging, or is it just sort of,
+how does it work with open PRs that have been open
+for a while that are on a milestone?
+- If it's in a milestone, that means that it's probably
+like there's an intention for us to address it,
+but that's not a guarantee that it will be addressed.
+So that's something that most of the contributors look at,
+because they already know that it has passed the triage team,
+it's kind of like something that we want soon.
+If you see that something is in a milestone,
+is that regression or is that a crash or something like that,
+you will get addressed before a release.
+Everything else, it really depends.
+You see at the end of each of the releases
+that many of the issues get moved to the next milestone
+right before the release,
+because at some point you need to say,
+okay, that's it, that's a release.
+This is a nice to have, but maybe, you know,
+to risk it to merge at the end of the process.
+So it's a good indication that there's interest
+on that issue to be, or that PR to be merged,
+but not a guarantee, so.
+- Hi, I wanted to ask you that you like
+that everybody's on the newest version,
+but I feel like, is there, or is there any priority
+to update the versioning itself?
+So instead of downloading the newest version,
+we had a website or directly into the IDE itself.
+So I feel like the versioning updating is quite annoying.
+- So you mean updating to the latest one from the IDE, right?
+- Is there a priority about it?
+- No, not because if you are too deep
+into the development of it, you shouldn't, right?
+Like maybe like you have to pick the moment
+where you want to do it, and also you kind of have,
+you already have like a system that tells you
+if there is an update or not, but to make the entire launcher
+to automatically download versions,
+and to keep them in your system and all that,
+it's not something that I feel is too difficult.
+You know, you download, go out in a few seconds,
+if you have a decent internet, and then you double click,
+and that's it.
+So making it easier than that feels like why, right?
+Would be nice, and the project manager should get some updates
+eventually, you know, showing maybe like a cool image,
+maybe more online capabilities to check
+if there's any news that you should know about,
+or if there's any version, things like that.
+But ideally, it should be self-contained.
+So if you download our version, you know,
+you can use it, you can put it in a USB and run it anywhere.
+And if you start doing the launcher, then like,
+are we going to ship the launcher to everybody?
+And then like, there's too many implications for it,
+for a system that works okay, and if you want a launcher,
+there's like five or six that already exist,
+that automatically download the latest version,
+that you can tag.
+So yeah, I don't think that it's a huge priority,
+and we don't have any conversation open about it.
+But yeah, I have many plans for what I would like to see on that,
+but not too important.
+Yeah, I feel it's too oriented to people who have many projects
+at the moment, and it's like, you know, it shows like,
+temporary, it's like, you shouldn't be working on 10 games
+at the same time, right?
+Like, we're not incentivizing the right thing here.
+Hello.
+So I really like that the go.engine is open source,
+and I really love also to see other open source games,
+so that the games are.
+So if the source got available, I also made a few.
+And my question is, if there is a plan from the go.do's
+foundation to support also games made to the go.do.engine
+that are open source, maybe with visibility.
+I saw there was the awesome go.do list,
+but maybe it's there a plan to do that more,
+or even some day, even support them financially or something
+like that.
+Yeah, no, not at the moment.
+Like, we do have a showcase page where we show some projects,
+and it's a bit neglected at the moment.
+Most of them are like commercial projects,
+but I heard from, like, popular games
+that they also wanted to open source them,
+and they were asking me, like, what should we do about it?
+So it would be nice to have them,
+but there isn't any plan on making something specific
+for open source games.
+I would say, if you want to get more contributors,
+you should maybe post it in the socials.
+Like, Reddit gets a lot of attention
+from other communities, or the Discord.
+And if the game is successful enough,
+we can always try to highlight it
+in one of the release blog posts and some people there.
+There was one that got into a show real two years ago,
+I believe, about three years ago, Rota,
+which was an open source game.
+And I think that was also featured.
+And, you know, it depends on the game exactly.
+We have some small demos that we have
+on our demo repository and, like, many examples.
+Would be nice of having demos of bigger projects
+so people can see how they are.
+But, you know, there is one popular one
+that we should maybe make a little bit more noise,
+but I think it's got a three, which is called
+a little game called Mario,
+which is a game that accepts every PR that you send to it.
+It's incredible.
+Like, it has a million levels, a million mechanics,
+and it's great, you should try it.
+But, yeah, not very sensitive at the moment.
+Could be interesting to think more about that.
+- Hi, thank you for the Q&A first and foremost.
+And my question is, do you have any process
+for maturing extensions or addons to the core library
+or code code?
+Can you repeat?
+- I mean, do you have any process for,
+let's say there's an addon or extension
+that is very popular that could be moved
+into the core of Godotz.
+Do you have any process for that?
+- Thank you.
+- The recent, I mentioned Jolt a couple of times,
+because that was kind of like there was an extension.
+And then, you know, it eventually made it to the core.
+So I guess it's more like on a case by case basis.
+So at the moment, there isn't that.
+Our goal is to have a very good plugin,
+our GD extension system,
+so that you wouldn't feel the need
+to include it into core for everybody.
+So that means maybe you can download an extension
+and do it, like enable it globally,
+so that any project that you open already
+has that extension available.
+And that way will be as close as native
+without having to shift this to everybody.
+So at the moment, it really depends
+if there's something that's very popular,
+the passive start thing, for instance,
+that was kind of like an extension that we said,
+like we think this is better than our current theme.
+We include it and then we put it,
+but it's a different story to any other kind of thing
+that got to the core.
+We want to keep the core as small as possible.
+And, you know, going back to the other question
+that I got, like, if we keep adding things
+that not everybody's gonna use,
+it's also harder for us to maintain those.
+So before accepting something,
+we need to make sure that we are able
+to support this in the future.
+And with many of those extensions,
+it's hard for us to say, like, yes, we think we need this
+and that we are gonna be able to maintain it.
+So making it easier would be like a good middle ground.
+Did you have our curiosity, any extension in mind?
+Did you need, okay, did you need it?
+For that, you know, there's a couple of them.
+So we need to pick a favorite sun,
+and that's gonna be tricky.
+But yeah, no, I would like, for instance,
+to have some better Git integration on the engine
+that, you know, that everybody uses.
+But then again, like, not everybody is using Git
+if you see our poll every year.
+There's like 20 something percent of people
+who are not using it.
+But yeah, there isn't any process at the moment.
+Unfortunately, our time is already up.
+I know that you have many more questions,
+but I think you'll be around the day, more tomorrow.
+Yeah, if you see me around, feel free to come,
+say hi and ask.
+And also, if not, on the streams every Wednesday
+on the YouTube channel at 5 p.m. European time,
+you will be able to ask anything.
+And if not, on the forum, you can leave a question there
+and it will get answered.
+So, yeah, thank you, everyone.
+(audience applauds)
+- Thank you, Amy.
+(upbeat music)

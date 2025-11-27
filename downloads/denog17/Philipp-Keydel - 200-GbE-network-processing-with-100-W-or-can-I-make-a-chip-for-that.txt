@@ -1,0 +1,143 @@
+API URL: https://api.media.ccc.de/public/recordings/93150
+Frontend URL: https://media.ccc.de/v/denog17-79016-200-gbe-network-processing-with-100-w-or-can-i-make-a-chip-for-that
+Title: 200 GbE network processing with 100 W - or "can I *make* a chip for that?"
+
+(upbeat music)
+- Our next presenter is Phillip.
+Phillip is a co-founder of SinoGator,
+or I have the right pronunciation of it.
+To start up specializing in chip design
+in RTL and VLSI and FPGA deployment,
+they are focusing on network accelerators,
+smart NIC applications and state-flow networking flow tracking at a 100 plus gigabit ethernet.
+Please join me in welcoming Philip to the stage and enjoy the talk.
+>> Thank you very much. Yeah, you already did the introduction. I'll still do it again,
+so I can stick to my script. I'm Philip, the co-founder of Cinegate, a Berlin-based startup
+the development, fancy words for saying that we make chips. And yeah, firstly, I am the non-technical team member. So if you strongly disagree with what I say please make your objections heard loudly. And yeah, also for expectation management, we don't do anything.
+the thing with the with the physical manufacturing of chips. We're on the last layer of logic if you will. So below there's only physics and chemistry as a reference for chip design. I wanted to first take a look at software.
+is your implement logic as instructions for CPU. And CPU is highly complex and versatile chip that can do that can process all kinds of instructions from text processing to video reproduction to networking. But that also comes at a downside. Not only do you have to deconstruct all these instructions, I'm going to make sure I'm not doing much of a bit of a problem.
+instructions so that the CPU can process them and then reassemble them. But also a lot of things can go wrong.
+So if you don't really need this versatility, but you rather want a one trick pony that does the same task over and over again, then it becomes interesting to not implement that as instructions to a general purpose CPU, but rather implement it directly
+in an electrical circuit. So you get, if you will, a processor that has the instructions already in it. And that gives you the possibility to reach a lot lower latencies.
+Think microseconds instead of milliseconds. A lot more throughput. Think hundreds and thousands of parallel processes. And of course, a lot of reduction in energy consumption.
+With that, you can already see some use cases. Latency is interesting for high precision measurement, throughput for when you have a lot of processes running at the same time.
+And, for example, in wearable devices, the energy consumption is extremely important, which is why all of your mobile devices have a lot of chips in them.
+And all of these advantages, of course, also are very interesting for networking. Those and more advantages that aren't as obvious in chips.
+For example, you have absolute determinism in your calculations. You need a lot less space and you have a higher level of security because chips are harder to manipulate than CPUs.
+In the context of networking, we also have another interesting advantage, which is that while network traffic is rising extremely fast, as you all know, CPU growth has slowed down a lot.
+It's not the 2000s anymore where every year the next generation of CPUs would have doubled the power. This whole development has slowed down, which plays a lot in our favor.
+So, yeah, you want to use chips in networking, especially in data centers or wherever you have a lot of compute to do, and that will help you to improve your service, to bring down your costs for energy, for space, for getting rid of the heat.
+You improve your security and you improve the quality of service, the experience of your users.
+And another important factor also, if, for example, your web hoster or anybody else who's basically selling CPU cycles, if you offload networking tests to dedicated chips in your neck, then that saves you CPU cycles that you can then sell.
+So, it helps you increase your revenue.
+So, how exactly do you implement logic as electrical circuits or how do you make a brain out of metal?
+It starts with the most basic building blocks, the transistors, the semiconductors, those make your basic logic elements.
+The most important ones I listed here, also called logic gates in this context, is, for example, the AND gate, where you have two, whenever two signals come in, you have a signal coming out.
+You have the OR gate that whenever one of the two signals comes in, a signal comes out and the XOR and then the negation of all of those.
+And since this is basic logic, this can also very neatly be displayed in what's called truth tables.
+The way those signals come in is electricity, also called rising edges, and the rhythm, those are the ones and zeros that are always talked about when you think about basic compute.
+And the rhythm at which it's measured if there is a rising edge is dictated by a clock, and this clock's frequency is the megahertz and gigahertz that are usually mentioned.
+So, now you have basic logic building blocks that you can use to represent your logic. If it gets a little bit more complex, you can put what's called registers in between the logic gates.
+So, you can carry the results from one transistor to the next during the clock cycle. So, register is a very, very tiny memory that keeps the results of, or the output of the transistor for the next clock cycle.
+And this is how you build your logic. For example, you can use that to add numbers encoded in bits.
+And then if you have numbers encoded, if you can add, if you have an adder, then you can make also a multiplier by just putting a lot of adders in parallel.
+And this is a very, very important basic concept of digital circuit design, parallelism that you put things next to each other.
+This is like a basic paradigm that's a challenge for software developers that first start with digital circuit design that you start thinking in space.
+And also the term that's used in chip design real estate is how much space you have available to implement your logic, because if you still have some space left,
+you can copy your logic and put it next to each other, which is why at the end what you want to build is this.
+It's a machine that has everything running all at once all the time.
+And also why you have always all these little legs at the edges of a die, because you can make use of this parallelism by sending a lot of signals in and out of the chip at the same time.
+You're not bound by a CPU that acts as a bottleneck, even if it has 32 cores, you can do hundreds and thousands of processes in parallel.
+And this is how you get this high throughput, you get the low latency by cutting out the CPU with everything that's management and everything that's standing in the way between you and the results of what you want to do.
+And of course, all of this costs electricity, and if you don't have to spend that, you save a lot of energy.
+I was going to say something about that.
+Anyhow, security, just since we looked at the transistors, if you imagine that instead of an Adder or a multiplayer, you have TCP header parser, then if you have your network traffic interfacing with this as an electrical circuit,
+it's going to be a lot harder for an adversarial actor to manipulate that in any way.
+And yeah, this is how you can do cybersecurity applications a lot more securely than with software.
+One of the advantages is probably also another interesting factor that at this level of optimization, you're not bound to this fast rhythm of evolution that we're used to from CPUs.
+Everything goes a little bit more slowly in digital circuit design.
+How do I get this into my data center?
+Let's have a very brief look at the development process.
+It looks a little bit like software, especially at the beginning where you define your requirements, which is a little bit more work than in software for reasons that I'll get to.
+Then you start describing your electrical circuit also as code, so kind of like software, but worse, which is also something that I'll get into.
+Then you test it, you translate this code, not by hand, but you have dedicated software to do that into what's called netlists, and then those netlists eventually get transformed either into masks.
+So this is what's used in Taiwan when they shoot the extreme ultraviolet light onto the substrate to make those tiny, tiny little transistors.
+Or, in our case, you convert this netlist into a configuration file for an FPGA.
+An FPGA stands for field programmable gate array, so the gates is what we just looked at, the transistors, the arrays, because there's a lot of them, and field programmable because you can configure them and reconfigure them any time, so even while they're in use.
+These are used, for example, in prototyping when you make chips, or those produced in Taiwan are actually called ASICs, application-specific integrated circuits, and while you develop them, you can use those to test.
+But the process of printing an ASIC starts at five to ten million dollars, so if you don't need these economies of scale where you then produce chips for a few cents, and then sell hundreds of thousands of millions to set off this huge production cost.
+But instead, you only want to work with smaller series, then you can also use FPGAs in production.
+They are obviously more expensive than a traditional chip, but they come in a lot of different sizes and cost factors.
+They can start at a dollar with a few logic elements and go up to ten thousand dollars if they have billions of logic elements and maybe some HPM or other expensive components.
+Especially in networking, they have another very neat advantage, which I already mentioned, it's a reconfigurability, but in the context of networking, that means that you are very hard to attack via supply chain attacks, because you buy those chips or the chips on the boards from one supplier,
+and they essentially do nothing if you switch them on, you have to configure them yourself, or you get your configuration files from somebody like us.
+And if we supply you the source code, which we probably will, then you can audit that, and that makes it really hard for somebody to insert something bad in this process of deploying them.
+And also, you are still able to reconfigure them while they're deployed, maybe even during an attack. That's a little bit tricky, but it's theoretically possible.
+That means that an attacker will not know what they're up against. They might know what chip, what ASIC is built into your hardware firewall, but if you configure this yourself, they will not know it, and especially they will not know it if you reconfigured it last night.
+So, I think I've reached the point to ask why we still make any thing in software at all, now that everything is great here.
+There's several points. The most obvious one is there is still a lot of advantages for doing software. For example, you have the ubiquity of the cloud, if you want to go really small and don't need this massive amount of compute, you can use microcontrollers.
+But I think what's a bigger point is that there's a lot more software developers around than circuit designers. It's a lot more work to implement logic in digital circuits.
+And it doesn't help that the tools I've hinted at it for digital circuit design are horrible. More than once I've spoken with students who say, "Well, I did FPGA development for one semester at university, and I'm not doing that again."
+And I can't really hold this against them. With this extreme amount that you can really do anything that you want, the way you want to, comes the fact that you actually have to do it.
+You have to set up all the signals and the clocks that go with it and then also tell if the signal that is coming now is to be considered valid because everything is running at all times.
+So that means if you have an algorithm going through various stages, there will already be data produced at the last stage once you switch it on, even though logically there cannot be any meaningful result coming out because it hasn't cascaded through the design yet.
+So there's a lot of boilerplates to set up everything and the way those languages work.
+Well, we think that they're stuck at where software was 20 to 30 years ago. It's extremely verbose and it's extremely unflexible, which means that it's very difficult to reuse what you did.
+And it's extremely painful to adapt anything during the development process.
+If your requirements change during the development process, then you get very quickly to the point that you have to start all over again because you have to adapt all the changes manually to the clock cycle.
+And this is exactly what the human brain is not good at doing. You will produce errors, which then take a lot of time to figure out and get out.
+So I heard the rule of thumb that testing and verification in digital circuit design can easily take up 70% of the time.
+And yeah, you have to do everything all the time, which also means that you don't have the security that a library offers you that you've used a thousand times.
+And this is the basic idea that we found it on. We're former software developers who really loved making our own processors, but were really set and also loved the amount of precision that hardware description languages offer.
+But we were sorely missing the tools from software that make us productive.
+And we still had to accept that the world probably does not need yet another hardware description language.
+So we put a layer of, oh yeah, I jumped the gun here, a layer of C++ on top of the hardware description languages.
+You can call it meta programming, so in our programmatic circuit creation.
+What you do is you write a C++ program that when you execute it builds your circuit as a graph, and then you export that graph into VHDL or the hardware description language,
+which means that all of these pains that you have whenever you want to change anything now goes away because this is automated.
+You write your program, and if you want to change anything that's on the C++ level, that's very easy.
+And then the hard work of writing it down is done by automation, by the program you wrote.
+You still design the circuit yourself, it's still not software, it's still hardware design.
+But with what we say, the tools and methods of software development because it means that we can now not only change things easily
+and be a lot more quicker, like finally I can show this, this is the same thing as before.
+This is a FIFA, so a small memory that gives out the stuff that comes in in the same order first out.
+So it could be like a packet buffer, but it's a lot of pain to write this, and you will have to write it every time for your specific use case.
+If you use our tool, Gatory, which by the way is open source and free to use, please come to talk to me if you're interested,
+into this, and you can give it valuables to configure it.
+And that means that, yeah, you can now very quickly make your FIFA.
+And that means that all these things that make us productive in software development, not just the automation,
+but also the process, fast prototyping, iterative development and easy reaction to changing requirements,
+they become now feasible.
+It's still not as flexible as in software, but it's an improvement by orders of magnitude.
+And yeah, to us it means that we can finally be creative and instead of fighting against the tools,
+we're able to focus on the logic that we actually want to implement.
+And at this point, we can also bring this bread and butter for software developers,
+algorithms, data structures and whatnot, which in my experience,
+hardware designers are not super interested in, they're interested in reducing space and having a very fast design,
+but not in all those niche discoveries that we've made in software development.
+And we can implement them in our circuit design.
+And this in turn gives us the possibility to, even as a very small team, do some very cool things.
+For example, this is already two years ago.
+We made a demonstrator for a stateful firewall on one of those cards that I showed before.
+This is actually quite large and expensive FPGA, but the idea is you have all these servers here on the left side,
+which for demonstration purposes use software to produce 200 gigabit of traffic,
+configurable via those levers from the flight simulator because we're former game developers.
+To bombard this tiny, tiny little PCI express card with hundreds of millions of connection requests per second,
+and then we have a stateful filter that has a couple of rules.
+This is not a production ready firewall, but it shows the value of this algorithm
+that can then use external DRAM and insert at hundreds and millions of inserts per second into the DRAM,
+where we have of course enormous capacities for session storage and one of the things that we're currently working on
+to put some business value into this is delos scrubbing with a tiny Internet service provider here in southern Germany,
+and yeah, I hope that I can do a talk on that someday if that's done.
+I was informed that the public repository of gateway has not seen activity since almost a year.
+Sorry for that. Our community is not very big. It's a little bit of a niche, but yeah, we made it free in the open source
+because we're convinced that the world needs this, the world needs more chips,
+but we're not going to get them with the tools that we have at the moment.
+There are a few other tools out there that do similar things, but we think they're not going far enough.
+We still stuck too much in the paradigms of hardware description
+while we take the full force of software development and bring it in.
+So again, if that's at all interesting to you, please come and talk to me.
+And that's it. Thank you.
+Thank you for all these insights. Are there any questions from the audience?
+Three to one. No question. Is anything on when you let us know.
+Then thank you again, Philip, for the talk.

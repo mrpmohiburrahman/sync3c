@@ -1,0 +1,256 @@
+API URL: https://api.media.ccc.de/public/recordings/93644
+Frontend URL: https://media.ccc.de/v/god2025-56495-news-from-the-juice-shop-e
+Title: News from the Juice Shop ecosystem
+
+The second flagship project is the juice shop, also known as Björn Saflan. Björn is an
+annual guest on the stage and his talk is a little bit longer than Torsten's, so the
+introduction came a little bit shorter. Ladies and gentlemen, the world's most bit your broken
+the the. Thank you. Thanks for having me back to this little 90 minute introduction to the to the workshop. But the counter starts at 19 so it must be wrong. I will try to keep it short. So thanks for inviting me back after so many years of giving you shop updates. This event I brought some news not as many as Janik had lastly.
+Yannick had last year because that was our 10th anniversary, but still we actually made some nice
+improvements changes and other
+hopefully interesting things so
+Let's start
+For those who don't know what the jew shop is this is the front side of our popular postcard
+I don't have any anymore. This is by the way, not AI-generated. This has been created by an actual designer
+We contracted many many years ago. You can see that by the just the Twitter
+Bird here at the bottom, so it's a bit old now, but it's still valid. So jew shop is a web application
+It emulates basically a shopping system. You can buy juice and other stuff there and it has over 100
+something security vulnerabilities you're supposed to
+Exploit and you get points on the scoreboard if you successfully do so
+you can also use it and
+Quite nicely and capture the flag setups
+So in corporate trainings at universities, whatever you can imagine and jew shop also is very happy to play your guinea pick for any security tools who might want to test or for putting it behind a rough you would like to test all these use cases are supported so this is my personal favorite slide I typically show it at the end I put it at the beginning today and it's the jew shop success
+Perimeter so we over the entire time of 11 years of the project. We accumulated 130 contributors by now
+We are a flagship project still which is nice
+And the most interesting numbers are here at the bottom, so we're sitting currently at
+12,000 github stars
+Quite unbelievable 15,000 github forks. This is actually this is the most forked over us project of them all and
+an even more unbelievable 84 million pools of our docker image over the entire time
+So new stuff
+Let's start with that what interests people the most what challenges did we have so there's actually two new ones
+One is about an elite API key that the jew shop is using behind the scenes
+so this is a five-star challenge so pretty difficult and
+It has actually the only interaction with the jew shop itself is that you have to report the found API key
+via some form in the jew shop
+The API key is used and also has been leaked somewhere completely behind the scenes
+So it's a process that jew shop uses
+recurringly
+For one of its actual business features and you have to find an API key that was improperly handled and
+Then reported to the jew shop team
+The second one is also a five-star challenge. It's a memory bomb
+Challenge so it's a little bit like xie only with a yummer file
+So you can also do the same fun stuff you can do with XML with yummer if you really try
+This challenge you can see this in the screenshot is
+Disabled it's in the danger zone. That's one of its tags
+Because it can actually be
+Considered risky to have this running somewhere on the public internet and for that reason
+It's also one of the disabled challenges on the public demo instance of jew shop by default and
+When you run jew shop in a docker container also by default all potentially dangerous challenges are disabled
+You can't turn them on, but it's your own risk
+Basically everything is your own risk because jew shop is MIT license, so don't come to me if you blow anything up
+We also added
+Some year two years ago we added web three related hacking challenges quite a few actually during that years Google summer of code
+Unfortunately the corresponding coding challenges were never completed and I now took it upon myself
+To try and add a few of those at least for for the challenges where I
+Halfway understand what's going on there's still a few gaps, so if we have some web three
+Smart contract experts here who want to give it a try?
+Please feel free to reach out so we can complete this
+We introduced also a brand new category for challenges called observability failures
+There basically everything that would fit the new a 9 of the 2025 was top 10 goes into and it helped us a little bit to
+to clean up one of the
+One of the categories that was huge, so we had in the past 19 challenges in the
+sensitive data exposure
+Category because it is so generic right and we I tried to add
+This one to take four of those out and I'm looking for opportunities to also maybe define some other categories
+To to clean up and structured a little bit more nicely and not have these overly huge
+categories for like catch all the cases
+So
+We also did a little bit of work already with the always top 10 2025 release candidate
+So we have a category mapping of our own
+arbitrary categories
+towards over top 10 other top 10s and from over other over documents also CW CW E and
+And Vask
+Identifiers and the blinking ones are the mappings towards the latest upcoming version and as you can see
+we cover everything from one to ten and
+By that we are officially in compliance to 100% with the with the latest version of the top 10 as we should be
+Right you shouldn't be but we should
+Apart from challenges we also have some other new features added more some more on the convenience side
+One which is quite nice is the new way how we handle hints on the juice shop scoreboard
+If you remember previous versions of juice shop
+There was always a little hint button for every challenge and if you hover out over this with your mouse
+It would show a tool tip with a little text hint and if you clicked on that button it would
+open a new tab and send you to the to the companion guide ebook and
+Bring you to the section of the challenge with a list of
+hints
+so that
+always felt a little bit
+awkward because once you send people to this e-book and they know that there are hints
+It doesn't take them long to also see that there's a complete appendix with complete step-by-step solutions
+Which is something you might not exactly want in every
+scenario when you do trainings or especially lectures in university
+So I guess people would still find it now on themselves for themselves
+But the juice shop doesn't link there anymore because
+juice shop now shows hints gradually by clicking on this hint button, so you start basically by
+having no hints unlocked
+when you click on the button and
+The tool to basically changes and shows it hint and tells you to click again for more hints and you can do that
+As long as there are still hints available to unlock and in this case here this bully chatbot
+Challenge has three hints available
+essentially just telling you to try and
+Knack the chatbot over and over and over again asking for a coupon code, so he would hopefully give you some
+So as I said the hints were also in the e-book I
+Personally don't like
+duplicating work
+So the hints from the e-book are now automatically synchronized with the hints from the juice shop itself
+So basically whenever we do a change in the challenge definition file of juice shop where the hints are now stored
+There's an automated CICD job running which copies over all the hints into the e-book
+Into separate files and then it's all imported there when the e-book is built
+Which is quite nice?
+Also
+the existing webhook that you can
+Send out when juice shop or when it challenges solved on juice shop now also sends the number of available hints for the challenge
+And the number of ones you solved
+Because you might for example in a training scenario want to I don't know show on some dash board
+How many hints a student has used or maybe even deduct some points when they do this in the CDF set
+We also have a nice pure convenience feature. You can now search the quite long language drop-down list for your favorite language
+If there's any security vulnerability related to the search field, I can say I didn't build this feature
+so
+Give it a try if you find one open a ticket and we happily and might add a challenge around that
+Coming to multi juicer. There also have been quite a few enhancements with this lovely site project
+So for those who don't know multi juicer as a Kubernetes
+Plus the slash setup with a custom load balancer that allows to to host
+multi-team events
+Basically every team gets there on juice shop instance bond
+The the load balancer makes sure that you don't get access to someone else's
+Instance and it also comes with an integrated scoreboard to compare the team scores and that has seen
+Quite some visual enhancements now. So first of all when you create a new team, you know
+Get 50% more security for your for your team access protection because the passcode is no longer
+eight but 12 characters long, so that's
+That's great
+You can also now get a convenient copy a join link you can copy and paste
+To your team's WhatsApp group or whatever to actually make joining easier. So that's quite nice
+But more interestingly the scoreboard now features a nice live activity panel
+Where you can immediately see when someone or when the team solved a challenge? How many points they got and
+This is basically then scrolling all the time if the teams are active which is quite can be quite motivating
+Also from the scoreboard the teams can now drill down into a scoreboard just for themselves
+so where they can basically see which challenges they already solved and how long ago that happened and
+You can also take a look at a specific challenge and just see which teams actually solved this particular challenge
+Which is also quite quite nice in certain scenarios
+For the administrators of the multi juicer or for the event hosts of the CTF we now show the cheat score per team
+Because a juice shop calculates behind the scenes how likely it is that you might have actually
+Cheated a little bit because you solve the challenges way too fast
+Obviously this only works when you do the events like this with teams that never use the juice shop before
+right if someone knows every challenge already and they just are super fast and it will look like they're 100% cheating or
+90 something percent cheating which is this core you get when you run the automated test suite
+So I think that's 90 96% cheat probability
+Which is which is quite okay fair fair enough I would say
+We also did some changes behind the scenes
+so
+One is
+That we are now again up-to-date quite nicely to the latest versions of our most important framework
+So we are on angular 20 and on node.js 24
+Which is quite important
+We actually for angular we let the upgrades slide for a while some time ago and this really hurt us
+in the end because
+you just have more work to do to actually catch up again and
+Especially I think angular 18 between 17 and 18
+There were some huge differences in the way the applications is application is built and how the compiler works and everything and that was quite painful
+So we now try to be more up-to-date
+faster
+During this year's Google summer of code project our student harsh actually harmonized the code base of all our site projects
+So basically everything that is not the main juice shop application or multi juicer
+Because that was quite a mix-up of typescript JavaScript this test library that test library
+And he basically now brought everything onto typescript introduced ESLint for code checking everywhere with the same
+code style and introduced the
+much simpler native node test runner over any third-party test frameworks we had so
+This is now also much cleaner and easier to maintain for us long-term
+Just very recently I added
+the so-called project dot owas dot yummel fire to the to the project to the to the website project to be
+precise, which is
+a proposal from the owas nest project to
+define meta data for projects events chapters and
+committees and other things so basically entities at owas
+so
+This cannot read this here, but essentially it allows you to specify
+The name of the project leads the name of different communities or social media channels you use important repositories
+mailing lists and so on and so on
+In a standardized way and they plan to then use this to offer their own service of making
+Owas projects or chapters more easily accessible easily searchable
+Then by going through the owas website, which let's be honest is a bit clunky
+Or even worse going through the owas get up
+Organization, which is a little bit crowded right so and owas nest has the nice benefit of basically bringing everything together
+the main owas github org all the organizations that bigger projects like just shop for example have and then they also
+Plan to actually highlight for example new issues, which are particularly well-suited for students for Google summer of code and all kinds of things
+Quite quite nice initiative
+Which do shop is now supporting and I invite everyone who has a project or chapter to look at?
+The Seattle fire pull requests that nest opened and see if you can use them
+So something that was very popular is now also finally back
+Maybe nobody noticed it was gone. I don't know, but in the past we sent out coupon codes every month on Twitter
+Because Elon doesn't think that APIs are important. So it's not possible to send those anymore
+So instead we are now sending coupon codes every month on blue sky mustard on and reddit
+So you can again save a lot of money on our products every month. So
+Please use them and maybe there's one or two challenges around
+coupon code abuse also in the do shop. I don't know
+might be the case
+This is a
+special slide so
+We actually have we actually have a statistics page
+stats dot or wasp dash juice juice job
+Where you can see all kinds of information or often juice shop is downloaded and such and this now includes also a spam pull request statistics
+because
+We see an increasing amount of spam pull requests. What do I mean by spam PR? So there's typically two two types
+Mainly two types one is I hope
+It ended pull requests by someone playing around with the juice shop. So someone forks juice shop
+introduces some I don't know some security tool with some config files and some pipelines and then for no reason I
+Understand they open a pull request to get this running
+Instead of running this locally or in their own fork or whatever for some reason they open a pull request to our main repository
+making
+Unfortunately, Yannick and me busy with looking at these putting spam labels to those and then closing them and also blocking the user for 30 days
+And I think it helps because I've rarely seen
+Offend us reappear. Let's say
+So this is the one case the other spam pull request case is what I would call contribution farming
+Which was a problem in the past already, but I think it's now getting much much much worse with
+The AI tools where it's even easier to create a contribution
+which is just doing some stuff to the codebase and
+call maybe takes like half an hour maximum for the developer to
+do but for the reviewer it would actually take quite a long time to
+Finally understand what they want to do and why they are doing this and so this is
+Really getting annoying, but on the other hand, it's kind of a luxury problem if you are a project with 15,000 get up for us
+So it's a bit of a bit of a pickle we are in but we try to handle this as best we can
+So project roadmap
+We do have some UX enhancements to plan for the scoreboard
+We also have some modernization in the front end currently ongoing by an external contributor
+We are because I say it now because otherwise the question would come anyway
+We are looking at opportunities to do some AI stuff in the juice shop
+We already have the chatbot, which is using some NLP library behind the scene. So it's close
+But not real LLM on real AI
+The problem is if we add this in a careless way, we will just blow the application completely
+So the Docker image will go up in size or we have some external dependencies where people need to
+download a gigabyte of
+models and this is not really fun if you look at our Docker image download numbers if
+Everyone then needs to download an additional gigabyte from somewhere. Meh not that good. So that that needs some thought
+General enhancements of the code base are always planned and we want to get our test coverage also at some point back to 90%
+so
+This is the end. I just have one
+last slide
+and for that to work best I would need
+Yannick to at least stand up or maybe come to the stage
+So
+Yannick is
+Yannick
+Actually is not only the code project lead of the juice shop
+but also the project lead of secure code box as you hopefully as you hopefully learn today and
+He actually won the Waspia War 2025 from all was for project person of the year
+for his contributions
+So
+Unfortunately due to logistical problems or maybe I don't know it's because of the taxes and stuff from from the US
+Some for some reason not near not not closer to be specified
+We cannot have the physical award here, but he will get it at the next
+Possibility probably in Hamburg
+Because a nice colleague of ours actually brought it from the US from the last
+Global conference, but he could he couldn't be here today unfortunately
+So I would give Yannick in replacement this ugly cat here, but let's not
+Maybe maybe he just wants to wait for the real thing instead
+So that's it
+Thanks for your continued interest in the project even though it's already 11 years old and
+I don't know if we have time for questions the timer says we don't so thanks everyone

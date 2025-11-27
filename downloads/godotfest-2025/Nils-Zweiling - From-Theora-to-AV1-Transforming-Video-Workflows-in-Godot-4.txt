@@ -1,0 +1,218 @@
+API URL: https://api.media.ccc.de/public/recordings/93387
+Frontend URL: https://media.ccc.de/v/godotfest2025-from-theora-to-av1-transforming-video-workflows-in-godot-4
+Title: From Theora to AV1: Transforming Video Workflows in Godot 4
+
+Now we all love a good bit of like images in rapid succession of one another, sometimes
+also called video I've heard, and Godot is even able to put images together in video
+playback, albeit with outdated tech.
+Niest's filing is here today as a software developer creating interactive experiences,
+games and apps, and he will present VTG, also in full video toolkit for Godot, a plugin
+that brings the AV1 video standard to Godot.
+Please welcome to the stage Niest's filing.
+Thank you very much, yeah, so my topic is here from Theora to AV1, transforming video
+workflows in Godot 4, maybe, but before I dive deeper into that topic, who am I?
+My name is Niest's filing, and I consider myself as a coder, maker and creator, and
+probably that more formally will be software developer and consultant. I'm self-employed,
+and I do mostly interactive projects, like interactive installations, and therefore I
+mostly use game engine technology. I used to work a lot with Unity. I used to work with
+Unreal Engine, but lately I wrapped my head around Godot Engine and started my, or hour,
+I did it with a friend, our first project, but more to that later. So what am I doing?
+I'm doing like for Adidas, did some interactive installation in there, London Store. I did
+Samper Robot together with a friend, which is a professional audio sampling application.
+I work for Royal Render, which is a Render Manager and so on and so forth, just my website.
+a a a a a a a a a a a a a a a a a a a
+past year at Godokan 2024. I feel like I see some familiar faces around here and yeah, what
+is Window Arcade? Window Arcade is a is an application framework, if you will. Window Arcade
+leverages smartphones as controllers and allows for intuitive interaction with dynamic
+content, meaning you have such thing here, which is our own creation that we can travel
+around with. We have this demo application, which is called Island Racer. You can use
+it like this, you have the screen, you have a QR code and a smartphone, scan the QR code
+and then you can play a game or interact with whatever you have on that screen. And this
+is how it looked like last year at Godokan, our little trailer, because we were so proud
+that we were able to present that there. And as you see, you have a QR code, Robin Young
+is scanning the QR code and then can play a game, which is sort of a super little tiny
+racer, but people said it was fun. And we think so too. So now we have also a three-player
+mode and we presented it at conferences, but now our vision is okay, we have so many big
+screens everywhere on the streets behind shopping windows, you name it and what if we can combine
+that with linear content? So not only showing linear content on the one hand, but showing
+linear content, you approach this device, scan the QR code and then you can interact
+with your favorite brand, imagine you are at a Nike Adidas or whatever store, you see
+the new shoe, you can scan the QR code and then you move from a cool brand video to something
+like an interactive experience where you can experience the shoe, the brand information,
+that is the vision. And so what we want to do or what I want to do is combining interactive
+content with high quality video. And that was the rabbit hole I went down. So what is the
+status quo of video in Godot right now? We have video playback capabilities in Godot.
+It is the stream video stream player node and inherits from control. You can think of
+it as some sort of sprite 2D that is constantly updated with a current frame of the video,
+obviously. But there is a drawback. The only supported format is OcTheora, which is not
+bad per se, but it's a very old codec. So it is created by the CIF organization. It
+is the good thing. It is royalty free. But there are some catches with it. The export
+seems to be very buggy in certain applications. So the work around is then exported as H264
+and then transcoded with F of NPAC. And also it's not actively developed since 2010. And
+the funny thing is that I took a look at the FTP file server here where the releases are
+and the alpha was released in 2010 and the beta is released in 2025. So there is probably
+just a maintenance release and I feel like it could have something to do with Godot. I'm
+not sure. But so the real catch is it has really, really large file sizes for high quality
+video, especially if you're going 4K and there is no hardware decoding available for that.
+So not very up to date. I mean, it works, but not up to date. So what alternatives do
+we have? We have other extensions. We have the ERAR team, F of NPAC plugin. It's F of
+NPAC based. And there is no hardware acceleration. The same goes for the GDE goes and plug in
+no hardware acceleration. And there is this reference implementation which only has support
+for VP9 and also no hardware acceleration. Okay. So and what about F of NPAC? How do we
+feel about F of NPAC as a dependency? Yeah, it is a cool library, but it is a very large
+dependency, as you might know, and it's LGPL. And that somehow prevents us using that when
+we want to steady link against it and use it in proprietary software, for example, on
+the app store. So and also it's probably not a very good idea if we in the future, I don't
+know. This is just a suggestion, what I'm presenting here. But if we want to integrate
+something new into Godocor, we probably don't want to depend on F of NPAC. So what other
+codecs are there? There is H264 and H265, which are, hmm, yeah, very popular, but very
+not royalty free. And they are, so this is what we call patent and combered. They're
+a patent pool. They say, yeah, you're using this algorithm here, and we have a patent
+on it, so give us your money. Not for everything. There's this use case where you can distribute
+H264 videos free on the internet to your users, and you don't have to be or you you
+aren't charged royalties for that. But if you are creating devices or software that can
+read or produce those codec files, then you have to pay royalty fees as well. And it's
+very problematic with HEVC even more because, so open source projects like Fidora and open
+Susan, they say, no, no, we can't do that. It's too problematic. We remove that from
+our Mesa build and open SUSE as well. So what does the Godoa documentation say about this?
+They say H264 and H265 cannot be supported in Corrugado, as they are both encumbered
+with software patents. And so, yeah, that aligns with what I found. Alternative AV1.
+So it is governed by the Alliance for Open Media. So always, you always make it packed
+with a devil. You have Amazon or the leading companies in this Alliance, Apple, ARM, Cisco,
+Google, who are why they all have patents in this patent pool. But they say, you're free
+to use it, do what you want. But there's always a catch. External patent pools have claims,
+like the CIS will, I think, Phillips is part of that pool. They say, yeah, you cannot do
+that. We have also patents that are touched somehow by any algorithms in there. So we
+want money. So you better give us our money no matter what they say. But in reality, so
+it's very, very complicated. But in reality, this is probably the best we can get in terms
+of royalty freeness. Because encoding videos, it is such a long history of algorithms that
+build upon each other. So if you really would want to create something that is truly royalty
+free, that would be very, very lucky guess, because there are so many patents, like over
+2,000, 3,000 patents. So I think this is the best we can get for a modern codec. So the
+documentation says, everyone is royalty free, but it remains slow to decode on the CPU.
+And hardware decoding support isn't readily available on all CPUs and use yet. Yeah, that
+is partly true. I mean, but I think we moved on from there. There are good software decoders
+and also encoders. I'll come to that later. And there's also many current hardware devices
+and chips. They do have a dedicated hardware unit. Small list, I don't go through it all,
+but as you can see, M3 on the Apple M3 and newer, A17 Pro, RTX 30, they all have dedicated
+units in their hardware. So it's going to be there. People are committing to this new
+format. Hardware coding is a little less, but it's coming. It's an RTX 40. And this
+seems to be a good bargain. You can get even an Intel card for, I think, 100 to 150 euros
+that can really efficiently encode AV1. So what software decoders do we have? We have
+lib AOM, which is the reference implementation by the AOM group. Then we have David, which
+is created by the video LAN organization. Those guys are the ones who also create the
+VLC we all love and need to use very often. And the lib GAV1, it's created by Google.
+So there are things available. And lately, David has gotten some very good improvements
+from the ARM group. So it works very performant. And what about software encoders? We have
+the lib AOM, AV1, SAVT, AV1. So there are many and they are all integrated into FFmpeg.
+And in this case, FFmpeg is not the problem because you don't want to probably use software
+encoding in your software and your game. I mean, you might probably. But so if you just
+want to use that as an external tool, we don't have to worry about FFmpeg.
+Okay. So what I did is I did some testing. So this is not representative at all, but to
+somehow get a gist of what you can do. This is on my Mac Mini M4 entry level device. So
+nothing special. I encode the central trailer, 1080p 24 frames per second. And it's around
+five times real time, the encoder. So it employs all the 10 cores available. But I mean, that's
+cool, I think. It's pretty fast for a software encoder. So I have no worries there. And if
+you want to go with 4K video like I'm showing here, it's encoding the Netflix food market,
+which is a demo made by Netflix because they are very interested in video streaming, as
+you can imagine. And 4K 60 FPS. So this is encoded with, I would say medium to good quality
+settings. And it's a third of real time. So about encoded with 20 frames per second,
+which is also pretty nice. I think comparing that to years ago, when we had to wait forever
+to get every one encoded. So and the good news is that we also have support in Vulkan right
+now. We have these two extensions, we have decoding extension and coding extension. And
+that makes for a really good foundation in my, yeah, for me, as I think that could be
+a really good foundation for a cross platform hardware decoding support in Godot. But you
+always have to be aware, this only works on dedicated hardware units. They need to have
+those AV1 specialized units. They cannot employ general purpose shader units. So and
+also what really nice is that they merge the Vulkan encoding to f of mpeg 8. And so we
+can use it from there as well. So this is my suggestion. I call it video toolkit for
+Godot VTG, I don't know, since just a working title, I'm not sure that I will stick with
+that. What is video toolkit for Godot? It's a C++ GD extension abstract base classes video
+player. And what I imagine is to have some sort of software decoding as a baseline for
+all platforms. So in principle, it's like before we have Arc Theora, it works software
+decoded on each and every platform. But I would like to add AV1 as a software layer. And then
+go when hardware evolves and we get implementations there that we do hardware decoding on specific
+platforms where available. And the only format supported would be for the software decoding.
+I feel like AV1, I use opus as audio format. The container format is web m. I'm not sure
+about that because it's not really specified, but it works. And I'm using in my proof of
+concept here, I'm using SAV1, which is a thin wrapper library around David and lib web
+m. And SAV1 is done in plain C. It cares about things like file loading, decoding, threading,
+and optional color conversion if you want. I do that in shader because it's more efficient.
+But yeah, so we don't have to start from scratch. And that is implemented as video player soft.
+So this is how it looks like. So on the left side you see the editor. I did a small plugin
+sorry for the very, very small video. I could have made a little bigger at least. So it's
+the central trailer playing right now. And you see it's software decoded 24 frames per
+second and it's around about I think half a core here. And this one as well. And then
+I move on to the food market example. And that decodes. I mean, super fluently, but puts
+a little bit more pressure on the CPU. But I mean, it's okay. If you really want to have
+some sort of baseline as works on every platform, I'm probably okay for me if I'm using the
+Mac mini in my installation. And I still have lots of CPU power left. So that's the baseline,
+the fallback. What about hardware decoding? I think we can employ video toolbox on Mac OS.
+We can use Vulkan on Linux and Windows. And we could even support multiple formats. We
+can use AV1 as the default, but also H264 and H265. And you might say, yeah, but you told
+us about all this patent problems before. Yeah. But in this case, although I'm no lawyer,
+this is not a big problem because we're not providing the actual code to the user because
+we would only use hardware with dedicated decoding units and APIs on top of it. And
+that will be the hardware companies would have to pay, like NVIDIA, Apple, they would
+have to pay these patent fees. And this implemented as video player metal. And in future, this
+would be video player Vulkan. So how does it work? I create two image textures, pass
+the native handles in this case for the metal back end, put it into the decoder thread,
+and that continuously decodes and blitz just on the GPU. So nothing on CPU here. So now
+we have this little button here. I can enable hardware playback, press play, go to top and
+then I can see that this is a bit much right now because it doesn't have the focus. Now
+it goes back to 30%. And this is 4K 60 FPS. So that's pretty nice. Roadmap, I go a little
+bit quicker about that. Software decoding at first, then hardware decoding on Mac OS and
+IS because I already have this prototype that is working and then move on to software decoding
+and hardware decoding on the rest of the platforms. So I haven't touched Vulkan yet and I'm not
+sure if Godot has all the API necessary in the GD extension, but I'm sure I can figure
+that out. And maybe I can talk to the render back end creators of Godot. So my repository
+is just a proof of concept, MIT license. Check it out. I'm happy to get feedback. So the
+conclusion is Octheora is an old file format. It has large files for high quality, no hardware
+decoding whatsoever. I want to add modern codec support like AV1, SGT extension and
+software decoding as a baseline. It works on every platform and hardware decoding dependent
+on the render back end. And so that will be metal and Vulkan. And I have one more thing.
+This is, sorry for the very crappy video here, but this is my side project which I want to,
+which I want to use with the new plugin. And I'm so happy to show you this because it's
+a note based video tool. So you can use video mixing tools. You can have a video playback
+mix that, I mean, it's a very basic example right now, but I have a vision for it to have
+custom shaders, generative art. So think of it as a vjang tool. So you can sit on your
+couch, connect it to your external monitor, and then play around and be creative. And
+then create your own panel where you have sliders, mini screens that you can then call
+here and attach those slider to some sort of mixing value here. And then you can create,
+you don't have to fiddle around while you're doing your vjang show. You don't have to fiddle
+around in your note. You can have your custom UI. And that's it for now, guys. I'm so happy
+that you were here and we're listening to my talk. And yeah, give me feedback. This is
+my web page. If you want to get in touch, LinkedIn, but I'm around. And thank you so
+much for listening.
+So, yeah. Yeah, we now have five more minutes for a Q&A if any questions arise from the
+audience. Yes.
+Yeah, I think I was doing on Android. There's an exo player that you can just plug in and
+it goes straight through. Maybe you can explain how that works to me at some point.
+Sorry, the axo. There's an exo player that can play straight through and it doesn't even
+touch Kado and just puts video streams straight into the game.
+I don't know actually what the axo player.
+Exo. Exo. I haven't heard that before. So, I cannot tell you anything about that. For
+me, it's just to not to have any special solution for any special platform. What I think is
+what we need is to cover all platforms in the same way. So, the software first and then
+we can move on and to integrate certain hardware desires. So, I'm sorry. I don't know about
+the exo player, but yeah, maybe it's the alternative.
+Some questions from the audience. Yes. You need to talk into the microphone.
+Any feedback on performance on mobile? I have to say, I just started this project. So it
+is, I mean, I'm working on this for, I don't know, two months, but what I can say is that
+if you are on Apple devices, it would perform even with a software version pretty much along
+this lines here. And if you employ the dedicated hardware unit, then you won't see any impact
+on your CPU at all. And that would be the same with the Google devices because I'm working
+mostly on Mac, but I know Google Tensor devices also would have the same performance. But
+then if we want to have that, I need to move on to the Vulkan back end. But then we would
+see very, very high performance results. Yes.
+I think this has been it for questions. No, it has not.
+I'm not too familiar with the different codecs, but what would the size difference be in terms
+of file size between the old version and the new one that you introduced?
+That is a really good question. I cannot really answer that because there is so many different
+settings if you want to compare the quality. And you're right. I will do that. I know you
+really want to see the, but I can't tell. But what I feel like is this, what I can tell
+you, the central demo, which has really good qualities, quality and has a couple of seconds
+videos in just nine megabytes. You wouldn't get that quality. You wouldn't get that quality
+in Octheora. But I hear you and I will do some benchmarking so that people can really compare
+that to each other. Yeah. And with that, we are at time. Again, please give another massive
+round of applause for this wonderful talk by Niels. Thank you so much.

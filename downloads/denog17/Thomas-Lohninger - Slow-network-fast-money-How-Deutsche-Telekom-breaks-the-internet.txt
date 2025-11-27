@@ -1,0 +1,346 @@
+API URL: https://api.media.ccc.de/public/recordings/93267
+Frontend URL: https://media.ccc.de/v/denog17-70804-slow-network-fast-money-how-deutsche-telekom-breaks-the-internet
+Title: Slow network, fast money: How Deutsche Telekom breaks the internet
+
+(upbeat music)
+- Our next presenter, as I said, is Thomas Löninger.
+He's Executive Director of Epicenter Works
+and represent on the work of the NetBranze Initiative.
+I do know the voice from the Lockwood Nespolitical Podcast
+as you may either.
+the session. We do too. At the NOC we want to have a discussion on critical topics as well. And for that a few rules apply. The most important one is that
+a debate can only take place if both parties have a chance to be heard.
+So this talk was submitted through our usual process in the call for papers.
+The program committee voted in it and chose to accept it.
+And after the program committee's decision we as a board took a bonus to speak to Deutsche Telekom.
+So we approached them on September 9th and proposed to change this talk, 30-minute talk as it was initially submitted,
+and and then we offered a neutral 20 minute debate.
+We said Deutsche Telekom and Ted deadline until September 26th to respond with in the deadline but they did respond shortly after and kindly declined to be present here.
+On that note, we do not censor presentations before they are being presented.
+We have not looked at the slides, we have not made any editorial aspects. I'm sure Thomas can attest to that.
+And we will only step in should this presentation leave the professional level.
+Same goes for the Q&A. I have no doubts that we will be an excellent community, we will be excellent to each other and also to the other parties in that discussion.
+So, I don't expect to jump in. And lastly, another note, as you may know, some of our bodies in Dino Beat,
+the working groups, the board or the chairs have employers that are part of this discussion.
+We closely monitor any affiliation, any of our board members or any people who can influence a decision or presentation have.
+And if there is a bias, we do ask these members to abstain and we ensure that we have a neutral debate, which I'm sure we will have.
+So with that, that's the official disclaimer. Now over to Thomas. Have a great discussion. I'm really looking forward to it. Thank you.
+[applause]
+Thank you, Moritz, and thank you, Dino, also for allowing us to have this debate. I'm honestly really honored and happy that I get to be here with you all and have this discussion.
+And of course, there is a controversy at the end. It's as we will soon see an allegation that we are putting into the room and we will absolutely stick to the fact, we'll explain what our project is about and also how this might be relevant to your work.
+And your lived experiences. But at the same time, I will try to make this funny. So as Charlie Chaplin said, if you want to tell people the truth, you better be funny, otherwise they'll kill you.
+So there will be some memes, but nevertheless, all of this will be based on the facts and hopefully allow us to have a more meaningful discussion.
+First, who is behind this all? The NetSpace project is undertaken by a coalition of four players. My organization, EpicenterWorks, has been around for a long time, over 15 years.
+The privilege of my life was actually having drafted the net neutrality bill in Europe. I haven't worked on that over a decade ago and we've been on this issue deeply involved ever since.
+Similarly, Falset Pefau, the national federal consumer organization in Germany that you all probably know.
+And Geserta Fufrai had raised a German litigation NGO. They take care of the freedom of speech and found about the rights angle.
+And then of course, the godmother of net neutrality professor, Dr. Barbara von Shavik from Stanford Law School.
+And while you might think, OK, good, these are some random activists, we actually have a track record with the exception of GFF.
+It was exactly this coalition that has been working for the ban and prohibition of zero rating in Europe, thankfully.
+[APPLAUSE]
+I feel reminded a lot in the current debate about what we could achieve for zero rating because at first it also seemed impossible.
+But then in 2021, we actually won in the highest court of Europe.
+So, but what is this complaint got? netspirence.de, this is the website, I'm sure you all know, it's completely translated in English and German.
+And please check it out. A lot of what we are saying here actually is in the complaint. I know that's a long read, it's nearly 300 pages.
+But most of what I'm going to explain here, you'll find in detail on the bosom over there.
+And there is even short animation videos if you want to read and press releases and so forth.
+Everything we did started, like most good things at Congress at 38C3.
+You can be hearing from GFF and me had a talk about netspirence that kicked the whole thing off and made it public.
+And we'll also have a workshop next year at 93C3.
+We will soon talk about what happened in between.
+But first, I need to get a little bit basic and explain what it is that we are alleging.
+And this will be very boring for the people in the room, but nevertheless, I think it's important
+that we are clear about what it is that we are actually alleging against Legitatorcom.
+So how does the internet work?
+We have consumers that have their ISPs, their internet access service and then you have a content provider
+and you connect them via transit lines or via CDNs or via direct forms of connection.
+It's as simple as that. And of course, from the consumer center ISP's perspective,
+there is no other way to reach that user without going via the ISP.
+And that's what we call a termination monopoly.
+Similar to the old telephony world, if I want to reach that subscriber,
+I need to go via this gatekeeper that I speeded connects them to the internet.
+In the case of Dajitatorcom, we have many forms of connectivity that are out there
+and those that are not paid for are usually and systematically congested,
+leading to a poorer experience for the user.
+And then there are the connections that are paying towards Dajitatorcom
+and hence they have a far better connectivity and are usually not congested.
+This is also the case when there is a direct interconnection between the content application provider and Dajitatorcom.
+So what we have here is those connections that are paid for are fast.
+Those connections that are not paid for are slow, fast lanes and slow lanes.
+This is the basic essence of net neutrality.
+And for a long time there was this principle that, yeah, but net neutrality doesn't really apply to interconnection.
+This changed in December of last year.
+When Barak, Barak is the body of all telecom regulators in the EU.
+So in its eyes, part of it, our step in France and all of the national telecom regulators
+come together at their European body, Barak, to agree on stuff.
+And they have repeatedly issued reports about the IP interconnection market
+and this very important point, they are actually for the first time saying
+if there is a systematic form of congestion in the interconnection
+that is economically motivated and that leads to an infringement of the rights of end users,
+this falls under the open internet regulation under net neutrality bill in Europe.
+So here we actually have for the first time clear standing, which is honestly also the point where we decided,
+okay, now we have to do it.
+And now I also want to give you very briefly the legal theory of the case.
+And in its essence, what we are buying with internet access is of course access to the entire internet.
+In the legal text it's called virtually all end points.
+So it's not just the network of your ISP, it's not just whoever they happen to be connected with.
+No, it is part of the product that we are buying to have global connectivity everywhere.
+And therefore we have two columns that this whole case rests upon.
+First is the right to freely use the internet as the user sees fit.
+So we have a freedom of choice before the application.
+And then on this second column we have a provision of paid fast lanes.
+So you're not allowed to do traffic management or any other form of network interference based on commercial interest.
+From the perspective of the regulator, because we are complaining to be in its R to the telecom regulator in Germany,
+there are two sides of the same coin.
+We as consumer protection organizations and NGOs of course come from the consumer harm perspective.
+And that's also where we have the most evidence already in our original complaint.
+But then there's the other side of the coin.
+That's basically why I'm here.
+Because we also need the cooperation of the company side, of the content side of the other networks that are connecting with the R to the telecom are part of that market.
+And only when those two sides are brought together in the eyes of the regulator,
+do we have a strong enough case that can be in our favor and survive in court?
+Because this will certainly go to the highest court in Europe once more.
+And this is about to actually tailor-confused and foremost.
+But of course we hope to really have a clarity to the whole situation.
+The next slide is really something that I did not plan for originally,
+but it was after the event yesterday that I, after several conversations, decided we need to have that conversation.
+Because several of the people and companies that I spoke with yesterday said it's almost impossible to believe how it could be different,
+how it could be treated differently.
+And I find it important to say that there is a reason to be brave and that you do deserve better.
+This toxic relationship where you are basically forced to pay that one company in order to reach their customers is simply not a healthy situation and not something that is scalable as we'll soon talk about.
+So basically, there are three asks that are brought to you today.
+How can you actually help the net sponsor complaint?
+The first is speak with BNet's ask, speak with the regulator.
+There's a formal and very brave way you can join our complaint.
+You can say I'm also an affected party of the net sponsor complaint and my company wants to be formally named in the proceedings as another plaintiff.
+That of course will also put you out there, but it would certainly be something that's the most straightforward possibility.
+The second way is to give testimony.
+To basically say that you have evidence to share with BNet's R, you have information that's relevant to the case,
+no matter in which direction that evidence and information will lead.
+But you have data, you have contracts, you have experience, you have effect on your own business.
+All of that is relevant to BNet's R.
+And it's very important to say that all the non-disclosure agreements that you might be obliged to are rendered mute in official proceedings.
+So you cannot be silenced, particularly if the regulator comes to you, then you are allowed to speak the truth.
+And BNet's R knows about the confidentiality of this case.
+I spoke with Klaus Miller the head of BNet's R after we submitted and he assured me that they know how to deal with situations in which there are how to put this.
+In the gas market you could also imagine that prices are sometimes disputed and once you want to intervene as a regulator,
+you have to be very careful with all participants involved.
+And the confidentiality and trust are very important in order to ensure all of law is uphold.
+So BNet's R has a team on this.
+I've actually been positively surprised with the seriousness and the weight they are attributing to the case.
+And here are the contact details of the relevant department in BNet's R.
+And here's of course also our email address of the campaign.
+If you want to reach out with us, we are of course also available to help you distinguish between those various options.
+What's the second thing you can do?
+We need data.
+We need more measurements to actually substantiate what we are alleging so that it is no longer just to consume a harm,
+but we also have the measurements from other sites.
+So the simplest thing you could do is retain the data that you already have in your network from when utilization charts and onwards.
+And that data can be shared with BNet's R. That's already extremely useful.
+And we need multiple data sources and the more evidence we can bring that collaborates the situation the better.
+The second thing is you could host an MLab server in your own network.
+Measurement Lab is an environment in which many people are using speed tests.
+And here are the links to their program with which you could also have more measurement servers.
+In Germany there are experiencing the situation.
+By their paid or not paid it doesn't matter.
+The important thing really is that you have more of these measurements out there.
+And everything that's done here, of course, is open data.
+That is really the new thing that we just launched yesterday night.
+Let's go to TE/speed.
+This is the speed test that we have developed together with CloudFlare.
+And it's actually a very interesting one because it's reverse measurement.
+So it's measuring from the test server towards the client so that we can actually experience the congestion.
+And it's doing so via several different transit providers that are tested in sequence and randomly.
+You can find all of the source code, of course, it's open.
+And it's really important that these measurements are executed on mass.
+We need a lot of this data to actually give us enough statistical accuracy to really make determinations.
+And so that's one option that is out there for the consumers, of course, but also for anyone who has infrastructure under their control.
+And what's the third thing that you could do? Speak out publicly.
+Ultimately, regulators and courts do not decide in isolation.
+They are part of the same society and are also experiencing the same debates as we are.
+And hence, we need a public debate.
+CloudFlare has done so. I mean, they're big. They can also do this on their own.
+Other companies have done so in their consortium, like CISPA, the European Cloud Consortium.
+They've been very upfront, also named. The next one's a complaint.
+VATM here in Germany, another business association, also said that their members are experiencing this.
+In general, your associations and your groupings are a great way to join the debate without having your own company.
+Out there in the first row, I also think that it's an important duty to speak here out on behalf of their members.
+And the last thing really is, as we have done here, this target show article back in May,
+where a reporter was simply investigating the situation and speaking with companies.
+And there is one which was actually anonymized.
+So if you say, "I do not have an association that's willing to speak on my behalf,
+I do not want to speak on my own," there are still good journalists out there that know about source protection
+that can also help you have your concrete stories out there and vet it while you yourself remain anonymous.
+So what's the summary of all this? What can you do?
+Of course, you can speak with the regulator.
+Do this formally by joining our complaint.
+Just simply give evidence, maybe in confidentiality, and there is a gradual scale of confidentiality
+that can be applied to whatever is needed to protect your interests.
+And lastly, of course, you can also leak information to us.
+Many people have done this.
+I don't think I've received that many contracts and measurements since we started this project.
+And this is, of course, always an avenue where we can act as an intermediary.
+Second, the measurement part that's really vital, particularly for a technical community like here in this room,
+help us with this.
+Honestly, our team consists of more lawyers than technicians, and this is certainly one of our weak spots,
+where I know that there are people in the room that have far better understanding of the intricacies of network measurement,
+but this is what we came up with, with these three options.
+And then lastly, speak out publicly in whatever form is suitable to you.
+I believe that there are great ways to anonymize in all of these three categories,
+but you should also understand that this is now the moment to be brave, in a way.
+Because if we do nothing, we now know very well what this will lead.
+We have now a window, since Bennett's eyes now in the middle of their investigation, to really still make a difference.
+We have the barrack report that really drastically changed the thinking from all regulators in Europe about the interconnection market.
+And Bennett's hour was deeply involved in that report.
+By the way, a lot of the confidential information from that can also be used in our proceedings.
+It's the same people.
+They just understood and investigated this market.
+Then we have the great work in Switzerland from Innit7 that was also extremely helpful.
+Thank you, Freddie. Thank you, the whole team.
+(Applause)
+And, of course, we are basing our work on all of this to open up this window, to checkbox the consumer harm, but now we need the other side of the coin.
+This is the first reason why now is the time.
+The second reason is that you are busy and we have a new law coming called the Digital Networks Act.
+It will be a complete reform of the whole telecom code of the EU.
+It will include net neutrality.
+And the current landscape we just saw in the leaks, a complete reversal of the GDPR.
+And you don't have to believe for a second that politicians that want to take away the GDPR will not take away net neutrality as well.
+So all of the things that we are wrestling our case upon are up for debate right now.
+So far they are still law. They might not be in the future.
+Let's use them while we still have them.
+And then lastly, thank you Vodafone for the brilliant timing.
+(Applause)
+So it will not stop with Vodafone, of course.
+It will be named the next high speed. It will follow this example.
+And I also don't believe that it will be limited to Germany.
+If this playbook works, then it will proliferate and it will do something drastically to the structure of the internet.
+That type of segmentation is not healthy, not vibrant, not decentralized.
+And we have to do everything to prevent this from happening.
+If we can make an example of the Deutsche Taylor Comm practices, we can really stop this development.
+Again, this is not to be seen in isolation.
+These things are all connected. Regulators speak with each other.
+And jurisprudence from one country is very well observed in another.
+So we can't really stop this development, but we exactly know even the timeline of this growth rating if we do nothing.
+That's why the next few months are important.
+Every company that wants to speak out really should do so intentionally.
+And knowing full well of the consequences.
+But simply doing nothing would be a mistake, in my opinion.
+Hence, really used at MoMA.
+And it might be important to look at experience of the US, where we were at a similar situation in 2010.
+When this playbook was also used by a few ISPs.
+I wasn't involved back then, but Barbara from Shavik was.
+And she said it was this point where it has gotten so bad that the company said, look, we either do something now or we accept this situation in perpetuity.
+And then they all held hands and jumped together.
+This is what we have to do now.
+Yeah, that concludes basically this talk.
+I've been working for a nonprofit for over a decade, so please apologize for the brief fundraising call.
+But our work really depends on support from individuals that make up the majority of our budget.
+For this whole case, like I can name you the total budget, it would be 5,535 Swiss francs from minute seven.
+And I think we've done a lot with that already.
+But of course we hope that more people that are affected, that care about net neutrality help us in this situation.
+Last year, around this time, we were actually very close to shutting down because we couldn't pay bills and salaries until the end of the year.
+So I would rather do anything else than fundraising, particularly in a big net neutrality reform.
+So yeah, please consider this.
+And I think that leaves us enough questions at time for Q&A. Thank you.
+Yes, of course we have time for questions.
+Please raise your hand or enter them, Vangelas.
+There we are.
+Thank you, Freddy, for minutes, Evan.
+I just want quickly to add what is the status in Switzerland in our case.
+It's called interconnect peering against Swisscom, which has got the decision of the Swiss regulator just before Christmas last year.
+It was a nice Christmas present, actually.
+So Swisscom is no longer allowed to distinguish of traffic ratio.
+They must appear and that on a zero settlement peering base and I think they go now into the bit mile strategy, which makes it a bit difficult for some peers because of course they want to maintain their revenue stream on paid peering.
+But we'll see where it leads.
+It's pending on the Bundesferwaldungskricht that's the last step they can appeal.
+But I'm confident we will win that one as well because we already won a preliminary case on Bundesferwaldungskricht about exactly the same topic.
+So we are confident that we will win.
+It will take a while, maybe this year, maybe next year, hopefully.
+After all, traffic ratio is no longer the distinguished factor to peer or not to peer.
+Please give your Christmas money to Epic Centiverse.
+Hi, Q, asking in a personal capacity, I realize I'm asking for some speculation here, but obviously you've been talking with the BNSR and a few other regulators.
+What indications have they given towards how they will decide on this case?
+Does it feel like they're unhappy with Deutsche Telekom as well?
+I really don't want to prejudge, it's ultimately they are an independent regulator and they have to be guided completely by the facts.
+But what I can say is that the gravity of the case I think is well understood.
+Right.
+So the first barrier with every regulator often is that you are taken seriously and they understand, okay, this is something where I really need to put resources in to get to the bottom of it, the truth.
+And I think that barrier we have cleared.
+So they are genuinely interested in trying to find a solution to this disagreement?
+Exactly.
+So I can also, I think my strong expectation would be that whatever piece of evidence, whatever testimony, whatever thing you bring to BNSR will be seriously looked into.
+And they do have the attention, the resource and their interest to really investigate.
+This is exactly this unique window that I was referencing.
+That is good to hear, thank you.
+Maybe one more question?
+If not then, once, keep it precise and short, thank you.
+Hi, Nicholas from Freifeng. What's the situation in other markets in Europe since we are talking about European legislative initiatives here?
+So it's a good question.
+And this playbook in Norway is unique to Deutsche Telekom.
+Again, as I said, we have seen it in the US before and in other regions as well.
+And there are some European countries where you can find strong similarities.
+Very often it is limited to the incumbent operator in their home market to actually execute this playbook well.
+You rely on a strong market dominance and a big customer base.
+So that would not work. If you are a challenger, it would not work if you are a newer engine.
+But in general, we do believe that there is a clear solution.
+So importantly, we are not calling for any new law to regulate this.
+We also don't want to do what Italy did by classifying CDNs as public telecommunications networks.
+All what we do is using existing net neutrality statutes.
+That's the important thing.
+We don't want to regulate interconnection. We don't believe that interconnection requires regulation.
+It is only in these very limited cases where the big market dominance is abused.
+We think that there is a case to be made for net neutrality.
+And this is exactly the thinking that Barak has laid out in their December report as well.
+I just heard we have time for more questions in real time.
+But there are some minutes. So are there more questions in the room or in Vennulus, wherever.
+And if anyone wants to speak of the record, I'm also here in this room afterwards.
+I have business cards. I have stickers.
+So you don't need to be on the spot right now if you want to talk.
+There. One more question. Yes.
+Thank you.
+Lara, how do I track for self-med?
+Can you talk about the measurements you have?
+How bad is the issue currently according to your numbers?
+We do not have enough measurement data right now to really have...
+It's difficult for me to say because, again, I've moved away from the tension more gotten into the law to really give you
+that early preview of what the preliminaries say.
+We do not have enough data as we would like that I can say for sure.
+That's also why we had this block with three different avenues.
+And, yeah, I also believe that there is a lot of open data that we have not properly analyzed that the whole ripe atlas data sets.
+I think they should be useful for us.
+But honestly, we haven't done that homework yet.
+And it's also for the NGOs that are part of this project right now quite difficult because that's far more technical than
+we as law people are usually tuned into.
+There was a little bit of a cry for it help.
+So you see at least two more questions? Yes? Yes, I forgot.
+As we face the problem with the connection towards the daily comb nets work a couple of years ago,
+we bought IP tronset from them and it's working fine till then.
+How can we participate with this claim to support some information when our connection is fine?
+I can hardly shut it down collecting all the customer complaints and just to report it.
+But I really would like to support this thing.
+Thank you for this question because I think it's really important that we are not looking for
+the worst situation for anyone who is right now experiencing it.
+It is equally important to say this is our story.
+We had this problem, now we are paying, the problem has gone away.
+That is helpful evidence for the regulator.
+So it really is not dependent on you currently being in a problem and in a situation where your customers are complaining.
+When you explain how you as a business were impacted by this and what were your avenues
+and hence that was the decision that you took, this already is helpful evidence for the regulator
+to get a better understanding of the overall market situation.
+They are intervening not on anyone's users application profiles not working
+or any one's company's interconnection policies not being as they might should be
+but on the overall situation.
+Freddy again from minute seven I just want to give you a quick effect of what happened
+when after the decision we achieved with Comcom Swiss regulator.
+So we had somewhat congested interconnection with not so small eyeball provider in Switzerland
+and I talked to them we need to upgrade.
+They said well no.
+And then I said we can discuss this with the regulator and then it took about a week
+when they had their internal discussions and then they came back and said
+we can do that without asking or without talking involving the regulator.
+So there we are, it took still about four months until we've been upgraded
+but we're cool now and so this is the effect when the regulator is aware of it
+and made some, what is the pre-audits decision of a network case.
+Voila, thank you. Raise your hand.
+If there are no more questions then please continue the excellent discussions.
+Continue the initiative.

@@ -1,0 +1,473 @@
+API URL: https://api.media.ccc.de/public/recordings/93138
+Frontend URL: https://media.ccc.de/v/denog17-81767-denog17-opening
+Title: DENOG17 Opening
+
+(upbeat music)
+- Good morning and welcome to Asen.
+Very happy to not see you at all, I see light.
+(laughing)
+- Good morning, lights.
+- It's like this is the end of the tunnel.
+Okay, I've got the message.
+(laughing)
+Wonderful.
+My name is Patrick Busman.
+I'm the chair of the Dinark Foundation.
+I'm very happy to say hello to all of you here in Asen.
+You had a choice.
+Apparently, at least, that's what we're telling you
+all the time when we're talking about conferences,
+Dinark and all of that.
+So we said you have a choice or you had a choice,
+but did you really?
+I mean, let's recap the last 12 months quickly
+and as far as I understand, I have 10 minutes for 54 slides,
+So this is going to be fast.
+And your choice was to stay in Berlin.
+That was an option when we said Asen,
+like for the first 20 to 150 seconds,
+I'm decently sure for at least the German-speaking
+population who was attending this.
+This is what you thought about.
+(laughing)
+And then we, if we're more honest,
+this is what we told our families.
+It's like 30 seconds later, reality kicked in
+and re-realized, and this is what we're thinking about.
+(laughing)
+I was like, let's be honest about that, come on.
+So, if you then work further and took another 90 seconds,
+like you most likely ended at the Hitzel,
+Asen, something you've heard about this previously,
+someone has told you about a UNESCO,
+but who of you knew Asen and were in Asen before?
+Give me a hand, shout-out of hands.
+I'm guessing that's a lot, I see a tiny bit.
+Wonderful, so tiny side note to follow up on a few things.
+That is not literally, that's the name of the city.
+It does not mean you have to do Asen the whole day
+during lunch, fair enough.
+We take acknowledgement for yesterday's mishap,
+we fix that, we put redundancy in place,
+today is gonna be better,
+we're not gonna make you hangry again.
+Let's hope.
+So with that, we thought we'll give you choices.
+And we knew everyone would be unhappy about that.
+My reasonable definition of giving choices
+is if everyone is equally unhappy, we've done a good job.
+That's inclusion and the definition of fairness,
+to some extent.
+So, when we said we're gonna do two tracks,
+everyone was like, yeah, but two tracks
+leads to missing one track.
+So, I don't have full access anymore,
+I can't see everything.
+That's true, but be realistic, now you have a choice.
+Before we made a choice and said,
+this is what you're watching.
+So, now you have two tracks that you can look at
+and decide by yourself.
+You also have a choice to watch roughly 80% more content
+because we wanted to do a tiny small stage B,
+which has like two tracks or two things per day.
+It is fully sold out, you're crazy people.
+And it is fully staffed with content, so that is awesome.
+Thank you everyone for handing in so many presentations.
+You know I also have a choice,
+cat versus dog.
+Not sure how the cat picture made it in here,
+it's like I'm clearly 100% dog,
+but you have a choice to have that 180% content
+to be live and recorded.
+So, you have all of that because of the amazing work
+that the team here in the video studio
+in two stages is doing now.
+So, with that, let's quickly go through this
+and have a recap of what happened since we last met.
+Like we're still doing ICP2 mandate for RIR regulations,
+and this is really, really German stuff
+because we're talking through documents,
+we're reading policies, and we're trying to introduce
+how the rest of the world interacts with the RIRs
+and how the internet is governed by the United Nations.
+Boring.
+But, kind of the foundation for nearly everything
+that every one of us here is doing,
+so if you haven't yet, I highly recommend you
+check that out to some extent.
+IGFD in Germany kicked off again.
+That's the Internet Governance Forum in Germany.
+That is the place for pretty much every piece
+of internet legislation, every part of internet regulation
+comes together and talks about general concepts.
+Denmark since 2025 is part of that conversation
+and part of building and creating IGF.
+And then this data sovereignty thing is coming up more
+and more for some reason as someone who is paid
+by an American company, I'm not to talk about that further.
+At the same time, the world is changing here as well.
+It's like we have a changing world
+of peering and interconnection models.
+For those of you who haven't checked,
+I recommend you talk to your neighbors.
+Something happened last week, this week.
+If you haven't seen it, I'm sure the floor track
+can tell you, if you haven't seen that either,
+we have a talk tomorrow from our friends
+from Nitzbremzer, who I highly recommend
+you attend and have a look at.
+And then again, if you want to have more topics
+to talk about, it's like we have roughly
+370 billion US dollars of AI data center investment
+in 2025 as far as I understand we're doing roughly
+three times that in 2026, which leaves the question
+for Deenark and Deenark attendance number one,
+is there anything left?
+Like if all the AI companies buy all the data centers
+in power, will you all have data centers?
+Question one to discuss.
+And then a question two, is this gonna be really, really cheap
+in dollar time if the bubble bursts?
+So with that, a couple of topics to talk about.
+The pure point that I'm trying to make here is,
+there is still a critical reason
+why you all should talk to each other.
+And that brings me back to, you have a choice.
+And we're offering you a choice.
+Our conference mission here is to create a conference
+that enables all of you attendees to network
+and go away smarter from Deenark.
+However you get to that point is up to you.
+Like you can make a choice and that's what we're
+recommending to do here.
+And door A is the one pill, door yellow is the other pill.
+Which direction ever you wanna go?
+But the choice that we're proposing is, you'll be present.
+Life is gonna go on outside,
+life is gonna go on completely different.
+Your emails will come in, you can rush out
+out of every presentation and do emails and delete them.
+Or you can make a choice and be present.
+That is your choice, we highly recommend.
+It is your decision to do with the next couple of days
+what you wanna do.
+And I have to be significantly faster, I was just told.
+So, one data point to think about is,
+we're all data driven when no one of us ever
+makes no data driven decisions.
+We have roughly 625 attendees here.
+By a ballpark calculation that I made yesterday,
+all of you have on average 16 years of work experience
+if you calculate that.
+That is about 10,000 years of industry experience
+that all of you have access to here.
+In comparison, a famous connection platform
+that also has a library for training and internet knowledge
+has only 8,333 and you have to pay significantly more for that too.
+You have options, like you have a choice
+of how you're gonna spend the next 18 hours of denark.
+And yes, it's only 18 hours left or one minute
+as he's telling me, so I'll be faster.
+If you're taking just one takeaway from what I'm saying
+is like, there are two things that I'm really highly
+encouraging here besides enjoying denark
+and enjoying the fantastic conference
+that every one of the volunteers is building for you here.
+It's like number one, network, talk to new people.
+However you like in whatever size you like
+and whatever quantity you like.
+If you make one new contact per day,
+that might be what you wanna do.
+And number two is, can we go back to the 10,000 years
+of experience and it's like, the pool is huge.
+You're part of that pool.
+Make sure everyone brings something to the table
+and I'm sure every one of us has something to learn
+from each other.
+So talk to each other, ask more questions of,
+then what did you have for lunch yesterday?
+Maybe try out how to figure that and with that.
+I wish you a wonderful show, a wonderful day,
+enjoy, we're happy to have you here
+and I'll hand it over to Moritz in time.
+(audience applauds)
+- Hey everyone, I'm Moz, I'm the Vice Chairman of Denark
+and today is the most beautiful day of my life.
+I actually have the time that was scheduled to me
+by Patrick, thank you.
+(audience applauds)
+So as some of you might know,
+Patrick is always the visionary guy
+and I'm the guy who eventually has to give you all the facts
+which is the thing I enjoy, facts, figures and numbers.
+So, let's get started.
+We are 625 attendees at Denark.
+We are sold out.
+46 students and it's even bigger.
+We're 150 plus people remote.
+This is the largest Denark ever, again.
+(audience applauds)
+And with that, for my favorite moment of every Denark,
+could please everyone whose first Denark
+this is raise their hand.
+Welcome.
+(audience applauds)
+We hope you enjoy it.
+We put a lot of work into it,
+but sadly, despite all their efforts,
+not everyone could be here.
+You may have seen it.
+We sold out a month before the event started
+and so really Denark could be this big,
+which is absolutely insane.
+But scaling a conference is quite hard
+compared to Berlin, which Patrick said
+you had a choice really, you didn't, but here we are.
+This area is 3.5 times the size of Berlin
+and it's quite a lot of work to make it your home.
+You've probably seen all the amazing stickers
+the team has put up.
+This took us less than 24 hours.
+It's also more shirts, more badges, more questions,
+more answers, more Wi-Fi.
+And we can all handle that.
+We have an amazing team who can do all this,
+but we need you guys to scale the spirit.
+Denark is a community event.
+We're not doing this because we're getting paid.
+Denark is a labor of love by a small group of volunteers
+who spend a ton of their free time
+to give you this conferences.
+This means two things.
+(audience applauding)
+This means two things though.
+One, if something's not working all right,
+let us know, please just maybe close one eye
+and try to help if you can.
+And the other is that really we need your support.
+We need Angels.
+If you haven't already, please talk to the info point
+or join the Angels Signal Group or the Angelsus team.
+We really need the help.
+But you already gave away the applause.
+I still want to thank the ORGA team.
+As you can see, it takes a ton of people
+who spent months of their work
+basically since the last Denark ended
+to bring you this event.
+Thank you to everyone.
+(audience applauding)
+(audience applauding)
+But as always, someone has to pick up the bill.
+And the bill is roughly for you guys
+somewhere between 27 euros if you're a student
+and we really want to keep that price to 300 euros
+if you are a full paid business ticket or a late-comer.
+But each and every one of you costs us 550 euros.
+So you can do the math.
+On average, the ticket price is roughly cover 40%
+of our turnover and the other 60% is covered by our sponsors.
+And now I would ask our diamond sponsor,
+IPH and Portis, Sasha, to the stage
+to tell you why he's here.
+(audience applauding)
+- Apologies, I need notes.
+Once upon a time, 17 years ago, we had Denark 1
+and we are roughly almost not sure about the statistics
+like seven, eight times bigger than that.
+I am Sasha, I am standing here as a sponsor
+for Portis data centers, IPH for quite a few years now.
+And we offer co-location Hamburg Luxembourg and Munich
+and please see my wonderful co-workers at our booth.
+And that's all the marketing things I wanted to say.
+I actually wanted to have some welcome words
+of not more than 90 seconds
+that will be totally meaningless for your lives.
+But I'm gonna share it with you anyway.
+Why are you here?
+Is it your passion, your hobby?
+Is it work related?
+Are you collecting new contacts, new businesses, new deals?
+Whatever it is, maybe it's just the food and the social.
+Denark has you covered.
+You can meet all types of people here
+and I think that's really awesome.
+I see scientists, physicists working on layer one
+and probably below engineers building protocols
+and operators working every day hard
+to keep everything running.
+All of these are here and we need all of you.
+I share the older ones too.
+I urge, I'm sorry, I urge the older ones
+to share all the knowledge that you have.
+There is something to learn every day.
+Learning never stops and the younger ones should listen
+and they should understand the basis
+of what has been built in the past
+and keep going and improve the work
+or actually make it work because
+just because something is old doesn't mean it's less crap.
+So please keep going and improve.
+Just for curiosity, who of you below 25
+knows what a null modem cable is?
+(laughing)
+Okay, just to get an idea.
+- You know 25.
+(laughing)
+- They were all below 25.
+So we all know the passion for technology
+and the joy when something finally works
+or we made a business deal.
+And that's what we share and that what unite us
+to create a better internet, having it evolving every day.
+So what I actually wanted to say was
+I got a bit carried away.
+Welcome to DINOC 17.
+Welcome to Essen.
+I'm really happy to see all of you.
+(audience applauding)
+- All right.
+Thank you, Sasha and IPHH.
+We also have a few other sponsors to thank.
+Our Platinum sponsors, Flex Optics,
+Nokia, Nesevo, Thomas, Granny P.S.
+Then our Meet Me sponsor, Atlas Edge,
+our coffee sponsor, Bee Kicks,
+our lunch sponsors, Telstra and Decakes
+and our Lanyard sponsor, Santaro.
+And our gold and support sponsors.
+Thank you very much.
+(audience applauding)
+Also besides Patrick's little side note,
+also thank you to Deutsche Telekom for the internet.
+Quick housekeeping, as we said,
+we need this community to scale with you.
+This means the DINOC community is open and inclusive.
+So please treat each other with tolerance and respect.
+We of course encourage free speech
+and an open exchange of ideas,
+but please keep it professional, don't get personal.
+Should you at any time feel Harris,
+please talk to Patrick myself.
+The entire DINOC board,
+everyone walking around with a crew badge
+or just email us at foshnet@denoc.de
+or our first names at DINOC.de.
+If you have questions, talk to our help desk down below
+or email us at event@denoc.de.
+Now for the most important stuff, Wi-Fi.
+Yes, we have Wi-Fi, IPv4 and IPv6
+and 2.45 and six gigahertz.
+We're doing a bit differently this year.
+We have a DINOC 17-open Wi-Fi with OWE,
+so opportunistic wireless encryption.
+And the main conference Wi-Fi this year
+is the Wi-Fi DINOC 17 with any username and password
+if you're feeling creative.
+Otherwise, please just use DINOC/DINOC
+as it's printed on your badge.
+And we'll give you more details on the Wi-Fi we built
+in the closing, but this career R code
+gives you fancy beautiful graphs.
+Then for the social tonight,
+we will be at Kukarei Hansa in Dortmund.
+This is a bus ride and to get that bus,
+you should be on time.
+So please be at the bus stop,
+which is basically just leave the house that technique
+to the right, make one corner and get into a bus
+by 620 sharp.
+You can also find that information on your badge.
+And with that, over to Francisca and the program committee.
+(audience applauds)
+- Okay, this is indeed very bright.
+Okay, quick, a very one welcome also from the program
+committee side.
+I am Francisca and together with the Basembecker,
+I am sharing the DINOC program committee.
+So we are still restructuring the DINOC program committee
+and with any sensible restructuring process,
+I am already, I think, talking the third consecutive time
+on this, but let's recap.
+For everyone who isn't aware, historically the DINOC PC
+was basically a set of volunteers who had the task
+to compile the program that you see during the conference.
+And at some point, we sat together and said,
+hey, this is becoming a real community body
+as a conference, it represents a large part
+of the things we do in our community life.
+The program is an integral part of the conference,
+so shouldn't be the program committee also community
+based elected with a mandate from the community.
+So this is what we start implementing now
+for a couple of times.
+So long story short, what are we doing?
+Three members of the program committee every year
+stand up for election and other people from the community
+can run for these three seats.
+This year, Florian Moritz and Wolfgang
+kindly offered their seats for re-election
+and you can still volunteer to become part
+of the program committee that compiles
+the now two amazing conference tracks
+you will see this week.
+Until eight o'clock today, you can select your,
+volunteer yourself for the program committee,
+you can see the details on the Denog 17 website.
+Long story short, we need a quick bio of you
+and the picture and just sent it to the program committee,
+the email address is in the reference.
+And the elections will start tomorrow
+and they will last until the end of the week.
+So you have some time to cast your votes
+and we kindly ask you to actually do that
+because it's only a community mandate
+if the community actually takes part.
+So, and with that, I would like to thank my colleagues
+from the current program committee
+who put in a lot of time and effort
+to go through all the submissions
+and make sure you have an amazing program this time.
+So thanks everyone.
+(audience applauds)
+Yes, it has been mentioned,
+there was a lot of commotion about it.
+We have a second track right now.
+As you see, and as Patrick has already outlined,
+basically we do run two full parallel conference tracks
+at this point.
+So you get almost double the content,
+but we are also doing this for the first time.
+And we know choice means you need to see where do I go,
+what do I watch as a recording?
+And if you have any feedback for us,
+if you would like to be one track to be, for example,
+super topical, super niche
+or targeted at different experience levels,
+just come talk to us.
+Because for us, this is the first time as well.
+And we made a decision how we are running this time.
+And we are very, very, very much welcoming your suggestions.
+And kindly, more with compiled a couple of numbers.
+And actually, we got 67 full submissions
+and selected 55 sessions out of that.
+So that is actually a pretty good turnout.
+And I think we may even able to increase the number
+of content we receive,
+now that everyone knows we actually have much more space.
+And I would like to thank everyone who submitted
+and helped us to form this conference program.
+And with that, again,
+you can volunteer yourself for the PC,
+come to talk either to Sebastian and myself
+if you want to know about the logistics
+or find any other member of the program committee
+if you want to know what the work actually entails.
+There's also a description of what responsibilities
+could be on the website.
+So basically what we expect from a PC chair.
+And now we take a quick break
+and then we kick off with our first talk.
+Thanks everyone and have a lot of fun.
+(audience applauds)

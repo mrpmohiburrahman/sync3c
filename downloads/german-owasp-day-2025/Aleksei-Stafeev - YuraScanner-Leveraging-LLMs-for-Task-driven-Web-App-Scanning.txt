@@ -1,0 +1,208 @@
+API URL: https://api.media.ccc.de/public/recordings/93629
+Frontend URL: https://media.ccc.de/v/god2025-56493-yurascanner-leveraging-llm
+Title: YuraScanner: Leveraging LLMs for Task-driven Web App Scanning
+
+I'm very happy to have Alexei Stoffiev here, he's a PhD student in the application security
+group at SISPA in Germany, and he will be talking about the URAS scanner and leveraging
+LLMs for task-driven web app scanning, and how they have been using LLMs to, sorry, to
+on their way there so I would kindly ask you to welcome Alexei on stage and handing over to you.
+Talk of this track. Yeah, I'm Alex, I work at SISPA, I'm a PhD student there, and I work
+in web security, and today we're going to be talking about not about the security
+for AI, but AI for security. So yeah, let's get started. Have a small exercise for you
+first so that you kind of get refreshed after the previous talk. So how many of you have
+seen this person. Alright, great. So, for those who don't know, your task is to find this person.
+Can you find this person? I'll give you a couple of seconds. It's probably pretty hard also to see
+from the back, but nevertheless, and what about now? We've seen it a bit more. I think it sees
+, but it's not here. Yeah, and you probably wouldn't be able to find it still because it's still not a full picture. And with this I want to make an example of the
+the more you see the more you can find. And ideally you should see the full picture to be able to find
+everything there is to find, but that's not always the case. Of course, this applies to web security
+scanners as well. You can imagine them as the small little robots from the robots.txt file.
+They share the goal of the finding vulnerabilities, albeit they are doing it automatically. And ideally
+and then we're going to be able to make it a little bit more.
+It looks like this. However, modern websites have become so complex and this simple toolkit
+is actually no longer sufficient to explore the application logic. And the problem is that they
+click the buttons without actually reading what's on them. They just see somebody and they click on it.
+And that's basically it. And you'll probably ask, well, surely there has been some research in that
+all these years. And you'll be right. In fact, there have been so much research that we actually
+wrote a whole paper out of it. And I want to bore you with some details. But the most interesting
+part that we learned from that is that so we took all these different algorithms that you can use
+for the crawling and measured them across three different metrics like form coverage, link coverage,
+and also code coverage. And what we learned is that while there is no single algorithm that works best
+for exploring the application, randomized approaches actually were one of the best ones.
+Interesting. And it makes you think, where do we run wrong? So that randomly clicking buttons
+actually works better than any other heuristic based approach. And for that, sorry, I want to
+give you one example of the application, which actually may be quite familiar with
+this one. It's a Deutsche Bank website, and you probably used it at least once in a life if you're
+here. And I would argue that even sometimes humans struggle with logic on such websites.
+Yeah, you have a typical form to select your destination, where you come from,
+then some additional parameters for your journey. And this is just a single step, right? And this
+is what we call like multi-step workflow on the websites. And to complete a workflow, you need to
+complete, for example, in this case, like five steps, and all of them are complex, and you need
+to complete them in a very specific order. You need to click on the very specific buttons.
+And if you fail at one of them, you actually need to go back and redo it everything from the beginning.
+And this is one of the cases that the traditional scanners with just randomly clicking buttons
+are actually struggled quite a lot with. So if you have some functionality hidden behind
+these multi-step workflows, chances that the scanner will be able to reach them is actually quite low.
+And consequently, it also means that you'll miss vulnerabilities in this functionalities, right?
+So let's recap. Traditional scanners will struggle with exploring deeper states,
+which are hidden behind these multi-step workflows on the websites. And that's the key limitation
+of them. And of course, there has been some machine learning based methods that were proposed
+to combat that. Most of them are involved either. You need some data to train the model on user
+provided traces. You have to teach the model to actually interact with the website, but it doesn't
+really scale well. There is so much data that you need to provide it to be able to adequately
+perform at all websites. Also, some resource monitoring methods were explored, but they didn't
+really work well. So what did you think about doing to solve that? So instead of a training model,
+there has been now an insert keyword here, large language models nowadays. And the intuition was
+that, okay, all these models will actually extensively trained on the websites and the
+documentation. Therefore, there should have some information on how to interact with the websites.
+And yeah, of course, there has been also prior non-academic works. And you've also seen a lot of
+AI browsers nowadays, which are supposed to assist users with executing some tasks on the website.
+Well, the issue is like, yeah, like Book of Hotel. But the issue is that instead of asking for the
+user for the interaction, we actually want our tool to be able to automatically explore the
+application on itself. So we don't really want to provide any user input like, yeah, you can
+book a hotel on this website or you can book a train ticket. Now we just wanted to figure out on
+its own. For that, we decided, okay, we need to use a LLM and we need to build it in a certain way.
+So yeah, first, you start the prompt, you write this very common technique that you actually need
+to assign a persona to the LLM. And we did that. We called it, yeah, your scanner, because it is.
+And this is how your scanner came to be. So we built a fully automated test-driven
+applications scanner that will automatically explore the application, then execute all the
+tasks and workflows on the application, and then we can use that to detect more vulnerabilities.
+So we built in a very simple architecture. We have three stages. So they go one by one.
+First, we explore the very shell of the video, a shell crawl of the application to just to get
+a feeling of what different functionalities they're up. So we just click on the all buttons on the
+front page single time, extract all the HTML elements, and then we provide it to the LLM
+in an abstract form and request to give us a list of tasks, like what can you do on this website?
+For example, you can provide us a list of tasks, like, yeah, you can add a new category for the
+product in CMS. You can edit the information for the existing product or delete the previous
+order. This is just a short example of how it would look like, but it should give you an idea of
+what type of task it comes up with, and there's actually quite a large list of those.
+So now that we go with a list of tasks, we need to execute them, right?
+And that's exactly what we do. And for that, we have a loop where we execute each task iteratively.
+So what that means is that at each type of the task, we first generate, again,
+generate a simplified texture presentation. I go a little bit more in the detail over the
+next slides. Then we query LLM for the next command to execute on the page, for example,
+click button number two, and then we execute the command. Finally, we collect all the endpoints
+and forms, which you can use then for the vulnerability scanning, and then you can plug any
+vulnerabilities scanning tool to then run the test. So let's go a little bit more in detail
+how exactly the task execution works. So we have a loop. Starting from the page,
+we do a page abstraction, select next action, execute action. And just to keep you on the toes,
+we'll go be going from right to left. We have a page where we collect some interactable elements.
+So let's say, add event. There is an event for the on-click. We extract all the text
+assigned to these elements. We filter out some redundant elements with empty text boxes.
+And we assign an ID, like a sequential ID so that we can then, so that the model can then
+refer to specific button. It wants to click. This is the abstract page representation,
+which we then put in a prompt template, very basic one with a one-shot prompting. We give an
+example of what we expected to see and what we expect to respond us with. And we send it to
+LLM via API, and then we receive a reply, let's say, click button number one. 25, it's actually
+the value command. There is a button with ID number one. And it got sent to the action executor,
+which then can click on a button. Or for example, we also have a command where it can fill out the
+form, which then basically we have another agent that will, in a separate prompt, will go one by one
+in the input fields and then fill out them. We found out that it actually works better,
+which is why we did it this way. And finally, there is a stop command, which can signal us that,
+okay, the model has finished the task, we can switch to the next one. And as I said, we collect
+all the forms, which we then can send to the vulnerability scan in scanning stage, in which,
+in our case, we use access detection engine or Black Widow, which was a state-of-the-art scanner,
+but accesses at the time, but you can also use SQL remap or whatever other security tool you want.
+The point is that we want to gain more coverage and explore as much as possible the endpoints,
+which we can then use in a security tool to actually detect vulnerabilities. Okay, great.
+This is the general overview, how the Euro scanner works. And the next step was for us to actually
+see, does it work better? Does it solve the problem that we actually outlined in the beginning?
+A little bit of multi-step workflows. And for that, we evaluated Euro on 20 popular modern
+web applications. We selected carefully so that they are from the different categories. They are
+CMS, there is a GitLab, like there is also Media Week and others. So that all they are from the
+different types of applications. So that, for example, machine learning methods would actually
+typically fail on those probably because they train to a specific kind of application.
+We divided our test back in two sets. First one was the random subset of these 20 applications,
+just because we had to manually label this task that is generated and then see if they
+actually executed it successfully or not. And we also had the vulnerability detection tests,
+which were run on all set. Okay, great. Let's then have a look at what data did we get.
+So in total, we generated 2300 tasks on all the websites, on 10 web applications, sorry.
+And 77 of them percent were valid. But the remaining one, like 500, were invalid. And
+what I mean by that is that the functionality did not really exist on the website.
+And we found that this happened mostly because there was not enough context for the model to
+figure out the tasks. So, for example, there was a page with just login button, so we tried to
+come up with the nonsensical tasks. I mean, there could be a sensical, but you can see that there
+is a login button, so there is some functionality on there. But there is no clue, actually, about
+the actual tasks there. And for example, we also found this task, like, get detailed information
+about membership or subscription plans. But the thing is, this was actually on a media wiki website.
+Yeah, unlikely that there is such functionality exist. But yeah, that happened. Could we
+probably improve to be the better context for the tax generation? Next, we need to decide, okay,
+for all these 1800 tasks, did they actually get, did you actually execute them correctly?
+And we found out that, yes, for the 37% of them, there was a clear success. It was able to identify
+the correct button. For example, there is adding customers to the database,
+identify the button, identify the sub button there as well. It found the other button to actually
+create a user, create a customer, and then fill out the form correctly. And yeah, it was a success.
+There was a customer added to the database. Interestingly, there were also quite a few cases
+where the success was partial. And what I mean by that is that, let's say,
+it actually when navigated correctly to the target functionality. Like in the previous
+example, it correctly identified, for example, cycle, I would say that this is adding customers
+to the database. But then it actually failed to fill out the form correctly. And we saw that,
+for example, in one applications that you had to cycle through the tops to fill out the form,
+and it didn't figure out that it needs to do that. And therefore, it failed when you try to
+submit the form. So it still reached the target functionality. We still can learn something from
+it. We can still, for example, do some client-side scanning on this particular page.
+But the task itself has failed, even though we call it partial success.
+And the remaining ones were different kinds of failure, notable ones are the missing state,
+where, for example, try to edit an object before it actually created one, or it even,
+or it could have created, tried to create one, but then it failed to create one. So there is
+actually no object in list. And when you try to edit that doesn't exist, well, you fail.
+So you have to first create an object, and then you can edit it. There has also been some cases
+where it deviated, so it clicked on the wrong button. It might have made sense to
+human as well, but it just clicked on the wrong button and didn't really end up in the right
+functionality. And the stop command actually ended up this double-edged sword. So at one hand,
+it allows you to end the task execution and signal that, but at the other hand,
+the model then can just straight up give up at the very beginning and they don't do anything.
+But overall, I would say that LLM was able to execute quite a lot of tasks.
+We also tried to characterize, okay, but yeah, we execute all this tasks, but do we actually go
+deeper in the web application? And we compared that with the Black Widow, other algorithms as well.
+We found out that, well, yeah, interestingly, like in the blue one, you can see that this is the
+forms that were found by both Yura and other scanners, but the orange one is actually only Yura.
+So we can see that 44% were found by all scanners and all the remaining ones were found by Yura.
+And interestingly, so the horizontal axis is actually steps. It took to find how deep this form is.
+So the blue one stops at steps number three. So it means that it doesn't really find forms
+deeper than three clicks away from the front page. While Yura actually goes beyond that and it finds
+more forms after the click number three. So yes, it does go deeper and they are out of reach for
+traditional scanners. Great. So we build a tool using a alignment. It actually works and it
+helps us with a multi-step workflow. It's great, right? Well, it's not all that shiny there out there.
+We found out that now we have more problems than we had before.
+For example, one of the tasks that we saw was delete a user from the user management section.
+And if you look closely, there is just a single user in this list.
+Do you know which user it is? It correctly, it is defined, right? It's navigated to this page.
+It's clicked on the delete button. There is a confirmation dialog. Do you really want to delete
+this user? Yes, of course, the model has a task. It will execute it. Yeah, it deleted the user.
+What happens after? It cannot really proceed anymore.
+Bum, bum, bum. Yeah, so it's not just how that all good. Even if you actually succeed at executing tasks.
+As for the vulnerability detection, yeah, this is also the paper for the security conference.
+You have to find vulnerabilities. So we did those, find those, and yeah, we outperformed Black Widow,
+the state of the art. We found more zero days, which we are located to offer clicks from the front
+page. And yeah, this sums up my presentation. Let's go quick. Well, let's have a quick recap of
+what we talked about. So we talked about how coverage is vital for the vulnerability detection.
+That traditional scanners struggle with the multi-stack workflows. Therefore,
+it will be hard for them to reach those deep functionalities of the website. And LLM can help
+with that. And I think it will actually get better. So we will probably see less hallucinations
+with the task generation, also the task execution may succeed more.
+And yeah, it can reach deep functionalities, but also it can put applications in some
+unrecoverable state. So this was a pretty benign example before. But you can imagine what could
+happen if, for example, you try to test a SCAD application or whatever. Of course, you shouldn't
+do it on the actual staging environment. You should do it in some test environment.
+Yeah, but they need some more safeguarding, and you should be careful about using them.
+SES. Yeah, that sums it up. Thank you very much. I will be glad to answer your questions.
+Do we have any questions for Alex? Oh, there's two in the front.
+Yeah, great presentation. Thank you. I'm not sure which model you use, but I guess it
+can be very expensive, testing 20 different applications. How much money did you spend on the tokens?
+That's a great question. At the time of experience, we used GPT4. And if I remember correctly,
+all the experiments took somewhat near $200, because it was just a textual data at the time. So,
+of course, like I also showed before that, for example, you can see that sometimes the buttons
+doesn't do not really have a textual representation for them. So, obvious solution for that is that,
+okay, let's use vision models, but they're much more expensive. Like if you supply screenshot as
+well, it works better, but it's more expensive. Yeah. Thank you. There's another one. Thanks for
+the presentation. Did you look into code coverage? So, basically connecting this one with the code.
+And at some point, I was like, ah, next year goes like, now I'm doing fuzzing in the code.
+Yeah. If I remember correctly, in this one, the code coverage didn't have that much advantage,
+simply because we were exploring, let's say, just deeper in the replication, but not really,
+like in breath. So, the traditional scanners may have had an edge a little on the code coverage.
+However, I would like to say that when a newer model actually works much better, but at the time,
+it was not so good on the code coverage. Just because it was like more focused on specific
+functionalities, I would argue that if you give it more tasks in general, like you just make it
+generate more tasks, you should be able to get to the same level and even above of the traditional
+scanner. You can also combine them. Any other questions? If not, thank you very much. Thank you.

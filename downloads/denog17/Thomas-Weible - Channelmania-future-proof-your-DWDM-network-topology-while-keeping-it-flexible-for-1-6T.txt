@@ -1,0 +1,227 @@
+API URL: https://media.ccc.de/public/recordings/93185
+Frontend URL: https://media.ccc.de/v/denog17-79056-channelmania-future-proof-your-dwdm-network-topology-while-keeping-it-flexible-for-1-6t
+Title: Channelmania! – future proof your DWDM network topology while keeping it flexible for 1.6T
+
+(upbeat music)
+- And our next speaker and the last presenter
+for this session is Thomas Weibler,
+as you clearly can see on the color scheme
+from Flex Optics.
+And his focus is on creativity innovation driven
+by real life customer problems.
+And today he will show us how to keep
+our DWDM infrastructure future proof for the 1.6 terabit world. And I've been told this
+is a completely new presentation, so enjoy. >> Thank you very much, Francisco. You might
+already head, I'm pretty sure you had that experience. You have a really great conversation
+with someone you know and you do a really deep technical dive and then after that conversation,
+>> I'm Thomas Wieblek, and I was actually that one having a conversation.
+It's very intense conversation, but it was great. And the topic we were talking about
+was mainly about DWDM networks in large scale and also on high data rates starting from 400
+gig with coherent modules or coherent technology in general. And while we were talking, there
+were some key wordings always used. There was this balance receiver mentioned quite often
+and also the colorless thing. And then I got back to the company, had a conversation internally
+with some folks, one of our hardware developers got, and it turned out to be a real brain
+fork. And that's the talk about. So I want to show you what we did and achieved and why
+it is so complicated and to give you a little bit more in arts about the balance receivers
+and colorless. So let's start easy first. Lasers. Lasers have been around for a long period
+of time, started in the '60s, but those lasers were not usable for us in the telecommunication
+industry. They were big, they were power hungry, and they needed a lot of cooling, especially
+with liquid nitrogen or something like this. And in the '90s, '70s, the first semiconductor
+lasers were really helpful and usable for us running at room temperature in small size.
+And when we focus on them now, so what has been involved since the '70s, it looks a little
+bit like this. So up there, we have the typical unmodulated line width of a LED. So you have
+a center frequency or a center wavelength of 1300 nanometers and an unmodulated line
+with this nice bell curve with a rough width of 100 nanometer. So it's quite broad. When
+we get up here to the February parallel laser, which is mainly used in one gig technology
+or the data rate, this is getting really a little bit more narrow, 10 nanometers only,
+and it was very characteristic with those two side peaks next to the center wavelength.
+And then the interesting part is now getting there. On the green section, distributed feedback
+lasers, we're getting closer, just one nanometer of the width of the peak now. And I also show
+here with 125 gigahertz, so we change it from the wavelengths to the frequency now. And
+the most latest development here on the red one on the red side are the external cavity
+lasers, which are used for coherent modules and have a really narrow line width of one
+megahertz only. So why was Korea not pushed earlier out into the field? It's a tricky question.
+But first of all, let's look what we need to do a transmission in general for coherent.
+For sure, we need some compute power to do all the compute for the higher order modulation
+to get bits and bytes out instead of having this constellation thingy where we come later
+on. The other thing is you need a precise laser there for your optical carrier, and you
+need an amplification as well to reach a longer distance, and the signal itself gets disturbed
+while it's traversing on the fiber, the velocity of different frequencies changes, and you
+need a compensation of the dispersion. Now, for coherent, the add file or the amplification
+and the dispersion compensation fiber was around, but we were lacking precisely lasers,
+and especially we were lacking the SPs to do all the math and the calculation. It has
+been done in the past, but not in real time. It was offloaded to big number crunching computers.
+They got the data from the analog digital converter. They did their math, returned the
+result, but this was not in line rate, actually. This was offloaded. So what else can we do?
+When we want to increase the traffic per fiber, in general, in the top one here, we have our
+optical carrier, and the optical bandwidth itself, which carries all the information
+content we want to move forward to our receiver, is in this curve as well encoded, or that's
+the information content. You have two choices. The first one is, and I'm pretty sure all
+of you are using this. You use WDM technology, either C or DWM, it doesn't matter, and you
+have different colors on your fiber, and you separate them with filters, and the interesting
+part here is, well, you lose some spectrum between the filters because they have to separate
+the channels with each other. On the other side, with the solution, too, what you can
+do is basically fit in way more information into one channel, into one carrier, and make
+it broader. So you increase the frequency of one carrier, and you fit in more information
+there. Well, this, yeah, this was not really a brain fog, actually, it started now with
+the complex numbers. One off keying is broadly used for 10 gig and 100 gig in a direct detection
+minimum. So how does this look like? In the middle, there is our detector, that's the
+central one, the most important one, but first of all, face here on the left side. We do have
+our signal coming on the fiber, and either the face or the frequency is continuous, or
+the face does change, or even the frequency does change. In a coherent world, it all happens
+to the same time. Holarization is a little bit out there because I will come to that
+one later. And it's going to hit the receiver. The receiver is a diode, a photo detector,
+and it works pretty simple. When there is light on the photo detector, current goes through,
+you get a one. If there is no light on the photo detector, it's a zero, because no current
+is flowing. But for that photo detector, everything looks the same. It doesn't matter
+if the face does change or the frequency, so the resulting digital signal, the serial
+one, looks like this. It's all the same. And you are using this every day when you operate
+biodeirectional transverse, because they make use of this effect, because the frequency
+is different on a biodeirectional. Now, a little bit back to my talk two years ago about
+coherent modulation, 16 quam, I introduced there. I don't want to go into details now,
+but we introduced the constellation diagram with those 16 dots. The great thing is, we
+have those 16 dots. We can encode four bits per symbol, and this increases our data rate
+tremendously without increasing the boat rate that much. But looking now a little bit more
+precise on those dots, and when we focus on one dot, especially, how do we actually
+in that space locate that dot? There are two ways. There's the blue way either you have
+the amplitude, it's a vector, so a vector has directions, and this vector also has an
+angle, the argument. With those two variables, you can position that dot precisely. The
+other way is, you use the x and the y component, also what we call the quadrature, the q component
+and the in-phase component, the i-component. And for later on, we are going to focus more
+on the in-phase component. This is pretty simple geometry, just to the calculation.
+Yeah. What I said at the beginning was about this receiver. So it seems like the coherent
+receiver is quite important, and let's focus a little bit more on the receiver side now.
+And in the middle of, when we look at the first one as a single-ended receiver, there
+is this coupler. The coupler is not an LC double X coupler, it's more the coupler is
+based like you have two fibers, not touching each other, but very close to each other with
+two interfaces, or in fibers and two out fibers. And when we connect them to our detector,
+what happens is, in the phases on those two, we have two signals coming in. The first one
+is our carrier, the optical carrier, the orange one up there, with the optical band,
+which with the actual content, and on the second one, we do have a local oscillator.
+The great thing is the local oscillator is taking from the transmitter of the same transceiver,
+it's operating almost on the same frequency, and you combine it in the coupler, and within
+the coupler, some effects do happening, but they end up together on one leg of that coupler,
+and it hits the diet. And we get a signal, and the great thing is, because of that coupler,
+when you combine the local oscillator with the optical carrier, you can detect the optical
+carrier that's happening, and we have a down-converted signal on a lower frequency. I will come to
+that later. The second one is, and now this balance is coming to place. On the incoming
+interfaces, it looks all the same, but on the outgoing, it looks a little bit different.
+We have now, instead of one detector, we have two of them. They both detect the signal
+here, orange and green, green and orange. But the coupler has another effect. What the
+coupler does, it does a phase change for the cross-port. So the cross-port for the orange
+signal is down there, so this phase is changed by 90 degrees, and the same applies to the
+local oscillator of the green signal. On the cross-port, the phase is also changed, and
+now back to high school, when you do have a phase change, you have waves, and when you
+have two waves, they are at the same level, and they overlap what's going to happen.
+They get more gain, they amplify themselves, they are higher. So you get more output, basically.
+On the other side, you get less noise, because also what they do is, on the noise level,
+it eliminates in itself. And that's pretty awesome, and so our down-converted signal
+over there has a way higher amplitude and less noise. So far for the general detection,
+but now we have the phase, how do we get out the phase? Well, we need one balanced detector
+for the eye component, and we need one balanced detector for the Q component. We combine them,
+and the local oscillator is not fed directly to the coupler in a long time. We also split
+the signal of the local oscillator, like we do it with the signal. We phase-shifted it
+again for the lower part, for the cube part by 90 degrees, and within the coupler, we
+do again for the cross-ports, the phase shift, and hooray. We have now two balanced detectors,
+but they are phase diverse, then. We get the eye and the Q component, and we can really
+precisely define the point in the constellation diagram where it belongs to, because we have
+eye and Q now. And when it's not so, this is already somehow complicated, we add a little
+bit more complexity there, instead of having two of those balanced receivers, we have four
+now, because we have two polarizations. And again, in front, the signal is split with
+the polarization beam splitter into two polarizations, local oscillator again, same set up. And inside
+now, it's not only one coupler, it's a cascade of couplers and splidders, tiny semiconductor
+components, and they are hitting each of them, the eye and Q component for the face, and it
+does do it for the polarization, too, and also for the polarization, one up there. Somehow
+difficult, and it looks a little bit like rocket science to build this, but there is even more.
+As I said, we have this down-converted signal at the beginning, and we get rid of the low
+gloss oscillator, we get rid of the optical carrier, but there are different ways to do
+it. And the first one on the top, you see, it's called heterodyne. So what happens there
+is, we have the low gloss oscillator running at a frequency at, let's say, 192.8 terahertz
+for simplification, and the optical carrier is a little bit offset by roughly 622 gigahertz.
+So the difference between those two carriers, or the oscillator and the carrier, is called
+the intermediate frequency. And the drawback is what happens in that coupler is while we
+also get a mirror frequency, which we actually don't want, because we have an upper part
+and the lower part, but we don't want that lower frequency, the mirror frequency, because
+on the mirror frequency, there could be another channel, and they would interfere with each
+other, and we don't want that. So what happens, it's down-converted, and the intermediate
+frequency is at 600 gigahertz. And all the folks who are doing electronics, building a
+detector, doing 600 gigahertz, it's possible somehow, but it's really a challenge to get
+there. So that's not really a solution. So the alternative, you can even see it now,
+it's the homodine solution, well, just to it's simple, bring the low close to the exact frequency
+of the optical carrier. Technology-wise, this is doable, the great thing is we don't have
+a mirror frequency any longer, because they are overlapping each other, and you get a
+perfect intermediate frequency of zero gigahertz, and running at zero gigahertz is great, quite
+easy. The problem is, it's technically wise, quite difficult to build in complex, and when
+it's complex, it's getting big, and costs money. You can do this with an OPLL, but nothing which
+you can place into a transceiver. So the solution is the combination of both, called intra-dine
+detection. What we do there is we bring the low close to the optical carrier, but not
+overlapping. And the low close to later can be within that range of our 75 gigahertz, for
+example, in this scenario for a 400 gig signal. So 37.5 gigahertz to the positive, and also
+37.5 gigahertz to the negative side. Within that range, the low close to that needs to
+be placed, and then the mirror frequency is not an issue any longer, because it's within
+our carrier, within our frequency where we want to be. And then we don't disturb our
+channels next to each other. And, hooray, the great thing is also our intermediate frequency
+is at five gigahertz. And five gigahertz is something you can really easily detect when
+you look, you detect it to that frequency. And this is also the important part on the
+colorless thing, because now you can really filter only this spectrum or this frequency
+for the receiver. In other words, the receiver only sees what he wants to see, and this is
+not driven by a physical filter. Now it's driven by the characteristics of his own operation
+frequency. About some numbers, when you look at a 400 gig, it's roughly running with 60
+gigahertz. You need a detector doing 35 gigahertz, and for 800 gigahertz, it's a little bit
+higher, and we are running at 70 gigahertz then. Yeah, so we almost made it. It looks
+like we are launching and getting to the moon, but there's a little bit more, and when
+we get to the moon, there is even a universe. And now let's look into that universe, what
+we can do with these characteristics for coherent detection, basically. So, as I already said,
+there are different speeds out there, starting from 400 gig up to 1.6 terabit, and the way
+they get more information into our band is they increase the frequency, the overall frequency.
+So at 1.6 terabit, we will end up, we need 300 gigahertz of a channel in the spectrum.
+You can combine them all together on the lower part here, within, and you can imagine, this
+is a filter, with three channels, basically, you can combine them all within one filter.
+And when we do the math and do something like this, we will end up with a 400 gigahertz filter.
+Because when you only look at a 200 gigahertz filter, the 400 gig, 800 gig would still fit
+in there, but the 1.6 terabit won't fit in there any longer. So, you need something broader
+than 200 gigahertz, and why are we focusing on 400 gigahertz? That's the important thing
+on the commercial of the shelf. For sure, you could also stick to a 300 gigahertz filter
+to fit everything into this filter block, but the 400 gigahertz is currently of the
+shelf available. It's no specialty to build them. And in comparison, what we have done
+in the past, we were running tons of channels, up to 96 with nice slices of 50 gigahertz,
+but we lost also a lot of spectrum between the filters of each other. And a great benefit
+as well is, when you look at the specs of such a filter doing 12 channels with 400 gigahertz,
+every channel is carrying 1.6 terabit to the math, you can do there up to 15 terabits
+on your fiber. And also, for the optics, folks, if they have longer spans, well, attenuation
+and insertion loss is a critical thing, and typically we are there at 2 dB only for 12
+channel multiplex. So, while looking back to those days to running a 40 channel 100 gigahertz
+AWG, they are roughly at 670 dB insertion loss per channel, depending how they are distributed.
+So that's a really great benefit when we focus just on those 12 channels, sorry. Because
+we can also do interesting things now. We could cascade in there still 8 channels 50 gigahertz
+on off-king 10 giga-bit legacy equipment or build your own super channel, because instead
+of just fading in there, one carrier doing 1.6 terabit, you could also fade in 4 carriers
+doing each 400 giga-bit and use a simple splitter on the out interface and distribute the signal
+to all receivers and let the receiver decide which signal is intent frame. It would look
+like this then. So, the other part has been built so far, because this is our mixed signal
+going to the other part, but the lower one, the coherent module or the blue one only takes
+the blue curve, because our receiver is locked to that frequency and tuned to that frequency,
+and now we get a benefit out there. It can see all the waves, but it doesn't matter, or
+all the 4 out of 3 out of frequency, but it doesn't matter, it just discards them and
+takes the blue one and the same does the green, the yellow and the coherent. When I did the
+first driver of the target in the company, one of my engineers said, "Hey, that's cool,"
+but this is going to be getting a little bit messy, because typically on the multiplexes
+you have all those ports. They are numbered, and now when you have a splitter, well, you
+don't know what's actually at the end of that 4 splitter leaves. Basically, everything
+gets to those 4 transceivers. He was right. So, the answer is, yeah, you need a frequency
+plan. If you want to do something like this, so you become your own bay net star, or put
+in this second tool to know, okay, that's a kind of a shared media, and we should know
+on which leg of the splitter is which transceiver or which frequency connected. This is pretty
+awesome. In my point of view, just making the fact that it's colourless, and we have
+this -- the past, this broad receiver was used for bidirectionals as a benefit that it took
+all the light. Now, we do it the other way around. We say, "Hey, we only want to lock
+to a certain frequency and can even filter on the detector level without filtering on
+the optical side," which is pretty gorgeous. For myself, I'm really looking forward to
+the social tonight, because getting all there was really a brainfuck, and, yeah, I'm happy
+to take questions, and see you also later at the social. Thank you very much.
+[Applause]
+Thank you, Thomas, and we actually have time for questions. Do we have questions? Please
+wait, so I can see you. Okay, I think everyone is just very eager for the closing and to
+go to the social, but thank you again. We know where to find you.
+Thank you.
+[Applause]

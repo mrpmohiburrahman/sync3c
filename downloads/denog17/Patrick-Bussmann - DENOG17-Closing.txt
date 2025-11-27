@@ -1,0 +1,267 @@
+API URL: https://media.ccc.de/public/recordings/93339
+Frontend URL: https://media.ccc.de/v/denog17-81769-denog17-closing
+Title: DENOG17 Closing
+
+Okay, and with that, I hand over the stage to Momo, Tim and Patrick for the closing remarks.
+Thank you everyone, when I created a schedule I didn't anticipate it.
+I have to compete with trains, but here we go, so I know there are two kinds of nerds
+and probably half of them like trains and the other like statistics and hopefully the
+Venn diagram is only one circle, so let's see.
+I have no clicker.
+I have a clicker, so as we started Denog with a little warning and emergency exercise, just
+so you're aware this is also a physical exercise talk, so prepare to club or not, that's up
+to you.
+That is already an excellent start.
+So with that, thanks to all presenters and submitters for making this conference possible,
+without you, this would just have been empty halls, but nice meeting still, but anyway,
+thank you to everyone.
+As Denog, we wanted to give back to speakers this year, and so we ran an experiment of
+sorts on Sunday and offered a voluntary speaker coaching for our coaches, we hired a professional
+coach, gave the speakers the opportunity to present their first five-ish minutes of
+the talk and then get a feedback on their voice, tonality, posture and all of that stuff,
+and it was really positively received by the speakers.
+So we really want to do this again next year, and I also urge all other conference organizers,
+not only to invest in your conference, but also invest in your speakers.
+On that same note, thanks to all Harold's who announced all these amazing speakers,
+and thanks to the program committee who selected all those amazing speakers.
+Now we have to change the program committee a bit, Francesco already mentioned it in the
+opening, we're restructuring the program committee right now, three positions are up
+for grabs, it's mine, it's Florian's and Wolfgang's, Wolfgang and Florian are running
+again, and we have I think six total volunteers for these seats, voting is open until Friday
+end of day, so please make use of your vote and form the next era of the program committee.
+Also please rate the talks and conference, it really helps us out, I'll leave you a second
+to take a screenshot of this or scan the QR code, and you can even rate it on ICEs without
+IPv6.
+Wonderful, now for the beautiful pictures.
+Welcome to host at Hnik where we had to build a network.
+This building is from 1930, so when we came here first for the initial site visit to figure
+out how to build a network, we found this.
+We found a museum that still carries STOM1, no jokes, some patch courts we found are
+from 1999, so probably older than some of you, and not that much older than I am just
+to be completely in front of you, but we didn't have any network plans, they were
+somewhere lost in the time, so we had to do a lot of reverse engineering in the halls,
+and so we bought some visual fault indicators from China, turns out 15 MW in China means
+megawatts, not milliwatts, which has an interesting side effect because now it's also a fibrous
+scope and you can visually inspect if they're virus dirty.
+We also tried troubleshooting in the field with it, and it turns out it's really easy
+to identify bar cuts, no jokes inside on that, so as said in the opening, we have built
+tri-band Wi-Fi for the first time here, and what's really interesting to us is that almost
+40% of the Wi-Fi clients are already on Wi-Fi 6 with 6 GHz, which is amazing.
+Yeah, congrats to all of you, you bought new devices, additionally we experimented with
+the Denox 17 open Wi-Fi, which offers opportunistic Wi-Fi encryption, so even if you connect to
+an unencrypted network, if your device supports it, your connection will be auto-encrypted,
+and 44% of the devices on that also, or on this network also supported it.
+We were using at peak times 35 access points, we got a 10-gig uplink from D-TECH, and we're
+using some of the loan equipment from Event Infra to run this whole event.
+Speaking of, if your organization has equipment to spare, especially modern full-table routers
+with 100-gig ports or multi-gig switches, please donate to Event Infra, or just donate
+money, and also thank you again to Dutch Telekom for the uplink.
+Now to our video team.
+As you may have seen above me, there is still a beamer here, but we thought that's not sufficient,
+so Patrick and Chris got a credit card from somewhere and bought a 9 x 3.5 meter video
+wall with 1.9 millimeters pixel pitch, it's beautiful.
+I think we had, I don't know how many 20-ish boxes, each weighing 300 kilograms, so it was
+a lot to carry in.
+Luckily, the folks from Neumann and Müller helped us with that, and then we had two stages
+to cover, so in this main stage we have four cameras, three facing me, one facing you,
+and inside B we had another three cameras, in total 13 total video sources, and one kilometer
+of cables were laid here.
+Thanks to this amazing video team that not only recorded everything, but also brought you
+all the beautiful graphics here, the info, beamer, and everything, thank you.
+Given that track record, probably by the time I'm finished talking here, all talks should
+have been already uploaded to YouTube and media.ccde, so you can watch them on the train, but probably
+download them here first.
+That is a really amazing time, 45 minutes average release time is insane.
+Shipping other stuff was also interesting this year.
+As you may know, for the past years we rented a sprinter van and drove through Germany with
+tons of boxes, and this year I got to satisfy my personal desire and buy a lot of boxes
+from our packaging, which made me extremely lucky that it arrived in time.
+Some has lost the logistics department, but still, it made it here.
+And now it's time to tear down all this stuff again.
+Which means we will put the auger into crates, don't worry, we gave them croissants, there's
+also coffee in there, they will survive until Dnock 18.
+On a more serious note, we will start tearing down, please do not tear down anything.
+We have already got enough volunteers for helping, so thank you for that.
+But you can do us a real favor if you leave this floor right after this talk because we
+have to actually get quite some stuff out of here in the next hour.
+You can hang around at the info point and the meet me rooms, so yeah, just please vacate
+this floor as soon as you can.
+And then for my last slide, I'd really like to extend a big thanks to the entire house
+they're taking a team who have been amazing, who trusted us in, well, doing some archaeology
+in their building to put stickers everywhere to build this giant video wall, which I think
+never has been here before.
+Thank you to the entire team.
+And with that, go over to Tim.
+So some highlights of this Dnock 17.
+We had hundreds of meet me sessions, we stopped counting them or comparing them, a lot of
+them.
+We ran, we are very limited and of space at the end, we tried to push more tables into
+the meet me rooms, but I think I hope you all could do all the meet mes you wanted to do.
+We had a very amazingly full attendee wall compared to the last Dnock, lots of more of
+you let us photograph you and put your stickers up and that gives a really, really nice impression
+who's already here and you can see who you want to find and who they made look like.
+We had 27-7 presocial attendees in 28 restaurants as I told yesterday in the closing only 44
+cancellations, but this time automated with the automation from Sasha, so we're getting
+better here and less work for us and more fun for you hopefully.
+We had multiple site events on Sunday, which was great, more companies are coming to Dnock
+and seeing us here as the event in the year and organizing all their customer events around
+Dnock and that is seen with the site events on Sunday, which is great to see.
+We have over 2,500 coffees served, that were more than expected and more than expected from
+the coffee sponsor who is bringing the coffees.
+So a big thank you to big kicks to making it possible that we had already still today
+enough coffee maxed to serve the coffee to you.
+As Mumo said, I think we transformed the house, the technique to the house, the Dnock.
+It's very nice here, unfortunately the last day, but with that, please remember to pick
+up your t-shirt if you haven't done on your way to the info desk, all the t-shirts for
+the online tickets of t-shirts are shipped today, so they will arrive in the next days
+at your home.
+A good bye from the Orga, a lot of people in a lot of different roles.
+In the Orga crew with Anita, Christian, Emma, Fiona, Julia, Janina, Lara, Philip, Sasha,
+Sebastian, Stefan, Theo, and Utter.
+On the C3 work, the Francisco and Sophie, and from event info, AK and Emily, as a project
+leads, more it's myself, Patrick and Kai, we are starting organizing in the, in general,
+we start organizing with a biweekly call, one hour a week, doing smaller stuff, also
+some meetups, then it's got more regularly, we do a kickoff, we do our off-site to plan
+for new ideas, new features and so on and so on, and over the weeks, when Enoch is coming
+closer and closer, they are joining more and more people and when we started working, building
+up here on Saturday, we thought, okay, like, no, there might be 15 people or so, and then
+when we called for the, the no break on Saturday, I think we were on 30 people coming from
+somewhere, not because they were hiding, because some, everybody was doing something
+somewhere and we were 30 people in this build up and that is really crazy how we manage
+it that we scale in this way and this is only the tip of the iceberg, this is only from
+the, from the auger and then become further to all the angels who are helping in the info
+point, the hero, it's, so we managed to scale this denork that you can quite easily sign
+up for an angel shift and help here and that is really what I love and think it's
+a great thing, so thanks to all of the, of all of you who are helping in some of the
+shifts and thank you to all of the angels, thank you.
+And thanks to you, thank you for being here, for giving us the input, what to do, how to
+do, for rating the talks, ranking the conference, giving us input and for being here and being
+the great networking, human networks, here to meet us, thanks you all.
+So hello everyone, you might know what's coming now, but let's go back in time for a
+little while, because my first denork was happening in Darmstadt actually, in a small
+meeting room and what we have today, I think we all take for granted.
+So we come here, we expect this conference, we expect it to always be bigger, better,
+more professional and all of you will make plans for next year already, as soon as that's
+announced and when it's going to happen, but you're going to come here with the expectation
+of having this amazing event in place and we heard from Tim how many people were involved
+to make that happen and that's true, however, looking back in time again, denork has changed
+as well, so we founded a foundation in 2017 and I think this was the start of denork becoming
+what it is today, so I would like to get the board on stage please, so that is going
+to be Janina, Florian, Tim, Patrick and Moritz.
+And there's one more person that is unfortunately not here today, which is Nicole, so we keep
+her in mind, maybe she's watching, maybe she's not, but it's important to mention that these
+five that are here, plus Nicole, so these six individuals here spend a lot of their spare
+time and way more spare time than all others that help to make this event happen, so please
+have a big round of applause for all these six that make this possible, so we brought
+something nice for you guys, and last time and it was a really bad idea, we got some
+real flowers and Anita and I didn't think about how the hell should they get these flowers
+home in the train or on the train, so this time we made sure you can get this into your
+luggage, and you, wait, wait, wait, wait, wait, wait, wait, wait, wait, wait, it's more,
+and so thank you very much everyone, and yeah, we're looking forward to having you again
+and I think we understand this is not just something you do in your spare time, but something
+you really like, you really love, and there's also three of you, and I really tried hard,
+where's the picture, oh there's coming, there's three of you, and I really tried hard with
+chat GPT together with Julia, and I think with Tim, I mean Tim, we see you, after the
+third iteration I think Patrick got blonde long hair, and the three of you, thank you
+very much, because I think what you three do and the responsibility and also that you
+carry and the time you invest and also the dedication you bring makes Dino Creole special,
+and I know you thank everyone all the time, but somebody needs to thank you, so this is
+what we're going to do, we have something really nice for you and your loved ones, and
+please give everybody a standing applause for those three amazing guys.
+[Applause]
+So then we go further, not too far, too far the outlook for the next year, we are obviously
+already starting to plan for next year, we want to have meetups, we had six meetups this
+year, more than the year before, so next year obviously more than six meetups, we want
+to have them, you can help us and be a location host for the meetups, email us to the event
+that Dino or talk to us, and then let's see how many locations we manage to serve next
+year, member days they are already defined on February 6th and 7th in Castle again, so
+if you have time mark your calendars, come to the member days, and then Dino 18, some
+rush from that later from Patrick, then the Dino EV General Meeting, as we have the association
+in the background who is at the end responsible organizer of this conference and all the meetups
+and so on, we have our general meeting, it was announced to all the members, so who of
+you is an individual member, got already an email, we will send in the Zoom invitations
+then later on, and so on, the same procedures every year, probably you know that already.
+At this Dinoog 17, we had the inauguration of a new working group, which is great, working
+groups are growing, we have more of them, more and more, and in Dinoog 17, we inaugurated
+the access working group, and here's the statements basically from the co-chairs, Christian Giza
+and Andreas Kinfler, what's about it, the access we gave is about access networks and technologies,
+it's about operating systems to the relevant devices and it's about regulatory and legal
+issues, there are around 57 people at this inauguration, so this is a really high interest
+and they got a fantastic feedback, so if you want to join, you will set it up with mailing
+lists and information on the website and the next newsletter, so then feel free to join
+that working group, and first step, I hand over to Patrick.
+This is a very confusing Dinoog for me, I still have a voice, I slept six hours, this
+is strange, let's see if I can do talks in that setup, so for the first time, or actually
+the first time, but for the first time we did a full leadership track on Sunday, we had
+leadership training sessions included in your ticket price, we did not upgrade your
+ticket price for that, so you get additional benefits out of that, especially for your
+employers, if anyone needs to sell how to get back here next year, that might be an
+option, I want to thank Philip Schalenbach and the Esquire leadership advisors for coming
+in, for setting this up, this was really well appreciated, the feedback was really good,
+thank you for doing that, love to have you back next year obviously.
+And we want to invest more into the leadership track, and our thought is that we will have
+a leadership track alongside of Dinoog sessions, of Dinoog events, which is based on the theme
+of from tech, for tech, we want to have engineers, architects, people who come out of the industry
+give and share their knowledge to individual ICs, to people rising up in the ranks, figuring
+out how to deal with the mess of management, figuring out how to survive in the chaos world
+of management bullshit, to some extent, but also to strive there and enjoy, if that is
+the track you want to go, and we believe we can play a vital role in that, we believe
+we can offer an additional benefit, but that's our belief.
+So we're interested in your feedback, it's like should we actually go that route, or is
+that a bad direction, and is that a gap that is missing today, maybe that already exists,
+with my product manager head on, we should definitely not reinvent something that already
+exists, so tell us, we need your feedback on that.
+If you believe that's the wrong direction, tell us, if you believe it's the right direction,
+tell us as well.
+And with that, the most anticipated part of the talk, I was like, I'm going to talk about
+where we're going to go next year, this is going to be exciting this time.
+So I thought, how about how to make this entertaining and exciting, and decided to talk
+about 27 and 28.
+We're already starting to look at 27, 28, which then in turn is Denark 19 and Denark
+20.
+For the better part of the last nine years, I managed to figure out not to have Denark
+in southern Germany, which meant I did not have to sleep at home, which is for every
+one of you who does the conference circus on a really high scale, it's like I love being
+at home, it's amazing, but doing the family duties and doing the conference at the same
+time, that can only go badly wrong.
+So we're doing that, that's the last stop on our Germany tour, we haven't been there,
+we will do that in 27 and 28, we're starting to look for places.
+If you have ideas in this set up, this has become a tiny bit difficult to find places.
+So if you have ideas, send us emails, talk to me personally, talk to Moritz, Tim, Kai,
+or send us an email at event at Denark day.
+We're going to be announcing more exciting things next year, I'm not telling you where
+to go because we don't know yet.
+The other one, one more talked about this at the opening and I want to talk about sorts
+that we have to go further in the future.
+So as you might have seen, the cost of a ticket on average is somewhere between 27 to 299
+euros, that is good, we want to keep it this way, I want to be very clear on messaging,
+the student tickets will be consistently cheap.
+We want to encourage students to be part of this community and I strongly believe in
+the whole team, strongly believes we need to enable them to be able to come here.
+So that's going to stay the same.
+Even though that we're on an average basis by far the cheapest engineering conference
+in Europe on a daily basis, we're going to want to stay at that level, we're still
+going to have early bird pricing, we're still going to have reasonable pricing, we're not
+going to address that going into the future significantly or make any changes.
+The question that we have for all of you is, and we're going to ask that in a survey
+that will be coming to your inbox in the next couple of days and it will only come to those
+of you who bought a corporate ticket, we would like to propose, I'm already there, never
+mind, spoiler, the proposal that we're bringing forward is that we're going to equal corporate
+tickets with the cost of an individual ticket going forward in future and we'll want to
+understand from you is how badly is that breaking your possibility to buy corporate tickets
+and we need feedback.
+So we're going to send this out to the corporate ticket attendees.
+We want your honest feedback, like there is no value in you all telling us this is an
+awesome idea and then no one buys a corporate ticket any one next year.
+So be open, be clear if that's a bad idea, we will acknowledge and we'll figure out a
+different way but I'm going to find some way how to make this awesome and at least get
+a zero out of it at the end.
+With that, I already spoiled it but this is really surprising, Denog 18 in 2026 is going
+to be in Essen and it's going to be from the 15th to 17th of November here, we're very
+much looking forward to see you all, I hope to have you all back, already looking forward
+to the what we call Raul Raz and Kickoff group and forgetting this started and looking
+forward to working with the whole team.
+Again, thank you for attending, have safe travels, see you again in 2026, if you don't
+yet follow us on social media.
+Have a good day, bye bye.
+[applause]

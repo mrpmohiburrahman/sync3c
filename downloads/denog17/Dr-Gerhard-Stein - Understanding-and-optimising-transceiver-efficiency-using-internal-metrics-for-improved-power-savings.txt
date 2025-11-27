@@ -1,0 +1,218 @@
+API URL: https://media.ccc.de/public/recordings/93144
+Frontend URL: https://media.ccc.de/v/denog17-78665-understanding-and-optimising-transceiver-efficiency-using-internal-metrics-for-improved-power-savings
+Title: Understanding and optimising transceiver efficiency using internal metrics for improved power savings
+
+(upbeat music)
+- Okay, welcome to our second talk in this afternoon.
+We, the next presenter is Gehaj Dein.
+He's the lead research engineer at Flex Optics
+and responsible for bringing innovative
+and amazing prototypes to market.
+>> Thank you very much.
+but also with switches, which are being connected or any network gain runner. If there's a way to save energy, if we can improve our power management a little bit.
+And of course, we have the opportunity to do this with a flex box. But if we want to take this down and look outside of the switches, what a transceiver can do, we have to look at certain features that transceivers can provide.
+a a a. And I was particularly interested because when you want to look at, um, energy consumption power saving, well, you make an assumption and our assumption was, it could be the laser of course as the SPMCU. But there's another element I was particularly interested in, which is the TC TC stands for Tammo electric cooler. What is this exactly? I get into this. But this was mainly my target and it's highly related to the laser.
+So when we have since down with our base of VDM, we're going to look at a little bit of power budgets or how you can learn the data center. I guess many of you already have done this, but with a different point of view.
+Then general definition of efficiency. It's our definition or you can define not so much efficiency degree more of how can you get your heat out of your data center or your switch or whatever device you have.
+And some results of what we have observed. These are the devices we had under tests. Flex Optics produces transceivers as we already mentioned, but we also had some switches, some candidates where we tested how they deal with the transceivers and if they really are able to energy safe.
+Or if they just let run the transceivers even though there's no link, it's not communicating. We'll look into this. But let's start with versatile diagnostic monitoring.
+Because if I want to find out more about the laser and DDM, I have to look into versatile diagnostic monitoring. So we had to learn first what this exactly is.
+Now the classical approach DDM, digital diagnostic monitoring, is simply you look at the bite and the first bite you see in your table of your agreement documents about the transceivers is temperature.
+Temperature is the most important aspect because if your transceivers get stored, they usually sacrifice themselves. You have to control the switch.
+The network has to control that properly. But other than that, you have supply, voltage, laser bias and that's it.
+Now with a versatile diagnostic monitoring, it's quite interesting. You don't have a bite where you can look into it. We have a type ID. How do we deal with that?
+Well, that's a question here. DDM, as I explained, usually you have two bites, six-in-bit where you calculate where you're good and that's it.
+With a versatile diagnostic monitoring, VDM, you look at the certain page that is specified, which is page 20. And if you find out that the page is the way you're through this page is different than zero, let me put the laser pointer here.
+I think that's more convenient to see. It's better, right? Yeah.
+For example, what you could do is write a software. You iterate all the way through this page and without your get your type ID, if it's zero, you ignore it.
+And if it has a value, you look into this value. The advantage of this versatility, even though it's a bit more complex, is that now the manufacturer's opportunity to advertise what it really supports, what features are supported.
+It's not the successor to DDM. It's an extension. DDM still exists. But with that, you can finally read out what the manufacturer provides.
+And that is a big advantage, especially nowadays, that you have different kinds of transceivers, direct detection or only laser components on it or coherent transceivers, that you can read it out.
+And when you know what the laser supports in general, you jump to page 24, get out your value and it's very similar to the temperature.
+You have a 16-bit value, two bites and calculate the value and that's it.
+So with this space, we can obtain all the ways we are interested for, especially laser and TC. But now let's look at the switches, how they deal with that.
+And this was a little bit disappointing, because two switches we have in our lab did not report any VDM.
+And it's a little bit difficult to find out also as well, because usually the manual does not talk so much about it.
+But you get to see values and that's it. So it doesn't support VDM or not. Sometimes the operating system tells you, sometimes it doesn't.
+At least in these cases, we only have DDM ways. It did not work.
+So how does it look if there's a VDM support? Here we have a Cisco 93600 and what we end up doing is looking at values that are part of the VDM table and laser temperature is one of the values.
+I was particularly interested for, but it's also interesting how the agreement treats it, because you get to see here an absolute value of 50 degree ish somehow.
+But if you look here closer, what it's really reporting, the VDM table, is a difference. You never get the absolute value.
+So interesting to find out where Cisco gets this value, because usually we have a target temperature of 50 degrees.
+It doesn't matter how hot this transverse or how cold. It has to be 50 degrees on some models 55, others use 60, but it has to be a target temperature that must be kept close.
+And there's where this TC will be interesting, but in the next slide I'll tell you more about it.
+So that is that if you want to know if your network gear supports VDM, you can look into the manual.
+If it doesn't tell you explicitly, a good trick is to look for the laser temperature, because you don't see it in the DDM and the TC current.
+There are more values, but usually these two do it well, and these are the first values you get to see in the VDM table.
+Or you're debugging a network gear, if it exists as page 20 to F, it's most likely that it is doing something VDM-related, because these pages are reserved for that kind of application.
+So now that we understand VDM, let's talk a little bit about laser power consumption.
+The thing is, here we don't need VDM, DDM is enough, but the temperature is interesting, we want to compare it.
+We also want to compare power draw between those two, so we had to do our homework first, but power consumption can be calculated by a forward voltage.
+You cannot read out the forward voltage that is defined value, but you can create a very primitive database in Python, very simple.
+And with that, if you compare the Tx power to the laser, how much power it consumes, just the multiplication of bias, bias isn't the DDM table, you read it, you multiply and you have it.
+And it's like a tenfold value, which brings up to the question, well, you might remember the coherent transceiver talk.
+We gave two years ago, here at Denock, in Berlin, not here in Berlin, and for example, current transceiver draws a lot of power.
+You require versus example, set R17 watt, and the laser is sitting here in between, I mean, and it also produces heat, because in what your interest is a light, and yeah, it's minimal, to say the least.
+Let's talk about the thermoelectric cooler, because when I hear air-conditioner and cooling stuff like that, it requires a lot of energy to carry out heat-related energy.
+So I wanted to look into this element, and how does it work?
+Well, you basically have metal projects, you put a voltage here, and with this potential of energy and some semiconductor blocks, some P and N dotted semiconductor.
+If the current flow through this structure, what you get is a cold and hot side, which means you are using a heat flow.
+And you have your laser here sitting below, which is being cooled down, while it's really extracting the heat.
+Now, this is a Peltier element, it's called the Peltier effect.
+It looks like this in large scale, and you get to see it more like in laboratories, they have like the size.
+In each size, they are not being produced for the whole reason that these elements are quite inefficient.
+You have efficiency degree of 10%, so 10 times the power you have to invest in order to carry out the heat, flow required to carry out.
+And that is a little bit problematic, but in the end, it also highly depends on the airway on the size.
+Unfortunately, lasers are quite small, they are inside the storza, and the thermoelectric cooler is also very small.
+But we still have to clarify how much is in relation to the whole transceiver power consumption.
+And by the way, there is another advantage with these elements.
+If you inverse the voltage, if you swap the polarity, you are also swapping the heat flow, which means you also can heat up the laser.
+And there exist situations where you want to do that, because the temperature must be stable at its target temperature.
+It's not stable, the signal gets worse, that is very important.
+It is not related to the transceiver temperature, it's a different chamber, and this temperature is always around 50 degrees,
+no matter how cold or warm the transceiver is.
+Now let's talk a little bit about power budget, and when you plan a power center, at least from our point of view,
+imagine you do it, remember we are transceiver providers.
+But the XCC power classes come from ethernet, where you can look up a power class and you know the maximum power consumption with that,
+you can't land how many transistors you want to buy, which switch and the overall power consumption you will have,
+which is almost equivalent to the heat transfer over units of the time you have to perform.
+Now the thing is power classes aren't that relevant anymore, this is for QSEP28, an agreement, SS86, 36.
+But now we have the same myth, which is for QSEP400G and beyond, and as you can see, it's not so messy anymore,
+you don't have that constraint between power class and maximum power consumption just said,
+well, we can have power class that is fine, but please look at the maximum power, because that is what matters in the end.
+I looked up at different manuals of network gives and switches, particularly switches,
+and didn't find so much information about the power classes, they really care about the maximum power consumption,
+and I think that is a good thing, because it's also a bit difficult to say with said power class,
+you are going to have this performance and this power consumption,
+because nowadays it exists so many different kind of transceivers, and it's a little bit hard to point out how it has to be.
+So basically what we do, you go to our shop before you buy the transceivers,
+if you plan to build up some rack with some network gear, and you look at the stable on our side,
+power consumption with that you can properly plan, and it's really the maximum power your switch can go up.
+Right, so like last year, yet again, some interaction live demo, I brought here a flexbox and a transceiver to read power consumption,
+and I want to show you now assume you are simulating a network gear device, it's very similar,
+so what we are going to do here is look at our flexbox, what is currently doing, it's charging up the battery,
+and we have a transceiver, we are going to plug in, and if you look at the top, we have toggle TSE power, toggle laser,
+TSE appropriation for transceiver to keep it short and sweet, and now imagine this flexbox is simulating the behavior of a switch,
+which we can do. Now as a network gear I'm saying, give it power, and let's see what is going to happen,
+I cannot read any data from the transceiver if it is powered down, but let's go first into low power,
+and we can already start collection and see what is happening, and here you can read temperature,
+we always have to watch for temperature obviously, and as you can see, the Tx power is at minus 40 dB,
+so we don't have any power yet, we are untransferring anything, and now we want to turn on the laser,
+as you can see the power is quite low, so between 0.4 and 1 watt, but if we turn on the laser it takes a little bit to wood,
+but it is actually what your network gear does when you want to get your link up,
+the link is not yet up, but at least the laser is turned on, it's ready to modulate, so let's wait a little bit,
+so it comes up, and here we go, so now we can measure the real transceiver power that is consuming this device,
+obviously it goes up, and also it's a little bit, but it gets stable, and now you can see that light power is being transferred over this jumper cable,
+can you see it clearly, I think you can, okay, good, and the temperature is also going up because there are more devices now in the works,
+with the firmware on the MCU, that has to do with thing, and now let's have a look at VDM, I'm curious, okay the laser is being cooled down,
+here you can see the laser temperature, and that is what I want to show you, first of all the temperature on the transceiver,
+and also the control circuit, in this case it is cooling down the transceiver, it's a little, it's a bit too hot, I say a little bit too many times, I'm sorry,
+it sometimes also warms up, so it gets red, now it's cooling down, I think, because we have room temperature, at least for the transceiver,
+a little bit warmer than room temperature, 32, then you aggressively cool down the transceiver, I get to this in the next slides,
+it will get, it will show red colour, but anyways, as you can see here, the difference now from one, what at maximum,
+now we are easily getting three dot something what, so as you can see if a transceiver is not used,
+it is a good idea to really tell it, yeah you can still drive it, but try to shut your port, that is a recommendation I want to tell you here,
+and yeah, that is what we can simulate with our flexbox now, this is a small application, all right.
+So, did I jump off, that's right, now one thing in how you can improve power consumption and reduce it,
+is look at later generations, it's easy to oversee because you buy a transceiver and it looks the same from outside which makes sense,
+you want that, I mean the description or that, it's usually the same, you can look more at serial numbers or ask,
+but there exists different generation, for example, the 400G that first time was published 2018, consumed 12 watt,
+but over the years there were leaps for the next generation, for example, the ASIC that was in that was swapped out by a PAM4, DSP controller with an integrated
+electro absorb from modulated laser driver, so what manufacturers are doing here is bringing laser and electrical components together,
+swapping out by optical components, if you can do more on optical size, you can save a lot of energy, that helps,
+and of course, manufacturing technology, going down in nanometers, as you can see here, and instead of 12, nowadays for 400G,
+you can get for 2 kilometers FR4, consumes 9 watts, so that's also an achievement, every generation is getting better on this,
+quite similar to a CPU to a computer, if you have seen over the years, and the same was 1.6 terabit,
+the one that we are bringing will consume most likely 30 watts, but the second generation is already being in work,
+and the reason why it consumes less watt, I found this very interesting, because almost the same transceiver was only different,
+that the manufacturing size now went from 5 nanometers to 3 nanometers, and you know with 3 nanometers,
+we are getting closer, we are talking about 30 angstroms here, which is 30 times diameter of a hydrogen atom,
+you have to imagine that whole small v, nowadays can manufacture these devices, and yeah, I promised you a little bit of discussion about efficiency,
+and there's a way to calculate your heat flow based on your RPM and the velocity of your fan,
+and the system mathematical model, usually in physics you have three kinds of heat transfer,
+the radiation one is not that important, because radiation really makes sense to measure and look for,
+if you have temperatures of 2000 degrees, which is usually what you get from combustion like this campfire,
+but what matters in our case is a lot of conduction and convection,
+and this is a case of conduction and convection combined, as you can see here, we have this plane surface,
+which is a model of our transceiver, so it's just a surface of our transceiver without heat sink or anything,
+just a simple model, here you have your velocity profile, and temperature if you need to,
+it's like your ambient temperature, and with that you can calculate the difference,
+and in order to do that, calculating the heat exchange rate over the time is quite complex,
+because it depends on case, you can simulate it, but it exists a lot of mathematical models,
+it exists a book you can buy, it costs like thousand euros, it is composed by just tables,
+there's nothing else than tables for different cases, and you pick up your case, you have your mathematical case,
+and you calculate different kind of numbers, nothing number, the most famous one is the Reynolds number,
+it has nothing to do with Reynolds, that's a different kind of Reynolds,
+and you calculate this number by injecting velocity, by length, length is a transceiver size,
+and the kinematic viscosity, which is the viscosity of the air basically,
+and that you can cover the whole fluid mechanics,
+then you calculate the nothing number, you put everything together, you plug in the formula,
+you have heat transfer over your metal plate, difference of temperature, area of the surface,
+and with that you can set up the correlation of airflow speed to your heat exchange,
+and I did not calculate the entire number, I could have showed you the absolute number,
+but I did not find it so interesting, so we decided to just give your relation what it means,
+when you increase your fan speed, and this is something I find a little bit problematic,
+because it is easy to think, like in linear cases that you say, yeah, if I double the fan speed,
+I make my switches and data and all the manufacturers make them even noisier or add more fans,
+I get better at my watts, I am exchanging, but it is not really the case,
+you have to invest every time more speed, so better look at manufacturing technologies
+or other aspects like a better heat sink or optimized cage in order to really carry out the heat.
+Another experiment I was applying, and this was a part where I got a little bit disappointed with this work,
+was the TC does not draw that much energy, so what do we do now?
+Here is an example of a fan where I set it up to different speeds,
+here you can see the rotation per minute, and it does not matter what temperature it gets,
+these are stable temperature, the diacrum was always the same,
+I could have shown this diagram three times, but why, I mean it is really the same value,
+and we decided to look elsewhere, but as you can see the laser power takes more energy compared to TC,
+the TC is not a big deal, so air conditions and so on to cool down a laser, it is not a big deal,
+so compared to the rest of the transceiver power, it does not matter so much,
+but what you can do, what you can influence is really look at your parts,
+it is your transceiver Z to low power, if not, can you maybe remove it, if it is unused,
+I would look more forward there, here we have a comparison where I connected the transceiver with Ix,
+which means I just connected the jumper cable and brought a link up,
+and here is another one without, and as you can see the difference is not that big, oh sorry, I skipped,
+you already saw it too late, anyways, but let's rush with this diagram with it,
+with Ix, no Ix, there is no difference, so better black out the transceiver,
+in this case was not so pleasant to see this effect, but it is something you can get for the jumper,
+if you have any idea how to force the transceiver into low power mode,
+we can do this perfectly fine or flexbox, but some switches do it automatically as a stone,
+with the Cisco it worked, so I am showing you a different diagram just to compare what happens
+if you have an 800G transceiver with half kilometer or two kilometers, and in the end it wasn't so much different,
+I wanted to show this off because maximum power, these two transceivers in our shop
+claim that it is the same wattage, but this is not a rule you always have,
+there is a 10 kilometer one we have that takes one watt more, at least it is specified for that, so that is that.
+Anyways, last year I was asked after we burned some transceivers brought up one to 250 degrees,
+that did not work anymore, I am not sure we did not show this at last yesterday,
+but we extended our slides, so some of you people might have seen it,
+we showed another example, it was 120 degrees, and many people approached and asked what happens if you freeze it,
+and it was like challenge accepted, and let's do it, so we have some ice cubes for decoration, a flexbox 5,
+same concept wrapped in aluminum foil, but to cool it down was a little bit difficult,
+so we had to get some special nitrogen base gas and wanted to check if there are any differences
+in the quality of your optical power, or if anything changes with electrical power, what the transceiver draws,
+and yeah, I mean there is a small slope, but it is not that much, so really, if you ask me,
+it does not matter if your transceiver is very warm or very hot or very cold,
+it usually, if you are doing a normal operation, it consumes the same amount of energy.
+So, what are the conclusions? Lays and TSE are not the main energy drawer here, let's look at MCU and DSP,
+how the film really deals with it, they have power saving modes which you should use,
+with PIBS you can test this as well, Lays the temperature is normally at 50 degrees,
+I want to bring this up because there are many discussions for temperature you are really measuring,
+this is not so trivial to measure, you need VDM for that, so look for that,
+and main recommendation if you can do it on your network here, shut your part,
+because with that, the transceiver will be forced to low power mode, consume like 10 to 24 less energy,
+especially with the later generation screen that technology, you can really save energy there,
+and by the way, as I showed you in the previous slide, you can also measure the overall power consumption
+in your switch, that is what we did, just plugged in one transceiver and observed all the switch rect on that,
+so this is how these curves came to be, and with our flexbox you can also measure it, test it out,
+does the transceiver properly low power mode, how much does it consume, you can compare with that,
+and that's it, thank you very much, and I'm happy to take questions.
+[applause]
+Thank you, thank you Gerhard, are there any questions?
+Can I have a show of hands? Okay, any questions online?
+Oh, one question here, hmm?
+Yeah, Tom again, where do we get this fancy software you have shown to get the data out of the flexbox?
+Is that available for everyone? Actually on a special demand, yes, but I'd highly trust we talk about it,
+if you're interested in doing more ends and stuff, because usually our software is more on what customers ask for,
+but if this is something you're more interested into it, yeah, I mean, there's a solution we can provide,
+but please approach us, we can discuss this.
+Okay, any more questions? All right, thank you Gerhard, thank you.
+[applause]

@@ -1,0 +1,248 @@
+API URL: https://api.media.ccc.de/public/recordings/93141
+Frontend URL: https://media.ccc.de/v/denog17-78872-entering-the-big-cloud-game-a-journey-of-ups-and-downs-towards-sovereignity-at-scale
+Title: Entering the big Cloud Game: A journey of ups and downs towards sovereignity at scale
+
+(upbeat music)
+- Thank you very much.
+You should really wait until the end
+before you give too much applause.
+Anyway, get out of your eyes, Michael.
+I'm the one talking about roughly about the next 30 minutes.
+Let's see if we're the last one before lunch.
+So we tried to give you kind of a head start.
+We'll talk about who we are, what we're doing,
+so that you get kind of an idea, what we're talking about,
+and he's the one knowing what we're doing in detail.
+So all your deep technical questions,
+or even high-level technical questions,
+he should be able to answer.
+So thank you very much for joining us in your time,
+and let's start.
+Feel free to interrupt us if you have any questions.
+- No, we do the questions and answers later.
+- Okay, I'm sorry.
+- We do not interrupt me.
+Okay, short agenda. As I mentioned already. Who we are, what we are doing, where we are today, and some strange technical details around our topic. By the way, we're talking about data centers. And there are two companies.
+the data center. We're talking about. Edge means small amounts, roughly around 2 megawatt. We can even double the capacity can show you later.
+And we try to be as local as possible across.
+Germany in the beginning, afterwards, somewhere in my slides is a map where I can kind of see more details.
+But we started in Germany, but it's focused on Europe, and only Europe, and kind of a different open stack based, but you know what that means in more details.
+Again, don't worry, not too much details. Just the main three policies, topics, main goals we try to achieve.
+We want to reduce energy consumption. So we try to get about 40%. Of course, since we're starting, it might be a process, but our goal is to have at least 40% less energy consumption.
+And on the other end, we try to use the heat. We produce to deliver to local heat distribution and other companies.
+So roughly around 80% is the goal. For sure, we're not there yet, but pretty close already.
+And what we already achieved, we built those data centers smaller. How does it look like?
+It's kind of a rendering, of course, but it really looks like that, a highlighting house. So I think it's not that far away from here.
+It's already somewhere near to a highlighting house. You can see on the right-hand side, the white space on the first floor.
+That's roughly around two megawatts of white space, and we can double the capacity, the meaning of on the left-hand side.
+We can just build a lot of them in a pretty easy way. And that's the idea. You can see on the screen somewhere, I think,
+it's kind of a modular concept. So the data centers are, it's not a single blueprint. It's kind of one to two thousand different blueprints.
+But Ochteif is building those data centers, running those data centers.
+Thomas Kren, deliver the hardware we need, and your Ryzen developed part of the software, put some open source, open stack components together and some others.
+We designed and built the whole data center network. We could see that we need kind of an outside connectivity provider connectivity
+that's pretty helpful when you have a data center, so we build a backbone with all the provider connections and some more stuff.
+Certifications, you know, everything you need around it is part of the your Ryzen company.
+What makes it different from a technical perspective, not that exciting, but it's made of wood.
+What kind of was challenging or interesting to get certification for a completely made of wood data center.
+To be honest, the, she's about the English term, the basement of the building is still made of concrete, but it's just one single piece made of concrete.
+All the other parts are made of wood, pre-constructed wooden parts, wood from Austria, still.
+Let's see when we start with more data centers, if we can keep it like that.
+Of course, I already mentioned, we tried to deliver heat back, support all the water cooling and delivering that water, that heated water to local heat distribution companies.
+We have a, a, a, a, a, a, a, a public swimming pool. It's not the right English word, but I think you know what I mean.
+It's, is one of our customers, some apartments, yeah, things like that.
+And it's a closed heating circuit, which means we do not add water, we do not waste water.
+That's the idea behind any questions so far as, well, sorry, I, I'm not allowed to ask, forget it, no questions.
+Let's, let's dive deeper into the, by the way, we even have strawberries on the roof.
+That's pretty cool. So, if data center doesn't work, we can change to farming industry.
+So, yeah, I think you would be the better one to explain, but I give you a no with you.
+So, there is the building on water cooled already mentions, from Thomas Ken, server storage, whatever you need.
+Um, we have, uh, open stack based hypervisor, we support other hypervisors, but, but, uh, by the way, as well.
+But, but the, the, the main focus, um, we have with the open source, with the open stack environment.
+Um, we try to get 100% green energy, of course.
+Uh, we even have cooperation with local wind parks, for example, where we can get the energy we need and if it's available directly.
+Um, but then again, pretty close, uh, to 100% already.
+And again, we try at least 80% of the energy we put into the data center.
+We should get out of it for some useful matters and all around that we have the common, uh, data center products.
+But I think it's better. I didn't know what you were so far.
+When we're at that point. Um, also just to give an idea, I think most of you will know, uh, infrastructure as a service is the main topic for now.
+Uh, first step, manage Kubernetes as far as understood.
+Again, first step already available. Uh, we are on the way to finish, uh, the storage topics.
+S3, of course, but some other possibilities. GPU is already under testing, kind of GPU as a service and some other, um, products around it.
+Um, and then last but not least, all those common services and products will follow up in the next few couple of months.
+Um, to give you an idea where we are, uh, we opened Tylenhouse a month ago.
+Yeah, quite some time. One is already open in Hylenhouse. Um, we have started to build another one, which is the building is already almost finished.
+Um, partly Shpringe, I think if somebody knows, uh, and the third one will start soon.
+So 2026, uh, we will have three data centers made of wood and one proof of concept staging environment close to Vienna.
+Um, and, uh, the actual goal is to have at least 15 mainly in Germany, but as well as in surrounding.
+So that should be the first step, or that's the first investment.
+Yeah, I had not so bad when I look at the time.
+Ha, ha, ha.
+That's the end of the first part, should we try questions?
+No.
+No questions allowed.
+Michael, it's your part.
+Thank you very much.
+Hi, everyone.
+As you said, I'm Michael.
+Um, because there might be some confusion.
+I'm not really your eyes and then I am your eyes and so I joined your eyes in team six, about six months ago.
+Some would say the longest six months of my life.
+Um, and in my off times, when I'm not your eyes and I'm running a company that's called at Codex and does pretty much exactly what your eyes and does, but doesn't build their own data centers, but instead runs on data centers that are already there.
+Um, and work just fine for us.
+Um, we've built the first sovereign cloud stack, um, public cloud.
+I think two years now, two years ago, it's still running.
+We have two, um, regions running right now.
+And six months ago, Gerhard and his team approached me and were like, okay, we have some difficulties to bring everything together and can you help us.
+So I was like, okay, let's look at it.
+Um, little did I know how far this all would go.
+Um, and yeah, today I'm the delivery consultant for the team.
+Um, the team that I'm working with really gives my team at a Codex a run for best team in the world.
+So I'm actually very grateful that I'm allowed to talk here, even though I'm not specifically rising, which some people tend to say a lot.
+Um, so what is it built on that from the technical perspective, no idea how many of you are into buildings.
+Um, I'm more into software.
+I have no idea how to build a building.
+Actually, I have like two left feet for hands.
+So I can really do absolutely nothing when it comes to build something, but I know my ways around software.
+Um, so this is a definitely incomplete slide with some logos on it.
+Um, that should give you an idea on how many people, how many companies and how many technologies are involved.
+Um, first and foremost though, the technologies that are relevant here is most of the stuff is open source stuff that's under the hood.
+Why is that? Because we want to build a sovereign cloud.
+We're not like, it's not that kind of sovereign cloud that AWS uses like the, you know, the flag.
+Oh, this is sovereign. No, this is actually open source built on sovereign technology
+and capable of hosting sovereign works, like workloads, in data protection, GDPR, everything allowed.
+Right, so you can see key clog open stack stuff, Kubernetes, Sonic.
+Um, I think most of you, at least if you have some insight into the world of cloud technologies and open source will know these names.
+Um, and we are trying to bring all of this together.
+And then there is some companies, as you can see, you can spot mine.
+It's the little one, the little orange one is at codecs.
+And then, you know, inside, I'm Darius who do lots of integration.
+Thomas Kernes on there.
+Hooke Tief. Um, technologies from the Alaska, um, guys.
+And then the sovereign cloud stack, all of these things are in there.
+So, how do we actually do this?
+Um, if you think about, like, me and my small company, um, we are, like, ten people.
+And we've built a cloud that doesn't quite rival your eyes, but it works, and it's, it's there, it's on the market.
+Um, we did things a little different.
+We got there and said, okay, we need some service, we need a co-location space, we need some cabling, we need some network,
+we need some software that runs on top of the service, and then we need to bring this all to the market.
+So, we sat down, we did it. A team of three to five guys, um, took us six months and then we delivered it.
+That's all fun and games. Um, when I got to the horizon, that changed a little.
+Because when I got there and said, okay, this is how we do it, then they said, okay, here is 21 technology partners you can talk to.
+And, um, no, you cannot build, like, buy the service that you want, you cannot buy the cabling that you want.
+And by the way, you can't do the cabling yourself. This is one of the technology partners that does the cabling.
+And then there's another technology partner that actually builds the cloud fabric, and yes, there is another technology partner that runs the firewalls.
+And now you can't have firewall rules, you need to request them through us. So, um, it changed, it changed a lot.
+Um, these 21 partners are constantly iterating and integrating with each other.
+Of course, everybody is just looking left and right, but we as a team have to look overall 21 of them and make sure in the end it works.
+So, um, it really goes from the Thomas Krenz, like, from the hoof teeth building to the Thomas Krenz service into the cabling and then open source software atop.
+The other thing that changed, for me, I was actually quite proud of my company when we opened the second cloud region.
+This is a bit different here. Scaleout is built into the plan.
+And scaleout, not as in this is like 10, 20 servers, and then there is eventually going to be 100.
+Like, the first data center is already roughly three, four, five hundred servers, and that's only the first data center.
+We, by now, no, we want to build 15. So, it's not like, yeah, let's, you know, let's build some servers, let's see if that all runs.
+We have to sit down and from the get go, realize, okay, what happens if we have thousands, multiple thousands of servers interconnected to each other and have a cloud that runs all of this.
+So, scaleout is just a given. It's not an option. We need that.
+And then, and that's the thing, why I am here, why I strongly believe in this whole program and why I pour so much energy in there is this is all facilitating open source community work, which I think is incredible.
+If you have this kind of undertaking and you have this kind of money, especially, it wouldn't be a big deal to say, okay, let's build it on our own.
+Let's build it close source, let's do our stuff, let's not let others into our secrets.
+We will have some secrecy and people will, you know, realize that they can work with us, but they don't have any insight into this.
+Luckily for, I think, all of the open source community, that's not what happens.
+What happens is somebody decided that it's good to have an open source community, open source technology and actually go full actual sovereign with this.
+So, what are the biggest challenges that come with these things?
+As I've said, if you build scale out into your business idea, it's very interesting to not sit down and have like two or three servers and then you test it and then you say, okay, this is running at another ten servers.
+You actually have a point in time where people come and say, oh, we have found the next spot where we built the next data center, and it's the fourth one.
+And you go like, okay, let's check that out on the map.
+How can we do this? Then you have some BSI requirements on what is allowed, like, how far do these data centers have to be?
+Like, how big does the distance have to be?
+So, you actually get like BSI certification for multiple regions, and then all of a sudden you realize, okay, this is not how this goes.
+These are too close to each other, so we need to build availability zones.
+We can't build cloud regions, but then if we have two availability zones, that really doesn't help anybody.
+If you want multiple cloud regions, so maybe it makes sense when the guys who do the building and, like, all the choosing of construction sites talk to the software guys, because the software guys are the ones that tell them, like, this is what we need for certification.
+And you run along these challenges, why would they talk to each other?
+Like, there's no real interface between them, but it makes sense that they talk to each other.
+It makes sense that you don't buy any, you know, construction sites, any sites where you build your data centers, if that would be availability zone number four, because nobody needs availability zone number four, but people desperately need more regions.
+Then you have these things that you realize on the way, but also, I've said my team took six months to do this in a very small scale.
+Guess what? You rise in things that's a good idea to do the same thing, like with multiple data centers, but six months feels like a fair timeline, right?
+Well, luckily for us building usually doesn't go this quickly, so we have a little more time, but as we've heard, like, the first data center is built, it's there, it's opened, we can use it.
+Second one, we've seen, it's like almost done, and the third one is planned. It's not like this gives us a lot of time in a lot of wiggle room, so you need to build this scale-out system based on open technology within months.
+It's not years, it's not AWS that took some time and iterated year after year for 10, 15, 20 years, we need to build this with a very, very strict timeline.
+And then, because, you know, sovereignty is the reason why we do this, it's not only bringing the building and the software and everything together, and then find the right spots, have a very, very close timeline.
+No, it's not only that, we also want to be actually sovereign, certifiable, which means by the sovereign cloud stack, I don't know if you all have heard about that, it's a project that came out of the Gaia X initiative from Europe that got funded by the sprint,
+which I think, like by a public entity in Germany, ran for almost three years, the main initiators, I think were Kurt Galoff and Felix Kornnagadamas, if some of you know them.
+I very much look up to these guys, they've done a really, really great job, and by now, it's fully community driven.
+There's a forum that agrees on the standards, that moves these standards forward, makes them actually certifiable.
+We had a summit where we were attending as well, this year, where Art Codex got certified as one of the first public clouds, and I really hope on the next summit, which is coming up 2026, we will have your eyes on that stage as well.
+So, it is all going to be compliant, but what does compliance mean?
+You have to have a very strict technology stack, so you need to have open stack on that, you need to have certain flavours on that, you need to have certain images on that, why is that?
+Because if somebody, for some reason, doesn't like my company anymore, or my cloud, or my service, then it should be fairly easy to take that and move it, move to another cloud, that's the whole idea.
+So, the idea behind the sovereign cloud stack was never, like, build that one European superb hyperscaler, but it was create some standards, and give everybody a chance to build clouds for your standards, and then you potentially, as people that work with these clouds,
+you can choose whom to work with, but also you can integrate multiple clouds that all just work the same into one of your stacks, and that's kind of mimicking your hyperscaler.
+So, we need to build this as well.
+The question is, what does this look like right now?
+You can see our beautiful portal here.
+Little disclaimer, I've not been involved with that.
+That's a very good friend of mine now, and colleague, which is Philip.
+He has done most of this work, so I'm not claiming this, but I think it looks amazing by now.
+Excuse the test data and everything. We are not yet live. You cannot actually use it, but we've given our best to put something together.
+Also, you can see there's still some grayed out slots on the bottom left.
+We're still iterating, and this is, I would say, by now, probably two or three months old, this slide.
+So, this is what it's looking like. This is why it's going to look like for you.
+Some of you in the room, the more technical people, will then maybe have the question, how does it really look like?
+And when I say really look like, what I mean is, how does it, like, from a technology standpoint, look like?
+Short trigger warning, you're not supposed to be able to read the next slide.
+So, this is what it actually looks like. This is the reason why I'm pouring my energy in for six months now,
+and I don't know how long this will go on until I actually, like my brain, is going to explode.
+Again, you're not supposed to read this. What I'm trying to showcase here is, this is, every one of these little boxes
+is some kind of architectural piece that we actually need to deliver the service.
+So, if I said scale out is built in, I didn't only mean, like, you want to buy service.
+You know, you want to build data centers. No. You want to build your system in such a way that it can actually handle
+all the stuff that is put onto the service, all the customers that are running their stuff.
+So, if you, like, want to actually read something, and you want to have a bit of a narrower picture of how that could look like,
+then probably the best I can come up with is this.
+There is a box somewhere over there, I'm sorry, camera, I'll have to move, which says OSISM, which is pretty much
+open stack and everything, open stack related, then you have a box that says you're counting, you view, those things are
+stuff that actually is customer facing. So, you wouldn't think, but if you run open stack, it's not like you can just
+build people for the services. Especially now if you have a lot of regions, a lot of availability, so on.
+So, you need some kind of software that's the accounting for that, and then, of course, there is software that does the invoicing for this,
+and if you want to have all this data aggregated, you need some kind of system API, and so that the user actually can use all of this,
+you need a portal, and then the portal is connected to your marketing stuff, it's connected to your user base,
+and yes, you will spot something on there that says HubSpot, for example, and yes, we are still sovereign, I can assure you,
+and no, we are not very happy that we need to use some of the software, but again, if you build something of that scale, this is what you have to do.
+It's not like you can build everything from scratch if somebody goes up to you and says you've got six months.
+So, eventually, baby, we will swap that out. What I try to do here is, I wanted to showcase what are we doing, how does this work,
+how is all the technology integrating with each other, and to set the stage for you to address us if you want afterwards,
+and come up with all the questions that you might have, or if we have some time left, I hope there's some minutes left,
+you can bring up these questions right now. Thank you very much for your attention.
+(Applause)
+Thank you, Gerhard. Thank you, Michael, for your talk. We do have at least time for maybe two questions, if they are not too long.
+Do we have anything in Vennulus? No? Great. Anyone in the room has a question.
+Or lunch? Okay. Thank you. It was a great presentation, but I'm totally over-hammed about what are you precisely selling to me?
+(Laughter)
+I've seen some concrete parts, some buildings, I've seen some internal cloud parts, key-clog and so on.
+Are you leasing the buildings or the infrastructure, or are you selling me a data center, what are you selling us?
+Whatever you're looking for. Now, infrastructure is a service, so you create your VMs and you buy, you rank your storage from us and all the services we offer, like all the other data centers.
+Besides that, you can really get the whole data center from us. So if you're interested and you have about 10,000 square meters of free area,
+we can fully build it up since we have the whole chain under control, let's say. Main business infrastructure.
+Okay, one last question. Sorry. Thank you for giving me opportunity to ask the question.
+I was wondering what the criteria would be where you would place your data centers as I understand renewable energy is only an 80% factor.
+Is it mainly the BSI standards or the customer's basically request the data center to exist? Thank you.
+My name is Miles. My name is Miles. Actually, I'm with the bottom one.
+I think to state all of the factors that come into choosing a location would probably take just as long as we've just given a talk about.
+So there is lots and lots of stuff involved. Some things are, for example, if you want to get your heat to somewhere,
+then you will have a community that's actually willing to take that heat and actually accept it and have something to heat it with.
+Then, of course, you need some power supply. In modern times it's not as easy as you would think.
+You're not plugging the data center in and it just goes.
+Even if you have two megawatts, then you will have to have a community that says,
+"Okay, we're actually willing to provide the infrastructure to yield that power."
+Of course, you have the BSI stuff that says, "Okay, it doesn't make sense if you put 10 data centers in the range of 50 kilometers because if somebody bombs the area, then everything's gone."
+Please don't get me wrong. I don't want anybody to bomb anything, but that's how these standards work.
+There is countless more. Can you even buy it? What's the price on the property? What's next to the property?
+Also, since it's an edge data center, do we find some kind of anchor customer in that area that actually wants this?
+Or do we think it fits our own cloud strategy?
+It's really not like somebody points to the map and says, "This is what we want to data center."
+It's lots and lots of iteration and trying to find these points.
+If you're prepared kind of a checklist, if you're interested in or you have some connections, it's pretty easy to get the information in the summary and start the conversation.
+Okay, thank you very much. If you have further questions, you know how they look like.
+Find them in the breaks. Have fun. Enjoy your lunch.
+Thank you.
+Thank you very much.

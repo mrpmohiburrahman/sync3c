@@ -1,0 +1,1008 @@
+API URL: https://api.media.ccc.de/public/recordings/26448
+Frontend URL: https://media.ccc.de/v/c4.openchaos.2018.06.glitching-the-switch
+Title: Glitching the Switch
+
+Okay, as announced, this talk is going to be about how we tried to hack the switch.
+The story behind this talk is that earlier this year, multiple parties announced publicly
+on Twitter and similar channels that they seemingly have found a buck in the Nintendo
+Switch or at least in the chip that is being used by Nintendo in that gaming console.
+although nothing was publicly released.
+So I met with a friend earlier this year.
+We were hacking on another project
+and we thought to ourselves that,
+well, maybe we could try as well to just hack the switch.
+If other people were capable of doing this,
+we should be able as well.
+And we kind of succeeded.
+We got almost there.
+We were a bit late to the party
+and almost 30 minutes before a description of the bug was released.
+We actually found the bug, which was a bit unfortunate.
+But, well, it was a nice journey and we learned a lot.
+And I thought this would be a great talk to give.
+So a few words what the start is going to be about.
+The start is not going to be about the stuff
+that Nintendo did with the operating system or stuff like that.
+It's not about how browser exploits work on this platform,
+how you can start, I don't know, pirated games or homebrew
+or whatever you might want to do on a hack console afterwards.
+But more on how a fundamental flaw in the chip itself
+and the boot ROM of that chip that is being used can be abused
+to circumvent all the security features on that platform
+and how to execute your own code.
+I'm always talking about we, and now I can,
+advance the slides for whatever reason.
+Ah, there we go.
+I'm always talking about we.
+I did this, as I said, with a friend together on the right side.
+I'm on the left.
+I'm a security researcher at Rapid7 right now
+doing completely unrelated stuff at work.
+I'm doing internet scanning and building honeypots there.
+If you want to reach me, you can reach me by Twitter
+or all school and IRC.
+On the right side, there's a search.
+He's currently living in Dublin, originally he's from Poland.
+And he's right now a freelancer in DevOps and hardware
+and also doing security related stuff there.
+You can reach him as well.
+And we know each other because we play CTF in two different teams.
+But over the time, we got very close friends,
+like the two teams of us.
+And we have the same interests that is hardware hacking
+and, well, all kinds of low-level firmware stuff.
+So, yeah, we just teamed up and here we are.
+A bit about the hardware that's being used by Nintendo.
+If you've never seen a switch, I'm sure you have,
+but this is one, it looks like a tablet.
+And the nice thing about this is that you can detach
+the controllers here.
+And I mean, it's a portable console.
+It has a battery and everything.
+But you can also just take a dark that's supplied with this thing
+and you can attach this by HDMI to your TV and just put it in there.
+And then you have a stationary console like this.
+And you can take the controllers off and put them in a holder
+that you can see there.
+And then you have a stationary console.
+Yeah.
+The hardware that's being used,
+this thing is based on an NVIDIA Tegra X1.
+This is an embedded chip from NVIDIA.
+It has multiple CPU cores, a Corex A57 and a Corex of quad core A57,
+a quad core A53 together with an NVIDIA and Maxwell GPU,
+which is for the power consumption and the size of this thing,
+quite impressive.
+It also has 4GB of RAM, but yeah,
+every phone has 4GB of RAM nowadays.
+This bit about the software,
+the software is completely custom.
+Nintendo did not use any kind of off the shelf operating system for this.
+The operating system is called Horizon and it's actually quite modern.
+It has all the fancy security features that you can imagine.
+It has a user and kernel mode split and an X bit
+so that you can execute stuff on the stack, for example,
+with a stack buffer overflow.
+It now has ASLR with the newest version.
+It even has ASLR in the kernel.
+So it has actually quite a lot of security features.
+The boot flow is customized by NVIDIA.
+NVIDIA supplies closed source boot loaders.
+If you're big enough, somebody like Nintendo is,
+you can also get the source code.
+But usually they don't give this out.
+And Nintendo of course, customized the boot loaders for this.
+Because, yeah, they need security for their consoles.
+The Tegra X1 that is being used in the console,
+that's the SOC, the main ship which contains all the GPU and everything,
+is internally called the T210.
+That's their NVIDIA code name for this thing.
+I think it's the successor of the Tegra K1
+that's being used in a bunch of tablets.
+For example, the X1 has also been used in the Google Pixel C.
+And there is already a successor.
+Even when Nintendo announced that they're going to release the switch,
+the successor was already out.
+But, yeah, it takes time to design such a thing
+and write the software and everything.
+So, yeah, might have been too close of a call to just use the X2.
+What's interesting is that the X2 looks like a complete redesign.
+If you compare the data sheets, this thing is completely different.
+It uses different CPU cores.
+The architecture inside looks different.
+Yeah.
+For the X1, the nice thing is it's an off-the-shelf chip.
+So, you can actually get documentation.
+It's a 3,000-page data sheet, or rather technical reference manual,
+that you can just download after you create an account with NVIDIA.
+They don't ask you for an NEA or something like that.
+It's incomplete, even though it has three thousand pages.
+All the security stuff is mostly undocumented.
+But it's still very extensive.
+So, you can still gather quite a lot of knowledge
+about what's going on in the system.
+As I said, there are a bunch of property NVIDIA boot loaders.
+There is a boot run that loads code from a mass storage device,
+like an E-MMC, and the boot flow on the development board,
+we will see this later, consists of, I don't know, four boot loaders, I think.
+Most of them are closed source, but, I mean, you can reverse engineer them,
+but they are undocumented.
+But it's actually not very hard to find out what they do.
+Yeah, the switch has custom boot loaders,
+and they have the security features of that chip enables.
+That means that you cannot just load your own code on the platform
+and just execute your own operating system, like Linux or whatever.
+Because, first of all, I think the hardware is subsidized,
+so they want to try to sell games and make money by selling the games.
+And, of course, they want to prevent privacy, privacy, not privacy.
+So, you can't just copy games, or, also, they have certain quality standards.
+They don't want everybody to write games that might be not good enough
+for them to have them on their platform.
+So, they're keeping a close eye on what people can actually run on that platform and whatnot.
+And this is what we're going to hack.
+You don't have to be able to read this,
+but this is a block diagram of the SOC that I copied out of the reference manual.
+You can see that this thing is a beast.
+It's essentially a complete, let me say, computer, whatever a computer is nowadays,
+and one single chip.
+On the top here, you can see on the top left,
+you can see the main CPU's on the bottom here is a memory controller,
+and there are a bunch of bus systems between this,
+so that the CPU's can access the DDR4 memory.
+There is a GPU here, a bunch of peripherals here,
+like a UR, a serial console, or a serial port.
+Whatever you do with it, doesn't have to be a console.
+I squared CSPI, all kinds of stuff.
+And everything is connected using these crossbar switches, which are bus systems.
+Think of it like, if you have a main board and you plug in a PCI Express device,
+something like that, this is essentially bus system, not exactly like that,
+but the concept is the same.
+Yeah, so what's interesting is that here is another CPU.
+Down here is another one.
+This is a full-fledged Cortex-A9, which they can use for audio.
+I don't know if, I don't know if Nintendo does use this,
+but this core is actually has enough features to boot Linux.
+I don't know if anybody tried this before, but it should be possible.
+Here's another small core that's what we are going to look at, mostly,
+because this is the so-called BPMP.
+BPMP stands for boot and power management processor,
+or bootstrap and power management processor, I don't remember.
+And this thing is the first CPU that runs code when the system is turned on.
+The GPU, the GPU, and so on don't even have power when you turn on the CPU.
+Also, when this core executes code, the DRAM is not configured yet,
+so you don't have memory.
+This is the reason why, on the top here, you have four small SRAMs.
+It's 256 kilobytes in total, because if that CPU needs to run code,
+it has to have some kind of memory where it can put its variables, its state, whatever.
+And also here is a block that's called iROM, and iROM is the boot ROM.
+This is the first code that this BPMP processor executes when the system turns on.
+And this code in the ROM is responsible for checking a lot of stuff that is security-related.
+And this is the code that enforces that you can't just run whatever you want on this platform.
+The nice thing about this chip is you can buy this chip.
+This has not been the case on other gaming consoles before.
+You always had to buy a gaming console, hack it first, get code execution there
+to get an idea what this thing looks like on the inside.
+Now we have documentation, and we have something that we can break.
+Because we can just buy, I mean, yeah, we can also break a switch,
+but this is way easier to work with if you want to exploit something.
+I also brought my board with me here.
+This is the thing.
+It's just some small UART adapter still on there.
+And the cool thing is, the security is disabled.
+We can just load code and just execute it and just play around with the platform
+without having to break any kind of crypto or, I don't know,
+exploit the web browser on the console first to get user-led execution,
+then have a kernel exploit to get more privileges and so on to run our own code
+to break even more of the security.
+So we can just load code on there and play around with it.
+And I got a student discount.
+Yeah.
+These things, if somebody's interested, is around 250 years with the discount.
+This is what, so the board, as you can see, is a main carrier board.
+Oops.
+It's a main carrier board, and me.
+It's a main carrier board, and on top, there is a module which contains all the
+important components.
+This thing here, and it contains the main SOC.
+That's the chip that you saw the block diagram over here.
+Some RAM.
+The EMMC, which is a fancy SD card essentially on a chip,
+which is way faster than a normal SD card because it just has more pins.
+So a bigger bus.
+And some power supply stuff and a Bluetooth and Wi-Fi chip.
+This is the switch main board.
+It's all a lot smaller.
+I stole this picture from my fix-it, by the way.
+They do nice teardowns.
+Again, this is the SOC.
+It doesn't say Tegraik's one in there, but it is one that was found out pretty
+already because somebody just looked on this chip on their microscope,
+and it looked exactly like an off-the-shelf chip.
+Some DDR4 memory.
+This is the Wi-Fi chip.
+I think it's a different Wi-Fi chip.
+It doesn't matter for this talk.
+And I don't even know what these chips are.
+I think this is some USB controller thing.
+He's the USB port.
+He has a power port here.
+Somewhere here is a cartridge port because you can get cartridges in the console.
+So you can talk to these and so on.
+This port here, I think, is for the EMMC.
+It's conveniently placed on a nice add-on board.
+So you can rip this off, read it out, make backups, whatever.
+Very nice of Nintendo to socket these.
+Okay.
+Now that we know how the system looks like, how do we own it?
+This is the boot flow of the system.
+We can see I colored these boxes differently depending on what CPU the code is running on.
+The red one is the BPMP.
+This is what we are going to care about.
+And the blue ones are the CC plaques, which then for CPU complex,
+these are the big arm cores that are started later by one of the boot loaders,
+and then code is executed there.
+This is usually where your Linux runs and so on.
+So this is the boot flow of the development board.
+This is not the boot flow of the switch.
+The switch has way less of these boot loaders here.
+I don't think it even has any of these, but I did not look at the switch boot loaders.
+So I don't really know.
+So what happens is when the system turns on, the first thing, as I said,
+that's executed is the boot run.
+The boot run has multiple paths.
+I even left out one here because I again did not look at this as the warm boot path.
+If you put your device into suspend, it goes into this warm boot path,
+but no idea how it works to be honest.
+And the first path here is the normal boot path.
+It tries to load something that NVIDIA calls NVT boot from mass storage,
+which runs on the BPMP.
+This is the first boot loader.
+That boot loader again loads NVT boot CPU because that's a boot loader
+that then runs on the CCplex here after loading NVT boot.
+Power management firmware is loaded into that core
+so that you can do all kinds of power management,
+like put the device into suspend and so on.
+This is handled then on the BPMP CPU.
+And then that NVT boot CPU loads a boot loader called Cboot.
+Never heard about it.
+Able to load Linux and some fast boot stuff for Android tablets and so on.
+Then this usually loads either directly Linux or normally it loads Uboot.
+And this is actually the first component that you can get sourced.
+And then it jumps into Linux and it does its thing.
+The other path is interesting, it's called RCM and stands for recovery mode.
+If the boot from fails to load NVT boot for example from the EMC
+because the EMC isn't there or it's corrupted or whatever,
+then it goes into this RCM path.
+You can also force this by pressing some buttons.
+And then you have an USB device that you can use to load code into the chip.
+And then you usually load something that's called NVT boot recovery,
+which then runs from RAM and then you can talk to this thing
+and you can reflash the EMC or whatever master-rich device
+you have on your board or on your device where the operating system lives.
+Of course, we can't just use this because RCM as well enforces security.
+So everything that you load has to be signed with a certain private key
+from Nintendo.
+Otherwise if a signature is checked, if the signature is wrong,
+the thing will not execute this code.
+Yeah, this is true for this path and this path.
+And also after NVT boot is loaded, NVT boot,
+of course, checks signatures of the next stage
+and of the next stage and of the next stage should secure to be enabled.
+The boot from itself does a bunch of things.
+First is basic hardware bootstrapping.
+It has to configure some pillars so everything on the chip has clocks to work with.
+Then it determines what to do.
+Either boot into RCM or do a warm boot or where to load the boot loader from.
+It does this by looking at so-called fuse bits,
+configuration bits that you can only write once and then afterwards read.
+Yeah, after that it tries to find on the master device the thing that's called VCT.
+The boot configuration table contains mainly parameters for the memory controller.
+So that you have DDR4 memory or DDR3 or whatever else the memory controller can talk to.
+You need to do link trainings and all that fancy stuff.
+So you need to configure this memory controller with the right values.
+And everything is specified in the VCT.
+Also, the VCT tells the boot ROM where to find the boot loader,
+what boot loader to load and the hash of the boot loader.
+And the VCT is signed so we can change that.
+If you change the boot loader, the hash does not match anymore.
+You can't change the hash in the VCT after you change the boot loader
+because that would break the signature.
+So everything is in order and you can't just load code without having the private key.
+The ROM is interesting because the ROM is the root of trust.
+If you defeat any kind of security in that ROM, you can load whatever code you want.
+This, as I said, is the root of trust.
+So you have to trust that boot ROM.
+If you can't trust that boot ROM anymore, you can do whatever you want on that platform.
+The ROM, although, is secret.
+You can't just read it out even though we can execute code because we all know
+if something is secret, it's way more secure.
+But what we can do is we can try to torture the dashboard and try to extract that ROM somehow.
+We will see later how we did this.
+So the boot ROM law, how does it work?
+Well, let's look at the technical reference manual.
+I just searched for secure boot and you don't find that much, but you find this table.
+This table describes two important registers.
+The first one is called SBCS-R0 and the second one is called SBPI-ROM-START0.
+And if we look at that, the first one, SBCS-R0,
+we can see that its reset value is O1.
+These are bits. The X means don't care and not implement it.
+The other ones are either zero or the last one is one.
+If we look at what this means is the first bit says secure boot flag.
+If that's one, we are booted into secure mode.
+So obviously on reset, that's the case.
+And then another interesting thing is this PI-ROM disable.
+The documentation doesn't really tell us what this means,
+but this text already tells us a lot.
+It means protected I-ROM disable.
+We know that the I-ROM is the ROM itself where the BPP executes the code from.
+And if it sets one, it means that this seems to be disabled.
+And on boot, it's zero.
+The other register, to be honest, I have no idea why they implemented this,
+as BPI-ROM-START.
+And it says this specifies the offset from the start of the boot ROM to the protected region.
+This register is only programmable while in secure mode,
+which means secure boot flag in the register above needs to equal one.
+This is a reset set to OX1000.
+What this register does is even if the boot ROM is locked,
+you can configure how much can be read of the boot ROM.
+Like the offset from the start to whatever is specified in this register
+is readable even though it's locked.
+And this is only writeable if we are in secure boot mode.
+Like if this last bit here in the SBCSR0 register is set to one.
+And it's not only that only this register is writeable
+if that flag is set to one, but also the other one, this SBCSR0.
+So the idea is that you can lock the boot ROM and write protected registers
+so that you can't unlock this afterwards.
+That's the theory.
+That's what we guessed.
+So I wrote some code that just tries to read the boot ROM
+to see what's going to happen.
+So these defines here, these are the addresses of these two registers.
+SBCSR0 and SPI-ROM-START, because I wanted to know
+what the values of these registers are after the boot ROM
+ran and loaded our code.
+Because we assume that the boot ROM is going to be locked there.
+This is the address of the i-ROM and we're just going to dump it.
+So what it does is it initializes the UART.
+That's why that your thing was still dangling on that board.
+And we're dumping the two registers just using some printf
+and then try with the hack-stump function that I wrote
+to dump the 96 bytes of, 96 kilobytes of code where the i-ROM is.
+So let's see what it does.
+This is the output that you get.
+I shorted this a bit.
+We can see that SBCSR0 is set to 0x10.
+The reset value was 0x1.
+So something wrote to that register.
+SPI-ROM-START 0 wasn't touched apparently because it's still 0x1000.
+So we should be able to read out the first four kilobytes of the ROM.
+And that's what we can see here.
+It starts at this address.
+It dumps some stuff.
+I shorted this here.
+And here's address 0x1000.
+And this looks like code.
+This actually looks like ARM code.
+I can tell not because I'm a disassembler on LEX,
+but because there is a trick to ARM code.
+If you see a lot of ease here in this byte and this byte and this byte.
+This has something to do with how instructions are encoded on ARM.
+This is a good pointer that this might be ARM code.
+Also if you disassemble this,
+you can see that this code actually makes sense.
+But here at LEX 1000, we just get some weird stuff back.
+Not seemingly randomly looking stuff, but always the same pattern.
+And if you disassemble this,
+it's the upcode for jump to address 0.
+Why?
+No idea.
+I never tried to jump to address 0.
+Maybe this chip resets or whatever.
+So if you try to execute this code here after the boot drum is locked,
+it does whatever, but not going to execute the ROM again.
+And also we can't read it.
+Okay, so we confirm that our assumption most likely was right
+how this ROM locking works.
+So what it seems to do is that this SBCS-R0 really controls the ROM visibility.
+Because we can tell that the dump showed that the value of this register was OX10,
+but the reset value is OX1.
+So something, and OX10 means secure boot flag is disabled,
+so we can't write this register anymore.
+And PI ROM disabled is set to disable.
+So we can conclude that something in the boot ROM,
+just before jumping to our code,
+writes into this register and disables the read access to the boot ROM.
+Because initially the boot ROM has to be unlocked,
+because the code needs to be executed and data needs to be loaded from that ROM and so on.
+Okay, we need to skip this instruction.
+And the idea was we apply something that we call voltage glitching.
+We can't debug the boot ROM using JTAG and just tell it to skip that instruction or whatever,
+so we somehow need to convince the chip to not write into this register.
+So we apply voltage glitching to do this.
+So to find out how this voltage glitching works,
+I'm going to explain to you very briefly.
+You can have multiple semesters of lectures about this,
+how microchips work.
+But very briefly, I'm going to explain how usually a chip works.
+It's not always the case, but most of the time, and that's correct.
+So one of the building blocks of modern chips is a D flip-flop.
+That D flip-flop is used to save data on every rising edge on this clock pin.
+So the pins that you can see here, the D pin is a data pin,
+and the clock pin here is a clock pin.
+On the left side you have inputs, on the right side you have outputs,
+the Q is an output, and the Q bar is the inverted output.
+The reason why you have this inverted Q there is because you can get it
+for free when you build a flip-flop.
+So it's nice to have, if you need the inverted output signal,
+you can just spare an inverter after that.
+So what happens is you apply a clock here that goes from low to high,
+stays a while high, goes from high to low, and after a while it repeats the cycle.
+So you have a clock that's taking all the time with a certain frequency.
+And every time there is a rising edge on that clock pin,
+the data is moved, whatever the bit is, zero or one,
+is moved to the Q output and the Q bar output.
+This thing is also available in level-triggered variants,
+so every time this pin is high, this data movement happens,
+but normally you use edge-triggered flip-flops.
+So D flip-flops are used to save values.
+Somehow in a chip you have to store things, like CPU registers,
+for example, the simplest example, you have to have some kind of storage on a microchip.
+And this, because physics, if you have a real flip-flop,
+there are certain performance characteristics that are important to how this thing works.
+The three that are important to us is the setup time, the holds time,
+and the propagation delay. What exactly this means is on another slide.
+Then we have also combinatorial logic. This is what you know as digital circuits.
+This is the stuff that you might have seen in school
+with a bunch of gates that are just connected to each other,
+that do some kind of logical function.
+The typical example that you hopefully all know is a half error,
+which just adds two 1-bit numbers, which is displayed here on the right.
+You have two inputs, A and B, and you have some output and a carrier output.
+Because if you add two 1-bit numbers, you get a 2-bit number out,
+because it might overflow into the next bit.
+It's basically the next decimal, not decimal binary point, binary place, rather.
+And also here, we need to be careful because that signal that travels from the inputs to the
+outputs takes time, because all these gates need time to switch and settle.
+So it takes some time for the input values to travel through all these things to the output value,
+until the signal is stable on the output. That's called the propagation delay.
+Now, if we combine these two things, it looks something like this.
+And in modern CPU, for example, why does it run at 4 GHz and not 40 GHz?
+I mean, we can create clocks that are, I don't know, 40 GHz, apart from the
+electrical problems that you're going to get, because this is a very high frequency.
+The reason for that is that a chip usually works like this. You have
+this D flip-flop, which saves some value. You have some combinatorial logic,
+and then you have an output flip-flop that, again, saves the value.
+So what happens is you have an input, the clock goes to the rising edge for sake of simplicity.
+Let's assume that this clock here and this clock here, that there is no delay between these two.
+In reality, of course, there is a delay usually because the signal takes time to travel through
+this line to this flip-flop. But let's assume we have some data here,
+and your clock edge comes, then it switches to the output.
+At the same time, the value that has been calculated by the combinatorial logic in between
+is already here at the output flip-flop. So when the clock edge rises, both of these flip-flops
+will hand the value at D over to the Q output. So we get basically the result of the combinatorial
+logic calculation on the output, and at the same time, the combinatorial logic
+circuit is being fed with a new value to calculate through this flip-flop.
+And the reason why we can't just raise the clock frequency however we want is that all these delays
+with the flip-flops and the combinatorial logic and the setup and whole times that are needed
+need to be taken into account. So if the clock switches faster, then the signal takes from
+to go from here through this logic to here, we are going to get garbage out.
+The setup and whole times, I copied this thing out of a data sheet from a flip-flop. You can
+buy these things as dip chips or whatever is still available, if you want to put these on a breadboard
+and play around with them. And we can see here the Cp pin, this is the clock again, we can see the
+data pin and we can see the two outputs. And as I said, this flip-flop is edge-triggered,
+which means every time we were rising it here on the clock, something will happen down here.
+So this happens two times here and here. And if we look at the deep pin, these shaded areas here
+mean that it doesn't matter what this deep pin is, because the chip, the flip-flop will only act
+on the rising edge of the clock. So we can see here at the time of the rising edge, D is on a high
+level. And so it takes some time to propagate through this chip and the Q output at some point
+in time goes high. Same deal here, just the inverse, we have a rising edge again, the D pin is low,
+and after a while the signal again propagates through the flip-flop and the level here goes low.
+Now, what about this setup on hold times? The setup time describes the duration
+how long before rising it clock edge occurs that a stable signal needs to be present at the input.
+This is what you can see here. You can see here that the clock goes high, but at the time here,
+the signal on D already needs to be high even before the clock occurs, the clock edge occurs.
+Then we have the whole time, this is similar, but after the rising clock edge. So we can see here
+that we have the clock edge and here again is a duration specified TPLH, which says, no, TH here.
+So for this amount of time, the D input needs to be stable, either 0 or 1, otherwise bad things
+will happen. And then again we have the propagation delay and the propagation delay is just the time
+how long it takes from here when the rising edge occurs until the D value is actually forward to Q.
+This is this TPLH, for example, here that it takes the signal to travel from here to here.
+The setup on hold times, why are they even there? How can we find out how high they are?
+The logic gates are nowadays built most of the time, again in so-called CMOS technology.
+So you have MOSFETs, N-channel and P-channel MOSFETs, this is just an N-channel MOSFET to see
+what these things actually do. This thing is a switch. If the signal is pulled to low,
+this will stop conducting and the LED turns off. So power will flow from here through the LED,
+it can't pass this MOSFET, so the LED will be off. If we pull the so-called gate, this is this pin
+here high or up a certain threshold, then this thing will start to conduct and the current can
+flow from here through this resistor, through the LED, back to ground, back into the battery,
+so the LED lights up. This is what you do with that switch here. You connect this gate basically
+to the supply voltage and then this thing starts to conduct. If you leave this switch, then this
+resistor will discharge, like pull all the charges away from here and this will be pulled to low,
+so it turns off again. So every time you press the switch, the LED turns on, if you release it,
+it turns off. The gate here needs to be charged. It behaves like a capacitor and
+if you pull the voltage on the capacitor, it takes some time for it to ramp up and actually
+pull the charges into the capacitor to fill it up. Then there is a certain threshold in this MOSFET
+where it starts to open up and starts to conduct current to turn on the LED.
+A logic gate or flip-flop consists of multiple of these things. So again, every time you chain
+these things, it again takes more and more time to charge up these gates to make them do or discharge
+them to make them do stuff. So this adds up and this is how the propagation delays
+also affect the setup at whole time. So the setup time, for example, is you need some time
+to charge up all the gates of the MOSFET in such a D-flip-flop or wherever else and the whole time
+is that all this stuff needs to propagate through this logic gate or the flip-flop until the signal
+really is stable on the output. Again, oh yeah, and if we of course violate these periods,
+then this thing might not turn full on or not at all and the LED might only be half on or something
+like this. So the MOSFET doesn't really do what we expect anymore. What's interesting is that
+if we increase the voltage that we put on the gate, we can make them switch faster.
+So because if we apply a voltage, some current will flow into the gate and if we have a higher
+voltage according to Ohm's Law, we will get a higher current and a higher current means that we can
+current is charges per second, that we can put more charges into the gate capacitance and thereby
+turn the MOSFET on faster or discharge it faster and turn it off faster. When we can
+charge the gate faster, we can switch faster because charging the gate is essentially a switching
+operation and that's the reason why overclockers increase the core voltage of the CPUs when they
+raise the clock. Of course you can't do this, you can only do this up to a certain point because
+there are more effects to this. The chip gets warmer because it dissipates more power,
+it switches faster, it dissipates even more power and at some point in time chips just break.
+But what would happen if we on purpose decrease the voltage instead of increasing it like overclockers do
+to violate these set up in whole times? Things will break. So we get a so-called glitch. So
+the logic circuit will not do anymore what it's expected to do, we just need to do it right to get
+the effect that we want. So what should we glitch? We saw earlier that most likely that SBCs
+are zero thing controls the ROM logout and initially the ROM is not locked so that's the state
+that we want to keep. So SBCs are zero has to be written by the ROM somewhere right before leaving
+the ROM code and jumping into our code. And the right to that register the truffet over multiple
+buses, I don't know if that register is exactly in this block here, I just assume it because it says
+system configuration system registers so it would make sense for it to be there.
+So if that boot ROM code tries to write to that register it has to issue a write of this bus,
+this bus decides oh yeah that is this in this memory region, I need to forward it over this path
+to this bus and then this bus decides oh yeah it's that system configuration register,
+I need to forward it to this block and then inside that block there is some logic that
+changes the register value and so on. So these are kind of like imagine that earlier with the
+slide with the flip flops and logic another flip flop some logic another flip flop and this
+multiple stages of these like in this path and we only need to disturb one single part of this bus
+transaction to cause problems and we don't even care how we are going to disturb it, it just needs
+to break somehow. It can write a wrong value to that register, it can write to the wrong address,
+the write could be too late for the clock cycle to happen and it is happening but it's happening
+too late, all this kind of stuff. The problem with that is we can also hit the wrong spot,
+so either we are too violent and take away too much power then the CPU just crashes or stops,
+locks up or we do it at the right spot then we glitch not the right instruction that we want to
+glitch but another one before or after so we don't get the desired result that we actually want.
+Also we still need to run code, it's not enough to just glitch away that register write, our code
+that runs after the ROM still needs to be able to read out that ROM and dump this to the serial
+port so that we can get a dump of the ROM. So how are we going to find the sweet spot?
+The idea is that we look at the EMMC traffic, the traffic between the SOC like the main chip
+and the EMMC because we know that the boot ROM has to load code from there because it loads our
+code from there, we wrote that in there and the SOC is configured to look at the EMMC
+for loading the code. So we can sniff that and just try to find out
+what the last transaction is that happens there so we have a stable timing anchor from where we
+can try different things. So we hooked up an FPGA to do that and wrote some code to analyze the EMMC
+traffic and we used the last transaction as a trigger so we wait for that trigger and then we
+wait a random, not random but we wait in the amount of time. After that we glitch so we take away the
+power to the chip, we wait for our code to execute or not depending on what happens, we see if we
+can actually dump the code, if not we adjust that time and we repeat the whole thing and we just
+write a script and just leave the thing running and every time we increase dollar time a bit
+to sweep over the whole region and see if we can hit the sweet spot at some place.
+This is an image that I did while doing all of this. We needed to find the right voltage range
+to glitch and these modern SOCs have a lot of voltage range so on the other side here is the chip
+and all these capacitors here are hooked into the different voltage rates and
+I took my multimeter and just beeped everything out and tried to find out what is connected to
+where. Green for example here is the ground plane I think and then I just soldered wires to the
+different colored points and measured what voltage is there and we ran an endless loop on the CPU
+which just prints numbers and when I soldered the wire this is not something to try at home but we
+didn't care if we break the thing, we just shorted the thing to ground and usually it doesn't break
+because the voltage regulators can detect this and they turn off, they then turn on again, they
+see oh it's still short, I turn off again after a while and then it tries again but at some point
+in time and then we look for crashes. One funny story is you can't read this because it's in pink
+also graph coloring is hard because I ran out of colors at some point. Here is something that says
+3.3 volt smoke. I hooked up, this point here, I hooked it up to ground and something on this
+work stop it's smoking. I have no idea what it was because the still board still works.
+I unhooked it and it refleshed Linux and it booted and everything works, Wi-Fi works,
+Bluetooth works, the GPU still works, I have no idea what went up into smoke.
+We looked for crashes because the assumption is when we take away the power supply for the CPU
+it has to stop and we found this slightly green color here in this area to be the right voltage
+tray. Down here you can see that we sold out wires to some test points and this is the MMC
+port kind of. There are some test points where the MMC traffic is so we just sold out wires to
+there and just moved them out for easier access to hook them up to the FPGA so that we can snip
+the traffic. So this is the assumption that this CPU is only running on one voltage and all the
+other components running on the other one. So the question was, I'm just going to repeat
+for the recording in the stream, the question was is the assumption that the CPU only runs on this
+one voltage? No, it's not, we just tried and this was the only voltage rate that did something.
+Some of the voltage rates were just turned off. We didn't know for example for the main CPU or
+the GPU at this point in the boot process. We weren't even sure that this is the right voltage
+rate because for example if you imagine if you have such a lot amount of voltage rates that you
+that you have on this chip, they are useful kinds of stuff in the chip. Maybe for the clock
+generation circuit, maybe this gets its own voltage. If we knock out the clock generation,
+we of course knock out the CPU as well, but this is not what we want. We just assumed that one
+rate that we found was the right one and it turned out to be the right one. Pure luck. Usually you
+would just look that up in the datasheet, but we didn't have a datasheet with a pin out for that
+chip, so we had to guess. We also didn't have schematics for this module only for the carrier
+board, and this module generates all the important voltages by itself. So yeah, sure guessing.
+This is the setup that that Syatch came up with. You can see the main board with all kinds of
+wires attached and oscilloscope probes. This is just a UART adapter and this is the FPGA board
+with a logic analyzer attached so we can see what it's doing. This board ran the FPGA bitstream,
+which sniffed the EMMC traffic, generated the trigger for the MOSFET that we hooked up to the
+voltage rail to pull it to ground, to short it to ground and take away the power for the chip.
+We wrote a script that did this loop where we glitched it, we looked at the output, we
+reset the board and we adjust the time, reset the board and repeat, and left this thing running
+overnight. And when reviewing, we just recorded everything our code spit out on the serial console.
+At the next morning, we looked at the dumps and we saw that at one place, it actually started
+dumping. It said, well, that register is still the reset value and here's the wrong, but
+it wasn't the wrong. It was still that EF, whatever, jumped to zero thing.
+So we didn't think much of this. We thought that it might not have glitched correctly,
+we hit the wrong spot, maybe we glitched our code. The CPU was maybe in a weird state where
+it was drunk because it didn't get enough power at some time, it was stuck in some weird thing.
+So we, well, didn't care at that time. Later, it turns out I read from the wrong address.
+The wrong dumping worked, I just dumped the wrong address because I forgot a zero in the address of
+the wrong. Yeah. And then search left for a business trip for a week, directly after the next day,
+and I was sitting at home, not having that. So this was all in Dublin, I was in Ahren.
+So I didn't have this stuff. And I didn't have that FPH where I had the code and everything,
+I would have been able to set this up by myself, but I didn't have this FPGA board and it was just
+too lazy to port the code to an FPGA board that I had at hand. Yeah. So I tried my own setup.
+Because I didn't want to port the code, I needed another trigger. And this was the dumbest idea ever.
+I just used the reset release as a trigger. So remember when we, when we do this loop,
+where we reset the board, try to glitch, adjust the time, see if we glitched, adjust the time,
+reset the board again, I just use this reset as my timing anchor.
+I then wrote my code so that I turn on a GPIO directly after the first thing that Michael did
+was turn on the GPIO, just a pin that you can turn on enough, like on an Arduino.
+And I hooked up my scope and I measured the time between how long it takes between reset release
+and my GPIO going high. So I essentially measured how long it takes for the boot drum to do its thing.
+The idea was that I just need to move that glitching pulse then while looking at my oscilloscope
+shortly before my GPIO goes high because turning the GPIO on was the first action of my code. So
+right before the boot drum must disable the boot drum. And then I just move it around a bit
+until I hit the spot. That was the theory. This is what this looked like. This is a
+MOSFET that I bought. I just soldered it here onto this small capacitor that I ripped off the board.
+It's rather small. So these things here are 0201, something like that. I even resordered
+all of them that I took off. So yeah, this is just ground. This is where I hooked up my oscilloscope
+probe, the blue wire, and the white wire is the signal line that my chip whisperer,
+something that you can use to glitch chips, just put the signal on to turn on this MOSFET and pull
+this voltage line to ground to this pad. This was my setup, a bit messier, but also a lot simpler.
+This is the board again, a bunch of oscilloscope probes to look at stuff. Serial port adapter,
+some voltage level shifting just because everything here runs on 1.8 volts that I cared about. So I
+and this chip whisperer here, which is the glitching. This basically does the reset glitch,
+just timing, reset glitch, just timing loop over and over again, controlled by some Python software.
+This here, this wire is the GPIO that I measured, and then I measured how long it takes for the
+boot run to do stuff. This is screenshot of my oscilloscope, and the blue one is the reset line,
+the green one is the GPIO, then we have the glitch pulse every time we glitch this goes high,
+and here we have the VCC line that we are going to glitch. So right now this is at 1.05 volts,
+something like that. The glitch pulse is low, means we're not glitching, and this reset is low
+active, that means if it's put low, reset the chip, if it's put high, let the chip run. So I
+leased the reset here, and here my GPIO was high, so I can measure the time between here and here,
+and that's around 60 milliseconds, very roughly. This setup was not very good, because I said
+dumbest idea ever. The timing between all the runs is different every time. The 60 milliseconds
+here, this time is not true, it's not always 60 milliseconds. It jitters around by, I don't know,
+40, 50 microseconds all the time, so the timing is different on every single run.
+Also, so the ROM seems to take a different amount of time. I suspect it's this because it
+initializes PLLs, and these PLLs need some time to lock every time you reset, and this seems to take
+different amount of time every time it does that. That's just a theory, I have no idea why
+else that could be. As I said, the setup is very bad, that's not how you usually do it, but I just
+thought I'd wing it. There is no clock synchronization, I added this picture again here, because
+I just sent out glitch puzzles. And if you glitch here in the shaded area, nobody's going to care,
+because that flip-flop is not doing anything, so we can't possibly violate the setup in whole
+times or any kind of propagation delay, because nothing is happening on the chip right now.
+So if we happen to glitch here, nothing will happen. If we synchronize the glitching code,
+although to the clock that we supply to the chip, then we have a better chance of hitting,
+like right in here, when it actually matters. But yeah, I didn't care. Also, I don't know why,
+overly, the glitch pulse was so massive, I had to go up to several microseconds. So
+multiple instructions, hundreds of instructions must have been glitched there.
+And we don't have a stable timing anchor, because I didn't sniff the EMC traffic,
+and just used the reset line as a timing anchor, and did the timing different all the time.
+So this is what it looks like. I zoomed in on the other side, so reset is already high,
+the boot drum did its thing. Here, the GPIO was high, and here I injected the glitch way too late.
+So I glitched my code. So we see the voltage rate going low, and then slowly recovering here,
+when the voltage regulator switched on again. And this went on and on. I tried multiple times,
+like you can see it jitters around all the time. This, for example, is too late. This might be a
+bit too early, this as well. And I just left the thing running. I just had the glitch here,
+and this wobbled around all the time. So the idea was maybe, if I just leave it running long enough,
+because I knew that the glitches would do something sometimes, maybe I'm lucky, and because of the
+jitter all the time, I might hit the right spot. I didn't really think that that would happen.
+And then on another screen, I suddenly saw this, and this was my facial expression.
+This is the code that was running there. It said all the time, boot drum lock, boot drum lock,
+boot drum lock, boot drum lock, and always checked is the boot drum locked here, then don't do anything,
+wait for the reset, the glitch again. And suddenly it said boot drum unlocked, and it started dumping
+stuff at me. And what? And again, we can see this actually worked, because we can see this is
+again the hex dump. This is what we saw earlier, same stuff. And then here at OX1000, earlier we saw
+this jump zero, and suddenly we get stuff back, and it looks like the other code. So we got the boot
+drum. This was running in the screen. I just dumped everything into a file, wrote a script, which
+parses my hex dump code, wrote this into a binary, and opened up a beer.
+Okay. That's how you get a boot drum. I never expected this to work, but sometimes you just need
+to get lucky. Yeah. So last thing of the presentation is the buck. The story about this is after you
+get the boot drum, you of course try to analyze this and find the buck. The way you do this is you
+throw this into this December, and you look at this for a very long time, because you need to find
+out what the thing does. And there are basically no strings in that boot drum. So you don't have
+anything, you can now debug out for nothing. You have to go through every single function and
+look at the assembler code, or using hex arrays to get some pseudo code back when you have a
+decompiler license, which I gladly had because I have a license at work. So both Serge and I
+spent countless hours looking at this, because you couldn't, you also couldn't Google for stuff,
+because it was all undocumented. Nobody knew how this thing works, and nobody else published
+anything about this. So we reverse engineer the main boot path, nothing to be found there. We
+started looking at the RCM code, and it turns out the buck is actually the RCM code. RCM, I said
+earlier, this is the other path that you saw earlier when you press a magic button combination
+or the thing cannot boot, stands for recovery mode. This mode can be entered and reset using
+some GPIOs if you press a magic button combination, or if you set a magic bit somewhere, you can
+check out this by software by setting a bit in some register and then resetting the board,
+then the boot drum on the next boot sees that this bit is set and it directly goes into the
+RCM path, or if you have a primary boot failure, and also the recovery booted it attempted that
+you can configure didn't work. So for example, on the switch, if you rip off the EMC of the board,
+it can't load stuff, so it goes into RCM. RCM itself is a relatively simple USB protocol
+using so-called bike transfers. You can just throw stuff at it and read stuff from it in a
+circuit format, and these blobs, it's complete binary format, so no ASCII or something like that,
+they are written to that back end point and there are essentially two possible uploads,
+there are more but the others don't do, it's like an up or something like that. It's like
+carry some versions, you can carry three different versions, they are all the same all the time,
+or you can download code. You use this download code function, for example,
+if you brick your device and you need to recover from that somehow or during manufacturing,
+if these things are manufactured most likely, they will run through an automated process where
+they go into this RCM mode and flash the first version of the operating system there and write
+all the crypto keys and so on, and this will most likely be done by code that's being downloaded by
+RCM. So, curriculum is big, USB crash course, how this works because that's important for the
+exploit, USB devices have so-called endpoints. You can think of this of an end point like a pipe
+between the host controller, that is your notebook or your PC, and the device. There is a control
+endpoints, that control endpoints is used for basic device management every time you plug any
+USB device, the USB host stack is going to read some so-called descriptors which tell the operating
+system what kind of device is that, the master's device is that USB serial adapter is that switch,
+whatever. This thing is always there, it has to be there per spec, so you always have a control end
+point. Then there are bug endpoints, these are used for raw data transfers, you can, for example,
+this is being used for an on USB mass storage device, if you plug in a USB mass storage device
+it's going to have multiple bug endpoints where you speak some SCSI protocol over it, and you just
+send these commands using a bug end point to write a blog, to read a blog and so on.
+These bug endpoints have no guarantee latency, so it can take a while until the bus is free,
+until they are actually transmitted to the device or read from the device, and you don't have a
+guaranteed bandwidth. So if every device on the bus is just right now talking, it might get slower
+and slower and slower. Now I interrupt endpoints, not important for us, these are used by
+by stuff that have small, bursty packets that need to be read or written on a regular time basis,
+like mice and keyboards, and there are asynchronous endpoints. That's a continuous stream of data
+that needs a certain amount of bandwidth without the guarantee of it actually arriving on the other
+side, so that could be lossy, that's used for audio sound cars and stuff like that,
+because if you don't have the guaranteed bandwidth then audio might get choppy and so on.
+And all these endpoints, you can have multiple of these, you can have multiple
+bug endpoints, but you always have only one controller endpoint, but you can have multiple
+bug endpoints, interrupt endpoints, asynchronous endpoints, and so on, and all of these endpoints
+and theory can be used independently of each other. So while I am handling a bug transfer,
+I can also have a control transfer pending that needs to be answered in between or after
+handling the current bug packet. RCM uses the control endpoint, of course, because it has to be
+there, and actually it's not true, two bug endpoints, one for reading, one for writing,
+and the bug endpoint is used to move the RCM messages that are used to download,
+code, or query the version and so on, to the device, and you can read back some error code
+if that worked or not. The control endpoint, of course, supports all the standard USB control
+transfers that need to be supported, and the typical controller transfers are stuff like
+set address. If you plug in a USB device, it doesn't have an address assigned yet, so the
+host controller over the, the host USB stake tells the device over the control endpoint,
+your address is now 20, and then that device reacts every time it's talked to on that address 20.
+Then there's a get status request, we will see this later, that just returns status bits of the
+device or an endpoint or an interface. Get the script there is also being used that for the
+identification of the device, what kind of device is that, is that a master device,
+is it a mouse, is it a keyboard, and so on, that there are a lot more, but these are not important.
+Actually, for all purposes, only the get status request is important. A control transfer has a
+standard layout, let's call it packet that is being sent over USB looks like this.
+You have some kind of a request type that says, is this a read or a write, who do you want to
+talk to the device or an endpoint, stuff like that. Then there is what do you actually want to do,
+this tells the device stack, for example, if this isn't set address or get status or get the script
+or request, and then there is some W value, it's a 16-bit value, that's just some payload that
+depends on what the request and the request is. Then there is some W index, it's kind of the same,
+just with a different name, and then there is optional, then there is a length that describes
+the length of optional data that might be written or read from the device, depending on
+if this is a read request or a write request to the device, and then either there is some data
+here or there is no data here, so this is optional. This is what one of these RCM messages looks like,
+it's basically just a C struct, the binary block that is being thrown over a bug endpoint to the
+device and the whole stack and stuff. Here are some CMDs, download code, for example, is command
+number fear, and all these version requests are 5, 6, and 7, for example. This rack contains all
+the important things that the RCM code needs to know to verify that message, the signature of that
+message, and what it's supposed to do. It has a length, how long is that complete packet,
+or that complete command. Some crypto stuff here, we don't care because we don't care about the
+crypto, and we can't break it anyway, it's RSA 2048, so no chance. Some device ID that needs to match,
+it's a unique device ID per chip that needs to match, then there is the opcode, that's one of these
+here, then there's the length again, but this time this is signed, so everything up to here is not
+signed because you of course cannot sign the signature, because that's not possible, and because
+you would have to modify the signature after signing it, so yeah, that doesn't make sense.
+So here again is the length, this time signed, the length here is just convenience for the code,
+so that the code just needs to read the first four bytes, and then it can expect that this packet
+has a certain length, and then when it read past here, it compares that this length is equal to
+this length, so that it is sure that nobody is tempered with it, because you can't change this
+one because it's signed. Then there's a payload length, you can attach a payload down here,
+that is for example if you want a download code, that's the code that you want to download,
+and this is the length here, then there is a version that needs to match one of these here,
+some arguments that you can supply, for example for download code, it's the address in the payload
+to jump to, if you have an entry point that's maybe not in the beginning of the code, but
+farther out, you can specify that here in the arguments and jumps there, and yeah,
+something I don't know, it's most likely never used, some key index crypto stuff,
+then look at it, then reverse it, some padding, and then follows the payload, then the payload
+follows, that has a length described as a set by this field. The boot flow, that's some code,
+just to give you a high level idea, just quickly going to describe, you don't have to
+really be able to read this, just I'm going to highlight what the blocks do. The first thing it does
+is it checks if you already read like the hardware ID, it tries to send your hardware ID,
+and you have to read this as a first thing if you want to talk over ICM to the device.
+If it doesn't succeed, it just tries again, and again, and again, and again, until it succeeds,
+and then it succeeds, and then it sets the slack to break out of this loop. In between, because it
+tries to send stuff all the time, it also has to handle control requests, because as I said earlier,
+the bug endpoint transmissions and the control endpoint requests can be independent of each other,
+they don't really have that much to do with each other, so both of these things have to be handled
+after another, but they have to be handled. After that, we call a function that's called
+RCM receive message, so we are essentially waiting for a message. After this has been sent to the
+host, the host can prepare a message and send it over with a code you want to download, for example.
+So we receive that message, after that, we check if that message is properly signed.
+If it's signed, we validate a bunch of fields in there, for example, that these two length fields
+are equal, if the code is not too much for us to actually jump to, and then we jump to a
+function that's called RCM prod handle message, where it's jumping to the code or it's responding
+with the version information that you requested and so on. And if that message actually tells you
+to jump to some code, you break out of this outer while loop and then you return and then
+the following code that called try to load from RCM is just going to jump into the code
+that you just downloaded because this function checked everything for ability.
+How do we receive messages? This is a very convoluted function in the ROM itself because it does
+complicated stuff. It's receiving these RCM messages and what it does is it always does this using
+two DMA buffers. So it always has one buffer where it receives the message into and that's somewhere
+in memory. And it does this asynchronously. So what it does is it queues a read request from
+this end point with a length of 0x4000 bytes because that's how big the DMA buffer in memory is.
+So it kind of instructs the hardware. Everything that comes in from that
+bulk end point, put this somewhere in memory up to a length of 0x4000 bytes. And then it goes on.
+In the first loop, this again is a while loop. In the first loop, it's going to
+determine that it needs to read more stuff because it hasn't received anything yet.
+So it's going to skip this part. Then it's also going to skip this part more on that later.
+And then it has to wait for the read request to finish because as I said, it's asynchronous.
+It tries to process data at the same time while receiving the next
+chunk of data at the same time. So here, if we set this read more flag,
+which is here as well. So if we queued a transfer of these SCM messages,
+it's going to wait here until that finished. When that finishes, it tells you how much it
+actually received because the host can send less than 0x4000 bytes in a single packet.
+And when it finishes, it returns here and goes back to this loop. So now it knows I have
+x amounts of bytes read. So it sees if it has received enough, it says, okay, I don't need
+anything anymore. So then it goes into this if, where it checks if it received less than 680 bytes
+yet in total. The 680 bytes is important because this struct here is exactly 680 bytes.
+So what it tries to do is it first reads this header of the message without the payload.
+If it got more than four bytes, then it already has this length here. So it knows most likely how
+much data and total it needs to receive or the message to be complete, including the payload.
+So then it checks some fields in there. If the total amount of data it needs to receive is not too
+long. And if that's not the case, it knows how much does it in total need to receive. And then
+it goes into this if if it received more than 680 bytes at this point, we receive the header
+already, that big struct, and parts of the payload already. So then it copies the payload also into
+memory into a different place than this RCM message buffer. So this RCM message buffer is the header,
+where it checks these lengths, for example. And this is at one place in the memory,
+and the payload is in another place. We will see this later in another slide.
+And if it received more than 600 bytes, so it has the header put into this one place,
+it can start to receive the payload that is the code that we just want to jump into
+that other place. And it goes on and on and on until it determined, okay, I received enough
+bytes as determined by this length insecure. I don't need to receive anything anymore. I'm done
+here, and it returns, and then in the outerline function, this one here, the one before, it can
+check the signatures because it completely received the code. Okay. So to recap, this just
+receives the message. It does some all kinds of sanity checks already, so that we don't overflow
+anything, and puts the header into one place and the payload into another place.
+This function does this asynchronously. So while waiting for this to finish,
+oh yeah, here's here, for example, this is the memory that I talked about.
+This is the, this S RAM that the, the ROM has as part of its memory.
+Here is the, some, some handoff data on the VCT. The next bootloader needs this stuff,
+so the bootloader just puts it there and tells the bootloader, yeah, I loaded you from
+this device and so on. Then there are global variables.
+Then here is the first DMA buffer. As I said, it uses two buffers. It always uses the first one,
+then the second one, then the first one again. Here is the stack, and then here is the RCM payload
+buffer. This is the code that we would jump into. So what the boot ROM does is the RCM message,
+the 680 by 680 bytes here will be put here into the global variables, and the RCM payloads
+following that message will be put here into unused memory that's never touched by the boot ROM,
+except for this RCM payload download.
+As I said earlier, you have to handle these control requests all the time.
+When you, when this function before kicks off this asynchronous read and it waits for it to finish
+and actually deliver data, it does this here in this function. So USB device read end point one
+out complete, so it just waits for this transfer to complete. It does this in this while loop,
+it checks some status of the USB end point, and if that status says, okay, I'm good,
+then it breaks out of this loop here. If the buffer is ready or the end point is
+installed at some USB thing to signal errors, then you can break out of this loop. Otherwise,
+it just keeps looping and pulling the status, and while doing this, it needs to handle a pending
+control transfer. And because that also does DMA, because it's also USB, it's going to use the
+other DMA buffer. So we have these two DMA buffers. For example, this one here is right now used for
+the byte transfer to receive the LCM message. And while it's filling that and waiting for it to be
+full, it's using this buffer to potentially receive an answer to control requests at the same time
+while waiting for the hardware to fill up the buffer. And then when it's done, it's going to switch
+roles, and they're used vice versa. Yeah, so this is important. This does this all the time.
+Now, let's look what that function does. That's a bit easier. It just handles the control
+transfer. It receives stuff from the DMA buffer. It copies that over into some other buffer,
+and it looked like this is the, this is what it receives, the request type, the request, so it
+needs to determine what is it, what the host wants from me, and then prepare a response and send that
+over in that function. So it just looks into all these fields. It looks at, oh, it's just a device
+to host transfer. So that's the host want to read something. If so, what kind of request is this,
+is this a status request, if we want to get the status of the device, we just call this
+get device status function, put this into this variable here, per USB spec, this descriptor is
+two bytes long, and then it sets this descriptor variable, which is pointer to the location of
+the status. And what then happens is that down below here, a mem copy happens where that response,
+this is the response that the host waits for on that control request, because it wants to get
+the status. So we now have to copy that, that response, we want to send to the host into a DMA buffer,
+and tell the USB stick, this DMA buffer needs to be sent out to the host now. So we do that
+here. We mem copy that descriptor with that length that we set to two here, and this descriptor
+into that DMA buffer, and then we kick off the transfer with that length. Easy. If we look at
+another case here, we want to get the status of an endpoint. So they again fill this status variable
+with some return value of the function that gets the endpoint status, and it sets the descriptor
+length to something, why is this here two, and there's not. This here, this GUsBD request is the
+same that it uses here to find out what the host wants. So this w length thing is controlled by the
+host. So usually, this is always two, because the host just knows the status request is two,
+two bytes long, so I just supplied two here. But this descriptor length here is used down below
+in that mem copy, and we control that length. That means we can copy more than two bytes
+using this mem copy function. So we are not only copying this variable that is on the stack here
+into that buffer, but also everything that's behind it when we set this length to more than two.
+If we supply two, we just copy copy that variable that status variable. If we supply four,
+we copy that status variable plus two bytes that are behind the status variable on the stack.
+And we can play around with this. So this is what that looks like. Again, here we have the
+message that is completely uninteresting now. Here we have the payload that we downloaded,
+and here we have the USB endpoint status variable. That's two bytes long. Scale is not correct.
+So what does the copy operation look like? If we do the mem copy, it looks like this,
+we copy these two bytes, the beginning of the DMA buffer, and that buffer then is past the
+hardware the hardware is told sent us out to the host and magic happens.
+But what if we copy eight kilobytes? If we set that W length to eight kilobytes,
+then the mem copy operation is going to copy that variable plus 8190 bytes into that DMA buffer
+from the stack. So we can leak stack and a bit of stuff that we sent over, but we still don't
+have code execution. We can only read the stack, but the stack is directly behind the DMA buffer.
+So we always copy stuff from here to here. What would happen if we copy 16 kilobytes plus 12
+kilobytes from here to here? Like this. We overwrite the stack. And the interesting thing is on the stack,
+the stack in the C language is used if you do a function call to the mem copy, for example,
+in a function, then the CPU needs to save where it needs to go on after that function is done.
+And this is saved from the stack. This is called the return pointer. And when we can
+overwrite the stack, we can overwrite the return pointer and just change this return pointer. We
+don't have it to jump back into the code that called the mem copy, but we can put some pointer
+there and just jump into the code. We don't load it here. And this happens before the
+signature can be checked, because what we do is this is the main function, then we jump into this
+RCM thing. These are all the function names that are that are called in sequence. So we have this
+tryload from our Cm call, then we have this RCM receive message where it puts the header in
+one place and the payload in the other place. We then wait for a transfer to complete.
+And the transfer never completes because we just send, we just tell the boot drum with that
+length field that we want to send, I don't know, 20 kilobytes of data, but we only send 19 kilobytes.
+And or 20 kilobytes minus one byte. And then it then we just stop sending stuff.
+So it's going to wait in this function for the last transfer to complete. And in the meantime,
+it also has to handle these control transfers. At that point, we send this get status control
+request with that overly long w length value that we can control. So we take a bunch of our payload,
+copy it over the stack. And then the mem copy is done. The mem copy would return to this function
+because of the saved return pointer on the stack, which we overwrote, but it never does this because
+we overwrote that that return pointer, and we can jump to our payload. And we can just put our code
+in there. And all this happens before any kind of signatures are checked, because this code
+still receives the message. When we when we overwrite that pointer, it still thinks it doesn't have
+the complete message. So it never returns from this RCM receive message function. And then RCM
+receive message function comes before RCM message validate signatures. So we don't even need a
+signature because it's never checked. And yeah, we just we just put our code
+here into that RCM payload. And yeah, we can use this RCM to execute our own code without any kind
+of signature checks. This is the bug that has been found by all of these parties that were on
+Twitter and talking about this. And we found this as well 30 minutes before it was published.
+I already had the text editor open. I'm trying to write an exploit, but yeah, then I saw the
+message. So what do we need to do to exploit the thing? We connect to USB. We have to read that
+ECE ID because that's the protocol. We then download code with that invalid signature into the into
+the memory with the right header and then the payload. We never finished a download. That means
+we actually set the length to a higher value than what we actually sent. And then when we
+are done sending our payload, we just issue that get status control transfer with an overly large
+W length. The mem copy happens. It gets copied over the stack. We control mem copy's return
+pointer. And we captured the flow of control. Profit. One last slide. How do you get into RCM,
+relatively easy. There are three possibilities. You already have kernel code execution due to
+some other hack. And you can just set this PMC scratch register and reboot. And then it
+ROM sees this and just goes into the RCM path. You rip off the EMC board and it can't boot.
+It has no other chance than to go into RCM so we can exploit it. Or you press a magic button
+combination while turning on the device. The magic button combination is configurable,
+either it's volume up or volume up at the home button while turning the thing on.
+The switch is configured for the letter. So the home button doesn't exist. But failoverflow found out
+that here on the side on the right joy con where this joy con actually connects down here to some
+pins, there is this pin for the home button. So they 3D printed this thing on the right that fits
+exactly into the slot. We just have this bridge. So you put this thing in, you press the home button,
+your whole plus turn it on and you're in RCM and you can launch the exploit.
+I don't know if you can already buy these in China somewhere. You can just print it. I
+printed one of these and hacked the thing that they glued into there as part of a USB connector.
+So you can just cut this up, solder the two pins together. This is the first and the
+fourth pin I think of a micro USB connector. So you just sacrifice a cable
+and curse a lot because it's just fiddly and then you have your own of these jigs. That's it.
+If you want to know more about this, there are more resources. I linked this on the slides here.
+The first one is the fussell launcher. That's one of the exploits that got published shortly after
+the buck was public. It also has a nice write-up. If that code thing that I explained to you was
+too fast for you or too convoluted, you can read up the write-up there by Kate Tampkin. It's
+actually a pretty good write-up. And the second one is shaweil too. That's the same buck but a
+different exploit from failoverflow. They released it shortly after. They also ported Linux so you
+can look at the reposters. You can run Linux on the switch. So yeah, questions?
+I don't think you know which part has been used or do you just like extend the jump slide that
+thing to offer the same? Yeah, so the question is how do we know which buffer of these two is
+being used? You can just count how many USB transfers you do. So the question is which
+of these two buffers are used because in my mem copy here, I always assumed that the second
+buffer is being used and I copied that over here. You could also do this with the first buffer but
+then I mean the space here is big enough. It covers all of these three buffers. So you could,
+for example, just copy this here over to here and overwrite the first buffer, the second buffer,
+and then the stack. But it is not necessary. You can do both but in what you do is because these
+things are used in sequence. So the first transfer this buffer is used and the second
+USB transfer this buffer is used and the third buffer and the third transfer this is used again.
+You can just count how many USB packets you send and then you know when you use buffer two or buffer
+one. If you are currently in buffer one and you want to execute what want to switch to buffer two,
+you can just send another byte of the bug endpoint, for example, and then this buffer is being used
+and then it switches over to the second buffer. And that's actually exactly what that Fuse exploit
+code does. The code, if you if you want to try to understand the exploit, definitely look at the
+Fuse launcher exploit not at the shovel too because this code quality is pretty good. It's written in
+Python and you it's a breeze to read this shovel too while being a cool exploit because it launches
+core boot and everything to prepare everything for running Linux. It's also exploit quality code.
+If you read that it looks like an actual exploit which is a bit convoluted usually because
+you write that exploit and you don't care how it looks like after it works.
+Yeah, thank you.

@@ -1,0 +1,243 @@
+API URL: https://api.media.ccc.de/public/recordings/93518
+Frontend URL: https://media.ccc.de/v/god2025-56473-the-surprising-complexity
+Title: The Surprising Complexity of Finding Known Vulnerabilities
+
+All right, hello everyone, I'm glad to be here and joined with Dustin and to have the
+next 20 minutes with you for this very exciting but very complex topic and I think we could
+even fill whole classes with this topic so we really need to focus on some specific parts
+just to set some expectations.
+This is not about AI, maybe one of the few talks but I think you can still see some connections
+to the keynote that we just heard.
+So without further ado, let's get started.
+So just as an introduction, as already introduced, we're working at USD.
+We are on the offensive side of things, mainly doing penetration testing, red teaming, helping
+our clients with vulnerability management. USD is actually doing more than that. We're
+also doing security consulting and security audits, but Dustin and myself are in the technical
+IT security realm. And our mission at USD is that we protect companies against hackers
+and criminals, and this is not an easy task. And in this task, we're constantly faced with
+the topic of finding vulnerabilities. And so in the first stage, we would like to set
+some basics for the later part of the talk. So we need to talk about some concepts. What's
+really hard if you're talking about security assessments or finding vulnerabilities, you're
+always faced with what does quality actually mean? What are we actually optimizing for?
+And I really like this very basic and abstract model. If you think about finding a vulnerability,
+there are basically four possibilities. First one is a true positive, meaning that there
+is a vulnerability and you found it. That's great. That's what it's supposed to do. There
+is a true negative, so there is no vulnerability and there was no indication of a vulnerability.
+That's also great because the result is correct. And then we have false positives, which are
+very annoying because they produce a lot of work for companies and individuals, because
+you need to do all the research, you need to see whether the problem is just to find out
+that there is actually no problem and there is nothing wrong. So you spend a lot of time
+for nothing. But what's even worse, in my opinion, is false negatives because those
+are risks that remain undiscovered. And therefore, in security assessments, we need to assess
+what we need to optimize in order to avoid false negatives and really make sure that
+we find all the vulnerabilities. So penetration testing is not about finding some vulnerabilities,
+it's not about optimizing for 80%, but you really want to ensure that you find all the
+vulnerabilities while still keeping false positives low.
+Second concept that we need to introduce, and this is also part of the title of the talk,
+we basically have to differentiate two different things. So first one being known vulnerabilities
+and unknown vulnerabilities. And in our definition, or just the definition for the talk, when
+we talk about known vulnerabilities, we mean vulnerabilities that have already been publicly
+disclosed, that were identified before, that there is some kind of documentation about it.
+And in a penetration test, from our offensive perspective, but also on the defender side,
+if you just have a piece of software, you can identify known vulnerabilities by looking
+up in databases, doing the research, while unknown vulnerabilities, for example, in a
+specific application that you develop yourself, you need to apply active test methods, something
+like penetration testing to actively hunt for those vulnerabilities. And for the purpose
+of this talk, we only want to focus on known vulnerabilities since this is already challenging
+enough. Okay, so let's go into some more details.
+In an ideal world, if we look for vulnerabilities in a software, let's say we just picked some
+random example, let's say we want to see whether there are actually some vulnerabilities. We
+would use some kind of search engine, let's make it very abstract. And as a result, we
+would expect a list of vulnerabilities from a single authoritative source. Ideally, each
+vulnerability would have a unique identifier that we could use to look it up. It would
+have detailed information about what the vulnerability is about, how we can fix it. Maybe even some
+indicators of compromise, you know, for the threat hunters, for the incident responders,
+for traffickers, amongst us, for the defenders. Maybe some practical remediation advice, is
+there actually an patch that I can install? Is there a proof of concept out there? What's
+the priority? Some kind of scoring, which I can use to really make sure that I'm fixing
+the right vulnerabilities, because there are just so many right now that you can't really
+probably can't fix all of them immediately, so you can and need to prioritize. And finally,
+ideally, we want to integrate this into our own toolset at companies and to have it machine
+readable using an API. Now, you can already tell from the title of this slide that we're
+not living in an ideal world. And the reality looks a little bit more like this. And we
+try to collect all the different scores and databases and abbreviations. So I challenge
+each of you working in the field. Let's see if you can, you know, speak out all of the
+abbreviations on the slide, if you can. Good job. But it's just, it's complex. So let's
+look at some in more detail. And the actual question is if the vulnerability is already
+known, so it means someone has already discovered it. Why is the information about this vulnerability
+so hard to, you know, access or to get? So we need to talk about some, some foundations.
+And the foundation of our vulnerability ecosystem, let's call it like this, is of course CVE.
+So the common vulnerabilities and exposures, probably all of you have already heard that
+in, you know, the format. It's a CVE and then the, the year and then the number. And those
+are, those IDs are issued by, by so-called CNAs. It's a CVE numbering authorities in
+order to have a unique identifier and then NIST enriches this information with further
+details. For example, what it applies to some, some scoring, et cetera. And the big challenge
+in, in this part is, and it, and you know, it, it works kind of well and it worked very
+well for a long time. But this system is struggling at the moment. And I brought you some statistics
+on the right. This is from the NVD, which is the national vulnerability database. And
+they have a backlog. You can see it in the, in the lower part of the slide of more than
+26,000 vulnerabilities or CVEs that are awaiting analysis. So those are CVEs that are registered.
+But the national vulnerability database, the team there is struggling to actually enrich
+this CVEs with the information that defenders really need in order to, you know, act upon
+those vulnerabilities. And it's not because they're not trying. You can see this in the,
+in the upper part of the slide, they're more, you know, working on more than 4,000 vulnerabilities
+per month. So I'm not saying they're doing a bad job. I'm just saying they're struggling
+to keep up with the increasing volume. And to be honest, this also has to do something
+with the, with the structure and the organizational topics. Those are US government funded institutions
+and probably all of you can tell what this means nowadays, which means they're struggling
+to keep up the funding they have. They are experiencing, you know, funding cuts, which
+leads to, you know, increased analysis times. And it's just not no longer a reliable or
+a single reliable source that we can use when it comes to vulnerability information.
+Second thing that is kind of the foundation of our vulnerability ecosystem is a common
+platform enumeration. Just a show of hands. Who of you knows CPE or has heard the term?
+Okay, quite some, maybe half of the room. All right. So CPE is a structured naming scheme
+in order to identify software and its version. And this is very important because if you
+find a vulnerability, you really want to make it very precise what this vulnerability applies
+to or to which software and which version it applies to. And the structure looks something
+like this. Again, we brought you the general structure in the top and just an example in
+the bottom. And this is kind of a very good format. It's machine readable. You don't even
+need AI to automate things, which is great. But the problem is that it's not very, you
+know, user friendly in a sense that if you just know the software name, it's not so easy
+to translate it. And there is even some confusion. So multiple CPEs are possible for the same
+product and version. Another thing is the central CPE database. Yes, there is a central
+CPE database which is maintained by the NVD. And you can probably see where this is going.
+This has the same funding and structural issues that NVD has with the CPE database. So again,
+this is like a very, it's a foundation pillar when it comes to vulnerability management,
+but it's struggling at the moment with the amount of increasing vulnerabilities and the
+structures that we've established. The last piece in the foundation puzzle is we need
+a score. And probably, let's do it again because I like it. Show of hands, you know,
+see VSS. That's almost all of you. Perfect. So the common vulnerability scoring system.
+It produces a score from zero to 10. It's very easy. It only requires you, I think, to
+put in eight, eight to 10 variables. And in the base score, I'm only talking about the
+base score right now. And it's great when it comes to analyzing the technical impact.
+Of course, there is a lot of criticism because you're kind of, you know, always when you
+cut dense information, you're losing some kind of information. So sometimes it's hard
+to tell. And the number might be a little bit too high or a little bit too low. But in
+general, it's a nice scheme. But what it really lacks is some kind of the business impact.
+And it tells you kind of a technical severity. But it's not really super helpful when it
+comes to what the actual exploitability, what the risk and maybe also this is important
+for the prioritization, what this is. So let's quickly look at some of the newer developments.
+And those were the challenges. And this is kind of the reaction to that. We're seeing
+increased data sources, meaning that new databases and projects get established. For
+example, there is the GitHub security advisories project, which is kind of a replicating the
+structure of the CVE database. But with their own data, they have a different approach, more
+community driven, more open source, more transparent. There is the Cesar known exploited vulnerabilities
+catalog, which is really trying to focus on the later part. So which vulnerabilities
+get really exploited in the wild? So as a defender, you should probably focus on those
+first. This also references the new scoring system, which is the exploit prediction scoring
+system, EPSS, which is producing a value from zero to one, and kind of measuring the likelihood
+that this vulnerability is exploited in the wild. And we also see improvements in other
+areas. But this creates new challenges because now we have different scoring systems, as
+you've seen on the slide with the word cloud, we have different databases and we kind of
+need to match them together. And this brings us to our contribution to the solution. I
+think we cannot solve the whole problem, but we wanted to at least make a small contribution
+to the solution. And with this, I would like to hand it over to Dustin to get started with
+search worlds. Yes, thank you, Matthias. So having discovered all these challenges and
+problems, we then start developing our own tool eventually because we didn't find one
+that actually solves these challenges to our needs. And the tool is called search phones,
+and it's based on like these six core principles, which first would be accuracy. As Matthias
+showed, we kind of only want to see the vulnerabilities that are relevant for us. So we would like
+to really minimize the false negatives and false positives and only get the results that
+we're looking for. The way that search phones kind of works in this way is they use the
+CP strings, Matthias also described, and that enables it to be very accurate in comparison,
+for example, to text-based searches. What also kind of comes together with this accuracy
+part is consolidating multiple data sources to get like the most holistic view of the
+vulnerability landscape. As Matthias mentioned, the NVD is kind of lacking in this department,
+so you need to also include other databases. And then eventually, of course, kind of merge
+it down to like one final result for the end user. Important for us also was the third
+principle to have an all-in-one tool that we can use in different situations, for different
+use cases. For example, in a pen test, you might want to look up manually a software
+inversion that you found and then get results for that. Or also, if you use a scanner for
+automated scanning, you also want to have your vulnerability checker in there. Of course,
+if you have this all-in-one tool and you rely on it, you also rely on it to be up-to-date.
+And search phones manages to do this. It pulls the public instance, like everything that's
+public is updated daily, and of course, if you set it up yourself, which you can do,
+then you can update it even more frequently. Also, there is one problem with this CP concept,
+which materials kind of went into a little bit. There's this catalog provided by the
+NVD with all the known CPEs. And the problem also here is that the NVD is lacking behind
+a little bit, which is totally understandable. There's a lot of software products out there.
+A lot of versions getting released may be daily, weekly. But ultimately, this leads
+to some CPEs, especially for like newer software versions, to not be in this catalog. Then,
+if you kind of just use this catalog to find your CPE for a user input, you might not find
+a CPE, and then you might not be able to find vulnerabilities for it. Search phones kind
+of take us this a little bit by creating its own CPEs in a way, by using this existing
+data and then combining it with the user's query. And then you get as syntax-wise and
+semantically correct CPE, they can still use the search for vulnerabilities. And there's
+also the fifth principle for us as a pandemic and security consultant is including the actual
+results in the report. So we kind of wanted to find a good solution there too. And lastly,
+in some cases and situations, we don't always have internet access. So we really wanted
+to have search phones work offline as well, just as it does online. What I kind of a little
+bit forgot to mention is that this consolidating of multiple data sources is handled in a module
+of fashion, which is kind of maybe shown here a little bit better with the architecture.
+On the right-hand side, you can see kind of the module section that's divided into four
+separate phases, which I won't talk in detail about now. But essentially, all of these individual
+modules can attach to the input of the phases and then deliver output out of these phases.
+And then the search phone's core, like in the center here, kind of merges that together
+and provides it to the user on the left-hand side, either via a command line interface
+tool, via a web application, or also like a programmatic Python API. And as for the modules
+that we currently have and the databases that we use, that's of course like as the central
+pillar kind of the NVD originally. But that's also especially recently become more the GitHub
+security advisor, advisory database as well. And boom checks, NVD++, which is like this
+checkmark. We also have other data included, like for example, for back patches by Linux
+distributions, currently only Debian, but we're planning on including Ratat and Ubuntu
+2. And lastly, for us as pen testers, it's also important that if we do find a vulnerability,
+are there any experts for it? Can we exploit it in some way? So we also include the expert
+DB, for example, or POC and GitHub. And yeah, how search ones actually looks like, how we
+can use it? I want to show you now with a short demo. Here that's essentially like the main
+landing page and home page, and you directly are confronted with this prompt that you can
+just search some software for or in, for example, gray log and then it suggests you some CPEs.
+And probably the most filling one would be the top here, so you can select that and you
+will be shown the vulnerabilities for that version. Kind of important to mention here
+is also that we immediately see in the third row that there's also vulnerability that doesn't
+have a CPE identifier. And so if you just use CPEs and the NVD, you wouldn't be able
+to find this. And that's just, again, beneficial to include multiple data sources. Speaking
+of that, you could also see that gray log file for two is end of life and out of date,
+which is kind of, which is provided by an integration for the end of life.date database.
+Up here you can see that there's some filtering options, like first configuration, which I
+won't go into detail now. And there's also filtering options where you can select only
+certain vulnerabilities, for example. There's also, like, the attributes that you can select,
+for example, you can decide to show the EPSS score, which, in this case, isn't available
+because that currently only applies to CPEs, which first has it set up this way, the maintainer
+of the EPSS. And, ultimately, what you want to do is export all of this so you can copy
+that to Markdown or CSV into the clipboard and then paste into your report. Another career
+I want to show you would be Tomcat 9022. And essentially, the only thing I want to show
+here is this kind of warning here that it shows you, okay, this vulnerability is known
+to have been exploited in the wild, which is managed by another module that kind of just
+references this non-exploited vulnerabilities catalog. And there's also some other warnings
+that I won't talk about in detail now, but they give you, like, more information about
+vulnerabilities as well. Like, for example, if there's contradictions in the data sources,
+you're made aware of that as a user and can then decide if it truly affects the software
+create or not. One final career I want to show is GWT 572 on Debian 12, because there's
+some kind of other message here that tells you, okay, typically the software would be
+affected by these vulnerabilities, but Debian as the system, a distributor has fixed this
+vulnerability in a back patch. And so, you see that this vulnerability doesn't affect
+the software anymore. And also, here you see that it's up to date, though, and that just
+uses the Debian security tracker. Right, and that's essentially about search
+once there's some other things, for example, like, if you want to read more about how search
+once works in detail, there's plenty of information. You can also ask me, and there's also a more
+detailed video that goes into this, a little bit more details about the demo and the whole
+CP concept and everything. And, yeah, it's essentially it with this, I would give it back
+to Matthias to conclude the presentation. Thank you, Dusty.
+All right. Final thing that Dusty also matters, so this is open source. It's also online already
+available. We have QR codes. In a second, we also have stickers with us, which we can
+share with you later. So, you can definitely check it out. It is super helpful for us in
+our daily work, and therefore, we really, really enjoy using it, and we wanted to share
+it with the community. Just to sum up the talk, I think we've seen there is, this is
+a very complex topic in the ecosystem of vulnerability management. And, yeah, actually finding information
+about non-vulnerability shouldn't be this hard. That's why we wanted to make a small
+contribution with search once, and with that, I think we conclude the talk. Thank you very
+much for your attention, and enjoy the conference.
+Yeah, thank you, Matthias and Dusty. We have perhaps one minute time for a short question.
+Is there any question to those? Yes, there is one.
+Yeah, hi. Thanks for the presentation. I have a question. One of the challenges that
+you presented at the beginning was the huge backlog of NVD. So, can you elaborate more
+and why did you present it? How does your tools solve this issue?
+So, the challenge is that the NVD is tasked with enriching the CVE data. So, the CVE gets
+registered by the CNA, and then NVD starts to work on it with the information that is publicly
+available, and it just has a huge backlog of doing so. And, by combining different data sources,
+for example, the GitHub security advisories, some vendor security advisories, there is
+even like a EU, European Union vulnerability database now. Different institutions and projects
+try to pick up the speed when it comes to publishing this information and collecting this information.
+And, by combining all of these different data sources and search ones, we want to make the
+information as a whole more accessible. Wonderful. Thank you.
+Once again, and... Thank you, Borona. Thank you. Enjoy the conference. Thank you.

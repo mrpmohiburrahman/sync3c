@@ -1,0 +1,289 @@
+API URL: https://api.media.ccc.de/public/recordings/93558
+Frontend URL: https://media.ccc.de/v/god2025-56475-from-startup-to-scale-choo
+Title: From Startup to Scale: Choosing the Right AppSec Path
+
+Hi, everybody, good to have you here.
+To start, I have a question for you.
+Who of you has ever volunteered for something?
+And then suddenly became the expert forever.
+Nice, you're in the right room.
+So, today we will follow the story of Alex,
+who tried to fix one tiny issue
+and ended up shaping the whole abstract story.
+But first, let's meet Alex and the people behind the story.
+Alex isn't real, but the story is.
+Many of us have been Alex at some point.
+We are the people who got promoted to security just because we knew what
+was top ten was.
+So today, this isn't just a talk.
+It's a bit of a group therapy session.
+Security engineers who never
+meant to become security engineers.
+We will not introduce ourselves.
+Today, it's about
+Alex.
+Alex's story and maybe
+also a bit of yours.
+It's about a hot cup of coffee on the table,
+implementing some features.
+And suddenly, he stumbles upon a broken CSP header.
+He's like, "Ah, well, that's a small one.
+Let's fix that."
+Surprise, it's not a small one.
+It's the beginning of Alex's five-year rollercoaster.
+It's where our accidental hero is born.
+And of course, every hero starts with some terrible tools.
+So Alex works in this 50-person Saa startup with one coffee machine,
+one mysterious Kubernetes cluster,
+and exactly zero security budget.
+The entire security investment so far was
+one verb suite community edition license,
+and many of you will know it's free.
+Alex, free time.
+He reached out to the management to ask for budget.
+They show him the AWS invoice and tell him,
+"Well, that's our security investment."
+Leaving Alex speechless.
+But even with nothing,
+Alex still managed to make some progress.
+Alex detects more and more security issues
+and starts fixing them.
+More and more people are reaching out to Alex,
+asking for advice for security questions,
+asking for code reviews and so on.
+At some point, Alex becomes the go-to person for security.
+Right turns into recognition,
+but with this growing task list on Alex's desk,
+recognition turns into pressure.
+And that when structure or the lack of it starts to matter.
+After those early wins, Alex feels unstoppable.
+He absolutely loves his new role.
+Until the company starts to grow.
+From these 50 people in the beginning,
+the company doubles to 100 people.
+And Alex workload doesn't just double.
+It grows four times faster.
+And that's when the iceberg starts to show itself.
+On the surface, everything still looks manageable.
+Alex fixes some vulnerabilities.
+He does some code reviews.
+He gives some advice.
+But below the surface, the invisible work is growing fast.
+There are customer questionnaires coming up.
+The assessment needs to be done.
+Compliance asks for help.
+He needs to do architectural reviews.
+And somehow he also needs to fix some pipelines.
+The organization scales to work scales,
+but it's still only one Alex.
+To understand what comes next,
+it helps to visualize how security needs to grow,
+as a checklist, but as a whole city evolving.
+Let's take a look.
+As a company grows, security has to evolve like a city.
+So if we imagine this city being security,
+then a centralized model could be having one lock on the main gate.
+When we move towards embedded engineers,
+it would be like having one defender in each tower in our city.
+A platform model can be imagined
+like having self-repairing fortifications in our city.
+And security champions are literally architects
+walking around helping the city to defend itself.
+And this leads us straight into act two,
+the era of one hero doing everything.
+So we are at the stage where Alex alone
+is the whole security department.
+There are clearly some pros from his point of view.
+He has high control.
+Everything related to security lands on his table.
+There is clear ownership.
+Everyone knows to whom to reach out.
+He can make consistent decisions,
+and he also likes the hero state to see his right now.
+But there are also some cons.
+So Alex is not scalable.
+He is the single point of failure.
+Oftentimes, developers are waiting for his review.
+When he gets hit by a bus at some point,
+the whole security department is gone.
+And burnout, so the task list is still growing,
+burnout is lurking behind every spring.
+Centralized application security feels heroic,
+but it can end dramatically.
+And sure enough, the breaking point arrives.
+So imagine Alex after a really hard day,
+completely exhausted, going to bed,
+trying to get the really hard-needed sleep,
+and then at 3 a.m., the page starts flipping.
+There is a critical vulnerability Alex needs to fix it immediately.
+So he starts doing that at 6 a.m. in the morning.
+He finished. He goes back to bed one hour of sleep
+until he needs to get up again and go to the company.
+So he's going to the office even more exhausted
+and completely tired, looking forward to another cup of hot coffee,
+but the coffee machine is flipping too.
+There is no coffee.
+So everything is flipping, except the people who should help Alex,
+because there is no one. There is just Alex right now.
+And that's the point when Alex realizes he needs to change something,
+because otherwise the story won't end well.
+So another try to discuss it with the management,
+and he managed to get two additional security engineers.
+They put them into the teams as embedded engineers,
+not as a police, but to help the product teams to move fast safely.
+And this works really well in the beginning.
+So these two embedded engineers participate in stand-ups.
+They help with code reviews. They help with architectural design.
+For the first time, Alex can catch his breath,
+and he's optimistic that now everything is going well.
+But very soon, he learns that without shared standards,
+every team defines secure differently.
+He looks into the teams, and what he sees is that they developed
+incompatible security habits.
+One team lives on outdated checklists,
+another team invents zero trust plus custom crypto,
+and another team ships now and hopes to fix later.
+Instead of one baseline, the company now has several versions of security.
+Stories keep losing revenue because there is no shared definition of good.
+This is what happens when embedded teams lack a platform of governance layer.
+Good intentions turn into fragmentation.
+So it's time to standardize tools if we cannot standardize behavior.
+So Alex hits the limit of human scaling,
+and that's the only thing he can do. He automates himself.
+He builds scanners, dashboards, pipeline checks,
+basically turning himself into a one-person platform abstract team.
+So suddenly, Alex supports 20 teams without cloning himself.
+And for the first time, Alex feels security is scalable.
+But Alex learns something quickly.
+A platform only works if people actually use it.
+So Alex designed this and launched this beautiful security portal.
+He's proud of it. He even wrote documentation no one asked for,
+but nobody uses it.
+It's not because developers don't care. They're already drowning in work.
+And Alex, he realizes it's not a tooling problem.
+It's a trust and ownership problem.
+Automation scales process, but not adoption.
+So Alex needs something automation can't give him.
+Trust. Trust can't be automated.
+Alex changes his approach.
+Instead of expecting people to come to his portal,
+he brings security to the people.
+He starts a security champion network.
+Pizza, of course his pizza, gets them in the room.
+People actually come.
+Booties, they create a sense of identity.
+And training turned the early curiosity into actually capability.
+This is the first time Alex sees security becoming something
+other teams actually want to be part of.
+And this is where Alex realized culture is slow, but powerful.
+And security shifted from something imposed to something teams owned.
+Alex watches the champions do the thing he used to do alone,
+sporting issues early, explaining security decision,
+adding their teammates to do safer defaults.
+They cared because it was their system and the important part,
+security now has reached.
+Team starts owning more of the security, not waiting for Alex to jump in.
+But it's not perfect.
+Champions, they need guidance, they need training.
+And someone in AppSec to keep the program alive and to buy the pizza.
+So culture takes time.
+And with champions working, security became shared rather than centralized.
+After years of trial and error, Alex accepts the truth.
+No single model is going to save him.
+Real organizations, we need a bit of all four layers, each solving different problems.
+Centralized gives Alex the control of shared standards,
+fast incident response.
+Embedded gives a deep context for high-risk systems, for example.
+And the platform gives the scale and the consistency.
+And the champions, they drive the culture.
+So Alex stops chasing the best model and builds a hybrid.
+And now Alex needs to know if his hybrid actually works and asks himself,
+"How can I measure if it actually works?"
+Alex starts tracking the things that matter.
+Meantime to resolution, MTTR, our team's reacting faster.
+Coverage, our service actually being scanned.
+The champion activity who is engaged, the tool adoption,
+who teams trust the platform.
+And Alex learns metrics, they show motion, but trust shows transformation.
+He stops pushing tools, he starts building relationships.
+If Alex could go back in time, here's what he would have whispered to himself on day one.
+So Alex would tell his younger self, topology, it always mutates.
+Stop searching for that final form.
+Developers, they scale security much more than tools ever will.
+Invest in those relationships and not in the tools.
+Fix what hurts your daily.
+And the champions, they need support.
+The training, the tool, the time, the recognition.
+Not just the pizza, but also the pizza.
+And culture grows slower than Kubernetes clusters.
+So these are the scars Alex earns on the way to the maturity.
+And for anyone joining a company mid-cars, Alex has some advice for you.
+So if you are a newcomer joining an organization, Alex tells to ask,
+you need to ask what abstract model they run.
+If no one can answer this question, congratulations, you are the model now.
+And ask for how fast they are growing, who builds the platform.
+Ask what metrics actually matter.
+And yes, of course, check the coffee.
+So, and before we close, here's the final mindset that ties it all together.
+Alex eventually understands, abstract is not a department.
+It's a strategy for how the organization learns.
+Everyone influences the topology, the developers, the security champion, the new hires.
+So Alex stops trying to fix that one security instead he fixes one small piece at the time.
+And pizza still solves more cultural problems than most governments do.
+Over years, Alex tracks the budget.
+It was 40% the scanners, the tool, 60% the pizza.
+And honestly, the pizza drives most of the change.
+So, this sets up Alex's key takeaways for you.
+Alex's playbook became honest and simple.
+Write size the model.
+Don't pretend you are Google, Netflix.
+Pick the topology that fits the current size.
+Automate your pain and fix the boring, the repeating stuff first.
+Build allies, not mandates, the champions help more than any top-down policies.
+And survival is much more important than perfection.
+Alex knows that practical security wins.
+And time to close Alex roller coaster journey properly.
+Alex looks back at five years of cows, victories, mistakes, experiments.
+Late night slag messages, failing pipelines, champion meetups, and way too much pizza.
+He realizes something important.
+He never built a perfect app stack program.
+He built a moving one, one that adopts as the company grows.
+And that's the real lesson.
+Security scales when people scale it.
+When developers champion and security work together instead of apart.
+So, Alex celebrates not because everything is perfect, but because everything is finally moving into the right direction.
+And with that, thank you for joining Alex roller coaster.
+Write.
+Thank you.
+Thank you very much for this great talk.
+And we have really time for some additional questions.
+Thanks for this very, very great talk.
+So, also resonates a lot with my experience.
+Two questions, maybe since we have time.
+First one would be, like, how do you see the scaling factor?
+Like, how big do you see one security team member in comparison to the number of developers or something?
+If you have some kind of indication in this direction.
+For example, I read in the past that there's an average, like, one security engineer for 100 developers.
+Would you say this is a good metric or would you say this is still not manageable?
+And my second question would then be, how much do you formalize the role of a security champion?
+Do you add, like, job descriptions?
+Do you allocate specific time slots, basically, or percentage of work time to that role?
+Or is it more, do you have better experience, like, relying on people's enthusiasm to do security?
+That's both a good question, thank you so much.
+The first one, I don't have clear numbers what the scale is between security engineers or security champions.
+But what I experienced is, yeah, the security champions have a good culture and the strong security champions network
+helps very much with the scaling part.
+And where you have usually one security champion and one dev team.
+And for the second part, what was the second part?
+Are the formalization of the role?
+Yeah, I mean, we have a description, for example, of what the security champion does.
+They can allocate 10% of their time, for example.
+That's good, and this helps, actually, with the support.
+But what I experienced, like, if you have that strong community and you see and have a security champion running a program running for some time,
+actually more people want to join.
+Yeah, and even some people do the security champion type of work because they feel it's the right thing to do in their team.
+I think what's also important here is that there is support from top down.
+So they don't need to fight for this 10%, but they just have it and can use it.
+Okay, wonderful. Thank you.
+Once again, Vanessa and Raman.
+Thank you.

@@ -1,0 +1,277 @@
+API URL: https://api.media.ccc.de/public/recordings/93621
+Frontend URL: https://media.ccc.de/v/god2025-56490-a-cisos-adventures-in-ai-w
+Title: A CISO's Adventures in AI Wonderland
+
+Yeah, so good afternoon. What I want to talk about a bit today is, yeah, not so much a
+complete guide of what you do as a CZO or a head of security or whatever, while someone
+that has to run security for a company in the AI world, but really some of the experiences
+a lot of the things that I made by in my adventures in the day I want to land and I can maybe go back my background and I can tell you why I'm wonderland and why I feel like I'm in wonderland and not in hell like this morning, which was a bit more like it. Yeah, my I started security quite a long time back actually in the last century. Yes, so that's like I'm that old. I then have worked for a company called the cohort. There were some people here that might know it and then I worked for SAP.
+It was a key for the HANA database. And last year I decided to quit the like secure or safe corporate world and went to a startup company. Yeah, it's called ever systems with the kind of like little goal to reinvent the new ERP for the AI era.
+Yeah, so you can see that this is something I'm a very AI friendly environment. Yeah, so what we're doing there is a company based in Heidelberg developing new enterprise software, trying a new architecture and a lot of stuff is around AI.
+You can imagine especially in the area of when you set up a company these days and when you have a startup, you really need to have an AI story and it is very much what is currently what people are looking at otherwise you don't simply don't get funding.
+And what I wanted and my job there is to the company already exists for a couple of years. I joined now and my job is to make sure that we have a security in place.
+Yeah, so probably like in the CISO or the chief security architects or things like lots of different different things.
+And what I want to show you is really not just the how to hack into AI, but really how AI affects our world.
+Yeah, and how of how what impact it has, and as that is more anecdotal.
+Hopefully maybe some of you also sparked some some thinking and there's also I want to kind of counter some of the pictures that we had over today that is like very negative very I would say push it push away from AI how bad this is.
+My goal always was and I think that's what I think is these things are here to stay yeah so it's not about that we are that we can say oh yeah let's not do this or hopefully that like what happened like this on the big crash happens
+and then AI just disappears that's not going to happen.
+And I also what I find may most when I work most time I worked for companies that didn't build security security is not their business also security is not the business of my company.
+And building and most of your companies probably also not those are supporting function and what I find really frustrating.
+We have a great solution and then we have to pull it off and that's something that happens frequently because someone forgot to do about the security.
+Yeah, so it's really not so much just about the really helping this stuff going and I wanted to show you how I work with them.
+AI in some ideas and I think maybe it's just sparking some discussion some overlap with some of the talks today already.
+I think that's one of the quotes from Alice in Wonderland which kind of like my inspiration for this talk.
+And yeah I think initially I want to put this at the end of the talk I just moved it to the front because I think that is one of the most important parts that we have to think we have to think about how we can use that AI in a secure way so that
+I can use its full potential and not just that it's not in systems and I think that is something that we have to do and there's no say okay let's go back to the time before that that's just not going to happen.
+And it's not the way it's doing.
+So starting with one of the stories that I have and one of the main thing that I see when people looking at AI everyone first of all things will I be replaced.
+Yeah that's kind of like who will be replaced by this and there's different scenarios of how extreme that is yeah and typically what I see that everyone thinks everyone else can be replaced but me.
+Yeah and I think that's something that is like the very defensive people get in there but it's also very interesting how you see in this one example that I show that kind of was also a bit of an initial sort of this talk.
+A certain meeting where I was pulled in as a security expert was an architecture meeting.
+They had designed an audit log service or something and they wanted to have my expert opinion on how to do a certain thing and that's something I've done a lot of time so I think I really know what to do and I've made that suggestion.
+I think it's this way and then suddenly someone from thinking up but Gemini says that.
+Yeah so you sit there and suddenly you have someone else in the room.
+Yeah I think it was Gemini at the time but I don't advocate for any of those models and interesting enough it says it was much more complicated solution.
+Yeah I had a proposed I think a very pragmatic solution and typically what you're as a security expert you're typically the main thing that you get whether you're making everything too complicated.
+Suddenly came the situation. I have to now justify against Gemini and why do these people trust Gemini or at least come to that conclusion that Gemini might be more than us.
+I managed to convince them that we do this but these are situations where people suddenly that are not experts and that are not expert in the system use it and you have to justify against them.
+I think that is something that is really I said like quite common because lots of people that don't know what they're doing using those tools and I think this is also part of the problem that was discussed this morning.
+Yeah it's not about the tools are bad but if you use it for the wrong thing if you generally selfish to justify and it really seems to be that a lot of people seem to have more trust in these models than they have in you.
+Yeah and that's something is but I think we can actually be quite confident that we can do better than them.
+But to be prepared this is something that that has happened.
+So I doubt very much and you will see this throughout the talk that we will be replaced any time soon because it is not the not I think what will happen.
+But obviously you have to others use those tools and you have to make sure that you're with it.
+It's also one of the SAD things that I saw when you ask the AI that typically come up with the most complex solution.
+So if you ask AI to do something it comes up with a very complex solution and often in this case it was I would say we would call it over engineered.
+Yeah because it was like how do you implement secure audit locks and they came up with a very complicated solution of digital signatures and things like that which you actually don't need in the platform.
+But that's also something that you really see happens a lot.
+And that leads me to this efficiency gain because that's also part of the discussion.
+Do we actually need how much more efficiency can we get out of this and I think all of you or lots of you probably have been in the discussion.
+Very often if you say oh I need more resources you have to justify why AI can't do it.
+Yeah so it's not that someone says oh it can be done with AI you have to justify why you can't do it with AI.
+And I think it's just the discussion that we have. It's no right around it. This is a discussion that managers will have.
+It's very common these days oh these gains of whatever percent of efficiency or especially also people that don't understand your task and just think oh I can't just do that by going to loading this up in AI and asking it.
+That's discussion that you have to have and then typically these efficiency gains don't happen.
+When I think about the when we're talking about efficiency gains obviously one of the idea is trying to get rid of stuff that you don't want to do.
+Yeah and I think if you're talking about security and probably kind of like the most horrible word that you can say to an obscurity person is compliance.
+Yeah so that's kind of like the first thing oh god I have to do compliance we have to do all this paperwork and stuff.
+And let's just do this let's AI do that. They can create documents that's perfect.
+AI can create really really great documents but please don't do it.
+Yeah it's because there are first of all to be far too complex and really think about if it's a document that it just has to look like and nobody reads why we do it.
+Yeah why are we going down this creating documents that really look very very impressive that on the other end the people what do they do.
+They put them again into the into the into the gen GPT and let them summarize it again.
+There's a maximum they do or you have the worst thing someone you let's generate.
+Oh let's generate my compliance document and suddenly it events controls that you then fail your audit because you did not know that you have to done it.
+And really this this loop of like oh let's just create a document with the same with the specification.
+Don't ask me give me a specification for a certain service actually was the same audit lock service that I talked about before.
+And I said oh let's use AI and I'm like this here write me a specification and then the requirements document it came up with a 30 page document mapped it to every possible standard in the world.
+And I sent us to the architect because in two things you can read through the stuff or we sit together for 20 minutes and I tell you what you have to do these three things.
+And I think it's really and I really think that we have a chance here to not just this is I think the biggest failure that people do in with AI is they just try I think they can just offload stuff without thinking
+and just doing it the same way.
+I think I gives us opportunities to do things differently and if you use things differently then I can help not just by creating the document is okay.
+And does it sometimes here that you have to do something and it is yeah but and he can help you with writing documents at some point but don't just create these documents that you say that nobody needs.
+It's just it that that is exactly what lady this morning said confirm the name that she said about this is not an efficiency game.
+Yeah you just have something that you do and I said I'll talk to my boss and now I have this document what would you do with it.
+He said well I just put it into jet GPT and I said let's do it things differently the approval for our new approach I present this to you we have a meeting.
+And then you yeah then we go through it you can comment it because I have absolutely nothing gained and nothing works if I write a document for my boss that he then puts in jet GPT.
+Then maybe plus puts the thing under it but it's also not getting implemented doesn't change anything and I hate doing stuff that doesn't do with it that is useless.
+Because most of these are useless and you just do that.
+Then obviously next thing is agent agent AI and automation.
+So okay let's automate stuff.
+Yeah that is kind of like the the main the main thing and then using agents and we talked about the previous obviously his soul and there are some security problems I've come to that later.
+But can I actually make my life easier with agent agent automation and very often in automation the problem is not AI.
+So most of the stuff you could really very easily automate without AI.
+You're just trying to do it easily by just saying okay I'll just tell whatever model of choice you have just do it.
+Yeah and then you wonder why it doesn't work.
+I think in automation is a general topic and it's not AI specific it's very difficult to automate something that you don't know what it is and what it's doing.
+And that's I think it's a very very easy trap to fall into.
+Yeah to do exactly that and do automation and also with agent agent AI as obviously another issue and I looked into that a bit more broader not just from a security perspective.
+Once you start making decisions you really have to know what impact for example things like colonization or something like that has.
+Are these really things that you can live with do you actually know what comes out of because if you just don't really know what you're doing and you're just saying AI to do it it's not going to work.
+I can tell you you're not going to gain any efficiency so it doesn't replace this thinking about what you want to do.
+I think it's a lot of tools that you can use but not them.
+What actually does work yeah and and how you can use it and I think this was an approach that I find found really nice.
+So first I thought about okay I'll let all these documents get generated yeah which we need the policies and statements of applicability and all the stuff I saw so from once you from here.
+And I thought okay that doesn't work we had some really bad experiences for various reasons because mainly nobody read it and so nobody implemented it so if you do a really certification you land on your face.
+But if you do think a different right around because a lot I see that people think kind of like compliance first you come up with a long list this is your requirements you do your mappings from ISO and SOC and whatever you do.
+And then you and then you fill it out from there.
+And you design your controls according to this.
+What we did and what is I think the other way around and what where AI actually really works well.
+We designed a security we did how do we want to secure our our thing obviously we have in mind most of the stuff in these standards are not they're not rocket science also not stupid.
+But there's things like we design security then I have a security concept actually in a written document and I can map it against the requirements the other way around.
+Yeah so I do security that really works and I can then create a mapping that I can show the auditor how it works and I can actually do if you do it right and it actually did work quite well.
+I can do this for different standards.
+Yes I don't have these complex mapping tables but I can really say okay this is our security approach tell me how well it fits to the ISO 2701.
+And because of this stuff is very structured these results are really good.
+Should someone use it there who has no idea what ISO 27 is probably not.
+But it helps me a lot and then you can say okay how do I present that to the auditor what do they expect.
+What controls to have to what I don't have and if I now say okay now I have to talk to or something else I can do that and that really works.
+Because they're AI really works and it's not about if you really what you actually can do quite nice you can actually talk to it.
+If you're your security you have to obviously it's somehow documented but in a sensible way.
+Right there saying hey you're now the security expert of Everest company and I'm your auditor and now I Chris you.
+Or the other way around and I think that actually does work.
+That's where AI can be really helpful because it helps you identify the stuff and the standards are typically very structured.
+Because I don't know if you've seen this but if you do an ISO to sock mapping all this.
+Most of the stuff is similar but this control maps to this control but it doesn't mean that if you follow this and this it's a mess and if you try to do that and that what can I can really do.
+And I think that what I mean was rethink and not just kind of like trying to do stupid things and get out of it because it just will hit you back and you don't have efficiency gains.
+It's a bit of a discussion that you have to have but I think it's and it's also much more rewarding.
+I can tell you because you do the stuff that is the fun what you're what you like and then afterwards you look whether the compliance and you do some adjustments not the other way around.
+Okay and then the next thing is obviously what you look is AI and especially also the generative AI your friend or your enemy.
+I think there's two two ways of looking at it. I think probably after all the talks today enemies are more likely one but I think it's actually a bit of both.
+But it's it's challenging yes so this is I take that from the over side which says okay well there's lots of solutions that helped me with a security.
+Does that picture help me because that's kind of like is the I'm sitting here after got a security for a whole company I'm like all these different solutions so we have a much big space I don't even know what these tools do.
+So there are solutions out there that and I don't even know whether they use AI or they use me or they help me with my security.
+It's just it's it's it's a booming market yeah and I think a lot of these companies come up out of nowhere sometimes have some have good ideas some it's more questionable.
+In many cases the big question is it really AI what they're doing or is it just the rebranding of stuff that they've done anyway yeah that is like it's in many cases that's the case.
+But then again this is already the wrong question because then you fall in exactly the same trap oh I want to a I solve my problem.
+Question you have to ask is does it help me yeah whether that is AI or not doesn't really matter yeah I think that is kind of like the the essence of really where we as security people.
+Fall in the same trap yes I that must be the better solution yeah they have AI capabilities or we ask everyone asks do you also do AI.
+Yeah and I think if you and and I think that is really a very tricky question because I think there are good things that AI can help you to protect yourself.
+But it's at the moment if you're if you're on a company like mine yeah we have like 130 people we have like where all over the office is all over the world.
+What are that stuff do I need yeah what does help me yeah what is it and that's at the moment really challenging because things change.
+Basically on a daily basis yes it's like anything that's true today is typically not true tomorrow anymore or at least somehow different.
+When we talk about this is kind of like the hand over between friend and enemy.
+These are things from the big vendors so one is from a Tropic and the other one is open AI that just this is from the 30s of October so that's not that long ago.
+They have an open AI agent security researcher yeah this is the next one will they replace the hackers and I think you can see that this is all the security pen testers.
+You can see there's quite impressive stuff that they do and because in this case if you look at that and I obviously have to take it with a grain of salt is by the by the providers of these small markets is also certain marketing material.
+But it is where this automation stuff works because they have a very what they do is they create small agent that do very defined tasks and the hackers know what they're doing yeah they don't automate stuff that they don't know what they're doing they know what they're doing.
+And I think that is something so if you have someone that say the first one just looks for open ports.
+The second one looks for credentials the third one then does you have a very can you can train agents very or like some of the agents very detailed if you do that if you just tell the model just bring down the system.
+That's not that's not a clever attack yes doesn't do it this way but if you instruct it if you know what you're doing if you know the different steps.
+If you tell this and then we're about to try this out something like that with a company on us to see whether how much that can do so is that replacing the hackers.
+I don't know probably not it's probably a next level of automation and scanning stuff that we that we're doing but it's something that people are doing and I think that's where again this is where you can look for AI as a good tool or like a tool that is helpful.
+Okay I'll just continue talking where it's helpful if you use it in the right way.
+Yeah so that's kind of like is the I think some of the stuff is really interesting and I'll come some of this stuff I'll come back back also later.
+This one you already saw this morning that is was the also from anthropic just recently released interesting report again tropics but it's but it sounds plausible let's say this way where they didn't do it but someone else did it attributed to a certain country can't say that.
+They obviously also run in the whole problem of hallucination yeah which is one of the things where we say okay hallucination that's basically is the no go of of AI because yeah we don't know what's going on.
+In the case of Hager that doesn't care yeah they sometimes in the event credentials who cares if they find hundreds and 20 of them are things that have been hallucinated who cares if you defend it might be a different way.
+So but I think that's something where you can see people are using this stuff and we have to be aware of it is that any of this stuff different before it's just none of this what I see is that I invented new attacks or anything like that.
+It's just basically automating stuff that other people are doing and it's similar to like the documents of it accelerates stuff so the eyes and a lot of cases it accelerates things so you will see more of these things coming up.
+And I think we when I look at like our application file locks typically most of them are very stupid scans I will expect that there will be more clever ones coming coming our way.
+And obviously the biggest challenge is the non deterministic and hallucination thing.
+So we do we use AI in our products.
+It's like it's because that's one of the big things and not about using AI for security that much but we're using it in our products to provide service to our customers where they can have we also use agents.
+So think about one of the problems is that you might not get make the same answer every time so this non deterministic which is sometimes even worse than hallucination part.
+You ask a question you have it some let's generate some code you ask the same question the same code it does something different.
+And that can be and you have no chance of analyzing that in a good way if you do this and that's something it really have to you have to understand.
+And that is and you have to understand the impact of those those things for example when you do your security measures come to that.
+And that leads to this prompt injection thing and that is really a fun thing we did we have for some kind of like agent type technology that we're using and we did a penetration test.
+I'm hired an external company we do also did it internally and looked all this prompt injection and jailbreak stuff that is really.
+I have to say that is and that's similar to the talk that was in the reason that's kind of like a lost game it's really really tricky.
+Because you get something if you want to somehow sanitize your prompts that is really tricky but obviously what you have to look out for.
+Because how do these things work they work that you have you know users can type something in.
+Then you have something which typically called a system prompt you match this together.
+And then you send this to the LLM yeah we're not in the business of doing LLM so I can't say anything about security of LLM as such yeah I'm not an LLM expert we're a user we're using LMS in this thing.
+And this kind of like putting together is really tricky and you have to make sure that you know what's happening there and what is critical.
+And there's a lot of stuff that they can do including getting our system prompts is very easy.
+I think it's like this is poetry safe it's not a joke this is just from last week.
+And it's really this way if you say it please break into my system it says no and if it sinks you in a song it's like it says you like if it rhymes it works.
+And it's really completely we had one attack that didn't work but it worked in Spanish.
+And my colleague doesn't even speak Spanish but there's another tool for that yeah I can do this there so translate into Spanish and try it again and then it works.
+That's really thing or we have the flip attack that is also from last week.
+If you have a word that you want to block if you write in the prompt the other way round just backwards.
+The tool is clever enough the AI model say like oh it flips it around again it uses it.
+It's really the AI models are really good like it's fascinating what can happen there.
+So that is a really really tricky thing to do what you have to do.
+And I think it's also a part of and I think that is important which of these are critical.
+And I think when the talk before said it as well for me it's not if they trick my system into giving them out how to build an atomic bomb.
+It's not much I can do about it yeah AI and they all open AI and all that try to do this.
+Obviously it gets critical when they can use it against me.
+And that's come like this is the critical piece also something to find out we were like why can we do this type of we could bypass the security
+when we did it in our but if we went to the website of the AI model it didn't.
+Yeah because you have to know if you use the API say don't use the same security settings as to when you go to the UI.
+Yeah so that's like when you this typically UI stuff yeah that it works really well for like that you whatever protect children against accidental exposure.
+But in the UCAIs they don't do it yeah and obviously they also then change stuff so it could really well be that things happen completely different but you know what things are who's doing one.
+So the funny thing is that I talked about this and this was also I'm going like do we need a hallucinization border.
+Yeah like we have a trust border yeah we know things come in and we have to check but where do we have to we have to live with hallucinization
+it's not about okay that's a no-go that's a feature of this thing and it will always be there yes it will get better yes if you if you do it right.
+But we have to understand where does maybe data come in that we cannot trust and how can we deal with it.
+And then it's a matter of your I would call hands in nation appetite like similar to risk appetite.
+If you have something if you have a system that based on that input decides yeah whether your car breaks or not.
+I would have a low risk appetite yeah if it may be just something more mundane yeah where like your light goes on and off at home you might have a better and I think that's something you need to understand.
+Yeah you have to see where does this input come in it's something very different from trust yeah because it's not about trusting it's kind of I think.
+Last one I think which is the hackers have to deal with the same challenges yeah.
+So it's this non deterministic also works for us if you're a hacker what do you do you type into your field you see oh it doesn't work I try something different you try it in it might be complete something completely comes again so it's like it's very difficult
+for them to understand the system because all the feedback is non deterministic for them that is quite me.
+I think that sky in and I think that's something that I think is very much underused and I'm really astonished because I haven't heard it once or like once the guy before he told he said he was his attempts to hack an agent was caught by a honey trap.
+And today we all talk about our preventing vulnerabilities all this stuff is multi stage attacks.
+How can a multi stage attack and like why don't we see that.
+Yeah why don't we build stuff in in general not just with AI.
+Why is not part of the threat modeling how I can detect an attack.
+I don't understand that yeah I think it's something that I've really really think is underused and we have to use it here because we don't know this stuff yet yeah with stuff that is that we will learn more about.
+We have to learn and really try from the beginning.
+If you see something like if your model rejects some of these prompt injection things.
+Why don't you react to it yes someone's awfully trying to bypass it yeah I think so there are things that we can do and I think that's something that we need to do.
+And I think this whole topic of honey pots yeah things like that I think is something that's really I would like to have investigate because I think that's something which is cannot help us a lot here.
+And because I said this is observe and detect everyone please do this more yeah think about that when you do threat modeling think about how would I detect an attack that happens.
+Yeah nobody does that why I don't know.
+Because that's you have to assume breach in AI more than in anything else do that yeah please and I think and then if you do it the right way AI can help you to analyze that that's what it can do.
+Think a bit differently.
+Okay.
+One topic of vibe coding vibe coding I'll try to get a bit quicker otherwise a run out of time.
+We're also looking into vibe coding and vibe coding is yeah the extreme example is like this morning someone just type something in has no idea and it generates code for you.
+This is the extreme case.
+But if you look at the and it has all the obviously a number of challenges is I think one thing that it is and that's something that I see very often.
+One of the big challenge we also have in threat modeling is we actually don't know what the stuff is doing and what it's like is it.
+Here you have a tool someone that knows they have their problem that they want to solve a business problem they type it in what they want to have.
+Yeah and then you can actually use and we tried that and it works quite well that you use that input to then generate okay what would that mean what is the specification out of this.
+Yes we actually have a chance of you actually know what the stuff is doing and you don't have to read later.
+Yeah it's just handed over to you and you have some kind of meeting with someone try to out what your system is and from a lot of that stuff you can actually get used stuff so it has also some good ideas if you use the vibe coding stuff.
+Right yeah if you use it in a way just it automatically generates you everything it's not going to work.
+But if you for example say someone can express what they want with hate help of AI it like it puts all pieces together and then you as a security guy can look over it or you can even have a structured way that can help you to do a lot of this threat modeling stuff already automatically
+that is something what really works to help to collaboration and it's quite quite cool also look a bit different.
+Look at it more because all I see here is then code scanning it's not just about code security it's about authorizations about encryption everything like that.
+Important when you use AI instructed yeah and I think if you're narrower you can do your things at the moment it's very narrow.
+Yeah you can really get really really good results if you just say generate my new SAP probably not going to work if you have something much more detailed and you also instructed how it should do it.
+And that can really really work. It also has some interesting results and it's coming back to the Wonderland idea.
+We did this and I said okay let's do the shift left so we instruct the code they instruct the when they generate code in a like for an agent do it in a secure way so we gave him instructions and if it doesn't follow the instructions don't do it.
+How does code instruction work or code generation work you generate code it does kind of like check whether it does some kind of validity check if not.
+It tries to give you it like it does various iterations and it fix it itself and what we found.
+So we prevented certain things from security it's can happen it found a different way of doing it because it looking on the Internet and finding a way if you say oh don't open files it finds a way to open files.
+It's kind of like it's really the AI is getting clever and using it against it.
+So I think what I want to say and then I'm pretty much at the end is I think this AI is nowhere near as bad as we as it was like told there's obviously a lot of things that can go wrong if it's not done in the right way.
+But I think it's really we have to understand what doing in a good part of why we have a problem with AI is that our basis is not very good.
+It's obviously very difficult to apply it to existing systems that are not well documented but if you have the right information about it it's really it can be really helpful but you have to do some work it's not the magic bullet.
+And that I think is one of the key things but as a good part that you're making and I think what I would like to in kind of what I would say it motivate you a bit to look at a bit more positively from a security perspective rather than just like this
+But it's the catastrophe. Yeah, I think it is something I just say I think we can we have to address the challenges no doubt about it. But if you're constructive with the people they actually doing this.
+And then so my last slide. And that's part of this is this whole AI stuff only came up because people sort of like if you really look back five, six years ago people thought that what we're doing now is impossible.
+Things are impossible. Think about maybe doing things a bit differently. Yeah, especially for example, we have to live with things like colonization. Look at a bit more finding new ways of maybe detecting stuff and then you're
+going to be able to do that. And then we can actually do some things so be a bit more brave because to be honest, that's my final last word. This whole AI stuff will not work if we can't do our job or we don't do our job.
+Yeah, now our job is to really make sure that we can do it in the right way because otherwise. Yeah, it will burst and nobody will use it or there will be catastrophes. So please support with that.
+[Applause]
+Sorry, I got no questions. No questions. I don't have chocolate. That's probably it.
+So while the audience is thinking about questions, I have one. Okay, yeah. So the most imminent thing is currently if I were a CISO is how do you
+prevent that data you don't want to have to type in to the prompt is not to get typed in to the prompt. Yeah, I think so. So one thing that that's actually a question that we get a lot. Yeah, when customers say always great that you use AI functionality, but how do you make is your my data used to train models and things like that.
+So at the moment, if you're, if you use the open models, you don't have a chance. Yeah, if you like. If you just go to a jet GPT and you see open the free versions, that's like their business model. Yeah, they use your data.
+What you can do is if you have the right agreements that is at least they they don't process the data and that's basically what you do. If you have enterprise agreements and they say, okay, then the data is not used for training.
+And then they also fulfill things like SOC, ISO, DPA and things like that. But you have to look at it same as you do with every of your service providers. Yeah, if you send the data there.
+You have to do that. But yeah, you have to make sure that people don't just use anything. Does it always work? Yeah, it's tricky.
+I'd like to say that it's never happened. But I think it's it's also something that you need to know when you use your models. Yeah, that you make sure that you what type of contract do I have. But it's in a sense, not much different to when you use AWS or you do Google or something like that.
+Yeah, you always then there. It's a certain level of trust contracts certifications and they offer. So all of the big providers offer you services where you have to pay. Yeah, so it's expensive.
+But then they make then then there's a garage like the contractual thing that you're that you're that they don't use the data for.
+It's also a technical solution, which is possible. At least to get like 50% that, for example, customer data, for example, a hospital or a doctor or whatsoever.
+I'm not sure I want to pass patient data into a prompt. I think it's the same. I think you have to. I think it's not different to any like when you use an external storage or some other company.
+So I think that's there's a bit misconception. It's at the end. It's a service. Yeah, it's a bit special, but it's like if you if you're a hospital, yeah, make sure that the provider provides you the right guarantees and the legal rights.
+Yeah. So you have to like a data protection agreement and things like that, or you only they have someone in something Europe, but that's not different to whether they store it on daily as or in the in the models.
+Okay, there's another question.
+Hi, thank you for the great talk. One question. I really like to think of AI as kind of a new technology and part of the learning curve and getting mature with this technology is to understand where it has its strengths and weaknesses inherent in the technology.
+So do you have any experience and recommendations in how to help an organization in this learning process? Do you have any tips on that? Because, you know, the less technical sometimes I get the impression the less technical people are, the more hard it is to understand what the limitations of the technology may be also are.
+So do you have any thoughts on that? That would be surprising. I think that's a really challenge. Yeah. So it's like this is said that the people are, yeah, don't learn.
+I think at the end of examples. Yeah. And then we had an and our pen testing really worked well. We had one pen testing where we had a feature, which was really nice. It was a feature that helped that you could analyze data from other web pages and included in something.
+And then someone because there was another mistake of like some other way they could find out internal IP address because of an error message. It's suddenly they could redirect it there with a prompt injection.
+And it not just gave you like connected. It kind of like gave you a completely analyzing report because that was a feature. So like it helps you. And if you take those things and if you show it, it's really people learn by experience.
+I think that that's kind of like is the isn't and if you have examples and I'm not sure whether maybe some of those old bus tools or like was things maybe have some of this stuff but it's really experience works best.
+Okay. One last question here.
+Thanks for the talk. I'm interested in how you handle the following situation. Someone. So you gain efficiency, but I think you sometimes also lose efficiency by people coming up with.
+For example, oh, hey, over the weekend, I've coded this app and I have this security concept. Can you please review it? I kind of have the feeling it shifts. It then shifts the work just to another department.
+So how do you avoid these efficiency losses?
+I think it's not, especially with this pipe coding thing, yeah, because it's like, because it's so, yeah, so easy to how do we fit that into things. I think if we do that, if we come, if we do this approach, someone has no idea what they're doing.
+And just saying I need this application and it just runs that AI is not there yet. But if you have a process and that's what we're trying that to saying, okay, they can generate this application, then you can generate it, you have to still have some kind of
+a process of quality process that you have to do. But really saying that that is the end is a risk appetite thing, whether your boss wants to do it. But that's really risky. It's like, because it's not there yet. And, and the very likely, if they do it on the weekend, it's not working.
+Yeah, so it's just not there yet. Yeah, I think it's like the stuff. But it's, yeah, I think, yeah, the AI is not there yet that you can do that automatically.
+And obviously a lot of like co-generation by people are co-pilot or you have your snippets that works, but full applications that you go them straight into production.
+What you can do and that's what I said with the web coding, if they have a nice description of what they're doing, you have a nice environment where you run it onto with a security model, then you can probably also automate a lot of stuff. What is the gap?
+Yeah, and that's the opportunity. Yeah, but it's like, but if someone says comes, hey, I've done this over the weekend.
+That's a tough discussion.
+Okay, let's thank Hoga for his valuable insights again.

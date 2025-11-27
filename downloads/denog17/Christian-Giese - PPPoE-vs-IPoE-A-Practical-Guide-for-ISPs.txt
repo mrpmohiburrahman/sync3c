@@ -1,0 +1,680 @@
+API URL: https://api.media.ccc.de/public/recordings/93205
+Frontend URL: https://media.ccc.de/v/denog17-73667-pppoe-vs-ipoe-a-practical-guide-for-isps
+Title: PPPoE vs IPoE: A Practical Guide for ISPs
+
+(upbeat music)
+- Our next presenter is Christian Giesen.
+He is a BNG protocol developer
+and professional service engineer at RT brick,
+specializing in PPE, sorry, PPE/L2TP,
+DHCP, Radius, and Related Access Technologies.
+He started his career at Deutsche Telekom Agai
+in the Access BNG department
+before moving to Juniper Networks.
+Please join me in welcoming Christian to the stage
+and enjoy the talk.
+(audience applauding)
+- Yeah, thanks for this nice introduction.
+So it's now 18 years ago
+when I started to work on my
+first B&G project at this time
+to frame two legacy versus modern.
+And I would like to change this framing
+since they move rely on protocols from the 90s,
+stretched far beyond average their purpose.
+But what really matters is how these protocols
+does actually affect your daily operations,
+troubleshooting, and the customer experience.
+But before we go into the actual presentation,
+please take a moment and think about
+which of these protocols stacks you intuitively prefer,
+because a lot of you already have an opinion,
+have a lot of work experience with BNGs and protocols.
+And after the presentation, please think back and see
+if your opinion has been confirmed
+or maybe perhaps changed.
+So, but let's start with what is PPE/PPE and what is IPOE.
+Both are technologies or protocols stacks used
+between the CPE at home.
+So your Fritzburgs, your speed board,
+or whatever CPE you use.
+And the BNG of your service provider.
+And they are used to authenticate the subscribers
+to the customers at home,
+to give them the dynamic IP addresses
+and do some basic, really basic configuration
+of the services like DNS servers, the MTU for PPE/PPE.
+Maybe giving the URL of the ACS server,
+but it's just the basics you need to go into the internet.
+It's not a CPE management protocol.
+And I always talked about protocols stacks, not protocols.
+And this is because an example for PPE/PPE.
+Of course, there is the PPE protocol.
+But the PPE protocol is an extension
+of the actual PPE/PPE protocol to be usable over ethernet.
+And then there's also the actual PPE protocol.
+Then we have authentication protocols like PUP and SHUP.
+There is the, for IPV4, we have the IPCP protocol.
+We have the IPV6 CPE protocol for IPV6.
+But we also have ICMPV6 routed advertisements,
+as well as DHCPV6 for delegated prefixes.
+And they are slightly different implemented
+for PPE/PPE than actually implemented
+for normal ethernet networks.
+So they belong to the PPE stack here.
+There is a tunneling protocol in PPE/PPE
+called A2TPV2, which allows to extend the PPE session
+over a free network.
+And there are many legacy options
+like the PPE/P compression protocol I excluded here.
+But you see the protocol stack
+instead of just a single protocol.
+And then on the other hand, I have IPUE.
+In an IPUE, we talk about two fully independent
+protocol stacks, instead of one large protocol stack.
+We do have for IPV4, DHCPV4, plus obviously up,
+proxy up.
+And in IPV6, we have DHCPV6.
+And ICMPV6 for routed advertisements,
+for neighbor discovery.
+So you can see here on this picture
+that we have on the one side.
+We have PPE/PPE as a very large feature which stack,
+transporting all the protocols, all these up protocols.
+And on the other hand, we have two very lightweight,
+fully independent protocol stacks, five PPE.
+So let's explain this a bit better on a session setup.
+In both cases in PPE/PPE and here in this example for DHCP,
+the CPE starts with a broadcast message.
+So in PPE, it's a Padai message.
+Indeed, it's a discovery message to search for BNGs.
+And in both cases, it's possible that one or multiple BNGs
+may respond with an offer.
+So it's very popular to use this for redundancy,
+just put more BNGs into a broadcast domain.
+And then the CPEs have to select out of the offers,
+one of them, and do request the extra service.
+So in the first few, you could think about these
+are very similar protocols.
+The handshake looks very, very similar.
+But for DHCP, the session setup has been finished.
+Of course, a bit of address resolution up is needed,
+but we are actually almost done.
+In PPE, PPE, we just started.
+So now in PPE, we go to the link phase.
+Then there's the authentication phases.
+We do have the actual IPv4 and IPv6 network phases.
+And then finally, our keep in life switch continuously running.
+So you could think about definitely PPEs
+the more complex stack, but before coming to this conclusion,
+don't forget, we have to do it twice for IPOE.
+So instead of having one large stack,
+we have to do everything twice.
+And for DHCPv6, we also, again, center--
+in this case, a multi-cast message.
+There's no broadcast in IPv6.
+Looking for BNGs, and then also one or two BNGs or more
+can respond.
+And then there's the first problem we have with two stacks.
+In this very simple example, having two BNGs,
+it might be possible that IPv4 selects BNG1
+and IPv6 selects BNG2.
+It's a problem.
+Of course, there are solutions vendors find
+figured out to solve this, to control this.
+But this also adds additional complexity
+to your protocols stack.
+So therefore, would finally you can say, OK, maybe the difference
+is not that big in complexity here.
+So-- and of course, we have to deploy protocols.
+And in PPPOE, the BNG is always the PPPOE server.
+And the CPA at home is the PPPOE client.
+And between the PPPOE client and the server,
+very often-- not always--
+have an access node, an Amazon, an OIT.
+And that can run an intermediate agent.
+This is defined in the TR101.
+And the intermediate agent is used to, let's say,
+take the packets sent from the client to the server.
+So in this case, the DHCP discovery packages,
+the first four packets.
+And add additional information into it.
+So which means the Amazon or the OIT takes the packets
+and adds the description of the physical port.
+So for DSL, it gives information which DSL port is used.
+It can give information which bandwidth
+was dynamically negotiated, which
+DSL protocol is used, which framing.
+And for-- yeah.
+And of course, the identifier of the line, which then
+can be forwarded to the BNG.
+And then the BNG can authenticate a customer,
+either based on these informations,
+or for PPP also based on the username on the password
+and authentication, not always, but very likely
+happens in the radius server.
+And if you go to IPOE, it looks very similar.
+So the BNG might be the DHCP server.
+The CPAE might be the DHCP client.
+Also, the OLT or the Amazon may behave as an intermediate agent.
+But again, here, the OLTs or the Amazon's
+have to do it twice.
+So there are two different protocol stacks.
+We have two different intermediate agents, one for DHCP
+before, which is called layer two DHCP relay agent,
+as defined in a TR-101.
+And the DHCP V6, lightweight DHCP V6 relay agent,
+as defined in an FCE.
+And they should hopefully add the same informations
+and prove protocols, because we don't know which one comes first.
+And we authenticate with the first protocol to subscribe.
+And again, you may have radio servers.
+It's not mandatory, but likely you do have.
+But in IPOE, there's an alternative.
+You can also have a centralized DHCP server.
+So then instead of acting as a DHCP server in a BNG,
+we can just forward the messages to the DHCP server.
+But you may think, why is there still a radio server
+in this picture?
+And this is because the DHCP server cannot
+replace the radio server.
+So very likely you still need all the radio server,
+because you cannot do accounting in DHCP.
+I cannot inform the DHCP server about how many data volume
+was used.
+I cannot change the cross profiles.
+So typically, what you do here is that the first DHCP packet
+is then buffered in the BNG, and then request
+the sent to the radio server.
+Then the radio server can authenticate,
+can inform about OK, this is the bandwidth the customer
+has booked.
+These are the cross profiles.
+And only then the packet is forwarded to the DHCP server.
+So you see if you decide for this option,
+it doesn't mean you don't need a radio server.
+You just have two servers.
+But there are advantages of doing this.
+And yeah, it's a popular thing.
+People do this.
+Sometimes people run a DHCP server.
+Sometimes people prefer to run a BNG, which is also
+a bit like depends on the features of a BNG.
+Because of course, if you use the DHCP server,
+you may have more control over DHCP options.
+But of course, a lot of BNGs also have the possibility
+to control almost all DHCP options.
+So it's a bit depending on the actual BNG vendor
+you have, which solution you likely select.
+So let's go into the detailed comparison.
+So this is why we are here, see how the protocols compare
+to each other.
+And I would like to start with a very important thing here.
+And this is interoperability between clients and servers.
+And in my opinion, PPPIE has the much better client
+compatibility.
+And let me explain why I think this is the case.
+And a very important point here is frame droughts.
+So assigning an IP address, especially
+if I use public IP addresses, it's very likely we all prefer
+to just give a host address.
+So I just design multiple slash 24 networks.
+I change them.
+And then just design one address by address by address.
+But I would not preserve a gateway address, a network
+address, and then just ensure that I
+have a gateway network in the same IP address.
+So I just give addresses and use my loop packet
+address as the default gateway.
+This is the most comfortable way and most
+address efficient way to handle IP addressing.
+But actually, it's not permitted in IPE.
+Because the IP standard enforces that you have,
+your default gateway in your network.
+But your network is a slash 32.
+It's not possible.
+But a lot of CPE is supported.
+But there are also some CPEs.
+They say, no, it's not permitted.
+I don't support it.
+But CPE is built for the broadband market often supported.
+But still, it's a hack.
+It's nothing which is officially standardized.
+So even if it's common, it's not a standard.
+Then IPE relies heavily on proxy app.
+Proxy app means that the client sends an app request
+for an IP address.
+And the B&G responds even if this IP address doesn't
+belong to him.
+This is important in special with slash 32s.
+We have seen a lot of CPEs doing very strange things
+if we assign a slash 32, meaning that they sometimes
+start resolving their DNS servers via the B&G.
+Then we get a lot of IP address requests
+to resolve for one address.
+OK, then we have to resolve them if we
+have to respond with our own Mac address.
+But also if I use a, let's say, more classic approach,
+having a network, the IP in the gateway,
+if the clients would like to communicate with Finn
+the subnet, then, of course, we need proxy app
+because we prevent communication between clients not
+going over the B&G for legal reasons.
+And another important point is DHCPv6.
+DHCPv6, compared to if DHCPv4, only
+assigns the wire address and the line addresses,
+but not a default gateway.
+But I have seen a lot of deployments or a few deployments.
+Actually, not a lot.
+They don't send router advertisements.
+And then the CPE market solved this problem
+by just saying, OK, if the B&G doesn't
+send a router advertisement, let's create a default gateway
+out of the DHCPv6 search address.
+OK, it works.
+But again, it's a hack.
+And it's something we also have here in Germany.
+I have seen this.
+And then CPE, C in German market,
+they implemented this hack and say,
+but, yeah, it doesn't make it good.
+It's still a hack.
+It's a workaround.
+And we heavily rely on undocumented workarounds.
+So, oh, it's not a good idea.
+And this brings me to the conclusion
+to say, PPPOE has the better compatibility
+because it's fully standardized.
+There's not much.
+CPEs can do differently compared to as we have it in IPOE.
+Then one of the pain points for PPPOE, MTU.
+So the internet uses MTU 1500.
+All data centers or servers, my home run is always 1500.
+But PPPOE is limited to 1492.
+So there is a high risk of fragmentation.
+But again, CPEs are smart.
+They invented MSS clamping.
+MSS clamping means that the CPE just takes the TCP packages.
+And in the TCP handshake, they change the maximum segment
+size to ensure that there is no fragmentation happening.
+And this works very well for TCP, but not for UDP.
+And a lot of UDP is quick.
+But luckily, the people behind CPEs
+decided that CPEs has a maximum packet size of 1280 bytes.
+So no issue for PPPOE.
+So then the only remaining pain point here is CIP a bit.
+CIP has very large UDP packets.
+And this is the most fragmented packet you see in PPPOE.
+CIP, because they are always then fragmented out
+of the data center, because it's bigger than 1500 bytes.
+And then we have to fragment the fragmented packets again
+before we send them to the client, which works.
+But yeah, it's not nice.
+But we also have a solution here.
+It's the RC4-638, which is supported by almost all BNGs
+in the market and allows to negotiate an MTU 1500 on PPPOE.
+But it's not heavily deployed.
+So the BNGs, they're typically supported.
+But the number of CPEs supporting it are limited.
+Luckily, the most common CPE in Sherman is a portrait,
+but it's not enabled by default.
+And the nice thing on this RFC is the protocol developers
+decided that the CPE first has to signal in the PPPOE message,
+I support this RFC.
+Then the BNG has to send, I also support it.
+And then they know we can negotiate a larger MTU.
+So it's very risk-free as our provider to enable it,
+because CPEs don't support it.
+They will not have any compatibility issues here.
+And if the CPE supports it, they can negotiate higher benefits.
+So I highly recommend for all of you operating PPPOE,
+please enable it.
+And then also enable it on the CPE,
+and then we have less fragmentation here.
+Mudicast was one of the drivers for the success of IPOE.
+And you know, in PPPOE, it's a point-to-point protocol,
+which means I have a tunnel between the CPE and the BNG.
+And this means the last replication
+point I can have is the BNG, which
+means if there's the football world mastership,
+I have to send the same game again and again
+and again over my aggregation and access network, which
+isn't that efficient.
+And in comparison, in IPOE, I can have
+further application, multicast replication points,
+in my aggregation.
+And very popular on all T's, they have a smart feature
+that they can even send the multicast channels only
+once per point tree.
+So they have dedicated multicast gem ports.
+So you can also ensure that even within the point tree,
+every multicast channel is only sent once.
+And this was very, very popular and was one of the main drivers
+here.
+But again, you all know multicast becomes history.
+So the trend goes through unicast TV.
+And therefore, it's up to you if this is a very important thing
+for your network or not.
+If you only have multicast TV, maybe you can ignore this point.
+If you rely heavily on multicast,
+this is an important point for you.
+Keep the lives.
+PPPOE has an built-in feature for keep the lives,
+meaning the client can send keep the life messages
+to server can then keep the life messages,
+typically every 30 seconds.
+And then you can very fast identify
+if there's an outage of the server, of the link.
+The server can identify the CPE has been disconnected
+or there's an outage.
+So it's very stable for your network to have keep the lives.
+In IPOE, unfortunately, we do not have.
+And some vendors, they implemented some workarounds.
+They say, OK, let's use ARP as a keep a life,
+or enable discovery as a keep a life.
+But it's something you cannot heavily rely on,
+and it only works in one direction.
+The B&G may identify as with this if the CPE is still there.
+But the CPE cannot identify the B&G is still there.
+Because then the CPE needs to implement this.
+And as a B&G vendor, we would not be so happy
+if the CPE starts sending massive ARP requests.
+So we would not push this into the market.
+And keep the lives is important for this perfect here,
+which is redundancy.
+And with redundancy, we have to split in stateless
+and stateful redundancy.
+And you may remember the first flow diagram I have shown
+with the two B&Gs in the network segment.
+And it was very popular to do stateless redundancy,
+just meaning I have a podcast domain.
+I put one, two, three, or four B&Gs into this.
+And then multiple G&Gs can respond to.
+And I can control this a bit, which one,
+and how to balance the load.
+And it's just simple and stateless.
+So if the B&G has an outage, then the keep the lives ensure
+that the client recognizes this.
+Keep connects, the next B&G takes over.
+And this is super, super stable and efficient.
+It even works with different vendors.
+You can say vendor A, vendor B.
+I can have different software versions.
+It doesn't matter.
+They don't need to talk to each other.
+This is super nice.
+And very, very popular in PPPUE.
+But as you see, they rely on un-reconnecting the CPE.
+So which means without keep the lives,
+it may take a lot of time for the CPE
+to identify the B&G has been reconnected,
+or has been an outage to reconnect on.
+And this is why you see that stateless redundancy
+is very, very popular for PPPUE.
+But a bit less popular for IPUE,
+because here I don't have to keep the lives.
+And therefore, IPUE deployments, if you see redundancy,
+very likely they use state for redundancy,
+which means you have two B&Gs.
+And then you have synchronization,
+protocol between, which is normally
+proprietary because there is no standard for this.
+And then you need two B&Gs from the same vendor
+with compatible software versions.
+And then you can replicate your actual state
+between the two B&Gs.
+And if there's an outage, the other B&G can take over.
+But just the advantage is that downtime is shorter.
+Maybe a few seconds compared to, let's say, 90 seconds,
+maybe in PPPUE, depending on the keep the life interval.
+But it has a higher risk of failing,
+because it's much more complex.
+You rely on the same software version.
+So even if it works, it works much better.
+There is a complexity that it doesn't work.
+And if it does not work, troubleshooting it
+is not that simple.
+So yeah, you see there are these two different options.
+And yeah, authentication.
+In-- I explained before that there
+is the possibility that the OLT or the access notes
+they can add additional information
+into the PPPUE or the HCP packets
+identifying the customer line.
+And this is heavily used to authenticate customers
+in special for IPUE.
+And it's also the only way to authenticate IPUE customers.
+Of course, you can may use the megatrends of the CPE
+to authenticate the customer.
+But then you have to trust the megatrends.
+Whereas the intermediate agent you can trust,
+because they also override information.
+This is the client manipulates the CPE as this information.
+The access notes are written to wipe out information
+sent from the client, override this with them.
+And then you can use this as a dressed anchor to identify.
+This is the customer aid.
+This is the line of this customer.
+I can authenticate this.
+And this is line authentication, which
+works for PPPUE in IPUE.
+But if you do not have the possibility
+to add these informations, then authentication
+is possibly much more difficult for you.
+And then you possibly prefer PPPUE,
+because here you can still use username and password,
+which you cannot do with IPUE.
+And then there is something I really, really, really
+miss for IPUE.
+This is the server-side disconnect.
+So the server-side disconnect means I, as an operator,
+being able to force the CPE to reconnect.
+And this might be very important and special for maintenance
+cases.
+I would like to reboot my BNG.
+Then I just send a message for the CPE
+that I don't need to evade, that they identify and keep
+the lives that the BNG has been rebooted.
+Or another important use case is sometimes you change
+your configuration in a way that the BNG cannot apply
+the changes without reconnecting.
+So then you change your configuration,
+you wait for the maintenance window,
+and then you kick all your subscribers.
+And then after reconnecting, they
+have the new configuration applied.
+But for IPUE, you have to wait for them to reconnect.
+It's much more difficult.
+I know a few operators, the trust users have worked around.
+If they need the CPEs to reconnect for IPUE,
+they just switch off the OTs for a few seconds.
+Then there's a light off.
+And then the CPEs reconnect as well.
+But this doesn't work if you use an external modem
+behind an external owner.
+But if you have an internal, it works.
+But it's again, it's some kind of a hack.
+I would love to have servers that
+are just connecting DHCP with 6.
+Maybe someone in the working groups or in the IETF
+adds this to DHCP.
+This would be very, very nice here.
+And then performance.
+Performance is an important point here.
+And if you do have a physical BNG, an ASIC-based BNG,
+very traditional ones from the big vendors,
+then it doesn't matter if you do PPPUE or IPUE.
+They all have ASICs implementing these protocols
+at line rate.
+There's no issue here.
+But if you do have a virtual BNG,
+or maybe you have some kind of a cheap BNG appliance,
+so there are some appliance on the market.
+They are working mostly virtual in software,
+but have some basic hardware offloading.
+Then you often see an enormous performance
+input using PPPUE, because this is the key here.
+The hardware offloading of these sometimes very cheap
+ships used for the offloading.
+They are often not able to pass a PPPUE packet
+so they don't can do PPPUE offloading.
+And this is what you see then if you do some virtual BNGs
+or if you use appliances with a virtual BNG forward,
+or some CPE, sometimes you use firewalls as a PPPUE client.
+And then you see why is the performance so bad,
+because they often use some kind of hardware offloading.
+And then if the hardware offloading cannot be used,
+you see an enormous performance difference to IPUE
+and PPPUE.
+And this is why I say it depends.
+But in the average IPUE has a better performance.
+But most of the time, it does not matter.
+If you have a modern CPE at home,
+they have so much performance through even one gigabit
+connections on PPPUE.
+A hardware-based BNG even has no issue here.
+But there might be scenarios, especially for very, very
+small deployments where this might be an important thing
+to you that you have to consider that PPPUE may
+have an performance impact on your setup.
+Then, VLAN mode.
+In portband, we have two VLAN modes, one-on-one and end-to-one,
+which means I have a dedicated VLAN for all of my subscribers.
+So one household, one subscribers, one VLAN.
+And end-to-one means in one VLAN,
+I can have multiple subscribers.
+And this is important in this context,
+because if I use end-to-one VLAN mode,
+if I use PPPUE as a hardware vendor,
+it's very easy to still identify all traffic, which
+belongs to one customer, but just matching
+on the PPPUE session.
+It is a very small, tiny idea.
+I can use, instead of the VLAN, to say, all traffic of this VLAN
+idea, I match into one logical interface.
+And this is my subscriber interface,
+and then I can attach my course on it.
+And if I do IPOE, as I mentioned,
+I have two protocols that are fully independent.
+I need to identify which traffic belongs together
+to do my course operations on it when accounting on it.
+And then we have to use the MAC address, which
+is slightly bit longer.
+And in some network or ship set architectures--
+OK, sorry.
+This may cause some limitations of the features
+that, because of addition, they look up step.
+You sometimes have some features they don't work with IPOE
+end-to-one, where they work with one-to-one,
+or they work with end-to-one and PPPUE,
+because you need one more look up to identify all traffic
+to one subscriber by the MAC address.
+Then accounting is not that important anymore.
+So both technologies, I can use volume accounting.
+But if you need very unlikely time accounting,
+then, yeah, then you prefer PPPUE,
+because, see, you have a proper first and last sign of life,
+keep the lives, but likely or luckily,
+nobody is doing time accounting anymore.
+So therefore, this is not that important.
+But, yeah, back in the time, if you had time accounting,
+this was also something you would not do on an IPOE network.
+And then tunneling.
+So as I mentioned before, PPPUE supports A2TP.
+And this is some kind of a layer-free bitstream access.
+And it's very, very popular, because I
+don't need some negotiations with the woodshead partners.
+I just need their IP address, OK.
+And then I can just tunnel my connection to them.
+So let's come to my final closing.
+After we have seen all the points left and right,
+or let me quickly go back.
+And you see a lot of cream on the left side.
+A bit more cream by PPPUE and a bit more right on IPOE.
+But this doesn't mean PPPUE is the better protocol.
+Please don't come to this one conclusion here.
+Because the question is not which protocol is better.
+The actual question here is which protocol is better for you.
+And for you, it means if you need multicast,
+it's clear which one you need.
+If you need A2TPUE, it's an easy decision.
+If you have a virtual B&G, of course, you prefer IPOE.
+So it's not like PPPUE is better, IPOE better.
+It's always-- it depends on your setup.
+So finally, I would say PPPUE is not a legacy protocol,
+but IPUE is not modern.
+And both are hacks for broadband.
+And which one you prefer is up to you.
+[APPLAUSE]
+Thank you, Christian, for this insight.
+We have time for some questions.
+Please remember to stay to your name and affiliation
+before asking your question.
+We will also relay some questions
+from venue less if time permits.
+Yes.
+Thank you very much for that amazing presentation.
+My name is Daniel from the Dataskone.
+And I have a question to your present answer
+to the overview.
+What do you think about the QS marking in our upstream
+for PPPUE and IPOE?
+I think it's a little bit challenging for PPPUE, right?
+The QS marking.
+The first marking, I think, here is no big difference
+for both protocols.
+So this works in both cases, very similar.
+So I don't see this as a driver to decide between one
+or the other.
+So first marking, screenwriting, yeah.
+Of course, I have IPV4 and IPV6, different markings.
+But yeah, it's not one of the drivers.
+My name is Too much.
+I was so sorry.
+Hi.
+Sylvan from Open Factory.
+One question about IPOE that I'm currently working on
+is the support of frame droughts,
+especially in wholesale environment,
+because that's normally realized as DHCP
+related to radios with VRFs over PGP.
+Yeah.
+Frame code is always a difficult topic,
+because it's easy to inform the BNG
+about the framed routes which are available behind the PPPUE.
+But it's very difficult to tell the CPE,
+which framed routes they have to get,
+because there is no standard protocol to do this in line.
+You always have to do this externally to inform them.
+So there's no DHCP options or PPPUE options to say, OK,
+you have this, this, this, and this network behind you,
+unfortunately.
+But there are options to tell the BNG, which networks
+are behind the CPE, but we cannot tell this the CPE.
+So you always have to do this in line,
+or you have to pre-configure the CPEs,
+or you have to use an additional protocol
+for this, but we cannot signal this in the DHCP session,
+or in the PPPUE session directly.
+My name is Tomal Shafer, University Munich.
+As I've seen, you are investigating the dual-stack scenario.
+Did you have also a look of DSLight,
+which may have more advantage and disadvantage in both cases?
+The advantage is if you do DSLight,
+you have only one protocol stack for IPUE,
+which hardens your problems.
+So you only have DHCPv6 then, and then it's much easier
+to operate IPUE.
+In China, where you could say if you do single-stack DHCPv6
+only and do IPv4 as an overlay, then, of course,
+a lot of issues you may have with IPUE,
+you don't have anymore, because you have only one
+stack to operate instead of two stacks to synchronize.
+But most likely, people do dual-stack IPv4 IPv6,
+but, yeah, if you do single-stack,
+things are becoming easier.
+Well, that's a wrap for this presentation,
+and please rate the talk, and now it's time for coffee.
+Enjoy.
+Thank you.
+[APPLAUSE]

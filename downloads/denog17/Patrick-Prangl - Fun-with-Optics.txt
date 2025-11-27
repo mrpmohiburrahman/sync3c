@@ -1,0 +1,297 @@
+API URL: https://media.ccc.de/public/recordings/93287
+Frontend URL: https://media.ccc.de/v/denog17-75500-fun-with-optics
+Title: Fun with Optics
+
+(upbeat music)
+- Our next presenter is Patrick Pranger.
+He works as a systems engineer for our research networks.
+Based in Austria, he is a passionate
+about networking and automation.
+Please join me in welcoming Patrick to the stage
+and enjoy the talk.
+Thank you very much.
+That was basically when 800G.
+We deliver 800G, of course, we will also deliver 1.6 tera. What does it actually take to deliver higher bandwidth with speed or higher bandwidth with products?
+Basically, knowledge starts or knowledge.
+What I want to care about starts at the Ethernet kind of layer and then it ends at the IP packet.
+I don't want to care about optical stuff and if we go down the road of coherent optics,
+you basically need to develop more and more kind of optical knowledge, right, to understand
+those technologies and what it takes to kind of realize such transports.
+So, I want to start by answering the first question, which is what does it take to produce higher bandwidth product and there are three things we need to kind of take care about, first thing of course is to consider itself, the plug-able, which we insert into our switch router or whatever you want to call it.
+Which does the forwarding and there is something in between the AC and the transceiver, which is called Serdus, serializer or de-serializer, which is basically the electrical lane connecting the front and plug-able with the chip, right, and all needs to fit together.
+And I want to start by giving you kind of an glimpse on kind of how those network chips have evolved, in my case I'm talking about protocol basics, because that's basically available to everyone.
+And if you have a look at the diagram, you see that currently we are at 50 terabits, that's what we are currently shipping, that's the capability of the total chip, which basically runs at 100G Serdus, which means
+the electrical interface between the chip and the front and plug-able is based on 100G platform.
+The next kind of iteration will be 100 tera, kind of ASIC, which will be shipped this year, sorry, the next year, it's 20 to 26, it's still 25.
+And basically the switch or the product will ship next year, but the ASIC was already released by protocol.
+And if we have kind of an outlook to 27, we expect the 200 tera-p chip, which is insane, right, when I started basically tingling around with the internet, still had 54K, right, and now we have 200 tera in one chip, right, now think about a product
+who has 10 chips, right, it's 200 by 10.
+And if we look at 100 and 200 tera, right, we operate a 200G pam4, which means the electrical lane, double, right, and why this is important, I will basically show you later.
+If we go on having a look on the chips, Cherokee II is basically what Broadcom was now shipping for years, Cherokee III is what Broadcom is shipping since this year.
+There was kind of a derivative of Cherokee III, which was for AI use cases to forget kind of that stuff, because for most of the people in that room, it's about kind of the interconnection world, and that's basically a full-scale Cherokee III.
+What I want to mention is just people are confused, because there is like Kumran and Cherokee, and what's the difference is basically the same stuff, right.
+A Kumran is just a Cherokee without the fabric interfaces, which means if I have a Kumran, I can only have a single chip switch or router.
+If I need to have multiple chips, I need those fabric interfaces on the ASIC, and then I need to have a full-scale ASIC, like the full-scale Cherokee.
+Also, what is pretty interesting, all of those chips, starting with Chate II C+, have built-in crypto capabilities.
+Basically, you can run MEXAC, APESEC, whatever, in the chip itself, and don't have to put kind of some other crypto chips on the box.
+Nevertheless, if we basically have a look at the evolution, when we started with Chate Plus in 2016, we were talking about, I don't know,
+something 2.5G.
+If we now have a look at Cherokee III, what is basically interesting, while the aggregate bandwidth was increasing, the power per bit was decreasing.
+So why is this important? Especially when we run optics, and we have high-density deployments.
+It does matter because if we have a look at Cade Plus optics later on, especially the 800G and 1.6 Tera optics, they take up to 30 watts per optic.
+And then, of course, it does matter if I have 2 watts per optic less or more, and if the chip does take less kind of power or not.
+Basically, why? That's the kind of processing form factor, right?
+So if we have a look at Cherokee III, we are producing it in 5 nanometers, which explains why it has over or less power consumption per bit,
+because we have a better or a smaller processing node.
+Again, it's based on 100G servers, which makes it optimal for 800G front panel ports.
+And now, basically, it was always talking about 800G, 1.6 Tera, so what's the status, right?
+So I think currently, every vendor is shipping 400G for tours since, I don't want to say since ages, but since quite the time, quite a while.
+So what's the status? So initially, there was a draft for 800G and 1.6 Tera.
+It was basically, it should be one standard.
+Well, the problem is it took so long to agree, especially on the 1.6 Tera stuff, that the consort theorem decided there is a pre-standard,
+which was the ETCR, which you see in the middle of the slide.
+And currently, all the products, the initial products were based on that kind of pre-standard.
+And now, we have 8002.3 DF, which was reduced only to 800G 8.
+Basically, it's 800G by using 8 times 100G lanes, and they decoupered all the other kind of stuff from this standard.
+Why, basically, to ship 800G earlier, and not to wait for 1.6 Tera.
+So since February 24, we have that kind of 800G standard, and the pre-standard and the standard are basically interoperable or compatible.
+It's basically the same, it's just now in the standard.
+And 800G is basically shipped on Tomahawk 5, and Jericho 3 from an ASIC perspective.
+If we now have an Outlook to 1.6 Tera, which is then based on 200G service or 200G electrical lanes,
+the DF, again, that's the 800G standard, and the DJ standard, which should come maybe, let's say maybe,
+in the third quarter of next year, which does, of course, include 1.6 Tera
+and different other kind of standards on 200G, 400G and 800G, which are already available,
+but those new kind of standards implemented on 200G electrical lanes.
+So 800G-4 would mean, compared to now, we have 800G-8, it's 8 times 100.
+In the future, we can have 4 times 200 to achieve 800G kick.
+Why do we do that?
+Safe power, right? That's basically all about that.
+So basically to give you a glimpse on what that actually means, because I'm always talking about those magical electrical lanes.
+So what it means is, of course, from your perspective, it's the left side.
+We have the chip, and the chip has electrical interfaces, kind of pins, where we can connect stuff, right?
+And that kind of stuff is servers, that's the electrical lane, which reconnects to the transceiver.
+If that kind of speed is not matching to what we need on the transceiver side, we need something called gearboxes.
+That's like a speed, or speed change kind of device.
+So basically, when we have a device, which is running 50G electrical lanes, and we want to have, for example, 400G,
+then we need a gearbox to translate between 50 and 100G, or if we have 100G servers and we want to have 10 or 25G speeds,
+then we need to switch those speeds on the gearbox.
+It's just like an electrical piece, which is converting those speeds.
+So that's basically on servers. In sake of time, I just want to give you an outlook on what does it mean to transition to 200G servers.
+So everyone should basically understand that, of course, you have interference and you have other phenomenon on this electrical channel,
+because it's basically high bandwidth, right?
+So it's not that easy to just say, "Okay, I'm now running 100G servers, and next week I'm doing 200G because I just want to do 200G."
+There are some kind of things which we need to consider from an electrical engineering perspective.
+And that kind of serious interface, it does support all the stuff you know, dark cables, AOC cables, LRS or whatever it means,
+because that's on the optical side, not the electrical side, right?
+If we're doubling that kind of density, we're reducing cost per bit and also power per bit, right?
+So we don't do that just for fun because someone is bored, right?
+We do it really to save costs at the end of the day.
+And if we have a look at 1.6 tera, all the kind of different standards you're knowing will be available,
+be it like CDAS, CDAS, DR, FR, SR, right?
+All of the options you have today will be available.
+And all the new kind of A6, all the new chips will transition to that 200G electrical interfaces in future,
+to make that kind of jump to 1.6 tera.
+If we have an outlook and that's like a report from Deloro, which is like an analyst group,
+they basically expected in 2026, 800G will be peaking.
+I think it's true, but you have to consider it does include all the hyperscalers,
+all the AI networking, et cetera, et cetera.
+On the only interconnections, I think 800G won't peak, but it will develop, right?
+It will slowly start.
+And we expect that by the end of 26, 27, 1.6 tera will start taking over.
+All right?
+So what I also want to discuss today is basically what kind of different optics do we have, right?
+What kind of options do we have?
+At the very bottom, you see the full re-timed optics, which is the optic you basically know by today.
+We have a DSP chip, which is doing encoding, but it takes power, right?
+And if we think now about AI networking, that has an insane scale, which means you basically
+need to run a nuclear power plant to run your AI class.
+And that's in fact also what the hyperscalers are doing.
+So what we basically came up with, and we, I don't speak of a wrist, it's basically the industry,
+we came up with something called linear plug-up optics, or LPO, which you see on the very top.
+Basically what we do is we take that DSP out of the optic, and that function will be put into the ASIC.
+So why are we doing that?
+We are cutting power consumption by 50%.
+If a full re-timed optic does need 20 watts, the LPO version of it would need 10 watts, right?
+And I think that's basically an insane power saving.
+One thing you need to consider, the ASIC, and the service interfaces need to support LPO optics.
+Not every chip will support it.
+Jericho 3 and Tomog 5 are already supporting it.
+Take that into consideration.
+So what does it mean?
+You have the DSP, it's marked in red, I hope you can see it.
+And that based digital kind of processing unit is removed.
+There is just like the laser, and the DSP function is basically pushed back into the chip of the networking equipment.
+If we have a look on some statistics, and I have, I won't say I've stolen it, but I have borrowed it from NDBherster some,
+what does it mean?
+That's basically what we see in the lab, right?
+If we take 800 GDR-8, which is produced on 5 nanometers,
+the normal optic, kind of the fully re-timed optic with the DSP, takes 15 watts, 7.5 on the LPO version.
+There is the LRO, which I haven't talked about.
+It's like a kind of half re-timed optic.
+It does only re-timing in one direction, and that would also save some costs.
+But we currently don't see a value in them, because with LPO you cut it by 50%, right?
+And the complexity difference between LPO and LRO is not basically worth it,
+but just to mention it, there is also like a half re-timed optic.
+If we look now on 1.6 terra, and yes, we have it already in lab systems,
+100, 1.6 terra, manufacturers on 3 nanometer does take about 25 watts, believe it or not, per optic, right?
+If we go into LPO, and there is also another concept that we'll talk about later, which is copackaged,
+which basically is the same principle from the transceiver perspective, have only 10 watts.
+So we consistently cut it by 50%, right?
+If you have one optic, you might now say, this is really that kind of much of a power saving.
+If you have 1,000 optics and you have half of the power consumption, that's like a big number, right?
+I'm not insane. I have put 100, 200, 300 percent.
+It's not about the percentage, it just should give you a scale, right, to kind of figure out where are the difference.
+So kind of a system level perspective, which means the whole box, including all the optics,
+you can see on the right side, on Tomahawk 6, with LPO optics, you have basically 1/3 less of power consumption,
+including all the fans, the power supplies, which are basically the same for the box, right?
+But just by cutting the optics to LPO.
+So what does it actually mean? LPO, linearly plug-able, it means I have the same transceiver just without the TSP,
+but for you, it just feels like a normal transceiver.
+You stick it in, you push it out, you can do basically what you can do with a fully re-timed optic.
+And then there are other concepts to save power.
+There is like a new packaged object, which means the transceiver is not on the board, which would be copackaged,
+that's the board where the A60, so the transceiver is basically glued onto the board, that's copackaged,
+and the new package is somewhere in between. It's not on the front panel, but it's also not on the chip,
+it's kind of halfway in between. Some other kind of vendors talk about copackaged a lot, right?
+And they can save power and so on, and that's true, they can save power, but we can save the same amount of power with LPO.
+What is the difference? Difference is pretty simple.
+It's just a maintainability, right? If I have a copackaged system and the transceiver is on the board,
+when one transceiver fails, what does it mean? I need to change the whole box, right?
+With LPO optics, I just change the transceiver, right? That's basically the difference.
+We have kind of both in labs, both are working, again, it's just a matter of maintainability.
+So to speed up stuff, when we have a deeper look at the LPO results, as I said, by 50%, that's the amount of power we cut,
+there are some specifics, I think, in sake of time, I'm not going to bore you with all the details about the pit errors and all the testing we have.
+The main messages we can deliver are also 200G, PAM4-based electrical channels for LPO systems,
+so it's good and clean enough to deliver LPO optics, right?
+So the electrical channel is clean enough, first results look really promising that we also can deliver LPO at higher speeds.
+That's basically the main message.
+That's basically what I told you before, maintainability is a key difference.
+If you have to change a transceiver, in most of the cases it's not the switch, which is 40,
+it's also not the transceiver, which might be 40, it's more or less that we have those kind of soft failures,
+which is the optical unit on the transceiver is dirty, right?
+And that's some kind of dust particles or whatever, you can't just easily clean them with some kind of cleaning tool,
+and that's what we analyze in our kind of basically RMS, where the most faults are reciting, right?
+So advantages of LPO systems, it's clearly maintainability, right?
+It cuts power by half, but I can still easily replace the optic by just putting it out and replacing it with a new one.
+Other than that, there is no difference.
+In terms of power saving, copackaged, LPO, LRO, it's basically all the same.
+The difference is just like where the transceiver resides and how easily I can change it, right?
+If we talk about setters at a plus kind of coherent optics, I skipped that kind of slide,
+and what I want to show you is basically the outlook.
+400G setup plus is currently deployed, right?
+I'm talking regularly to customers who are deploying 400G setup plus.
+So what's coming up?
+Basically, surprise, 800G setup plus, 1.6G setup plus, right?
+Of course, what is the difference?
+Now we have 75 to 100 gigahertz on the grid.
+With 400G, it will be 100 to, I saw 150, and then it will be 300 gigahertz from a spacing perspective.
+And yes, you're reading correct.
+The normal kind of fully-retamed optic will take up to 40 watts on 1.6 tera.
+So it's getting hot and also expensive from a power budget perspective, right?
+So to conclude the talk, I just wanted to give you a brief outlook on what the industry does think about, right?
+And I think it's pretty insane because I haven't thought about it.
+Of course, we're thinking about how to save power, right?
+Especially in data center networks, in AI kind of classes where you have thousands of optics.
+50% saving is a lot, right?
+We also think about how can we optimize the optical part, right?
+Kind of stuff like microlets or terahertz guided waves for like a short kind of interconnect, which is like 10 to 20 meters.
+Might not be the use case for service providers, but again in the data center or in the landscape that's often enough.
+Of course, a bit of AI is everywhere, so also AI-driven kind of network automation, also on the optical side.
+And what I pretty like is like the pre-loss point is like hollow core fiber.
+So if you think about AI classes and all of that kind of stuff which is coming up, we care about latency, right?
+So we found that in our products, we can't really decrease latency more and more.
+So what people started to think about is if light has to travel through like a silicon, which we have in our fibers, right?
+It takes more time than when it travels just in air, right?
+So hollow core fiber means actually it's an kind of empty core fiber where there is just some form of air, right?
+Of course, it's not the stuff we breathe, but think about that.
+We just remove the silicon from the fiber to reduce latency, not by half, but by 0.6.
+And I think there are some trends which are pretty interesting.
+And of course, for interconnecting kind of data centers and kind of stuff, we look at 1.6 tera.
+If you talk to NDP, he's already talking about 3.2 tera.
+I think it will take some years until we are at 3.2 tera, but 1.6 is reality, right?
+So the first lab systems are already running. It looks pretty promising, right?
+So remember, LPO is something you can also think about the interconnection, right?
+Because what cares for interconnections is the optical side.
+Is it LR4 or whatever it needs to match with the partner or other providers or customers?
+There's nothing to do with the LPO because that's just how the switch is connected or the AC is connected to the transceiver.
+So also service providers can basically take advantage of that kind of technology
+because it doesn't affect the optical side, right?
+Basically, that's it. That was like a brief overview.
+I don't know. Are there any questions?
+Thank you, Patrick, for these insights.
+I guess we will have lots of fun with optics in the future and the number of options to choose from will increase even more.
+We have some time for questions.
+Please remember to state your name and your affiliation before asking your questions.
+We will also relay some questions from Vennulus if time permits.
+There is a question here.
+Oh, is this mica? Cute. Max Planck Institute for Informatics.
+So I wanted to ask about CPO and LPO optics and just check that I'm understanding it correctly.
+So CPO optics, basically everything is in the switch.
+So then if one wanted to change to a different frequency of light,
+you would have to replace the switch. Is that correct?
+Yeah, it's correct.
+So then LPO optics, you would still have all the flexibility that you have with the current optics of it doesn't really matter what kind of light you need.
+Like the DSP doesn't care what light it's driving.
+Yeah, exactly.
+The laser is correct.
+So with co-packaged, there are some kind of modular things.
+But it's not that easy that you just plug out the receiver.
+You need to open the box.
+Because what would be really nice is just being able to plug in whatever light we need.
+Yeah, it's glued to the board, actually.
+And with LPO, as you said, like if you have LRS or whatever you have,
+it's still basically the transceiver which determines it.
+Yeah, thanks.
+Thank you.
+Thank you.
+Hello, Mark from Netlands. Thank you for the talk.
+Ren, removing the DSP from the optics.
+Obviously, this saves power.
+But is it really removed or just moved somewhere else?
+Is there any implication on power consumption of the AC or the line card?
+Yeah, so it's not totally removed.
+Basically, the DSP function is moved into the AC.
+So the AC does take over.
+And, yes, of course, the AC does need more power, right?
+But it's not the 50% you save on the optics, right?
+But, of course, a few watts will be then taken by the AC, right?
+Okay, there is a question here.
+This is the Boston Charter Tier.
+As far as I remember, LPO doesn't have the same reach, right?
+So there won't be any ZR plus LPO.
+So it's mostly for inter-data center or inter AC stuff, correct?
+Currently, there is no setup plus on LPO because there is--
+Also, I think that's possible.
+Basically, you don't have the capabilities in the AC to refresh the signal and produce it.
+So currently, there is no setup plus or setup optic on LPO.
+It's just not even an ER or other--
+We don't plan it currently because it doesn't seem to be possible to build an ER.
+In a way which makes sense to produce it.
+There is a question right there at the top.
+And that would be then the last question for this talk.
+I'll get out of the way.
+Hi.
+So you briefly at the very end of your presentation touched on--
+I think it's very--
+One of the more interesting parts of your presentation which is the holocore fiber.
+I've seen holocore fiber coming in and out of existence in this industry for,
+I think, the last 16 years and the last thing I know about it is essentially Microsoft
+being the single company that was basically getting ready to build this in production volumes.
+So I'm getting the very distinct impression that holocore fiber technology is the single most
+NDA piece of networking equipment out there.
+Can you comment on this?
+Well, first of all, we don't produce fiber.
+No, yeah, I mean it's also like for the interconnection kind of community it's also not that relevant
+because you don't dig like kind of out the classical fibers and replace it with holocore fibers.
+There are also some interesting questions which came up about what if there is a fiber cup, right?
+Because currently we are splicing fibers.
+How do we splice air, right?
+I think that's a fair question and I don't have the answer for that.
+But yes, holocore fiber, it's coming up, right?
+But I see more recently only in AI kind of networks of very specific use cases where they use it.
+And there is anyway like not much choice on the GPU side of things.
+So yeah, but it's a fair point and I don't have like a very detailed answer unfortunately.
+But I don't see it coming up in the interconnection industry that far.
+If you ever considered a post-Semitic presentation again, I would very much encourage you to do one about holocore fiber.
+Okay, I will consider it.
+Thanks to you, Dan. Thank you very much, Patrick. That's a wrap for this presentation.

@@ -1,0 +1,613 @@
+API URL: https://api.media.ccc.de/public/recordings/93168
+Frontend URL: https://media.ccc.de/v/denog17-71798-inventing-the-wheel-network-orchestration-at-scale
+Title: Inventing the wheel - Network Orchestration at scale
+
+(upbeat music)
+- Our first speaker is Tom Aikon.
+Tom has been part of the networking industry
+for the last decade or so.
+And as he tells me, he keeps living on the bleeding edge.
+This is what he will be talking about right now.
+Welcome, Tom.
+(audience applauding)
+Hey folks, so inventing the wheel, I have a question for you.
+Whoever reinvented the wheel.
+Well, it seems at least somebody, but it's not invented here.
+But sometimes you come to the situation where you see,
+there is no wheel, there's no solution
+which fits what you want to do.
+, and I'm going to be a little bit more familiar.
+I'm going to talk a little bit forward, what we want to change and how we want to change and why.
+When a little bit about implementation, what we learned while trying to do that stuff.
+And when also testing and all this pesky things you need,
+if you are the biggest internet change in the world.
+Nobody wants to be on the front page of highs with this guy took down the internet.
+At least that's what I hope.
+If you want to do that, we have job offerings open.
+(audience laughing)
+So let's have a look back.
+2013, there was a denoc, and a colleague of mine was showing these slides.
+It was the invention of what is known as D-Kix Apollon,
+our wonderful platform which still survives till today.
+Well, the world was a little bit different.
+There were only two D-Kix locations, Frankfurt and New York.
+There was no global spending network as we have today.
+And people planned differently.
+In 2013, before Apollon, we used scripts together with a database,
+a file database like the Wipe database to configure the systems.
+This was Perl, set and AWK.
+And you could manage a whole internet exchange with that.
+And yeah, nice thing, but it doesn't scale.
+Well, when this Aikata-Lucin platform, known as Apollon, came,
+and people said, "Okay, we can't do this with a file database anymore.
+We can't copy and paste stuff manually, it doesn't make fun."
+And people saw an opportunity, Aikata-Lucin at that time,
+had a tool called Sam, the service-aware manager.
+It's a big Java monster, but it could configure the devices.
+And it had an API to the other side.
+So people said, "Okay, we want to make our customer delivery faster.
+We want to improve the experience.
+Hey, let's use that tool."
+And we came up with this design.
+Well, we have some routers somewhere who would ex-guest.
+This is NFMP, which is the new name for this old tool,
+with our internal system called CWS, the central web service.
+And, yeah, if you call somebody and you maybe got Gav on the phone or E1,
+they would say, "Okay, we can do that stuff for you.
+We go to this tool called Artemis, our internal tool,
+and we're doing the configuration stuff."
+And that was sending some calls to CWS.
+CWS was doing some soap calls to NFMP,
+and that one would then do as an MP called to the router.
+Well, it worked, and it still works.
+But time goes on.
+This is the current architecture if you would use it as it is today.
+It has grown.
+At some point, people ask for a web portal,
+"Hey, we want to do self-service."
+At some point, we have those finance people.
+Do you know finance people?
+They want to have numbers, correct numbers.
+And there was something big ERP doing crazy stuff,
+but it wanted to have live data.
+We went global.
+It's a funny thing if you look at such a design.
+At one point, what do you think was a unique identifier for a customer?
+Of course, we are all peeping people.
+It's a S number.
+Well, that was before the globalization.
+Now, one A S number can be a multitude of companies,
+and things got more complex.
+People started to build different tools.
+You can see here what's called desire.
+This was an approach to say, "Okay, let's reinvent everything."
+But it never got to full fruition.
+And it's still for some part there, for others, it's not.
+And when people came around with such tools like Netbox or Notabot,
+well, documentation beforehand was a media wiki.
+Now, we're at some point, had, "Okay,
+we have now some kind of structured data.
+We all want to integrate with it.
+How can we do that?"
+And when we saw this, or thought, "Hmm,
+can we do a drop-in for the NSP to get rid of the old part,
+or do we want to do more?
+Do we want to become better?"
+And when we have looked at the architecture you have just seen,
+and the whole operating support systems,
+OSS, called Internally, has organic ground.
+There have been tools added on, features added on.
+So if you today order a direct cloud connect,
+so a connection to a hyperscaler,
+that is a child of what was VP in the early beginning.
+But it had complete different requirements.
+Only on the platform it was some kind of L2 transport.
+Doesn't work.
+Also, we have so many systems, and data was been duplicated.
+We wanted to get away from that.
+So we saw all of our systems need to be separated
+for different parts.
+There is no one system to rule them all,
+because it doesn't work.
+Also, we had some organizational changes.
+In the old world, there was a software team,
+which was doing all the software.
+There were some network engineers doing the operation stuff.
+There was a network design team doing the design.
+And those three groups didn't really
+play well with each other.
+So we decided, OK, we want to change that.
+And we went with an approach that we now have product teams.
+There is now a team who is responsible for all the peering
+related stuff.
+There is now a team responsible for all the cloud stuff.
+And there is a team responsible for all the access
+related stuff, so the physical stuff.
+And they do the whole stack.
+They are responsible from the beginning of the portal
+or the customer order until we can later
+to get resolved to an intent what should happen.
+So we organized our software also in that way.
+And we found out, over a long time,
+one big monolithic system doesn't work.
+You can do that, you can buy that from different vendors.
+There is a large monster, which surely do everything.
+But it doesn't do.
+It will not be flexible enough.
+So we said, OK, let's have a certain look forward.
+And then we had, OK, we want some goals.
+What do we want to do with our new system
+from what we learned over the last decade?
+And the first one is, we want to have an open source system.
+As an open, not as in free, don't misunderstand me.
+You would have been happy to pay for a solution.
+But if the vendor just gives you a big blob, you are alone.
+If something goes wrong, you can open a support ticket.
+And if you're lucky, somebody will come back weeks later
+and tell you, oh, yes, you did something wrong.
+But you can't look into the source code.
+You can't fix stuff yourself, or even understand stuff yourself.
+So we believed, if you want to have a new solution,
+it needs to be open.
+We need to have the control over the system,
+and we must not rely on somebody else saying,
+oh, yes, use it as it is, and hope
+that our support will solve our problems.
+Also, we wanted to have something which is not independent,
+so the network operating system.
+You can get a vendor solution, and they will tell you, yes,
+we will support other vendors.
+You just need to add some plug-ins to it.
+Just write them yourself the API is open.
+But if that goes wrong, which support team do you call?
+Do you call the vendor who gave you the system?
+We will tell you, yes, you're using our API one.
+Are you talking to the north vendor saying,
+hey, yes, we're sending this call, but it's not working?
+They will tell you, yes, that's no developer stuff.
+You can buy professional servers, we will help you.
+So we said, OK, whatever we do, we want to be open.
+We want to be able to use different platforms,
+different versions, whatever comes around,
+because this is a plan for the next 10 years.
+We also wanted our service configuration intent-based.
+So what is an intent?
+Let me give you an example from D-Kix.
+Somebody orders a peering, or a connection to a peering line.
+The intent, then, which would go to the system, would be,
+hey, please configure, port A, VLAN ID, C, this MAC address,
+this IP addresses are assigned to the customer
+and this is bandwidth.
+In an abstract way, so with the product team,
+who is responsible for that stuff,
+doesn't need to care how the implementation of the device
+looks.
+That's not their part.
+They should just say, OK, we went through the order,
+we did all the business stuff, but the actual implementation,
+I don't care.
+I don't care if I need to do MAC filters, or IP filters,
+or what cross-policy to set.
+I have an intent, please do read for me,
+and we wanted to decouple that.
+Also, our base configuration must be completely generated.
+I believe many of you do automation.
+Who do full automation, so that the full configuration
+of the device is auto-generated.
+I see a very few hands.
+That was one of our biggest goals, also, to say, OK,
+we have this big platform where hundreds of routers
+out there.
+We cannot do manual configuration on all of them anymore.
+Also, we wanted to have some more modern features.
+So we said, OK, now we're doing SNMP.
+SNMP has many shortcomings.
+But one, for example, is it doesn't know about transactions.
+If you need to change 10 things and to fail, well, good luck
+finding out what failed and how you can fix it afterwards.
+So we decided to go with Netcomf and Yang.
+Netcomf is a protocol which is also
+out there for some years now, which is enabling you
+to use a programmatic way to talk to your devices.
+And almost any vendor is already supporting that.
+And Yang is a description language.
+And also, it's vendor-independent description
+language of the router configuration format.
+So you can check early on, hey, is my configuration really
+valid, at least syntactically.
+And we said, OK, if you can, early on,
+check that our configuration is valid.
+And let's say there's a field which expects an IP address.
+And we put in a MAC address there.
+We want to see an early error.
+And that is also what went in there.
+And we said, OK, it needs to scale.
+We have a network of hundreds of routers.
+It will grow.
+And with the existing solutions,
+we didn't see a path forward how that can grow.
+Yet, of course, you can now get a VM with 128 gigs of RAM
+and more cores.
+But at some point, there will be a limit.
+And it doesn't go away.
+Also, that's something for which people hate me.
+We wanted to remove the administrative access
+from users on the routers.
+Some of you know me from earlier talks
+where I shared my desk with Christian Kuntrop.
+And he, at one time, said to me, you know,
+if you need to use SSH, you should open a ticket
+because either your automation or your monitoring is broken.
+And that is a completely different concept than today.
+Today, my colleagues are going on the routers,
+doing manually changes if it's on the base context side.
+And they're happy mistakes.
+Sometimes it's just a typo.
+Sometimes it's something which way
+mangled up somewhere which came from different systems.
+And we said, no, we don't want that anymore.
+We want that our documentation is the same as a configuration.
+There must be a far forward and backward.
+And that only works if you remove the access
+to the configuration.
+Yet, of course, there are emergency measures and stuff
+going on.
+But in the default way of working,
+people should not access directly on the router.
+We wanted to have a clear separation of concerns.
+So people should not be thinking about stuff
+they do not need to think about.
+If somebody is doing something on the peering site,
+he should not care about the backbone site.
+And the backbone folks should not care about the peering site.
+But in the existing world, if we add a new router,
+somebody from the peering site must say, OK, this VPLS
+must be on that router.
+And we go on there and we do stuff.
+And the rollout teams, which we have,
+have to think about it.
+An absolute nightmare to do this organizationally.
+And we also wanted to reduce our development dependencies.
+So right now, in our old world, we
+had this big monolith of software.
+If the peering team changed something,
+the other teams can't.
+Or they shouldn't by our internal processes
+because they have so often seen side effects if two people
+work on the same code base and do a rollout at the same time.
+So we asked ourselves, hey, how could an architecture look
+which is ready for the future?
+And then we came up with this architecture.
+After that was the time.
+We decided on a new idea to say, OK, for every product,
+there should be a microservice, which
+is managing all the details of the product.
+And it shouldn't matter if our customer service, using
+our internal Artemis tool, is accessing that.
+Or if a customer, so you, are using our portal or API
+to use the same features and the same possibilities.
+Right now, we have some stuff, which you can't do as customer.
+You need to call us.
+And there's other stuff only US customers can do,
+but not our customer service.
+If you call us, what will they do?
+Maybe they go to the portal and do the same stuff you would.
+And that was also a certain nightmare.
+We also said, OK, in the existing world,
+everything was synchronous, which was a huge nightmare
+for some colleagues.
+Because if you did a change in Artemis,
+you had to wait until it was done before the tool let you do
+something else.
+Sometimes we have changes which took a certain time
+due to the architecture, and they were blocked.
+Said, OK, we want to have a message bus.
+So it's an asynchronous communication path
+we have in between the different tools.
+So we can say, hey, I have this intent.
+Here's the intent, and please inform me when you're done.
+But I'm not actively waiting or polling for that stuff.
+On the other side of this message bus
+is a network orchestrator, which takes data
+from what is called the service repository, which
+is basically all the customer-related intents are stored
+in there after they have been implemented.
+And also taking the data from our DKIMS,
+our net box, in this case, and pulling those together
+to create the full configuration of the device.
+And that then gets pushed out to the platform.
+So message buses, that is a complicated topic,
+and people could talk hours about it.
+But let's make it short.
+It's an asynchronous architecture.
+It's like a mailbox, you put something in,
+and at some point you can pull it out.
+And if it takes two days to pull it out,
+it doesn't matter, it's still in there.
+That gives us a non-blocking architecture,
+so there can be hundreds of messages,
+and we will work on them, but nothing is being blocked.
+It's decoupling our teams.
+This is a different defined interface
+between different teams.
+The intents can be exchanged.
+There's no how we need to define a new protocol or stuff.
+We have used Kafka for that.
+And that gives us a certain flexibility between the teams.
+Some teams are developing their stuff in PHP.
+Java's are looking at Go.
+My site is working in Python.
+But we don't have any kind of issues there
+because there is a defined interface.
+Well, this is only part of the interface.
+The other stuff we have is an abstraction layer,
+which you call the product contract.
+So if you have these intents,
+you want to send them in between the different systems.
+But how you define an intent,
+and how do you check that it's valid?
+For that, we'd use the tool of API contracts,
+which is a definition of the API
+and the methods you can send.
+And it can show you a little bit how it looks.
+I brought you on the left side
+how a rendered contract partially looked,
+because I was thinking about showing you
+the actual source code, but forget it.
+You wouldn't have seen anything.
+And on the right side is how it would look
+if you would send some data.
+So in this, we have here a peering access service create,
+as I said, with the intent.
+Hey, I want to have a peering access service.
+And it's having all the relevant data
+so that the technical side can create this on the platform.
+And it has all the data, it has a certain format.
+So if you would send me something
+where something would be missing,
+or something would not fill the format,
+you would get a rejection,
+hey, you're not following the contract.
+And this also gives us opportunities
+because we can upgrade a contract.
+We can have breaking and non-breaking changes,
+and teams can work differently on that.
+They only need to come once together to say, okay,
+this is a new contract version.
+Hey, it's a breaking thing, okay.
+We need to update both sides at the same time,
+but we can develop independent of each other.
+Or if it's a non-breaking one, hey,
+one team can start and the other can pull on later.
+And that's what we have been doing for a whole time now,
+where we always have this, okay,
+we need to change something, hey, let's go on.
+Okay, let's talk a little bit about implementation.
+And I have thought for you.
+Your DKIM is not better than any spreadsheet.
+How many of you managed IP addresses
+or information in spreadsheets, at some point in time?
+- At some point, it's easier.
+- Yeah, but then we got later on,
+and we started having tools.
+But are those tools better?
+And I say no, and I want to give you a reason for that.
+We have pain with data.
+Data is only useful if the format is known.
+For IP addresses, we learned, that is very, very easy.
+But what about other data?
+Humans must be guided.
+If you take a tool like Netbox,
+you could put in your device in multiple ways.
+Hey, how do you model line cards?
+How do you model optics?
+How do you make sure that data fits together?
+If you want to automate,
+it always has to follow the same path.
+Humans must be guided to do that,
+and the tool doesn't do that by default.
+Well, the DKIM doesn't help here.
+It's just a tool, it's a database
+where you can put in your data in any way you want.
+So, what do you need to do?
+Specify how your data should look like.
+How is the line card modeled?
+How is the module on the line card modeled?
+How are power supplies modeled?
+Most people don't care about that,
+because they say I have my interfaces in here.
+I manually configured the device, everything is fine.
+Well, ensure that your data follows the guidelines.
+Yes, they take ages.
+But you must do that.
+Otherwise, you will not be able to configure your stuff.
+Well, yeah, spend weeks to fix data,
+and then enforce that data follows your guideline.
+And that's a pain point.
+All the DKIMs usually don't have the right tooling to do that.
+And it's really hard coding to do.
+All this checks is the data following the guideline,
+especially if you have dependent objects.
+It's easy to ask, let's say, networks,
+hey, put a ragax on this field.
+Yeah, that's easy.
+But do you can check,
+hey, I want to put in a 100-key object.
+Is this port a QSFP+ port which has enough power?
+And what is the other ports around?
+Do I have some kind of faceplate limits?
+That's really painful.
+Also in such projects,
+of course, we have a human factor.
+Maybe it's out of this project.
+People were asking, why do I need to change my workflows?
+It's working fine.
+I'm doing copying paste from my text file.
+Work fine for years.
+It worked the last 15 years.
+Yes, you're right.
+Other people are asking, hey,
+if you automate it away, that's my job.
+I was saying it's too complicated.
+Hey, I'm doing my conflict files all the years,
+and now I need to use a tool.
+I don't want to do that.
+I was saying, hey, I'm the engineer.
+I need full control.
+I don't want this aid.
+I can do it all on my own.
+I was saying, hey,
+I don't understand how all the parts are fitting together,
+and you need to handle these problems.
+Such a project is 90% human and politics,
+not technology, if you are in a larger organization.
+You need to start building partnerships.
+You need to have ambassadors.
+So in my team meetings,
+I have from all relevant teams,
+always somebody else from the teams coming in,
+using our tools to see what's going on,
+what's being developed,
+because at some point you say, hey, I'm done,
+and they never saw it.
+So they can early give input.
+And also do early on demonstration and trainings.
+We always have reviews after a sprint that we talk,
+talking to the people and saying, hey,
+I'm showing you what we have here.
+We have training stuff, and other stuff for that.
+Okay, I see my time is currently running a little bit out,
+so I will skip some parts.
+Sorry for that.
+Come on.
+Let's talk a little bit about testing,
+because I think that's a very important topic on this stuff.
+People were saying there's no way you can be sure
+that what you do is working.
+And I was like, we have 100 routers out there.
+Yes, of course, I cannot test that.
+And when I said, okay, I have a shadow.
+So we decided to have a de-kick shadow,
+and that's a funny thing.
+So our not assimilation framework exists.
+So we can simulate our routers.
+I think that many vendors have something like that.
+But usually it's not really helpful,
+because you get some kind of virtual box,
+which is doing stuff.
+We were lucky.
+Nokia was having a solution
+that you can really simulate the whole router.
+With all its line cards, all its ports, all its stuff,
+so I can put in a second system,
+which looks exactly like the real world.
+And yes, that's what we're doing.
+We are simulating the whole de-kick networks.
+Effectically, we are doing it two times.
+There's a production shadow, and there's a staging shadow.
+The production shadow is already running,
+and everything you do today on our production platform
+is simulated there.
+So I could see early on, hey, do the API course work?
+Is there something going on?
+Is something breaking?
+Also, we have hard software guidelines for our stuff.
+We're using test-driven development,
+so you usually write first a test
+and then implement the code.
+We have reviews.
+We have massively reviews.
+No code goes to production,
+if at least not three engineers have looked at it.
+And usually me, but I'm not a software human,
+so I'm not like, yeah, it looks good.
+And okay, something is weird.
+We have quality frameworks around.
+So we say, okay, whatever code goes out,
+has to be tested, has to follow guidelines,
+has to have a certain cognitive quality,
+whether it's a measurement,
+how complex certain parts of the code get,
+and if I get too complex,
+we need to change them.
+And we have our smoke tests,
+which means, okay, we test early on in our shadow,
+does stuff work before it goes to production.
+So usually, all of the stuff you do would do is run once
+and verify it against the system that it works.
+And of course, the shadow validation, which is running.
+Okay, deployments.
+Yes, we have deployed the first routers.
+Ten nodes are already managed by our software.
+The first adoption of a device was done
+in a maintenance window.
+All other adoptions, people were so confident
+that said, okay, we do business hours.
+There was no maintenance window,
+no announcement, we just did it.
+And it's fast, it takes about 10 minutes
+to change the router from the old way
+to be managed to the new one.
+And all the other customer facing devices
+will follow next year.
+We will announce service windows for that
+because there will be some changes
+which are service-affecting, but that's the way of life.
+Our results, we slashed the time for integration
+of new nodes radically.
+That was a week-long process before,
+because every router had to be touched
+and managed and stuff, and it's now minutes to do that.
+We don't have any more incorrect configuration,
+because some stuff was managed manually.
+You don't want to know what I found out there
+in the production network, and we're happy it's gone.
+And the implementation speed.
+We can now do new features within days.
+And also the employee satisfaction is much higher,
+because it's much easier to do stuff,
+things cannot go wrong or less wrong than before,
+and they have the confidence, hey, I'm doing the right thing.
+Okay, one minute, 30, just one more thing.
+We had to add a new product at some time,
+and people were coming to me, hey, we have a customer,
+he wanted to do 800g, can we do that?
+Yeah, sure.
+Well, there's no software release for that.
+We don't have the optics.
+And in two weeks, we have Denog.
+Yeah, let's say the software release
+was on the last day of October, 21 o'clock,
+which was, I think, a Friday.
+They also changed the young models.
+The optics was special, and the software
+didn't get the beta which was running on our shadow.
+Well, I have one minute, let's just say.
+On Friday, last week, DK is now awfully supporting
+800g, that are plus.
+So 800g, single lane, single fiber support.
+If you have the demand for it, come to us,
+you can get the highest speeds at our side.
+(audience applauds)
+And since I have 35 seconds left,
+I'd say they skipped the Q&A.
+You will find me on the social,
+just look for the guy with the blue hair.
+With another one, I've seen him, not him, meep.
+(laughs)
+And I'm happy to talk about it.
+And thanks, and thank to you.
+- Maybe we have time for one question
+if I look at the clock, so is there somebody
+who urgently wants to ask something?
+Because if not, I have one question for you,
+because we have a lot of people transitioning
+from more traditional, artisanal networks,
+where would you suggest them to start?
+Because this is a huge endeavor.
+What would be the first thing to look at?
+- Try it out on a green field.
+Start with something which is not important.
+Use some tools like container labs, and just do it.
+- Cool, thank you.
+(audience applauds)

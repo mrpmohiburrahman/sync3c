@@ -1,0 +1,339 @@
+API URL: https://api.media.ccc.de/public/recordings/93377
+Frontend URL: https://media.ccc.de/v/godotfest2025-plants-polygons-and-pixels-large-scale-vegetation-rendering-in-godot
+Title: Plants, Polygons and Pixels: 
+
+So, I would like to welcome y'all to the whiplash dimension where our last talk covered
+dark intense neon infused lo-fi graphics.
+We now talk about the rendering of photorealistic plants and vegetation of various kinds.
+I would like to welcome today Kalbittner, who is a game development educator and also the
+maintainer of the geodoploggin.
+He will today present an asset creation pipeline that uses easy tree and blender, billboard
+plants and all of the surrounding tech.
+This pipeline is used for large-scale vegetation rendering.
+He is also a PhD student at the Institute for Landscape Development at the Boca University
+in Vienna.
+Please welcome to the stage, Kalbittna.
+(audience applauds)
+- Hi, yes, we'll talk all about plants
+and how to visualize them and how to make its performance.
+So we're gonna go through quickly our background
+while we are visualizing plants.
+The properties of vegetation that make it so difficult
+to render it, how to create assets for plants,
+how to scatter them in the world,
+shader tricks to make them look good
+and level of detail tricks to make it feasible
+for a large scale.
+So our background is what you see here in the background.
+It's called the Landscape Lab,
+which is a general purpose real-time landscape visualization
+based on geo-spatial data.
+So what that means is essentially we load geographic data
+and visualize it as a 3D landscape as accurately as possible.
+the data.
+or talk to me later. Now it's going to be all about plans. So we're going to talk about realistic rendering, like these, and also touch upon stylized rendering, because much of the concepts are pretty much the same, and can be applied to both.
+So what makes rendering vegetation difficult? Why are we talking about this? Vegetation has really complex geometry. It's not just a plane surface. It's really intricate and small scale.
+It interacts with lighting in really complex ways. So the back sides of leaves, for example, they are not dark, but they let light through and maybe even color the light differently.
+.
+. So, how do we create plant assets? Let's start by looking at trees. Essentially, the choice you have to make is whether you use geometry or billboard. So here what you see is geometry. This is a tree which is actually modeled right down to every needle. Every needle is tree.
+. And that's what it looks like. You can see at the top, the end result is pretty similar. But the geometry is entirely different. Instead of having individual needles, you use billboards. You use flat planes of textures.
+Which you color with a texture that's representing the more intricate geometry which you really want to convey.
+So this is what the texture of this tree looks like. Here at the bottom right, in orange, you can see the individual needles of the geometry tree.
+And in violet, you can see the billboard geometry or the billboard texture which ends up looking pretty similar.
+So how do we create trees like that? We could manually model it and we had some of our best results by actually opening blender and modeling individual leaves of trees.
+And you can then even turn that into billboards by baking out the textures. You can bake albedo maps, normal maps, roughness, ambient occlusion and so on.
+And that looks great, but it's a ton of work, as you can imagine, for each individual tree modeling the leaves. Yeah, it's a lot.
+So instead, usually you use some kind of dedicated software. Speedtree is a really common industry standard.
+We try to use only open source software, so what we use is easy tree. It's not very well known. I actually found out about it on accident.
+But it's an open source tool. It creates trees with billboard geometry. It works really well.
+One problem with billboard geometry is that the results don't really match what you're trying to imply.
+So a billboard on the right here is a flat plane, but really what you're trying to communicate is geometry.
+And with lighting, your geometry and your normals, especially, are not going to match the real geometry.
+So you have to work around that somehow. And one thing that's a really popular trick, which I really encourage you to try, if you have any vegetation in your game, is to bend your normals.
+Essentially, on the left here, you see the normals as they are from the billboard planes.
+And it looks fine, but it also doesn't really make sense because they're flat planes, but what you're trying to imply is leaves which grow in all kinds of directions.
+So in the end, the result is going to look more or less like a smooth round canopy shape, because it averages out to like a smooth shape.
+And what I did here on the right is I made Blender generate a convex hull of the leaves, and then I took the normals from this convex hull, which point outwards, and transferred that to the leaves to the billboards.
+So it's just a data transfer modifier in Blender, and that way you can get your billboards to have different normals than the actual geometry has, and it interacts with lights in a more understandable way.
+One thing that's important to note, if you do this, if you bend your normals into custom shapes, is you have to have this line in your shader, because otherwise the back sides of your faces are going to have the normals pointing inwards, which is not what you want.
+It's kind of an engine limitation at the moment, so you have to work around with this line.
+Now how do you get textures for your trees?
+One thing that we do a lot is we just find something that looks good on Wikimedia Commons or other sites where you can get free textures, and we generate billboards textures from that.
+We use this RMBG tool, which works really well for removing backgrounds, so that's how we get this texture, for example.
+And then in GIMP we generate a normal map from that. It's not quite accurate, of course, it's just based on the shades that you see in the image, but it works well enough.
+So this is our workflow for trees, it's really easy, you just model it in easy tree, fix the normals in Blender, get the texture, get your normal map for your texture, and you can use it in Godor.
+So it takes like 30 to 60 minutes to get a tree like that, looking really good.
+For stylized geometry, much of the same tricks apply, so here's one approach that I like to use for stylized shrubs, like the one you saw earlier.
+We model the rough shape, and then in a shader we scale up the quads, we bend the normals to have this smooth shape again, and we just text change shade.
+If you want to learn more about stylized geometry like that, I encourage you to check the link below.
+Right, what about grass? Again here you have the choice to make between geometry and billboards, and this really depends on your art style, so with big grass blades with stylized art, you might be able to use actual geometry, like with you on the top.
+But if you have really detailed geometry, like the width here on the bottom, you're not going to be able to model that in detail, so what we use here is billboards again.
+If you do geometry based grass, then just model the grass blade, and scatter it in the world, again you might want to bend the normals to imply some more shape that it doesn't have, but yeah, it's just a simple blade of grass scattered through the world.
+If you want to do ground covering billboard clouds, you're going to have to make geometry and textures for that somehow, so I'll show you how we do that.
+We start with a cluster of quads, so this is just quads rotated and moved in a way that makes them feel the ground nicely when repeated, and then in a shader, we scale that to the individual texture that we're working with, and the aspect ratio of that texture.
+We again bend the normals to have a half dome shape instead of the actual billboard normals. That's what the normals look like.
+We apply our texture, we apply alpha, and we do some fine-tuned shading to make it interact realistically with light.
+That's one example of a result, and if you took that and applied it to a whole area, it would look like this.
+This is just a single texture, of course in reality you would use a few more textures and vary them randomly, but even with a single texture it works quite well.
+Now how do you create these textures to put onto the quads?
+Again, we do something similar as with trees. We usually actually go out and take photos, but you can also use other sources online and remove the background, and then collage them into a group of plants which would usually occur in a cluster.
+Then one thing that's really important is to do some editing and remove shadows and hard borders.
+Here on the bottom you can see it's what it would look like in real life, but with the billboard geometry you can really tell that it's kind of a hard edge at the bottom.
+What we do is we remove a little bit at the bottom of the plant to make it fade nicely into the terrain.
+It does float a few centimeters above the terrain, but unless you have a game where you can really get down to the ground, it doesn't matter, and it looks better, it looks like a more smooth transition from ground to plant.
+We do it like this.
+One thing that's very important and easy to kind of miss is to add alpha padding to your textures. Usually when you have textures with alpha, the pixels which are fully transparent are going to be black because they're transparent.
+It doesn't really matter what color they have, but the reality is it doesn't matter. I'll show you why in a moment.
+You can add this kind of alpha padding where you take the nearest color value and apply it to the alpha pixels. With GMake for example, we use the GMake Solidify algorithm and get results like here at the bottom.
+This is why it matters.
+When you generate mipmaps for your texture, which you can do automatically or which Godot does automatically for you, apparently I'm not sure what's going on in the background, but it does access the colors of alpha pixels, and that makes the results get darker and darker depending on how high the mipmap level is.
+The further you get away from the plants, the darker it's going to look, and with alpha padding, the overall impression of color is going to stay the same. So it's really important to add that.
+So here are a few examples of textures we get this way. We have like a library of about 100 plants which we made this way, which we're also trying to make publicly available as soon as possible.
+Okay, now that we have trees and grass, how do we scatter them throughout our game world?
+Don't use nodes. Don't do this. As you can imagine, that's going to break down your performance really quickly. What you want to do instead is to use GPU Instancing.
+So instead of having the CPU keep track of each individual instance of your geometry, you want the CPU to tell the GPU, hey, there are like 100,000 objects of this grass blade, put them at these locations with one raw call, and without the CPU having to keep track of each position individually.
+Yeah, you don't want individual draw calls. You want just one where you tell the GPU, hey, draw this object a lot.
+In Godot, you have two options for doing this GPU Instancing. You can use particles or multi meshes.
+As you can maybe see from the code examples here, particles are based on a shader. They are positioned based on a shader on the GPU, whereas multi meshes are positioned from the CPU.
+So you send the individual positions from the CPU to the GPU via a GD script, whereas particles are positioned based on a shader.
+This means that with particles you can place them for free pretty much. You have no frame starter when replacing them, and that allows you to be really flexible with your placement.
+So for example, for grass, which would always be near the player, we like to use particles because that way we can always move them to wherever the player is at the moment.
+So things that have frequent LOD changes that move around a lot, you reduce particles. Multi meshes, on the other hand, they have a one-time CPU overhead.
+So when you place them, it might have a frame starter if you're placing a lot, but then you don't have a constant GPU overhead, and you can be much more complex with your placement logic.
+So on the CPU, you can use whatever logic you want to calculate where your trees should be, and then just send that to the GPU.
+So we use that for trees, where the logic is a bit more complex, and where also the number of trees per area is much more different than with grass, which is always kind of covering the ground.
+So this is an overview of how our vegetation system works from the top. So you have chunks of multi meshes for trees, which are in orange here.
+So each chunk is an individual multi mesh, which contains the trees within this area. And in Violet, you have our ground covering foliage, which is a particle system that always moves with the player.
+For particles, we scatter them with a particle shader. Essentially, we just put them into a grid near the player, and then add some random offsets to each plant to make it look a bit more random and realistic.
+Then you have to tell each particle what plant it should be. And for us, we work with geographic data, so that means we access land cover data like this.
+This is available for all of Europe in varying degrees of detail, but you could use hand-painted textures as well.
+It doesn't really matter where it comes from, as long as you have a texture, which contains a value for each position on the ground, what kind of ground cover you have here.
+So for example, some parts here might be wheat fields, or others might be maize fields, or pastures, or stuff like that.
+So we get the general ground cover from this texture.
+And then we use this idea to read from another texture to get a specific plant which we want to render here, because for example, in a pasture, you would have some grasses, some flowers, some other stuff.
+And you want to choose more or less randomly for each particle which exact plant it's going to be.
+So we have these distribution textures which contain a few different plants per land cover idea.
+And by reading that and writing it into the custom buffer, we can tell the later shader which plant texture it's supposed to read.
+So that's what's going on here.
+This is now not the particle shader, but the actual shader of the plant.
+And it's reading the texture idea from this custom buffer which we wrote to here.
+And then it reads from a texture based on this idea and applies that as the color.
+And the result looks something like this.
+Now if you're using multi-mashes for trees, for example, this is what we do.
+Here you can see what the data looks like.
+So we have different tree species of different sizes based on real data.
+But again, you can use any logic that you want as long as it gives you points and sizes.
+You can place them by hand or have some procedural generation based on the kind of environmental factors at each location.
+And when you have these points, you apply them by putting them into the transforms array of your multi-mesh.
+So here we just append the transform which we scale, rotate randomly and position.
+And that's how we get our trees.
+One thing that's important to note is that we're going to have one multi-mesh per mesh, so per tree species and per chunk.
+So depending on how small your chunks are and how many tree species you have, that's going to be a lot of multi-mashes.
+So again, here you might have to make a trade-off between culling.
+So the smaller the chunks, the more the camera can cull, because some parts of the chunks are going to be behind the camera.
+And loading speeds, because larger chunks are going to take longer to load when you move.
+Diversity, so the more tree species, the more multi-mashes, the more draw calls.
+So you're going to have to play around with that chunk size and the number of trees that you have.
+We use about, I think, 10 different tree species, and by just scaling them and rotating them randomly, it looks good enough.
+Right, now that we have plants, we have assets and we scatter them in our world, we're going to have them make look good.
+So I'm going to show you a few of the shaded ricks that we use for that.
+I mentioned earlier the thing about bending your normals.
+We actually adapt that runtime.
+So depending on the style of your game, you might want to only use the terrain normal.
+So if you use the terrain normal, the plants are going to be shaded exactly the same way as the terrain underneath.
+That means it's going to have a very smooth transition from terrain to plant for stylized games that might work really well.
+Here, I think it looks a bit too flat.
+We might want to do a half-tone normal, like I showed you before.
+This is how you could do that, just normalize the vertex position and you're going to have something roughly half-tone shaped.
+Or what we actually do is we blend between them because I think this looks great at the distance,
+whereas this looks good up close where you want to have a bit more detail about your geometry.
+So up close we use this half-tone normal and in the distance we fade towards the kind of flat normals.
+You really want to create variety in your plants.
+So here this wheat field has no variety, everything's the same size and the same color, and it just looks a bit boring.
+Here we have random size variations, so we scale between a minimum size and a maximum size, more or less randomly.
+And then here we also add some color variation because taller plants are usually older and drier, so they're a bit more yellowish,
+whereas smaller plants might be a bit more greenish and have a more pronounced color.
+I say random here, but it's not really random.
+When you look at a satellite image of fields, you can see these kind of line-shaped patterns, which affect the plant growth.
+This is actually caused by underground water currents, which transfer nutrients and water in different ways depending on the area.
+So we took inspiration from this and we just used this world-based stripe noise at a very large scale
+and applied to the world like you can see here, so that way we get a similar kind of stripe shape for our random plant growth.
+And that's what's causing these kind of understandable shapes of variety in our size and color.
+Now as for wind, this is what our wind animation looks like.
+When you think about wind, it's pretty similar to waves, so really what we're doing is very similar to how you would do waves in a water shader.
+It's actually just the texture that's scrolling through the vegetation.
+So we read from this wind noise texture, and then we apply the wind direction, and depending on how high we are up in the plant, we bend it more or less,
+the bottom is always fixed in the ground, and the further up you go, the more it's going to bend.
+We also have the inverse of the model matrix here, because it should be in world space, so we have to transfer from local space into local space of the plant
+in order to have every plant regardless of how it's rotated to bend into the same direction.
+We also apply this to ambient occlusion, because plants which are bent a lot by the wind are also closer together, because they're closer to the ground.
+So they're going to be shaded a bit more darker, so we also apply the same texture read to ambient occlusion.
+As for alpha, you really want to use alpha scissor. Alpha scissor essentially takes the alpha and makes it either fully opaque or fully transparent,
+and that's really what you want to do with plants. Plants aren't really transparent, you can't look through them, or at least most of the time.
+So through alpha doesn't make much sense to use. It's also much more expensive, and it gets you incorrect sorting, so don't use that. Use alpha scissor.
+Now the problem with alpha scissor is that it's hard to choose a good threshold. So here we have a threshold of 0.8, meaning that alpha has to be 0.8 or higher in order for the pixel to be opaque.
+As you can see, it looks pretty good up close, but in the distance you barely see any leaves.
+On the other hand, with a lower value, like 0.2, it looks good in the distance, it looks very full, but up close you lose some detail.
+So again, what we do is we vary it based on the distance, so we mix between 0.8 and 0.2, depending on how far we are away from the plant.
+That way in the distance we get something that's covering the pixels a lot, it looks dense, but up close you get some detail.
+As for ambient occlusion, here's what it would look like without ambient occlusion, and here with.
+Again, it's a very cheap trick that we're doing, we're not baking it from the geometry, it would look better if it would bake it, but we're trying to be as simple as possible.
+So we just use the length of the vertex for ambient occlusion, because essentially the further up you are in the plant, the more it's going to be lit.
+Like the top of a tree is going to be lit a lot, whereas the further down you go, the more dark it's going to be, so that's what we do.
+Here, further away you can really see the effect, so here's without ambient occlusion, and here is without cheap trick, and this really helps kind of tell the individual canopies apart from each other.
+Other shader parameters which you might want to touch are backlight, roughness, and specula, so as for backlight we scale that by the greenness, so we try to use the color, tell how green it is, and then depending on how green it is, the more color is going to pass through, because green leaves are like the most translucent, whereas yellow leaves or brown twigs don't let that much light through.
+Roughness, we also scale by greenness, because healthy green leaves are very shiny, whereas more old or dry leaves don't reflect that much light, and as for specula we scale that by the ambient occlusion.
+Usually specula is a parameter which you should leave at 0.5 for physical accuracy, but we're doing tricks all the time with vegetation, so we have to move away from that, and with the default 0.5 here on the left, it looks pretty shiny, whereas you want kind of more specific highlights, which you get by lowering the ambient occlusion value, the specula value based on ambient occlusion.
+Okay, now that we have plants and we're shading them, we have to think about level of detail, so I showed you this diagram before, but what about outside?
+You can't just not have plants there. Actually some games do that, like the modern Pokemon games, they just make everything fade in.
+It's terrible how they ship this, but actually it soothes my mind a bit, like to see big studios do that, it's like okay, maybe I'm worrying too much, but no, really to level of detail.
+So for level of detail, what you want to do is use impostors. Impostors means that you essentially use geometry, which is trying to look like something which it isn't.
+This is similar to billboards, which I talked about earlier, but just taken even further, so you might take an entire tree and turn that into a billboard, which is then an imposter.
+There are three reasons for doing this. Most obviously you want to reduce the vertex count, so instead of having like 7000 vertices for a single tree, you just have one quad, which is a big difference.
+You also want to reduce overdraw, so when you have transparent geometry, even with alpha scissor, that's like layered on top of each other, it's hard for the GPU to tell which pixel is going to be actually rendered.
+And by having a single quad instead of a lot of quads, it's easier for the GPU to tell which pixel it's supposed to render in the end.
+And it also reduces visual noise to render impostors at a distance, so it might even look better.
+That's because when you have really detailed geometry, but it's only like the size of two or three pixels on the screen, which geometry the pixels are hitting is essentially random, and you would have to use expensive anti-aliasing to make it look a bit smoother.
+So instead, reading from a quad with a single texture makes it easier for the pixels to have kind of sensible, smooth, interpolated values.
+This is what our three impostors look like, so on the left here you see the original tree, and on the right it's just two quads crossed with each other, so it's just eight vertices, but textured with a very similar texture as the original tree.
+And we actually bake this texture right in Godot, so we have a utility scene that just uses two orthographic cameras, which bake the albedo texture and the normal map, and that way we get our billboard textures, which really match the geometry quite closely.
+Here in the wireframe mode you can really see the difference, so here we just have two levels of detail, we have the very highly detailed geometrical trees up close, as you can see it's way too much geometry, you can even barely tell that it's a wireframe mode.
+And in the back here at a cut-off point that's where it starts to use the impostors.
+Now in the actual visualization the transition looks like this.
+So here you can see here in the background this one chunk which is transitioning, and of course it does look a bit different because the kind of ordering is going to be different because the geometry doesn't interact exactly the same way, but if you blend a bit smoothly
+between these LODs it's going to be very difficult to tell.
+Right, so that's how you do trees, but what about ground covering foliage?
+So we're already using billboard quads for that, so we can't really optimize that much more, so we have to do something different.
+But as you can see in the screenshots it does look pretty much as if we have foliage everywhere, so what are we doing here?
+Well we don't actually have foliage everywhere.
+As you can see in these screenshots this is again wireframe mode, it actually stops pretty quickly and is replaced by something else.
+And what is this something else?
+It's an impostor plane, so up close we have this particle system which I mentioned earlier.
+We're both clusters of particles, but then in the distance we replace that by a plane which is parallel to the terrain.
+We actually just use the next pass material of the terrain in order to duplicate the geometry and then shades that as if it were individual plants.
+Here's what this impostor plane would look like if you would just render it up close.
+As you can see it doesn't look that great, but in the distance it's more than enough because you just want to imply that there's roughly plant-shaped geometry
+and you want to texture it in a similar way and shade it in a similar way.
+So here we replace the up close plants with billboards, but keep the impostor plane in the distance.
+So when working on these foliage impostors what we want to do is we reuse as much shader code and textures as possible.
+So all the wind noise, the stripe noise, everything I talked about before should be essentially the same in your impostors.
+And for the parts where you can't do the same, so where you originally rely on geometry we use additional textures.
+Here on the right you can see a kind of trick we did to make our UVs remap nicely.
+We really just took a screenshot of billboards geometry which rendered our UVs into the texture and that's our UV remapping.
+So we read the UVs from the plane and read from this texture to get like something that looks like small plants.
+It doesn't work perfectly but it doesn't have to because it's far away.
+And one thing that really helps when working on impostors is to check the channels separately.
+So we check the albedo buffer, the normal buffer, the ambient occlusion buffer and so on.
+Because if you just work with the end result you're going to be misled.
+You're going to have something that looks good in one lighting condition but looks terrible in another.
+So that's why we check the channels separately and if you're doing everything right it should look very close to the original when rendered in like normal rendering.
+For grass geometry you can do pretty much the same.
+So if you're doing stylized geometry you can also just replace the grass with an imposter at a distance.
+Again some games don't do this, actually very few games do this nicely. You can often see the grass kind of popping up in the distance.
+But it's really not that hard. Maybe you spend the day or two working on an imposter plane and then you have grass everywhere.
+Or at least it looks as if you have grass everywhere.
+Right, that was it. It was a very quick overview over our vegetation rendering system.
+I'm open for questions now. I'm also open for questions on these channels listed here.
+Also later you can talk to me and I also have a blog where I try to publish some of these concepts in written form.
+And our whole landscape visualization is theoretically open source. It's hard to set up so don't try it.
+We're going to have to make it easier at some points but you can look at the shader codes and the textures and maybe get some inspiration from there.
+So thank you.
+Thank you so much Carl. Do we have any questions from the audience? We have about 15 minutes.
+Yes, there's a bunch of you. Like a forest.
+Hello. First off I just wanted to say really good talk. A lot of good stuff in there.
+Will the slides for this be available anywhere?
+I would like to, yes. I think in the Discord they vote earlier that they're going to publish them.
+If not, I will publish them myself. So, yes.
+Hi. Thanks for the awesome presentation and I have two questions.
+I didn't quite understand at what point do you calculate the impostors or bake them or render or whatever.
+And what about streaming? Are these landscapes only for 1,000 by 1,000 meters?
+Good questions. So, as for when you switch to impostors, like where you do this transition, we just make that depend on the hardware.
+Or is that not what you meant?
+Oh, I meant when do you bake the impostors or how do you make them manually or?
+These grass impostors. Good point. Actually, they are completely procedural.
+So, they use almost the same, hold on. They use almost the same shade logic as here.
+Or actually exactly the same shade logic. They read from the land cover texture. They read from a distribution.
+They get a plant texture. They just don't texture a quartz, but they texture that part of the impostor plane.
+So, we don't bake anything and it's completely procedural. It uses the same textures.
+That's why we have this kind of, god, it's too many slides.
+That's why we have this remapping thing. We could use like a baked texture of plants here that would probably look better.
+But we want to be flexible. We don't have to bake everything all the time and use a lot of textures.
+So, we just read from the original single plant textures with these remapped UVs.
+Right, and the other thing about streaming, our landscapes can be as large as you want.
+We use our geodeo plugin to only load stuff that's like close to you.
+But when you move the chunks that are further away are unloaded and chunks that appear are loaded.
+So, it's really pretty flexible. Thanks.
+Hi, thanks again for the talk as well for me. I'm wondering, did you deal with things like willow trees or coniferous trees?
+You know, pine spruce is first, that sort of thing.
+Which are traditionally quite hard to achieve using billboards and these methods, yeah.
+Yes, we do have them. You're right. It's harder to get them look good.
+Actually, our 3D artists who worked in Blender for some trees, he mainly did the pine trees and coniferous trees
+because of that reason. And he had to figure out how to make the billboards cross with each other in a different way.
+I think what we ended up doing is use mostly like 90 degree crossed plains for the individual kind of needle shapes.
+But I'll have to ask him and get back to you about more detail.
+Hi, what was again the reason to use multi-mesh for the trees instead of GPU like for the small.
+Yeah, good question. I have to get back there again.
+But essentially with the particle system, you have a fixed number of particles.
+So you tell the particle system, hey, draw 100,000 particles and in the GPU you have to place them accordingly.
+This works for grass because it's essentially just covering the ground.
+But for trees, you might have a lot of trees in one location.
+We might have one big tree somewhere, then no trees at all in a different location.
+So with particles it would be very hard to kind of have a GPU based logic for that
+because you have to tell each particle where it should be.
+We could transfer a buffer with the position somehow, but then we're just recreating what multi-mesh is doing.
+So with multi-mesh we can tell the GPU, hey, there's like 1275 trees in this location
+and tell it the individual locations.
+And we don't have to come up with some complicated logic on the GPU for positioning them.
+We just tell it, hey, here the trees make them appear.
+Hi, great talk.
+I'm interested about the mountains actually because they look pretty nice.
+Where did you get the height data from?
+So we use national height data where possible.
+In Austria we have one meter resolution height data.
+U-wide we have 10 meters, which is fine at a distance but not good enough up close.
+Yeah, you have to survey the national data for like good detail.
+But yeah, essentially it's just data which the U or individual countries publish.
+And for most countries I think at least 5 meters is accessible throughout the EU,
+at least in all countries where we've been to.
+I think maybe follow up.
+You said one meter is the ideal resolution, so 10 meters resolution would be too bad to close up.
+Yeah, basically with 10 meters resolution you miss those like small scale details,
+which really matter for making it look realistic.
+I think two meters is also fine but one meter is really what you want.
+So in case people are not familiar with this kind of data,
+one meter refers to one pixel in the file representing a one by one meter square.
+Hi, yeah, so this is a little bit over my level of understanding.
+But I'm really wondering how would this interact with lighting?
+Because all of your screenshots are like in perfect lighting.
+We're assuming midday that light is coming directly down.
+What would happen if it's a sunset scene or something a little bit different?
+Yeah, that's why it's important to kind of mess with those roughness and specular values.
+I think I don't have any screenshots in here but I can show you later screenshots we have of different lighting conditions.
+One thing that's tricky is when the sun is really low and you want to make it reflect nicely off of the ground covering particles
+because grass, it looks shiny but not in a way that's easy to understand.
+So we kind of trick with that a bit.
+But this approach for us works in pretty much all lighting conditions.
+Hi, you said for the grass, for example, on the terrain you're trying to reuse as much shader code as possible
+or sampling terrain shading data to do the grass.
+Do you have any special pipeline to reuse your shader code in your workflows?
+We just use shader include files.
+So for the GPU it's not the GPU itself can't reuse it, it's just that we as people are reusing the code.
+Yeah, but another thing is for these plans, for these billboard plans,
+because they read the texture generically, every single billboard plan is using the same material.
+So that's very efficient for your GPU to render.
+So what I was referring to there is that we just use shader include files and have the important parts of code there.
+So when you place grass randomly, how do you make that kind of persistence so that it doesn't wiggle around all the time?
+For a good point, everything that we do randomly, we actually do based on the position of that particle, so the world space position.
+So like when I say randomly, it's not really random, it's basically a random value seeded by its position.
+So like sometimes it's enough to just take the position and multiply the channels by random values and you have like a pseudo random.
+Yeah.
+Hi, I work in a similar system of train, heightmap train specifically, I was wondering how do you bake the chunk measures themselves?
+Do you use GPU compute, do you bake it in the work of thread pool, do you do in C++?
+So the chunks, every chunk uses the same mesh and we just have a shader which applies a heightmap to that chunk.
+It's pretty simple, we actually wanted to look into compute shaders to have like more, to have geometry which matches the height data more nicely
+to get like, for example, a proper ridge at the side of a mountain, but it hasn't really been necessary so we didn't focus on that.
+Alright, I think that has been it for the Q&A, exactly 10 minutes, like the allotted time slot.
+I would like to ask you all, again, to give another massive round of applause to call it a bit enough for this presentation.
+[Applause]
+Thank you.
+[MUSIC PLAYING]

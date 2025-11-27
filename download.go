@@ -49,7 +49,7 @@ func (wc *WriteProgressBar) Write(p []byte) (int, error) {
 	return n, nil
 }
 
-func download(v Conference, e Event, m Recording) error {
+func download(v Conference, e Event, m Recording) (string, error) {
 	author := ""
 	subtitle := ""
 	lang := ""
@@ -86,13 +86,13 @@ func download(v Conference, e Event, m Recording) error {
 		out, err = os.Create(filename)
 	}
 	if err != nil {
-		return err
+		return "", err
 	}
 	defer out.Close()
 
 	req, err := http.NewRequest("GET", m.RecordingURL, nil)
 	if err != nil {
-		return err
+		return "", err
 	}
 	if startByte > 0 {
 		req.Header.Set("Range", fmt.Sprintf("bytes=%d-", startByte))
@@ -101,7 +101,7 @@ func download(v Conference, e Event, m Recording) error {
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return err
+		return "", err
 	}
 	defer resp.Body.Close()
 
@@ -109,11 +109,11 @@ func download(v Conference, e Event, m Recording) error {
 		// 416 means we are already at the end of the file (or past it).
 		// This implies the file is fully downloaded.
 		fmt.Println("File already complete - skipping.")
-		return nil
+		return filename, nil
 	}
 
 	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusPartialContent {
-		return fmt.Errorf("bad status: %s", resp.Status)
+		return "", fmt.Errorf("bad status: %s", resp.Status)
 	}
 
 	// If we got 200 OK but asked for Range, it means server ignored Range or file changed.
@@ -123,7 +123,7 @@ func download(v Conference, e Event, m Recording) error {
 		out.Close()
 		out, err = os.Create(filename)
 		if err != nil {
-			return err
+			return "", err
 		}
 		defer out.Close()
 		startByte = 0
@@ -144,9 +144,9 @@ func download(v Conference, e Event, m Recording) error {
 	src := io.TeeReader(resp.Body, &WriteProgressBar{ProgressBar: pb})
 	_, err = io.Copy(out, src)
 	if err != nil {
-		return err
+		return "", err
 	}
 
 	fmt.Println()
-	return nil
+	return filename, nil
 }

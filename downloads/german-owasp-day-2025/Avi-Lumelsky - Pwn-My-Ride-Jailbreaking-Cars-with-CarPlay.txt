@@ -1,0 +1,256 @@
+API URL: https://api.media.ccc.de/public/recordings/93591
+Frontend URL: https://media.ccc.de/v/god2025-56485-pwn-my-ride-jailbreaking-c
+Title: Pwn My Ride: Jailbreaking Cars with CarPlay
+
+Okay, so welcome to the post lunch slump, and we made sure that we have the most exciting
+talks right after lunch so that you all wake up from food coma, and also this is one of
+our most international sessions, which I'm also very proud because we used to be the
+German overstay and back in the days we mostly have talks from our local friends. But now we have
+Avi. Now we came the whole way from Tel Aviv just to tell us about why you probably should be careful
+using Apple Soft in your cars. So Avi go ahead. Thank you very much. So thank you for coming and
+I'm telling you my talk and I know some of us are already tired. I hope that you had some coffee, but this talk is rather technical.
+It's more of a journey of how we discover the many vulnerabilities in day-to-day SDKs that we use in many different kinds of devices by many vendors.
+This talk will focus on cars and it's called "Pone My Ride".
+and before we begin, I'll just briefly introduce myself.
+He's a real king. He's the one that found all these vulnerabilities and interesting CVs.
+The main researcher behind this research that we presented in both Black Cat and Defcon and it's a pleasure to present it here in Germany, closer to home, and I hope you enjoy it.
+On the agenda, we have some introduction to AirPlay, iUp2, which is a protocol that will understand how it works and how both of them are utilized in CarPlay.
+Then there's the vulnerability discovery, how we progress, how we manage to actually run a code on a CarPlay system, and not only CarPlay.
+Then we'll understand how the protocol actually works, what are the flaws that are by design that exist in the protocol, and finally the implications and what we can do as a community to handle these situations better in the future.
+So let's begin with Airborne, which is the greater research, not only about cars, but about AirPlay in general. It's 23 vulnerabilities. Out of them we received 17 CVs.
+Among those CVs, some of them are zero-click, remote code execution exploits that we managed to develop and actually run on victim devices.
+It affects billions of devices, not only Apple devices. I'm here to talk about the other kinds of devices that are not managed by Apple and there are plenty of vendors as you'll see.
+The disclosure process itself started in early October and it took us about six months, much more than a regular responsible disclosure, which is usually around 90 days, so it took us longer than that.
+Mostly because of the complexity of the fixes, as you'll understand.
+Among the vulnerabilities, as I said, some of them are impacting not only Apple devices, but also the SDK. I'm here to talk about that.
+There are many kinds of devices that are AirPlay certified. If we go, this is the CV number if you want to read the description later, but I'll briefly touch it a bit later in the presentation.
+Let's understand what is AirPlay before we talk about cloud play. AirPlay originally started by the name of AirTunes in 2004. It was a protocol that Apple developed for their own devices to be able to stream audio. Originally, it was around the audio between Apple devices and it worked amazing.
+People loved it and then a few years later, they tried to extend the ability not only to support audio streaming, but also other kinds of multimedia, such as video, images.
+AirPlay 2 is a bit more progress version of the original AirPlay protocol, but AirPlay is what we treat AirPlay from 2010 as AirPlay, and AirPlay 2 versus 1 is mostly about optimizations and supporting more devices and stuff like that.
+We went and tried to figure out which devices use AirPlay. Fortunately, for us, Apple explicitly mentions all of the devices in the website. There are hundreds of kinds of models to use. Just to begin with, we chose the cheapest ones we could buy and started researching them.
+And CarPlay is a subset of AirPlay. It uses AirPlay behind the scenes together with other kinds of protocols and it's Apple's infotainment system.
+It's an interface, usually it works in a similar way to screen sharing when we cast our MacBook or iPhone screen to another Apple device.
+And it supports two kinds of connection. The first one is a wired CarPlay, so you connect the device with a USB. And then there is wireless CarPlay, which is working on top of Bluetooth and Wi-Fi, a world combination of both.
+It uses an iPad or a protocol that is called iUp2. Now, this protocol is essentially an iPod accessory protocol, so the name might not be so representative, but we use it today for streaming different kinds of media between Apple devices and other kinds of devices.
+And it's in charge of the authentication, the negotiation of capabilities, whether you have a screen or not, whether you can enter a pin, code and such.
+And the most frequent ways are USB and lightning, but in modern cars, we see more and more Bluetooth and wireless AirPlay present.
+AirPlay is composed of both Bluetooth and Wi-Fi, so first we negotiate the over Bluetooth specifically to create a connection.
+Then over this Bluetooth connection, we transfer the Wi-Fi credentials, and this is essentially how CarPlay works, so it first negotiates the credentials over Bluetooth, then we switch to Wi-Fi after the credentials are known in place.
+Now, this is really key, understanding it's important to understand that both of them are being utilized both in terms of convenience and stability, because Bluetooth is a great protocol for discovery of devices and it works really great outside of the box.
+And Wi-Fi is also very well suited for this task, but it's not as straightforward as Bluetooth, so Bluetooth has its advantages, that's why they use both of them.
+Now, let's talk about the vulnerability, the more interesting part, so instead of buying an iPhone or a MacBook which can be very, very pricey, we did something different.
+We tried to emulate the AirPlay certified device firmware on Raspberry Pi and Arduino. Now, there are two kinds of devices in that screen.
+One of them is the firmware that we want to mimic, let's say both the home speaker, for example, and the other chip that is connected via PCI is the authentication chip that Apple places in every Apple certified device.
+And this chip is in charge of essentially verifying that this device is AirPlay certified by Apple.
+So, we use this constellation to essentially boot the firmware and make sure we can run our code and essentially try to make the firmware think it's a real Apple device and the chip was really manufactured by Apple.
+Now, this is the code that we've used to simulate the MFI chip and a single loop and understanding what we should send over this connection.
+We successfully managed to boot the device and made it load and run as if it was a both home speaker.
+Without this chip, the firmware just crashed and did not boot, so this is something we had to overcome.
+But shortly after, we managed to boot it and everything was working and we're talking specifically about the AirPlay receiver, which is a server that is using the AirPlay SDK and it's present on many, many kinds of devices.
+As I said, just for the sake of example, let's use both the home speaker, so instead of buying the product, we managed to simply download the firmware, form the website, make it load and boot.
+And then we managed to trigger the exploit that we found using the stack overflow, the nobility that we reported and responsibly disclosed to Apple.
+And this is how it looked shortly after.
+So we could do anything we want with this device, not only display this image, but it also has a microphone, for example, so you can espionage or spy after people.
+It's also present in many different conference rooms, so just keep in mind that these devices don't update on a daily basis.
+Unlike couple devices that are really, really good at keeping their devices up to date, in this case you have to either boot the device with your own firmware and override the existing one.
+And it's not as convenient as updating an iPhone, right?
+Now there are many kinds of vulnerabilities that we reported to Apple, but this one is a stack overflow.
+And we believe that many vendors did not hurry to patch for a single reason, that is the ambiguity of the CV description.
+Now, as we showed you, this is essentially an RCE, we can, from the same network or from physical proximity, run arbitrary code on the device.
+And we managed to prove it, so it's really not there is some problem with the writing, but it's not an unexpected optimization, it's an unexpected RCE, because as we showed, you can actually run code.
+And this and biggest CV description made it hard for car manufacturers or other kinds of AirPlay SDK users, such as Bose, to think twice before they hurry to patch, and it does not have a high sense of urgency, right?
+Now, let's understand how we move to something cooler, speakers are really cool, but I personally think that cars are cooler, right?
+And I could not buy a car, because it's not, you know, I don't have this much money, and my boss told me I'm crazy, it would not fit in the elevator, how can we get it to the office?
+So, we had to be creative, and this is what we did, we just bought a head unit, that contains CarPlay, and then using the same vulnerability that we ran on the Bose own speaker, the same RCE with a slightly different payload, but using the same vulnerability, we could actually do everything we want with the car, and this is a proof.
+So, this is just with some manual adjustment to the Stack Overflow vulnerability, we managed to run code on the CarPlay system, and this is just one CarPlay system by Pioneer, but the thing that amazed us is that this piece of code presents on so many different kinds of devices around the world,
+and so many different vendors are involved in the development of this system, not only the placement in the car itself, but actually the firmware, the hardware, and everything in between, there are many different tiers, and companies that go through the manufacturing process,
+and again, like the home speaker by Bose, again, the CarPlay systems are not so good at updating themselves, it's not a Tesla right, and essentially you need to get your car to the garage and update the firmware on this multimedia system in order for you to be patched.
+Now, I want to understand the CV is a bit better, and let's understand together how I up protocol works, and why we managed to run our virtual recording system, and what are the prerequisites, most importantly.
+So, Bluetooth pairing is amazing because it comes out of the box.
+Bluetooth is a great protocol for discovery, and sometimes you can either use PIN code for pairing, or you can use pairing out of the box, like with airports, sometimes you don't need to enter a PIN at all, but there are two main ways to connect the device to Bluetooth using a PIN code, which essentially requires the user to manually enter a PIN code on the screen or keyboard somewhere, or just accept the connection.
+And the other one, which is the more interesting one that it's called just works authentication or simply no PIN authentication.
+In this constellation, you don't need to do anything, and it can become a zero-click attack vector.
+Now, we discovered that many devices in our research were really surprised to see, but many devices support the just works authentication to this day, even if they have a screen, and this is what made us dive deeper into the protocol and understand how it works.
+And there was no much like documentation online, we're not even expert at researching Apple devices, it just made us curious how far can we get with the same vulnerability, and can we make it a zero-click that is based on proximity.
+So, we're not really have to be on the same network as the car, and we can just stand next to the car in a garage or somewhere and actually take over the multimedia system.
+Now, let's go over the protocol once again, so to connect it, I have the Bluetooth, I have IOP, and I have Wi-Fi.
+So, there are many different stages, but in general, let's look at how the IOP packet and protocol structure actually looks.
+So, first we have two bytes of magic, then we have two bytes of length, and we can see that the control byte and the research we have seen only seen an ACK used for this one.
+We have an incrementing sequence, and later we have the packet number sequence is the last message, and essentially also the session contains a session ID, which is accompanied specifically in Bluetooth.
+It determines the logical channel, and we see different values and different kinds of packets, we kind of understand how this thing works,
+and the payload itself is also interesting, it starts with two bytes of magic again, two bytes of length, and then the rest of the payload.
+There is also a checksum function that we had to reverse engineer in order for the protocol to actually work, and we were very surprised to see that it was very straightforward, you didn't have to be that creative,
+and within a short period of time we came up with this checksum function, and we were able to build our own client.
+And we were not bound to an Apple device, an iPhone, or something like that, so we can just use our client and send out with all the messages and see how the multimeter system responds in a black box manner.
+Now, one thing we noticed, and it's a key thing for this presentation, is that the authentication is done in a single way, so the client verifies the multimeter system, but the multimeter system, the server in this case, does not verify the client.
+So, just for you to understand, we can build up our own client that supports iUp2 and carplay, and basically provide answers for challenges that are fine.
+So, the carplay system never verifies that we're an iPhone of an Apple device, so we can tweak it and do many different things.
+Now, let's see how it works.
+So first the client, the phone in this case, starts by issuing the authentication start command, then the server, the carplay device in this case, returns a certificate.
+Then the client sends a random 20 by challenge, and the server assigns it and returns the sign challenge to the client.
+And now you can see that the client responds with one of two potential answers.
+The first one is AA04, and the second one is AA05.
+The one makes the session succeed, and the other one says, "I'm not willing to create the session."
+So, of course, we just use the successful response code, and since we wrote our own client, we can make the session viable and make it look legit, as if we're a real iPhone.
+And this is something we've put a lot of effort into.
+Now, this is the full AA02 session.
+It starts with a pairing, which is handled by the OS, and it's different by each and every device.
+But after the pairing, the session starts, and the link sync message with the synchronization for both devices, they share and exchange the capabilities.
+Whether you have a keyboard, whether you have a screen, so the capabilities and exchange is also negotiated and transmitted as part of this handshake.
+So, we set up the session settings, and then the phone authenticates the device.
+And we just authenticate the device all the time, and the device does not authenticate the client back, as I said.
+So, after identifying and authenticating everything, we can send AA02 commands.
+And one useful command is 12 Surprise simply returns the plain text credentials to the Wi-Fi of the multimedia system.
+And this is how it looks.
+So, after I negotiated and made the handshake, I can simply switch to Wi-Fi by asking for plain text credentials of the multimedia system.
+Then we can use this username and password, which you can see on the screen.
+The SSID and the plain text Wi-Fi password.
+And this way we can actually trigger TCP communication to the company system and trigger our Stack Overflow vulnerability, like we've shown with both and the multimedia system that was in our office.
+And this is, of course, not okay. It's not a best practice to share Wi-Fi credentials in plain text, right, especially without authentication.
+Now, there are essentially five different ways to connect to Calplay, and some of them can result in remote code execution and the zero-click one.
+So, let's quickly go over them.
+The first one is USB connection. You have to have physical access, and it's not so good for us, right?
+It's fine, but as long as we're connected with the cable to the car, it's not as impressive.
+So, you can go and use the USB for physical access, but it requires to be inside the car to connect to the USB and everything, and it wasn't our focus to keep it simple.
+We focus on the wireless aspect of Calplay, and then we have several cases.
+The first one is Wi-Fi, and often there is a default Wi-Fi password, like with routers and other kinds of Wi-Fi devices.
+They often have a default password, which is not different between devices.
+So, you can just go online, find the default credentials to the multimedia system, and sometimes there is a default Wi-Fi password that is not unique, but shared across the devices.
+So, this is one way to connect to the multimedia system, if you know the kind of the multimedia system, and you can see the credentials in the website of the manufacturer, for example.
+So, this is an interesting way, and we can create, establish this Wi-Fi connection, and then run the exploit.
+And then there is Bluetooth, which is even more interesting.
+Bluetooth is either discoverable or not discoverable, so it's really depending on the device, but some of them are not discoverable by default.
+You have to turn on some feature or click on something in order for the discovery process to begin, but out of the box, the device does not broadcast and does not share its presence over the air.
+But some devices are the ones that are discoverable are more interesting to us.
+For those that Bluetooth is discoverable by default, so if the car needs pin pairing, the attacker will need to see the screen in order to get the pin, because we have the pin pairing for the Bluetooth.
+If, for example, I'm standing outside of the window, and I can see the screen of the car play system, or if you can see it through a camera, or if I'm sitting on the back of a taxi, and I can see the screen of the car.
+In such use cases, so I will be able to pair to the device.
+Sometimes it requires an extra click from the user to click on the multimedia system, sometimes it does not.
+But this is also an option and another way to connect to the multimedia system.
+If we have the screen visible.
+And this is my favorite part, and it just works a pairing.
+To all surprise, in most cases, we saw that it was supported.
+So to this day, many devices still support the unauthenticated pairing, meaning you don't have to click on anything, you don't need to do anything, and it just works like the name.
+And in this case, we don't need any prerequisites, so we can just stand next to the car and connect over Bluetooth, switch to Wi-Fi, using the different credentials that we managed to get using a single iUp2 command.
+And with these Wi-Fi credentials, connect to the head unit automatically and run the exploit code on the system.
+And now our demo will not require any user interaction at all, and we won't need to see the screen.
+So we can just stand next to the car, or imagine placing some radio device in a parking lot, like next to the entrance and the exit.
+So you can just infect cars as long as they pass next to you.
+So it was really, really interesting to us.
+And in general, there are several best cases, like whether the screen is visible, or if we have the default Wi-Fi password, but the best one is prerequisites.
+We can just run out with the record on the system, and that's it just by standing next to the car.
+And now it's time for demo.
+I hope you can see the screen, but on the right we have the car multimedia system, and we can see that we try to connect to the screen,
+and it does not work, it refuses.
+Now we are running the exploit at the upper shell, and in the bottom shell, after the exploit ran successfully,
+we managed to connect to a reverse shell, and run the ID command.
+We can see that we are running as root.
+Now we're downloading a picture, and placing it in the temp folder, and just presenting it to the screen.
+For the sake of example, we'll just switch what's visible on the device.
+And as you can see, it says the name "airborne" on the screen, instead of showing the multimedia system.
+And with root access credentials, we could do anything we want.
+We could spy after the driver, still the information that is actually present on this multimedia system.
+For example, the contacts of the user, the call history, and so on.
+The worst thing you can do is play shitty music, as people are driving.
+Now let me briefly talk about the implications of this vulnerability, and what way the community can do better in the future.
+So first SDK vulnerabilities are the worst.
+I keep saying that, but I really believe in that.
+So SDK vulnerabilities are really the worst kind of vulnerabilities, because it's so much harder to patch them.
+And if you have so many different companies involved in a single release candidate process, so it does not help, right?
+In call specifically, it's more difficult than other kinds of devices, because it's so fragmented, and it's so different between every common effecture.
+So each one has its own process, and some of them are delegating the firmware building and patching mechanisms to third party companies or to subsidiaries.
+But it's not well-defined, and these kinds of vulnerabilities in IoT devices and multimedia systems like these are the worst ones, because they are here to stay.
+If we're not, for example, my mom had to update her car, and she had to keep her car in the garage overnight.
+So it takes some effort from us, and we need to use our precious time to just patch the car.
+Well, in some manufacturers like Tesla, for example, it can be safe updating, but it's not the case in every common effecture.
+And even after Apple releases a patch, so it still takes months until they reach the edge devices and the car's multimedia systems in the field.
+And there are millions of vehicles and SDKs out there, spreading not only in speakers and cars, but every kind of Airplay certified device.
+And there are many different kinds of devices. These are just two kinds, like speakers, cars, but I think even toothbrushes that's supposed to play these days, like it's really wild, but it's a great piece of protocol and it's almost everywhere.
+And it's just amazing to me how a single vulnerability in a single SDK, like the same lines of code exist in so many devices.
+And while Apple is really good at keeping their own devices up to date for other manufacturers, it can take much, much longer, and I'll go back to this part where, like, not my code is not equal to not my problem.
+So even if you buy an SDK and even if Apple releases a patch, it's your responsibility to get this patch to your users.
+And I think the proximity attacks are not, like, in our day-to-day mindset when we go on the street or when we drive a car.
+You won't expect these attack vectors to exist at all, but unfortunately they do exist and we just have to keep them in mind.
+And the drive-by Bluetooth attacks have been researched for a while now. It's not the first time that we see this kind of attacks and the attack vector that is proximity based, so you can just stand next to someone and in fact, his devices.
+This is something we should have in mind, and especially when we have SDKs that should be easy to use, like Airplay.
+I don't remember when was the last time I took an AirPod and started using it and it didn't work.
+It just works out of the box, but it comes with a price and with convenience and, as a few, there is always security issues accompanied.
+And that's it. I'll quickly summarize everything we've talked about, so Airplay is a huge protocol and it includes a lot of legacy code.
+We helped Apple like fix many different kinds of vulnerabilities, like null dereference vulnerabilities, type confusion, and this stuck overflow as well.
+And out of these 23 vulnerabilities, only two were in SDK, but with these two vulnerabilities, even with just one of them,
+we managed to write a single exploit that worked on both cars and home speakers.
+And it was just using our manpower, really, the guy just showed at the beginning.
+So just imagine what one could do if he has enough incentive to hack these things.
+So Airplay is essentially everywhere, cars, you know, we all use them, and we want iPhones to connect to our cars.
+And I don't know, as a future node to future researchers, I think the same aspect of research for Android-based devices is just as interesting.
+And that's it. Like, Airplay is an amazing protocol in my opinion. I'm a happy Apple user.
+I don't mean to discourage any usage of it or something like that.
+It really is a great protocol, and it works out of the box. And thanks to these kinds of vulnerabilities and reports to Apple,
+we can keep using the consumer devices on a day-to-day basis and feel confident, like when we use them.
+And that's it. We have some time for questions now.
+Okay. Do we have any questions for Avi?
+Great. Have you looked into breaking out of the multimedia system and into the other car systems, if this was a possibility?
+I think it's a very interesting aspect and probably the best, like, further research and follow-up research we could do.
+But we didn't. This is the very simple answer.
+We stopped there, but knowing that the multimedia systems are connected to the canvas and the other parts of the car, machinery.
+So there are some researchers on how you can bypass and form the multimedia system, get into other kinds of machinery inside the car.
+This is not our expertise, so we have not looked into it. But it was proven possible before, but we stopped our research whenever we saw root access
+on the multimedia system and focused on trying to show this impact on more kinds of devices.
+So the second, we saw the root access on both home speaker and car play. That's where we stopped.
+And essentially, using a chain of more vulnerabilities, you can periodically break into also the computer of the car and other parts that should be more isolated.
+Okay, more questions?
+On one of the first slides, you mentioned that some of the vulnerabilities are worm-able, so could you maybe go into this?
+So are airplane devices able to infect other airplane devices?
+Sure, so let's think about observing. So if we think about this, I'll get to this slide again.
+So we mentioned here that some of the vulnerabilities are worm-able and zero-click remote code execution.
+So imagine after we broke into this both home speaker. The cars are also a good example, but let's stick with the both example.
+A speaker that is infected and can communicate over Wi-Fi.
+One city is connected to your internal network. It can essentially communicate with other kinds of devices.
+And if there is a MacBook, for example, and we also found a zero-click for a MacBook in the latest versions back then,
+this compromised device, this speaker that is connected to your internal home or office network,
+can pivot and infect other devices that are with it on the same network and are vulnerable to the same vulnerability, if that makes sense.
+So using the same stack overflow exploit, one could hack the speaker and then hack other kinds of devices, other MacBooks, other speakers,
+or airplane-certified devices that are present with it on the same network.
+So the reason, I have not mentioned it, but the reason I started researching airplane in general.
+It was a follow-up for research that we presented at Blackhead and DEF CON like last year.
+It was around the fact that every macOS that we checked had this airplane receiver port open on the same network.
+And using MDNS, it's broadcasting the presence over the network.
+However, you try to share a screen to the device over a network.
+You get a list of devices that are available for screen sharing, right?
+This is a part of MDNS or multicast DNS.
+And each one of those devices, theoretically, that you can see on the screen share widget on macOS could be hacked from either a speaker or a macOS device.
+So this is the wearable aspect of it.
+The payload can also propagate to further devices and not only gain root access and stop them.
+If that answers the question.
+Okay, I think we had one more question.
+Hi, thanks for the talk.
+I have one question with regards to the protocol where the information about the Wi-Fi password is exchanged over Bluetooth.
+Which Wi-Fi is it? So is the App Play device always creating its own Wi-Fi and sharing this credentials?
+Or if the App Play device in case of a speaker is connected to your home network, is it also leaking Wi-Fi credentials of your home network?
+That's a great question.
+So no, it's not like a part of Bluetooth.
+This is a message specifically crafted as part of the IUP protocol.
+So after you set up a Bluetooth session and you can run IUP commands like I had an accessory protocol command.
+One of these commands requests for plain text Wi-Fi credentials.
+It sounds a bit absurd, but this is how the IUP protocol works.
+And if you think and try to find a reason on why at all there is such a message, it's because some Apple devices like AirPods or, I don't know, IUPods, they don't have a screen.
+Or they didn't have a screen in the past.
+And it's a part of this convenience in the protocol that you just want things to work.
+And Apple is really good at these things at the user experience and they want the products to communicate with each other and work out of the box.
+So this is essentially a flaw in the protocol that we've identified and help them mitigate.
+But to this day, this one ability still exists specifically.
+The flaw in the protocol remains to this day, but the multimedia system might be patched by now and it depends on the car manufacturer.
+And I really encourage you to look into how many AirPlay devices are around you on a daily basis, but these protocols that are most of the time of proprietary protocols are not well documented or not built in an open source way.
+These are the ones that include legacy code or things you just want to work out of the box.
+And this is the reason I think, as long as we have convenience in the user experience, there will be something accompanied that is downstream in the security of the system.
+Very well.
+So maybe allow me in the last question.
+Because I was kind of shocked, so you said that it was a stack based buffer overflow from the 90s?
+Right. Yeah, so yeah, I was also surprised to see that a stack based buffer overflow still exists.
+And we saw that some operating systems, like all of them are Linux essentially, but some operating system included, the stack canaries and some binary mitigations to their place decay.
+But in spite of them being in place, we still managed to bypass them, and it just makes things harder on the attacker, but it does not make it future proof.
+But yeah, we were really surprised to find the stack buffer overflow working in 2025, and it surprised us to.
+Okay.
+So with that, thank Avi again.
+Thank you very much.
+You

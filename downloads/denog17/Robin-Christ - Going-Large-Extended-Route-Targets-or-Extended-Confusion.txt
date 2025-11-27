@@ -1,0 +1,84 @@
+API URL: https://media.ccc.de/public/recordings/93329
+Frontend URL: https://media.ccc.de/v/denog17-84571-going-large-extended-route-targets-or-extended-confusion
+Title: Going Large: Extended Route Targets or Extended Confusion?
+
+Okay, the last talk in this room. Our next presenter is Robyn. He's a freelance consultant
+specialist in network design operations, cloud infrastructure, software development and acoustics.
+Please join me in welcoming Robyn to the stage and enjoy the talk.
+Hello. We're in for a very quick lightning talk. I made those slides on Sunday, so don't
+expect the design award for those. First of all, we're going to speak about root targets
+today, specifically in combination with EVP and VXLAN. Sorry for the buzzword, but it
+is how it is. Let's first, there we go. Yep, let's first speak about root targets. I'm
+I'm not sure whether everyone is familiar with root targets so let's go quickly.
+All right, root targets are used for many types of VPNs.
+>> If you want to visualize it in a very simple way, you can imagine
+>> We're going to talk about it.
+>> It's a good thing.
+>> Let's go into BGP communities. We're going to give us 48 bits of payload. We still have
+the old standard communities with a value on communities like no export, all that kind
+of things. But we also quite recently got so-called large communities in ROC from somewhere
+2017. ROC 1892, that gives us, so they start with a 32-bit AS number for byte AS, so it's
+already for very modern networks with lots of ASs. Then you actually get 64 bits of payload
+after this AS number. Now we look into the EVP and VXLAN root targets, specifically.
+Root targets are very often used with EVP and VXLAN. In this case, they are formatted
+as AS number, colon, and then your VNI, which usually has 24 bits. And EVP and VXLAN, we
+usually have, like, large fabrics. We have EVP only fabrics, so each router gets its
+own AS number, so if you have a large fabric, we can't just 2-byte ASs, we run out very
+quickly, so we've got to use 4-byte AS numbers. And now if we do the maths, we have a 32-bit
+AS number, and we have a 24-bit VNI, which are supposed to be concatenated and put into
+this root target. But this root target only has 48 bits of payload. That's kind of a
+problem, and that leads to all kinds of funny consequences, like, for example, cumulus
+Linux. They just state in documentation if you use 4-byte AS numbers, they simply turn
+off auto-root target generation, which is kind of a problem. You have to set it all manually.
+And in case of Junipero, they just take the lower 2-byte of your AS number, so your root
+target is something part of your AS number, and then your VNI. You can't cut short the
+VNI because then you will have some kind of collision, and you really don't want that.
+So the idea is we want to build some, I want to build some type of new root target, I just
+call it the extended root target. And we will base it on BGP-large communities. We can't
+do it with extended communities or standard communities, but we have those very nice
+large communities which actually give us enough space. They have 64 bits of payload. We actually
+only need 56 bits, so that would fit. But there is another problem. BGP-large communities,
+they don't have any kind of predefined or reserved value. They just say, okay, you have
+your 4-byte AS, and then you have whatever you want to put in there with your AS. They
+only say that the usage of the maximum 2-byte and 4-byte AS is discouraged. It is not recommended,
+but this is actually an advantage because we could simply move this recommendation, do
+not use the highest AS, we could move it to actually reserved. We introduce a new kind,
+we extend BGP-large communities, we simply introduce Yana-managed BGP-large communities.
+And this way we can just say, okay, so this maximum 4-byte AS is now reserved for Yana-managed
+communities. Then we add an 8-bit type field because somehow we need to distinguish between
+different types of extended or large communities, reserved communities you want to add. And
+then if we do the math, we have 96-bit, we have to take away 32-bit for the AS, that's
+fine, we take away 8-bit for a type field, we also need that, that leaves us with 56-bit
+of payload, which is actually exactly what we need. So in summary, yeah, let's introduce
+extended root targets and make all our lives better. It might make debugging easier, but
+in the end, the question is always, do we need this? For me personally, it would make
+debugging much easier because when you debug like root announcements and then you have
+like this cut-off AS number in your update message and your root target, it gets quite
+tricky to do the maths all the time, so it would be great at least for me if we had something
+like extended root targets and would be able to get rid of this hack of either defining
+it manually or just using the lower two bytes. All right, that's basically it. Really quick
+lightning talk, as I said. Thank you.
+[Applause]
+>> Thanks, Robin, for this really lightning talk. Do we have some questions? Oh, there's
+one at the end of the room. Again, please remember to state your name and affiliation.
+>> Hi, Fiona from Wobcom. Considering that the ASN auto negotiation thing for EVGP
+fabrics is a mess nowadays. And yeah, all of this is awful, but our targets haven't been
+around since EVPN. We have used them before for like free VPNs and a lot of other stuff.
+Do you think it's worth it to introduce another kind of root target and to increase debugging
+burden and complexity and breaking vendor up again?
+>> I mean, that's a very valid question. I mean, that's why I added this slide specifically.
+Is it worth it? I mean, for me personally, I would say it is worth it because I've done
+a lot of work with EVPN, the excellent fabrics, and this is one of the little pain points,
+one of the things that triggers me a bit like seeing this dirty hack into your root targets.
+I would just like to fix this. And it shouldn't, in a theory, break inter-minger of ability
+in practice. I don't know.
+>> Yeah. My hot take about this is drop the ASN all the way and just use it as a field.
+Just start with one. >> Yeah. I mean, I've had some thought about
+this actually. And usually for EVPN, the XLAN, for your import root target, you just set a
+wild card. You set a wild card AS, then you just import the VNIC one and half. But there
+are some interesting applications where you could actually filter with the AS number for
+some special applications. But, yeah, I mean, you currently simply can't do it in a sane
+way, so that's why nobody is doing it. >> Okay. Thank you. That concludes the discussion
+and the talks in this room. Thank you very much for presenting.
+>> Thank you.
+[BLANK_AUDIO]

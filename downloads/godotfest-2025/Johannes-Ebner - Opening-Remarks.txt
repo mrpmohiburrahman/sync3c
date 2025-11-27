@@ -1,0 +1,123 @@
+API URL: https://api.media.ccc.de/public/recordings/93260
+Frontend URL: https://media.ccc.de/v/godotfest2025-opening-remarks
+Title: Opening Remarks
+
+It is so absolutely great to see all of you here today.
+I do a lot of talking on stage but today I'm really, really nervous because this is such
+an amazing event for all of us, all of us as good-o engine community members but also
+as the organizers of this event.
+So first of all, welcome to good-o first, the good-o con Europe in '25, the very first
+good-o first.
+For me personally, all of our team kind of made the good-o con '23 as well, at least our
+core team and it was very funny to, or a very good way or a very good-o community way of
+getting into this.
+It is really a testament for the good-o community.
+I was approached by Las Gaves Mule of Eric's Games a couple of years ago, he knew I was
+working for Microsoft and he asked, "Hey, can we maybe have a venue for the good-o con
+in Munich?"
+And I was surprised good-o con in Munich, that is amazing.
+I just found my way into good-o and I said, "Yeah, let's figure this out."
+I joined the Discord and there was this team already there, I knew basically no one, they
+are except Raffa, who you know, a Spikster and we got together without knowing us super,
+super quickly and within, I don't know, half a year we organized the good-o con '23 as
+a, yeah, basically five people core team and then a couple of more volunteers that all
+went together doing that, right?
+And I want to give a special shout-out to Sinad, who is part of our core team for bringing
+good-o con to Munich back then.
+So we got so, so much amazing feedback from good-o con '23.
+And we always start, we should probably do this again and we always start because most
+of us work in the games industry professionally and we go to a lot of conferences, so we really
+wanted to do this during the week and maybe, so it's easier for people to come who work
+professionally in the games industry, right? And with all the professional influx of,
+you know, in the good-o community, we always thought it should also maybe be a little bit
+more towards professional audiences that try to make the money with good-o, try to make
+the living with good-o, but also attract the larger good-o community.
+And we've seen a lot of professional engagement in the last couple of years and it really
+started with the pricing changes unity did just before the good-of has '23.
+It was not great for unity and we're all, I think, really sorry for them, but it was,
+I genuinely, I'm sorry, that there was this community backlash, but it really helped the
+good-o engine, right? And that was just before '23, good-o, con, and ever since we have seen
+many, many more games come out with the good-o engine. The likes of, you know, PVKK is coming
+out, Slater Spire 2, by Megacrid will be coming out from good-o, with good-o engine.
+There has been massive investment also by META and other companies. JetBrains as a tooling
+provider announced the sponsorship then Sentry, just this or last week, announced the sponsorship.
+So we're seeing a lot, a lot of traction. And we also, Rafa looked into the statistics
+for the good-o show reel. And I think it was in '21. There was like a much, much higher
+ratio to do games. And now it's much, much more 3D games when you look at the recent
+show reel that was released just recently. So yeah, we also had a couple other big kids
+like Brotayton, Kazepbeast, who also did get into Xbox's Game Pass, which is a massive
+success, I think, invisibility also for the good-o engine. Alright, yeah. Now I just want
+to conclude with a lot of thank yous. First of all, our families, many of us have families,
+and we have all been doing this as a sidekick basically, right? And they have kind of supported
+us a lot, so thank you for them, to them. I also really want to thank your amazing volunteers.
+Without all of them, we couldn't have done this. So thank you very much, all of you.
+And then, of course, our call for proposals team, who selected all these amazing talks
+amongst a humongous amount of submissions. So really, really special thanks to them as
+well. And many of them are here today. Welcome, and thank you very much. And then we have
+our video crew. The Chaos Computer Club Video Operations Center is actually, again, our
+partner in doing video recording. And audio recording, of course, we will be putting all
+of our stuff on YouTube in a couple of weeks, probably. We don't know yet when, but thank
+you so much to them as well. And then I want to give a special thank you to our
+core team, Kirsten Puffinger. She did an insane amount of work on organizing
+everything, really, related to talks, managed speakers, built a schedule, organized all
+the volunteer relations and operations, and then so many other things. So thank you.
+Ben Villing, who did all the sponsorship-related work, business development and finances. So
+a lot of the back-end work, he has been talking to so many people, right? And then, again,
+you know. Thank you.
+[applause]
+Raffa, or Pixta, as you know him, Raffa Ellie Picker, did everything related to visuals,
+including merchandise, and, again, then some, because we all need to put in some, so many
+things in. Thank you very much. [applause]
+Then Cenad, or, as you know him, maybe, as Game Dev Cenad, for bringing all the good
+Oakland originally to Munich, and then managing all the overarching business administration,
+and acting as a RCO for, you know, our company in the background, and carrying all of the
+legal requirements and stuff. Thank you very much. [applause]
+Matteo Teats, managing the video-related topics and relations with the Chaos Computer Club
+Video Operations Center, and so much more. Thank you. [applause]
+Miguel Gonzales Sanchez, also known as BitBrain, who built the awesome website and was constantly
+on point to update everything during day and night, so thank you so much. [applause]
+Ah, there you are. Cenad, please. [applause]
+And now, trying to find the right thing. Yeah, I don't know.
+[laughter]
+But I know what to say about them. So, a big, big thank you to our headline main sponsor,
+JetBrains. They did not only, they do not only build amazing, amazing developer tools,
+which I'm a big, big fan myself, but also are a very early investor into the Godot ecosystem.
+And that is very, very much appreciated, but also, I think, as a community. And, you know,
+generally, they seem to believe in a big player as Godot, as a big player in the Godot,
+like in the games industry. [applause]
+[applause]
+At Alice, at the very back, he leads the developer relations team at JetBrains. He also will
+be doing a talk called Godot meets JetBrains, building IDE tools for a growing engine, and
+will also be part of our file set chat. Godot's next milestone. Thank you very much. [applause]
+Thank you very much, JetBrains. [applause]
+And also, they were just an amazing partner to work with, or through this. Thank you.
+Mike Klubniger, our second platinum sponsor, creator of the hit title, Boxshot Roulette,
+is, I think, just extremely thankful to the Godot community. And he wants to give back by
+sponsoring this Godot Fest, and by sponsoring the speaker dinner. Thank you very much, Mike.
+[applause]
+[applause]
+Can you stand up so we can see you? [applause]
+[applause]
+All right, and then thank you to all our other sponsors, to all our speakers, to everyone
+involved in making this happen. Thank you so much. [applause]
+[applause]
+Well, and we all couldn't be more excited to be here with you today for this event. Thank you all for coming,
+and please enjoy the first Godot Fest. [applause]
+[applause]
+One more little thing. So we have photographers here who will be taking pictures and videos of you.
+If you do not want to be on photos that are being shared publicly, we have a rainbow tape,
+and we would like to ask you to put them around your badge or front if you do not want to be on a public photo.
+You can grab this at the reception and do this so the photographers can recognize you on the photos and can sort these out.
+Thank you very much. Enjoy. [applause]
+I think we have a little break now. Oh, one more thing. Can you totally forget about this?
+Can everyone please come on stage to help make this happen? All volunteers, all core staff. Can you please all come?
+[applause]
+It's the most important thing. [applause]
+Come on, listen for again. [applause]
+Come on, listen for. [applause]
+Can him listen for again? [applause]
+[applause]
+Thank you very much. [applause]
+[applause]
+All right, then off to the break. [applause]
+[music]

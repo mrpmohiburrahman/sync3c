@@ -1,0 +1,225 @@
+API URL: https://api.media.ccc.de/public/recordings/93428
+Frontend URL: https://media.ccc.de/v/godotfest2025-one-does-not-simply-ship-web-games-with-godot-yet
+Title: One Does Not Simply Ship Web Games with Godot (Yet)
+
+Making games with plain HTML, JavaScript and CSS is certainly possible, but you might
+miss some features of a full-blown game engine like Godot, so what's the current status of
+using Godot for web games? Well, here's the right person to answer this question.
+Luca Leonardi has worked on several games in the past, is working currently in web development
+and released much games. So, yeah, he has an in-depth knowledge of what you can do and
+what you can't. So, let's welcome Luca Leonardi.
+I'm not using the microphone, so okay. Hello, everyone. Thank you for being here. My name
+is Luca Leonardi, and today we're going to talk about web games. In particular, we're
+going to see what are web games, why they are interesting, and how does Godot fit currently
+in the web gaming environment.
+Something about me.
+I'm known as Luxel on the web.
+I published a few games, both on mobile and web.
+I have more than five years of Godot experience.
+One of the most famous games I published is Zook Adventure.
+It's a 2D platform game available for Android.
+And, yeah, in general what I want to offer today is the point of view, not just from an
+example, this is my beautiful team, mainly Spanish and Canadian colleagues.
+So something real quickly about my company.
+We are located in Canary Islands in Spain.
+We have more than 10 years of experience and our main focus are HTML 5 games.
+So we do serious game, educational games, and more recently we started publishing games
+on a platform like Chrissy Game, Pokey, Playgamma, so our game are available for the public.
+Those are some of the games we published, different platforms like, as I said, for example, Pokey
+Chrissy Games, Cool Math Games which they focus on puzzle mathematical games or game distribution.
+You can find those games available online and we will also share the slides at the end
+of the presentation.
+So what are web games, actually, also known as HTML 5 games?
+The idea of web games is that they are games easily available, instant gaming.
+They run on different platforms like, for example, desktop, mobile, but also on smart
+devices, smart watches.
+So the idea is that they are small insights easily available and don't require a download
+so you can play directly from your browser.
+They have a lot of potential in terms of both user acquisition, thanks to platforms like,
+for example, Chrissy Games or Pokey that publish your game, and also monetization.
+There are various ways to monetize your web games like interstitial ads rewarding ads.
+I don't ask you to trust me, actually, about this, but I want to show some data that proves
+what I'm talking about.
+The current state of the market shows that HTML 5 games are growing, it's a growing market.
+There is this compound annual growth rate of 3.1% every year and it keeps growing.
+Some data, I'm going to go briefly on this slide because it's packed with a lot of information.
+But as I said, it's a growing market and more and more devs show the data, ships to dev every
+year.
+And there are more and more new games shipped on web platforms.
+Chrissy Games and Pokey are growing platforms that reach hundreds of millions of users and
+there are interesting monetization options.
+But I'm not a marketer, I'm just a developer, so if you're interested, I can show the slide
+that you see them.
+So the question is, can I use Godot for making web games?
+It depends.
+Why Godot is cool?
+Godot is cool for many different reasons, it's amazing options and for different reasons,
+which are, of course, permissive license, because it's open source, so it's going to
+be free forever.
+It allows export on multiple platforms, not just web, but also desktop mobile, you name
+it, and for that reason, it also supports 3D, so it's a really powerful engine, general
+purpose engine.
+It's really good for fast prototyping and iterations with GDScript, which allows to make
+fast prototypes, also, for example, for game jams, and, in my opinion, as an amazing usability,
+that's why one of the reasons why I use it.
+It's really great for doing UI in games, for example, also it has a really great integration
+with Git, so also it makes working with other team members really easy.
+Unfortunately, there are other more specialized engines regarding the web environment currently.
+For example, specifically default construct.
+I also show Unity, even though it suffered from some of the similar problems of Godot,
+but data shows that Unity has used a lot for web games, also they recently started supporting
+a web GPU, but currently, the market offers other more specialized options.
+This doesn't want to be a comparison, I just want to offer my point of view and my company
+point of view of why we use another engine, because in our company, for making web games,
+we use construct three, and the reason is that mainly it comes down to two main factors,
+which are build sides and loading times, which is something that construct three does very
+well, usually web builds with construct goes down to five megabytes, which is perfect for
+web games, construct is also offers good performances, and a strong stability across devices, which
+is important when releasing a web games, which is meant to run on a different type of devices,
+as we saw, and also offers great tools, integrations, for example, with Firebase or other tools,
+which we use a lot in the company where I work, makes it a very strong option for web games.
+So yeah, this is not what the presentation is about, it's not a fight between Godot
+and other engines, it's just what I want to try to put a light on is what is currently
+missing from Godot to put it on the same level of other more specialized engines.
+I want to do this by seeing a real case scenario, a case study, which is Spaloon, a game I
+published on our platform on crazy games, so today I would like to show you the process
+of publishing this game on the platform, the pain I encountered, and some work around,
+some fixes I found at the current state of the web exports.
+Spaloon is simply a roguelike where you control a cannon and you shoot bubbles, the idea is
+to reach the highest possible score, you can pick upgrades, and that's basically the core
+loop of the game, it's a simple game, it's well suitable for a web platform.
+So let's talk a bit about the development and the publishing of it.
+It started from a game jam, the global game jam, and it's made with Godot 4.3.
+We basically did almost all the game, it's not looping the video, can never mind.
+We basically did all the game in two days, in one weekend, the core gameplay mechanics,
+and then after the jam, I started contacting some publishers, I tried to contact Paul
+Key, crazy games, starting from the major end, going to other publishers, and crazy games
+showed some interest in the game, but they asked for some changes, this is not unusual,
+that the publisher asked for changes to the game.
+So there was this first interaction, iteration of back and forth between me and the publisher,
+so for example one of the biggest changes they asked for was making the game landscape,
+because initially the game was sold for a portrait view, for a mobile view, and they asked for
+a landscape change because their main audience is on the desktop.
+I also had to implement the publisher SDK, which is common also, to implement the SDK
+of the publisher.
+And there was this back and forth of feedbacks regarding the gameplay, especially some of
+the feedbacks were focused on ads placement, so the type of ads used rewarding ads for monetization
+purposes.
+After this back and forth that lasted, I don't know, maybe one month or something of changes,
+the game finally got approved, and they managed to publish the game on the platform.
+So I would like to share some of the issues I encountered during this process, and some
+of the workarounds I found at the current state of GoDOT.
+So the first pain point, of course, was the build sites.
+As I said, it's really important for web games to have a small build site, because they have
+to be fast accessible and also accessible to maybe countries that don't have strong
+Internet infrastructures, so the build site is essentially crazy game.
+I had an issue with crazy games at the beginning because the build size was too big, and I
+had to find a way to reduce the build size.
+They also didn't allow me to check the mobile flag for the game, even though it supported
+mobile, because the build size was over 20 megabytes.
+I think the original one when I first did the build was around 40 or 50 megabytes or something.
+The solution, at least at the moment, is this amazing guide that you can find on Internet
+world by pop car, I think, the guy is called, on his blog, and it's a really useful guide,
+actually not just for web builds, but for GoDOT builds in general, that explains how to
+reduce the build size of a project, so basically you have to create a custom template and strip
+down parts of the engine that are not used.
+So for example, my game did not use any 3D, so I just removed this part from the engine.
+So this guide basically explains you how to remove all these unnecessary parts, and you
+can improve your build size by a lot.
+I managed to go under 20 megabytes for my game, I think around 70 megabytes.
+So this allowed me to publish the game and also mark it as mobile available.
+I recently discovered also talking with Dom, and that there are even more improvements
+that can be done regarding the minification of the build size, for example, the game can
+be compressed before being published, and I know there is some work being done on this
+part of the engine to basically implement directly this function from the export menu.
+So it does not have to be a manual changes and simplification that can be directly done
+from GoDOT.
+Another big issue that currently GoDOT have are iOS issues, so unfortunately, GoDOT web
+builds do not work well on iOS devices, and I would love to share with you a workaround
+with this, but I do not have one.
+So if you are looking for stability, probably at the moment for web games, the most suitable
+option will be to stick to GoDOT 3, because it does work better on iOS devices.
+It seems like this is an Apple side problem mainly, so it should be more about communication
+between GoDOT team and Apple for improving on this aspect.
+I know that improvements are being made, but at the current state, GoDOT 4 still have issues
+on iOS devices.
+And the last issue I found that I would like to share was a problem about memory leaks.
+So I found out after the release of my game that if the play session of the game was too
+long, the game just crashed.
+After some research on debugging, I realized that it was related to a memory leak problem,
+and I wanted to pinpoint this in the presentation, not really to offer a solution about this,
+because of course there are many different approaches for this.
+But more as a reminder that building for web requires its own optimization, like building
+for web is different than making games for mobile devices, and it's different of course
+from making games for a desktop.
+So web games require their own optimization, from one possible solution for memory leak
+is object pooling, which is not instantiating all the ballots of the canon in this case,
+for example, but every time the canon shows, but instantiating every ballot at the beginning
+and then just move them around.
+Another web optimization is for sure asset optimization, so being sure that your assets
+are compressed, are small insights, also to improve the final build size.
+So what is currently missing from Godot to make it competitive on the HTML5 market?
+I tried to summarize what is missing from this slide.
+We already touched some of those points, but to recap, the first two were for sure being
+smaller build size and shorter loading times.
+Smaller build size, as I said, there is a guide available, so currently it's not that
+big of a problem, there are a solution and there is work done in this area.
+Starting loading times is also another important aspect, because it's related to build size,
+but small build size doesn't necessarily mean short loading times.
+Currently, the way Godot loads the project is by loading the full project at the start
+of the page, on landing on the web page, this is not the optimal way for loading times,
+because it leads to longer loading times.
+A better approach will be to make smaller pieces of the project and then loads those
+parts on demand.
+There are solutions that I recently discovered for shortening loading times, but currently
+it's not something that's implemented directly in the engine, and that will make a big difference
+in the web environment.
+The third point is stability and compatibility across devices.
+For example, we talk about iOS issues, this can be a problem for companies that want to
+use Godot professionally for web games, stable performance.
+In general, Godot offers good performance, and also with the right optimization, it's
+doable, but it's another important aspect to notice.
+And the fifth point, which is more of a personal consideration, I think, are official integrations.
+Those are really important for publishing for web, or also HTML5 games in general.
+I understand that being an open source project, it really depends on volunteers and on people
+that are willing to create tools, create plugins that can connect to the project, while other
+engines may have some official type of integrations, but this is really important.
+For example, for analytics, for multiplayer, or in general game services, they're really
+useful when publishing for web.
+It would be great if there were some official integration, or maybe if the Godot association
+will pay some volunteers just to work on official integrations.
+So the conclusion is that let's try to answer the question, why should I choose Godot?
+Can I choose Godot for making web games?
+My personal answer to this question is Godot is really great in general, but specifically
+also for web games, for usability, prototyping, speed, and fantastic growing community.
+What I really like about Godot is that it's really, really fast to make game, to ship games
+with it, and one of the interesting things about web is that it can also be used as platforms
+for testing ideas, for receiving feedbacks, and Godot allows to ship very fast games and
+iterate an idea, test if a prototype can work or not, and then eventually also move on another
+platform, maybe use a web platform as a ramp to validate an idea, and then maybe move on
+mobile or something else. It's also true that web platforms usually in the contract, they
+don't allow to publish on other web platforms, but they don't care that much about mobile,
+so your game can be both on web and on mobile, for example.
+Being a general purpose engine, it does many things as we saw to do it, and you can build
+on many different platforms. Of course, it's very difficult to compete with more specialized
+engines like, for example, Construct 3. However, I think we are on the right track, I think
+progress is being made, I have faith in the project in the community, so overall, I feel
+like Godot can be in the future also a solid option for web game, in general, for game development.
+Thank you. You can find also the slide of the presentation
+from this QR code if you are interested, or on the link.
+>> Is that much time left? Is there a really quick question?
+>> Yeah, I'm kind of sold. My game is on mobile, and I think actually, publishing on
+the web would be really good. If you could go a bit more into detail on the compression
+issues, because my build size is 120 megabytes, and so it feels like a bit of a stretch to
+get down to 20. >> Yeah, it's definitely two big sides for
+web. I wanted to keep this presentation simple and not enter into details, because it will
+take a big chunk of time, but to synthetize, you can use broadly for compressing your final
+build size. Basically, when you export for web, you will have two main files, which are
+PCK and WASMA, which are the two main files that make your web build, and you can compress
+those files using this system, which is called broadly, to lower it down even more, and
+you can really strip more than 50% of the build size. I think that in your case, a combination
+of custom template and compression would already lower a lot the build size of the project.
+I can share more specific details later after the talk, if you want.
+>> So another round of applause, please.
+>> [APPLAUSE]
+>> Thank you. Thank you. [APPLAUSE]

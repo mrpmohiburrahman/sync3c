@@ -1,0 +1,1088 @@
+{
+  "denog17": {
+    "\"What can possibly go wrong?\" Stories of peculiarities of modern server hardware": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Vladimir-Smirnov - What-can-possibly-go-wrong-Stories-of-peculiarities-of-modern-server-hardware.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93149"
+    },
+    "200 GbE network processing with 100 W - or \"can I *make* a chip for that?\"": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Philipp-Keydel - 200-GbE-network-processing-with-100-W-or-can-I-make-a-chip-for-that.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93150"
+    },
+    "400G ZR+ BiDi does not exist, it can't hurt you. Or can it?": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Nicola-von-Thadden-aka-nicoduck - 400G-ZR-BiDi-does-not-exist-it-cant-hurt-you-Or-can-it.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93154"
+    },
+    "An introduction to qGIS for current Google Earth Users": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Christian-Dieckhoff - An-introduction-to-qGIS-for-current-Google-Earth-Users.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93241"
+    },
+    "Baremetal Server Management with Redfish": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Matthias-Haag - Baremetal-Server-Management-with-Redfish.txt",
+      "video_url": "https://media.ccc.de/public/recordings/93239"
+    },
+    "CGNAT scale testing using TRex": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Philipp-Glaser - CGNAT-scale-testing-using-TRex.txt",
+      "video_url": "https://media.ccc.de/public/recordings/93240"
+    },
+    "Channelmania! – future proof your DWDM network topology while keeping it flexible for 1.6T": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Thomas-Weible - Channelmania-future-proof-your-DWDM-network-topology-while-keeping-it-flexible-for-1-6T.txt",
+      "video_url": "https://media.ccc.de/public/recordings/93185"
+    },
+    "Compliance in Practice: Making NIS2 and ISO 27001 Work in Daily Operations": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Mathias-Handsche - Compliance-in-Practice-Making-NIS2-and-ISO-27001-Work-in-Daily-Operations.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93248"
+    },
+    "DENOG17 Closing": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Patrick-Bussmann - DENOG17-Closing.txt",
+      "video_url": "https://media.ccc.de/public/recordings/93339"
+    },
+    "DENOG17 Opening": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Patrick-Bussmann - DENOG17-Opening.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93138"
+    },
+    "Day 1 Closing": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Tim-Kleefass - Day-1-Closing.txt",
+      "video_url": "https://media.ccc.de/public/recordings/93182"
+    },
+    "EVPN for the rest of us – what happens when software people try to use EVPN": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Molly-Miller - EVPN-for-the-rest-of-us-what-happens-when-software-people-try-to-use-EVPN.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93142"
+    },
+    "Edge-of-Your-Seat Streaming: inside waipu’s terrabit-scale live-video CDN": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Leo-Antunes - Edge-of-Your-Seat-Streaming-inside-waipus-terrabit-scale-live-video-CDN.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93345"
+    },
+    "Entering the big Cloud Game: A journey of ups and downs towards sovereignity at scale": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Michael-Bayr - Entering-the-big-Cloud-Game-A-journey-of-ups-and-downs-towards-sovereignity-at-scale.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93141"
+    },
+    "Evolving Inter.link's Software Delivery: Lessons in Fast, Consistent, and Safe Deployments": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Poh - Evolving-Inter-links-Software-Delivery-Lessons-in-Fast-Consistent-and-Safe-Deployments.txt",
+      "video_url": "https://media.ccc.de/public/recordings/93140"
+    },
+    "Forwarding packets at scale - Building a Cloud Data Plane using eBPF/XDP": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Maximilian-Wilhelm - Forwarding-packets-at-scale-Building-a-Cloud-Data-Plane-using-eBPF-XDP.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93184"
+    },
+    "Fun with Optics": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Patrick-Prangl - Fun-with-Optics.txt",
+      "video_url": "https://media.ccc.de/public/recordings/93287"
+    },
+    "Going Large: Extended Route Targets or Extended Confusion?": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Robin-Christ - Going-Large-Extended-Route-Targets-or-Extended-Confusion.txt",
+      "video_url": "https://media.ccc.de/public/recordings/93329"
+    },
+    "IPv6 multihoming without BGP, quo vadis?": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/David-equinox-Lamparter - IPv6-multihoming-without-BGP-quo-vadis.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93333"
+    },
+    "IXP Update": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Tim-Kleefass - IXP-Update.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93301"
+    },
+    "Inventing the wheel - Network Orchestration at scale": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Tom-Merlin-Eichhorn - Inventing-the-wheel-Network-Orchestration-at-scale.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93168"
+    },
+    "Making Network Automation Consumable: A Junior Engineer's Perspective": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Emre-Cinar - Making-Network-Automation-Consumable-A-Junior-Engineers-Perspective.txt",
+      "video_url": "https://media.ccc.de/public/recordings/93196"
+    },
+    "Merging Service Provider Networks": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Markus-Jungbluth - Merging-Service-Provider-Networks.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93322"
+    },
+    "Newcommer Session": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Patrick-Bussmann - Newcommer-Session.txt",
+      "video_url": "https://media.ccc.de/public/recordings/93137"
+    },
+    "PPPoE vs IPoE: A Practical Guide for ISPs": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Christian-Giese - PPPoE-vs-IPoE-A-Practical-Guide-for-ISPs.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93205"
+    },
+    "Performance measurement goes Flow": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Peter-Gyoergy - Performance-measurement-goes-Flow.txt",
+      "video_url": "https://media.ccc.de/public/recordings/93143"
+    },
+    "QoE Matters – How Application-Level Monitoring Pinpoints Network Issues": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Alexander-Martin-Dethof - QoE-Matters-How-Application-Level-Monitoring-Pinpoints-Network-Issues.txt",
+      "video_url": "https://media.ccc.de/public/recordings/93139"
+    },
+    "Security.txt across the industry": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Sascha-Heinemann - Security-txt-across-the-industry.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93151"
+    },
+    "Slow network, fast money: How Deutsche Telekom breaks the internet": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Thomas-Lohninger - Slow-network-fast-money-How-Deutsche-Telekom-breaks-the-internet.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93267"
+    },
+    "Sorry we messed up": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Stefan-Funke - Sorry-we-messed-up.txt",
+      "video_url": "https://media.ccc.de/public/recordings/93152"
+    },
+    "Th3 Flock of Bird s": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Marcel-Fest - Th3-Flock-of-Bird-s.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93153"
+    },
+    "The Asian internet - A guide for the uninitiated": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Bernhard-Pusch - The-Asian-internet-A-guide-for-the-uninitiated.txt",
+      "video_url": "https://media.ccc.de/public/recordings/93229"
+    },
+    "The return of EGP or the curious case of the BGP Origin attribute": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Wolfgang-Tremmel - The-return-of-EGP-or-the-curious-case-of-the-BGP-Origin-attribute.txt",
+      "video_url": "https://media.ccc.de/public/recordings/93238"
+    },
+    "Ultra Ethernet: Addressing AI/HPC Interconnect Challenges Beyond the InfiniBand Monopoly": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Andreas-Roeder - Ultra-Ethernet-Addressing-AI-HPC-Interconnect-Challenges-Beyond-the-InfiniBand-Monopoly.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93183"
+    },
+    "Uncovering Blackholes: Advanced Detection Techniques for Complex Networks": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Anton-Elita - Uncovering-Blackholes-Advanced-Detection-Techniques-for-Complex-Networks.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93199"
+    },
+    "Understanding and optimising transceiver efficiency using internal metrics for improved power savings": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Dr-Gerhard-Stein - Understanding-and-optimising-transceiver-efficiency-using-internal-metrics-for-improved-power-savings.txt",
+      "video_url": "https://media.ccc.de/public/recordings/93144"
+    },
+    "You can’t just model a train in Netbox: About Architecting and running modern IT Infrastructure in Trains": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/denog17/Vanessa-Gaube - You-cant-just-model-a-train-in-Netbox-About-Architecting-and-running-modern-IT-Infrastructure-in-Trains.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93335"
+    }
+  },
+  "dgna": {
+    "Cyberkrieg und Subversion: Mechanismen, Bedrohungslage und Aussichten": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Lennart-Maschmeyer - Cyberkrieg-und-Subversion-Mechanismen-Bedrohungslage-und-Aussichten.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/71080"
+    },
+    "Datenethik in der Schweiz": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Cornelia-Diethelm - Datenethik-in-der-Schweiz.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/81920"
+    },
+    "Datenschutzfreundliches digitales Bezahlen": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Christian-Grothoff - Datenschutzfreundliches-digitales-Bezahlen.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/59818"
+    },
+    "Digitale Integrität": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Jorgo-Ananiadis - Digitale-Integritaet.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/87121"
+    },
+    "Digitale Selbstverteidigung: Ein Irrweg?": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Chris-Buehler - Digitale-Selbstverteidigung-Ein-Irrweg.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/66317"
+    },
+    "Digitale Souveränität": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Gerhard-Andrey - Digitale-Souveraenitaet.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/71911"
+    },
+    "Elektronisches Patientendossier! Aber wie genau?": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Fabian-Vollrath - Elektronisches-Patientendossier-Aber-wie-genau.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/87791"
+    },
+    "Freiheit oder Sicherheit? Überwachung im digitalen Zeitalter": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Niklaus-Oberholzer - Freiheit-oder-Sicherheit-UEberwachung-im-digitalen-Zeitalter.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/86093"
+    },
+    "Gute Sache, falsche Plattform? NGO im Dilemma der sozialen Medien": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Sophie-Fuerst - Gute-Sache-falsche-Plattform-NGO-im-Dilemma-der-sozialen-Medien.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93050"
+    },
+    "Hass im Netz": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Sophie-Achermann - Hass-im-Netz.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/77984"
+    },
+    "KI am Arbeitsplatz": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Daniel-Huegli - KI-am-Arbeitsplatz.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/76859"
+    },
+    "KI im Journalismus: wohin geht die Reise": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Timo-Grossenbacher - KI-im-Journalismus-wohin-geht-die-Reise.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/77179"
+    },
+    "Kabelaufklärung und Vorratsdatenspeicherung": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Anna-Walter - Kabelaufklaerung-und-Vorratsdatenspeicherung.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/67453"
+    },
+    "Können Daten Menschen heilen?": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Andre-Baumgart - Koennen-Daten-Menschen-heilen.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/80808"
+    },
+    "Leistungsschutzrecht": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Andreas-Von-Gunten - Leistungsschutzrecht.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/66519"
+    },
+    "Metaverse und NFT": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Marcel-Waldvogel - Metaverse-und-NFT.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/63449"
+    },
+    "Netzpolitischer Abend zu «Künstliche Intelligenz: Hoffnung oder Hype?»": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Maria-Grazia-Giuffreda - Netzpolitischer-Abend-zu-Kuenstliche-Intelligenz-Hoffnung-oder-Hype.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/71301"
+    },
+    "Plattformregulierung": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Rahel-Estermann - Plattformregulierung.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/62805"
+    },
+    "Social Credit Systems und Gamification": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Katika-Kuehnreich - Social-Credit-Systems-und-Gamification.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/63592"
+    },
+    "Staatstrojaner, Pegasus und NSO Group": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Donncha-O-Cearbhaill - Staatstrojaner-Pegasus-und-NSO-Group.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/65950"
+    },
+    "Stand der Entwicklung der staatlichen E-ID": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Annett-Laube - Stand-der-Entwicklung-der-staatlichen-E-ID.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/79959"
+    },
+    "Tracking \u0026 Profiling": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Andreas-Geppert - Tracking-Profiling.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/63081"
+    },
+    "Wem gehören die KI-Trainingsdaten?": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Florent-Thouvenin - Wem-gehoeren-die-KI-Trainingsdaten.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/77090"
+    },
+    "Wie sicher ist elektronisch Bezahlen tatsächlich?": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Romano-Ramanti - Wie-sicher-ist-elektronisch-Bezahlen-tatsaechlich.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/92821"
+    },
+    "Wie wird Zürich eine SmartCity?": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/netzpolitischer-abend/Maximilian-Stern - Wie-wird-Zuerich-eine-SmartCity.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/59630"
+    }
+  },
+  "god2025": {
+    "\"I have no idea how to make it safer\": Security and Privacy Mindsets of Browser Extension Developers": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Shubham-Agrawal - I-have-no-idea-how-to-make-it-safer-Security-and-Privacy-Mindsets-of-Browser-Extension-Developers.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93604"
+    },
+    "A CISO's Adventures in AI Wonderland": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Holger-Mack - A-CISOs-Adventures-in-AI-Wonderland.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93621"
+    },
+    "All the WAF power to the devs - why it reduces friction… and where it backfires": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Lukas-Funk - All-the-WAF-power-to-the-devs-why-it-reduces-friction-and-where-it-backfires.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93553"
+    },
+    "Closing": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/OWASP-German-Chapter - Closing.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93649"
+    },
+    "Continuous Vulnerability Scanning with OWASP secureCodeBox": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Jannik-Hollenbach - Continuous-Vulnerability-Scanning-with-OWASP-secureCodeBox.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93555"
+    },
+    "Der Cyber Resilience Act: Wie OWASP für die Software-Hersteller eine entscheidende Rolle spielen kann": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Dominik-Pataky - Der-Cyber-Resilience-Act-Wie-OWASP-fuer-die-Software-Hersteller-eine-entscheidende-Rolle-spielen-kann.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93633"
+    },
+    "Extract: A PHP Foot-Gun Case Study": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Jannik-Hartung - Extract-A-PHP-Foot-Gun-Case-Study.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93586"
+    },
+    "From Startup to Scale: Choosing the Right AppSec Path": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Javan-Rasokat - From-Startup-to-Scale-Choosing-the-Right-AppSec-Path.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93558"
+    },
+    "How the EU created Electronic Invoices without considering Security": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Hanno-Boeck - How-the-EU-created-Electronic-Invoices-without-considering-Security.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93535"
+    },
+    "How we hacked Y Combinator companies' AI agents": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Rene-Brandel - How-we-hacked-Y-Combinator-companies-AI-agents.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93608"
+    },
+    "Introducing Passkeys - Strategies and Challenges for Developers": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Clemens-Huebner - Introducing-Passkeys-Strategies-and-Challenges-for-Developers.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93546"
+    },
+    "Keynote: Code Dark Age": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Eva-Wolfangel - Keynote-Code-Dark-Age.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93524"
+    },
+    "LangSec for AppSec folks": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Lars-Hermerschmidt - LangSec-for-AppSec-folks.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93531"
+    },
+    "MCP security hot potato: how to stay secure integrating external tools to your LLM": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Mateusz-Olejarka - MCP-security-hot-potato-how-to-stay-secure-integrating-external-tools-to-your-LLM.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93596"
+    },
+    "News from the Juice Shop ecosystem": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Bjoern-Kimminich - News-from-the-Juice-Shop-ecosystem.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93644"
+    },
+    "OWASP Cumulus: Threat Modeling the Ops of DevOps": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Christoph-Niehoff - OWASP-Cumulus-Threat-Modeling-the-Ops-of-DevOps.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93571"
+    },
+    "OWASP Top 10:2025: Aktuelle Informationen und Insights zum Projekt": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Torsten-Gigler - OWASP-Top-10-2025-Aktuelle-Informationen-und-Insights-zum-Projekt.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93638"
+    },
+    "Phishing for Passkeys: An Analysis of WebAuthn and CTAP": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Michael-Kuckuk - Phishing-for-Passkeys-An-Analysis-of-WebAuthn-and-CTAP.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93569"
+    },
+    "Pwn My Ride: Jailbreaking Cars with CarPlay": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Avi-Lumelsky - Pwn-My-Ride-Jailbreaking-Cars-with-CarPlay.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93591"
+    },
+    "The Automation Illusion? What Machines Can't Do in Threat Modeling": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Sebastian-Deleersnyder - The-Automation-Illusion-What-Machines-Cant-Do-in-Threat-Modeling.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93577"
+    },
+    "The Surprising Complexity of Finding Known Vulnerabilities": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Dustin-Born - The-Surprising-Complexity-of-Finding-Known-Vulnerabilities.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93518"
+    },
+    "The Trust Trap - Security von Coding Assistants": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Clemens-Huebner - The-Trust-Trap-Security-von-Coding-Assistants.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93625"
+    },
+    "Welcome": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/OWASP-German-Chapter - Welcome.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93511"
+    },
+    "YuraScanner: Leveraging LLMs for Task-driven Web App Scanning": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/german-owasp-day-2025/Aleksei-Stafeev - YuraScanner-Leveraging-LLMs-for-Task-driven-Web-App-Scanning.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93629"
+    }
+  },
+  "godotfest2025": {
+    "A Peek Under the Hood: Technical Learnings from Halls of Torment": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Paul-Lawitzki - A-Peek-Under-the-Hood-Technical-Learnings-from-Halls-of-Torment.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93376"
+    },
+    "Art Direction Crash Course (for non-artists)": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Simone-Maendl - Art-Direction-Crash-Course-for-non-artists.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93425"
+    },
+    "Beyond the Loop: A Primer on Interactive Music in Godot": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Paul-Bittmann - Beyond-the-Loop-A-Primer-on-Interactive-Music-in-Godot.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93486"
+    },
+    "Building Starfinder: Professional Godot at Scale": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Ricard-Pillosu - Building-Starfinder-Professional-Godot-at-Scale.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93402"
+    },
+    "Closing Remarks": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Johannes-Ebner - Closing-Remarks.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93498"
+    },
+    "Collaborative Game Development with Godot: ": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Will-Thompson - Collaborative-Game-Development-with-Godot- (From-Studio-Model-to-Community-Built-Games).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93293"
+    },
+    "Don't ship the wrong game!": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Rene-Habermann - Dont-ship-the-wrong-game.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93380"
+    },
+    "Fireside Chat – Godot’s Next Milestones": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Ben-Vehling - Fireside-Chat-Godots-Next-Milestones.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93506"
+    },
+    "From Theora to AV1: Transforming Video Workflows in Godot 4": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Nils-Zweiling - From-Theora-to-AV1-Transforming-Video-Workflows-in-Godot-4.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93387"
+    },
+    "GdUnit4 live demo + technical overview": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Mike-Schulze - GdUnit4-live-demo-technical-overview.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93408"
+    },
+    "Godot Foundation Q\u0026A": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Emilio-Coppola - Godot-Foundation-Q-A.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93372"
+    },
+    "Godot meets JetBrains: ": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Matt-Ellis - Godot-meets-JetBrains- (Building-IDE-tools-for-a-growing-engine).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93337"
+    },
+    "Gyms, Zoos, and Museums": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Robin-Yann-Storm - Gyms-Zoos-and-Museums (Your-documentation-should-be-in-game).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93265"
+    },
+    "Keeper to Keepers: Adding Multiplayer to Dome Keeper": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Chris-Ridenour - Keeper-to-Keepers-Adding-Multiplayer-to-Dome-Keeper.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93484"
+    },
+    "Less is More: Modern Approaches to Low-Fi Visuals": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Antti-Tiihonen - Less-is-More-Modern-Approaches-to-Low-Fi-Visuals.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93374"
+    },
+    "Making Audio for a Godot Project in FMOD": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Peter-Havran - Making-Audio-for-a-Godot-Project-in-FMOD.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93483"
+    },
+    "Making of Cards in Fogpiercer": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Krystof-Klestil - Making-of-Cards-in-Fogpiercer.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93426"
+    },
+    "Making of DOGWALK": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Simon-Thommes - Making-of-DOGWALK (Blender-Studios-game-project).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93291"
+    },
+    "Mobilizing Godot": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Joseph-Hill - Mobilizing-Godot.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93488"
+    },
+    "New Game+: Adding Backend Features to Your Godot Projects": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Patricia-Berger - New-Game-Adding-Backend-Features-to-Your-Godot-Projects.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93489"
+    },
+    "One Does Not Simply Ship Web Games with Godot (Yet)": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Luca-Leonardi - One-Does-Not-Simply-Ship-Web-Games-with-Godot-Yet.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93428"
+    },
+    "Opening Remarks": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Johannes-Ebner - Opening-Remarks.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93260"
+    },
+    "Plants, Polygons and Pixels: ": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Karl-Bittner - Plants-Polygons-and-Pixels- (Large-Scale-Vegetation-Rendering-in-Godot).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93377"
+    },
+    "Putting Players First": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Chrysa-Bika - Putting-Players-First (Human-Centered-Game-Development-towards-Accessibility-Diversity-Equity-and-Inclusion).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93407"
+    },
+    "Raytracing is simple for 2D games!": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Jaanus-Jaggo-Perfoon - Raytracing-is-simple-for-2D-games.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93477"
+    },
+    "Shipping Godot: From Build to Player": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Ben-Vehling - Shipping-Godot-From-Build-to-Player.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93435"
+    },
+    "Tilemaps": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Jackie-Codes - Tilemaps.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93480"
+    },
+    "Unlocking Godot’s Superpower: Productivity": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/godotfest-2025/Luca-Andre-Martinelli - Unlocking-Godots-Superpower-Productivity.txt",
+      "video_url": "https://media.ccc.de/public/recordings/93495"
+    }
+  },
+  "megakc25": {
+    "A Train Ride Through Evolution": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/mega-knowledgecamp-2025/Sebastian-Markert - A-Train-Ride-Through-Evolution.txt",
+      "video_url": "https://media.ccc.de/public/recordings/93012"
+    },
+    "Begeisterung teilen: Eröffnungszeremonie": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/mega-knowledgecamp-2025/Marvin-1 - Begeisterung-teilen-Eroeffnungszeremonie.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/92978"
+    },
+    "Begeisterung weiter teilen: Closing und Infrastructure Review": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/mega-knowledgecamp-2025/Marvin-1 - Begeisterung-weiter-teilen-Closing-und-Infrastructure-Review.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93042"
+    },
+    "Datenschutzfreundliche Telemetrie mit Multi-Party Computation": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/mega-knowledgecamp-2025/Oli - Datenschutzfreundliche-Telemetrie-mit-Multi-Party-Computation.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93035"
+    },
+    "Der Integrale Taktfahrplan": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/mega-knowledgecamp-2025/Alexander-Lill - Der-Integrale-Taktfahrplan.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93030"
+    },
+    "Der Junge muss in die frische Luft (1+2)": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/mega-knowledgecamp-2025/Fredi - Der-Junge-muss-in-die-frische-Luft-1-2.txt",
+      "video_url": "https://media.ccc.de/public/recordings/92998"
+    },
+    "Einblicke in den Alltag eines Rettungssanitäters": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/mega-knowledgecamp-2025/Luuuca - Einblicke-in-den-Alltag-eines-Rettungssanitaeters.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93017"
+    },
+    "Eine Stimme bei der Landtagswahl, aber zwei beim Bundestag? - Wahlrecht erklärt": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/mega-knowledgecamp-2025/gobold - Eine-Stimme-bei-der-Landtagswahl-aber-zwei-beim-Bundestag-Wahlrecht-erklaert.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93044"
+    },
+    "Gitarre aus dem 3D-Drucker": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/mega-knowledgecamp-2025/mancas - Gitarre-aus-dem-3D-Drucker.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93018"
+    },
+    "How to print European train timetables on a (very long) receipt": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/mega-knowledgecamp-2025/Romane - How-to-print-European-train-timetables-on-a-very-long-receipt.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/92994"
+    },
+    "Orientation vs Support, rotate your 3D prints!": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/mega-knowledgecamp-2025/MaNa - Orientation-vs-Support-rotate-your-3D-prints.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/93032"
+    },
+    "Wir digitalisieren uns ein Horrorzelt": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/mega-knowledgecamp-2025/MaNa - Wir-digitalisieren-uns-ein-Horrorzelt.txt",
+      "video_url": "https://media.ccc.de/public/recordings/92999"
+    }
+  },
+  "oc": {
+    "\tFreie Lizenzen": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Michael-Stehmann - Freie-Lizenzen.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/36577"
+    },
+    "Astropeiler Stockert": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Wolfgang-Herrmann - Astropeiler-Stockert.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/55943"
+    },
+    "Auf der Suche nach dem verlorenen Internet": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Vasilij-wasamasa-Schneidermann - Auf-der-Suche-nach-dem-verlorenen-Internet.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/45697"
+    },
+    "AutoC4": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Ike - AutoC4.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/7858"
+    },
+    "Blockchain": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Andrei-Martchouk - Blockchain (Reasonable-Hype).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/15099"
+    },
+    "CPU-Design für Einsteiger und RISC-V": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Maik - CPU-Design-fuer-Einsteiger-und-RISC-V.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/19023"
+    },
+    "Chaotisches Radio": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Danimo - Chaotisches-Radio.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/90728"
+    },
+    "Das neue Polizeigesetz NRW": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Christian-Mertens - Das-neue-Polizeigesetz-NRW.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/25861"
+    },
+    "Digitalisierung des Gesundheitswesens": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Bianca-Kastl - Digitalisierung-des-Gesundheitswesens (vom-E-Rezept-zur-ePA-fuer-alle).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/78524"
+    },
+    "Evoke 2025 Nachlese": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Tobias-Heim - Evoke-2025-Nachlese.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/92964"
+    },
+    "Extreme Wetterereignisse in Europa": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Volker-Ermert - Extreme-Wetterereignisse-in-Europa (Wie-entstehen-Winter-und-Sommerstuerme).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/13325"
+    },
+    "GNUnet": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/t3sserakt - GNUnet.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/33631"
+    },
+    "Gaby Weber und die Monsanto-Übernahme": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Gaby-Weber - Gaby-Weber-und-die-Monsanto-UEbernahme.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/40026"
+    },
+    "Gigabit über zwei Drähte": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Stefan-Foerster - Gigabit-ueber-zwei-Draehte (Ein-Praxisbericht-zum-G-fast-Ausbau-bei-NetCologne).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/27629"
+    },
+    "Glitching the Switch": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Andreas-Galauner - Glitching-the-Switch.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/26448"
+    },
+    "Informationsfreiheit mit FragDenStaat": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Arne-Semsrott - Informationsfreiheit-mit-FragDenStaat.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/35998"
+    },
+    "Interim": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Vasilij-wasamasa-Schneidermann - Interim.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/16120"
+    },
+    "Klavier spielen mit Kawa Scheme": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Vasilij-wasamasa-Schneidermann - Klavier-spielen-mit-Kawa-Scheme.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/20333"
+    },
+    "Krypto knacken für Anfänger": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Vasilij-wasamasa-Schneidermann - Krypto-knacken-fuer-Anfaenger.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/29907"
+    },
+    "Kryptographisch sicherer Zufall": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/yanosz - Kryptographisch-sicherer-Zufall.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/6738"
+    },
+    "Künstliche Intelligenz": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/shorty - Kuenstliche-Intelligenz (Von-den-Anfaengen-bis-heute-und-ein-Ausblick-in-die-Zukunft).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/78096"
+    },
+    "MAL — Make a Lisp": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Vasilij-wasamasa-Schneidermann - MAL-Make-a-Lisp.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/15028"
+    },
+    "Onlinewerbung": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Torsten-Kleinz - Onlinewerbung (Kein-Problem-anderer-Leute).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/24364"
+    },
+    "Open Access und Plan S": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Necro - Open-Access-und-Plan-S.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/42114"
+    },
+    "Palantir, Dark Enlightenment und die deutsche Polizei": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/thee - Palantir-Dark-Enlightenment-und-die-deutsche-Polizei.txt",
+      "video_url": "https://media.ccc.de/public/recordings/92970"
+    },
+    "Privatheit": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Neal-H-Walfield - Privatheit (Mehr-als-etwas-zu-verbergen).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/15467"
+    },
+    "PsyLink": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Yuni - PsyLink (Controlling-computers-with-nerve-signals).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/86868"
+    },
+    "Quellen TKÜ": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Quellen-TKUE (Wenn-Behoerden-in-Computer-einbrechen).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/26146"
+    },
+    "Revision Nachlese 2016": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Tobias-Heim - Revision-Nachlese-2016.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/10748"
+    },
+    "Revision Nachlese 2017": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Tobias-Heim - Revision-Nachlese-2017.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/16319"
+    },
+    "Revision Nachlese 2025": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Tobias-Heim - Revision-Nachlese-2025.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/90730"
+    },
+    "Revision-Nachlese: Die Highlights der Demoszene": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Tobias-Heim - Revision-Nachlese-Die-Highlights-der-Demoszene.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/4500"
+    },
+    "Rust": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Florob - Rust (Eine-moderne-Systemprogrammiersprache).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/6571"
+    },
+    "Sie haben das Recht zu Schweigen": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Udo-Vetter - Sie-haben-das-Recht-zu-Schweigen.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/29297"
+    },
+    "State of Retro Gaming in Emacs": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Vasilij-wasamasa-Schneidermann - State-of-Retro-Gaming-in-Emacs.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/42124"
+    },
+    "Strahlungsforschung für zukünftige Mondmissionen": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Karel-Marsalek - Strahlungsforschung-fuer-zukuenftige-Mondmissionen (im-Rahmen-des-Artemis-Programms).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/88790"
+    },
+    "Technologie trifft Kreativität": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Tobi-Digitale-Kultur-e-V- - Technologie-trifft-Kreativitaet (Demoszene-Jahresueberblick).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/71913"
+    },
+    "The 35C3 CTF Nokia phone challenge": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Andreas-Galauner - The-35C3-CTF-Nokia-phone-challenge.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/35193"
+    },
+    "The EU copyright reform": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Walter-van-Holst - The-EU-copyright-reform.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/34342"
+    },
+    "Typsysteme": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Florob - Typsysteme (Static-Typing-for-Dynamic-People).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/10325"
+    },
+    "U23 Abschlusspräsentation - Freifunk": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/U23-Abschlusspraesentation-Freifunk.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/4929"
+    },
+    "U23 Abschlusspräsentation — Kryptographie": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/U23-Abschlusspraesentation-Kryptographie.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/8346"
+    },
+    "U23 Abschlusspräsentation — LoRaWAN": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Teilnehmer-des-U23-2017 - U23-Abschlusspraesentation-LoRaWAN (Long-Range-Wireless-Networks).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/20657"
+    },
+    "Unicode": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Florob - Unicode.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/4501"
+    },
+    "Usable Privacy and Security": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/yanosz - Usable-Privacy-and-Security (Gebrauchstaugliche-sichere-Software).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/19727"
+    },
+    "Why We Should Be Scared of Hardware Trojans": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Christof-Paar - Why-We-Should-Be-Scared-of-Hardware-Trojans.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/22547"
+    },
+    "Willkommen in der Adblocker-freien Zone": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Torsten-Kleinz - Willkommen-in-der-Adblocker-freien-Zone.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/36404"
+    },
+    "dehydrated": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Lukas-Schauer - dehydrated.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/12952"
+    },
+    "kameras-stoppen.org": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/kameras-stoppen-org - kameras-stoppen-org.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/51088"
+    },
+    "media.ccc.de seit 2007": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Mario-Manno - media-ccc-de-seit-2007.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/41034"
+    },
+    "restic": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Alexander-fd0-Neumann - restic (Backups-mal-richtig).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/9960"
+    },
+    "„Kurzer Prozess“ - Telematik und DSGVO in der Arztpraxis II": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Dr-Stefan-Streit - Kurzer-Prozess-Telematik-und-DSGVO-in-der-Arztpraxis-II.txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/26983"
+    },
+    "„Schutzranzen“": {
+      "downloaded": true,
+      "subtitle_generated": true,
+      "txt_path": "downloads/openchaos/Friedemann-Ebelt - Schutzranzen (Vernetztes-Fahren-auf-UEberwachungskurs).txt",
+      "video_url": "https://api.media.ccc.de/public/recordings/23251"
+    }
+  }
+}

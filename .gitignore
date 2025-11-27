@@ -27,5 +27,5 @@ _testmain.go
 
 sync3c
 /dist
-/downloads
+# /downloads
 *~

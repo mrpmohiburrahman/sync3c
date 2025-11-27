@@ -1,0 +1,247 @@
+API URL: https://media.ccc.de/public/recordings/93143
+Frontend URL: https://media.ccc.de/v/denog17-75455-performance-measurement-goes-flow
+Title: Performance measurement goes Flow
+
+(upbeat music)
+- Our next presenter is Peter,
+who has been helping Benox use us to make the most
+of the network analytics.
+And please join me in and welcoming Peter for the stage
+and enjoy the talk.
+- Well, hi everyone.
+, and we're going to be here.
+to it. Myself, I'm responsible for customer success at Benox, which we are a network and
+what is company that you might have heard of open source tools or something else, some
+other commercial tools. We are one of them. We try to focus on helping network operators
+with congestion, with visibility into the networks, and how to make faster and better
+decisions when they are trying to have a better network and peering. So let's get started.
+All right. What are we going to talk about? So as a lot of you might be operating your
+own network, working for companies which have a robust or quite a large network, it's quite
+a challenge to monitor 20 ingress points within your network. So we were, we had a customer
+who had a custom case and where we were trying to help them have better visibility into the
+network. So when we are talking about network measurements, latency, jitter, or anything
+a a, and this is where we are here to help them. So you might have plenty of transit points.
+We want to have good measurements at these transit ingress points at our network. So here's the
+statement, 20 ingress points, which we want to manage, which we want to look at, how can
+we actually try to have a better performance measurement. So traditionally there are two
+ways how each and every operator was trying to measure the performance and we are just
+going to try to look at them, look at the benefits of having each one of them and then
+actually try to find the solution which might be better for every one of you. So one of
+the first approaches is that you as an operator, you were trying to deploy your own probes,
+a different hosting providers, whether it's OV age, whether it's M 24/7 plus server, does
+really matter what we are talking about. Basically you deploy your own VM, you deploy your own
+machine, and then try to actually have some kind of interesting data from them. So you
+would then what you would do is configure these probes with your own prefixes and then
+see what kind of results are you going to be getting back. The problem that you would
+have there is the BGP decides the inbound routing and while you might have several peering partners,
+transit providers, RTATA, NTT, we can be talking about Raylion, Rhetton, doesn't really matter
+who and why we are talking about them. It's going to be deterministic, it's not going to
+be up to you, it's going to be up to the BGP table that you see and even though you might
+want to have visibility over of all your transit, still it's not going to be up to you what or
+how is it going to be happening. So you might end up with 40 or 50 vantage points to increase
+the probability of hitting each and every route that you want to actually look at. You
+can't really make a sense out of it. So you can't really guarantee that the visibility
+that you are looking for is actually going to be happening there. There's an alternative
+option which is going to be third-party data set providers like catch point, thousand
+dies or can't take, doesn't really matter who we are talking about and they have presence
+all across the globe. So you can just try to buy the data from them because they are
+pinging your network all the time, they are pinging different addresses but it's going
+to be up to them. So you can't really have a focus on what's going to happen, how is
+it going to be happening. You're kind of reliant on a third-party provider and I think a lot
+of you in today's world actually trying to focus on sovereignty and having your own data
+set, this is going to be relying on some other providers again which a lot of times it's
+easy, cheaper but sometimes you're just going to be reliant on someone else's work. So we
+are talking about and I'm going to explore the third option a bit more because that's
+what our customer did. Basically they set up two different probes at two different providers.
+It doesn't matter where, they just basically deploy two VMs but what's interesting is that
+they had essentials endpoint with a /40 IPv6 address announced and via each and every,
+you can see different ingress points, they announced /48. So what that does is that basically
+afterwards you have a deterministic approach. So you basically can make sure that you can
+check for all your passes that are within the network whether there's an elatency, jitter
+or quality measurements that might be going sideways. It doesn't matter what provider
+we are talking about or how we are talking about them, this is going to be a much simpler,
+more cost effective and usually more precise elatency measurement. It really can focus
+on that you have actually all of the transit or peering providers you have and have them
+measured for sure. Otherwise if you are going to go back to the first two ones, you kind
+of reliant on them. So whether we are talking about sovereignty or having your own data
+set I think or at least in our opinion this is what we would recommend to go forward.
+But obviously there is some comparison that we can talk about whether we are talking about
+external hosting, our hosting or having a vendor that's going to provide us. I don't
+think I should spend a lot more time on this one because everyone can probably read it
+and obviously these slides are going to be sent through afterwards. So let's just get
+through what are the problems of probe only monitoring. So this is going to be only one
+data set of yours and you might want to correlate the data with other data sets. So whether we
+are talking about flow, BGP, SNMP or animal detection it's actually really important that
+you are within your company not working in silos but the same goes along with the data
+set that you try to correlate every information that you collect with every information that
+you have available. You might have wonderful tools which does single tasks here and there
+but it's really going to make your life easier if you have one single source of truth where
+you can actually correlate the information that you are having from one tool with another
+one and you don't have to go back and forth in between trying to figure out what's really
+happening within the network. So how do we actually connect these dots? I think this is
+where we came into play and how actually in real life you can actually see it. So basically
+we are correlating BGP, ISIS, SNMP and flow data. So everything that basically an network
+operator would have as their data set and we integrate also the probe data set that we
+were getting it. So how do we actually correlate it? We collect the probe metrics, assign the
+flow metrics as well if you are correlating it and we have an animal detection part of
+our software which does the correlation of the data and can also look at anomalies when
+we are looking at only probe data as well. So let's look at one of the examples. So
+we are talking about steam. Plenty of you have already seen steam traffic coming into
+the network. Sometimes there is an update of CSGO, sometimes there is an update of some
+other games. That's really matter which one we are talking about for tonight as well and
+then how does it actually correlate with the flow and how does it actually correlate with
+the probe data. So what we can see here is anomaly in the probe data what we see is there
+was a surge in a massive surge of steam traffic coming into the network and the probe detected
+a poor performance and there is this green line over there which just basically spiked
+during that time and what that meant for us is that basically we are within the, we are
+without, outside the threshold that we would deem acceptable. This is something that you
+can self-define yourself for your own needs so you might want to have a less, less wider
+or a shortener threshold but this can be up to you how you want to define that. So then
+obviously you got the email alert saying that there was something happening in one of
+your peers or transit providers in this case it's a really on but this could be anything
+raten or Tata or we can be talking about GTT does really matter this is just an example
+and you obviously see as well London so we are talking about one of our locations. So
+what was going on there as you can see we are seeing the router and the provider as well
+and we see all the applications that are coming into the network. This is also that we are
+collecting DNS data so with that we are actually able to assign what kind of applications are
+coming from these different networks and network providers and what was interesting if we would
+be looking at only at the net flow data which you can see on the left here there wouldn't
+be anything not normal because we are all these ports all these interfaces have been
+pretty much utilized and it's just been a little bit, the time has been just a little
+bit more extended but the traffic patterns pretty much fit the same timeframe. What is
+interesting is that once the steam traffic started to come in so we are talking about
+this year March through a really on when the steam traffic appeared that meant that some
+of the quality of the traffic actually went down so this is how and why we mean to correlate
+the data that you have because then you're going to be able to see that okay I see that
+there is a quality issue that I have what's really causing it and then you're going to
+do a tool and then you whatever tool you have and then you start saying okay it's actually
+steam that went into my network and just kicked out some of the other providers that
+were hosted on that network and afterwards you can actually have some diagnostics what
+was going on there and then you can obviously have a detailed more detailed investigation
+what was going on there and that how it has affected any of your providers so I think
+it's really interesting and also really useful for you to have this kind of visibility over
+of your data so this is just one of the real world example this is actually black miss
+Rookong so some of you have already played this game it's quite a popular RPG and it
+just well there is a multi terabits of traffic bursting through one of the ingress points
+we basically trigger the anomaly there was a flow correlation to it and then you could
+actually get into detailed investigation what's the outcome or what's the solution obviously
+you're going to have to reach out to the providers that you're connected to all of them either
+to have bigger capacity or use some other ports to reroute the traffic or you can try
+to have more deterministic parts so some of these applications are reaching you via some
+other locations not only London but Frankfurt Amsterdam Paris doesn't really matter but let's
+look at some of the other examples YouTube so here we have another alert we are talking
+about some latency measurements and here what we can see the latency has increased quite
+significantly compared to what we had before and then there was alert triggered again so
+then we are doing again the flow correlation that the YouTube traffic through that ingress
+point has spiking but only at some of the locations that we are seeing and then you can
+go into the detailed investigation and then when we are looking at the handle variances
+which are the ones that are sending the traffic directly into the network are actually used
+for during the peak hours and what we start to look into it what's causing these spikes
+is during night hours when there's a lot of people using Google searches there's a lot
+of nowadays this AI text or these little short abbreviations that tell you when you search
+for how do I do my taxes in Germany you have a little description over there and that's
+the kind of traffic that's actually peak in there during those times and it affects YouTube
+quality so then you can actually talk with them whether it's affecting on the you whether
+it's affecting on other providers as well you're the only one is there something that
+you can do about it but obviously this is some kind of information that you actually
+would need to have a more detailed analysis of the world of what's going on or how is
+it actually happening the same as well there's plenty of users within the country within
+your network using YouTube so it's going to be quite important when they're complaining
+to know what exactly is going on so you need to trigger randomly you need a correlation
+and you need a detailed investigation so actually I think you've seen why or how is
+it important for each and every one of us to have these detailed investigations of our
+probe data but again as I mentioned before if you're looking at single sources of information
+just by themselves it's not really going to be helpful because you might be looking
+at information here you might be looking at information there but you need to actually
+couple everything that you have available to make use of it whether we are talking about
+probes flow, anomaly or whether we are talking about SNMP, utilization, thresholds whatever
+else kind of metrics that we can talk about it doesn't really matter it's important that
+whatever thresholds or whatever metrics that you're collecting can be coupled together
+and you don't have to spend times hours to find out what's really causing the issues
+or the problems within your network obviously this is going to be cost effective this is
+going to be time effective as well anything nowadays this is one of the challenges that
+one of each one of us faces is time how we can actually manage our time if you're going
+to have to spend hours just to debug one of the problems that's been happening in the
+network if I would go back to the Steam use case how much time do you actually need to
+spend to figure out what's going on because if I go back you pretty much see the same
+amount of traffic it hasn't changed but without having the application information of your
+traffic you won't really be able to see what's going on within your network you might guess
+and there's plenty of guesses that might be good that might be false but in the end both
+your management your coworkers and yourself want to actually want to know the real truth
+the real knowledge and how you can actually improve your network how can you improve your
+visibility what's going on within the network and I think that's the most important part
+of our jobs to make make it ourselves more easier better and more resilient so let me
+just go back and yeah so what people recommend for ISPs but it doesn't only apply to ISPs
+it does apply to any kind of networks mobile networks ISPs or hosting companies as well
+when they want to improve their latency when they want to improve their measurements it's
+important that they are trying to strengthen the network capacity when they see the issues
+arising here and there they can actually talk to their providers to have more visibility
+into the network to have more capacity whatever else we're talking about we also need to talk
+about content delivery when we see that there's a major update coming from let's say Fortnite
+which are causing nowadays real peaks or whether we are talking about the Champions League
+game. Champions League whether in Germany delivered by Amazon or delivered by Fastly
+Akamai doesn't really matter you need to be prepared for all these events that you have
+enough capacity for all these kind of events and then you have to make sure that you have
+the information that what and how does it actually affect whether we are talking about
+your end customer experience your networking experience does it actually fill up the capacity
+and some of your pipes in between the cities between Berlin and Minchin you need to have
+the days that in order for you to actually try to make your network more resilient you
+can obviously optimize traffic because if you see that there is traffic coming in from
+different kind of providers you might be asking hey can you actually just use only one provider
+and we are going to increase capacity with them instead of sending it via Akamai Amazon
+and Fastly can you actually only use Akamai or can you actually use Amazon we are not
+here to give recommendations who they should be using or how you should be approaching
+it but it's important that you have this dialogue and this dialogue with its other partners
+of yours don't die and you have an open conversation and then you can actually improve your network
+and improve the content delivery but for that you actually need to have the visibility and
+you need to know that whether there is a latency issue whether there is a probing issue whether
+there is JITA any kind of quality measurement that you might be collecting you need to be
+aware of that in order to have the right visibility so this would be the whole idea of the presentation
+to have the right visibility to be working together and to be actually have an open dialogue
+about it so I still feel like I have more time try to not rush through the presentation
+but I'm here for if there is any questions.
+Thank you Peter for these insights we have some time for questions are there any questions
+in the room oh there is one I'll give you the microphone please state your name and
+your affiliation hi hi I'm from Britta so I have a question about your data here so you
+mentioned something about correlation and based on that you can estimate what is the
+problem what about causality so for example you mentioned when there is a high street
+high traffic from steam that could impact other applications on the other hand for example
+of AI text maybe that could be impacting YouTube maybe not so are there any metrics
+to look at beside correlation order to say okay that is the thing causing my problem
+or could be only best guesses in order to answer yeah so if you're talking about the
+AI I think it that was just something that's best guess what was going on because if you
+were talking about if you were talking to Google what was causing the problems with
+you can actually start have the conversation and they might let you know like that's actually
+what's causing the issue so that's how we get to the information based on these open
+discussions when we are talking about the other use case with the state with the steam
+use case that's actually something that we can see clearly in the traffic because the
+utilization levels of the past is haven't really changed so the ports were still at the
+same level utilized but we still got the alert that there was some jitter in the traffic
+I think this is jitter that now latency so we here we got the correlation in the tool
+itself that it's actually the latency that's been affected based on these graphs based
+on the actually the more steam traffic that the network was receiving I hope I answered
+your question kind of yes okay yeah I have a follow-up question also so how to handle
+such traffic in order to be proactive and not reactive so that's probably an RFO analysis
+and say okay we had a problem what happened there what if I want to have something like
+alarms or something like that yeah yeah yeah obviously this is a reactive approach trying
+to well solve the issue once it there what you can try to do and have enough capacity
+that's always something that you can easily do and try to manage with whether we're talking
+about a really on whether we're talking about any kind of transit providers to have enough
+capacity and also what you can do is to have a in a in a future predictive pass to know
+how much traffic how much capacity you will need at those different locations so if you
+see that there's a clear traffic increase of surge over time then you will know that
+you actually need to increase the capacity at those places so sometimes it's going to
+be reactive because you haven't seen for example amazon delivering champions league game but
+once it's happened you can take well first of all it's going to be a reactive reactive
+approach but then you can proactively approach it and be like hey guys are you gonna be hosting
+more of these games or was this a one time thing happening thank you so are there any
+more questions in the room yes this one so you propose to use like 20 prefixes to propagate
+separately via each ingress point so how do you do that with ipv4 I mean we still have
+ipv4 as we all know unfortunately but that would waste up to like slash 19 almost yeah
+that would be quite a challenge to do so and we've only did it with ipv6 so far with that's
+what we've seen so I sadly I would love to answer it how you can do it with ipv4 if
+you have the address space available go for it I think that would be the best answer but
+no luckily sadly I think there's not enough address space for it so I'm not sure to give
+you an honest answer how that would be feasible so I think we have enough time for another
+question anyone know is anything invinuous so no question online so all right that's
+a wrap for this presentation thank you very much Peter and you'll write back

@@ -1,0 +1,365 @@
+API URL: https://api.media.ccc.de/public/recordings/93577
+Frontend URL: https://media.ccc.de/v/god2025-56484-the-automation-illusion-wh
+Title: The Automation Illusion? What Machines Can't Do in Threat Modeling
+
+Okay, so today we are going to be talking about the paradigm that we've been seeing with
+chat GPT coming into the world about three years ago.
+And again, for the 10th time in humanity, we thought, oh, now this new technology is going
+to make sure that we only have to work three days a week.
+And I don't really think that it's going to be true this time either.
+But we're going to see how this evolution can help us.
+So it's always nice to know who's standing in front of you.
+My name is George Bolson.
+I work for the Belgian company Torium as an application and product security consultant.
+I'm not going to read you through my whole resume if you want to connect with me on LinkedIn.
+You're more than welcome to do so.
+I'm the only person on LinkedIn with this name as far as I know.
+So I know that slide deck content-wise, we are quite strapped for time, so I'm going
+to hand over to my colleague Saba.
+All right, thank you, George.
+And so my name is Sebastian Dersner, as far as I know I'm also the one on LinkedIn, so
+should not be too hard to find me.
+I have a background in development and security.
+I am the CTO, co-founder of Torion in Belgium.
+We also do lots of trainings professionally, but also as a volunteer, I've been quite
+active in OASP, in particular for the OASP-some projects of first-year insurance maturity models.
+So, if ever you're involved in setting up a secure development lifecycle and need a framework,
+this is the one you should be looking for. Also in Belgium, if you'd like these kind
+of conferences, we also organize a German OASP day, but then in Belgium and together with
+the Netherlands and we call it the OAS-Bennelogs day. So, it's next week, Tuesday, completely
+free paid for by the sponsors, really nice line-up and also a second day of training.
+So, if you still have time, it's not so far. It's in a very beautiful city of a megalon.
+With that, to the topic, who of you are already familiar with trap modeling? Most of you, okay?
+Who of you is really successful in scaling this? Okay, all right. I think that's really
+the challenge that we're facing because software is scaling very hard, especially in our days
+with AI. And so what we see with treadmill link, it's really too slow for modern development.
+It's a very messy human centric approach. We need people that are not available. We need
+human expertise and in particular security expertise, which is very scarce. It's also
+, we need to solve this.
+be be be be be be
+be be be be be be be be be be be be be be be be be
+are quite good at certain parts and certain domains, specifically like mathematics, reading,
+writing, knowledge. But there's a lot of other cognitive domains that are really not covered
+by the current models, like long term memory, visual reasoning, speed and so on. So there
+is still definitely room for improvement. But if you know, and there's definitely an
+evolution. Also nowadays we have very recently Gemini 3, we have the new opus 4.5, so there's really
+speeding up. So maybe we can come to what we would call like a trap modeling general intelligence.
+Some of you might recognize Adam Schostak in this picture, so he has the boogled trap modeling,
+so we just need to like integrate him and assimilate him with a gen AI and then he will probably trap
+model everything for us in the far future. Question is how far are we from that point in time?
+With that, we obviously will need tooling and some of you might know some kind of trap modeling
+tools. We've also as part of the research for this presentation looked at what kind of tools are
+currently available to do all this stuff for us and there are quite a lot of tools. So over the
+last couple of years, you see here like the first tool was in 2001, but nowadays we have more than
+50 trap modeling tools. It's really due to the scope of doing trap modeling automating. It's not
+frameworks, not methodologies, these are tools. What you also see in yellow or in orange is this
+that the integration of generative AI really speeds this up. Question is how is this going to
+help us doing trap modeling? Here's the list of all the trap modeling tools afterwards provided
+with a pointer to get access to this. But how are these tools going to help us to do better
+trap modeling? For that, it's probably better to first understand different steps and then
+George is going to talk us through that.
+So the show of hands that Saba asked for a little bit ago I saw about, I think half of the hands
+go up roughly of people who know what threat modeling is. I'm going to first walk you through
+a very high speed. What are the stages of threat modeling and where can you automate them? For that,
+the dice framework is another way of naming the four question framework. If that rings a bell,
+it's the same in a different wrapping. The first question you have to wonder when your threat
+modeling is system is what are we actually working on? Diagramming or describing doesn't
+really matter the D and dice can represent both of those words. But first you need to know what you
+are working on. If you have no complete view of what you're working on, it's going to be very
+difficult to know what can go wrong with that system. Incomplete answer to the first question
+is going to make you miss things by answering or in answering the second. Something that often
+gets overlooked. I see a lot of hate on LinkedIn towards diagramming your systems to actually do
+threat modeling. I think it's still very useful because the question when we work with clients as
+consultants on threat modeling, you would think that the first question is a very easy one to answer.
+I'm going to guarantee you that four out of five threat models that I make when we start out,
+we simply never get to a proper answer to the first question. Teams who develop systems
+barely have a complete view of what they're building. That sounds scary but that is the case
+with the majority of the organizations that I work on. A lot of knowledge does not get retained,
+a lot of knowledge was in the heads of people that left the company and then there you are
+with an incomplete answer to the question what are you working on. Hence you can also never properly
+assess what can go wrong. Assuming that you have a good view on what can go wrong, you are going to
+look at what are we going to do about it. If you stop here, then you just have a list of panic points
+and you're never going to sleep again. Obviously you need some resolve to this. So then we need to
+figure out what are we going to do about it. These three steps are usually the breath and butter
+of threat modeling. The last question or the last step that evaluates that is listed here as the
+last step of threat modeling but actually you can see it as something that you can fit into those
+first three questions as well. You can evaluate whether your diagramming is good enough. You can
+then evaluate whether your threat elicitation is good enough. First so when we look at diagram
+automation, who of you has ever heard of the two eraser?
+Show of hands, I see one hand up, two hands. Someone in the workshop that I taught yesterday
+learned about it yesterday. So eraser is basically a vibe diagramming tool so you can just, you have
+a chat interface and you can copy paste your architecture in there. You can also link it up
+to a GitHub repository where it will draw wireframe diagrams of all the different screens that are
+in your application. So this is becoming a bit of the future of diagramming. You just talk about
+what you want to see drawn and this thing will draw the diagrams for you. As a lot of different
+types of inputs, text inputs being the one that you see on the screen right now. Also mermaid syntax
+if you already had diagrams as code that you can just copy paste in there and it will create better
+layouts for that and then you can start chatting with this thing to say oh no I want this block
+to be on the right side of the diagram. You can just tell it you don't have to manually move. So
+a lot of things are happening in the diagramming space. Eraser has been around for about a year or
+two now and it is getting increasingly better. So depending on how you configure it, there's a lot
+of bells and whistles attached to it but it's one of the leading tools when it comes to AI native
+diagramming tool. So this is an example of a complete architecture together with all of the
+subgraphs that it would, if you would have to draw this in a diagramming tool like draw over video
+or code it together and mermaid it would take you a few hours. This comes together in less than a
+minute from an architecture. It goes very fast. Stride GPT so when we move out of the diagramming
+realm we go into the realm of threat elicitation. Stride GPT, move you has ever heard about it
+apart from the workshop that I gave yesterday. So this is a tool that you can completely run
+locally as a Docker container and you can select the model that you hook into it. So it doesn't come
+with a brain so to speak you can select the LLM that is attached to it. As you can see a lot of the
+leading large language models are included but you can also run local tools like Olama and LLM
+studio I think is also one of those but that got cut off from my screenshot. So if you prefer to
+run a local tool with a local LLM you can do that with Stride GPT. You can also hook it up to a
+GitHub repository so if you give it your GitHub API key you can make it in just all of your
+code from GitHub and then start threat modeling that. So this is something that
+is going to move that forward in all of the repositories that you already have in trust.
+Once you, I'm going to go one slide back. So once you go into this text box and you
+paste your whole application architecture in here it will generate a threat model. It will
+categorize it towards the Stride categories that it thinks it falls into best because as you may or
+may not know Stride is not a mutually exclusive framework. Some things can fall into two Stride
+categories but here there's single categorization it can draw attack trees from that so which order
+of attacks is going to lead to the apex point of ultimate compromise and it will also suggest
+it also has some risk scoring modules in there. There's a lot to explain. Also when your architecture
+was lacking details it will also tell you that it might benefit from having more detail to be
+more thorough in its analysis. From the same creator we have TM bench so this is a bit of a
+benchmark of if you choose to run your LLMs locally which locally hosted LLMs that you run
+on your own infrastructure, your laptop or a server that you control how well do those home
+run a both LLMs, how well do they perform when you start doing threat modeling with them.
+This benchmark pre assumes that you don't have a complete 19 inch rack full of NVIDIA cards.
+It is doing what you can feasibly run on consumer grade affordable hardware. It then uses
+Cloud 3.7 sonnets. I think a newer model is going to come out soon to be the better LLM as a judge
+which anonymously compares the output of all of these then weights the scoreings across
+four different factors and then creates a mapping. This is obviously research that is
+ongoing that is changing as soon as new models are coming out. This is something that will evolve
+over time but it paints a clear picture where for example here the top five is very very close
+to each other. This is also what you see over here. The difference between number five and number
+one is barely four percent so the performance there is going to be.
+We're also seeing a lot more integration in tools that are closer to developers so
+when you look at Deepan Shark, quite a well-known name in the threat modeling community,
+he created a tool based on Slack. If your company is already working with Slack as a messaging platform
+what you can do is you can upload diagrams into a specific Slack channel and there is a threat
+modeling bot that you can talk to so you give it everything you want to give it. You're already
+trusting Slack for everything else and then it starts analyzing everything you've put into it
+and then you can start having a dialogue with this robot. This is the first level triage
+that you can already start doing. In a second level security champions can follow up on that
+and they can start evaluating what has been put in there and in the last instance you can have
+a number of your threat modeling experts or your cyber security experts review everything
+and then validate what has been going on. Obviously having a human in the loop is arguably the best
+idea because one of the largest problems that we have with LLMs is that they make stuff up. We
+call it hallucinations which is a bit of a weird word to use in that context but these are things
+that you definitely still want a human in the loop to start looking at was this a thing or was
+this not a thing. At this point in time this robot has about the skill level of a new training so
+you hire someone with a degree in cyber security who knows something about threat modeling and they
+will be able to get that first rough cut here in the first level. This is something that with
+this kind of tooling can be automated. You already have a first rough division of what are the 10
+most important things and divergence may happen but I would like to argue that even though like
+Seba just said if I make a threat model and Seba makes a threat model and all of you threat
+modeling experts make a threat model they're all going to look a little bit different just like a
+penetration test. Every pen tester does their job in a little bit of a different way. It would be weird
+that the top five would not be very similar the most critical issues everyone's probably going to
+five and the more you go down that list the more differentiation you will have. But it can
+already make a very good rough cut. If you are an Atlassian shop you already have a lot of your
+knowledge and confluence in Jira. Lucian Corland a guy from the UK he has created an agent in
+rovo. So rovo is the AI system that's embedded in the Atlassian suite. He built an agent to actually
+be a security architect. So now all of the knowledge and all of the methodologies that you already
+have in your Atlassian suite this agent can start performing a threat model. So your organization
+methodology and examples of these are previous threat models that we've made. All of this is
+going to be fed into there.
+Quick disclaimer this is still in an alpha state. So while these initiatives exist you do still see
+some oversights and some false positives in there. So do not outsource all of your thinking to hear
+and throw out your whole security team. I would not advise you to do that.
+Also how are companies implementing this kind of philosophy? So when we look at KPMC,
+JP Morgan Chase they've done quite some research on how to
+automate this and how to build AI systems to help them with this threat modeling challenge. So
+they've created the AITMC the AI threat modeling co-pilot which right now with Microsoft also
+having a product named co-pilot is a bit of an unhappy choice but they stick with it.
+So what they've been doing they've been having this fine-tuned model create threat models and
+then have that reviewed by humans and it's from the results we can see. So this is also a graph
+from this research paper. Number seven over here was a very clear outlier which was a which was a
+hallucination. Number one jury was not very convinced but all of the other ones human reviewers
+agreed that what the robot output was in general if you look at the two blue markers here agreed
+or strongly agreed that the threat statements that came out and the threat model overall was
+actually a good threat model. So of course JP Morgan Chase they have how big is their security
+department? A few hundred people at least. Yeah so you also have to look at the scale of these
+things they have a lot more a lot more people who are working on this obviously so they can
+afford to do this kind of deep research. This is a quote from Pat Opa the CISO of a JPMC I'm going
+to be quiet for a second so you can read this because this for me is a very powerful statement
+from a security.
+What for me is especially important is this last bit over here helping engineers understand
+why controls are important and not just telling people I'm the cyber security expert I'm going to
+come and tell you what to do and I don't want you to argue with me this is how it's going to be and
+if you don't like it you can that's not the way to treat people as a security professional you're
+there to help people create a more secure product and helping people understand why something is
+important is going to make sure that threat modeling at some point drives itself but this is a very
+very powerful outcome of this kind of research which as threat modeling professionals I would
+actually love to be out of a job at some point because then that means that all developers
+have grasped threat modeling and they are doing that not that I don't like threat modeling I love
+doing it but it would the world would be a better place of every developer inherently and every
+architect inherently would develop secure software that would be great.
+More scientific research so this is an example of a research paper where researchers were taking
+the Microsoft threat modeling tool as an input I can already maybe hit a few holes in that research
+if you've ever worked with a Microsoft threat modeling tool keep your hand up if you like the
+Microsoft threat there we go yeah okay so it's it's a free tool it's from Microsoft maybe we're
+already predisposed to remind so the things that came out of there are threat statements whether
+they're good or bad doesn't really matter what they then did is they fine-tuned a model and started
+looking at the returns that came from fine-tuning a model this is definitely not a talk where we
+have the time to go really deep into the technical nitty gritty of fine-tuning an LLM to do something
+but if you want to specialize in LLM to be really specific about something fine-tuning is really
+the way to go and this is also something when you use low rank adaptation or laura as a fine-tuning
+mechanism it actually goes a lot faster than you would think on an m1 macbook you can fine-tune
+a 7 billion parameter model with about a thousand examples in a few hours this is this is not
+something that you need an NVIDIA cracking rig for to do it in a month you can you can actually
+do that quite fast you talk my stations that the laura algorithm provides
+one strange contrast that I'm seeing and this is something that's also part of my ongoing research
+is to see what were the decisions behind this research and why does it contrast with what Matt
+Adams was doing with TM bench because the model that was used over here researchers said yeah this
+is this is in our opinion the best model to do it with it was llama seven billion and that is nowhere
+to be seen in what came out of TM bench so there i'm still wondering a few questions of how to tie
+that together but that is something we are we're at the cutting edge of then we've already been
+talking about artificial general intelligence so the idea that you can just tell a robot this is
+your job go out into the world go and do that job for me and i am expecting good results
+and if we look at this is what we call the remote labor index so that's a research that
+actually measures how good are current state-of-the-art models at actually doing this and success rates
+are very very very low obviously the landscape of LLMs has changed a little bit meanwhile with the
+recent recent release of new Gemini and cloud models i am not seeing the new Gemini model to
+all of a sudden go up to 80 success this is those models improve but they don't improve that much
+so i'm still not seeing our jobs as threat models and cybersecurity professionals being
+completely eradicated by by AI but there is still a long way to to go and tooling is a very important
+part of these tools can help us but they're not going to do the complete job so the human
+involvement in all of this is still really important you also have to appreciate that this was a
+conversation that yesterday during drinks we were having about when you purely look at quantitative
+risk and you're purely looking at how to make decisions in excel it completely ignores the human
+factor of it my company philosophy in how do i appreciate risk that makes my clients sad but
+they're still paying me do i do i want to threat model against that or am i just about i want to
+keep my clients alive so they can pay me and that's it like how do you balance that as a company and
+this is where i still think that human instinct needs to still be retained in all of this because
+as Nick Cave at one point said AI can write a song but AI does not know what it feels like
+to lose a child though they can never write a song about that they can mimic that sentiment
+it's going to be very difficult to get that sorted which brings us to the illusion of automation which
+see if i can speak better too thank you so what we've seen here is that
+to do threat modeling there's a lot of advancement in tooling but i should probably know
+threat modeling is not only done with the tool the tool will not generate the full threat model
+and threat modeling is itself also not the goal the goal is really together with the product team
+and we involve stakeholders to build more secure products so and for that to happen we need way
+more than just the tool so its automation will support us in doing threat modeling and hopefully
+we'll make it better threat models but it will not solve the threat modeling scaling issue in the
+near future it's also something we need to make sure that developers own as a process as a tooling
+and there we see a good advancement because the tools get closer to their tool set it can be
+integrated in their githubs it can be integrated in their tooling but still we need to be able to
+get their buy-in to help them do this and to convince them to do this and that's not something
+that the tool by itself will do they will not automatically go to that slack channel to interact
+with the threat model both and and really what i see and what we see all always it is really also
+a soft skill threat modeling it is about the human interaction it's about the understanding
+of the challenges together with a group of people where the process itself of threat modeling is
+at least as important if not more important than the outcome it's about realizing where the challenges
+are how the system works what potentially can go wrong how we can fix it how to come to a shared
+vision on security and while tooling can support is there in the end most of this is human interaction
+and the interaction itself is very valuable so we really should focus on what we call human
+centric threat modeling where we leverage automation where we leverage ai to augment what we do
+but it should not and it will probably not very soon replace our human creativity and
+for becoming better threat models will really lead to be creative and the future here of threat
+modeling is really that collaboration so how can we become better and i would say not only
+as threat models but also as security an application security specialist in leveraging this kind of
+tool and there it's i would say i would recommend you if you if you have a chance look at the recording
+of daniel miesler he did the keynote at the owasp us conference a couple of weeks ago on how do we
+leverage ai about the different stages of using ai in our tool set in our way of working and where
+we've come through the phases of an aided we're not using ai we have some chat assistant where we just
+do some prompting we're now in the phase where there's agents involved and we fire up agents to do
+stuff for us but it's going to go towards the next stages of how can we create intelligent workflows
+where we can fire up these agents have these interactive chats with the different development
+teams and build up threat models in a consistent way and share the results throughout the organization
+in a way that it's easy and accessible but we still have a human control over this
+and we really need to go into the mindset or the way of working and there's an analogy here
+of working like a surgeon i don't think we'll ever don't need a human threat model anymore
+but we need to make sure that we're coming in at the moment when our expertise is the most
+valuable where we have the most impact and that's really also how a surgeon works and the surgeon
+goes into an operating room everything is prepared the patient's already there maybe already got
+open or whatever but he or she will do what he is really best at and that's also what we as security
+specialists should try to get into that situation where we can help a product team or a group of
+developers to make those final decisions to really make sure that we have a team of people
+and ais worked closely together and handle that complexity and build up our expertise on threat
+modeling and how to become better at it likewise how surgeons do it so i don't think it will be
+out of a job really soon i think it's also worthwhile to look at an other analogy or some research
+that was recently described in a blog post by the CEO of uh well the former CEO of uh github
+where they looked at how developers are integrating AI in their workflows and if there's one group of
+developers of specialists of technologists that are adopting AI very fast and that we should
+really look very good at how they are doing it is developers and developers are adopting
+AI very fast in their way of working and they go through these four phases of being first like
+skeptic this is really going to work but then trying to experiment with it likewise as threat
+modelers as security specialists you should also try to experiment with this understand how this
+technology works what it can do what it cannot do and explore and become better at using these
+different tools in these different stages of dyes how can we better become better at diagram
+how can we integrate these kind of tools in different stages and then go to these next stages of how
+can we make sure that all these moving pieces work together in a way that it makes sense that you
+can create these kind of workflows in a way that they support you and they come up to you at a
+moment in time that your expertise is needed and in the end that you can oversee this as a as an
+overall orchestrator or strategist so that's really where we're going for or where it should be going
+for so this is not really what i would call like a skill shift it's really it's a skill shift it's
+not about eliminating threat modeling and threat molars it's about becoming better at this and
+learning and leveraging this technology it's to not only do this but verify what it's doing to
+own the decisions because in the end it needs to be a human decision and also increase our impact
+to make sure that we can do better and can do more in terms of what we are best at and help
+build in the end more secure products with that i think we have some time for for questions
+also one call to action if you want to get access or early access to this threat modeling tool
+directory we have a monthly newsletter no spam guaranteed only on threat modeling so if you want
+to register for that you're free it's you can also find it on our website or if you trust our QR code
+scan scan the QR code
+and the house from your end i think we're good to get some questions from the audience all right
+yes um are there any questions
+very very light i think my question
+we hear you but the mic does not we'll get a little bit closer
+okay um you're running to patients or like
+right no but you can hear me no yeah um wait can we can we do either microphone or no microphone
+because the the mix of the boat is driving me completely nuts just without the microphone i'll
+come a little bit closer
+a context window overflow is definitely a thing um so this yeah this is something that you always
+have as a limitation models are getting better at it but especially if you start running stuff
+locally you're at some point going to uh lose uh context out there that's indeed a big limitation
+that consumer grade hardware is simply not going to be doing so you're not really running into a
+problem of i don't have enough parameters because oftentimes big i not oftentimes you're going to see
+even a degradation and quality if you use more parameters in a model so there's there's a sweet
+spot a model size definitely but context window is is absolutely a thing yeah i have to say so that
+but the evolving way of the models that this is going to be a limit that's going to be
+further and further down the line even now with opus 4.5 um what what i've heard from it that we
+have not tested it yet but it it really is better at managing it cause this context window and
+even to come it's going to compress earlier input in a way that's still usable to try to come up
+with an answer in within the limitations of context window any other questions
+still have three minutes yes
+so the question is how do we how identify hallucination while while it's not really like
+obvious one um by validating by validating really what comes out of it i think it's going to be
+harder and harder in a way that obviously what comes out of most of these technologies
+are one very convincing so the the human in the loop and the verification is going to be
+important but what we see is that also the hallucination factor is going to be less and less
+while we instrument and prompt better at keeping it to within the guardrails of doing its job
+in a way that that it's uh you you make sure that it's referencing the specific artifacts that were
+proof for their findings so by prompting it better by using better LLMs but also in the end
+validating the output and that's very certainly for the next couple of months and years a human
+in the loop is going to be still very important um especially also where are you going to make a
+differentiation between what's a very high-risk versus medium and low-risk findings
+one i do things that i also find there is that the problem of hallucinations is not a typical LLM
+problem you also have human professionals who don't know what they're talking about so that's
+that's a problem that wasn't really introduced by using LLMs secondly a recursive prompting helps
+so writing a prompt that keeps on asking questions uh to clarify rather than come up with something
+and fine-tuning models also really helps sharpen it down but the risk of overfitting your
+model is very very present if you don't have enough training high quality training examples
+but uh indeed the rest risk is still a human who was uh talking out of their neck 20 years ago or
+an LLM that's talking out of its neck today that's still the same problem so i don't really think
+we're going to be uh solving that so that's just a shift in my opinion okay we still have time for
+one more question or will we uh me too
+so can i uh understand the questions are there um traveling examples available where we can train
+on yeah yeah so there's definitely some initiatives that there were some older initiatives a track
+on cookbook within oh i suppose an older one but there is a couple of new projects i don't remember
+the name here and we should probably have involved it but there were a couple of people that are
+building lists of trap models and trap modeling directories where indeed we can train our models
+to become better at doing trap modeling because for instance just working on the generated trap
+models from the Microsoft trap modeling tool it's probably like i also i also see that being a
+problematic to start training on that data because making a threat model for a medical device company
+or making a threat model for a bank or two completely different things you're talking about human
+safety in one aspect and you're talking about financial loss in the other one so if you're doomsday
+scenarios that your threat modeling towards are wildly different having those two as two equivalent
+training inputs i don't really see that working so if we could come to a high volume of high quality
+threat models for a specific industry then i could see that approach working otherwise it's
+going to be so vague that you're just uh running into the problem of blended whiskey there's some
+really bad whiskey in there and a few good ones and then on average you have something that's
+drinkable but that's that's the that's the gist am i opinion okay all right and i think we are
+on time yes thank you again good thank you all us germany you are great thanks

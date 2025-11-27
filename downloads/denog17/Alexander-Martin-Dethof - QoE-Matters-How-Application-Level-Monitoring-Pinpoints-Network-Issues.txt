@@ -1,0 +1,291 @@
+API URL: https://media.ccc.de/public/recordings/93139
+Frontend URL: https://media.ccc.de/v/denog17-78774-qoe-matters-how-application-level-monitoring-pinpoints-network-issues
+Title: QoE Matters – How Application-Level Monitoring Pinpoints Network Issues
+
+(upbeat music)
+So while we are on the topic of quality on video streaming,
+our next stop is also talking about quality
+in a similar sense.
+So welcome Alex from Vivek.
+- Yeah, thank you very much.
+Ah, here's the pointer.
+So, yeah, thank you for the talk before, so you explained a lot what I actually wanted
+to explain, so probably we can cop on a bit quicker.
+And I like the idea about selecting the rebuffering statistics because this isn't pretty much
+what we are doing.
+So let me introduce myself.
+My name is Alexander Martin Ditoff.
+I studied computer engineering at the Technica University of Berlin, and during my studies,
+I co-worked at the innovation laboratories of Dolgety Tiddecom and the space of network
+quality monitoring with a deep focus on video streaming.
+And after my studies, I co-founded with my former co-workers, Werner Rubitsand, Alexander
+Rake, a spin-off, where we continued to work on these topics and do more analytics for that,
+and it's pretty much research-driven, and we wanted to find a good indicator to really
+understand what does it actually mean when a user at home would say, "Oh, my internet
+is not working.
+It is slow."
+When you go to the traditional statistics, the speed test, the pain test, the line is
+always up.
+So what does it actually mean?
+And it is that the user sees something when it is browsing the web and would say, from
+This is wrong, this is not my internet, I want to change my provider, or I want to call customer support or anything like that.
+So today I want to talk about the so-called measurement gap of Ping and all of its friends.
+So a short read-brief, how streaming itself works, we have a server site, a video that we want to send out, and before we bring it to the viewer, we
+split up into different kinds of resolutions, and as already told in the top before, these
+resolutions are then split up into different kinds of timed segments, which you call the
+chunks, and the player on the client's side will then, due to an algorithm that the player
+specific, select which of the next segment of the load, and then show to the end user.
+And the question is, why is it that complicated?
+Because we don't want this guy, yeah?
+So the player algorithm can detect, house the network, or can make decisions and assumptions
+about the network and say, okay, now I will switch down to a low resolution, because it
+has less packet size, and so I can ensure that the player out goes smoothly, and I have
+no interruptions.
+The bad thing is then when there is really an interruption, which we call them installing.
+So let's analyze based on the ISO stack, where does the buffering actually happen?
+And this is here an event of the network industry, and people will probably correct me and say,
+well, your ISO stack has eight layers, it actually has just seven, and that is true.
+Because the storing happens up here.
+The application layer has official definition, something like HTTP, FTP, but there is no
+definition like there is a Netflix protocol, or YouTube protocol, or TikTok protocol, or
+something like that.
+But the users are using these services, which you call the over the top services, and the
+buffering and any quality degradation happens up there, so it is the interface to the user.
+And when we check out where are the traditional metrics currently located, they are somewhere
+down here, packet loss, jitter latency, so you all know this metrics.
+And I don't know, probably somebody of you has already heard about the new quick protocol?
+Anyone?
+Okay, so I don't need to explain.
+You know that packet loss control mechanisms are moving up, so more to the application layer
+and less control about packet losses in the transport layers.
+So can we somehow derive the quality?
+What happens at the application layer from the classic metrics?
+And therefore, I brought for you a simplified study, which you did a few years ago, which
+was a simple start just to understand what is the influence of the download speed to the
+time that a video starts to load, or it starts to play.
+So the moment that I really see a moving picture, so it is not like a time to first bite, it
+is really when I see that there is something happening.
+And in principle, you see this time is declining the faster my internet is.
+This seems to be clear, but what is interesting is that it is not a linear function.
+So the initial loading delay or the startup time is increasing more extreme, the slower
+my internet gets.
+So the quality of experience is not a linear function of the quality of service.
+And we wanted to learn more about this, and so I wanted to show you how we did it to understand
+a bit more on this.
+The principle idea is that we wanted to build up a system which is able to monitor continuously
+any over the top service, and it will interact with it via browser automation, and capture
+everything that happens in the video, in the player, in the network.
+And then we translate all this data into an understandable way so that I can, in the
+best case, see was one view, okay, everything is fine, check mark, or there is some issue.
+So I brought you a simulation that shows you how it in principle works.
+We call up the different services, I'm on YouTube Netflix, all kinds of OTT platforms.
+We select the video which is loading.
+You see we pick up some ways like the resolution, video bit rate, audio bit rate, frames per
+second.
+So things that happens in the players, and then we translate it to a so-called mean opinion
+score from one to five.
+The mean opinion score shall reflect the opinion that the user would have about the delivered
+quality.
+For example, next time when you watch a stream on YouTube, you can probably think for yourself
+if you rate it on a scale from one to five, where is the quality currently?
+And we put this all into software which we call surfmeter, and built a lot of adaptions
+for different kinds of OTT services, and we recently also started to implement metrics
+for Google Meet and MS Team Souls in the conferencing space.
+And we put the software into the network itself.
+So we didn't put it to the user at home where you could do in principle, but we didn't want
+it to because we didn't want to have to do Y for influence, we just wanted to know what
+is the quality actually in the network.
+So we put it to strategic locations somewhere in the access network.
+And yeah, now I owe you something.
+This video I'm talking about, how is it working in principle?
+I mean, I could just take some dice and say, yeah, this is a mean opinion score between
+one and five, I'm fine.
+But we wanted to have more reliability, more validity.
+And I don't want you to remember the exact name of the standard we are using.
+It's called P1203 by ITU.
+But what I like you to remember is that it's currently the only most validated model that
+can really take technical data like a shorty before, audio bitrate, video bitrate, resolution
+changes and so on and transfer it into a mean opinion score that really reflects the opinion
+of a user.
+So there were a lot of studies done during the ITU standardization process with around
+10,000 users watching over 1,000 streams of different kinds of distortion so we had to
+continuously rate between one and five hours the quality currently and this model is able
+to reflect this.
+And putting it all together, standardization requires a bit of time.
+So what happens when you do standardization in the mean time, the technology evolves and
+suddenly we have new codecs.
+So that means the standard doesn't work anymore for the codecs.
+So as I mentioned before, we are a research driven startup and we are cooperating with
+the university on that.
+So we started to retrain the model for that so that the model itself is also feasible
+to use to work with the new codecs.
+And everything together makes them a so-called layer 8 dataset.
+It contains them as I said before.
+The behavior what happens in the browser, the web page behavior.
+So like page load times, render times, the video itself.
+So the data around, I mentioned before, network capturing and so on.
+And for sure the mean opinion score.
+And now I like to go with you into the hands-on part and show you some insights.
+By the way, this guy is not me.
+When we have a network, can we say, oh, and our network streaming works like X, Y, Z?
+Well, let's check it out.
+You see here a graph where you see different kinds of services.
+For the first time it doesn't really matter which services, which.
+But I took here the so-called initial loading delay, so again the time that it takes to
+load a video and to see their variations between each service.
+This guy here, this is YouTube.
+And YouTube is super optimized.
+So when you call up YouTube in a bad network, usually YouTube is still able to play out
+the video and the website is in behind in the background still loading.
+So this is super optimized.
+This white guy here is TikTok, they had some issue that day.
+Don't want to consider no more than this.
+But what is pretty interesting is here the, what is this for, color, purple, magenta,
+something like this.
+Yeah.
+They have the topic that we know prime time in the evening.
+So like we heard before, there's a time when people suddenly get in and want to see more
+and then during night, the late night and the day, then the morning, they're not watching
+that much TV or video on demand.
+So for in principle, we cannot really say the streaming works in principle, xyz, because
+each service is different.
+Now what is the mean opinion score telling us, oh, sorry, I forget.
+And remember, this is the poor quality of the network itself.
+It's not Wi-Fi related, so it's really in the network.
+So now, what is the mean opinion score telling?
+As you see here, this is a service where the mean opinion score is around a 4.3 with one
+glitch, but let's ignore that for now.
+And at the beginning of July, the mean opinion score starts to slowly decline.
+So this means if I would ask the viewers of the service all over in Germany, how would
+you like the experience of the delivered stream and escape from 1 to 5?
+Where would this value be?
+And they tend now from July on, name a lower value.
+Can we see this somehow in our data, a reason for that?
+And you see, yes, there are more storelings.
+Suddenly the average number of storelings is increasing, and storelings have an impact
+on the quality.
+What do the traditional metrics say?
+The traditional metrics are, in this case, like speed monitoring, the ping test, and the
+video response time.
+So video response time is like the time to first bite for the first segment of the video.
+And as you see here, the speed is pretty solid.
+The ping, it's sometimes we have some outliers, but it's in a range of milliseconds, so that's
+okay too.
+The video response time is also pretty much in a good road, so we're here also in a lower
+second segment.
+So based on this traditional metrics, we cannot see why it's now the quality declining, noticeably
+for an end user.
+But luckily we were recording also the player version, and we saw that there was a player
+update, and this player update had some internal algorithm back.
+So instead of doing now a lot of network analysis and wasting hours of phantom troubleshooting,
+in this case we could verify, okay, there's nothing to do with the network, it has nothing
+to do with the Wi-Fi, in this case it was really OTT.
+So in this case nothing to the network, but are we safe anyhow?
+I never heard that this video had sound.
+I wanted to introduce now these guys, and yeah, we measured also Netflix.
+And as you can see here in principle, I have here the video response time, which means
+the time, as I told before, like time to first bite when the first video bites are served,
+compared to the time that the video starts.
+And in principle you see the faster my server can respond, clearly the faster my video starts.
+But suddenly you see here a gap.
+It's around this value, suddenly the startup time jumps for two seconds.
+I mean, in case of Netflix maybe people will be a bit more tolerant because it's movie
+night everybody is relaxing and if they wait two seconds longer, probably.
+We don't know.
+But the question is why is it suddenly jumping up?
+And the reason is that Netflix, the Netflix player has some internal algorithm which is
+continuously checking back the servers that it wants to connect to and doing ping to them.
+And depending on the ping response time, it will then choose which server is the fastest
+one.
+And if for a certain threshold they tend to answer slower, Netflix may decide to buffer
+more before they start in order to ensure a smooth play out.
+So this can suddenly a ping that is suddenly only a few milliseconds longer than usually
+may have already an impact for two seconds loading delay.
+Now more and more providers are switching to multi CDN strategies.
+So you have on the server the video that you want to send out and now the provider is using
+different CDNs to bring it to review them.
+And the question is which of the CDNs are selected?
+And when we selected the questioners, do they all deliver the same quality?
+And therefore we did some analytics where we analyzed multiple CDNs.
+I brought two of them for you today.
+And we captured the mean opinion score over the time and the distribution.
+So where is the mean opinion score in fact?
+And you can see this blue guy here tends to have a lower mean opinion score.
+And I mean we usually say that everything up to four is perfect.
+So we don't need to be in a five region, four is already good.
+So everything below is critical or gets more critical, the lower it gets and you see this
+guy is really tending more going to this side.
+So yes, in fact the CDN can have an impact.
+So the question as network guys, what can we do?
+We don't have really a choice which server is selected.
+But what we can do is to shorten the peering to set the peering locations and we can set
+on net caches.
+So for example, Netflix, they provide the possibility that you can put a server directly
+into your network and the cache the most available videos so that in fact when a user in your
+network wants to watch Netflix, he's probably taking a stream that is on this cache server
+and you don't have to transit somewhere, you can directly serve the video from your own
+network and as far as I know, Netflix is doing this for free because they also have an interest
+to make their customers happy.
+Wrong button.
+And finally, we can improve our inner network capacities.
+I removed the song but okay, probably not.
+I want to go to the conclusions.
+So first of all, understanding QE requires the so-called layer 8 view.
+So traditional network metrics won't get replaced by a layer 8 view but it's a compliment.
+So to understand modern streaming issues.
+And well-lit models for a mean opinion score can help you to better understand the impact
+of network decisions and also find out is the issue now to the network?
+Is it to the player?
+Where is the actual issue?
+And as I mentioned, fast wins exist.
+So you can host an on net cache.
+You can check the quality and improve the network lines.
+My final two cents are it's not always the Wi-Fi.
+The future grows quick so many of you know the quick.
+So packet control will move up and the insights will change.
+And last but not least, QE is a cool topic.
+It was that I like to conclude this talk and as I'm more working on the application layer,
+I'm really happy to be here and also learn from you how these issues affect you or if
+you have to handle them and therefore I like to thank you for listening.
+I hope it was interesting for you and let's keep in touch and I'm curious to know more
+from you.
+Thank you, Alex, for that talk.
+Again, we have some time for questions from the room or from when you're less if there
+are any.
+I see one hand.
+>> Yeah, hello, question in regards to the algorithm that you use.
+So it seems to be very focused on video traffic.
+Is there any published information on how the calculation of the mean score works and
+have you thought about also, let's say, translated to other services other than video streaming?
+>> Yeah, so I'm not sure if I can move this here quickly, I can give you some more slight
+about the calculation.
+Next one.
+So the IT team model itself is split up into different segments.
+As I showed you, we take the data like the resolution, frame rate, fit rate and so on
+and we can put this in into different modules and we split it up into an audio module and
+turn to the video quality module and these modules, they compute the mean opinion score
+per second and this is just for a short time based on that thing that I told you the mean
+opinion score was calculated or the model was developed that real users had to watch video
+so I couldn't let them watch the started video for a long time.
+So on this time, this is just a short time analysis for 10 seconds and then we integrate
+it up with the buffering event data into the so-called audio visual quality model which
+holds for five minutes outputs and bring them the final mean opinion score.
+And then we use a moving average over the full movie lines to see where the five minutes
+now to get a button impression on that.
+The model itself is kind of a mixture of ground truth research and ML based learning.
+So there's also a paper if you like you can send me an email and I will send you a link
+to it and the question if we thought to go beyond the video part, in this case we're
+concentrating a lot on video because it's consuming the most of the traffic and it's
+the thing where people will mostly see that there's a difference.
+If my web page is loading one second longer than usually they won't probably even notice.
+So that's why I don't know if you remember I showed before that we are now also doing
+with MS teams and Google Meet so this is where we are currently investigating if there are
+possibilities to measure the quality also for such kinds of services.
+Okay, thanks.
+Thank you.
+Do we have another question?
+I don't think so.
+Thank you for your talk.
+Okay.
+Thank you too.
+[Applause]

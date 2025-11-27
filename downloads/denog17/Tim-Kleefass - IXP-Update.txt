@@ -1,0 +1,442 @@
+API URL: https://api.media.ccc.de/public/recordings/93301
+Frontend URL: https://media.ccc.de/v/denog17-79917-ixp-update
+Title: IXP Update
+
+(upbeat music)
+- So welcome after the lunch break to the IXV update.
+We do this from the DNOC program committee.
+We are doing this now for the fifth time
+and the idea of this update was
+that VSDNOC, DNOC program committee,
+send out a questionnaire to all the IXP operators
+within Germany and ask them some statistics
+and some input about what they're seeing
+with their IXPs, with their internal exchanges within Germany.
+It's carried out by the DNOC PC, as mentioned,
+and with that, I jump to the next part.
+We have basically three parts, some statistics,
+the XP market.
+So with that, statistics, the slide set is online.
+It's how many traffic, how many peak traffic,
+how many connected traffic all the IXPs have.
+In the last DNOCs, we always showed them,
+but just can get a little bit of boring,
+just looking at numbers so you can do it in the slides.
+It's afterwards, if you want to.
+What we observed in general was that we didn't see
+that much traffic increase in the 1890 percentile
+of the IXPs, there were some bigger IXPs
+with more traffic peak increases,
+but mostly the situation was stable.
+What I want to do is to look on the overall metro peaks,
+so aggregated traffic from all the IXP operators
+within one metro.
+And there's always (laughs)
+Frankfurt is very, very, very big.
+And this is also a feedback to the community
+and to you as peers at an internet exchange
+that this is a single point with a lot of traffic.
+So let's keep Frankfurt out and look
+at all the remaining mid-roads,
+where we see Berlin, the Sildorf Munich,
+and Hamburg as the next following cities.
+And then Stuttgart and then a slight drop
+with the longer tail.
+So if we cut out the top five,
+the situation would look like this with Stuttgart leading,
+and then Dortmund Leipzig, Nuremberg,
+Lake of Constance, the Rienthala IX basically,
+Dresden, South Austin, Nieda Saxen, and Brem.
+With that short overview of how the traffic
+is looking in distributed over Germany,
+let's go to some news from the scene,
+from the internet exchange market and scene in Germany.
+So we sent out a questionnaire before this talk,
+and we asked our XP operators some generic questions,
+and then some specific questions,
+and give them the opportunity to also present
+some statements here to you and the audience,
+to give a feedback what our XP operators are seeing,
+or what they are dealing and what they want to mirror to you.
+So the first feedback is here from Stuttgarta IX,
+with they would like to see from the CDN's
+more details on options and requirements.
+As an IXP operator, you're always keen
+to try to enable as much peers to your IXP,
+and CDN's are obviously a bigger player in this IXP market,
+so it's in this case for Stuttgarta IX.
+Quite hard to get the insights from the CDN's
+to even know where to talk, who to talk,
+and how to get connections with them.
+Big Hix likes to see more RFC 8.950 enablement,
+so the IPv4 network layer,
+reachability information with the IPv6 next hop,
+making your network more future-proof,
+so this is more on a technical side.
+Now every peer can go home afterwards
+and look at if your router and your software,
+you are running on your router today,
+would suit this RFC already.
+Franco-9ix from Nuremberg,
+they're looking for more eyeball and local IXPs,
+and we will see it on their specific update later also.
+Franco-9ix is the new camera, I would say,
+in the last 12 months, and they entered the Nuremberg area
+some months ago and really kicked through
+and have a lot of traffic already on them,
+but let's wait for the update at the end.
+And numerously, on put was they welcomed
+the work of the NetSpremse,
+if you have been here in this room
+before the network, before the lunch break,
+then you have heard NetSpremse talk
+or you can watch it later online.
+Did Iix developed a tool called IXPACT,
+and the tool is also online, you can look at it,
+it's basically a new write of different tools
+which were in the wild for some years,
+like our watch, IXP watch, and Demon.
+So feel free to check out the web page,
+it might not only help you when you're an IXP operator,
+but also if you're running bigger layer two networks,
+maybe company networks, enterprise networks,
+could be also interesting for you.
+So with that, let's go to the next section,
+the second section, layer three services at IXPs.
+Normally the IXP, as we know it in the past,
+is in layer two peering land with different peers around.
+But in the past, the IXPs evolved
+to more different types of services.
+The peering land is the classic one which started,
+what should be in high, like a point-to-point E-pipe
+or VLAN is the kind of second product.
+There are multi-point lands over an IXP platform,
+and then IXPs also started to offer layer three VRFs
+to build virtualized routers for customers,
+and now we're looking at layer three services.
+I will shortly explain what I mean with that.
+So traditional, we have an I-peering land,
+several ASNs connected to the peering land,
+and if two ASNs want to connect to each other,
+they build up a BGP session,
+they forward traffic to each other,
+BGP forwarding is the same path.
+As this doesn't scale as that good,
+the internet exchanges introduce the route servers,
+so a peer is peering with BGP with the route server,
+but the forward routing is directly between the ASNs.
+So the IXP itself offers a layer two land and route servers,
+which obviously have an IP address,
+but there's no forward routing on the route servers.
+So now let's assume that this one ASN number four here
+is vanishing from the IXP or never was it the IXPs,
+but this ASN is interesting,
+because it's, for example, the CDN cache,
+or it's a big access network or whatever.
+It's an interesting ASN,
+which the IXP wants to keep at the
+edX exchange point in the peering land.
+So what could you do?
+You could give transit to that ASN four by another AS5.
+And if that ASN five is operated by the IXP,
+and therefore not only having peering sessions
+in the peering land,
+for example, the route servers with the other peers,
+but then also forwarding the traffic
+with an IP hub in between.
+Let's call this a layer three service
+as the internet exchange starts to evolve
+from a plain layer two network to layer three services.
+So we ask the questions,
+do you operate layer three services?
+And the majority of the IXP operators, 14 answered,
+gave the answer that they are offering
+in some kind layer three services.
+Most of them offer in any kind an IP transit service
+to kind of fulfill their portfolio
+what they can offer to the peers.
+And some do specific paid peering.
+For example, Google VPP, Google Verified Peering Partner,
+which we will look into in the next slides,
+Liberty Global, Detalk, LGI,
+and Microsoft Azure Peering Services.
+Also, B kicks outreach is between B kicks
+and other IXP as a layer three servers here mentioned.
+So what is the Google Verified Peering Provider thing?
+There's this very excellent talk from Dave Schwartz
+from Google at the last nano conference,
+which is linked here,
+where he explains why they are doing it.
+So what are they doing?
+Google is reducing their engagement with the IXPs.
+They are reducing, especially at the road servers,
+they have left their own servers.
+They have still some higher volume peers at the IXPs,
+but all these smaller peers,
+they try to bring them to the Google Verified Peering system.
+So that basically means that Google qualifies IXPs
+as their VPP qualified peer.
+And if you are this Google Verified Peering Partner,
+you can mention it on your website
+and you can basically give transit to Google.
+And with that, they want to collect the smaller networks
+instead of collecting them over their out servers at an IXPs.
+In the beginning, only IXPs were in this program
+with Google VPP.
+Later also IXPs started to offer this as a service,
+at least in Germany,
+we have from 3D answers that they are doing it.
+So when we look on what does that mean for you
+as a peer at an IXP,
+probably you have less options for smaller networks.
+You cannot choose different IXPs and transit providers
+where you get your Google VPP traffic from
+or your Google traffic in general from,
+but you would look out for specific IXPs or IXPs
+who are really qualified with this Google VPP program
+and Google can very good control from where the traffic comes
+to you, which obviously has some impact for you.
+It also brings the burden for the IXPs and IXPs
+that they need to follow this program, follow the rules,
+and following such rules would probably also mean
+that you are then on a cost-neutral agreement
+instead of an agreement where maybe the IXP
+or the IXP could ask for money from Google.
+So now the IXP wants to bring back the Google traffic
+to the IXP, they got through this program,
+they can establish as earlier shown this ASN5 or whatever
+and forward the traffic from their Google VPP
+back into the peering line and therefore keep
+or even advance their Google traffic.
+And so the statement three is a feedback
+what we got while the Google IXP peering was stable
+at this IXP, the traffic which they got from Google VPP
+went on top so they even managed to have more traffic
+at the end on the IXP than before.
+That just here as a statement, not saying good or bad,
+but as statements that we get from the IXPs
+operator and the questioner.
+Last but not least as I mentioned earlier
+with this shift and the IXPs applying actively
+for the VPP, they are at the end
+in this cost-neutral scenario where they definitely
+do not get money from Google.
+So at the end, the money which is needed to run the platform
+needs to be on the B side, so basically they appear
+on the other side.
+Google VPP, then what our phone?
+We all have heard it in the IXP and the talk.
+Before the break, what our phone is going away
+from the public internet exchanges,
+at least from most of them, as I've heard in the break.
+So they are withdrawing, they really want to go really away
+and not offering a Google VPP similar program
+to a wider range of IXPs and IXPs.
+At least what the statement is from this week,
+they are on first doing it for one third party provider
+here in Germany and might expand it to other IXPs
+in Germany and worldwide.
+So in this step, IXPs in general,
+as stated in the press release, are out of this game here.
+So I would expect in this case,
+would often traffic would leave the IXPs.
+Also again, costs are on the B side
+and in comparison to Google VPP
+where we are on the neutral, cost neutral side,
+the waterphone peering would be a paid peering.
+And as I've heard in the lunch break,
+which I can also state publicly,
+we are talking about around three cents
+for the mega bit in this scenario with the waterphone peering.
+With that, I would head to my third part,
+the feedbacks directly from the different IXPs.
+The order is that those who answered last
+are the first here in the slides.
+We asked basically four questions.
+What was your highlight?
+What was your biggest change?
+Then the third question, which is not here,
+because there was no answer is,
+what did you change which has no direct impact
+on the product or which is a change
+which is not directly related to a product?
+And the last, which is the outlook
+for the next years, for the next months.
+So here, Equinix IX, you see the name
+of the IXP operator on top.
+We see a link where you can get more information
+on the top right, either a screenshot or an image
+with the IXP operator sends us.
+So it's an operator.
+They might operate in different patros in Germany,
+but we only show one page for every operator here.
+So Equinix IX, highlight, they have published
+traffic statistics and 11 IX in the one terabit club.
+So not 11 IXs within Germany.
+Sometimes it's hard to differentiate,
+is this specifically in Germany or is this worldwide?
+We try to keep it locally to Germany,
+not always that easy to differentiate
+as the internet exchanges get interconnected
+globally more and more, and therefore it's harder
+to differentiate the different statistics.
+They have a new global German product manager for IXs,
+and I see class here in the audience,
+so if anyone has a question to Equinix,
+they have contact here.
+Then, NLIX, I have also seen some colleagues from NLIX,
+but now I don't see them here in the audience,
+but if you are here, you can wave,
+and people can recognize you.
+So the highlight was more network stability
+and then good architecture with Nokia.
+They are deploying the Nokia Deep Field Defender,
+and you can download the LOIS while provisioning.
+This part of downloading LOIS and automation of LOIS,
+I saw in very, in a lot of answers.
+So this seems to be a topic which was not automated
+in the past, and I also see in my affiliations
+that this is a topic hard to automate,
+so maybe this could also be an initiative here
+in the community to make it in general easier.
+So maybe the data center providers could team up
+and help us a little bit to make those processes easier.
+NLIX, upgrade all the international purposes
+to the end of year, and with that, NLIX is also
+in the sponsoring area, you can reach out to them,
+but with that, we can head to ZONIX,
+with this very, very nice picture of the countryside
+where they are filled to be at home
+or have access to their network.
+They joined the one gigabit club.
+(audience laughs)
+(audience applauds)
+And I think it's important that we get more and more
+different IXPs in the wider area.
+They fixed the font rendering on the website.
+I think that is also very important to mention,
+(audience laughs)
+and that some routes are up there.
+It's joined the Big Keys Outreach Program,
+and they had a D-Knock Meetup.
+So if you're also interested in helping D-Knock
+with hosting a D-Knock Meetup,
+please write us to event at D-Knock DE,
+and we can set a date and try to be also in your hometown.
+CDN caches are upcoming to new locations in Loa Saxony,
+so there is something to do.
+Then, from D-Kix, first itinerary customer last Friday,
+and the border leaves edges for load balancing the traffic,
+and they replaced the core routers
+for saving especially a lot of power,
+and as we see in general,
+power costs are more and more a thing,
+and especially with networking hardware
+getting better and better,
+and we have more capacities on higher dense line cards.
+Those things are definitely a thing in our industry,
+and want to move to more iconic pricing.
+With that, two DDIX,
+DDIX started two years ago or so in Tristan,
+they had a very nice opening party,
+and we saw the IP expect tool earlier.
+They are now in a, I think, third pop,
+and are starting with 100 gig ports
+and peers hopefully in the next month.
+Then, Rintala X, and you can start waving
+if you're here and I don't see you.
+Thomas from Rintala X, I talked to him yesterday.
+He was very happy that they could close the ring
+around the lake, and he said, as he has said it,
+for years he wouldn't have come this time here
+if he hadn't accomplished it,
+so that's great to hear a ring around the lake,
+full redundant underlay for the VPLS,
+and they became a member of the ORIX Association,
+so thank you Rintala for making the area
+more redundant and diverse.
+Then, Dortonix and Bremen and X,
+they kind of merged as the operator of Bremix,
+and they come acquired our R-bone,
+so now I need to mention you two both on this one slide here,
+as we only mention one slide per operator,
+but no bigger changes in those two regions,
+so if you're operating your network
+or in Brem or in Dortment,
+you're happy, you're happy, and they're happy
+that you interconnect there
+and bring more traffic and ASNs to the platform.
+MIGA IEX, in general, global growth,
+and obviously some IEXs grow faster,
+some not, and they try to keep the growth and be big.
+You can see it in the statistics slides at the end,
+so for example, MIGA IEX in Frankfurt is quite big,
+and look at the statistics for more details.
+At the end, obviously, what is the value for you
+or the IEXs, or is it a thing you need to look at?
+Is it a specific IEX?
+Is it a specific prefix?
+Do you want to need a long tail?
+Do you need a high volume?
+But so those aggregated statistics
+give only a introduction view for you,
+and then you need to do your research on your own.
+Then Franco and IEX interlinked the exchange asset,
+the newcomer in the last 12 months.
+They started in 2024, grew to 600 gig port capacity,
+and quite in very last time,
+so that's really exciting,
+and brought the new fresh wind into Nuremberg.
+A lot of technical stuff they've done,
+RPKI services, road service, and so on,
+and offering more service to the community,
+that's what they plan in the next months.
+RPKI IEX was also a newcomer to a three years ago already,
+especially in Frankfurt.
+They upgraded stuff in the direction to Amsterdam,
+NTT Frankfurt is new, did a lot of automation,
+and here, when you're getting bigger and bigger,
+you need to start splitting metros, for example,
+to do new renumbering, and they have some nice new Alistair switches,
+and because they put so much information,
+I made an exemption here and put a second slide for them,
+because I find this tool here very, very cool.
+Cleaning fibres is very, very important,
+and if you, as an operator, ISP or IXP,
+can support your clients with that,
+I think that's a very nice idea,
+and helps making interconnection cleaner.
+(audience laughing)
+Then Stuttgartaics had their 20 years anniversary party,
+with it implemented the second course and the new site,
+and the first branding in the history of Stuttgartaics,
+and we are looking for more CDNs,
+and especially a large German eyeball network.
+With all that, I had the,
+that was the specifics for the single IXPs,
+I'm happy to take some questions,
+and if you want to look on more details on the statistics,
+you can look it online in the slides.
+- Thank you, Tim.
+(audience applauding)
+- Please make yourself known if you have questions,
+like wave.
+- And if you look at bit six,
+what happened to our information?
+(audience laughing)
+- That is correct, I didn't mention you.
+Then you probably know your answers,
+would you be so kind and state your answers
+in the microphone, please?
+- Well, one answer was already in the suggestions.
+Use RC8950, we've implemented RC8950 support
+on our route service,
+and we implemented a translation device for that.
+So if you're RC8950 only,
+you can peer with legacy IPPs as well.
+- Thank you, and sorry for missing your answer.
+- And anyone else?
+Three, two, one, okay.
+I think we're good, thank you, Tim.
+- Then, thank you, oil.
+(audience applauding)

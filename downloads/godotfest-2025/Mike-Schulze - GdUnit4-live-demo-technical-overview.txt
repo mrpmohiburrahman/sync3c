@@ -1,0 +1,179 @@
+API URL: https://api.media.ccc.de/public/recordings/93408
+Frontend URL: https://media.ccc.de/v/godotfest2025-gdunit4-live-demo-technical-overview
+Title: GdUnit4 live demo + technical overview
+
+[Music]
+Welcome to the last talk of today. Yes, day one of good office will have to end eventually and do you
+know what sometimes doesn't feel like it ever ends testing things and all games need testing
+also I've heard and there are many ways of going about it and some are more efficient than others
+and covered in this talk is GD Unit 4 an embedded unit testing framework that allows for professional
+great testing. GD Unit 4 was created by Mike Schulze, who is our loudspeaker of today. He brings with him
+over 35 years of programming experience. Please welcome to the stage two, Mike Schulze.
+of of of of of of of of of of of of of my job is my job is my job is my job is my job.
+Every time go out, so mainly GD Unit is everyday I work on. So as I already said, the maintenance of
+GD Unit 4 and also of GD 4 net. So that's the API for C# and I work almost four years on GD Unit now.
+So it's maybe a long time. Was was my journey to the right version of GD Unit 4. So I was starting
+2021 with GD Unit 3 for code 3. So the question is why I have created this framework. So I'm just
+checking existing tools for testing. So whatever something but yeah. So I am spoiled as a Java
+developer. So just want to have a GD Unit like framework. So okay, was not so. So I was thinking
+maybe I can contribute to existing projects, but I see the chunks to make my own project and also
+learning by doing and just implement GD Unit. So what's the vision? So I wanted to have full
+integrated and go dot. It should be nice looking. It should be easy to install and it should be
+feeling easy to use. So I also wanted to have as versions that have fluent syntax. So that was
+still missing. And also for users that want test driven development, I want to have a simple
+go to just create a test without that you have too much to learn before. So just click
+create test. So what's now for currently the actual version is GD Unit 6 that some weeks ago
+I created it's based on go dot four five. Then also we have the GD Unit for net for C#. There's
+actual release candidate. So it's not really released now. It's still in progress. And also
+in addition, there is a GitHub action. This will allow you to see a integration just when you work
+with GitHub, you can create pull requests. That's easy to add this action that will ensure that
+all the tests will run by the GitHub action and you get the result and you can ensure it's
+hopefully nothing's broken. So there's actually 34 releases over 650 commits and over 90 pull
+requests. So that's a lot. It's a few years ago. It's many. So then I have Discord zero. You can
+join the over 200 active members. You have questions. I am still aware of them to answer. So we can
+always join to GitHub or ask questions. So and here GD Unit is production ready. You can use. So
+what's the core features actually? So it's embedded. You have a test inspector. You can show all your
+tests and run. You have a test discovery. That's mean. You can discover all your existing tests
+without manual searching. Just click a button and you will list all your tests. I will show
+it to you later. Then also have easy to run the test just by context menu to click. You can use
+the file system. You can go right to the script editor or use the test inspector to run your tests.
+That's already known. You can create a test just easy by right click on the function that will
+automatically create the test. You don't need to manually create a script and timing and just click
+create the test. Then you have to fluent assertion. That's mean. You can write all your assertions to
+verify that your code works as expected in readable channels with syntax. So this will get much
+better overview of your test. It's easier to read. You have also zenerana. The zenerana allows you to
+run your game zine or UI, whatever you want to test at least. That will allow you to simulate the
+zine. You can simulate frames. You can simulate inputs like keyboard, mouse, touch screen, whatever
+you want. You have also mock and spy support. That's something knows about. Mock and spy. What
+is this? Okay. Something. Okay. Good. Then you have also implemented in the last version 6.0
+This means the special hooks you can add that will works around your whole test session. This will
+allow you to set up your whole test environment. Like for example, you need a database or something.
+You can just create a session hook. Then you have start up and shut down for us. Then you can set
+up your database and run it and run the test. And shut down for us. You can just clear up and
+shut down the database. So it supports actually GD script and C#. Okay. Let's start. So to install,
+the plugin is very easy. You have just go to the S sub lip type GD unit. They are both listed
+actually. This is the new one for code.5.0. Just download and install it. I have already installed
+so because of the limit time frame here. And then you need to activate the plugin. And after
+activation, you will get the test inspector. This allows you to discover tests. Just by easy
+simply click this button. And all your tests will be fine. Then you have also a settings dialog.
+This will allow you to configure how GD unit works. So for example, you have update notification,
+GD unit has an integrated update mechanism that will scan for new releases. And you will still
+notify it over updates that will be listed here. And you can easily install just by pressing the
+update button. So I am done the actual release. So there's no update. Okay. Then you also have
+the console. GD unit console is just a listing of what your tests actually doing. For example,
+we can just one here and test, test suite and test suite is a collection of tests. Then you get
+immediate response. And you have the tests that are passed or failed listed here. Okay. I will
+show you how to easily to create a test for example, I have created a simple class here. Just the
+player with two methods, take damage and here. And you want to test them, just select the function,
+use the context menu, create test, and where we go, the test is created. So this test creation
+uses a template that you can also configure. You go to settings, then you have templates. And this is
+the template you can configure. If you have some supported text you can use to extend or something
+you don't need just delete it. Save it close and let credit again. Delete it. Okay. And credit again,
+and you see the template that changed. And when you can test this, initial will be created just
+with a template for an assertion is not implemented. And when you run it the first time, sure will be
+failed. So we get inside feedback of your failures messages here. This will automatically provide you
+an error message related to the assertion you're using. So that's just creating the test. I suggest
+to use the AAA pattern. This means you should structure your test by arrange, act and other
+variables. Arrange means just set up the test. What you want to test, act, execute the method you
+want to test, and finally use assertions to test your method. Do it. That's what you expected. For
+example, you can do it. Just be sorry. Let arrange.
+Done. What happens? Oh, yeah.
+I'm really nervous. Okay. I'm back. Take the match. What's
+not showing? Yeah, I see it. So, okay, let's take damage with count of 30. And let assertion.
+So june provides an set of assertions you can use. So it's type-based. We want to test in this case
+the player takes some damage. And you have an assertions like for integers. And you can use just
+the player check for health. And short be equal. You have also the oldest verify function. You can
+equal. So 100 minus 30, short be 70. Okay, run the test. Okay. The test passes, but you see it's
+yellow means you have a warning. This means you have often detected, often typically in
+go dot when you use nodes that's not attached to the symmetry. And this you will create at least
+memory leak. So you have a simple tool you can use to. I wanted to use other three.
+Okay, run again. And no short be green. Okay, here we go. Sorry. It's not bad. Okay. And for
+testing zines, we have a zener that allows you to load your zine, then you can assimilate just
+frame by frame or assimilate user interactions, keyboard, mouse, touch screens, actions, input
+actions, and also wait for signals or function results. I've prepared here, assemble zine.
+Okay, the simple gene is just a room that you can walk using keys. And you put the door,
+it will open and back, it will be closed. So to testing this zine, I have already prepared a test.
+So no typos. The test has a test hook called test before. This is a function that will be called
+for every test. So it's shared. So you can load your zine by using the zenerana, you get a
+rana instance. And also you can use some utils on this rana to get, for example, the door
+instance and the player, then the test itself, the test, the door will open and also the door is
+closing. I will just run for a showcase. So go forward, go short open, test finished. And the next
+test will close when you step back. All tests are green, so it looks good. How this works. So,
+okay, you set the player position near the door. So it means the player will step right before the
+door. And go back to the script. Then just simulate for 60 frames, just a little bit. Then we
+simulate to press the key W, that's what moved the player forward. And the most important part,
+part, you will simulate until a signal is emitted. So when the door opens, this will emit a signal
+door opened with an ID from the door itself. It's the signal emitted, the test will continue.
+And we have an assertion here for a signal at the state, the door is opened. And finally, we just
+released the key W, the player will stop. And just for showcase or 60 frames, you wait.
+Yeah, just to show that the player was stopping. So to show that the test is failing, we can, for
+example, use a wrong ID. So the door, when emitted, the signal has an ID for, for example, one,
+but we added one here, so two, a two will be not work. So the test will stay here forever.
+Okay, let's run the test again. So the test will fail now.
+Okay, you can see the test is failing. And you get an error message, the test I timed out.
+So timed out for five seconds. That means, so the test you can configure a timeout.
+As you can see here, this is an extra parameter you can set, and you're free to configure the
+timeout. In general, when you struggle with tests, you need more information about what can I do,
+so you can have a button here, just link to the actual documentation. I spent a lot of time in
+the documentation. It's also not versioned. And you can step by step, go over the installation,
+it will explain all the steps you need, then how to run tests, and get starting section,
+then also for the sharp. So tomorrow is a workshop, so I will explain more, hopefully,
+lots of struggle as today. And some information about what you need testing is,
+how to integration testing, like zen testing, and also the complete set of assertions that
+are available, you can find here. And also, for example, if you can look for timeout, I explained.
+And you see test case parameter, there's all the parameters currently supported,
+just jump into and you get the explanation how to use with always you have examples
+to for easy understanding. Okay, summary, yeah, trust. Now you can test in the day.
+Tune unit brings you a professional tool for testing in Goddard. It's fully embedded.
+You can test in everyone, just simple logic, scenes, and UI parts. You can use test within the
+development, if you like. And there's active community support, community support.
+Yeah, there's a tomorrow workshop, you feel free to join.
+Yeah, I'm done with Q&A.
+Oh, sorry.
+Thank you so much, Mike, for this wonderful talk. We now have a few more minutes for Q&A,
+if there are any questions. Yes, there's a few. We'll see if we have time for that.
+Thanks. Quick question. So what would unit testing for UI look like? Like would I
+program that the mouse should move this many pixels left or right? Or is there another way to do it?
+Sure, you can test your stuff. It's like you can start to see and simulate,
+move your mouse pointer to relate position just by then can click, simply clicking
+what you want and test what your UI interacts. The best way is test for signals. So that's the
+supposed way. There is a feature in the pipeline that will allow you to test for pixel accuracy,
+just you can compare the actual image with the current image. So like something has changed in
+the UI, you will get immediately feedback about what's the difference that answers the question.
+Hello. Thank you for the presentation. I just was curious about the scene runner and the tests,
+as those seem useful for having scenarios and share the results with, for example, graphic
+designers. For example, it would be easy to just change the effects, record it, because you have a
+test kind of a scenario. You could have the test recorded and then that'd be part of the test
+outputs. Have you thought about something like this? No, actually not. So you mean you're recording
+a test session and just replay and expect the same result?
+Ah, no, sorry. It does not support it. Feel free to create a feature request, so I will do it.
+I have a question. So some of us use Godot addons that modify the Godot editor itself. So they run
+in the Godot editor. Have you thought about in future having some sort of GD unit extension or
+something that is able to test behavior inside the Godot editor itself rather than a separate game?
+Is this something you thought about? Okay, when I correct understand you want to test
+editor plugins. Yes, okay. Not yet. I get often this question. The actual problem is
+the Godot API not allows me directly to test
+plugins. So I need to analyze maybe a candidate to implement, but it's really hard. So
+yeah, I need to check if it's possible or not. For now not, sorry.
+Hey, Mike. Great talk. So I'm currently using Godot on a Godot free, unfortunately. I'm planning
+to move over eventually. And I use that in the CI to run my tests before, obviously, to make
+sure it goes green for a merger. I'm guessing you've got a sort of Docker container that I can
+pull to run those jobs in GitHub action. And then my second question was, do you support
+test coverage for the reports of the tests that you've carried out and tested?
+Test coverage, yes. So GD unit supports two kinds of outputs of reports. So that the
+actualization should be created a report. So for example, there is an XML and also
+hard ML, HTML report. You can get the overview over the tests you have run. In this case,
+was just the demo, a single test. And you will be listed all the tests here, also with including
+failure reports. And XML is just a JUnit, Excel report. You can display, for example, you have
+a CI workflow. There is, you can use the GUnit for action.
+Just a simple example. Just on pull request, you can use the action. You run your tests.
+You have a lot of options. You can configure here. And you get a report direct. So for example,
+you can open, so I use this in my project tool. And we get some example reports,
+I was all deleted. Let's just run.
+Hello.
+This is using the action. Nice.
+I believe we are at time now, if you could wrap up the question or the answer.
+Okay. There is an action, you can use an GitHub to execute and report. Sorry for the program stuff here.
+Minor technical difficulties, but nonetheless, a great talk by make sure to please give another
+round of applause for him.
+[Applause]

@@ -1,0 +1,226 @@
+API URL: https://api.media.ccc.de/public/recordings/93154
+Frontend URL: https://media.ccc.de/v/denog17-78260-400g-zr-bidi-does-not-exist-it-can-t-hurt-you-or-can-it
+Title: 400G ZR+ BiDi does not exist, it can't hurt you. Or can it?
+
+(upbeat music)
+- Last talk in this session block is about 400 gig Z,
+or B-directional optics.
+They couldn't have heard you.
+And the presenters, Ariane Copen and Nicola von Taden.
+Ariane is network architect at E3DNet,
+and Nicola is head of network at Falscombe,
+and they both from other heat area also work
+on building networks for non-profit events.
+Stay at your sewers.
+- Okay.
+- Hi everyone.
+(audience applauding)
+- Thank you so much.
+- Good to see you.
+- Thank you.
+- Hi, my name is Ariane, and this is Niko,
+and today we'll tell you something
+about the uplink that we've built for Y 2025.
+Y 2025 is this year's Dutch hacker camp.
+And with a team of volunteers,
+we've built a decent scale temporary ISP
+that has his own ASIP space,
+on-site fiber infrastructure,
+and we've deployed around 60 data in close,
+or those are the network pops
+that we have installed across the field.
+Yeah, so the Dutch hacker camps,
+they've been going on for quite a while now.
+So the first one was organized in 1993,
+and since then, every four years,
+there has been a new hacker camp organized.
+This slide gives an overview of the last few hacker camps
+that we've organized in the type of uplink
+that we came up with.
+Yeah, in the last couple of editions,
+they had a nice dark fiber connection
+when we were at the field in J-Volda.
+And for Y 2025, we actually returned to the field
+at Reismar Ombacht, which was the same field we used in 2013.
+But in 2013, we actually had to install
+three kilometers of fiber ourselves,
+and we didn't really want to have a repeat of that.
+But luckily enough there, since 2013,
+there was a fiber to the home provider
+that had installed fiber onto the field,
+and we were able to use this fiber as a dark fiber.
+Yeah, and how did we get for Y 2025
+from Nick Have onto the field?
+And for the folks that don't know Nick Have,
+this is a data center in Amsterdam,
+and it's considered, I guess,
+one of the more interconnected data centers in Europe,
+I would say.
+And this is also where Ethan Tintra has installed,
+has their equipment installed,
+and this is the network that we used
+for running the network on site.
+We worked with surf,
+and surf is the research network in the Netherlands.
+They have transmission network all across the country,
+and they offered us to use a,
+to get an alien wave on their infrastructure,
+and with that we could build a 400 gigabit co-herent link
+from Nick Have to one of their customer sites,
+which is in Holland, which is a school.
+It's in Altmark, it's nearby the field,
+but we still had to bridge a gap from there
+to the fiber to the home provider,
+so we had to rent a 35 kilometer dark fiber to KPN
+to get there.
+And from the fiber to the home provider,
+it was a simplex fiber all the way onto the field.
+Yeah, but the simplex does give some additional challenges,
+because yeah, in the past we did 100 gig
+and 200 gig for the last event,
+so we wanted to do double the capacity.
+So we wanted to do 400 gig over the simplex fiber,
+and yeah, early on we already concluded
+that we needed to use some DBWM technology
+due to the distance and loss of the fiber.
+There is the UK-based hacker camp EMF
+for electromagnetic fields.
+They deployed a solution with four times 10 gig
+over DWM using simplex and eight channels,
+so we kind of wanted to see if we can copy this concept.
+We did some tests in the lab with
+Altmark equipment, 400 gig coherent,
+that's for my employer, we still had lying around
+and we tried to put the receive channel on channel A
+and then the transmit on channel B,
+but yeah, this didn't work.
+We talked to APHA about this and they said,
+yeah, you have to buy another product
+if you wanted to do something like this.
+So we learned that with coherent technology,
+these days the RX and TX frequency
+always needs to be the same.
+So I went on IRC and I asked around in the analog channel
+and some people gave some suggestions to solve the issue.
+One of them is like you could maybe use optical circulators
+and there the RX and TX frequency can actually be the same.
+But we didn't think this was a very good solution
+because the optical circulators they have,
+if there's a lot of reflection and loss on the fiber,
+yeah, it might not be a very stable solution.
+But yeah, then also Nico came around
+and he had a somewhat cursed idea,
+so which he, yeah, we talked about that in the office
+and we just bought some fancy new 400 gig equipment
+from smart optics and we were like, oh, that,
+that shouldn't care about the idea we had.
+So we can't do two different channels
+but we can do more optics.
+And what happens when we use one optic only for the TX side
+and another optic on another channel for the RX side?
+That wouldn't work in your normal router
+because that router is like a, I receive light
+than I'm sending, but if I don't receive light,
+I don't want to push packets out of that port.
+But DWDM equipment usually doesn't care about that.
+There might be other equipment out there
+but not the stuff we use that's like quite happy
+with doing light in one direction only.
+In this case, this is the smart optics
+and the local fiber had a surprise.
+It has had over 20 dB of loss on the 50 kilometer link
+which is something you would normally expect
+for 100 kilometers, a bit below or a bit above that
+but the normal optics wouldn't work with that.
+So I did the first testing and also incorporated
+an amplifier in that.
+The idea was to split up the signal from the router
+before the DWDM equipment and you can see on the top left,
+so these are two chassis of our smart optics device
+we use for that.
+The upper, the second port on the left,
+you can only see a fiber on the right,
+so there's light going in the optic
+and on the fourth port, there's light coming out of the optic.
+This was the lap setup we used
+with a 40 kilometer of fiber plus added attenuators
+to get roughly the loss of the KPN dark fiber we had.
+And this is basically the schematic of how we built that.
+Might be a bit easier to see than the previous photo.
+So our provider, I carry a great first box on the left,
+gets the TX port patched to one of the client parts
+of the smart optics transponder
+and the RX port is coming from another client port
+from the smart optics transponder.
+And this is only changing from the gray object
+to the colored 400 gigs that are plus optic.
+And from there, it's business as usual.
+As you would expect, we have got our DWM mocks
+like we had in England last year,
+but this time we only use two channels
+with 400 gig per direction.
+So one channel is this direction
+and the other channel is that direction for the TX.
+So basically we are using twice the amount of hardware,
+which was thankfully launched by my employer,
+otherwise this would have been really expensive.
+And I'm not sure if our other sponsors
+like flex optics would ship many thousand euros worth
+of optics just for a fun event.
+I heard they also have sometimes, I said, ah,
+this is expensive, yes, I know, thank you still.
+But yeah, this is schematic.
+To make it even more interesting,
+our hardware there didn't use one times 400 gig,
+but we used four times 100 gig break out with an MPO box.
+So cabling was a lot more interesting on the top right.
+This was the pop in between where we went from our
+surf sponsored 400 gig career end channel
+to our local loop DWM multiplex single mode,
+single fiber link on the top left.
+In the picture you see the MPO breakout box
+for the in this case three ports,
+one from Amsterdam two towards the field,
+where also only every second port is patched
+because one optic is doing TX
+and the other optic is only RX.
+Monitoring wise you can see that some graphs were a bit weird
+because of course one optic isn't reporting OSNR,
+it doesn't receive light, it's just sending light out.
+And over there you can see the power failure we had on site
+because the high voltage line failed unfortunately.
+But besides that, this was running for a week
+for the event we had no issues.
+We will do that again.
+Not sure if you want to use that for a customer.
+That depends on you, it scales,
+you can throw more channels on it and more money
+and then you can do 800 gig or even more.
+But still twice the amount of optics to get the data done.
+So the bidi technically doesn't exist still,
+it can hurt you or just make an event happen
+with more bandwidth than needed,
+but we wanted to pull that off to show that it works
+and also continue the trend of delivering more bandwidth.
+So we have questions.
+(audience applauding)
+- Thank you, we do have time for one or two questions.
+Over there.
+Also Flex Optics has a talk later on
+on why it wouldn't work with one optic.
+I heard there's some information about the frequency in there.
+- Andrew Gunibak, basics.
+Well, I've come across about some feature in some vendors.
+They have some unidirectional mode.
+So you could plug your optics probably into those devices.
+Are we still?
+- Oh, oh, that might have worked.
+Well, this was connected to our Juniper routers.
+So not sure if they would accomplish that,
+but it might be worth it,
+or I haven't played with the unidirectional feature,
+or is it UDLD to just disable a pod
+if it's unidirectional, the feature?
+But yeah, that might be worth a look.
+- Okay.
+Thank you, Ayaan and Nicola.

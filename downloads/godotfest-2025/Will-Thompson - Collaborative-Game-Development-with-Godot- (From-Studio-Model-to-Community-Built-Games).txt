@@ -1,0 +1,422 @@
+API URL: https://api.media.ccc.de/public/recordings/93293
+Frontend URL: https://media.ccc.de/v/godotfest2025-collaborative-game-development-with-godot-from-studio-model-to-community-built-games
+Title: Collaborative Game Development with Godot: 
+
+[ Music ]
+>> I would like to open this wonderful second stage here at Good Office now.
+And fittingly, we also have two speakers here on the second stage.
+Sarah Spires is the senior producer of ThreadBear, which is an open source narrative adventure game.
+She's also a former development director at EA and part of the Forbes 30 under 30.
+She will show us why open source development practices matter for the future of our entire industry.
+And kind of accompanying her is Will Thompson, who will showcase that game ThreadBear,
+which is made by Anders Access, where he is an open source developer,
+as well as digital inclusion enthusiast.
+[applause]
+>> Okay, thank you for joining us today.
+We're super excited to be talking to you today
+about collaborative game development. As mentioned, I'm Sarah.
+This is Will. We are two thirds of the game development team at Inless Access.
+And if you're not familiar with Inless, we hope you are now.
+So we're a nonprofit that empowers underserved learners to unlock creativity,
+confidence, and real digital skills through community game making.
+So before we talk about that, I do want to set the stage.
+So this is the classic game industry problem.
+If you're familiar with the games industry at all, if you're everyone linked in,
+you'll know that there is a real experience, crisis for lack of a better term.
+Entry level isn't really entry level.
+We see that there is an explicit or implicit requirement for two to three years of experience,
+which is not entry level.
+Like this right here is actually considered entry level work in a AAA studio.
+Schools that have game programs will turn out, you know, thousands and thousands of students
+every year that don't have the skill set and professionalism they need to enter the industry.
+Meanwhile, we have studios with mismatch expectations.
+They're wanting students with or even just entry level folks outside of the games industry
+with super high skills, skill sets, and they're not willing to or unable to put in the time
+and money to invest in their growth. Likewise, if you're coming from a different industry,
+you, you know, your skill set might not necessarily be viewed in the same light as those
+from within games.
+I've seen CTOs of smaller companies with over 20 years of coding experience go through
+an application process at a AAA studio only for them to be labeled an SE2,
+which is basically one step above entry level.
+This is exacerbated.
+By essentially privilege, right?
+So when you're getting experience, there's a lot left to like, can you take on an internship
+while you're working or caretaking?
+Can you take on unpaid work?
+Are you located in an area that has game studios and are those developers active in the community?
+Can you get a mentor?
+All of these factors can help make or break your career.
+And then if you're even able to get into a program or get tools, not all of them are created equal.
+Folks interested in games are often directed or given tools that are not actually reflective
+of what's being used in the industry.
+And so they're put at a disadvantage to folks compared to folks who are actually using
+professional tools.
+And so when they're applying for work, they're going to get overlooked compared to people
+who are actually using tools that are reflective of what's in the industry.
+And let's say you're lucky enough to actually get some work.
+You may not even get credit on the game that you're working on.
+Interns, short term contract workers, people doing work for hire in junior devs are often
+not credited in the games that they work on.
+I'm credited in maybe like 50% of the games that I've worked on.
+And this can be really detrimental because some studios will require you to list the
+credits of the games you've worked on and provide proof.
+And then you won't have that because it's not listed on like movie games or something.
+And that could be really detrimental to your long term career.
+So future gaming, so just a little bit of a hint.
+So right now, the industry is pretty fraught.
+We're seeing AAA companies got bought out, merged, lay off thousands and thousands of
+people every year.
+Publishers are folding or they're taking a really like safe approach and they're only
+funding folks that have a lot of experience in games or sure butts.
+And then we see more people, you know, go into ND, which can be the answer for some.
+But it isn't the answer for everyone.
+It can be really stressful.
+They might not have the resources or mentorship.
+They need to be successful.
+So what is another way that we can get folks interested in investing in games?
+Well, we think that there's another pathway and that is open collaboration and community
+build games.
+So this isn't necessarily going to replace the games industry as it is now, but we do
+think it is a solution.
+So anyone with a computer and internet access can join.
+There's no interview gauntlet.
+You're not asked to spend hours and hours and hours traveling and going to places
+specifically to maybe get a role.
+There's no specific unicorn skill set needed.
+Everyone is working together.
+They're not competing for one role.
+Labor is visible, celebrated and credited.
+And most importantly, you have learning happening through making contributions to
+real projects with real tools with developers of a wide range of skill set.
+And the goal is to meet the community where they are while building something
+sustainable and amazing with one another.
+So at inlas, we're doing this in multiple ways.
+I'm going to take a moment to talk about our platform.
+If you want to know more, please come talk to us after, but we're building a platform
+where learners can and anyone can find collaboratively built games.
+You can contribute to them.
+Also, we have a way for people to gain experience,
+achievements and even micro credentials to showcase the work that they've been
+completing and demonstrate how their work translates to real world skills.
+And each user on the platform has a pro, excuse me, has a profile that showcases
+the work that they're doing and can demonstrate to others, others that they are
+resource if you need help or mentorship.
+But in order to make that successful, we do need collaborative games.
+So let's talk about the collaborative game we're making.
+We're making Threadbam, which is a top-down action adventure.
+It's got a mixture of mechanics is built around the theme of storytelling.
+So the world is coming apart at the seams and it's through sharing stories with one
+another that we can weave it back together.
+And we're trying to make a game that is fun and high quality, but actually I'm
+going to focus here less on the game itself and more on how we've structured
+the game to allow people to contribute at a variety of levels.
+It's a game as well as an open source project as well as a learning tool.
+So it has to try and serve all these goals at once.
+For starters, public everything, public repo, public issue tracker.
+You saw our workboard earlier, public discord and so on.
+Our backlog is in the open and it's we triage it pretty carefully, as best we can,
+with tagging things with the skills you need to complete these tasks and the
+XP that you would earn by doing so.
+Our educator colleagues, some of whom are here today, develop curricula
+around this game.
+So there's different contribution paths at different skill levels and different
+time commitments and we run programs around these in partnership with universities
+and other institutions and publish these curricula so people can do
+self-guided learning around this.
+And we value all kinds of contributions, not just stuff that directly impacts
+the game that a player sees.
+So concept art, play testing, bug reports, level designs on paper,
+all these things are valued and valid.
+The game is built around quests, the game player, that is, and the main
+plot of the game is told through law quests.
+So if you talk to the person on the left, they offer you this story book.
+By the way, the book was drawn by a learner and you play through the kind of
+main plot of the game.
+But if you talk to the other elder, they give you what we call story quests,
+which are quests that exist outside the main narrative of the game.
+So this is designed to give creative freedom to teams of learners who are
+building these games.
+And we've tried to structure the games in tunnels so that new contributors who
+don't have much experience with Godot can still make something cool.
+For example, we have template scenes for the different challenge mechanics
+that we have in the game.
+So people can pick and choose the mechanics they want to tell their story
+and they have an already working scene that they can build on and adapt as they need.
+We lean a lot on the animation player and on the Godot dialogue manager add on,
+which together with these and the templates and components we provide,
+it means you can do a lot and tell a lot of great stories without writing code.
+Although, of course, if you do write code, you can do more.
+There's too much to show you everything now, but here's a quick preview of three
+of the story quests which are in the game upstream.
+This is the lost toy.
+It's sort of fan fiction.
+It is using a mixture of our protagonist and some original assets and
+telling sort of another story that they might they might go on.
+Then there's this is Nora and the impossible homework and it's
+about a slice of a real story about a student's academic struggle.
+And I hope that it's not based on their experience contributing to our game.
+It has and it has some custom logic to change how the combat mechanic works
+compared to the base game.
+Then Swinjos Nocturnos is the story of a child's nightmare.
+It's very dark visually and tonally with lots of handmade art,
+cutscenes and custom logic, though still building on the scaffolding
+of what we've provided in the base game.
+And many, many more stuff from Peruvian wildlife and legends through what
+happens when technology and culture collides to a sci-fi story in a devastated world.
+Yeah, I could spend the whole session just showcasing stuff, but we should
+talk about what we've learned.
+So anyone can learn good.
+It's a professional level tool.
+So it's obviously harder to use than make code or other tools which are
+designed specifically for learners.
+But that's the point of what we're doing.
+We're trying to bring people to the tools that are actually used in the industry.
+And learners aren't starting from a blank page here.
+They've got a working game with templates.
+They have structured guides and they have mentorship so they can focus on
+building up the skills they need to tell the stories that they want to tell.
+And Grotto itself runs on pretty much anything.
+I do all my development on a six-year-old laptop and it's almost overpowered,
+particularly for the general game we're building.
+So we are really indebted to the person decades or centuries that have gone
+into making and giving away Grotto for free.
+That's without it.
+We couldn't run these programs.
+So thank you to everyone who's built Grotto.
+And young people are very excited by the concept of a game that's
+built by a combination of pros and other young people like them.
+So they come up with all kinds of ideas in this world.
+Here are some assets made by learners in one of our short introductory workshops.
+And people come back for more.
+So we had someone who took the task of drawing concept art for a new
+enemy and is now developing it from concept art through animations
+into an enemy that actually functions in the game itself.
+People draw people draw props.
+People make new scenes remakes in the elements we have and so on.
+What was work well?
+Playable documentation has worked well.
+I'll say nothing more because the next talk in this room is about
+playable documentation.
+So I will move to a seat and I'm sure they'll say all the things
+I would have said here.
+Anyway, some things didn't have didn't go quite as we expected.
+So it's hard to anticipate ahead of time what learners are going to
+want to customize and adapt in their games.
+We had before we started working threadbare, we worked on we had built
+some modable mini games which implement familiar games such as Pong
+with a large number of parameters that you can tweak to change the experiment
+with changing the rules of your game.
+And so this led us down the path of doing something similar.
+Having shared scenes where your levels are built out of instances,
+just of these common scenes with a set of manually exported properties
+for the things that you might want to customize.
+So here we had, okay, you just drag a new texture in and then your paddle
+changes and we provided stock textures.
+So when it came to threadbare, we built out that we have a player
+scene and there's one scene instantiated in all those quests that you saw
+with various parameters, including a sprite frames resource.
+And as long as you provide the right animations, you can just drop in new
+textures even into the sprite frames resource and customize your player,
+which works great if your player has the same proportions as our player.
+If it doesn't and you realize, okay, this is not really fitting and it's
+really tempting to click through into the shared player scene and just rearrange
+the scene to suit the game that your laser focus on building,
+which can have some quite funny side effects when you go back to the
+main game and the player is really tiny.
+So learners surprise us with their creativity every week.
+And we've found that in some ways too much scaffolding can become a
+constraint on what they can achieve.
+Some aspects of how Godo works, which are there for a reason are very
+confusing to newcomers.
+The way that resources are shared is surprising.
+Duplicating a path not duplicating its curve is really surprising.
+But then things which to me seem logical, where if you duplicate a scene,
+it doesn't duplicate all the external resources that scene refers to,
+which is the behavior that you want.
+But if it's in general, but if you're not expecting that,
+it's very easy to just do the simple thing of, okay, I want different
+tiles in this in this level, I'll just edit the tiles and surprise,
+you've now changed the tiles throughout the game.
+So we're moving in the direction of rather than having shared scenes,
+having duplicated scenes with shared scripts, components and so on,
+plus from the special case of building a quest, we have a recursive
+duplicator tool that duplicates everything and relinks it properly
+within the boundary of the templates we provide.
+And we've also found that a three act quest is a lot of work,
+both for the people building the quest and also for us reviewing
+the quest when it's submitted to us.
+We can talk about some of the specific issues of that in a moment,
+but we found that in some of our following programs there,
+when we have smaller self contained changes being submitted incrementally,
+that flows very, very smoothly.
+So the direction we have to move in here is to be flexible about the
+scale of a quest, not all quests need to be a three act story.
+You can tell, maybe you can have one or even just a cutscene,
+it might be enough in some cases to tell the story you want to tell.
+We need to find ways to enable people and encourage people to send
+their work to us incrementally.
+So it's a small amount of work for us to look at and it's less rework to do
+if something needs to change or they need to change the approach,
+they're doing something to fit it with the game at large.
+In the future, we probably need to find a model where quests don't have
+to live in our source tree, but can live somewhere else.
+This introduces kind of API compatibility problems that the projects
+are a bit a young stage now for that to really work well,
+but I think it's something that needs to happen as the number of people
+working around the project goes up.
+Version control is a very, very powerful tool, is essential,
+but it's yet another thing with a steep learning curve,
+particularly when you're learning lots of other new tools.
+For us, it's a particularly hard problem because in essence,
+we have a very, a small number of full-time maintainers of the game,
+plus hundreds of people all working around the same project.
+So I could fill a whole talk with this,
+but instead I would say that Ink and Switch are working on a plugin
+to add version control to the editor with live synchronization of branches
+between different collaborators.
+As a sort of sneak preview, you get merge previews.
+When you go to merge a branch, you can highlight what in the scene has
+changed, both breaking down a property and highlighting it in the scene.
+This is very, very cool technology.
+Paul, Nikita and Lilith are here at the conference.
+I recommend you talk to them and take a look at this.
+Licenses, I am the licensed police.
+I'm kind of used to licenses that look a bit like this.
+It's sort of lots and pages and pages of legal ease,
+or you know, you have summaries.
+But the nice thing about these is there's a small number of licenses,
+which are widely understood.
+People who are into this stuff know you can mix and match.
+Assets or code under these licenses that can pass with one another.
+In the games world, this is an incredible ecosystem of amazing free assets.
+But the kind of approach people take to licensing is very different
+to the broader open source ecosystem.
+So, for example, we see a lot of licenses, which are kind of vague.
+People write their own licenses, and often those licenses
+say that you're free to use your assets in commercial games.
+You can redistribute them, modify them as you wish.
+But what you can't do is redistribute them in a form
+that other people can take the assets and use them themselves.
+We are an open source project.
+So, if we take an asset pack, which forbids redistribution,
+and put it into our repo, we are redistributing their assets.
+So, a surprising consequence of being open source
+is we actually have less freedom in which free assets we can use.
+And it would be easy to say to learners, "Great, OK, let's just...
+"You can use anything as long as it's under Creative Commons,
+"Attribution, Sharerlike."
+The problem is we find that often people tag their asset packs
+as being under such a license.
+But then, write license terms saying,
+"You may not redistribute the assets."
+So, this is basically a kind of culture clash
+of how people are approaching licensing.
+And I don't have a good answer for this if you do.
+I'd love to hear it.
+Zooming out a little bit, we are taking people on a journey
+from being a player, through being a learner,
+from being a contributor, and potentially,
+to becoming a core developer of this game or other games.
+And there's things that we have to do
+to enable people to actually go on that journey.
+So, table stakes is that to have players, of course,
+the game must be publicly playable,
+even during development, fine, not controversial.
+For people to learn from the game,
+the game must be open source.
+For people to actually be able to contribute to the game,
+it's not enough for the game to be open source.
+We have to be actively encouraging and supporting people
+to make those contributions,
+particularly if they're not familiar with those kind of workflows.
+And then, if people are going to be involved
+in some of the more core decisions about the game,
+then we have to be working in the open
+as far as we can for these things,
+with the ideation and design.
+Maybe not every conversation can happen
+in a public Discord call or something,
+but we need to at least document the decisions we've taken
+and why, so that people know the kind of background
+to some of the elements of the game.
+The more we've done is we haven't got this perfect
+by any means, but we've found that in the cases
+where we have gone further along the kind of yellow axis,
+people have been able to make more impactful
+and meaningful contributions to our game.
+So, your turn.
+You can follow a similar journey, right?
+First of all, we'd love you to try Threadbay.
+It's quite early in development,
+but it's still already pretty fun.
+You can play it in a browser,
+or you can check it out from Git
+and enjoy it in the comfort of your own editor.
+We'd like to encourage you to share your expertise
+with the next generation of game makers.
+We have on our website various resources
+you could use to run some of our programs yourself
+or join our Discord and directly act as a voice
+of a great expertise in whatever your discipline is
+in our community.
+And then, thinking bigger,
+maybe you could consider making your next game
+a community-built game.
+Thank you.
+(audience applauds)
+- Thank you so much, 41-level talk.
+We now have five more minutes for a quick Q&A.
+If any of you have any questions
+for Sarah and Will, raise your hand.
+I'll go around with the mic.
+And otherwise, I could also--
+- Yes, yes, yes, yes.
+- Thank you so much for the talk.
+How do you scope the story
+or the features that go into the game?
+Do you do that as community work as well?
+Do you have collaborative modeling about that?
+Or is somebody in the company responsible
+for making decision what goes in and what goes out?
+- Great question.
+I think, so the model we have
+is that we are owning the creative direction of the game.
+And so, what systems the game needs flows from that
+with the escape valve, right?
+If people need some different mechanics in their quest,
+they are free to build them.
+So, to move the openness earlier in the process,
+what we're trying to do is to at least have the decisions
+we've taken be public and why we have made those decisions.
+And when we're not sure,
+open that to discussion and input from the community.
+- Mm-hmm, yep, I would like to also add
+our creative directors here in the audience.
+So feel free to talk to them.
+But yeah, so since we are making an RPG,
+there's some core elements
+that we wanna make sure that we include in the game.
+What we do specifically, like with narrative,
+for example in quests,
+is we're putting together essentially a narrative vision
+for this project in general storyline
+of where we would like things to go,
+but leaving the actual execution
+of the way that the character moves through the game
+and achieves those, that's open to contributors.
+So if you find a quest or something
+you're really interested in, you,
+or you and a bunch of other people
+can actually bring that to life in a way
+that's very interesting, specific to you,
+but also still honors the overall vision of the game.
+- And then that will be it for the Q and A,
+thank you again so much to both of you.
+As was just mentioned, as Will just said,
+the next talk will be here at 1230 Jim's News and Museum,
+so documentation should be in-game.
+Maybe I'll see you again in the room then.
+And with that, I would ask for another round
+of applause for Sarah and Will, thank you.
+(audience applauds)
+(upbeat music)

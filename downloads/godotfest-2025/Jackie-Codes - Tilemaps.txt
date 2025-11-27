@@ -1,0 +1,933 @@
+API URL: https://api.media.ccc.de/public/recordings/93480
+Frontend URL: https://media.ccc.de/v/godotfest2025-tilemaps
+Title: Tilemaps
+
+[MUSIC PLAYING]
+Like for many, my journey with Kado started with a 2D game
+that involved tile maps.
+But that's a few years ago.
+And things have changed since then.
+Tile maps got a lot more powerful.
+And no one than Jackie Coates is better suited
+to explain what's the current status.
+You might now hear from Twitch or YouTube.
+And please welcome Jackie Coates.
+(audience applauding)
+- Hello everybody.
+This is so weird.
+I'm so used to just like a number on Twitch saying something
+and I don't even wanna count you guys right now.
+(laughs)
+But anyways guys, hello everybody.
+You might know me as I was introducing Jackie Coates.
+Yeah, I do YouTube.
+I do Twitch.
+I'm a content creator.
+I've been using Godot now for about four years
+and I'm loving it.
+Are you guys having a good time at the convention?
+You're nice?
+Yeah.
+It's really like, look at this beautiful room.
+Wow.
+(laughs)
+All right you guys.
+So, quick goals.
+I'm gonna start off the talk
+by just giving a basic overview of tile maps
+so that you're not completely lost.
+Yeah, I wanna expand your toolkit
+so you can see all the use cases for tile maps
+'cause I've actually used tile maps in games
+where I didn't know I would.
+So I kind of went to see the possibilities
+and have a deeper understanding
+on how the tile maps work.
+And yeah, also to know what to expect
+when you're making a big game
+because I've made a couple games
+that have many thousands of tiles
+and I've ran into many crazy issues
+and it's made me so thankful
+for some updates that happened
+because a lot of the things I'm gonna talk about
+wasn't possible in other versions of Godot.
+So yeah, let's all,
+and I also want you to know where tile maps fall short
+so that you can plan around such issues.
+And yeah, let's get started.
+Yeah, again, who am I?
+What do I do?
+So yeah, when I was at home writing this thing,
+I was like, who am I?
+(laughs)
+But yeah, I kind of introduced myself in the beginning,
+but I just love game development.
+It's so cool.
+It's like the ultimate expression of human creativity.
+And I think we're all...
+I already know like so many of you are cool
+because you're into game development
+and it just shows that you're creative people, you know.
+And yeah, I really love game development.
+Like I identify with that.
+Like I'm a game developer, it's cool.
+I love traveling and talking to different people.
+Like please, if you see me outside,
+do not hesitate to walk up to me,
+ask me questions or just chat.
+Like I would love that.
+And I know it's a little nerve-wracking,
+but I love talking to people.
+So yeah, feel free.
+All right, I just posted some screen shots
+of my HIO games.
+I started in Godot 3.
+Some of them are mobile.
+This is the boot.
+I don't know if you guys know
+the boog-dody and nature spread.
+That was kind of terrifying 3D model.
+This was actually my first Godot game.
+I made it like in three-ish days.
+Jumped-y-doodles, just a simple platformer.
+Yeah, some of these I made in teams of game jams.
+Moon Bunny Awakening was a really cool game jam game.
+I don't know.
+I've also done a lot of devlogs for these games.
+So if you're interested, you can check out my YouTube channel
+and see how they were made.
+Gnomes of War, mobile game,
+you can get it on the Android store.
+So yeah, I've been making a lot of games
+and I've done thousands of experiments
+that haven't made it to HIO.
+And I haven't actually published a game on Steam,
+which I really want to, but
+still these experiments are super vital
+and they help me, like now when I work on games,
+the process is just super quick
+because I've had all of these experiments.
+So I really urge you guys to just experiment,
+don't get too caught up on publishing a game,
+like have fun with game development as much as possible.
+If you have the budget to do that,
+I know some people have different budgets and stuff.
+It's not always the best experiment, but yeah.
+Yeah, here's a tile map.
+I did this, I don't know if you have,
+do you guys see the devlog Logan video,
+the 40-hour game jam?
+That was a really cool project.
+We all use the same tile map.
+And yeah, like my experience with tile maps,
+starting off this game and setting up everything
+just was so quick because it gets really faster
+as you use tile maps more and more.
+And yeah, this was a turn-based game
+and it was, yeah, a little bloody.
+Okay, yeah, here is another.
+I think it's really good also to recreate
+games you've already played.
+So I made this in six and a half hours on a live stream.
+And this is Terraria.
+It's very yeah, you can look at him,
+but it was, it's still a fun experience.
+Like the first game I ever made was Mario.
+So it's like, I really urge you guys
+to just like recreate games,
+even if you're recreating little things,
+little systems within games
+because it really expands.
+You get to think how they made certain decisions.
+You can see the game design and yeah, I've done Terraria.
+I did a little darkest dungeon experiment.
+Don't starve and yeah, it's always super fun.
+Sometimes I need to not recreate games
+because it's just too fun.
+So yeah.
+So here is my, one of my projects.
+It's gone through many names.
+If you catch my live streams, many,
+one name I probably shouldn't say on stage here.
+(laughs)
+Yeah, the first iteration was full procedural generation.
+So all the tiles, there was trees,
+everything fully procedurally generated.
+And then I was like, oh, okay.
+Like that was really fun messing around
+with noise and everything.
+But then I was like, okay, let's,
+I like the procedural generation.
+It gives really interesting looking continents and stuff.
+So this is actually semi procedural generation.
+So I'll go more in depth into how that is possible later
+and why you should do it and kind of the differences.
+But now the game, it's more like all no procedural generation.
+I'm like chunking it and I'm setting each tile myself.
+So it's interesting to like the stages I went through,
+but still the lessons I learned
+throughout each stage helps everything.
+So I think it was fun.
+So why should you care about tile maps?
+So yeah, they're very powerful.
+They could be used in use cases that you wouldn't think about,
+which I'll go over in a bit.
+Super easy to just create procedural generation,
+especially when you're using these Godot noise textures.
+And also grid maps, the 3D grid maps.
+I don't know if you guys have played cassette beasts,
+but cassette beasts was made using grid maps in Godot.
+I'm not sure how supported it is right now,
+but if you don't feel comfortable with tile maps,
+try using grid maps.
+You'll see like a lot of similarities there.
+So it's, and it's also super fun.
+And right now there's like a 2.5D revolution.
+There's so many games coming out.
+Okay, I don't know what that was.
+Yeah, so here is a little project I did using grid maps.
+And yeah, it was fairly simple to set up
+and it's super fun messing around with that.
+All right, so let's go over a basic understanding
+of tile maps.
+So you don't confuse the tile set and the tile map.
+It used to be tile map, now it's tile map layer.
+Only difference is that it's just one layer.
+And so the tile set is your library of tiles.
+So it could hold patterns,
+information about the tile size, the tile shape.
+It's a resource, so you can save it
+and use it on different tile map layers.
+And it's important to like have a clear understanding
+the differences, because sometimes when you're trying
+to look for specific information,
+you don't, like, and you open the documentation
+for the tile map layer, you're like,
+where's this variable?
+But actually you have to go into the tile set
+or maybe you need to get the tile data.
+So it's just important that you compartmentalize,
+okay, what data am I getting?
+Am I getting it from this or this?
+So that's just kind of important.
+Also the difference between map position
+and local position.
+So local position is the normal position you use
+when you get the global mouse position.
+So as you can see the mouse, like, okay,
+zero, zero on the top left corner.
+And tile sizes are 16 by 16,
+so that position right there is 38.24 by 29.
+I just kind of give it a guesstimation.
+And you can see that they are floats,
+so it's a vector two, that's important.
+But when you look at the map position,
+which is very important when you're using tile maps,
+that same position is two, one,
+because you're taking into account the tile size
+and everything.
+So your tile size doesn't need to be 16 by 16,
+it could be 32 by 32, 64 by 64,
+but these functions automatically convert that.
+So you can put, like, if you want the map position,
+you can just put the global mouse position,
+it'll return that, and it's important to know
+it's a vector two I, so that there's two integers,
+that's why it's two, one.
+Yeah, tile size, those are the positions.
+So, yeah, if you have a tile map layer,
+you can easily get the tiles using that.
+Alrighty, so within the tile set,
+there's three different tile types,
+you have your normal tiles right here,
+they're basically images to the size of that you have.
+So they're super fast, simple images, decorative,
+here are terrains, they're kind of a pain to set up,
+you need to do is bit mask, but they're beautiful.
+It also saves a lot of times, 'cause technically,
+you don't need terrains to do all of these images,
+you could slowly put the tile pieces together,
+but that takes so much time, so that's why we have terrains.
+The reason why they're so slow,
+is because if you look at one tile,
+it has to check each tile around the tile
+to see which one to use, so it's like constantly checking
+a bunch of tiles, so once you get into scenes
+with thousands of tiles, thousands by thousands,
+it takes a long time to even draw it,
+like you should try just drawing a super large square
+using terrains and you'll see that they're very slow.
+Yeah, and also, not only to place the tiles within the scene,
+but if you have a scene with big terrains
+and you're playing the game, it's actually much slower,
+so not only to place it, but to be in the scene,
+that's why I'll go maybe a little bit later over that,
+but that's why it's actually good to chunk them,
+because if you have like a large terrain,
+and if you cut them up into multiple tile maps
+and multiple scenes, it actually runs a lot faster.
+And yeah, this is the thing most people are surprised
+about, the scene tiles, so you could see
+I set the grass and I set the trees all using tiles
+and they are the scene tiles and they are,
+they're stand-alone, own, good-o scene,
+it's very easy, super powerful, of course,
+if you don't like the grid-like pattern within the scene,
+you can, you know, you can make a little function
+to slightly alter the position and you can do stuff like that,
+but scene tiles are super cool,
+but at the end of the day, if you look at the tile map,
+well, maybe let's not do that,
+but if you look at the tile map layer,
+and your game is running and you place scene tiles,
+it literally just adds that scene as a child
+of the tile map layer, whereas tiles,
+normal tiles and terrains do not do that,
+they don't add it as a child of the tile map layer.
+So yeah, here are terrains,
+so you don't wanna hand place all of these,
+you wanna just easily draw it,
+so this is what the bit mask on the terrain looks like,
+so you can see I have terrain set,
+this is water and grass, so you can see here is the water,
+and up there you can see it corresponds to that,
+and yeah, it takes, if you have a lot of terrains,
+this is kind of annoying to set up,
+I will show you later on some plugins,
+make it faster, but yeah,
+that's kind of how you set up these rules,
+and this is called a three by three minimal,
+so it's 47 tiles, and yeah,
+I'll also show you another tool to make it faster
+to draw that because you don't wanna be drawing
+47 tiles for each of your different terrains,
+but I don't know, I just, I love how that looks,
+it's like the water in the grass, so yeah, yeah, yeah,
+so here is, it's a GitHub website that you can use,
+so basically instead of drawing these 47 tiles,
+you can draw just this, so you put it in there,
+and you put four by four plus,
+and then you see it exports it like that,
+so you need to also test it,
+so you might have to make some adjustments
+to the tile that you've drawn,
+but this just saves so much time,
+it's an amazing tool, yeah.
+And cliffs are just so satisfying to place
+when I was working on Lawcraft, it took me,
+like I was thinking about cliffs for so long,
+and I did not know how to do the bit mass
+because you know, it's kind of different,
+they're like very tall, and just one day it came to me,
+I was like, okay, I can basically make the,
+where you see the elevation, that's basically just one tile,
+I think I'll highlight it right now, so yeah.
+You can, when you're setting up a tile,
+you can click on it and stretch it,
+so those are all just one tile, so it,
+you use the normal, you know,
+you see the bit mask is exactly the same,
+and it's treating this as one tile, you've just stretched it,
+and yeah, they're really nice to place.
+Okay, so before you, you know,
+think about doing procedural generation and stuff like that,
+you need to really think about what tiles
+am I gonna be using, am I gonna be using terrain,
+if you don't use terrains, then most of your issues are,
+you have much less issues because terrains,
+like I said, they're super slow,
+they add a lot more complexity,
+so what tile types do I use, how big will the scenes be?
+I know it's hard to think like,
+what does a 1000 by 1000 world look like?
+So yeah, just do little experiments like that
+to see how big it needs, because it's like,
+do you really have to have an open world,
+like is it okay to just have small scenes that connect,
+like you, 'cause if you want to have an open world,
+it's completely possible with Godot,
+there's a lot of things you can do to make that happen,
+but it's like, do you want to do that,
+like that's an important question to ask yourself.
+Yeah, so do you need to update?
+So in my game, you can chop trees,
+the trees, you're updating the scene tile,
+you can cut the grass, like even something as simple as,
+okay, you have a grass terrain,
+do you want to dig and then they'll be sand?
+That's actually much harder than cutting a tree,
+because cutting a tree, you're just deleting the scene,
+but if you're digging the grass and you want sand to come over,
+you're updating the terrains,
+and the terrains, they kind of update as a chunk,
+so yeah, that adds a lot more complexity,
+and yeah, chunk or not to chunk.
+When you have big terrains and big worlds,
+you're probably going to want to chunk it up,
+so yeah, here's some procedural generation.
+Yeah, we use noise to get that,
+I'm sure you've seen things like that,
+so yeah, it's important to speed up the time
+it takes to test out your noise,
+because there's some variables in the noise,
+like there's the frequency,
+there's different noise types, fractal,
+all different things you can mess around with,
+so it's always good to use the noise resource,
+you just basically get, go in good dough,
+get a texture 2D, and then add a fast noise,
+fast noise light, and then mess around with the variables,
+and yeah, just try to get the things you want.
+And yeah, you can also use multiple noise textures
+to get different biomes, you can't really see so much,
+but there's darker grass and lighter grass,
+so one texture is for the altitude,
+it just says, oh, is this water, is this land,
+and another texture is for the temperature,
+and I think I actually had three textures here,
+and another one for temperature and humidity,
+and you can do really cool biomes.
+And yeah, also, before you jump straight
+into doing procedural generation,
+I think it's, I learned this very late,
+it's super important to do handcrafted first,
+so think about what do I want the level to look like,
+what do I want this to look like,
+and to first place everything down,
+and then you can base your procedural generation
+off that, mock up that, that saves a lot of time,
+because yeah, you're messing around with a lot of numbers,
+tweaking different values, but it's so much easier
+to have a basis for that.
+Okay, and yeah, here is the different values
+you can tweak with the noise,
+see this is on texture 2D, or yeah,
+and you can see we have the fast noise light,
+simplex smooth, you can just change it,
+and do tool scripts to update what that looks like,
+and I'll show you some tools, this is a tool
+I made to test out what's different
+noises changes, how it changes it, and everything.
+Yeah, I would have done, I did this a while ago,
+I don't think I even used tool scripts,
+I think I was just clicking buttons within the runtime,
+so if I were to do this over,
+I would definitely use tool scripts,
+but it's also important to create tools
+to really get your areas looking the way you want it,
+but also don't spend too much time on your tools,
+so yeah, you can see I even show what percentage
+or the biomes that I have, and yeah, I think it's pretty cool.
+So yeah, get comfortable with tool scripts.
+Yeah, and this is the only way that you can do
+semi-procedural generation, because like,
+okay, semi-procedural generation is when you
+procedurally generate it, and then you edit it,
+so the way you do that is you,
+'cause the tool scripts, it basically runs in the editor,
+you don't need to run the scene in the game,
+it's running in the editor, so yeah,
+you run the procedural generation,
+all the tiles pop up in the editor,
+and then you can just edit it the way you want,
+so using tool script, that's the only way to do that.
+Saving time and development is priceless,
+and here is a super simple tool script
+you can do to just mess around with it,
+so this is actually, I think it's fairly new,
+they came out with this in like 4.4 or something,
+but yeah, you could just, you have to put this
+at tool at the top, and this is a button,
+it shows up in the inspector, you can click it,
+and it'll just print hello world,
+and yeah, you don't need to run the game,
+you can just click it in the inspector,
+run whatever, you know, you can run your
+procedural generation function there,
+pop it up in the editor,
+and yeah, I messed around with tool scripts
+much later than I would have wanted to,
+they're very easy, and I really urge you to try them out,
+so yeah, like I said, the full procedural generation,
+semi procedural generation.
+So, proc gen, what's taken into account,
+so what tile types do I need, I went over that before,
+and how will I save and load tiles?
+So, there's two ways you can go about saving and loading them,
+so you could have the world already built in the game,
+and you can just basically edit the deleted,
+so like for instance, let's say you have your forest,
+and let's say you chop down some trees,
+so then you're adding that to a delete dictionary,
+they chop this tree down, they chop that tree down,
+maybe they planted a tree here,
+so the next time you load the game,
+it's not loading the whole tile map,
+it's just loading, okay, they chopped that,
+they chopped that, they added that, so that saves a lot of time,
+but if you think of it over time,
+you're gonna be editing so many things,
+so it slows down as time goes on,
+so yeah, you could just load all of them,
+so make tools to test different things,
+and also if you're doing like a semi-procedial generation,
+don't have like a giant landscape in your scene
+when you're testing things,
+because it just makes Godot super slow,
+and yeah, just start with super small sizes,
+and yeah, before Proctend do handcrafted,
+talked about that, okay, and if you have enemies
+that need to do pathfinding,
+you need to chunk the nav navigation regions,
+so I don't really use,
+there's nav regions that you can draw onto the tiles,
+and I don't use that, I use these nav regions,
+and it wasn't possible to actually chunk them up
+because you couldn't have two adjacent nav regions before,
+but in 4.3, I believe it was Smix 8,
+he added that, that was a really nice thing,
+because if you think about it,
+when you place anything on the ground,
+the enemy pathfinding needs to be updated
+'cause they can no longer use that,
+so it's very expensive,
+that's why people say don't build
+an open world survival building game,
+because if you run into problems like this
+where it's just, it's very difficult to optimize
+and deleting, updating the tile map with enemies,
+just it's a headache.
+So yeah, this is a cool thing I did with threads,
+so I know what you might be thinking, okay,
+terrains are slow, why don't I just pop up a thread,
+why don't I just set the tiles with the thread,
+so you can use threads to set tiles,
+but the tile map cannot be on the scene tree
+when you're setting the tiles,
+'cause there's a lot of corruption that happens,
+it's not thread safe to do that,
+but in this project, what happens is when you load the world,
+let's wait for it to loop,
+so you can see these are not terrains, they're normal tiles,
+so it's just loading tiles,
+and in the background, the threads are creating
+the terrain tile map layer,
+and then when it's done, then it's adding it to the scene tree,
+and that's thread safe,
+because the threads are doing the work
+before it's added to the scene tree,
+so you can do little tricks like that to speed it up,
+and the user's not gonna care that much,
+well, ugly tile for six seconds.
+Oh yeah, this is important,
+so Groud is a very big contributor to the tile map,
+so if you ever run into an issue,
+you just blame Groud,
+so that's his blue sky, you can write him,
+if anything happens,
+or there's a lot of other contributors,
+but it really helps to have someone to blame,
+sometimes it's my fault, like I do admit that,
+he does come on my stream,
+and yeah, I kind of give him hell a lot of the times,
+but he's very patient, so I appreciate that.
+(laughs)
+Yeah, so here are some plugins and tools that you can use.
+I haven't used this LD-TK,
+but Groud says it gives you faster terrain,
+so it's actually a standalone editor,
+so you can place all your tile maps within it,
+and then you use a plugin on Godot
+to allow Godot to read the files,
+so you can try that out.
+Groud says it's good.
+This automated terrain bit masks,
+yeah, my friend made it solar,
+and it just makes it very easy
+when you have a lot of terrains that you're drawing,
+'cause I don't know if you remember,
+you need to draw the bit masks to them,
+and it takes a long time,
+and using this plugin,
+you can just go in A-sprite and draw it all in there
+and set up the rules,
+and it's a lot faster, you can check that out.
+Better terrains, I use this very little,
+but there's a lot of people that use it,
+so I feel the need to mention it here.
+When you actually, I think I used it for the Terraria,
+the game, it made it much easier to do the terrains,
+but yeah, simpler, more flexible rules.
+So yeah, now power and powerlessness,
+so I'm sure you think like,
+oh, using the tile map to set scenes,
+wow, that's so cool,
+but it actually makes things a little hard
+because you can normally get a tile
+if you have the position,
+but not with scene tiles,
+so when you place a scene tile,
+you need to catch it,
+like you need to have a signal,
+child enters scene, catch it,
+and then you need to do,
+put the location of that scene tile yourself,
+so it makes it, it's not as easy to retrieve the scene tiles,
+you have to work around that,
+but in some cases it can make it easier,
+so here is a game I made for the Game Jam,
+the Pirate Software Game Jam, it was two weeks,
+and I was inspired by Blueprints,
+has anyone played Blueprints here?
+Yeah, that was a good game, I love that.
+So basically how it works,
+you open a door and you can spawn
+different dungeon rooms,
+it could be a monster room,
+it could be a shop room,
+you have to manage the door placement of it,
+and when I was setting up the placing of the rooms,
+I was using nodes, nested nodes,
+and then I was like wait,
+they're in a grid pattern,
+so basically this is setting it using the tile map,
+and it's using like a 200 by 200,
+I don't really remember,
+but I put that size in the tile set,
+and these are just using scene tiles,
+so yeah, some use cases like you wouldn't expect,
+but again I need to have a signal to catch it
+when it enters the tree,
+and oh yeah, that's another thing,
+so it makes it more difficult
+if you need to input data into the scene,
+so it's like if I wanted to say okay,
+this room is a reward room,
+I had to catch it after I put it into the scene,
+so yeah.
+Serialization, so yeah,
+saving and loading tile maps,
+how does that work?
+So yeah, there's different ways
+you can serialize the tile maps,
+I like, when I think of how I did it for logcraft,
+I use the dictionary,
+which I'll show, yeah, you can see there's a dictionary,
+so for each tile type,
+and the key basically gives information on retrieving it,
+so like the source ID,
+you can see the tile dictionary,
+there's a vector three,
+the X was for the source ID,
+the Y is for the atlas coordinate,
+and the Y and Z are the atlas coordinates,
+and then it's just the position,
+and then the Godot could read that information
+and place the tiles using that,
+so that's one way of serializing it,
+and yeah, you need to use these functions,
+resource saver dot save,
+and you just put your resource in there,
+this could be any name you want,
+this just puts it on your computer,
+and then you load it,
+but you need to create this resource,
+however way you want,
+and yeah, when I was preparing for this talk,
+and I was testing a lot of things,
+Groud showed me that you could also use patterns to save,
+which is really cool,
+and it's super fast,
+even when you wanna like place the terrains,
+I don't know how it works under the hood,
+but it actually eliminates the issue
+of the terrains taking a million years to place,
+even if you have a lot,
+like I tested it with a thousand by thousand,
+and that's a huge tile map,
+like when you're putting the terrains,
+it takes like 25 seconds for my computer
+to actually register that, maybe 20 seconds,
+so yeah, you could use patterns,
+so, and the cool thing,
+which I didn't expect is that the pattern,
+it could have tiles, terrains,
+and scene tiles all in one pattern,
+so the way you would do that,
+let's say I place the pattern in the scene,
+so you get pattern,
+and then since this script is on the tile map layers,
+there's a get used cells,
+and it just gets all the cell positions,
+it's basically an array of positions of the cells,
+like the scene, terrain tiles,
+and then you get that pattern,
+and then you can just save that pattern,
+and then when you wanna load it,
+you just set the pattern.
+Right now, you have to put the position
+that the pattern is,
+and then you put that pattern that you saved,
+so in this example,
+I didn't save the pattern position,
+so if you are implementing this yourself,
+you'll have to save the pattern position as well,
+but this is super cool.
+The only downfall that this could have
+is that when you put it into a pattern,
+then you can no longer get the information,
+like oh, these trees have all the positions of the trees,
+and all the positions of the water layer,
+like it's easier to update,
+like let's say you cut a tree
+if I just have to look in the tree array,
+but if you do it with patterns, you can't,
+it's just one array of all the cells,
+but you could have a hybrid approach
+where maybe you use patterns
+and the dictionary way, so yeah.
+When I was saving it, it took two seconds,
+and when I loaded the 1000 by 1000,
+it took seven seconds, which is extremely fast.
+As opposed to using dictionaries,
+that same thing was,
+it took one minute and 12 seconds,
+and if you're interested in all of these tests that I did,
+you could, I made a GitHub repo,
+you could check it out,
+and you can see I messed around
+with all different ways of saving and loading the things.
+So yeah, in terms of logcraft,
+my game where I have to update a lot of tiles,
+this is a good approach, but like I said,
+I would probably test it out using,
+like instead of having an array of positions,
+I would have maybe like a pattern,
+you know, because it's much more faster,
+and it still gives you the ability to look it up.
+So yeah, I think I'm always a proponent
+for people to try to draw their own assets.
+It's so much fun, and you really,
+pixel art is, it's such an amazing medium
+where it's not as daunting as like other art mediums,
+you're literally just placing pixel.
+I used to use a drawing tablet when I first started out,
+but for the past two years,
+I literally just use a mouse to do pixel art.
+So you do not need any crazy equipment
+to start with pixel art.
+I really urge you guys to do it also
+to get good with the shortcuts on A sprite.
+I have binding so that I press S
+to lower my brush size D to increase it,
+you know, memorizing M.
+And like, once you get good at that,
+it's so fast to make pixel art.
+And I, it's so fun, I love it.
+I really urge everyone to try.
+I don't, wow, that went up, okay.
+Make them yourself, it's fun.
+Oh yeah, and you can also go to HIO to get assets.
+There's so many different tile maps.
+I actually use this one for the game jam
+with the dungeon role.
+But I also, I actually,
+I might in some months spend more money
+on tile assets than games.
+Because, and it's not that I'm actually using them,
+but I'm studying them.
+Like, oh, how did they do this?
+How did they put this in?
+So it's, go through that.
+There's a lot of free ones as well.
+Okay, even, I believe this one was even free.
+I'm not sure, but it could be.
+So look at them, you can use them to study.
+You can also, you need to read the licenses.
+Sometimes, if it's free, you can't modify it.
+But a lot of the times if you pay for the asset,
+you can modify it and get good at that.
+And just copy, it's practice, you know,
+do things like that.
+So the future for tile maps from what I heard
+around the block, there might be like new tile sets
+for each tile type.
+So instead of just creating a tile set,
+you might create a terrain tile set and a scene tile set.
+Like, I think that's the direction it's heading
+because yeah, the current way that it's using there,
+there's, you can't do specific thing like the dual grid.
+You need to add other complexity to have that.
+I don't know if you guys seen dual grid system.
+It's pretty cool.
+Yeah, I hope the terrains improve in performance.
+And I think in the future, there also might be ways
+to store data in each tile, but that does,
+I don't know, hopefully if it is implemented,
+it's implemented good because that could also
+slow down a lot of things.
+But yeah, questions?
+(audience applauds)
+- Please raise your hand, yeah.
+- Hi, thanks for the talk.
+You just mentioned it and towards the end.
+What are your experiences with dual grid,
+ups and downsides if you have it?
+- Yeah, I forgot who's, what's the name?
+Do you guys know the name of the girl who made that?
+What's her name?
+Yeah, I did, I watched the video.
+I was like, whoa, that's so cool.
+I also, okay, so when I, 'cause I was thinking
+of using it for Lawcraft, so the reason I ended up
+not using it was 'cause it's, I like having
+the terrain set up in a way where I have grass
+and then I can put water on top and it like,
+it does it differently depending if I'm putting
+water on grass or water on sand.
+And with the dual grid system,
+I couldn't find a way to do that.
+I would have to, I think that was the only issue.
+There might have been other issues,
+but it is super cool, yeah, that was the issue.
+If you don't have like, complex terrains,
+I think you could check it out.
+There's a GitHub repo on that now.
+- Are there other questions?
+- Yeah, thank you for the talk.
+Have you run into any limitations regarding terrain?
+Because as far as I know, there are open issues on GitHub
+and I've also opened a few of them,
+so I'm sorry for the maintainers.
+But have you seen any--
+- Like what issue did you run into?
+- Yeah, like specifically with drawing terrain,
+sometimes it's not exactly consistent
+with how the diagonals and transitions work.
+- Yeah, I mean, whenever, like a lot of the times
+if I run into issues like that,
+I either made a mistake in the bit mask
+or I have to like adjust the tile set.
+I don't know if, I don't know if maybe you did have an issue.
+I don't know, but it's very easy sometimes
+to just miss little things.
+I don't think I've ran into it.
+Did you use three by three minimal, like the 47?
+Yeah, okay, that's, yeah, I'm not sure about that.
+- I haven't run into any, just the speed
+that's the only issue I've ran into.
+Yeah.
+- So now that you're making a semi-procedural map,
+how do you handle the chanking
+when you hunt craft in things?
+And more specifically, how do you handle
+the scene organizations in three?
+- Yeah, well, actually I'm not making it semi.
+I was, that was like a middle transition where I was.
+But yeah, now it's, I just have,
+yeah, each scene just has all the different layers
+that I need like cliff layer, grass layer, floor layer
+for like indoor floors, because the grass layer
+contains like sand, water, et cetera.
+And yeah, each, it does, there's a lot of complexity
+actually that's added when you start to chunking
+because you know, when you use the,
+when you wanna get the map position,
+if you have different scenes, then the local is distorted
+because like, yeah, you need to find what scene chunk you're in
+and then you, yeah, it just adds a lot,
+especially when you're also saving data.
+So that's something you might run into,
+but chunking is very essential with terrain.
+So you will have to chunk, yeah.
+And just deal with those issues, yeah.
+- Thanks for this great talk.
+- Thank you.
+- If I understood correctly,
+you don't use the navigation layer in the tileset
+and instead you're drawing in the regions yourself.
+- Yeah, exactly.
+- You talk a little bit about why not
+because for us, the physics layers are working well,
+but we are currently also not using the navigation
+in the tileset.
+I'm curious what your reason is.
+- Yeah, I believe I tried to use it a long time ago
+and I just couldn't get it to work.
+I think it was even like in like the early 4.0.
+So to be honest, like I haven't either.
+It's on the list to try it out again,
+but I couldn't get it to work properly.
+Yeah.
+(chuckles)
+- Another question?
+Anyone?
+- Yeah.
+- So you mentioned tile terrains are slow,
+but it occurs to me like 1,000 by 1,000
+is it should not be slow.
+Like if you're making local modifications,
+it needs to check just eight tiles right around it
+and can select the right terrain tile just based on that.
+So do you have any idea like why that is slow?
+Is there something stupid going on inside the engine?
+- That's why we have to blame Groud all the time.
+(laughs)
+No, but it's actually really big like when,
+'cause I even, I have a pretty big chunk of my world
+and it's 250 by 250.
+So it's like four times that.
+It's actually a pretty big world.
+But I don't know.
+I've heard people implement their own terrain system
+and that worked for them.
+I also know people liked it better in 3.3.
+But they just became way more powerful in Gaudot 4.
+Like they changed significantly.
+So probably, yeah, like there's custom data layers now
+and different things like more information.
+It's not in each individual tile,
+but yeah, that contributes probably.
+I don't know, yeah.
+- Okay, is there another question?
+Over there.
+- Hi, Jackie. - Hi.
+- So we were just discussing like the how to chunk chunks.
+And I was wondering, could you make the chunks
+into a separate tile map and then have a tile map
+of tile maps?
+Would that be a good way to chunk chunks?
+- It's definitely worth try.
+(laughing)
+I think yeah, that could also be.
+It's just it gets, sometimes it gets really annoying
+when you have like all these scene tiles
+that have a lot of information because you can't,
+like when you have a very complex scene tile
+and you have a bunch of variables,
+export variables that you're adjusting,
+you can't adjust them when you use them as scene tiles.
+You can, but it's like you need to do it after you,
+it enters the scene, you need to change everything.
+So it's like, yeah, but you need to think about
+how many variables you need to change if it makes sense.
+Or you can, maybe you could use a resource,
+so that would make it easier, of course.
+But yeah, that sounds like, that's the thing.
+The cool thing about tile maps is that there's so many
+different ways of doing many different things,
+like don't just watch tutorials
+and think that's the only way.
+Just experiment with it.
+That's the cool part about game development
+and programming in general.
+There's different ways to do things.
+And yeah.
+This.
+- Is there a final question?
+No?
+Well, then please give another round of applause
+for Jackie Keltz.
+(audience applauds)
+(dramatic music)

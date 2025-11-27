@@ -1,0 +1,200 @@
+API URL: https://api.media.ccc.de/public/recordings/93151
+Frontend URL: https://media.ccc.de/v/denog17-75240-security-txt-across-the-industry
+Title: Security.txt across the industry
+
+(upbeat music)
+All right, now we have three lightning talks coming up.
+The first one will be by Sasha Heinemann.
+He's the co-founder of EdgeOps and deals with topics
+related to data protection, information security and audits.
+He helps companies to ensure that their operational
+and security process are not only compliant
+but also viable in practice.
+And the topic of the talk is security.txt
+across the industry, Sasha.
+- Thank you for the introduction.
+All right, I'll be talking about security text,
+what it is, who implements it and who should be using it.
+But before I start with the actual topic of the talk,
+let's briefly answer the question why this talk even exists.
+So among other things, our company EdgeOps
+develops a white label, data center portal,
+where customers can interact with the data center
+through various means.
+They can organize cross-connects, side visits and ticketing.
+We take huge pride in the fact that we're community driven.
+So we have the community in mind,
+especially the network operators
+when it comes to the features.
+So we also try to address recommendations of DINOC members.
+Whilst we were following official recommendation
+to implement our own security text, we asked ourselves,
+how are we comparing to other organizations
+in the industry?
+And so out of this curiosity, this talk was born.
+To give you a bit of background of what security text
+actually is, it has four main guidelines.
+Number one, it wants to have a single point of contact
+for vulnerability disclosure.
+Number two, it wants to provide authentic information
+and we can achieve this through encryption and other means.
+We wanna ensure that the data that you're seeing is up to date
+and we can achieve that through an expiration date.
+And lastly, we wanna share some kind of policy
+to, well, announce expectations for researchers like myself.
+RFC 9116 is the standard then that describes
+the implementation of security text, the how-to, if you will.
+It mandates that it must be a text file,
+no JSON or HTML allowed.
+It must be reachable under the end point
+that is highlighted on screen.
+Otherwise, it's not qualified as real security text
+according to the standard.
+It defines the minimum required fields such as contact
+and the expiration date and it mandates
+that it must be machine readable and easy to implement.
+Since 2019, the CIA recommends the adoption of security text
+and five years later, the German BSI decided to follow suit.
+Giving you an example of what a security text file looks like,
+we've chosen to show you our own implementation
+of security text.
+Here you can see the contact detail as a mail to field,
+although phone number would be a valid contact here as well.
+The expiration date is then a date-time string,
+and this is all you technically need
+to have a valid security text.
+The rest is optional, but, of course, highly recommended.
+Encryption is the URL where you can find the public part
+of the PGP file.
+Preferred languages is some kind of policy,
+if you will, on how to get in touch with us.
+We prefer German and English.
+And the canonical is then an additional layer of authenticity.
+It should match the URL you're currently on right now.
+If you want to reuse the same security text file
+for multiple domains or subdomains,
+you can, of course, add multiple lines
+for the canonical here.
+And lastly, we have the PGP signature
+based off the PGP file mentioned above.
+Now with that out of the way,
+let's talk about the research we did.
+We looked at the attendee list of Danock 17,
+and we stripped away all individuals
+without an organizational affiliation.
+And we landed with 239 organizations
+present at Danock today.
+As a next step, we looked into their security text endpoint,
+and we just checked if there was an answer on this URL.
+And with that, we were already happy,
+and we've seen that 60 organizations of the 239
+actually do have a security text endpoint,
+but it's just 200 OK.
+It must not necessarily be valid.
+Of those 60, only 16 actually have a valid implementation
+for a security text.
+So 6% of the overall data set.
+Now you might ask yourself,
+how come that there is a discrepancy?
+Well, a lot of content management systems are smart,
+and they render a 404 page,
+but as we learned, it's not valid security text.
+Some organizations chose to use,
+not the minimum required fields.
+A lot of times we see expired security text files,
+or no expiration date at all.
+And the 16 organizations that actually implemented
+security text as well.
+I want to praise, and you can see the list on screen right now.
+Now if you're under the impression
+that your organization should be on this screen
+and is not, please feel free to reach out.
+I'm happy to disclose the complete research if you want.
+But what if we're not just happy with valid security text?
+What if we want to go one step further
+and ask for an optimal implementation with, for example, PGP?
+Then the data set looks even grimmer.
+We're only left with five organizations
+that have PGP implemented.
+And as a side note here,
+one of the organizations you can see on screen right now
+would not have been here two weeks ago.
+What I did during my research, as you should,
+if you find something's missing,
+I reached out to all organizations
+that have an invalid security text.
+So where there was a security text,
+but something was missing or out of date.
+And one of the organizations answered in time
+before I closed the data set and they changed it,
+which should give us confidence
+that security, the information provided
+in security text is actually read and understood.
+Now you can see the overall adoption
+across various industries.
+I'm not gonna bore you with going through
+each and every line individually.
+However, I want to put some emphasis
+on the low adoption rate on hardware manufacturers.
+I don't have to tell you in our industry,
+hardware is the cornerstone of a network.
+And so if somebody finds a vulnerability,
+we should have an easy way to get the contact details
+when we want to disclose this vulnerability.
+During our research, we also stumbled upon
+some honorable mentions I want to share with you.
+This is no blaming.
+We're talking still about companies
+that have implemented security text,
+but there were some mishaps.
+So hyza.de has a valid security text,
+but it's only reachable under the up, up, up, up subdomain.
+BSI also has a valid security text,
+but it's valid until 2099.
+For reference, BSI only exists for more than 30 years.
+So the security text is valid even longer
+than the organization exists.
+And from an organization that has security
+and information in their name,
+I was expecting a higher standard
+when it comes to implementing its own recommendations.
+What I also want to mention,
+and I personally am a big fan of ASCII art,
+I don't know about you, is de-kicks implementation.
+And this renders, unfortunately,
+the machine readability test as faulty.
+So this is also not a valid implementation,
+of which I'm deeply sorry.
+Now you might be asking the question,
+why am I talking about all of this?
+What's the relevance for the industry?
+And the way we see this,
+there is only one easy way to announce contact details
+when it comes to getting vulnerabilities
+disclosed and its security text.
+Your website might look completely different tomorrow.
+The way contact details are retrieved on your website
+might change, but there will always be the endpoint
+for security text where you can even automate it,
+get access to contact details.
+There are other solutions,
+you can announce it through an HTTP header,
+you can announce it through DNS,
+but this is machine readable and it's human readable.
+Now if you're curious and you want to check for yourself,
+how your organization is doing,
+or how any organization is doing really,
+you can check on our website through the link
+you can see on screen right now.
+You might be surprised.
+And that already concludes my talk.
+Thank you very much for your attention.
+(audience applauds)
+- Thank you, Sasha.
+We do have time for one or two questions.
+Are there any questions?
+Questions online?
+All right, cool, thank you, Sasha.
+- Thank you.
+(audience applauds)
+(audience applauds)

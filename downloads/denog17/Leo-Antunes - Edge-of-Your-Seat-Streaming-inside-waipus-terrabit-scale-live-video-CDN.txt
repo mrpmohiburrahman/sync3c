@@ -1,0 +1,276 @@
+API URL: https://api.media.ccc.de/public/recordings/93345
+Frontend URL: https://media.ccc.de/v/denog17-75852-edge-of-your-seat-streaming-inside-waipu-s-terrabit-scale-live-video-cdn
+Title: Edge-of-Your-Seat Streaming: inside waipu’s terrabit-scale live-video CDN
+
+(upbeat music)
+- Our first talk will be hot by Leo from Waipu.
+He is an engineer mainly working with Golang
+and programming their videos streaming.
+So now welcome him on the stage.
+Give him a big round of applause.
+(applause)
+See you later.
+Hello, hello. I can hear myself. Good. Great.
+Hello, I'm a video streaming. I'm a GoFir. I'm a GoLang. I'm an infrastructure lead at Waipu. I'm not a networking person. So go easy on me. So why build a CDN? The first thing that you should ask yourself.
+is why the help you want to do that. And we ask ourselves the same thing. First important
+point is that video for us is our core business. So, of course, the CDN, so how the video actually
+gets to the customer is a very important thing to us and something that is front and center on the
+day to day work that we do. So, it's obviously, that is going to get a lot of attention from the
+whole company. And then you ask yourself the question. You're tasked with this task of delivering
+video to customers. The first thing is, stand there in front of the computer and ask, "Okay, can I
+buy this maybe?" And video streaming is probably one of the few markets now a day or one of the
+few areas now a day where it doesn't really make sense to buy it because it's really prohibitively
+expensive, if you want to buy it from the local hyperscaler of choice around the corner.
+So that's the first thing that should scare you off a bit. But there are other reasons
+we're going to get into later. This is like the big elephant in the room. And then you
+start to think a bit more about it. And you notice that the current protocols for doing
+video online, you may not have never heard of them, but HLS and dash are the ones that
+are being used basically everywhere. They're very HTTP friendly. So, at that point, the
+latest, when tasked with that task of building a CDN, you should ask yourself, okay, I can
+buy it, but it's just HTTP, right? So, can I just not put Nginx in front of it? And
+we did that, and it worked for multiple years, kind of. And to understand that, kind of,
+you have to take a little step back and see what's going on, what are we actually working
+with? Not just video, but what kind of video, exactly? Our traffic is 90% live TV. And
+how does live TV work? Just a very high-level overview. You have this wonderfully vintage
+television client accessing a network that is, therefore, the scaling that CDN, in turn,
+gets content from the so-called origin server. It's a very video-specific term. I had never
+heard this name before starting to work with video six years ago. So, you've probably never
+heard of it either. But that's basically the place where this -- the single source are
+through for your video content, where it's actually coming from and gets -- has to be
+delivered to all the clients accessing it. And from the other side, it gets kind of pushed
+into this origin server from ingest. So, basically, the content from your television
+channels that is ingested into our network and lands in a place that then can be spread
+around the internet. So, what was missing in the setup that we had the first few years?
+The first thing is maintainability. It grew fast. It grew well enough to deliver our first
+million of customers. But it wasn't easy to deal with. So, it was a setup with -- it
+was a setup with a lot of lower code. It was a setup that no one was really comfortable
+maintaining when things went wrong, like they always do. It wasn't a very comfortable place
+to be the one sitting in the chair having to debug and maintain that code. The second
+big thing that was a problem with the old setup was observability. So, we had a lot
+of content being delivered, a lot of customers, and we could never really know what was going
+on in our system. So, we had, of course, as network people, you know, you have a lot
+of information from other parts of the system, like, you know, how the network is behaving,
+but we didn't know exactly what was going on for the customer as a consumer of video
+accessing that content. So, observability on the -- the video delivery layer was missing.
+Resilience was also kind of a problem. It worked well enough again, but it was not ideal.
+So, when things go wrong, as they always do, it wasn't very intelligent dealing with a
+sort of failure. So, that was the point where we wanted to make things better. And then
+we had the more special parts of it that deal with our scaling of the system. So, our traffic
+is very spiky, and it's also very power law distributed. So, we need some sort of
+intelligence to deal with that. This is a little bit of a graphical idea of what I'm
+talking about. So, we have on this left side systems that can, from one second to the other,
+we have, like, really high peaks and interactivity from customers. On the other side, we have,
+for instance, customers are watching one thing, and the next second, basically, all customers
+migrate to a different channel because Taggle's show ended and Taggle began. So, you have a
+very small window of time where a lot of traffic shifts around and changes. So, the system
+has to be able to deal with that in an intelligent fashion. All right. So, let's try the CDN.
+And now I present you the very first AI generated image on the stock, a map of Germany, which
+is surprisingly successful for an AI generated map. Don't ask me what the lines are about.
+I have no idea. So, yeah. That's like the context of what we had as some pops around
+Germany. We decided to build it with Go. Again, I'm a Gofer, so it's easy for me to say that
+I decided a bit of a Go. You maybe would have come to other conclusions depending on what
+your team setup is. For us, it felt like the right tool for the job. So, you have these
+pops spread around Germany. We have to deal with around six terabits per second of peak
+traffic. And we wanted to have -- this is the baseline that we had to match. We had to have,
+like, 50 milliseconds RTT to 90% of our customers. You may ask why 90%, it's kind of a weird
+low number. But you have to think that a lot of our customers are a significant portion
+of our customers coming in through mobile networks and stuff. So, that's a part of our
+customers that we kind of know that we don't have to target them specifically. They have
+other expectations of latency, delay, and whatever. So, they have -- they're treated
+slightly different. So, that's why the number is relatively low for the 90%. And on top
+of that, there's, like, a control plane that lives on our hyperscaler of choice, that lives
+around this city end that's not running on the pops, on the point of presence. So, what
+do we have? Again, slide overview of streaming works for those of you that never take a closer
+look into it. This is basically what a video stream looks like. It's that ingesting, the
+little satellite dish is pushing content into a system that builds these video segments.
+So, these are the files that are being downloaded via HTTP. Relatively simple. You have a live
+ad. So, basically, the latest segment that has been created up to the point, to any specific
+point in time, and a little bit behind that, you have the actual player play head where
+the player is actually playing content. And the segments in between that is, like, the
+buffer that you have locally, right? And this is a single channel. So, if you have people
+watching Tatort, they're all watching this same stream of segments, right? The content
+is the same, so everybody's accessing the same stream of segments. Most clients, most
+people are, in our case, at least, living there in the live ad. So, they're very close
+to it. They're watching live television. This is a wave breaking on our city end. It's
+like people accessing the live content. There's a low -- it implies a sort of a low cash
+lifetime, right? If people are watching the live content, you can expect that an old segment
+is not as important for you or for your network as the one that has just been created. This
+is like the hot spot of your network. This means -- this also means that you should probably
+try to put -- we decided to put this on memory because it has a big churn. It doesn't make
+sense to put it on disk if a couple of seconds later is going to be relevant anyway or have
+a lower relevance. So, we try to put it on memory. But that implies in turn that we can't
+just, you know, naively put all the content into all the nodes and spread things around
+and go, okay, just shoot 200 engine Xs in front of it and let's be happy about it. Doesn't
+quite work. So, the first thing that we have to start thinking about when building this
+city end is how do we deal with the individual nodes? This is a schematic of how you should
+think of the distributing content into nodes. What are the constraints that we have? We
+have bandwidth so each node has a certain fixed bandwidth. In our case, we're dealing -- right
+now the current generation is 100 gigs, nicks. They could go faster but, you know, dealing
+with blast radius, so that's the sweet spot that we are right now. This is like the horizontal
+skating of the node, so how much -- how many nodes do you need for a channel? I think the
+example of -- for the German community here, a lot of people watch that, so you obviously
+need to put that on more nodes, you need to scale that around a bit. That's the one constraint
+you have. The other constraint is memory. So, you can't just put, as we had in the slide
+before, everything on the same node, so you have to decide which content goes into which
+node. For those of you that remember university courses, this is kind of a bin packing problem
+or linear optimization problem that you have to deal with here. And then there's the third
+constraint is that you have to decide how to scale this thing, how to spread the content
+around, and you have to avoid the two constraints before, and also avoid that all your traffic
+or a significant part of your traffic is on a single node, so that if that one node goes
+down 50% of your customers are sad. Right? So, this is what we have to -- the constraints
+that we have in this -- in this space. And this picture represents a bit of a pathological
+case, right? You have, like for instance, the one node on the left, you see that IID needs
+more traffic than a single node, so you have to spread around two nodes. But the node on
+the left is underutilized when you're thinking about the cache, right? So, this is not ideal
+scenario. The one on the right, on the other hand, you have channels that are not filling
+up the bandwidth, but are filling up the cache, and you also have like a channel that is barely
+watching there, but is still taking off cache, right? And this is an important realization
+because as soon as you have one customer accessing a stream on a specific node, you're using
+off cache and you're potentially evicting content out of that node and causing issues
+for other customers to also on that node. So, it's just to visualize kind of the problem
+space here on the node level. But, okay, with this kind of setup, you kind of solve the
+problem, okay, how to distribute content on this network. Then you have to decide how
+to scale it on the next level. So, what is -- the next level is external traffic. So,
+you have customers coming to your CDN, and where should you send them? They have a lot
+of pops in there. Again, the little vintage television there. And the control plane that
+we mentioned earlier knows a lot of things about our infrastructure. It knows, for instance,
+the near-live peer interpolation that we have. So, it knows, through B&B, that you have
+on this one pop, we're paired with start to be like a so-and-so. And the customer is coming
+from that one. So, you know, say, that's probably the best place to put it there. And
+it also knows that we have maybe better peering capacity with that. So, on this one pop and
+not any other one, so we take the closest or slash best pop by peering and capacity. Try
+to distribute it that way so that we're -- that our peering are loaded as evenly as possible
+and the customer has the lowest latency as possible. But if you think back to the other
+slide about distributing content on nodes, you know that if you have a lot of content,
+you're going to end up in situations where you can't put the one little channel that
+is watched by 10 people in a whole country in all pops. So, we also have the case that
+you may land in the wrong pop and then we have to transmit the traffic on our back bone
+and send it back out through some other pop. It's not ideal, but it's our choice to do
+it this way because we can have a little bit more eyes on what's going on and have a little
+bit more control over the path that our traffic takes until it reaches the end customer, right?
+So, if it just sent it to some overflow, it would potentially have a longer path that
+we don't know, we have no way of knowing what's going on over there. So, we decided to pass
+it over our network. Okay, so now we kind of solve the issue of incoming traffic and we
+also have the issue of internal traffic. This little thing describes the issue that the
+ingest pops. So, the little antenna sign we saw at the beginning where the actual content
+gets delivered into our system, it is separate from the CDN pops because you have different
+constraints, right? So, CDN pops to be close to the ISPs, the ingest needs to be closer
+to the content providers which doesn't always overlap and it's easier to keep them separated
+in a lot of reasons for that, practical reasons for that, but you end up with the problem
+that you, okay, then you have to internally get all the content from a single place.
+When you scale your traffic, that means that you get more nodes and if you don't think
+about it, if you just put engine boxes in front of it, you end up hammering your origin
+systems behind that and those systems and you also increase the cross-pop traffic and
+those systems aren't as easy to scale, they're not as easy to scale horizontally as a CDN
+is. So, you have to find a way to scale the upper part without significantly impacting
+the lower one. And what we did is a multi-layer caching hierarchy in this CDN stack that deals
+with this, exactly with this question, right? So, you see this in this little schematic that
+a customer watching IOD and one node is actually getting it from a different node on the same
+pop or a different pop, but trying to get it, trying to save the parts of the system that
+are not as easy to scale from getting that load. All right, cool. So, we scaled the node,
+we scaled the internal traffic, we hope we did. So, will it blend? To answer that, we have
+to verify what we did. And to verify what we did, how can we know it is actually working?
+We go back to our favorite monitoring tool of choice, for medias, I hope you guys use
+it as well. There was a lot of state that was difficult to see before that suddenly pops
+up and is visible because now it's super easy for us to add more metrics and to get it every
+step of the way specifically targeted into video streaming, we can know, okay, this is
+the content we're interested in, for instance, where are our customers in this time stream
+of live linear content? And this is just mirrors or confirms what I talked about before that
+a lot of our customers is at the live edge. And we have a long tail of people watching
+stuff that is older, but a lot of it is just the live edge. Most people just like to zap
+around and stay on the live edge. But this is super cool, but it's kind of basic, right?
+It's -- we love it, but it's basic. Now I have to do a little digression and I hope I'm
+good on time. Yeah, I can't -- good on time. And I have to talk about CMCD, our Lord and
+Savior CMCD. I don't think anyone heard about this before. You can try the show hands.
+Did anyone heard about CMCD before? Yes, one hand, my boss. Great. This is a standard
+for player state reporting. So basically this is telemetry standard for video, specifically
+for video, so for media content. The name is absurd, but anyway. This is for stuff like
+this is the -- for the player to report to the CDN. This is the quality I want to play.
+This is surprisingly difficult information to know about or to derive just from CDN traffic
+because you don't know what the player -- like you don't know if the player has this small
+screen, right? You know that you have super high quality content and you know that the
+player may be accessing lower quality content, but you don't know if he wanted to do that.
+So with CMCD, you suddenly know this sort of thing. Or I just had a stream saw. You
+can try to derive that from bare CDN logs, but you're only seeing one side of the story.
+And with CMCD, the client is telling you, hey, I just had one, right? So I had to pause
+for two seconds or whatever. Or I needed six seconds to even start playing, right? It's
+a super important information for us. If you're doing live TV, you know the drill, like you're
+zapping around, and you don't want to spend five seconds just looking at a circle until
+your TV starts to show something, right? And this is also super easy because it's piggybacked
+on HTTP. This is also a very simple schematic thing because the actual requests are super
+long and super cryptic names, but the basic is just like when the client requests something,
+it's just sends on the query string or an HTTP header information that he has. And there's a
+lot of, on the version one of the standard, there's a lot of information that can send.
+For instance, on this case, MSD is a real parameter that gets sent. It's the last question there.
+So how many seconds did I need to actually start playing the content? Super simple, super effective.
+There's a typo there because it should be segment two, not segment one, my mistake.
+Yeah, but as it's super simple, it also has a few blind spots, right? Like if a client just dies
+suddenly, you're not going to get the last request, so you may add some tail end of information
+missing. There's some corner cases where you get not a perfect picture, but it's a definite
+improvement on just getting city end logs. And also, super magic, you can do custom telemetry on this.
+It's kind of obvious that it can do this, just sending some arbitrary stuff with their request,
+but it's important for us because it means that players, so the people that are writing
+actual video player code, they have a standard upon which they can work on and it starts from the
+get go that they think about these sort of problems, like what sort of custom telemetry
+the users of my player want to implement. And for us, it's stuff like Wi-Fi signal info or CPU info.
+And this gives us a lot more than just network monitoring. It gives us information, for instance,
+an ISP may be having issues, right? So you have rebuffering by ASN, rebuffering is like the little
+stall that you get on your video player, right? If you sit a little circle of doom, you have a
+rebuffer event, and that's what we can now see aggregated overall ASN's that we peer with.
+Or the one that I also talked about before, how many seconds did it start between clicking the
+button on my remote and actually seeing video, which is a pretty good thing over here. It looks
+half a second to a second. Or also interesting, the Wi-Fi signal strength on our clients.
+But this is all aggregated, right? This is very aggregated information. So
+it helps a lot, but it's still not ideal. So how can you go further? Enter Clickhouse.
+You can go with any tool or choice. I just mentioned Clickhouse because I happen to be very
+satisfied with it, so I'm doing a little bit of free advertisement for them. There are other
+tools that do the job, but this is the one that we went with. So what do we actually do with it?
+This is a database. This is a column-based database you used often for time,
+timeline databases. There's a better name for it. It escapes you now.
+And what we do with it is you collect telemetry on all and every single request
+that lands on Earth, CDN, and we send it to Clickhouse.
+That's a lot of information. For instance, for every single HTTP request,
+we gather TCP-level information and we have like RTT information for every single request.
+And what you see here is a whole stream. Someone actually watching television, you can accompany
+them through their voyage, watching this stream, and seeing how the RTT behaves along this stream.
+So this is drilling down pretty nicely. Or, for instance, or also mentioned this slide before,
+Wi-Fi signal. Now we can suddenly actually correlate Wi-Fi issues in our customers with
+network issues. And we can easily tell, okay, our customers are having it. It is a common thing
+that they have Wi-Fi issues. Is it a common thing that Wi-Fi issues cause? RTT issues and
+video quality issues. So we suddenly, it opens a lot of doors, right? So with this, we can do
+super intelligent stuff. We can assist our clients on configuring how they, or the players,
+how they configure their streams. For instance, players are super intelligent when it comes to
+short-term decisions, right? You're walking around with your mobile phone and watching YouTube.
+If you go into a cavern, it just kind of tries to adapt. But it doesn't have a long story of it.
+So if you're at home and we know that you have a poor connection, we're not going to even start
+to play on a higher quality. We know already that you may be kind of limited so that your
+overall experience is better. So we do also do quality of experience-based monitoring. We can
+also help customers support a lot. So this opened the door to a lot of different stuff
+that is possible now that wasn't before. So mission accomplished.
+But I can tell you what our key takeaways were. I hope I can also inspire you to have some takeaways
+on this on this talk. For us, it confirmed the idea that Go was a good pick for us because it
+landed on this very nice middle layer between too low level to high level.
+There's one big thing missing on that is a direct consequence of this decision.
+You can come talk to us later if you want to complain a bit about that. But in all and all,
+we're very satisfied with it. The fact that we can add metrics to it and easily and do it basically
+every week, I think, at some new metric to get some new part of the system under the microscope
+that we hadn't before, help the development and help validate what we were doing during the whole
+process. Keeping it simple doesn't mean the code. The code base is probably one of the most
+complex ones that we have in our company, but it's the decisions of trying to keep the failure
+scenario simple. If something goes wrong again, back to the first slides, if something breaks,
+just keep it easy so that you can reason about it. It was a very, very good decision
+considering the very few problems that we have after we deployed the system.
+The last one that is missing there is just to go over it again to limitary,
+to limitary all the things. If you can't even get a chance to put more stuff, I think I'm probably
+preaching to the choir, but you know, put more visibility into all parts of your stack whenever
+you can. And with that, that's all I have for you, if you have any questions.
+Thank you, Leo, for your presentations. We've got two minutes for questions. Are there any
+questions in the room, or do we have questions from the internet?
+Patrick was not kidding. I only see light.
+No, I don't see it. So thank you. Oh, there's one question. Oh, yeah.
+Freddy from minute seven. Can you go back a few slides to the
+both right ASN? You mean this one? Yeah, rebuffering by ASN traffic. I mean, just publish the numbers
+of all the ISPs with these graphs, and then you have a perfect quality of the ISP. So this is my
+suggestion. Yeah. It's a bit difficult to do there without stepping on some toes, but yes.
+Maybe there are some toes which are asking to be stepped on. Yes. That's up to you.
+So thank you. Thank you all.

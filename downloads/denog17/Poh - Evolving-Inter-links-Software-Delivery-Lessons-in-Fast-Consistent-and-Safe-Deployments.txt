@@ -1,0 +1,720 @@
+API URL: https://media.ccc.de/public/recordings/93140
+Frontend URL: https://media.ccc.de/v/denog17-78781-evolving-inter-link-s-software-delivery-lessons-in-fast-consistent-and-safe-deployments
+Title: Evolving Inter.link's Software Delivery: Lessons in Fast, Consistent, and Safe Deployments
+
+(upbeat music)
+So, and this will be our last talk before the lunch break.
+This is from Paul from Interlink, Paul is lead CI/CD
+developer all around the customer portal.
+And he will give you an insight about their learning
+of with their automation and their systems which they set up.
+Please welcome Paul on the stage for this talk.
+(audience applauds)
+- All right.
+Yeah, so I'm Paul.
+I'm here to talk about evolving Interlink's
+software delivery.
+So, what is this about?
+This is actually just going to be a story.
+So, a lot of just
+random stuff that happened
+over the years.
+And of course, with any story, we
+have to start by setting the
+things that we tried to track our usage,
+carbon usage, across everything that we are doing.
+And then of course, trying to reduce it
+and then offset when necessary.
+And for this to happen, we kind of need to do,
+make sure that actually we try to automate everything.
+So, next point, fully automated.
+Because by doing so, it allows us to have all this,
+track all these usages a bit better.
+But also, that's definitely just a better experience
+for our customers.
+And the next thing that we want to do
+is also make sure everything that we do is transparent.
+So, when you go to our portal, you get a service from us.
+You can see the status of your service.
+You can see the usage.
+You can see the pricing.
+Everything is, we want everything to be transparent.
+So, how do we actually do this?
+We have a portal.
+I just mentioned it.
+So, if you go there, you just go there.
+You see the dashboard.
+You say, click at a service.
+We have a bunch of services.
+IP transit, IP access, the usual stuff.
+And then, say, you click on IP transit.
+You will be able to go there, select a port
+in a specific location, configure a bunch of stuff
+for your BGP session and whatnot.
+And then, you can order.
+So, essentially, what we're looking at
+is if you just distill it down to boxes, it's just this.
+You have a user, and then you go to the portal front end,
+and you do stuff.
+What happens after that?
+So, when you finally get to place your order,
+we just send a JSON payload back to our portal back-end API,
+and then it does more stuff, like validations and whatnot.
+So, that's basically it.
+Yeah, not really.
+So, after that, the portal back-end,
+after doing all the validations and processing,
+sends another payload back.
+So, now we're going back into our internal systems.
+We call the first back-end API internal back-end API
+Cortex, Cortex does a bunch of stuff.
+So, now, going into an internal side of Intilink,
+it does a bunch of stuff, so one of the things it does
+is it just goes to our ERP and create the necessary resources
+about the service that just got ordered.
+And then, obviously, because this is a network service,
+so we also use Netbox.
+It goes to Netbox and creates a bunch of stuff.
+So, if you're doing IP transit, it
+could be, like, allocating prefixes, IPs,
+the port, VGP sessions and whatnot.
+Yeah, this is obviously not all because we're still at Netbox.
+What we do after that, we have another system called Iridium
+that gets triggered, so once all the stuff is there,
+we trigger Iridium, which then pulls, it reads from Netbox
+and pulls all the necessary information out.
+And then, after that, it kind of translates them,
+does some processing translates them,
+and it exports them out to Git.
+So, at this part, this is basically just the host variables
+for Ansible, which we'll see right here.
+So, once everything lands in Git,
+Cortex does the next step.
+It triggers what we call the deployer,
+which basically just fetches everything from Git,
+the latest host variables and whatnot,
+and then it runs Ansible Playbook
+and just pushes everything out to network devices.
+Yeah, so if you put everything together,
+it looks like this, a bunch of boxes, blah,
+it's not super complicated.
+But obviously, I'm missing some stuff
+because I think right now, if my team members are watching this,
+they'll be like, oh, we forgot this,
+I forgot that I did forget a lot of stuff in those boxes
+because if you talk about IP transit,
+obviously you have to do validations for ASN, ASS,
+we sing from hearingDB, the customer's prefix limits,
+update writeDB, the ASS on writeDB,
+we have to maintain prefix list to filter them and whatnot.
+And we also have a DDoS platform.
+So, if the customer for IP transit also has DDoS with us,
+then we have to remember to push the prefixes
+to this DDoS platform or to enable
+DDoS specific PGP community for their sessions.
+And of course, there's also things like billing,
+yada, yada, yada, so what I'm actually trying to get at
+is that there's some inherent complexity
+in all these things that we're trying to do.
+I mean, when we talk about complexity in software,
+there are like various ways to measure it,
+but I'm like super basic, so we just go with lines of code,
+right?
+So right here, you see interlinks first,
+so the first commit in this repository that we have,
+2022 February, 60 lines of commit,
+I actually looked it up just out of curiosity
+and yeah, it's just a bunch of markdown actually.
+And within the first year, we added like 50,000 lines of code.
+And then if you look from 23 to 24,
+we added another 120,000 lines of code in the last year.
+So 24 to 25, we added about 60 to 70,000,
+so a little bit less crazy.
+But this is a staggering number, right?
+So if you talk about 120,000 lines of code per year,
+that is 10,000 lines of code per month,
+so this is a lot of stuff that's going into our repository.
+So what is this talk actually about?
+As our software is growing with more products,
+more features and more automation,
+the way we work with our software also has to evolve.
+So this is what this is about.
+So it is about software, obviously,
+and I know I got the irony when D not,
+and I'm talking about software, so.
+If you have to use the bar from now, now is also a good time.
+If you don't want to hear about any of this,
+I wouldn't be offended.
+But so yeah, if not, let's get on to the story.
+So chapter one, the beginnings.
+So when Interlink first started,
+we're talking about roughly here 2022 to 2023,
+we're putting out our first 50,000 lines of code.
+We basically, you know, this is just a start, right?
+I just want to give a disclaimer,
+I kind of joined a bit later,
+so some of the stories here might not be entirely true.
+Well, more or less, but maybe someone earlier
+in Interlink might be screaming at me or so,
+like this is not what happened, but who cares?
+I'm giving the talk, right?
+So when we first started, yeah, you know,
+you first started a project, you start looking around,
+hey, what can we use, what can we do?
+And yeah, we just went with like, you know,
+we use Django because we are essentially a Python shop.
+We use Docker for packaging our stuff.
+We use Ansible for configuring the devices.
+GitLab, so our code.
+For the front end, we have React, you know,
+for some smaller APIs, we use Flask.
+I mean, I think I'll hold a bunch of logos here too, right?
+Like Netbox, whatever.
+But the point here is that we are just using
+like what we consider or what I consider,
+very standard suite of tools, right?
+This is fairly like decently modern stack,
+nothing too crazy, nothing so-called legacy.
+So, yeah, you know, we kind of started doing this,
+started writing the code, and then of course,
+at some point, we have to bring this code into production.
+So it, yeah, it looks like this, right?
+Developers hacking away, and then they just push the kit
+to push the code to GitLab, and then GitLab's like,
+okay, let me just deploy this stuff to Kubernetes,
+and then we call it a day.
+Yeah, maybe not.
+So, when you push changes to GitLab right now today,
+what we're trying to do is we have to test it, right?
+So we run a pipeline.
+We run a pipeline that looks roughly like this.
+You build the packages, and then you start testing it,
+so we use Python, so like PyTest,
+we use black ISO for linting, MyPy for type checks,
+and whatnot, and then once that's done,
+we deploy this out to Kubernetes,
+so deploy the whole environment to Kubernetes,
+and then at the last stage, we run E2E tests,
+so things that test the entire environment, so more tests.
+And of course, at some point, once you do that,
+then somebody comes along and say,
+oh, I'll prove you're a merge request,
+or pull request if you're in GitLab world,
+and then once that's done,
+then you just try to bring it out into production.
+So same thing, once you merge into main branch,
+we build everything again, we test everything again,
+just to make sure everything got merged properly,
+and then we deploy it to staging.
+Same thing, Kubernetes, so just like,
+Kubernetes apply whatever.
+But then, at the point in time, we have a gate,
+so it goes like, are you sure you want to continue?
+And somebody actually has to click it, right?
+So, I mean, this all seems like sort of reasonable.
+Obviously, it isn't, because then,
+I wouldn't be giving a talk here.
+The thing is, whenever we merge stuff,
+and then this thing, all these changes gets deployed
+into staging, then we need someone to press a button
+for this to go into production.
+And this is called a release,
+and this is obviously manual,
+because somebody has to be there to do something,
+to trigger it.
+And this is kind of how it looks like,
+back then on our Slack channel,
+so I kind of pulled this out.
+So, from the stand-up meeting,
+who's going to take over the release today?
+And then some guys, just like, I'm tired of this.
+So, how about let's go to draw the short straw.com?
+And then, of course, on your team,
+someone's going to say, oh, yeah, you know,
+if no one volunteers, I'll do it.
+And then with the sweat, smelly, emoji kind of thing,
+so I think he doesn't really want to do it.
+And you can see this goes on for, like, 18 replies.
+So, obviously, we're not working,
+we're just talking about work.
+And what the heck is this?
+Draw the short straw.com.
+It's basically, if you go there, it says,
+if you can't decide who should do the unpleasant task,
+then we draw straws to pick, right, to decide.
+So, that's what draw the short straw.com is.
+So, obviously, this manual release is an unpleasant task.
+The other thing we had once we set everything up
+was that people were complaining that the pipelines were slow.
+We measured it, we measured this.
+You're not supposed to be able to read the small numbers,
+but essentially, the whole pipeline for making a change
+goes about 19 to 25 minutes.
+So, yeah, I mean, you know, it's long enough
+that I could, you know, do my lunch or something,
+but it's not like in the grand scheme of things,
+and retrospectively, it's not super long.
+We'll talk more about it later.
+But there's something that's even worse
+than having slow pipelines.
+It's basically the pipelines that try to guess like you.
+So, it kind of looks like this.
+We're talking about unreliable pipelines, right?
+So, you have people, you have your developer locally,
+it's like hacking a bunch of stuff,
+and then they put it on GitLab, and GitLab's like,
+oh, everything is green, this is perfect,
+but the guy, the developer locally is still like,
+no, I don't think so, there's something wrong with it.
+Or you can have it the other way around, right?
+Oh, it worked for me locally,
+but then when I put it on GitLab, everything is red.
+And what people do after that is they just go to GitLab,
+they click retry, and then they just start praying, right?
+This is what we did for a while.
+So, my hot take, actually, it's not really a hot take,
+I think it's more like a warm take,
+because I think a lot of people would agree with this.
+This is not just about the tech, right?
+You can pick a very modern stack,
+but you can do like a lot of not so great stuff with it.
+So, we move on, right?
+Moving on, you know, interling, scrolling a bit more,
+and we move on to the stage where you started
+adding like more and more code.
+And this is like the problems that we talked about,
+it's like getting even worse.
+So, we talk about manual release, yeah, it's not great,
+people just talk about who's gonna do it, blah, blah, blah,
+but it's not just about that,
+because it also really slows down our velocity.
+So, on an average week, it could look like this.
+People are putting out features, features, bug releases,
+but everything gets stuck on staging.
+So, these are basically features, bug releases
+that the customers cannot see.
+The other thing, of course, it's a button,
+I said it's a button, but basically,
+there is like a procedure to doing this, right?
+You have to go check this, and then click the button here,
+and then check that, and then whatever.
+So, there is a process to it,
+so it takes time for people to do it.
+And if you find a bug, and you wanna do a hot fix,
+it's also terrible, because now you have to go through
+all the unreliable pipelines, and then you have to go in,
+and then you fix the thing, finally it merges,
+and then you have to do another manual release.
+So, you go on a Slack, and you search release, hot fix,
+yeah, it's like full of it.
+There's also like a little side effect
+about having hot fixes that people don't want to do.
+It's like people try to find workarounds for it,
+so it's like, oh, I could be smart about this
+if I change the data here, then the bug doesn't get triggered,
+so first I started doing workarounds too,
+which is obviously a really bad thing as well.
+Another issue, so if you put out five, six features,
+bug fixes changes, all at the same time,
+it's very hard to find a bug, because if you look at,
+so you made so many changes, now there's a bug,
+where did it come from?
+It's like a bit harder to find it,
+and maybe it's just there,
+maybe it's an interaction between two different changes
+and whatnot, so you get these kind of problems.
+So maybe you're like, wow, all this talk,
+why not just get rid of the stupid button, right?
+You have the stuff there,
+just get rid of the button, things will just go, right?
+Yeah, unfortunately, it's not so easy.
+The thing is, our pipelines, as I said, were not reliable,
+so what this means is, if we remove the button,
+we just ship like bugs even faster,
+which is not really what we want.
+And of course, part of it is you want to make sure
+that your pipelines also get to run more tests
+to cover your code base a bit better.
+So we need to take a little bit of a detour, right?
+So yeah, with that, we go on to Nick's chapter,
+in case the chapter's title is not obvious enough,
+we are talking about unreliable pipelines here.
+So where do we start?
+It's like people tell you it's unreliable, what do you do?
+Very simple, exactly where it is.
+So whenever a developer says this thing worked locally,
+but GitLab doesn't agree, then you just stop them,
+and it's like, okay, what actually failed?
+You start asking questions, like, why actually fail here?
+What is it that you think works,
+and what is it that GitLab thing doesn't work?
+And you ask, like, why does it have different results?
+And also, for me, as a third party,
+like, can I actually reproduce this locally?
+Because if you cannot reproduce this,
+then you're going to have a lot,
+like, it will be very difficult to fix it.
+So what we found out over time is that,
+you know, you have developers on your local
+doing a bunch of stuff, so maybe they do, like, Docker build.
+But on GitLab, you do something different,
+like, Docker compose build.
+Or they do PyTest, they use, like, the local environment.
+But on GitLab, we do something different.
+We go into the containers, Docker compose exact,
+and they run the PyTest.
+So this is not great.
+So if you run any science experiment,
+you need to be able to control for your variables.
+And that's exactly what we try to do.
+So after a while, we're like, all right,
+developers, GitLab, you have to do the same stuff.
+So if you want to build, this is how you build.
+If you want to do a PyTest, this is how you do PyTest,
+et cetera.
+And, of course, to make things a bit more user friendly,
+we just wrap it around in the script.
+So Titan is just the internal name we have for our stack.
+But if you write a best script for it,
+it could be a make file, whatever.
+You standardize it, and you document it,
+and people will start using it.
+So now, when developers come to you and say, oh, I ran it,
+it doesn't work.
+At least you have something to work with.
+You know they ran the same stuff.
+You can figure out, it's easier for you
+to figure out what went wrong.
+Or, like I said, it's also easier for documentation.
+And also, if something breaks on the pipeline,
+you know exactly what you need to run locally,
+because you can run the same stuff to try to reproduce it.
+So it makes it much easier to debug.
+So the point I'm getting at is,
+you need basically one way to build your stuff,
+to do package versioning, to deploy, to lin, to test,
+all that kind of stuff.
+So I have only one way.
+There's an asterisk there, but basically,
+not everything would be one way, but that's just details.
+So I don't know if you remember this part of it.
+So when we run, like this integration tests,
+we try to test everything in this flow.
+And what we do is we spin up test environments.
+So it looks good, it's like kind of isolated,
+so different merge requests, different test environments.
+But in reality, it's not exactly like that.
+Because we could share, for example, the same Git resource.
+We could be sharing the same ERP environment.
+And this makes things really tricky.
+Because when we write code, we write with the assumption
+that the code has access to the resource,
+and they're the only ones who have the access.
+But when you start mixing different environments,
+trying to write over each other, stepping over each other's toes,
+you're gonna get basically a lot of bugs.
+So this is what happened with us,
+because we had pipelines that pass it sometimes
+when there's the only test environment.
+But then when you have five developers
+trying to run tests at the same time,
+then you get this sort of issue.
+So you get to try to isolate them.
+For example, for Git, it could be as simple
+as just making sure people write to a branch
+for every single merge request,
+different test environments.
+For ERP for us, it was a bit more complicated.
+Here I just said, oh, you can just kind of isolate them
+by customers.
+So different services belong to different customers.
+You run tests on different customers.
+In reality, it was a bit more complicated than that.
+But those are just details.
+The point I'm trying to make is that
+you just try to make sure you isolate everything properly
+in your test environments,
+whether this isolation is like a fake or virtual isolation.
+That's like you should just do that.
+Otherwise, gonna have problems.
+Another thing that we found was flakiness.
+So when GitLab deploys out to Kubernetes,
+so this is for testing, right?
+What we do to be able to run HDV requests
+to run our tests is that we actually do this thing
+called port forwarding.
+This is basically a tunnel from GitLab environment
+into our Kubernetes cluster.
+And then once you do a port forward,
+then you could do something like pytest,
+like localhost80 and just runs tests.
+But turns out this feature from Kubernetes
+is not very good, not very well-incommented.
+If you just go online and search, it's horrible.
+So this flakiness, this tunnel keeps breaking for us.
+And after a while, you kind of just bypass it.
+So what we did was instead of having the tests
+run from GitLab to Kubernetes,
+we just schedule a job on Kubernetes that runs the test.
+So things are running within the cluster
+and then wait for it.
+And then after a while, you get the results back.
+And that's it.
+So what we're trying to say is we just wanna get rid
+of these sort of flakiness.
+But of course, you cannot control for all of it.
+Some of them will always be there.
+For example, if we depend on an ERP,
+we don't host an ERP, of course.
+These services could be done.
+So you can do things like automated retries and whatnot.
+But you have to kind of balance it, right?
+So you can say, I wanna run GitLab instance for this.
+Like our own GitLab instance for this.
+You have to ask yourself and figure out
+whether it's actually worth the work.
+So yeah, when it gets bad enough, then do it.
+Otherwise, nope.
+So we've, you know, pipelines are more reliable now.
+The next bit of it, my code's compelling.
+So obviously this doesn't really apply to us.
+But what we're really talking about
+is just slow pipelines.
+So how slow are we talking about?
+I think it was something like this.
+So like five minutes to build, four minutes for unit test,
+four minutes for deployment,
+and then like 15 minutes for unit for E2E test.
+So the first point is you gotta measure it.
+Otherwise, you don't know where to improve.
+And after measuring it, obviously,
+you go for the ones that takes the most time.
+So basically the E2E tests.
+So what does that really look like?
+For us, E2E tests is trying to test everything in this flow.
+So for example, I say I want a provision IB transit,
+I want a deep provision IB transit.
+We have also have IP access, Flex Ethernet, DDoS,
+so we want to do all of that.
+At some point in time, we also introduced lag
+with added lag support.
+So we're also gonna wanna test that too.
+What about aggregated commit?
+So we have this feature that allows you
+to aggregate your commit across different services.
+Yeah, we have to test that too.
+Oh, what about reusing ports?
+Yeah, we have to test that too.
+And you wanna test this also in different combinations, right?
+We talk about lag, we talk about port reuse.
+What about lag reuse?
+So this combination starts to explode like very quickly.
+And what happens is every time you add a feature,
+you can see the pipelines getting slower.
+So that's not great.
+So what we did, we just tried to parallelize everything.
+So I show you a cortex back in API.
+So this cortex back in API also actually has a queue
+and a bunch of workers, so it's very simple.
+Just create a whole bunch of workers and you're done, right?
+So multiple workers takes on multiple tasks,
+things run faster, and you can do it something like this.
+So obviously, when you say deep provision IB transit,
+it cannot be paralyzed because it depends
+on provision IB transit.
+So this is how you can kind of send in the work streams,
+so to speak, or here I wrote parallelizable units.
+And then when you add more stuff,
+then you just add more workers, right?
+Unfortunately, not really, because in our systems,
+when we're trying to write the netbox,
+this is something that we have to control access to.
+So we cannot have different workers trying to figure out,
+for example, if there's a port in a certain device,
+otherwise you just get into concurrency problems.
+So we have a lock for this.
+So if you just keep increasing the workers,
+you're not gonna get much faster because of that.
+So what can we do?
+Very simple, we just paralyzed my environments.
+So we got good from the last chapter at creating environments,
+so let's create more environments.
+So if you make one MR,
+let's have a few of different environments,
+and then we start building tests on all of them.
+Yeah, I mean, there are of course challenges to doing this.
+So first thing, independent tests.
+So the test has to be independent for you
+to be able to paralyze them.
+What I mean is that if you have dependencies,
+you cannot run them together at the same time.
+Also, you have to be good at spinning up environments,
+otherwise this is just gonna make your setup
+way more complicated.
+And we also ran into a bunch of concurrency bugs.
+They're not super fun to debug, but yeah.
+Also, if you talk about slow pipelines,
+a whole other bunch of things you can do.
+We got on newer hardware,
+try to figure out how to use less test data,
+slimmer images, blah, blah, blah.
+So there are also a bunch of other things
+other things you can do
+to try to make your pipelines a bit faster.
+So the tip here is write independent tests.
+You don't have to paralyze everything from the start
+because it could be just making things
+more complicated for no reasons.
+But if you start by writing your test,
+making your test independent,
+then it will be easier for you to paralyze things
+down the road when you need to.
+So with that of the way,
+go back to this,
+trying to get rid of the button, right?
+Saying goodbye to this.
+Yeah, can we actually get rid of the button now?
+Yeah, sort of, right?
+But you have to just remember a couple of things.
+You have to make sure that when you're doing deployments
+that there is no service disruption.
+Otherwise, if 10 and marks get merged in one day,
+then your service goes down 10 times, not great.
+You have to make sure how to handle breaking changes.
+So when you rename a column on the database,
+like how do you actually handle this?
+And also, because you are making changes so quickly
+all the time, you have to be,
+you have to make sure that you are,
+you have good monitoring to know when something breaks.
+But of course, you also have to have someone watching it, right?
+You cannot just, I have monitoring.
+It's like alerting my channels like 10 times a day
+or something, and nobody's looking at it.
+That's like kind of pointless.
+Another thing that is really useful to have
+is how fast you can roll back these changes.
+It doesn't have to be like a split second,
+but just knowing that like,
+operationally how to do it and how fast you can do it.
+It's good.
+So my thought take for this is, you know,
+try to adopt this like method of continuous delivery,
+so no manual buttons, no manual release by default,
+so you don't have to go through this pain
+of trying to get rid of all the different issues
+first before you get there.
+But there's an asterisk to it as well,
+because it depends, right?
+Like if you're doing software for, I don't know,
+if you're trying to push a new iOS update to my phone,
+like I don't want this to be delivered to me every second,
+every like 10 times a day.
+So you have to see how it works in your context.
+Yeah, so is this like the end of everything?
+Did we fix everything?
+Yeah, I mean, let's do a bit of stop taking, right?
+So how are we today?
+Pipelines are not actually that much faster,
+but they run a lot more tests, so that's kind of nice.
+Pipelines do still fail, but we actually know why,
+and we can try to mitigate them.
+Obviously we stopped using this.
+So I show you this complexity slide.
+This is February 2025.
+So November 2025, right here we are today in November 2025.
+Within this year, we're already at another 60,000 lines of code.
+So my hot take is this never ends.
+So where do we go from here?
+If this never ends, because we're gonna wanna have
+more products, more features.
+Doesn't this mean more tests?
+Well, kinda, but we can try to do better.
+So we don't have to run tests for everything
+every time we make a small change.
+Can we run our tests more selectively?
+Or can we just delete tests?
+Because usually, sometimes people just keep adding stuff to it,
+but if you go back and review your tests,
+maybe you're like, oh, they're just testing
+for the same stuff, there's no need for it.
+Can we re-factor our code so that we don't have to write
+the tests?
+For example, we look at products like IP Transit, IP Access.
+There are a lot of very similar things to it.
+Can we re-factor it so we don't have to test them twice?
+Another thing we want to do is just have more test coverage,
+especially in this area that I was just putting there.
+And this is something nice to have.
+So in the end, we're trying to deliver network services.
+So yeah, you know, it would be good if after doing all
+the weird JSON-y stuff that in the end,
+the network devices do get configured correctly.
+And finally, I think this is the point of it.
+I keep showing you graphs of us adding more
+and more lines of code.
+But the truth is, actually, maybe we do want to.
+We should try to reduce the complexity.
+This could be removing stuff in the picture.
+So like, hey, let's get rid of Git.
+Let's get rid of using Git, not get rid of Git.
+Maybe not have locks.
+Is that possible?
+Yeah, that could be possible.
+Could we re-factor our code base?
+So yes, less code, you know, that kind of stuff.
+So we don't want to keep, so for every product we add,
+we don't want to add 10,000 lines of code.
+It's not something that will scale for us in the long run.
+So let's try to look at this from also another perspective.
+Yeah, so with that, actually, that's all I have for you.
+So thank you.
+And I know it's lunch time.
+(audience applauds)
+Thank you for your presentation.
+And again, I see already one hand rising.
+Well, thank you for this very interesting talk.
+I'm quite interested in the bottom right corner
+of your diagram of the pipeline.
+Exactly, that's where you deploy the stuff to the hardware.
+And the question is, how much of that do you simulate
+and how big is your environment of real hardware
+where you test if the deployment is successful?
+So I've been, if you saw towards the end,
+there's we want more test coverage there,
+as far as you can imagine.
+But at least what we have today for that setup.
+So we have a container let's set up for us
+to be able to just test some stuff.
+We have a laptop with actual hardware also
+to also test some stuff because there's some stuff
+that container let this allow us to do.
+And then finally, we have our actual devices.
+So how much tests are there?
+Basically, I would say not enough,
+but then this is just a paranoid, me always speaking,
+like we want to always test more.
+For example, like I said, I gloss over this very quickly
+towards the end.
+When I say I create an IP transit,
+the result of all this stuff that happened
+is that the BGP session come up in the end.
+And that's to be frank, like something we cannot answer today.
+So that's what we want to answer by adding all these tests.
+So this is the end result of all the configuration
+that we get it.
+So yeah, did that answer your question sort of?
+Yeah, if you want to know more,
+we can also talk more about it.
+- Thanks again.
+And thank you everyone for being here.
+This was our last session before the lunch break.
+We don't have time for more questions, unfortunately.
+So if you've got any more questions,
+I guess you're around today and tomorrow as well.
+So feel free to find Po to ask the questions
+in a face-to-face meeting.
+And hope to see you later again.
+Thank you.
+(audience applauds)
+- Thank you.

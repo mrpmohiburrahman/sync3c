@@ -1,0 +1,341 @@
+API URL: https://api.media.ccc.de/public/recordings/93374
+Frontend URL: https://media.ccc.de/v/godotfest2025-less-is-more-modern-approaches-to-low-fi-visuals
+Title: Less is More: Modern Approaches to Low-Fi Visuals
+
+[ Music ]
+>> Thank you, thank you very much.
+So, yeah, let's get started.
+Very briefly about me, yeah.
+I've been in the industry for a while and I run my own company
+for solo projects such as reconfigure and for freelancing work
+>> Thank you.
+>> Thank you.
+It's a game that I've been working for about a year now, alongside my freelancing work,
+and it has like this visual style which combines retro kind of graphics, very old-school, gritty,
+pixelated look, but under the hood it uses like a bunch of modern rendering techniques.
+So in this talk, I'm going to cover that why in the first place did I choose this approach,
+and then what kinds of techniques, tools, and workflow I use to accomplish this style.
+And then very briefly, I'm also going to touch on the limits and challenges that are inherent
+to this kind of style.
+So as an overview, you know, a lot of just to cover the basis,
+consumers, but you know, to competition is tough. You know, the bar is always rising and you need more and more work to pull off this kind of approach in a convincing manner. And it's very expensive to create all the 3D assets and textures and other things required for it. And it's just darn difficult as well. You need a lot of technical know-how and expertise.
+And on the other end of the spectrum you have very retro-leaning graphics as demonstrated here by Kaltic and DAW.
+A lot of in these tend to use these kinds of styles because creating content for these kinds of games is very cheap.
+But thanks to these factors, the market is also packed full of games that use retro-style visuals.
+And so it's become pretty difficult to stand out within the competition.
+So what I have chosen to do is combine these approaches where I have a thing that is superficially very retro-looking thing,
+but it's powered by modern rendering techniques.
+So why I choose to do this approach? Well, here's a handful of reasons.
+My favorite one is up top.
+You can make the style look exceptionally good, but it's still very easy to build.
+I'm doing this project solo and I intend to do quite a bit of content for it.
+But you know, it sits up this perfect intersection point where you can actually build a quite ambitious game, or by yourself.
+And this is still relatively on exploratory territory as well.
+There are less developers out there competing with similar styles, at least for the time being.
+You know, I'm certainly not the first to do this kind of stuff,
+but still, you know, compared to retro styles, there's way less competition.
+And one convenient thing about doing modern rendering with a low resolution
+and heavy post-processing is that actually a lot of the tricks that are intended for very high definition games.
+They are more practical, more easy to use, more easy to implement when you have a low resolution and a limited palette of colors.
+Artifacts are hidden by low resolution and deetering, and you can tone down the quality of a lot of your settings,
+so performance is much less of an issue, so you don't have to spend as much time fine tuning
+your rendering systems or your content or optimizing either of those.
+And in the development side of this, indeed, a very practical approach, you know, you have very clear limitations.
+As an artist, I'm firmly in the camp that limitations feed creativity, you know.
+It's helpful to have some boundaries and then paint within those boundaries.
+And my game in particular, it actually has a hard limit on the detail, you know.
+The most detailed thing that I can put in my game is 3.125 centimeters pixel.
+You know, that's my textile size in the game world, and, you know, I'm not going to do anything more detailed than that in the game.
+So that helps me from zooming in infinitely to some minute detail.
+It helps me paint with a broader brush.
+And developing the game is quite rapid, you know, when you have low definition content in it.
+And all the meshes and textures in the game, they are obviously quite easy to do, you know, when you have low polygon models
+and a limited polythe for low resolution textures as well.
+But also like implementing all the rendering features and leaning on with readily available assets and shaders.
+It also helps up speeding up the technical development of the game.
+And when it comes to like a lot of items and shaders, many of those don't really mesh in really well
+with like purely retro style games, you know, because they are intended for a different purpose.
+And then on the other end of the spectrum, you know, if you are making an actually like a bleeding edge hyper realistic game,
+the readily available items and shaders probably are not enough for you.
+So, you know, this kind of style is very suitable for utilizing work that other people have done for you for free.
+So, this is like probably the most powerful aspect of using a very low definition image, a very grainy image,
+is that, you know, all of us are equipped with a brain that has been like wired to fix missing data.
+You know, when we look at this painting by Claude Monet, you know, it's only a couple of brush strokes
+and I can tell that, you know, there's people on this boat.
+Even this and that boat, they are clearly legible as boats with people on those boats,
+despite the fact that, you know, on the boats on the background, the people, people,
+they are literally just a single dab from a paintbrush, you know.
+They turn noise into signal effortlessly and it doesn't cost any CPU or GPU computing power.
+So, now we have roughly covered that, you know, why I personally think that this is a good idea in principle.
+So, let's take a closer look on how I've done it in practice myself.
+Let's start off with the bigger stuff first, post-processing and lighting.
+So, dithering, my game has a very obvious dither to look to it.
+Dithering is an old technique, you know, old school computers.
+They only had like a limited palette of colors that they could display at any given time.
+So, they used this way to optically blend new tones of color by putting different colored pixels next to each other.
+And, yeah, the idea itself is nothing new like this pointy list painting by Georges Sorat here demonstrates.
+It's more than, well, it's like 250 years old painting by now.
+And, yeah, for my game, I use got a color dither by Donitz, which is available on GitHub,
+and it uses a buyer threshold matrix for dithering, which produces this kind of like checkerboard looking effect when it dithers the image.
+And here you can see what the game looks like in a high resolution without dithering.
+And, this is the game with the post-processing on and with a lower resolution.
+So, I myself, when I implemented this shader in my project, I went with a relatively high count of colors.
+I have 16 colors, and when playing around with the shaders,
+I quickly discovered that the buyer matrix that it used, it uses a 4x4 matrix,
+which looks great unlike when you have few colors across a broader surface.
+A larger matrix, a larger blending matrix looks better.
+But I discovered that, you know, since I have quite a lot of colors involved in the dithering process,
+and the details on screen, the surface on screen, it's still like fairly tight and small in scale.
+So, I went with the smaller 2x2 dithering matrix since it displays details better when you have a lot of colors involved with your palette.
+And, you know, with a larger matrix, I ended up with a lot of like messy, weird-looking pixels that are smeared around the place.
+But, you know, when there's like a smaller surface area that the dithering algorithm tries to cover,
+it helps to keep those in check.
+But, you know, you can play around with different matrix sizes.
+You need to modify the shaders yourself, but it's not complicated to implement a different-sized matrix within those shaders.
+And yeah, I actually achieved the final image that is rendered on the screen.
+It's actually not piloted, you know, it's a full-color image that is on the screen.
+And I blend together the dithering image with the original full-color image.
+So, I have a 60-40 blend, so 60% of the color comes from the dithering image, and 40% comes from the original image.
+And I've discovered that, you know, it's still for the viewer.
+It still looks totally like a dithering old-school image.
+Even though there are, like, a lot of shades within those pixels, but, you know, for the viewer, it still looks like an old-school game.
+And this blending of having a bit less of the dithering effect on, it helps with, like, the image being more stable.
+If we look at this previous slide where we have dithering at 100%, the image appears fairly coarse, you know, partially due to the kind of big palette that I use.
+But having a little bit of, like, full-color information blended in, it helps especially with, you know, like smooth camera movements or changes in lighting where the pixels, actually, there's, like, a bit more gradual changes happening within those pixels.
+You know, it's not an on/off switch from one color to the other, you know, instead there's a bit of a smoother change happening over time.
+So, you know, always cheat if it improves the results, applies to other fields as well.
+And, yeah, for lighting, it's fairly simple for me in a technical sense because I mostly just use good old features.
+I only use real-time lighting. I haven't felt the need to do any baked lighting so far.
+And it's good if I can avoid that hassle. You know, it involves a lot of kind of boring stuff and maintenance that you have to do.
+You know, if you can run it real-time, that's always great.
+So, you know, I just enable a bunch of rendering features.
+You know, if I see a checkbox in, like, the post-processes, settings, I enable it.
+So, I have signed distance with global illumination and screen space in direct lighting, screen space ambient occlusion, screen space reflection, and glow.
+So, a lot of very cumbersome abbreviations.
+And, yeah, the convenient thing about, like, having a very stylized and also a very low-resolution, grainy image that you can actually push these effects further than they are originally intended to be used,
+or what would be possible physically.
+Like, I certainly have, like, a way more bouncy light in my game than is possible in reality.
+But, you know, within this stylized kind of looks, you know, it turns into a part of the game's visual style without looking out of place, even though it's, like, kind of unnatural if you know what you are looking at.
+And, hello, resolution, and the heavy post-processing.
+It hides a lot of artifacts, rendering artifacts.
+You can turn down the settings of many of the effects quite a bit, and shadow maps look crisp even with, like, medium resolutions.
+So, you know, there's a lot of convenience there, and that puts less pressure for you to optimize the game.
+So, all of these things, for a game like this, they are very quick to implement because you can, once again, paint with very broad brush strokes.
+You know, you can turn on a feature and spend five minutes fiddling with the sliders, and you're all set.
+You know, you don't have to go through your content with a very fine-to-of comb to kind of, like, discover all weird issues and edge cases,
+you know, your game is going to look grainy and low resolutions, so there's no need to pay too much attention to details.
+So, all of that enables you to move very quickly forward.
+And, yeah, I also use fog, a very heavy fog in the game, and it's not only for flavor and mood, because
+in a low-resolution game, when you look way into the distance, there's, like, a lot of very small, minute details.
+And, you know, if you turn the camera around or move around in the space, it's going to alias very heavily.
+So, hiding things beyond, like, 20 meters or so, in my game's case, that helps reduce this very disturbing-looking aliasing.
+In a low-resolution setting, aliasing can be a pretty big problem, because, you know, all the aliasing artifacts, they are quite sizable on the screen.
+You know, they're not like these pinpoint-sized pixels, but, you know, they're like these fist-sized blocks of color on your face.
+But, yeah, of course, in my game's case, the fog or the darkness, that's also, like, a part of the visual style as well.
+It takes place in this, like, very dark, brooding, ominous, atmospheric spaceship.
+And, yeah, one luxury that's affordable in low-resolution is super-sampling.
+You know, instead of anti-aliasing, you'll say two times super-sampling over the whole image.
+So, the game renders essentially in double-resolution, and then the final image is kind of, like, shrunk down.
+So, all of the pixels that you see on the screen, they are sampled from four pixels.
+And, like I mentioned previously, aliasing can be a pretty big issue here, and anti-aliasing techniques,
+they only usually take into account, like, the edges of meshes.
+But super-sampling, naturally, it applies it over the whole image.
+So, if you have hard edges on your textures or whatever, like I do since I use nearest-neighboring sampling for all the textures,
+so super-sampling smoothes those out.
+And once again, you know, if you do small-camera movements or things are moving slowly on your screen,
+you will avoid a lot of nasty-looking aliasing in your image this way.
+And, yeah, I'd like if this slider went further than 2.0 multiplier,
+but I don't know if there's, like, some technical issue that prevents it going further.
+I haven't looked into it too much, but I wouldn't mind having, like, 4x4 pixels,
+because then I would only have, you know, the equivalent of a 1080p image, roughly, to render.
+And, yeah, I also use motion blur, and once again, very conveniently, if I tone down the settings of the motion blur,
+it works for my favor.
+You know, my game is very grainy, and, you know, if the motion blur is grainy,
+the artifacts actually contribute towards the game looking good.
+As opposed to if you have, like, a realistic game, you want the motion blur to be kind of buttery, smooth,
+very filmic, realistic kind of motion blur, but, you know, I can stylize my game by optimizing it.
+That's great for me.
+And, yeah, I use this thing's owner's good old motion blur toolkit that you can find on GitHub as well.
+And, yeah, quickly about how I create content for my game, because it's not only about the technical stuff,
+this also has, like, a lot of advantages to when it, what it comes to, like, actually creating the assets,
+the meshes and textures for the game as well.
+For all the materials and textures in the game, I use the same palette as I used for the dithering,
+and the dithering works better, especially with the blending with the original full-color image.
+It works better if all the content matches with its palette to the dithering post-processing effect.
+You know, all the lights, all the textures, all the particles, they use this same palette.
+And I use physically-based rendering materials in the game.
+And, once again, conveniently, I don't have to be, like, very precise in how I use those materials as well.
+You know, I can just roughly tune in the roughness values without paying too much attention
+that am I actually correctly representing this material virtually?
+Because, you know, once again, the heavy post-processing, it hides all nuance, so you just gotta need to hit the correct ballpark,
+so you can very rapidly tune in all the parameters of your materials.
+And, yeah, I also use displacement with contact refinement, parallax mapping, with low-res textures here.
+Here's an example of, well, one of those, well, this is kind of like this dimpled-looking wall,
+and over there I have my texture, channel, stairs, color, depth, and a normal map that has been just derived from the hand-painted depth map.
+And, yeah, I find that this combination of using displacement with low-res textures, it's quite striking,
+and it looks quite natural, at least to my eyes, and it looks great as well, despite the fact that, you know,
+this is something that is definitely not possible with, like, old-school hardware.
+I use as a pride for my textures, I have a small custom additions I've made with some small scripts,
+and basically the workflow that I use is that the different PBR textures are all contained within the same document.
+And they are here in the document as animation frames, so I have color over here, depth, emissive, and normal in this textures case,
+and the normal map is generated from the depth map using an extension for as a pride.
+And I have a script that goes through all of these frames and exports all of those frames as PNGs,
+so this file is called Science Equipment, so the color is called Science Equipment.png,
+and then the depth channel gets its name from the tag here, so the depth channel is named Science Equipment_D.png, and so forth.
+So I can very quickly update all my different textures that a PBR material with displacement needs.
+And all the games, content, you know, the stuff you see in the levels, it's... everything is a box.
+Everything is a textured box, and most of the environment materials, they are just piling textures,
+and I model these levels in Godot editor with a custom tool that generates these boxes,
+and yeah, they are... I did a custom tool for that because, you know, external tools, they were for such simple content,
+they were just too cumbersome, I tested like half a dozen different approaches,
+and I ended up writing a box generator with keyboard shortcuts for Godot, because, you know,
+it's just rapid and convenient to do it that way.
+Let's see if I can get the editor over here.
+I need to go and set up on this side, so I see what I'm doing.
+I'm just very quickly going to... so yeah, here we have a box.
+Let's duplicate it over there on the bottom left hand corner.
+I have controls for the granularity of my operations, so I can resize the boxes using just keyboard,
+and I can modify the use as well.
+So all of this stuff over here, yeah, all of them are... they are just boxes.
+And let's go back to that presentation.
+So yeah, this is a very rapid way of creating the levels,
+and I don't need to maintain external assets or handle, you know, exporting, importing or whatever.
+It's all very straightforward, and all the text cells within the game,
+they stay at even sizes because the box generator tool knows the texture it is assigned with, you know,
+the material contains.
+It reads from the texture that how big is it, so it realizes it's UVs
+so that all the text cells you'll see within the game world are 3.125 centimeters across.
+That's, I think, 32 pixels per meter.
+And for the more finely detailed assets like props and items and enemies,
+I use Sprite Mesh 3D, which produces this extruded 3D meshes based on their alphas.
+And it supports animations, so I can get simple Sprite animations with a 3D look as well.
+And yeah, here's an example of how I've used the Sprite Mesh 3D to build these kinds of, like,
+bulky science equipment from these pieces over there,
+and you can also see, like, some animated frames over there where the text or the displays have, like,
+animations embedded within them, and the Sprite Mesh 3D just animates across UV space.
+So that's roughly it for, like, how I build the game where it's roughly very high level, kind of, like,
+sweep over the whole thing.
+And obviously this, for balance's sake, I also have to acknowledge the challenges and limitations.
+You know, nothing is perfect. Everything is a compromise of some sorts.
+And over here, you know, the limited palette, it also helps you create stuff.
+But it's also, like, a bit limiting.
+For instance, I have, like, very few tones in my palette for yellows and greens.
+So if I make, like, large surfaces using those colors, they won't be shaded very neatly,
+whereas if I have, like, a gray wall or a blue wall, it's going to shade much more neatly
+since I just have more tones in my palette where the shading can pull colors from.
+So, yeah, with yellows and greens, I only use them for, like, small accents and particle effects
+and things that are generally smaller on the screen.
+And, yeah, resolution obviously limits the viewing distance within the game.
+You know, when you look at things very far away, they turn very small,
+and it doesn't take a lot of distance to turn something into the size of a single pixel,
+and then it becomes a rendering issue.
+So viewing distances limited level of detail must be kept low,
+but I don't mind those limitations.
+In my mind, there are advantages, but, you know, if you're aware to apply these ideas elsewhere,
+it might be different.
+And legibility of text can be challenging, especially if you have some texts within world.
+Within world that are fairly small in scale, it will be...
+or it can be quite difficult to read, and especially if you want to support localization
+with, like, very complicated glyphs, then the issue gets even more difficult.
+So, yeah, for summary, yeah, make practical choices, you know.
+As an indie developer, it's a good idea to aim for something that makes the game look great
+and makes it easy for you to develop the game and actually finish the game at some point.
+And, yeah, if you explore some visual style where you have less competition
+that will naturally mean as well that you're going to stand out more.
+You know, if you operate in a less-competed field,
+it's easier to stand out and it's easier for the people who are exposed to your game.
+It's easier for them to remember your game as well.
+So, that's it for this presentation.
+Now, I think I am ready for some questions.
+(Applause)
+Thank you.
+Yes, we have about 15 minutes for Q&A, actually.
+Hi, one thing I didn't see is how do you decide on the FUV or, like, few-to-view setting?
+Is it just like a subjective style thing or do you have a specific setting
+you recommend for this kind of game?
+I don't have a specific setting, and I've varied it a little bit throughout the development
+and I'm not sure what's going to be the default setting for my case,
+but I don't see there being, like, you know, any issues with preventing the user
+from modifying the FUV either.
+So, I think I'm going to, at some point, add a slider in my settings for that.
+I have two, hopefully, smaller questions.
+First one is, you wrote your own box generator script.
+There is the CSG tool node in Godot.
+You shouldn't use it for production, but I guess for what you are doing, it could be worth it.
+Yeah, I looked into it very briefly and, you know, very high up in the documentation.
+It says that, you know, we don't recommend this for production use,
+and I'm not exactly sure what the reasons there are, but, you know, when I looked into it,
+at least out of the box, it didn't do UVs the way I wanted to do them.
+So, you know, I just went, okay, it's just, a box is six polygons.
+How hard can it be?
+So, I did it by myself.
+Hi. What's your stance on giving the player the option to customize your post-processing options?
+Yeah.
+And I'm going at this from two different angles.
+One is, like, the intuition that you've got an artistic vision that you want to see realized,
+but I found that, with my shaders, a significant portion of players didn't really like them,
+even though I like them a lot and prefer to turn them off.
+And the other thing is you wrote that everything's cheap at low resolutions,
+but some of the post-processing options that you listed seem to be quite expensive,
+and so there's also the intention to broaden the amount of players
+that can play your game with lower hardware.
+Yeah, yeah.
+I'm definitely going to add settings for the post-processing effects,
+and, you know, the people playing the game can turn off the displacement and all the fancy effects.
+The game still works visually quite well, even with all of those settings turned off.
+And, yeah, when it comes to, like, artistic vision with regards to, like, very heavy post-processing,
+I'm probably going to expose a slider for adjusting the amount of detharing,
+like, it kind of hurts me personally, you know, in an artistic sense,
+but I also realized that, you know, that's just the smart thing to do, you know,
+if someone is turned off because of the detharing, they can, you know, turn the slider down.
+However, the low resolution isn't going anywhere, you know, that's so baked into how I built the game,
+so it's going to be, you know, 270 pixels vertically, no matter what, you know,
+I build all the UI and such with that limitation in mind, just for the conveniences sake.
+But, you know, if there's a massive uproar, I might add, like, a 2x high definition mode,
+but, you know, that's just going to be, like, an optional, non-recommended way of playing the game.
+So you mentioned that you generate your normal maps from your depth maps,
+and then you author depth maps and a sprite specifically.
+Is there any situations in which you have to then sort of customize your normal map
+or go back in there and fix, like, misgenerated artifacts or anything like that?
+I noticed that in the example you provided, the depth map had a very smooth curvature to it,
+but the normal map was a hard cut off in the middle.
+Yeah, yeah, the hard cut off in the middle, that's actually just, you know, an optical thing.
+It was two linear gradients meeting like this.
+It wasn't like curved gradients, so actually what happened in that example's case,
+you know, it was just hard to perceive what is going on.
+And sometimes working with depth maps, it kind of plays tricks on your mind, you know,
+you think you are seeing things and you think you know the depth map you are making,
+but you actually constantly have to be monitoring your results in game as well,
+because, you know, you can't, or at least I can't trust my eyes, really,
+when it comes to painting the depth map, you know, you slowly develop better instincts for it,
+but you kind of always need to monitor the results as well,
+because it's a bit tricky, but you know, with a few peak cells, you know,
+very low resolution textures, it's completely manageable.
+I wouldn't use that approach with like higher resolution textures, probably.
+And I forgot to, did you have some level in your question that I forgot to cover?
+Was there more? Great.
+Hello, thank you for giving us a tour of your visuals.
+I was wondering, do you do channel packing, or you decided it's not worth it at this resolution in IcePray?
+I don't do channel packing at least for the time being, and, well, we'll see.
+I have the option to do so, but for the time being, everything's just like super straight forward, you know.
+I avoid doing fancy tricks until I need to do them, so, you know, everything's quite, you know,
+I just do things out of the box, and, you know, if I feel the need to do something,
+or if the need arises due to optimisation's sake, then sure, I'll consider doing things the more fancy way.
+You said that text legibility is a problem?
+What about the user interface, or like the heads-up display?
+Do you see that differently? You could render it in a different resolution?
+Yeah, yeah, I could render it in a different resolution.
+For the time being, I'm keeping like the output resolution the same as the game set resolution,
+basically, is, I mean, obviously it's, of course, scaled to the viewport size, window size,
+or display size used, but still, you know, what Godot outputs, or that's still 270 pixels across.
+It would help with legibility to have like an option, perhaps for higher resolution fonts,
+and I might consider doing it at some point.
+But I say baseline for my game, you know, kind of like the sort of the ideal version of the game.
+In my mind, it's this low-resolution viewport where all the pixels align and nothing breaks off the grid.
+But, yeah, for accessibility sake, I have considered, but I haven't done anything about it yet.
+But I might render some UI things at a higher resolution if the user enables a checkbox in the settings.
+Any more questions? All right, awesome.
+Then thank you again so much, Auntie for this talk.
+The next one coming up in about 15 minutes will be plans polygons and pixels,
+and skill, vegetation rendering, and Godot. And again, a massive thanks to Auntie for this talk.
+Let's give him another massive round of applause.

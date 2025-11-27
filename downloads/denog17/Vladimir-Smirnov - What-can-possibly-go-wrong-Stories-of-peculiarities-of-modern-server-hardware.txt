@@ -1,0 +1,224 @@
+API URL: https://api.media.ccc.de/public/recordings/93149
+Frontend URL: https://media.ccc.de/v/denog17-75886-what-can-possibly-go-wrong-stories-of-peculiarities-of-modern-server-hardware
+Title: "What can possibly go wrong?" Stories of peculiarities of modern server hardware
+
+(upbeat music)
+Okay, so our next presenter is Vladimir.
+Vladimir has over 15 years experience
+in SRE, DevOps, Susset Man and Suss Engineering.
+He's currently working with NVIDIA.
+However, he has always been passionate
+about working with hardware.
+Networking this copy.
+And you sometimes see things that other people miss.
+So please join me in welcoming Vladimir to the stage
+and enjoy the talk.
+[APPLAUSE]
+So yeah, before I kind of start, there
+are important disclaimers.
+I work as an AI infrastructure engineer
+to NVIDIA since September this year.
+[inaudible]
+[inaudible]
+generate more than a billion packets per second to stress test various things.
+And after that, I had a lot of questions
+about why exactly I built the systems like that.
+What about the test targets?
+Like, I mean, in this case, VPP box.
+Like, why I configure it that way.
+And basically, what happened-- I decided
+to show what happens if you do some very common misconfigurations
+of the hardware so that people would know what to look for
+and what to aim for. Well, as like I got already introduced, mostly so I live in Switzerland.
+Yeah, I have a lot of background in SRE, CSENGE kind of stuff. And I got in all of this
+project basically in 2021 when I got myself a 25 gigabit home internet. And for that,
+I decided to build a fast router. Therefore, I went with VPP. I met with PIM-1-PELTS, who
+is known very well for all kind of VPP testing and everything. And we started talking and
+it was like passionate for hardware. I have not a lot of knowledge about networking in
+general. But I really like complex problems, performance testing, and everything around
+that. And that comes into building all of those machines. So, in contrary, it's really
+what I talked about the cost-effective setup like other talks. This one will be specifically
+over-built and over-powerful because I want to showcase problems that you can get. And
+for that, I want the hardware not to be the problem. So, by itself. So, yeah, if you
+want the cost-effective part, yeah, this is not about it. Yeah. So, for the VPP, you
+know, VPP box, that's basically what I went with. There are some limitations because
+it's home project and hobby project and I'm spending my own money on that. Yeah. Like,
+I went for everything that you can find on relatively cheap scale or like I didn't
+have a lot of choice in the hardware that I can get. So, like the CPU, for example,
+supports faster RAM, but unfortunately I couldn't get motherboards for like within the price
+range I was looking at that can actually do that. And the mixture of network cards is also
+because of that, because I buy whatever I can find cheap on some deals or anything. And same
+goes for the low generator boxes. I went for two overpowered boxes. Actually, like the first
+one, like if you put more network cards in there and maybe like double the course, it should be
+fast enough to saturate the VPP test machine. But for this particular test, I went for like way
+overpowered setup. And again, hobby project limitation, like for example, Zn5 have 12 memory
+channels, but the motherboard I got only have eight. So, it's just physical limitation of the
+box that I have. And that unfortunately will be important later. Yeah. But no, let's actually
+break some things. And before that, we should establish some sort of baseline. We should actually
+see what the box is capable of. So, like a small disclaimer, I will be showing some graphs,
+like Grafana screenshots or screenshots from the software. Don't try to read them. I will try to
+zoom in into the important parts because they are very information dense, unfortunately. And
+not very readable from the slides. So, yeah, that's basically the Grafana screenshot. And what's
+important here is that this is the VPP. Like I went for a simple L2 packet forwarding. Like the
+box can actually forward more than one billion packets per second. It's like 1.15. In this case,
+very stable. Like rather reliable. And another important thing is, like, so if you look at the
+thread utilization, there is nothing even remotely close to 100%. So, if you would want to go for
+MPLS forwarding, it can do that. And for that, actually, as far as I remember, PM did talk on
+last-denog, like showcasing the previous version of the same box, like doing his setup of the VPP.
+Yeah. And for the configuration part, like, I put eight cores for Connect X6s per port.
+I put like eight queues, like, so one core per queue. And like, for Connect X7, I could go down to
+four because for them, I haven't noticed any significant difference in terms of the performance.
+But for Connect X6, it was rather important. And in terms of the bandwidth and throughput,
+like, I can get almost up to 1.3 terabits with large enough packets. So, the previous results
+were with 64 byte packets. This one is, like, with one kilobytes. I mean, if you can do a billion
+packets of 64 bytes, you probably should consider it with large enough packets. Your network.
+So, let's actually start breaking things. So, imagine you got this, like, nice, brand-new,
+Emerald Rapids machine. You put the software there. You just, like, put everything in configuration.
+You assign maximum amount, of course, you can think of or, and just start VPP. That should work,
+right? And, of course, it doesn't. This is actually, like, I think, the only kind of software problem
+that I will showcase here. So, if you try to start VPP out of the box, it will start complaining
+that maximum amount of workers that it can support is 64. And you have, like, amount of course plus
+extra, like, service stuff workers instead. If you would search for the error message,
+you can find that, actually, since forever they have hard-coded limitation of 64 workers,
+that is not easily configurable. You need to, like, actually go and change the define, like,
+one single line of code to make it work. Back in January, I made a small patch that makes this
+configurable. But then we had, like, entered some discussions that probably this limitation
+shouldn't be even there. But then we need to understand what was original intention of this.
+And this is, like, this line of code is, in the very first commit, is still there.
+So, that's a little bit beyond of my understanding of VPP code base. Therefore, the patch is not
+merged, but it works. So, in all future scenarios, I will be using the patched version to just work
+around the limitation. So, like, we fixed that. We started connecting our network cards. So,
+my motherboards, like, simplified schema, like, I have two CPUs. Like, I have PCI express slots
+that are numbered from, like, one to six in this particular way. So, I just decided, like, connect,
+so then the work cards one to one. So, like, from one to two, three to four, five to six.
+That should be your key, right? And, of course, it's not. So, on the left side, you can see our,
+like, ideal case. On the right side, you see, like, what you will get if you do exactly like this on
+this setup. Like, it's not too bad. So, for most people, I think, probably, they will be just
+saying, like, oh, it's good enough. But it's not the best results you can get. You lost roughly,
+like, 150, 170 mega packets per second of forwarding performance. And the question is, why?
+You probably would, like, so, next, you would probably go to the motherboard manual and you quickly
+figure out that the distribution of the PCI slots to the CPU is actually completely, yeah, I have
+no idea, like, I'm not an electrical engineer, maybe from their perspective, if it makes sense,
+from my perspective, no. Yeah. And, basically, I accidentally, accidentally, in this case,
+connected them in the worst possible way. So, each packet now goes to the CPU one, like, or CPU zero,
+then goes to the other CPU to be processed and sent out. So, then, you might think that, like,
+if you remember or know from top of your head the schema for emerald rapids, you would actually
+know that those have three socket links, like 20 giga transfers per second each direction.
+So, it's 120 gigabytes per second of total bandwidth between sockets. With 64 bytes packets,
+you have roughly 70. So, that shouldn't be the problem. So, the question is, why? Again,
+worrying, like, there will be extremely dense screenshots, which I will quickly zoom to the
+correct, like, part. So, if you will start digging around, you will find a lot of tools, like, so,
+Intel provides some open source tools, like, PCM for performance counters, monitors, and one
+particular tool actually shows the difference. That is actually the cross socket bandwidth. So,
+if you would zoom in, you will see that, again, in our ideal case on the left, you will see,
+there's, basically, no memory communication. Like, half a gigabyte per second is, basically,
+nothing. Yeah. So, like, on the right, okay, so, like, on the right screen shot, you will see that
+there is actually heavy memory throughput. So, like, there is almost 120 gigabytes of total,
+like, read and write combined. You might maybe think that that's a mistake, but it's actually not.
+That's exactly, like, the left screen shot is exactly what you want to achieve for this particular
+use case. And modern CPUs are complex. There are a bunch of optimizations. And in this particular
+case, this one is called the direct I/O access, so, which Intel supports since, I think, IV
+bridging from 2014, 2013, something like that. So, which allow, so, in the classical schema,
+you will see, so, your traffic goes from network card, then it goes to the PCI root complex, then,
+it sends it to ram, then the CPU actually reads it through the L3 cache from the ram.
+This, like, approach allows you to bypass the ram itself. So, like, MD have also a very similar
+feature called SDCI. It's actually smarter, but they only support this since then 5 and only on
+epics. And they approach because it's smart, unfortunately, requires the software and firmware
+support, which, like, for none of my hardware, I had any firmware that supports SDCI. So,
+unfortunately, I cannot really test or verify that. But, yeah, like, if you would want to read
+more, like, I put on the slides a couple of more links for, like, one of the using stocks and for
+input documentation, which have way more information than you ever need about this.
+So, then, like, if you would start looking into more diagrams, then you would see that modern
+CPUs are way more complex than they used to be. Like, long time ago, your CPU was basically a
+uniform set of cores, which have, like, which are on a ring bus or on a mesh. But, it's no longer
+the case. Emerald Rapids, so fire rapids, granite rapids from Intel, where, like, all of them
+from AMD, they are no longer uniform. It's extremely hard to figure out what exactly are
+the limitations or implications of that, because, like, Intel published very detailed documentation
+about subfire rapids. I wasn't able to find the same level of details for emerald rapids, for example,
+and neither idea from four granite rapids. So, like, from various public sources, I tried to
+create just a simplified version of diagram, the chokis, only the important parts for the talk.
+So, you now have multiple chiplets, which have cores, which are somehow connected with each other.
+And each chiplet for Intel have their own PCI root complex, and for subfire rapids, it's four chiplets
+for emerald rapids, they moved to two. So, the next idea to test, like, so let's see what will
+happen if we would explicitly misplace our threads and, like, so talk to the PCI devices
+connected to the other chiplet, because, unfortunately, my motherboard only exposes PCI slots from
+one chiplet. So, again, limitations of the hobby hardware.
+So, what I did, I explicitly pinned all the threads to the other chiplet other side. So,
+now, like, we will go through the interconnect between the CPUs. Oh, and maybe one take away from
+that part that, like, I would really like you all to think about modern CPUs, more in the sense of
+data center, I guess, networking, because it's all have buses, it's all have all limitations,
+it's like, these concepts are basically the same, they're just, like, in a way smaller scale.
+Yeah, and, again, like, if you would run this, you would see, basically, that performance
+haven't changed a lot. There is, like, it's, it became slightly less stable, in that sense.
+And the main change is actually CPU utilization. If you would remember going back in slides,
+back in time in the slides, there was no thread that was consuming too much CPU. In this case,
+there's a couple of threads that are very close to consuming, like, 90-ish percent of CPU. So,
+for L2, that didn't matter. It's, like, the performance impact was roughly, like, one or two
+percent at most. If I would start adding more features, like, do any extra processing,
+that will become the problem in this case. And that all happens when you are misplacing the threads
+on the different die, on the different chiplet. So, basically, this is probably the case where
+the latency actually starts impacting the throughput, because my tests are significantly throughput
+optimized. Now, what about the FX CPUs? So, AMD have completely different approach
+to emerald rapids of fire rapids. They are way more similar with granite rapids.
+So, they have dedicated die that handles all the IO, all the memory, all the PCIe, everything.
+And they have multiple chiplets with cores, 8 or 16 cores per chiplet. Nowadays, at least,
+with, like, shared L3 cache and so on. So, let's try to look into that.
+So, like, the tool that allows you to pick into the whole thing is, like, the main one is LSTOPO,
+if you enable all the knobs in the BIOS to expose the topology as the Numa node,
+you can actually see that the CPU consists of four Numa nodes. I cut the screenshot,
+so I cut the information that's not really interesting here. But, yeah, you have definitely
+four Numa nodes that you can visibly see. If you start looking inside, you'll see multiple CPU dies.
+Each one have their own L3 cache. Like, you will know the size of the cache, you know,
+which cores belong to each die, and then you have all your PCIe express devices that connect to this
+particular sub Numa cluster, like AMD calls them in PS Numa per socket, like the switch.
+It's notoriously hard to find any detailed diagrams about the AMD machines,
+like, and you cannot easily reference their documentation because of, like, various legal
+reasons, as far as I understand, they have, like, very interesting idea of how you can quote the
+setup, like, how you can pull them, like, locating slides and everything. So, I try to find
+as much information as I could, and that's, yeah, unfortunately, leads me to, like, rather,
+outdated diagram about them, too. But what you can take away from that is, you have multiple dies
+that are connected to some boss that then connects to the, some portion of your IO die, and, therefore,
+there's all of those kinds of implications that you potentially, I think, would be there.
+So, you have, so they call their boss infinity fabric. So, you have the, like, infinity fabric
+link from the dies, from the chiplets to the IO die. You have something inside, and, like,
+that actual debt inside is, unfortunately, very interesting, but I haven't found any public source
+of information about that. So, yeah, the question is, would it actually matter for my test setup,
+for, either, for forwarding or for traffic generation? And the answer is surprisingly no.
+For this particular case, it won't matter because traffic generation is heavily through put
+bound, and if you would do simple calculations on how fast the fabric is, you will have, like,
+all kinds of details, so this is public information from their, like, slides and specs.
+You have, like, 32 bytes per cycle read, 16 bytes per cycle, right? You have, like, the clock,
+the frequency is roughly 2 gigahertz. So, if you do some math, you will have, basically, 64 gigabytes
+per core cluster with a narrow setup, and they have also CPUs with two links, so double that.
+Basically, it gives you at least 120 gigabytes of link speed for the PSA root complex,
+because you can probably assume that it won't be, like, so it won't be narrower than the links
+from the, from the chiplet to the I/O die. My total traffic generation capacity,
+even in throughput mode, is, like, one, I mean, 1.4 terabytes theoretical, so 175 gigabytes per
+second total, so, basically, two, two number nodes will be able to easily handle that.
+So, like, I could have potentially, so, like, potentially, it would matter if you would go for,
+for, for modern 400 gigahertz network cards, if you put bunch of SSDs, like, PSA, Gen5 SSDs,
+and you will start doing something CDN-style workloads, if you will start sending your files
+from disk to network, then you actually will be, will probably will be able to saturate the fabric.
+Unfortunately, I don't have enough network cards to simulate that behavior.
+So, yeah. And, yeah. For VPP, it won't actually matter that much, because, like, as I said earlier,
+I wouldn't be able to test their, like, SDCI, so, like, their technology to bypass the RAM,
+because none of my hardware supports that. And with that, I will be bound by amount of memory
+channels. So, like, I actually did the tests outside. I did not include the slides at all,
+because it shows, basically, very similar numbers to what I achieved on the Intel when I
+did the cross-socket communication. The performance figures were very similar to that.
+So, like, and if, yeah. So, basically, the conclusions is, well, I need more hardware,
+which, I guess, my family won't appreciate. Yeah. So, yeah, but, like, seriously, like, if you
+want to take, like, one single point that was important about this, that you always should verify
+all the assumptions about the hardware structure. The vendors, like, so, the server vendors or
+motherboard vendors, they know all of these details. They are sometimes very hard to find,
+or, in some cases, like, distribution across the chiplets, for some reason, they don't publish
+that. They don't really like to expose that. And you basically need to always consult, like,
+try to get this information from the vendor before getting the hardware, before you ask them to
+configure it for you. And, yeah, like, if you cannot just verify and, yeah, run the test yourself,
+try to get the topology, like, open source tools are there. Each vendor also have their own set of
+tooling, which, like, also expose various different subset of this information, like, in
+some nice ways to, that you can read and so on. So, yeah. Thank you for your time on the questions.
+Thank you for these insights into networking and CPUs. Some interesting topics here,
+and maybe there are some questions in the room. Anyone? Okay. You have to process these things,
+I think. I'm going to say anything, and when are those now questions? So, thank you very much again.
+And then...

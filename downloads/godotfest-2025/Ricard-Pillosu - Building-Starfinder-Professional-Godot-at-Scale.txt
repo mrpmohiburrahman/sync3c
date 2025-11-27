@@ -1,0 +1,467 @@
+API URL: https://api.media.ccc.de/public/recordings/93402
+Frontend URL: https://media.ccc.de/v/godotfest2025-building-starfinder-professional-godot-at-scale
+Title: Building Starfinder: Professional Godot at Scale
+
+[MUSIC PLAYING]
+I think it is safe to say that when it comes to small game
+production, good rules already kind of a common choice,
+especially if it comes to game gym games.
+But what about large-scale productions?
+Can Goro handle it already?
+Well, the team at Epic Tellers is currently
+working on Starfinder, a full-scale RPG
+made in Goro with a team of 30 developers.
+How good does it work?
+What challenges arise?
+Well, I think there's no one better
+than the team of Epic Tellers themselves.
+Please give a round of applause for Maria, Rick and Felix.
+(audience applauds)
+- Hello.
+We did this presentation in like a week
+because we are very busy, so sorry if it's a sloppy.
+Just a star, so presenting myself
+and the co-founder of Epic Tellers
+and I also work on coding when I have some time.
+Then with me is Felix, who will talk about narrative.
+And then Maria, who is our awesome level designer.
+So a bit of us before we move forward
+to understand the context, that was us last year at go.con,
+talking about demo that we did for CRPG,
+the, we did it.
+So how is this going? First to align ourselves in case I'm sure that I mean we
+are very we just announced it two months ago so in case just to understand a bit
+of the game that's the trailer.
+For a while no offense. Can you make haste with that lock or is that fluffy
+brains reputation yours just for show?
+I've seen the end of light the cold night engulfing us all we're all dancing on
+the planks end because nobody believes me because it has not happened yet you
+won't let it happen help is on the way from the one looking for his courage to
+the one who needs to believe in himself from the one dreaming of freedom to the
+one who needs to face the truth from the family you didn't know you needed
+they're ready to run get ready to strike to loot to love hard to fight to burn
+the galaxy we are failing the last time
+the problem that that we face is structurally
+was that when we did four-bit of lands, we were eight people. So we rushed to it. As
+Renee was saying, who, um, speed is everything when you are doing that. So what you do is
+that coders are happy to work with Godot. They work very fast. So writers, for narrative,
+they just send stuff to coders and coders make it happen. Same goes for artists, for designers,
+for audio. And probably you are saying what happens, right? Um, so coders are stopping
+productive. They start hitting each other. They start talking bad about the other disciplines.
+They don't know how to do it. And that's, that's really not working. So we first needed
+to untangle that. Uh, this is what we really want and, uh, how we, how we achieve that.
+So the first problem is looking to the writers. How we made the writers work that equip with
+Godot without anybody in the middle. For that, we built, uh, a tool called Loom that we will
+talk more about in later. But basically it's the common thing of just branching narrative
+tool, uh, with Godot. Um, for designers, we actually extended, uh, Loom and made some high
+level logic work, um, also inside the, the Godot itself. So they don't need to hassle
+programmers. They still hassle programmers, but way less. Um, for artists, well, um, it
+turns out actually Godot 4 is evolving pretty fast. So our pipeline is, most of it is around
+Blender and the pipeline from Blender to, to Godot. It needed some work, but it doesn't
+need a lot of new stuff, new that, uh, things that were not there. Already, um, most of the
+artists, especially technical artists, open Godot frequently and do things directly there.
+Uh, for example, most of the artists, I think they built all the materials already in Godot,
+if I remember correctly, right? Um, for audio, well, uh, do our audio guy, uh, we actually
+search for other, for the solutions for audio and we decided to not take F mod or wise or
+something else more complex. We felt or we feel that, that with Godot, uh, features,
+we can already do it, uh, do what we want. So one of the things is that for sound effects,
+what we do is that we build a code about detecting files. So I tell dova, hey, if you want this,
+this character to say something when they cast this spell, drop that file here. Here
+already knows how to make the resources for randomized sounds and everything, you just
+put them there with the right name, with the, in the right folder and it will work. And
+if it doesn't, he will hassle me, but that's, that's okay. And then he already directly
+worked with, with interactive music and music that opens and closes different channels,
+which is the new, the new things from Godot, which I think with this is why enough to do
+a pretty good audio for the game. So result, great. Now we have, we could scale from seven
+to 30. Everybody's working Godot and that created another problem is that now not the
+coders are, are crazy. Godot is going nuts because, and that's not really Godot. It's
+the repository. The build was broken quite often. I mean, we more or less take two care
+of it, but there was so much stuff happening in the same day, in the same repository that
+was difficult to keep stability and to keep everything in check. So, uh, my first approach,
+I think is the approach that I've talking in most AAA is threaten them. Okay. So if you
+break the build, there will be consequences. Um, that works a bit. I mean, I have to say
+violence sometimes is the answer. Um, but, um, it doesn't work very well when you find
+yourself breaking the build. I was, but sometimes they were looking, yeah, but great. It was
+you. I'm possible. Well, it was because it's just the com, the, the, the build is, is growing
+or the, the project is growing so complex with so many people putting in things there that
+it's very easy to break it. Even if you know what you're doing, even if you are careful.
+So it's clear that we start, we needed to, to come up with something even more complex
+than that. Last year, we already talked about our pipeline for CD, uh, for continuous integration.
+What we did is even expanded more. Um, I mean, that could be a full, uh, a full presentation
+here, but I just want to say that very few simple things come a long way to stabilize
+things. This one, for example, checks if files are too small or too big. Uh, that was
+a reaction of an artist adding a 170 megabytes into the build. And that was like, what the
+fuck is this? This should never happen again. So, uh, we have basically, we just check for
+extensions and we said this is the maximum and the minimum because sometimes you think
+you have a, uh, PNG that it's fine, but it's like 0.1, uh, or one kilowatt or something.
+That must be something wrong. So you can already detect some stuff here. You can do that with
+meshes, uh, too many triangles, too less, uh, broken meshes, things like this. Uh, you
+can check for reference. We open every resource in text. We look for all the UIDs and we check
+if that file actually exists. And if it doesn't, the pipeline will stop the build. You know
+what I'm talking about? Most likely broken reference is one thing that it's very easy
+to break. Textors that they need to in the right format, in the right folder. Um, we
+even open every level, uh, in the pipeline and make sure it loads in less than 15 seconds.
+And if not, we stop you there. Um, we even open the game and go through the menu, automatically
+the main menu and then open the first level and check if there are memory leaks, there
+are warnings, there are anything. Um, for example, this one, I'm very fond of, uh, of this one,
+even if the rest of the team hated, uh, which is, they know it, um, which is, I probably
+serve it very self-explanatory. Every file is checked against this, um, those, uh, those
+searches. If you add a file in the file system that does not meet any of this criteria, you
+don't pass the pipeline, you cannot merge the main. This allows that very, very well
+extractor, uh, file them folder. And this comes from the old AAA tricks that we didn't
+be comparing, so that we need to keep everything sane. Um, this made actually another problem.
+Everything was very strict and sometimes you just want to open the build and try things.
+You just want to, I don't know, see how something could work. So what we did is we created the
+James folder where everybody creates a folder with their own name, and they just go there,
+they can go crazy. Uh, pipeline doesn't care what, what you add there. Uh, but the moment
+you move those things that you feel are good outside James, then the pipeline will check
+everything. Uh, as an example of what happens when we upload the build, we trigger workers,
+uh, through our GitLab, uh, process that this is, for example, one of the tests of the
+feature test where, I mean, it's working very, uh, fast because we actually make the, the
+timer of, of God go faster to spin that up, but it's starting the safe test, goes to safe
+point, saves the game, go and finish it, and then loads the game and make sure that you
+can move and go to the other side. Here we are indirectly testing 10 to 15 systems. Not
+into the safe, but you can move, the animations are there, the characteristics is the load
+in the level and so on. If anything that you do breaks this, you won't be able to check
+in into me. Um, last tips that I wish I knew, um, one year ago, first, uh, we took a decision
+when I start finder is that God is so small, really small, that when you recompile our
+version, and I have to say, we don't do much on simple splash, we basically take most of
+vanilla, um, God, we put the binaries into the repository, which is counterintuitive,
+you know, one binary is in your repository, actually makes a lot of sense because when
+we upgrade from Godot for, uh, for, for example, for that five, uh, it took one day, and then
+on Monday, people just loads and the binary and the data is always in sync. You don't
+have to tell people you need to download a new version and things like this. Also, having
+Godot in the binary allows Godot itself, all the pipeline, everything that you guys saw
+of checking measures and everything is doing Godot, uh, code it in Godot itself. So the
+whole repository self-contained, you can download it anywhere and it will run and all
+the pipeline can be executed in, in local because Godot runs the pipeline itself. We
+used to do that with Python, we removed Python out of the, out of the equation and Godot
+honestly is really like, uh, very easy to work with. So it's a very good substitute for
+Python. Other thing that it's extremely simple and I, I was a bit embarrassed to say that
+because maybe everybody tells me, every, every, we do that. It's worth you that you
+miss the drop the ball here. We don't think of a scenes as levels all the time. We don't
+think even a scenes as a way of building characters with, which we do, of course. So we think
+of scenes as just data in a tree. Um, and that, that is a lot of data that makes sense to
+make it in a tree. And this, for example, is our level manager that identifies which
+levels are actual, which scenes are actually levels in the game. And, uh, it makes sense
+that it is a tree. So the, the game, it sort of, it has an act one. It has different locations
+and inside it has levels. So we represent this information in a scene. This scene is not related
+to anything about, uh, about, um, a level, but it structures the, the, um, the information
+very well, you have a very powerful tree editor in Godot itself. Use it for anything that
+could be represented as a tree. Um, for example, quests are built old in a tree. This is, this
+is not using much of the tree functionality, but those are the game states. And instead
+of having a folder with tons of files that are organized in some specific, I don't know,
+whatever folders are organized into what we have here is that those are the game states.
+And when I need a game state, I know I open this scene and then I check for the game state
+visually, I can navigate the functionality very fast. For example, we have a scene that
+describes the whole systems of the camera. I just open there and I can see all the 20 bits
+and come and functions that are the camera, but this is described in the scene because
+it's just really a tree, a very powerful tree editor. Anything? That's it. We'll go to Felix.
+Perfect. Thanks, Felix. Well, hello, my name is Felix and I'm a narrative designer at Epic
+Tellers. And of course, I'm here to tell you a story. And it's the story of how we went on a quest
+in the far land of Hispania looking for our narrative tool to fulfill all the long wish list that
+the narrative designers at Epic Tellers began to build. And this started in that game that
+Drake was telling you about in the game we show at go.com. During this, we learned a lot. We learned
+that writing for CRPS is really complex. You have a lot of variables. Did you fight with a faction?
+Did you became friends with them? Did you betray the only lady in the square, in the main square?
+Everything amounts to changes in branching narrative. As you know, this can quickly become
+very complex and very ugly, real fast. And we realized that with our friend, the spreadsheets.
+You know, spreadsheets is they go to solution for games and for most games, it works. And for us,
+it worked for a while. And it did a good job. Thanks, champs. Our friend champs know the story.
+But very soon, there is so much that there is not much that a single row of spreadsheets can
+contain. So somewhere in that process, we realized we need something else for our real game.
+So it was okay, but we had a long, a long wish list. So we went there on this quest to find
+the perfect, our weapon against this complexity. And of course, we went to the usual suspects.
+We were, okay, we asked, what are the industry and standards to work? Of course, RTC, for example,
+it's like you have RTC. Everything you need is there. It's big, it's complex, you have support,
+you have integration. At the time, the integration with Godot was not a sure thing. But no, no,
+we are working on it. Of course, Godot is in the horizon. So there's that. And so many actors like
+our wave offer online solutions, web solutions. And then they were very enticing. They were like,
+come, come here. And it was nice. We really liked them. So we were, after six months of trying
+testing, we were almost on the verge of a decision. And RTC was kind of convincing. But
+the thing that worried us the most was integration and sync. Like we need our main goal in narrative
+for this project is fast iteration. We wanted to test things fast, correct, test again. And we were
+worried that this process of integration would consume a lot of our time. And we had to deal with
+integration problems and support. So when six months have passed, Rick told me, I remember clearly,
+he told me, Felix, give me the weekend. I want to try something in Godot. And that was the beginning
+of, that was, this was Rick and I talking about it. And after that very moving hook,
+he told me this. And the solution is what we now know as Loom, the system that Rick was talking,
+telling you about. Okay. And I'm going to show you how cool is working with this,
+with this tool that we developed. And I say we develop writers with that,
+appropriating the success of others. But the thing is, I'm going to show you how cool,
+how is a normal day working with this tool and what are the benefits of that process.
+And I'm going to do that asking for the help of one of the companions in our game. This is
+Android, Lou, 323. And she's one of the main companions of the game. And I'm going to show you
+a typical example of how we come to a level and start working on dialogues. When we come,
+Maria is going to tell you about it. But when we come to work, we already have like a skeleton
+of the level that we are going to work in. And we just get there in Godot and we start creating
+dialogues. In this case, we're going to create a dialog for Loom, 323, in an event called
+co-cauldron, co-cauldron. That's the name of a bar in our game. So I just create a Loom file.
+A Loom file is just a text file. And so it's easy to do code to work with Git and do emerges,
+resolving conflicts is easier. And every Loom file, every dialog, every narrative interaction,
+starts with a Loom file and an entry point. This is kind of the universal identifier in Godot.
+So any time we want to tell the system, okay, clicking on this NPC is going to start the dialog.
+We do that, but Telling Godot, okay, this is the Loom file and inside that Loom file,
+you're going to use that entry point. So it's very easy to have a Loom file with multiple entry
+points. So in this case, for example, you can start the dialog with this companion from
+in several different ways, each one of them with a different entry point. And it's very easy
+for us writers to visualize what the interaction is about. If it's a complex flow, if it's chaotic,
+if you see here connections like chaotic connections, you don't have to dig deeper and you can easily
+realize, no, no, this dialog is kind of messy. So you can see like complex flows and see if the
+flow, if the pacing of the dialog looks okay, just from looking at it, okay. And another benefit of
+this of Loom is that every time we want to use or make reference to an element inside the game
+inside Godot, it's as easy as locating the element on Godot and dragging and dropping. For example,
+I want to specify that this speech dialog is Loom speaking. It's as easy as going
+to our senses. Senses is basically the definition of a companion with all their skills,
+with their picture, the name, and just dragging and dropping. And the same with every element,
+like gamer tags, quests, whatever, it's as easy as dragging and dropping, okay.
+And the cool, this cool graphic you are seeing there is a typical example of how Loom
+or how the narrative team interacts with another subsystems of the game. We have created,
+we, again, we, the devs have created custom notes, specialized notes that interact with
+subsystems. For example, we see there we have your typical branching narrative. You are going to
+offer the player choices, but those choices are conditioned by some events. For example,
+here you see we have some special condition notes. One of them asks if that book,
+that character with a book appearance is on our party. If that is so, we can provide the user with
+a specific option. The same with inventory items. Do we have this item on our inventory? Okay,
+offer the player this choice. We have notes for doing skill roles. What would be of CRP without
+throwing dice? For example, this is a note that allows us to specify which of the characters is
+doing the skill check, what is the attribute we are testing, the difficulty, and all the possible
+outcomes. Critical success, success, fail, critical fail. That's very easy to create these
+branches all alone. Of course, for example, game attacks. The game attacks are the persistent,
+global scope variables that we use to define the progress in the game. It is easy for us at
+any time to set game attacks or check game attacks. This is so quick, so fast for us and so simple
+that our team, the people that don't have any experience at coding can easily build complex
+logics and start prototyping dialogue and interactions in minutes. So it has proved the fact it has
+been very important for our goal of fast iteration. And when we are working with that and talking
+about fast iteration, the fact that we can play the game, we can test the game, we can see in real
+time the flow moving, we can see the flow advancing, we can check the exact path we are taking,
+and we can change in real time the content of the notes, change the options, change the skill
+roles, and we don't have to restart the game at all. We just go and talk to the same character
+again and the changes are reflected. So it is perfect for our, we have sessions of peer-to-peer
+play testing in the narrative team, so we can see things. I don't like this. Let's try if this
+sounds better. We can test test and the changes are already there where you will just have to
+commit the change and it is as you see as that. Of course, we have more tools that I could be
+showing you characteristics of loom, but for example, we have stats. We have, our game is going to be
+voiced by actors like most of the dialogue, so we need to keep in check, for example, how many lines
+of dialogue, how many words each one of the character has, because we have to schedule and
+plan the voice acting recording sessions. So we have this, we can keep track of which character
+is becoming expensive, so we can kill them. So that's mostly the decision come from this.
+And of course, we can check all the pipeline errors ahead of time, and we can run this
+validator, or we can double-click each error, it takes us to the exact node, so we can take action
+and correct it. And it's very, very easy and it's very fast, but the most beneficial,
+I think, feature of loom is how we can integrate with level design with Maria, for example. When
+I work with Maria, it's very normal that we are working on different flows. We are working in our
+dialogue flow, the narrative flow, and she's working on the, or the more logical flow of the
+level. And sometimes, and most of the times, we interact. For example, in this case, it's the
+typical dialogue where I know that after talking to Lu, the level is going to do something awesome,
+the character and the party, they are going to try to break a crate. I don't know how she's going
+to do that, I only know that they're going to try that. So, I can call another loom file
+and a specific entry point, and I can expect results from that call, and I just need to know
+if they succeeded at breaking the crate, or if they failed, and I can resume the dialogue flow
+accordingly very easily. She can be working on that, I can be working on this, and we don't have
+any conflicts. I can work in parallel. She can have a stop, meanwhile, and put something temporarily,
+I can put temporary dialogues, and it's very easy, we don't have any kind of conflicts,
+as we can work in parallel. No one has to wait for, and this jump is not only useful,
+jumping between files, but it's the typical go-to, and I can make modular dialogue easier.
+And the next logical question is, compared to the original six months of scouting and testing
+software, how many months did it take, Rick? Because Rick is the father of Oslo,
+how many months did it take, Rick, to develop loom to this level that we are currently using?
+Exactly, two months. So if we compare that to the time that we spent trying software,
+if we had done this, we would have saved four months, but the message here is that
+you don't have to be afraid of trying to create, trying to use God God to fulfill the needs,
+in this case, of narrative design, because it's very easy, and the results, as you can see,
+are, for us, in part of what we wanted to use from RTC and ArcWeave. We are fulfilling
+our full wish list of features, and it has been a really, really fast process.
+And with that, let's use loom to jump to Maria. Maria.
+Is this working? Yes. Thanks, Felix, for the introduction. I'm Maria, and I'm a level designer
+in Epic Tellers, and I'm going to be talking about this subject from the perspective of our
+department. If you've ever worked in video games, you may have seen that a level is a place where
+everything comes together. So every department is going to throw their things and their work on it,
+like gameplay, logic, the systems, the art, the dialogues, and everything is going to come together,
+and you're just going to watch it and hope that it doesn't explode. The bigger the team, the bigger
+the explosion. So I'm going to go over some of the ways that we have been using Godot to bypass
+these danger points. This is the workflow that we use in level. I'm not going to go over it,
+because we're not innovating here. You can watch GDC talks about this topic,
+whatever you want. The important part is that we are constantly communicating with our department,
+and we are constantly working very closely with all of them. So that's why I'm going pinpointing
+some of the things that we've used to go over this smoothly. And so one of the important steps
+is the block out. This is the most obvious step that level goes through, the actual making the level
+in 3D. And we start this by having two inputs. We start working with concept, which gives us an
+environmental idea of what the place is going to be. When you're designing for CRPGs, the cities in
+the world are supposed to feel alive. So they have a lot of lore. You need to know who made them,
+what's the climate there even. So the level is going to structurally reflect all of this. It's
+important that we have this information before we start. And then we also work with narratives,
+so they give us some objectives of what is going to happen in the level. Maybe this is a quest
+about Romans. Maybe it's a Romans quest, so we're going to tone down the pacing of the level so that
+maybe you have more opportunities to connect to your companions. This might be a level of a
+character presentation. So we're going to structure the level to build that presentation up,
+so it matches with the character of the companion and how we want the player to perceive them.
+Once we have these two things, then we move on to the actual building of the level.
+Here we're going to work really, really closely with 3D art because they are the experts in taking
+a bife from a concept and then developing into an actual 3D space. So this, for example,
+is a prison that we have in one of our levels, and we're supposed to communicate a series of things.
+This is also a character presentation, so we need to take that into account. But for example,
+we need some lore from the company that has this prison to be explained. So we're going to create
+the spaces to make this possible. Working really closely with 3D art also gives us the challenge
+of this smooth communication between both sides. To bypass that, we've been using Gridmap,
+which is a tool that got it already has. It's basically a tile map. You have a preset of meshes,
+of 3D meshes, and then you can just rearrange them however you want. This helps to build
+modular levels very fast. We have adapted this, and we have granulated it, and now we have really,
+really small pieces. This is why my teammates say that I spend my days just playing with LEGO,
+because we have all these things. But the good thing about this is that we have taken this,
+expanded it, and now when the art team receives these pieces, they can substitute it with final
+art. This is really useful when you have to build many levels, and you want to have a common base
+with 3D from which they can dress the level with. Another thing that we've been using for
+working with 3D, especially, is nested scenes. Throughout the development of a level, we
+probably reach to a point where the iteration is not going to be very significant. In that case,
+it's beneficial that the 3D art team can come in and start making changes, but we don't want to
+have any conflicts. What we do is we create the little corner of 3D art, which is that
+beautification node, and it works wonderfully, because they can be doing advances in this other
+scene. The changes that they do will be reflected in my level, and then when we merge everything,
+it's not going to register as a change, so we won't have any merge conflicts, and this is ideal.
+Another tricky step in our pipeline for level design is the actual event design and
+the scripting of these levels. We work really closely with narrative. They might give us a quest,
+like, for example, the prison that I was talking about before. They might say we have to infiltrate
+a prison and rescue this character that is going to be your companion. So we take this information,
+and then we lower it to actual level logic. So if I'm working with us here at BG, I'm going to say
+that all problems should be solved in three or four ways. That would be a sweet spot. So I'm going
+to say maybe the player can steal a key from a guard and get in. Or maybe the player can charm
+the receptionist of the prison to get in as well. Or maybe they just want to kill everybody and
+get in by force. That's fine, too. We take these steps and we lower them to this kind of workflow,
+and then we script them, and we script them in LUM as well. This has worked really, really well,
+because sharing the same platform with another team makes it really easy to understand each other.
+They understand what we're doing in level. We understand what they're doing in narrative.
+We, it's not like we're scripting, and it's a very foreign tool that they are not accustomed with.
+So this proves well, and then we have the end product, which is the experience that the player
+actually gets. The interaction with whatever logic behind it that there is.
+So why did we decide to use LUM for scripting? We started working with JavaScript, but we do
+have a diverse level team. We have somebody who is more art-oriented, somebody who is a bit more
+combat and gameplay-oriented, one of those guys who really likes to spreadsheets and balancing,
+and then me, who is a bit more narrative-oriented. This is really good for making levels, because we
+have all the three perspectives. But this means that we had different coding abilities. So we
+wanted something a bit easier to get into, like a visual scripting language. We started trying
+out things like Orchestrator, which is a plugin for Godot, but around the same time that we're
+trying these things out, LUM had been developed for narrative. And we just thought,
+I think Drake has too much free time. I think we can also expand this system to work for us.
+And also, if we have any problem, we can go on knowing him directly, and we don't have to work
+with a third party. So we did this, and it has been working really, really well. We knew that we
+didn't want to have a full visual scripting language. We can't make functions, we can't make
+variables like arrays. But this is a conscious design decision, so that we can have a lot of
+freedom, but also we can still keep it simple. And as I said, relate to the people in Artifto,
+we work with very, very closely. This way, we ended up with a system that works in a way that
+a coder might develop, will develop a system. Like, for example, those are the files for the
+Quest system, which Lucha right there developed. And that's maybe like two months of development.
+That's a lot of time. But then we'll sit down between the two departments, and we will find the
+way to translate this complex system into a series of LUM nodes that you can use easily.
+And the creation of LUM nodes is really, really fast. The system is put in place so that
+the code is fast to make your only referring to the actual system that's already created.
+And we can contain this system into, let's say, five nodes. We can close the Quest, we can open one,
+we can make some of the Quest relate to each other. So if one opens, another one will open as well.
+So this has been allowing us to work between the two departments and understand the systems that
+we're working with really, really well. Last thing about the scene inheritance that I
+wanted to talk about our building level is a scene inheritance that we've been implementing
+since the beginning. This is the way that we structure all of our levels. You may have a lot
+of items and a lot of objects are of entity senior levels. And we wanted to make sure,
+because we're developing the technology at the same time that we're making content for the game,
+we wanted to make sure that iteration would be fast. So we just take all of the objects that
+we're going to have and we categorize them into different groups. As an example, we may have
+everything in a CRPG that we're working with is interactable. So we're going to make an
+interactable template that has the base of everything, maybe a mesh, an area of effect,
+whatever. And then we're going to make children of this template and make more templates.
+So we'll have, for example, a loot template. From this loot template, we can make a bunch
+of different types of loot templates. So it just goes on and on and on. But the good thing about
+this is that if at any point any of the logic of the interactable of how it works changes,
+we can just go to the parent template and all of the changes made there will just cascade
+down to everything else and we don't have to touch anything, the levels update automatically.
+So that's another thing that we've been using a lot.
+To wrap the presentation up, I thought it was important to mention that one of the strongest
+points that Godot has, it doesn't matter if you're a big team or small team for developing a game
+and developing too specifically for your company, is the fact that there's a huge community backing
+you up. I remember, I'll talk about grid map before. When I started working with grid map,
+it didn't have all the functionality that I needed. So I decided to make an add-on.
+But I'm not a really good programmer. So I decided to go to the community and ask. And this was my
+first time actually engaging with an open source community of an engine. And I put this issue up,
+and the next day it had been labeled, but somebody had linked other relevant issues about it and
+it had been registered into the information that you have here. So now my tool is actually deprecated
+because they implemented all of these things. And the next version of Godot, this is solved
+much better than I could have ever done. So I think that this is an important part of why choosing
+Godot to do something like this. And we came all the way here in part to thank you for having
+our backs. So we can actually develop these things very fast and with this community backing us up.
+Thank you very much. You have any questions? You can go ahead.
+Yes, thank you very much. We still have some time for some questions. So if you have questions,
+raise your hands. Hi, congratulations for the amazing work you've been doing so far.
+I have a question about deciding how to implement tools. I do that myself, of course,
+when I develop my own projects. But it's always a hard balance to decide how much time to spend
+on a tool and how much time it will be better just to stick to whatever we already have.
+But in this case, I can totally see the outcome that you've got implementing Loom.
+I don't know if you have a process to decide which kind of tool to implement if you have
+some sort of decision making process. When they stop asking for new features, probably is the
+time that you are there. They never stop asking new features. So at some point, you need to
+focus on something else. I do not know, because actually our structure is a bit odd for a Godot project.
+We work in a very long term as a company, which is pretty big, again, is not an indie. We grow,
+we have a lot of expense, and we need to work on our toolset that we can rely. And if we get
+add-ons, external add-ons, and that person stops developing it, it creates a problem. So it's
+better to create our own things and think on the long term. We are not thinking about if this is
+going to be useful for this first game. We are thinking if this is going to be useful in the next
+10 years. We don't try to make systems that will be bulletproof in 10 years. That's not my point,
+because that's bad. Don't do that. But in general, it pays off a lot, because the bigger the team,
+the bigger you are accelerating everything. The moment we did, for example, validating for Loom,
+Loom is used in logic, is used in narrative. We are using it now for AI. The moment you do
+validating, suddenly 10, 15 people are affected, and they are faster. So it's very difficult to say
+no to those improvements. Sometimes there are improvements that are very local that will affect
+one or two people, and then you put them in the balance. But the thing is that it's very difficult
+to say no, because Godot is so fast. Validating and everything, the validator it took
+two days, I think, to build. It's just so fast that it is ridiculous, the iteration time.
+The whole presentation is you could be some less, do your own tools, it's so fast, it's ridiculous.
+That's it.
+Hi, thanks for the awesome presentation. I have two questions. You presented what seems
+like a very strict framework for the folder and file structure where you have all the validations.
+My question is, when you decide how to change it and how big the changes can be,
+because it seems very strict and strict things are hard to change. More importantly,
+how long does it take for the GitHub pipeline to run and finish?
+This guy knows this. Yeah. In Epic Tellers, we have a very flat structure.
+This file there is basically for anybody to change. What happens is normally, you get, like,
+for example, a newcomer arrives into Epic Tellers and they do something cool, and we are all looking
+at him. It's like, you still have a mandate pipeline. You'll see. And then it's like, yeah,
+I have this new thing that you press, go to the pipeline. Why you cannot check in my changes?
+Well, you have 10 things wrong. Why you have that? Go one by one and you might learn.
+And at some point it's like, why you cannot put this file here? And if there is an easy
+answer to that, it's like, because this file doesn't go here, this goes here, and the name
+should be like that, it's naked, and so on. Then that's fine. But sometimes it's like,
+actually, that's a good point. Probably shouldn't be go here. Go to this file that I just copy pasted
+here, and add the new metric to do it. You do it yourself. It's actually a file in the same
+repository. So it's self-contained. The moment you do the checking, the pipeline goes. How the
+pipeline goes, it depends on how many people are trying to put things in. So the week before
+a deadline or something, it becomes a slower. I wouldn't say we did some improvements. I don't
+know. You guys have me here. It's like, with eight minutes? Eight, ten minutes, probably.
+Sometimes it can go faster. But we do lots of things like compile all the scripts,
+link all scripts. It can take a long time sometimes. This is basically all three computers that are
+in the home base of the parents of one of the developers. We just put it there. With a message,
+please do not turn off. So it's not an expensive setup. Anybody can do it.
+It looks like you guys had a really big win with developing the Loom tooling. Is that something
+that you plan on releasing publicly available in the future?
+The idea for the whole start finder thing is going to be, we want it to be very moddable.
+So we want a lot of mods. We want to open it. We still need to find out exactly how. But if you
+need to mod it, it means that you need to access it in order to do quests. So there will be some sort
+of access to it. Honestly, inside the team, we don't care much. It's more about the legal trouble
+than anything. We don't want somebody to just copy everything and publish it in a team like
+we have a Pathfinder. Suddenly, I have to have a legal battle against some clones. As long as we
+can solve that, most likely this will be publicly available. The thing is that we don't have it,
+we don't code it to be generic. We code it for our needs. That are pretty generic and probably
+can be used. But it's not in that situation. But I have to say, in the way we work, we do lots of
+add-ons. The add-on idea and structure is very useful. I don't know how many we have. Maybe 20,
+30 add-ons to increase the tool set of Godot and loom is one. And then we have another area of code,
+which is systems for the game that can talk. But the add-ons are self-contained. So the
+idea is that yes, you could use it, but it probably will take some time.
+Hello. My name is Ed Nigo Montoya, prepare to answer another question about the built pipeline.
+The question is, you mentioned that your whole thing is built in Godot, but I'm not sure if you
+mentioned whether it's built in GDScript specifically. And therefore, the question extends into, is your
+whole pipeline, all the tests and everything written in GDScript? Everything. It's a GDScript
+that calls an OS execute Godot. So it's Godot calling Godot execute tables.
+We don't even use Bash or any other scripting. I work in Linux. I used to do all the script in
+there. But at some point, it's like, I want this self-contained. So somebody with Windows,
+somebody with Linux can do it. So Godot is actually the answer. You have the binary there.
+It's like 10 problems in a row, just having everything by itself. Self-contained.
+Yeah. Unfortunately, our time is now up. And yeah, we have to get out of here sometime soon.
+But thank you for the team of Epic channel for Maria, Rick and Felix for your presentation.
+[Applause]

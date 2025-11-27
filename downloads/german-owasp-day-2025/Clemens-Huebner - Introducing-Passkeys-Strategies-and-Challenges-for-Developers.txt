@@ -1,0 +1,115 @@
+API URL: https://api.media.ccc.de/public/recordings/93546
+Frontend URL: https://media.ccc.de/v/god2025-56479-introducing-passkeys-strat
+Title: Introducing Passkeys - Strategies and Challenges for Developers
+
+Thank you, thank you Freddie, thanks everyone, can you hear me good in the back?
+Alright, perfect.
+Good, yeah, I'm stepping in, giving a talk about pass keys, so we can lay the foundation
+for the second pass key talk directly afterwards by my colleague and also to share a bit of
+with our insights about how to integrate
+past keys into your applications,
+what are different strategies, how to decide
+which solution is the best for you.
+So I will hope to cover all of that in 25 minutes.
+So let's go into it.
+I'm Clement.
+That's all you need to know right now.
+Let's dive in.
+So when we talk about authentication,
+most of you will picture something like this
+in your head, I guess.
+So an email field or a user name field and a password field,
+that's how we do authentication nowadays still,
+I would say.
+And password words, I do not have to tell you
+that they are difficult for the users.
+They are difficult for us.
+So you can do a lot of different things wrong with past keys.
+You can choose weak passwords.
+You can choose very weak passwords.
+You can handle them wrong, like putting them into websites.
+They are not belonging, where you should not post them to.
+And passwords are getting reused all the time.
+And of course, for each of these mistakes,
+attackers came up with attacks.
+So weak passwords can be brute force.
+So we're trying out all passwords for a user.
+If you do not want to target a specific user,
+but just want to open all the accounts with the very weak passwords, then there's something like password spraying where you just try the one hundred one thousand ten thousand thousand whatever weakest passwords out there like password one to three for all kind of users you can get a grip on and just see what account opens up or not for the problem that
+users put their passwords where they do not belong, there's of course phishing attacks or tweaking users into telling you the password or entering them in the password in a web page that is not actually the web page they are thinking.
+And of course, passwords are reused, so if we get one known credential pair and we can do something like credential stuffing, try this exact same pair on another web page.
+And see if the user was lazy and reused the password there.
+So passwords are bad, I think we can all agree on them and that's why we want to shift away from things users have to remember.
+So things you need to keep in your brain to other authentication methods, you may know this famous three kinds of authentication factors, something you know like passwords, something you have like possession based for example like a hardware token like the solo key or a chip card or something like that.
+And then of course factors that are based on you as a person, biometric factors, something you are.
+So these are the three typical kinds of authentication factors or as someone like to put it something you forget, something you lose, something that is chopped off.
+So of course also the other options are not perfect, each kind of factors has their flaws but going away from knowledge based authentication factors is a good idea and we want to do this in the web in an easy way and that's where pass keys come in.
+So pass keys are the solution that we can use in our web applications, authentication factors that are not longer, no longer based on knowledge but are based on possession or on biometrics.
+And we want to use them in a public key, a way that we do not have to send the actual secret across the wire but we do some kind of challenge response.
+So even if someone is eavesdropping or is getting a hold on what is stored on the server side and they are not getting an actually secret leak and we want some strong scoping of the credentials to.
+The side we are authenticating for so that we can prevent phishing because one credential is just valid for this exact side and cannot be entered somewhere else.
+So this is all what pass keys try to solve and some of you might heard about the thing that was there before pass keys like WebAuth and I gave a talk about that and then over the day I think three years ago and so that's basically the same.
+So if you're not really knowing what the difference is we will come to that later but basically pass keys is just a new marketing for WebAuth and so if you used to know this and you think that sounds familiar then this is the reason why.
+So let's have a short overview how this works technically so we have this very simplified architecture and we have some kind of laser pointer here so we have our web app that is running somehow in a browser on a platform on some kind of device.
+So we are communicating with a server in WebAuth and this is called a relying party so that's where we want to authenticate against and we want to do this using some authenticators that can be some external authenticators like some
+device things but this can also be authenticators that are provided by the platform for example provided by our iPhone with touch ID with Face ID are provided by our computer with Windows Hello and fingerprint and whatever so this is the range
+and WebAuth end is now specifying how this left part especially is working so what is the standard that is used here or to be more precise how is this communication happening what can web application do or what doesn't web application have to do to use these
+authenticators that are of different kind on different platforms on different devices in a standardized way to use them to authenticate securely in the web.
+So that's the idea here and the WebAuth end standard basically defines two processors they call it ceremonies and that's the registration ceremony so that's when you want to register a new user and then they need to create some kind of private key
+public key pair the private key remains on the authenticator the public key is then stored on the relying party side and that's then the identifier for identifying them later.
+And then there's the other ceremony the authentication ceremony and that's where the user approves that they are still in possession of this private key and they are using it to authenticate to the relying party.
+So that's basically what WebAuth end specifies and what is used then for past keys as well.
+So let's have a short look at a demo because demos are always fun if you're short of time so I have a small demo application we have a simple login here and you might see oh this login looks different to the login that we know there is no password field
+because it's a passwordless authentication but first we have to register so I just need to enter user name and then I enter some private data so we know that the application recognizes us later again.
+So now when we click on register a nice pop-up pops up with some QR code we will not go into this that's something that will be covered in the second part how we could use a smartphone now using this QR code to authenticate.
+But we want now to use a hardware key and we pop it in we need to use the pin I've set and then we have to tap it once and luckily it was successful.
+So for the German demo but you will be able to get it I guess so now we can look in again and we still need our pin.
+I touch my token again and we see it greets me so it recognizes me I'm authenticated here so that's how WebAuth end works for the user and how it feels in the browser.
+All right so let's see how this works under the hood a bit.
+So you remember we have this let's see if this fixes all right so we have this communication between the relying party and the application and what happens there when we register when we are using this register ceremony is the client the web
+says hey I have this new user Clemens Hütner he wants to register then the server responds here I need a public key for this user the server can provide some specification how this key should be created and this specification is then put in JavaScript API that is provided by the browser that's actually the web of an API and from there the browser takes over looks what
+authenticators do we have communicates with them creates the key pair that's nothing that has to be done in the web but the web gets back and the public key and gives this to the server and they are happy with that and it's similar for the authentication
+I want to look in as Clemens Hütner then the server provides us with a challenge and we take this challenge we give it into the other API that is provided by WebAuth end in the browser and from there the browser takes over again looks
+and we have a key for this website then signs the challenge gives it back to server checks it and authenticates it so that's what WebAuth end is doing and that's what we need to do when we want to build in past keys in our own application
+so let's skip a little bit the timeline and also where the supported spoiler every major browser supports it let's have a look at past keys for a second so past keys is the next step bringing
+yeah WebAuth end to a broader audience and basically past keys are WebAuth end credentials plus some additional usability I would say so with past keys
+the WebAuth end credentials are now better integrated in the clients and they are synced across the clients so that was a big usability issue with WebAuth end most of the users do not have a token they want to use it across devices
+so that's what WebAuth and that's what past keys is now doing it's integrated and it's synced across the different devices
+we also have this cross device usage of past keys so we can use this QR code flow I just mentioned so if we have a past key on one device and we want to look in on the other device we can scan the QR code
+and in the background the authentication is happening the next talk will go into that in detail
+and that's what comes additionally basically with past keys and that's why a lot of different companies are now implementing past keys and I think you should do as well
+now we're coming to the part how can we integrate past keys in our own application and I have tried to break this down into five steps so basically
+you need to extend your user entities so you're not storing a password hash with your users anymore
+but you now store a set of past keys and with them you need a plan to enroll your existing users, detect if someone locks in and give them the option to create a new past key credential and then later remove the passwords
+and you can do this in parallel allow the registration of new users using password less login and then you're good to go and you also have to implement the management of the past key credentials in the back end so users should be able to see what past keys have I created
+and want to delete them change them so that's what has to be done there
+okay so how can we integrate this in our platform basically there are different options how you can implement this you can build it yourself there are plenty of libraries for different languages for different frameworks
+you can integrate it into your existing authentication, the existing session management or you can use some past keys as a service providers there are multiple out there that do the management of the past keys and the checks and everything for you
+you can either call them via API so you keep the control over the front end to yourself and just communicate by their API or most of them also provide some web components you can just integrate into your application
+so then you can do some some theming but you're very starting very fast with that
+a colleague of mine did some comparing there he wrote a blog post about this I will link this later so you can have a look at this in detail basically we tried out the different options with the same use case implemented in the different ways
+so basically with the library you're the most flexible but and it's basically for free at the first glance but you need to know what you're doing you need to manage it yourself but it's highly flexible
+and with the past key as a service providers you buy some management there and yeah you extend your or your outsource your your authentication and session management there to some extent so that's something you need to consider
+we have a small simple decision tree what might be the best solution for you so if you're low on budget or you are very happy with building everything yourself or you am sourcing out this data to an external entity is not an option for you
+then you you're stuck with the the library I see I translated this with with AI just five minutes ago and not not everything is translated probably but you get the get the gist
+and yeah if you if you want to outsource it then the API is more more flexible and you can integrate it more flexible into your application and the web component is the easiest way for new application if you're if you like to start there
+all right so that's in a very short summary of the different options of how to integrate and pass keys but of course I thought about another important step step number six you need to guide your users so pass keys are getting more and more common
+and I'm sure many of you have tried them out for your own accounts already but yeah you still need to educate your users how to use them passwords are insecure but they are very widely understood and pass keys are not so much so that's something you need to consider
+there so that's it in the short amount of time I have for you and there are often a lot of questions about pass keys and also some controversial opinions so I brought three myself today so we can discuss them later at lunch
+I'm happy about them so many people say oh I like to control with my uv key and do not want to sink them anyhow that's perfectly fine I feel that the same way but pass keys are really an option to improve authentication for the masses
+for the 95% that are not using a password manager already or they are not used to any hardware keys so really need to think about them when talking about pass keys
+I think pass keys are a big step to improve your authentication so if you're thinking about implementing a multi-factor authentication in the next weeks or months skip this and go to pass keys is my personal opinion
+and a lot of different problems that arise with pass key so what do I do if I lose my pass key or how can I make sure that the pass key is not used by someone else or what our fallback mechanisms and so this is all process problems
+we have them with pass words as well we have them with all authentication methods so it's important to think about them but it's not a problem of the technology itself
+That's it from me feeling dark and I'm happy to answer maybe one question thank you
+All right who's the first one with a question?
+Okay one question here by Fred is running here's the blog post I mentioned so if you want to read about it in more than 20 minutes go ahead please what do you miss at pass keys sorry again what do you miss at pass keys
+Yeah what do you miss what would you expect but should be also added to pass keys?
+Ah sorry okay now I get it what do I miss I mean pass keys are basically a technical concept and an API in the first place and all this education and bringing users towards it that's happening a lot in the last two years I guess
+but that's something that's still ongoing and what is I think the biggest problem by why it's not moving faster thank you one more question
+It still works very good so one of our common use case in our family is that we have shared passwords so for example for eBay Clan and Sagin we have the same account because it's also the same budget
+Can you do something like this with pass keys?
+Yes so it's best practice for pass keys that you allow users to register more than one pass key because back in the days they would be bound to one device and if you would have more devices then you want to register more pass keys
+Usually I want to end so it's basically getting easier because everyone can register their own pass key you do not have to share them insecurely so for this special use case it might get easier
+Alright that's it that's a huge thank you to Clemens for stepping in
+Thank you

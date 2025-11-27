@@ -1,0 +1,242 @@
+API URL: https://api.media.ccc.de/public/recordings/93335
+Frontend URL: https://media.ccc.de/v/denog17-78243-you-can-t-just-model-a-train-in-netbox-about-architecting-and-running-modern-it-infrastructure-in-trains
+Title: You can’t just model a train in Netbox: About Architecting and running modern IT Infrastructure in Trains
+
+Okay, without further ado, the next topic is on something I've been told is very dear
+to our community, because a good international friend of mine told me, how does it come that
+the main topic on all of your social channels is Deutsche Bahn, what is going on there? And yeah,
+we have Vanessa from DB Fanfak here. Apparently, you can't just model a train in that box. I don't
+know why. Yeah, hi. Thanks for being here. As many of you may have experienced already a
+conference is even better when there are talks about trains. So here you go. The Denog 17 train
+talk, you can't just model a train in that box about architecting and running modern train
+infrastructure in trains. But first, I want to get to know you and who I am. I've been as a
+goer. I'm 27 years old and working as an IT infrastructure architect at DB Fanfak here. And why am I
+I'm not here today. Most of you, I have one
+infrastructure, relatively relaxed environment like a data center or an office building. That's
+not what we are doing. And we have some challenges with it. And so, we want to do or we want
+to explain you what our challenges are. And maybe there are some issues in the future if he's
+understand the challenges of each of the operation model a little bit better.
+Yeah, I'm also of course doing stuff. Besides in train IT, for example, teaching networking
+basics at a cooperative state university but in Wittenberg, I think it's very correctly or
+also stuff like nearly everyone does building experimental IPv6 only infrastructure in my
+free time. Now, about you. Who of you arrived actually by train? Oh, that's very much it. Who
+of you arrived by IAE or IC train? Still most of you? Well, that's nearly 100%. Yeah, nice.
+Nice to see you. So, who of you did use the passenger information during the event? Okay,
+not as much more of you newly going or just sitting into the train and hoping. Who of you
+used the in-train Wi-Fi? Also a big part of you that's nice to see. So, we are talking
+about how this works but to start we need to understand trains. Trains, how are they built?
+In general, we have more or less three generations, three three models. Let's start with the
+basic ones. We have locomotive and coaches. How they are connected, they have really basic
+electrical connection with the UIC cable which from our perspective doesn't do much sophisticated
+stuff. You have interesting features on that. Like site multiplexer-wend-a-took story. I'm not
+going to translate that to English. You can look at all our Wikipedia how it works. But,
+yeah, it's not really networking technology. It's like the basic safety critical technology.
+Then we move forward to a so-called multiple unit or a German trip took. We have like the
+first generation down here with a fixed power car and then some coaches but tightly connected
+to each other. There we already have a train-wide bus or the train-wide network. For example,
+the class 401, the ICE1. And then in a further development we go to the distributed power.
+Fixed combination of vehicles with distributed power units or no dedicated power car anymore.
+These of course also have train-wide buses or systems. But what all of these are together,
+all these core functions like doors, like control that are considered like OT or embedded system.
+From our perspective, you can think of it like embedded system or operational technology.
+So why do we actually need IT and trains and how do we do it? Well, we have like two
+worlds. On the right side you have really the safety critical functions. Like emergency
+buttons or the loudspeakers or the door control. On the left side you have all the non-safety
+critical comfort functions. Like our nice guy sitting there and looking at how fast are
+we going, where we are, reading a newspaper or looking what is available in the board
+restaurant to eat, what can I maybe even order directly. We have the passenger information.
+And what we are actually doing, we are separating that. Because we don't want to get left side
+to get in touch with the right side. And what we are today doing is focus on the left side,
+the IT side. You may be, you could consider that as IT OT convergence. So it's like the
+two worlds we are focusing on the IT world on the left side today. So to do some IT, we
+of course need connectivity. Most of you have the easy connectivity. Like you have a fiber
+connection or maybe a fixed DSL connection to a building. That's of course not working
+for us. So how to connect the train to the internet actually. In general, it's what every
+mobile connection basically is. Use the mobile networks. Use the 5G networks. But we have
+also some challenges with that. We have like up to 320 kilometers an hour that we are running
+with our trains and some challenging conditions. For example, we are warming between sales
+and we are also doing that firstly. Maybe some of you came here from Frankfurt. There is the
+Geney fast tracker cone, fast track between cone and the wine mine area. And there you
+have a tunnel with maybe has a mobile cell and a bridge. And a few seconds later, next
+tunnel. So this warming is already challenging. Then we have areas where we have low to no
+care which at all. That's something we need to plan for. Then we have the point of international
+usage. Our trains are not only running in Germany, also going to Switzerland, Austria,
+Netherlands, Belgium, et cetera. So what is our solution? We aggregate everything possible.
+So every possible connection. Multiple providers, for example. And we also need to plan for
+instable or completely unavailable connectivity. That's not only relevant for the services
+that are running on the train, but especially the operation of the infrastructure on the
+train. So now we have connectivity on the train. How to get the connectivity to the customer.
+In general, we have Wi-Fi on the train. That's nothing special from the layer 2, layer 3
+perspective. Like it's just multiple access points connected to the same layer 2 network.
+The interesting part is everything below it. Like the layer 1, the airf conditions. The
+weighty frequency part. You have like a big metal pipe with access points in it. The
+big metal pipe moveers. So also the relative position of the next coach to your coach moves
+depending on if you're on a straight track or sitting in a groove, et cetera. You have
+obviously issues that need to consider reflections. Like the signal-to-noise ratio. How high is
+the access point coverage and visibility? Again, what I said. It changes all the time
+if the next coach is moving in the -- yeah, before you. And then it changes relatively
+quickly. You have dynamic interference. For example, in train stations. Two trains. Maybe
+even off the same type. Sitting next to each other. Obviously, we behave much more dynamic
+like an office building. Another challenge is the access point positioning. Of course,
+ideal, like we all would build it with the access points and office building. We would
+place it above the passengers, above the users. But the question in the train. Do I have space
+there for access point antennas? Does it fit into the design? Is stuff like passenger
+information? Monitor is still available. One of the possible solutions you see in the picture
+on the white, like an enclosure under the roof, integrated with the design and place
+that the passenger information is still visible. So, we have the connectivity on both sides.
+But we need to distribute the traffic over the train. How do we do network and compute?
+In general, the internet network also nothing special under the layer 2 layer 3 side around
+here. We basically have a standard layer 2 network with STP based redundancy. Yes, I
+know you're not really loving STP from the previous talk. But yeah, it just works. Usually
+the network is per multiple unique. So, it means multiple vehicles that are fixed connected
+to each other. There are not really fancy features like overlay networking EVP and layer 3 or
+something like that. Most of the time, we're using a 10 gigabit projection backhaul for
+most of you also borrowing probably. Yeah. What's important? Local management. Including
+topology discovery. Because topology could be changing, we're covering that in the next
+slide. So, important is we need to do everything locally. What's also interesting, usually
+copper-based ethernet is easier to handle for us. Especially during maintenance, it's
+just more robust than a fiber connection. And what's also like a special use case, we
+have an passive layer 1 pass-through that connects the network in case of a power outage.
+So, that's how a network could look, like two switches per course, each interconnected,
+ethernet connects the backbone connections between the cultures. Yeah, that's basically
+it's really nothing really special from the layer 2 layer 3 perspective. Obviously, we
+need also local compute. Due to unstable connectivity, there's no other way than to have some local
+compute available. You'd need like E&50, 155, 35 industrial hardware, we're using that
+shell standard 68 hardware with Linux. And the main tasks are basically on the one side
+to operational support for all the infrastructure running locally on the other side, providing
+offline or at least cache services for every service that is available locally on a train.
+So, what actually are we doing in terms of hardware and what's the challenge over here?
+Well, we of course need industrial equipment. You can see an example on the right hand side.
+What's unusual to most of you, we have M12 connectors instead of an air that shows 45,
+like the standard copper ethernet you're probably used to. Also, power is a little bit different.
+In trains, the 110-volt DC is nearly the standard, which obviously also changes a little bit,
+maybe a little bit more than in the data center with really high-quality power supply. We don't
+really have a standardized form factor we are using. Yeah, weight is really relevant. So, yeah,
+that's, there's nothing like just by a 1-H-E19, so switch and place it into the WAG. There are
+special certifications and regulations, so it's really difficult to find off-the-shave hardware,
+especially from big vendors. The available hardware then often has a limited feature set,
+compared to the data center infrastructure. It's more like the OT and operational technology
+network hardware, and less the modern network backbone with maybe EVP and et cetera that were
+used in data centers. And what's also important to maintenance aspect, the hardware needs to be
+swappable by electricians really around the clock. When a drain comes into a workshop, there's
+nothing like a network administrator, et cetera, available. We can do the hardware swag as well.
+Some of you said in the workshops keep electricians away from network cables on Sunday. That's not
+really an option here. And what we also need to do, of course, is automatic reconfiguration, in
+case such as swap happens. So, how are we configuring and naming everything? Well, I've named a
+slide many trains changing identities. Let's start from the big perspective. A multiple unit in
+German trip is identified by its number. You see it on the top right. It's the 9478. In this case,
+that's basically the whole group of the train. Then each unique vehicle has its own UIC or EVN
+European vehicle number. You can see it on the picture on the bottom. And then we have like the
+vehicle types, which is, you can think of it as a template, which defines what is in there.
+And then we have like 50, maybe even 100 instances of this type. So, like a vehicle type. And then
+we have recreate, let's say 90 vehicles, all with a custom UIC number out of that vehicle type.
+All of that with everything I already said, the automation, the local
+capability, et cetera. Another point is the vehicles in a multiple unit are sport between each other.
+That's, I will go into detail in the next slide. You can imagine that like a little bit, you have
+your data center fully equipped. You have one fully equipped track with, yeah, all your hardware,
+your configured hardware. Then you're going into the data center, taking the rack out of it,
+replacing it with an identical rack, but it has another number on it. And then you need to
+integrate it all back into your network. So that's a really interesting use case for the traditional
+tools and not really covered over there. So, it's not just easy to model a train in that box.
+Yeah. How could such a swipe look? I have taken some real-world data from the ICE with the ID
+or 304, 304. And that's the initial configuration. You see you have these three first cultures,
+I think the left side is the end working first class, then the first class working, then the
+this second class working between the first class and the bottom of some of you may know it.
+And that's the initial configuration. But then something happens. And for some reason,
+we need to exchange these two cultures. I go back and forth. So, if you have a look, we have
+404 at the beginning and 104 at the beginning. And then we take some other ones. They have the
+same hardware built in, but they are other cultures. And in this case, that could happen at night
+or something. We automatically need to discover that and reconfigure all the network. So that's
+obviously a challenge we need to take account for. So in order that we have named and identified
+everything, let's go on how to build and operate the infrastructure. Yeah. The first problem is
+lifecycle. A train usually lives for about 30 years. Large redesign usually at half lifetime,
+so after 15 years, you already see this lifecycle is completely uncomfortable with our
+used hardware with a little bit shorter expected life, similarly. So when to upgrade, of course,
+new generations, new architectures, introduces new variances. The in-plane, in-place maintenance,
+so swapping hardware with the same model is not really a big problem. It happens all the time
+around the clock when the train comes into the workshop, which, of course, also means we don't
+have the easy maintenance windows, like it just happens every time. But the important question
+when to redesign the hardware architecture, how long does the world all take? It's much longer
+than most of you are probably used to. Multiple year world all period for such changes as usual.
+I have an ICE-1 in the example. The ICE-1 has currently a second redesign. It was built in 1988
+to 1990, 1939. Yeah. The second redesign started 2020, including, of course, newer IT,
+and is approximately finished in next year, 2026. So you see, this lifetime alone for this change
+is really, really long to, yeah, what would you probably use in a data center world?
+Then management. Yeah. It's nothing unusual to like have two sides, to have a data center
+inventory management, an IPAM system, more or less than for monitoring, but expecting stable
+connectivity between all of that. Between your monitoring, your exploration, your inventory,
+and your sites where the hardware is actually deployed. That's nothing we can do. We expect
+unreliable connections all the time. So we basically need to have a local copy, a local mirror,
+of all of that we have seen right now. That also does mean cloud only management is not really
+possible for us. We need some type, at least, of local management, just because we expect to
+have no cloud connection when we drive to a certain area or something like that.
+In summary, running modern IT infrastructure and drains is, of course, possible as you have heard.
+It introduces new challenges, especially compared to the data center infrastructure.
+You need to keep in mind the number of drains and the flexibility. You need to maintain the
+flexibility. You need just automatic reconfiguration. The life cycle and the hardware swaps are much
+more complicated than planning a data center change. The flexibility and the mode of instances is,
+of course, difficult, with normal, with traditional tooling. You will never have a really stable
+connection. Like, independent of what you're doing, expect your internet connection to be gone.
+Yeah, and everything around hardware is especially challenging. Like, what hardware is available,
+the sizing of the hardware, the life cycle, the maintenance of the hardware needs to be doable.
+You need to find space for the hardware. You need to power the hardware.
+Heat dissipation is also a team. Interesting use case, and especially with the hardware.
+That's the end of my slides. I want to thank you for being here. I want to thank my team for
+the support of these slides and obviously the Denog team for making all this possible.
+With this nice picture of the ICU, you now now trip through or multiple units,
+94, 88, driving into the night and cars. I want to wish you a safe journey back home with a stop
+into the closing. Thank you very much. Okay, questions. Now is your chance. Here we go.
+Hello, Q here and noted other train that. So, question about what happens when there are
+two trains that are coupled or uncoupled? Obviously, like, the train control networks need to be
+connected when a train is coupled. But is the infotainment, so to say network, then also coupled,
+or do they just maintain themselves apart? It's just like a separate train with the network,
+like we are doing it all the way around together. Yeah, of course. There's nothing happening on
+the side. Okay. If you already have questions, make yourself known, here. Hi, Nicolas Cotton,
+speaking for myself. Are you evaluating the usage of satellite communications for
+uplink connectivity in the trains to compensate the poor network coverage we have in some parts of
+Germany? There's actually nothing I know anything in detail about. Sorry. Okay, thank you. Hi,
+Gareem from, of course, interesting talk. I was just wondering, do you have content caches for
+Netflix and stuff like that? Not that I know of, if you have a CDN and a good idea about that
+can't talk to me afterwards. Fradio Finite 7, are you using Wi-Fi in the workshops to connect the
+trains? Yeah, I was also saying the workshops, that's not my special area, but the connectivity
+for the train itself, it's mobile networks, what I have on this slide earlier. Hello, Francisco,
+here. You mentioned the train carriages get swapped. How often does that happen per train set per
+month, roughly? I wouldn't say not so often, I don't have any data on that, but it's like more,
+it's only when it's really necessary. We must prepare for it, but it's not nothing like that
+happens on a daily basis. Mark Haber, Freelance IT consultant, you might know me as Succchloos.
+The class 4, 12 has 13 cars. The Holgo ICEL has 17 cars. I think you have two switches per car,
+so that makes well beyond 30 switches in a single spanning tree domain. How did you manage to get
+that to work reliably? That's a good question. I just can't say that it apparently works.
+Hi, Nicolas, speaking for myself, since the ICE Media Portal also has video streaming on it,
+and it seems like those videos are on train. How do you feed those videos onto the train? Do you
+do a nightly r-sync over the mobile network? We are doing over the air, of course, like everyone
+does, but we are just expecting unstable connectivity for that.
+Hi, Sebastian, also speaking for myself, you told us that when you swap trains,
+the network needs to reconfigure what kind of reconfiguration are we talking about? Is it
+like renumbering IPs? What needs to happen in the network if a train gets swapped?
+It's too complicated for the question, but at least we need to change, like to identify as the
+UIC numbers everywhere they are used. That's like the minimum set that needs to happen.
+Hi, Rose, speaking for myself, you mentioned the different classes of trains. For example,
+the ICE 3 new 4-0-8 or the new ICE-L have laser-cut windows so your mobile phones can connect to
+the outside world easier. Is that something you are working on? Because for the moment,
+when you want to have information about how fast your train is, connections, or if you want to
+order something from the Bot Bistro in first class, you are only able to do it via Wi-Fi on ICE.
+With those laser-cut windows, that's something in the future you are looking into with outside
+connection to those information and entertainment systems. That's an interesting question and
+probably the idea behind it, but now currently that's like he choose to use a mobile or the
+on-train infrastructure to completely support world.
+And regroup back. B6, have you enabled IPv6 and do you have plans to enable IPv6?
+To be honest, I have expected a question much more earlier.
+It's like only the fourth time this dinner I was asked that. Who of you has the same question?
+Okay, that's not really much of you. It's of course not really easy to roll out IPv6 there.
+There are talks about it on that event here too. So yeah, it's not that he just flipped the switch
+and then it's working, you need much more consideration. Obviously also the user demand for it to do
+etc. That's why I was asking. Yeah, we are talking about it. But as you know, sometimes IPv6
+architecture plans etc is difficult. It's complicated. I think we have room for one more question
+there and then I would suggest we will cut the queue. Already, please, people move to the inside.
+If you're sitting on the edge, please, people will come in.
+Hi, I'm Marcus, a personal question. Is there any way you can increase the MDU on the Wi-Fi
+and the trains? Maybe 1500?
+Probably the same answer as the IPv6 question. It's complicated, applies here.
+Okay, with that, thank you very, very much. Thank you.
+[BLANK_AUDIO]

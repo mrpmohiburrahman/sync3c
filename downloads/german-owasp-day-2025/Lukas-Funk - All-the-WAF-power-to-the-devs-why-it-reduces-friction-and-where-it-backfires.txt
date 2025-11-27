@@ -1,0 +1,328 @@
+API URL: https://api.media.ccc.de/public/recordings/93553
+Frontend URL: https://media.ccc.de/v/god2025-56478-all-the-waf-power-to-the-d
+Title: All the WAF power to the devs - why it reduces friction… and where it backfires
+
+Welcome, everyone, to the second session for the day.
+This one here is very OVASP-seemed for the next three talks, so you're on the right
+room.
+That's a good choice.
+Lucas, here is joining us from Switzerland, it's also the home of Christian Follini of
+the OVAS call rule set project, and Switzerland seems to be a rather protective country.
+There are lots of application firewall experts in there, and Lukas is going to introduce us
+a bit to the topic and show us the good and the bad about web application firewallings,
+so I will not take all the time away by talking too much, so give a warm round of applause
+for Lukas and the topic.
+Hi everyone, thanks that you joined this talk.
+I can talk about my favorite topic, web application firewalls.
+You mentioned the call set, actually this week, there's a call set retreat happening
+in Switzerland, so there are quite a few people who develop the call set and all that
+stuff.
+They meet once a year to develop it further, to meet each other, so it's quite cool.
+One thing I have to be where I can be here, so that's quite nice.
+In my experience, the web application firewall often feels more like a burden than it provides
+benefit for the people.
+Due to that, we try to find a different approach how a WAF can be deployed, and that's what
+I tried to showcase a little bit today, our journey from the central WAF to a more app-centric
+developer-friendly WAF.
+As mentioned, Lukas, I work as a security solution architect at United Security providers.
+It's a Swiss-based small company, about 60 people, and one of our key knowledge areas
+are our application firewalls, amongst others.
+So let's get started.
+Besides me, there are other roles and people who likes good tune-to-off, like CSO, and here
+you see some examples of obvious malicious requests.
+The WAF blocks these, that's good, that's what you're supposed to do, and it's the essential
+part of its job.
+Depending on the size of your installation, you see easily 100,000 and more such requests
+per month.
+So that's just, we have to be very famous for that, it's just happening all the time.
+So WAF blocking these things, take away a lot of traffic from which you don't want
+in your application.
+So WAF does its job, so CSO is happy, everyone is happy, right?
+But not everybody likes WAF, and not talking about the hackers or the pen testers, it's
+good thing they don't like that stuff, right?
+I'm talking more about the web developers or the application owners because usually going
+live and now moment, we need WAF, do you have WAF, oh, we forgot about that, and what's
+happening usually, okay, you have to figure out, there's something blocking, let's put
+that in detect mode, and well, what's happening then, well, probably you never get out of the
+detection mode anymore, or maybe sometimes.
+And I've seen enough WAFs which produce barely just a bit heat and no protection at all because
+they were running detection mode for years.
+And so that's one thing we wanted to try to understand why is this reaction, why, what
+can we improve to do that?
+And secondly, we didn't want to be always the scapegoat, say, oh, the WAF is the bloody
+WAF.
+So what challenges did we think, our isolates a little bit, I think that's the most important
+part, WAF is usually always late, you develop something, you have a new application, and
+then, oh, we need to go in production, yeah, CISO says we need a WAF, okay, and usually
+break something, that's just the normal thing as it is.
+So and, yeah, the second thing I think is really important, the WAF development usually
+have different processes than software developers or application owners.
+They do use different tools, I have seen rarely any WAF which can be integrated in a CI/CD
+with the application together.
+Usually you have a central WAF, maybe you have several stages, QA test, but if you start
+with an application, you end up usually at some stage to integrate, to get the WAF.
+So whatever you develop, you have no clue if it breaks something, if there's a rule blocking
+some sport of traffic, all the tests are running without the WAF.
+So I think that's a really big problem.
+And due to that, also you have completely different configurations.
+One, often the most central WAF have a UI, so you configure it there, you have your GitOps
+process for the application, so when combining these things, it's really difficult.
+And for that, it's something really difficult to release fast, like all this agility you
+pray for all the time, if your process usually gets blocked by the WAF deployment.
+And the last thing, you probably know the Mikado game, the pick a stick game, right?
+So whatever you update, Coralset or any other application component, you never really know
+what's happening with the WAF together if you break something.
+And that's what I'm referring to, the update paralysis.
+And the third thing is scalability and the availability.
+If you even have hardware deployments of the WAF, scaling is really difficult, so we
+have to set up at the peak load you're expecting.
+If this is going higher, you're breaking the setup.
+If you have a hybrid setup with multi-clouds, different clouds, usually it means you have
+different web application firewalls for each environment.
+And that's really, really difficult to, if you move from one hyperscape to the other,
+you have to reconfigure the whole WAF and that's, I think, is a big problem.
+So due to that, all these challenges, we came up with a vision called Appcentric WAF.
+So basically we want to shift left, I know it's a bit tense word, but try to get a WAF
+for each application.
+Each developer should be able to use the WAF directly in the development process.
+So it's early, all the tests can be run with the WAF together, and it's not just, like,
+SAC DevOps gets a bit more of meat on the bone than just the buzzword.
+So it should be integratable and the CI/CD process should be able to use GitOps processes
+and, like, bring the connection of WAF functionality and application together.
+And ideally, we can move it from one hyperscale to the other, so all this closed ecosystem
+stuff can be, can go away.
+And the last point I think is really important is of use, because you will figure, or that's
+one of our lessons, WAFs can be quite complicated and cumbersome.
+So we think it's really important to make that feature or the security part available
+for everybody.
+So like to show what we did, this is just how we did it.
+There are other ways, other tools, how we can put everything together, it's just an example
+how we did it.
+We were focusing on Kubernetes deployments because it provides a great ecosystem with
+tools and stuff, so we could focus on security aspect and not on the tooling part.
+And Kubernetes is designed for extensibility.
+So that's what we did.
+So we're using a few post components, flagship project coralset.
+Here as mentioned, I think if you're talking about WAFs and open source, you can't get
+around CRS.
+It's a really great project, they put a lot of effort in it.
+Then the other project, the Corasa WAF, you might or not everybody knows about that.
+You probably have heard mod security.
+And corals is basically a drop in replacement, completely written in Go.
+It has full compatibility with the seglang which mod security introduced and the CRS
+is using.
+And then we have Envoy proxy as the reverse proxy.
+And what we did at the United Security Prize, we implemented a Go filter for Envoy using
+Corasa.
+It is a awesome implementation for Envoy as well, but we face there's some memory issues
+and of support and of life issues.
+So we came up with our initiative to implement the Go filter which allowed us to put all
+these things together.
+And then what we did is basically the management.
+So we used our implant operator, Kubernetes operator to simplify the deployment of all
+that stuff.
+So what does that mean in the operator?
+So this is the Kubernetes resources available, basically it's a unified API.
+And you can extend it with so-called custom resource definitions that's down here which
+your own stuff.
+And that's what we did.
+We built a Corasa WAF operator.
+It's basically that's a configuration example.
+It uses the same stuff as in old Kubernetes deployment, YAML structure.
+We simplified some Coruset settings which you can allow to tune the WAF basically.
+So how does that look like?
+Here's the really, really simple Kubernetes deployment.
+We have the ingress or gateway control part which brings traffic into the Kubernetes cluster.
+And then we have the application itself which brings the code.
+So what's happening?
+We deployed the operator and have the Corasa custom resource.
+With our setting and operator is then in charge of deploying all this basically the WAF itself.
+A few words on the architecture which we've chosen, they're different approach how we could
+set up these things.
+First of all, we've chosen a separate deployment and service versus side-core patterns.
+Side-core would basically add an additional container in the application code itself.
+We choose the other approach because it's less intrusive and more simpler in overall.
+It has also some drawbacks which I come to it later.
+And another option would have been to put everything in the ingress or gateway controller.
+And we also opted not for this option because the gateway controller or ingress controller
+are really, really central parts of the Kubernetes cluster.
+And if you come afterwards with the WAF functionality, that would mean you have to replace the
+Android controller or gateway controller and we wanted to avoid that so that we actually
+can go into existing setups with this approach.
+So let me really, really quickly show you how that could look like.
+So I have here the famous two-shop deployed in Kubernetes.
+You'll hear about that a little bit later today.
+For those who haven't heard of it, it's a really great application to show and learn
+about that application security and there's a lot of flaws in it and it's also good to
+demonstrate a bit of WAF capability or what it can do.
+Remark, WAF cannot fix all issues.
+So there's just a tiny bit of fraction but let's quickly show the really nicest SQL injection
+approach, right?
+So really simple and we are admin.
+So that's a really good example how WAF can help you protecting these things.
+So let's quickly, here I have an example of Coroz WAF custom resource.
+You see there's not much configured, there are a lot of defaults, so everything is enabled
+by default and just back end and for demo purpose I introduced a paranoia level, a paranoia
+level for those who are not familiar with Coroz WAF is how strong the rules that should
+be.
+So there's level one to four.
+One is basically area application should have it.
+There should be no false positives at all.
+So that's the aim of the Coroz set for a paranoia level one.
+Then two is like e-commerce shop, three is online banking and four like well, critical
+infrastructure, power plants, whatever.
+So if you have a level four, expect a lot of false positives, a lot of tuning efforts,
+do that only on very, very specific projects.
+So let's apply that shortly.
+What will happen is you see an additional pot, it's been spin up and the service and
+now as mentioned in the diagram we have additional service, now we have to instruct the gateway
+or the ingress that they actually go through the WAF and not directly to the application.
+I do that, I have a gateway control install, I will patch the HTTP route so that it moves
+through the WAF.
+And hopefully the application is running still and often what's happening, so that
+looks all good or maybe not, now you see a lot of stuff popping up, it's paranoia level
+one but still there are some issues about, so you have to tune that.
+Let's see what's happening here.
+So there are a lot of errors but it's always the same, it's actually a specific rule which
+prevents content types, so this socket connection, so it's a web socket trying to set up a web
+socket connection with content type text plain which is per default blocked.
+So we have to tune that away and we can do that with some additional
+stuff settings that was, and so let's do that and at some points it should reload the
+configuration.
+And ideally these error vanish, so that's good, so at least obvious errors are gone.
+That's good, let's check if the s-conjection is still here.
+Nothing happened and if we go to the developer tools again, here we see, okay, four or three,
+that's good.
+So to also show a little bit the limits, the other of the parallel level one, so that's
+also an obvious s-conjection and unfortunately this is not caught by the parallel one, it
+is actually caught by the parallel level two, so we could switch that easily to the next
+level, we have discussed that obvious s-conjection with the colon set developers and it's not
+easy to fix because especially the s-conjection part is part of this lip sequence injection
+and that's quite a cumbersome project so far and there needs to be a idea how to fix that.
+So that's basically that.
+So if you want to try it out, you, they're all on our GitHub pages or a GitHub organization,
+you can find that thing there.
+So lessons learned from that approach, well it's easy, right?
+Well, probably not, as you can imagine, it is not and actually sometimes also not what
+you want, especially when you talk about separation of duty.
+But let's start with the achievements.
+So we are able to use the WAF in our development process, everybody can use it, it can be tightly
+coupled to the application code itself, every application has its own code, can be updated
+individually.
+So if an update breaks one application, all the other application can still be upgraded
+with a new coralset or a new WAF engine or whatever.
+I think that's a really great achievement and we're using the same tools, same workflows,
+so it also gives transparency, you are able to have all the WAF changes which you need
+for the application to cater with the code changes or the application changes.
+So you can deploy these features step by step and, yeah, just a second.
+So what are the drawbacks actually?
+No-how is a really key thing.
+The WAF experts are administration, sometimes know nothing about CI/CD processes, all this
+tooling is completely new for them.
+Vice versa, developers' knowledge about web application, firewall or spares, so there
+is really lots to improve.
+And so on one hand, each side needs to get familiar with the tools and the processes
+from the other key expertise.
+And I think a great way how to do that is actually kind of a review process for them,
+because what you also, the risk, what you do with that approach is that you give a lot
+of power to the developers and if they don't know exactly what they're doing, you can basically
+carve bigger holes in the Swiss cheese as they should be.
+And so you need an expert to review what the changes are actually doing to not fully open
+the doors for everything.
+The experience that kind of a managed service is quite a good approach.
+So the WAF experts, depending on the skill level of the developers or the application
+owner, they provide basically the same services they used beforehand with the centralized WAF.
+So that they do the application integration together with the application owners, but
+still they have the oversight and all the knowledge what to tune, how to tune and all
+that stuff to provide that part.
+And so that this separation of duty is still given, but more like a shared responsibility
+still.
+And last point here, ease of use, it's really important because if you have looked into
+the call set in the tuning part, so that exception was actually easy to fix because
+it was an obvious message and obvious application design, but to abstract this whole pattern
+matching and false positive tuning at some point, that's really important, I think.
+So it's not the golden bullet, there are quite a few topics to address.
+And one very important topic, it's not on the edge, it's set up.
+So all the traffic is already in your cluster before it reaches the WAF.
+So there is malicious traffic in the cluster, it can affect it already.
+And so all the, as you have the ingress or gateway control point, the TLS termination
+is usually done there, all the IP address related blocking mechanism, you need to forward
+this information to the WAF that it can actually do something with or do it in front of it.
+So geo blocking, IP blocking, that's either late in the process or you need to do that
+separately of the WAF.
+And one thing I forgot about to mention, TLS termination, so MTLS used to be one job
+of the WAF, now it cannot do it, so we need to figure out not the way how to do that.
+Next topic, global virtual patching is cumbersome.
+Now we get WAFs shooting out of the ground like mushrooms, each application has its own
+WAF, how to address virtual patching on the global level is difficult.
+Imagine like three years ago or four years, log for shell, so it was around that time
+of the year, you need to patch all the WAFs at once.
+It's really important that you have this functionality.
+So far we couldn't find the satisfying solution for that problem yet.
+With the operator we have means of implementing something like do, but we lose a lot of transparency.
+Like we could say, okay, the operator deploys virtual patch to all WAFs at once, but then
+you lose this information from the applications that you don't know that something has changed.
+And that's lacking the transparency part.
+So we're still finding a solution there.
+And what you also lose with that approach is that you have like a central oversight
+of your WAF policies.
+So if you have a company policy enforcing certain standards, you don't have that view
+at once.
+So you need like a policy engine like kivern or opal to enforce this information or this
+certain level.
+And I think that's depending on the scale of your application important part that you
+can ensure your security poster.
+At the last point, I mentioned that, so now we have application, you have the WAF, and
+you need to ensure that the application is only accessible via the WAF.
+You need this, you can implement network policy, it's an additional effort to do that, but
+that's actually what you should do that you're not bypassing the WAF by accident actually.
+And yeah, I think that's really important.
+In the same sense, but also also gain with that setup, with network policies, you can
+do protection of inner cluster traffic as well.
+So because it's not in the gateway, you have it all in a cluster so we can protect actually
+also East West traffic.
+So that's our journey which we are still going on, we're learning a lot of stuff all the time,
+how we can improve support.
+I hope you also got some insights and probably took something with you to how it could be
+applied in your environment, what challenges, or maybe you're familiar with some of the
+challenges.
+Personally, I think it's a great way to improve the overall experience for everybody.
+I'm involved and we have this setup in different customers, big customers actually, and they're
+really happy about it and they're going forward with that approach on a bigger scale actually.
+So yeah, I'm happy to discuss later also in a break or something, what your experience
+is and thanks a lot for that.
+Yeah, thanks a lot.
+So do we already have questions, any questions here?
+I do have a question.
+So are you planning to protect all the juice shop, you mentioned earlier, it's not possible
+to protect the whole juice shop, but are you planning to spend more time on protecting
+more from the juice shop, the services set up?
+Well, there are certain vulnerabilities which you cannot protect by both because they're
+client-side vulnerabilities, so it's not possible to protect everything.
+I know there has been some efforts to look at or list all the vulnerabilities which can
+be protected by the core set for the juice shop, but I'm not sure where this information
+is actually at the moment.
+Do we have further questions?
+Yes, there is one.
+Thanks for the talk.
+My question is you said you need to have an expert on WAFS ideally to use them.
+So actually it's a two-part question.
+So would you say don't use WAFS when you don't have an expert and the other question
+is how much time would it cost to create such an expert?
+Difficult question.
+Well, actually to get a simple baseline that's not too difficult and it depends also a little
+bit on your application.
+So some application are well designed and there can work to get rid of perfectly.
+And then it's also not a big learning effort I think, but especially with a bit older application
+which don't have this predicament designed with it together, that there can be a wolf
+in front of it, then it can be quite cumbersome.
+And then you need a bit more time to speed up or to spin up an expert to that level.
+But I think especially in the OVOS community, there are a lot of helpful resources to gain
+that knowledge.
+I think the core set is a really, really good starting point which protects a lot of stuff
+already.
+So I think to get started with the core set and such a setup, it's actually easier than
+it used to be.
+Thank you, and then further questions.
+I see none.
+They'll give a warm round of applause again to thank the speaker.

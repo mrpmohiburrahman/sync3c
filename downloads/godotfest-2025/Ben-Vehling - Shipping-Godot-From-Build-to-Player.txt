@@ -1,0 +1,948 @@
+API URL: https://api.media.ccc.de/public/recordings/93435
+Frontend URL: https://media.ccc.de/v/godotfest2025-shipping-godot-from-build-to-player
+Title: Shipping Godot: From Build to Player
+
+(soft music)
+- Good morning, everyone.
+I hope you had an amazing last day at Godokan,
+or like yesterday at Godokan that you met amazing people
+that you got to know new friends, old friends,
+and of course, got together and get to know each other
+way better than before.
+A few corporations, maybe, like corporations,
+maybe come from that.
+And we are really happy to have you here,
+and that you join our publishing panel
+for Godot shipping, Godot from built to player,
+or to the player.
+We have our panelists today at the stage,
+and I will introduce them in a second.
+And their experts in their field and different segments,
+they have different views of everything
+and different, like, made different experience.
+So it's super exciting to see what you've used
+on certain topics, but I will introduce each
+and everyone with you slowly with a question,
+but first of all, what is the default platform
+to ship your game in this year?
+- Hi, so today I introduced myself before.
+- Yes, please.
+- I'm Pablo Navarro, and I publish games
+for Nintendo Switch, so that's my answer.
+Nintendo Switch is my only target.
+- Hi, I'm not gonna eat the mic.
+I'm Joseph Hill, I'm with Zago,
+and we publish to Apple platform,
+so primarily iOS and iPadOS.
+- I'm Dom, I work for Crazy Games,
+we're a big web portal, so my answer is,
+you published the web.
+- Yeah, I'm Paul, I'm a chasing carrots,
+I'm a game designer and programmer,
+and we publish mostly to Steam, PC, and Linux,
+and two weeks ago we also shipped on PS5 and Xbox.
+- So we have basically expertise here from the web
+to mobile, to Steam, to console, or like Nintendo
+and this particular case,
+you had a great talk yesterday about your Switch game
+and how to basically port a game
+and release it on Nintendo Switch,
+so let me ask you, what makes a game console ready?
+- Well, it has to be really polished.
+Really polished, book free, really appealing,
+really appealing because consoles are not,
+every game should be appealing after the third
+for a commercial release on any platform,
+but sometimes you will be able to find in another platform
+that the games are not appealing,
+not ready for a commercial release,
+but still I'll release, well,
+it has to be really optimized on the other side
+for being able to work and run smoothly,
+well, appealing, I would say appealing.
+- Isn't every game kind of trying to be appealing,
+and I mean, we have a lot of indices here in the audience,
+is like console, even a consideration for an indie team
+that might be starting out,
+like for a smaller indie team would go down?
+- Definitely, definitely because I don't understand Steam,
+I currently don't understand Steam in the sense of,
+I try to sell some games on Steam,
+and it's a broken system, in my opinion, in the sense.
+There's no way to stand out there on even the streets.
+You have, it's also crowded,
+but you have a few more opportunities there.
+- I mean, Paul, you just released a game on Steam
+and that was pretty successful,
+like what would you say about it?
+- I mean, we released a couple of games on Steam
+and this was the first really successful one for us.
+So we had also failures, we've seen this,
+and we interact much more with Steam,
+and I wouldn't agree with you with your,
+there are certain rules that you can learn
+about the ecosystem and there are good reasons
+why some games stand out on Steam and some don't,
+and most of it is basically also is talking
+about the appeal of the game.
+I don't think that's a platform independent feature
+of a game being appealing.
+It's more of a player facing attribute of games, the appeal.
+Sure, there are games that fit better on the Switch,
+for example, if our game, "Holes of Town"
+would make a great fit on the Switch, I think.
+Problem is, I've given a talk about performance yesterday
+and we didn't get the performance up to a point
+where it would perform well and Switch,
+that's why it's not released on Switch.
+But on other consoles, it does,
+and on other consoles, like PS5 or Xbox,
+it's a little bit more difficult for indies.
+I, we believe, because the Switch has a little bit more,
+has a different audience, basically, you know.
+And yeah, Steam, I would say,
+if you spend some time on Steam there,
+you learn certain dynamics,
+and also you learn from through the backend
+and through how you interact with the store,
+how Steam promotes games.
+And actually, Steam has a way of showing good games
+to the right audience, and they improve on that as well.
+But it's often a question about validating your ideas
+before you kind of get out with them,
+and I guess your game took quite a while
+to get to where it is to be shippable and everything.
+We have, like, basically, I wouldn't call it opposite,
+but it's definitely a way to verify ideas to ship fast.
+And like, why not go to web as like a platform
+or mobile in that sense, to be ready, faster,
+to be seeing more players, because, like, Steam,
+you have to have a finished product,
+or a product that's quite fun development,
+to start to verify it, you can make a whole game
+for a web in that time, I assume.
+- Yes, we find that a lot of projects
+that are kind of three to six months
+work really well on the web.
+Short of time frames are preferable, I think.
+Just because it costs less,
+it's less of an investment,
+you get the feedback much quicker,
+and then you can kind of update it and build on it.
+But for the most part, like, shorter projects
+are really, really good on web,
+and they still perform, they still make money.
+- You know, Hot of Tormen, in that case, is a RPG,
+like, is there, like, a yes and no for, like,
+web games specifically, where you say, like,
+that works, that doesn't work at all?
+- So, it's a different audience,
+and that can be good and bad.
+So, if you're making games that work really well
+for the Steam audience, you might find that on the web,
+it doesn't work so well, but equally,
+games that don't find an audience on Steam
+can work fantastically on the web.
+So, it's just, it's a question of
+doing your research into the platform
+and seeing what works and what doesn't.
+RPGs, the example you gave, RPGs can work well.
+On web, you want games that keep players coming back
+and are simple to understand, those two things
+kind of, in concert, make a good web game.
+- How is it remote by Joseph?
+- No.
+- Is it similar to the web, or like,
+are we talking more like, the Steam Nintendo process?
+- Well, I think there's, it's in a spot in between, right,
+because you have an approval process,
+and so that means you do need to be at some level,
+but it's a much lower bar than it is for the console,
+and you can iterate with updates,
+closer to what you could on Steam or the web.
+But, yeah, I mean, I think the mobile has similar challenges
+to the web when compared to like Steam, for instance,
+because you do have to think about
+what your business model is gonna be like.
+Steam kind of just carries forward the pay up front model,
+and web tends to be a little more like ad supported.
+And, you know, it seems like with iOS,
+you have like tons of people,
+but they're only there to download free stuff,
+and so you have to think about,
+well, is it gonna be an ad supported game,
+or am I gonna have a free trial,
+or how do I get somebody there and keep them there,
+and then actually turn around and make money on it?
+Is there any case for like ad supported games
+on like console or Switch?
+Do you know that if this is a thing?
+- Oh, I don't think so.
+I don't think there's, currently I don't think
+there is any space for ads on consoles.
+I think most players would not look agreeable on that.
+- I mean, it's kind of like more premium driven,
+definitely, while the web and mobile
+is definitely more on the free to play market.
+But like, I know from like my experience
+that web and mobile is like where you can get tons of players,
+like way more than you would get,
+maybe in a Steam next festival or something like this,
+but like, well, it's really hard to get like players
+to look at your game to validate ideas.
+How is it, for example,
+with like web, how fast can you get out,
+and like, how do you do your idea validation in general?
+Like, how do you do it on Switch?
+Where it's probably the most difficult to do it,
+because in a kind of playset sessions, I would assume,
+to web where you can just like upload something
+and see what happens.
+- Yeah, so on crazy games in particular,
+we do have an approval process as well.
+So it's not quite, it's not quite open to everybody.
+You do have to meet a certain level of quality,
+but we do have basic launch,
+which is like a soft launch.
+So that your game is uploaded there.
+We track it against some metrics.
+It's shown to a smaller audience,
+but you still get feedback.
+You get kind of analytics and stuff.
+So we track playtime, retention and conversion.
+And so you can get a few hundred players,
+a few thousand players really quickly through that.
+So it's quite, it's very good for idea validation, yeah?
+- Sorry.
+- How would you do that? I mean, he talks about a few thousand
+players, like how do you do it with Switch games?
+- The model is completely on the opposite.
+I mean, you don't have, you always have to get,
+it's a, you have to sell a game directly from a price,
+not doing ads, not doing.
+You could try to go to a free game with equip payments,
+but that's not something that,
+and indeed, we'll be able to do one in a way
+that it could be an actual business.
+But I have no clue, no idea about these other models.
+I'm really a video game creator,
+and I don't think that games should be designed
+around monetization.
+I should be, the game should be designed
+for what you are really, really, really want to do.
+And well, luckily, on Switch,
+this is the only model available for indie developers.
+You have to put a price to get to the game.
+You can't have it for free,
+because Nintendo doesn't want you to give away games
+because they have to sell others if you give this game for free,
+and they won't buy this another one.
+And well, I think, I don't know about the rest of the things.
+I got a bit lost about this mention
+of the process of certification.
+I can get into specifics, but on Nintendo,
+it has to have a quite high quality assurance.
+Most of the times, you can get away with some things,
+but usually, they require you to give good build,
+good game, and these things.
+- You could see me dying.
+I was dying to ask you about certification,
+because it's like, me, literally,
+that's kind of the heart of the question, right?
+You know, with mobile, you can just go straight up
+and in Steam, you have the ability to pre-purchase
+or to get on the wish list,
+and so there is a place where you can get users
+without having a QA team or a full QA cycle.
+iOS has the same thing with test flight,
+and they also have pre-orders now as well.
+So, if you're used to getting wish list on Steam,
+that is a way to pre-promote,
+but I don't know.
+So that was kind of what I was wanting to ask you.
+It was like, on the console side,
+I don't know how you can get to the volume
+of people you might need to be able to test
+and validate your gameplay ideas
+or how your interactions are gonna be,
+or, you know, if it's multiplayer,
+especially if I can have enough people there on day one
+that you actually deliver the experience you wanna deliver.
+- I can tell about multiplayer games,
+because I can't do that.
+It's at a whole another level.
+How we reach people, basically spamming.
+That's the way we publishers,
+we as small publishers can try to reach people,
+trying to request requests for reviews,
+for the content creators, to blogs, to 21,
+that will want to help any kind of help.
+I mean, the most leader one is really welcomed.
+- Well, my answer is that I don't have an answer.
+There's no correct, there's no good way to reach people,
+to find, to reach the audience.
+The best way is to be a publisher
+with a lot of resources and a lot of money
+to invest 10 times, if you, if you've gained
+cost $10 million, spend $100 in marketing,
+and it will hopefully sell.
+But, I don't know, in my talk yesterday,
+I said, and I will repeat it.
+The best marketing strategies are,
+one, the first is the game developer.
+Well, having a good game, of course.
+If you don't have a good game,
+it will be impossible to market it.
+The second most important is having a game developer,
+having the game developers talk about it,
+creating community, spreading the work by themselves,
+being them, the ones requesting those reviews
+to the content creators instead of our publishers.
+And the third one is to build a 10 machine
+and going back to 2020.
+It was a good year for, about a year, of course,
+for COVID, but the best year for selling games
+because there was a huge demand back then.
+- So just to jump in on this topic,
+that's something that is a really big benefit of the web,
+because, so our basic launch is the kind of soft launch
+shown to a limited audience.
+That's still, you know, a couple of hundred,
+a couple of thousand players.
+A full launch is 10 times that.
+Most games that I've seen have 20 to 50,000 players
+in the first week just by being on the new games kind of sell.
+So that's one of the big benefits of web,
+is you get a lot of players very quickly.
+- Are these storefronts, like, in your opinion,
+comparable to each other, like, not comparable?
+Like, does it make sense to launch on, like,
+several of platforms at the same time?
+And your eyes, can you do that even
+with like a browser game, for example?
+To, like, I know you did porting.
+What about your games?
+Are they just on Switch?
+Or do you have a Steam version as well?
+And what would you consider as, like, other platforms,
+like, where you can release your game?
+The most of my games were released on Steam first.
+And usually, if in Steam, work well.
+The game sold a few thousand copies.
+It will perform five times better on Switch
+than on Steam.
+That's my non-right ratio.
+- Interesting.
+- No, but it's not always the same.
+I mean, I've seen games that were released on Steam
+and didn't sell a copy or sold a few copies the first day.
+And on Switch sold one thousand.
+The reason, well, this, well, I thought I was thinking
+the opposite case, but it's not the opposite.
+It's more like, some games really work very well
+on Steam, and some games work really well on Internet Switch.
+And I have seen some of them that really failed
+on Steam, but they were good enough.
+They were really good, but not understood
+by the community of Steam,
+or not being able to reach the audience on Steam.
+- I don't know if I have answered your question.
+- Yeah, it was just Paul was, like, definitely doing,
+having a different experience on that
+based on your face expressions.
+- Yeah, I mean, we didn't release on Switch,
+but we were, when we released our game on Steam
+and people played it and it blew up,
+the first, one of the first questions always
+was always when will it arrive at Switch,
+because obviously it was tailored to the Steam deck,
+and the Switch would be the same form fact
+that would work pretty well.
+But we, I don't, we didn't see any way
+how to reach like the audience of Switch players
+or anything, we had no experience there,
+and the only reason why Switch players
+would play the game on the Switch
+is because they know it from Steam.
+That would be our point of view,
+and we were kind of stumped how to approach this.
+Obviously, that problem solved itself
+and we kind of put our porting from Switch on ice
+because of technical issues,
+but other than that, on the other platforms,
+they saw our game performing well on Steam
+and then said, okay, this is a good fit,
+we want you on our platform,
+and this is like, they do some sort of promotion there,
+also you get like a certain spot in their front end,
+because they trust that when the game performed so well
+with on PC that console players will also enjoy this.
+So this is like a little boon that you usually get,
+but it doesn't guarantee your success on consoles, I think.
+As I said, consoles is like, for us always a second thought
+or has been a second thought in previous games
+because we primarily develop for PC
+and then move on.
+- I think to take a different tack to what you're asking,
+one thing you have to think about is what your interaction
+model is, aside from the business model,
+there's like if you have like an RTS game
+and it's keyboard centric, right?
+Like that's probably not gonna translate well to console
+or to the phone, but the flip side of that is if you have
+like Bluetooth controller support,
+then getting to the consoles and the desktop, I mean,
+I think like web can support Bluetooth controllers,
+so you could probably hit all of them.
+If it's a very controller centric experience,
+yeah, and then if it's a touch centric experience,
+then probably console is not great.
+It's gonna be mobile and web can do touch, but yeah.
+- But what do you say that if I develop for mobile,
+because like it's not too typical,
+I assume to like integrate controller support
+into mobile products if you can make mobile-first games?
+- I mean, if you're doing mobile first
+and that's what you're focused on,
+yeah, you might choose a different interaction model,
+so it might be touch first.
+So yeah, Bluetooth controller could be an afterthought.
+If you have, you know, there are definitely a few approaches
+to get on-screen controls and we have a nice trick
+I'll show when I'm gonna show this to go later,
+but iOS has built in on-screen Bluetooth controller emulation
+like from the operating system.
+So if you're using that, then if you have
+a Bluetooth controller paired,
+then there's no on-screen controls, it just works.
+And then if you don't have it paired,
+then it puts the on-screen controllers up.
+So, you know, like it's, you know, a fair number of games
+probably have Bluetooth controller support
+and you're maybe just not even aware of it.
+And like I was saying, the web can do the same thing as well.
+Like if you have set up input maps in Godot
+for controllers, then if somebody's playing on the web,
+on their PC and they have a controller paired,
+it's gonna work.
+- How about the myth built once, ship it everywhere?
+Is that a myth or is it like something you can actually do?
+- I mean, yeah, I mean, it's something you can do.
+Different platforms have different challenges.
+So on the web, the big challenge is build size.
+So you need to get your build size is quite small.
+There are extra steps to do for that.
+On mobile, it's fairly similar, I'd imagine.
+On consoles, runtime performance can be a big issue,
+I think, as you were saying.
+So like there are different challenges everywhere.
+So yes, technically, you can build
+just straight away for each platform.
+But in reality, there's probably gonna be
+some platform specific challenges that you have to face.
+- I mean, Pablo, it seems like your strategy is like steam
+and then console basically afterwards.
+And it's probably a similar thing to agree on.
+- Well, it's best to release first fire game on steam
+and then in the industry, it's because you will be able to see
+if the game, it's really easy to receive feedback
+from steam users and then fix those things in the game
+and release an improved version on the industry.
+I try to, sometimes I have released a game
+in both platforms at the same time.
+And the thing is that it reduces the wave,
+the release wave, at least for a small polyester like me,
+which, as I said, my audience reads is really, really small.
+I would always do that.
+Going for one platform and then for another.
+About the things they talk on internet switch,
+you can have actually games that can be played with fingers.
+It's not an issue to do that.
+But it's usually preferable to have a specific control
+that sometimes it's a bit neighbor
+because you have a lot of hope to see in every button.
+But it can be done.
+And I have seen many games that can do that,
+but it shouldn't be done for competitive games
+or action games.
+Well, I would never do a mobile game
+that uses the ARBA at that spot.
+That's fun.
+How do you say virtual game path?
+Basically, yes, I can stand at the games with that.
+Oh, I just wanted to give an answer to that,
+which is just that I think that what I've been telling people
+is that mobile is a very big market
+and you should be thinking about it early on.
+So my message to people is don't eliminate
+the thought of going there from your plans.
+You can make decisions early in the process
+that will make it easier or you might find
+that it's easier to get to mobile than you think it is.
+You know, I was looking at the Godot surveys
+of where people plan to go and mobiles, you know,
+I think surprisingly low,
+given the amount of revenue that's in the space.
+So, you know, like, keep your options open at a minimum
+and it's not as hard to get there as you might think it is.
+- Well, looking at the audience,
+like in general, the Godot space,
+there's a lot of smaller ND studios.
+It's like, they're not so many more.
+I don't know of any triple A really company
+that you use, you know, besides DICE
+with the battlefield extension, maybe, for the map making.
+But where would an ND studio, where would you lead them?
+Where would you say that's the best platform
+and why isn't like that?
+Like, why should they release on a specific platform
+and focus on that?
+Or should they go more broad?
+And yeah, is it your platform?
+Is it like, what do you think, like, which platform and why?
+- So I really like web because smaller games work better.
+So you don't really have to have 50 hours of content
+that you've spent five years making.
+You can do a really short scope game in three months.
+You can focus on making a fun game
+because actually the things that work best on web
+are generally the games that are the most fun.
+So you don't really have to kind of invest as much into it.
+So for a smaller game, for a smaller studio, sorry,
+you can iterate a lot.
+So they say Rovio made 50 games before Flappy Bird.
+That model for an indie is very, very good.
+You learn a lot, you kind of get better at releasing things.
+You call it increase of time, you get feedback from players.
+So I think the kind of shorter games, shorter dev cycles,
+I think that's really, really powerful for indies.
+- Yeah, I would say for, I mean, for us,
+PC is like the best way to release an indie game first
+and try it out because it's your development platform
+but default usually, you develop on a PC,
+you test on, you develop on your target platform basically.
+So I think that's a good start
+and it makes perfect sense to start there.
+I, up until today, I didn't consider like web
+but it's actually a good point.
+Dom and I, we had a short chat before this event
+and I realized maybe we should consider like,
+if we want to make a little demo or test
+or see if a game works with players,
+maybe we should look into a web.
+But as you said, this is also a different audience.
+So you probably don't hit the same text
+that you would hit when you would release a steam demo
+or something like that or do a playtest with PC players.
+Yeah, but for us, I think PC is the way to go
+because it's easier and PC is a more developer friendly thing.
+Consoles is, yeah, I would say, as you said,
+they need to be polished, they need to be ready games,
+they need to pass certification.
+And so this is like for me, first polish them on PC
+when it works there, then move on to,
+and then look out for other.
+- Think about these things when you basically created
+your steam game also determined that you want to port it
+to like the console later and like that you talk about
+controls, play, import, gamepad and these things.
+So was it like an afterthought for you?
+And we like, okay, now we try to move it to the consoles.
+- When we started the game, we had little time
+because we were running out of money.
+So we had to get go fast.
+And we realized, okay, this game is pretty simple.
+So controller support makes sense
+because there are a lot of PC players who play on control.
+So this kind of was a given.
+And also, since we have like a small screen,
+like a small resolution and everything is about,
+well, visibly very well, it would be a good fit
+for the Steam deck.
+And concurrently, that would also lead us to think,
+"Hey, maybe if this blows up next, our console."
+So this is like, this was the chain of thinking for us.
+We also released on mobile, by the way.
+But it wasn't us who released it.
+We just asked a contractor or a publishing studio
+that they ported the game for us.
+And we just said, okay, here, have our code
+and please don't bother with us anymore
+because we have no idea about mobile for the mobile space.
+The last time when I interacted with the mobile space,
+it was very difficult and cumbersome
+because you need to do constant updates
+and then you have to maintain the game,
+you have to like this fragmentation of,
+I don't know if this is still a thing.
+But it's very, it's high maintenance for us.
+And you need to understand the ecosystem as well.
+There are different rules
+and we didn't want to get bothered with that.
+So we just asked the publishing, a mobile publisher,
+if they could make a deal with us, they get 50%,
+we get 50% and they could do with it what they want.
+And we don't, we look away like this.
+And so this is like, that was the mobile venture for us.
+But yeah, so it's very, yeah.
+The quintessence is that there are so different audiences
+that it's difficult to compare those.
+So I think my answer to that would be that
+we're trying to lower the bar, the barrier entry
+because it is too easy.
+Like, yes, you're already on the desktop,
+you're familiar with it.
+But the desktop market is North America and Europe.
+A lot of the rest of the world does not actually have
+a desktop gaming market, but they have a mobile gaming market.
+And I thought of that when you were mentioning
+your version of on-screen controls.
+I mean, yeah, I feel the same, but like a lot of people,
+like that is their gaming device is a mobile phone
+and a Bluetooth controller for like a big chunk of the world.
+And consoles are great and web is good too.
+But you know, it's like, you know, the bar,
+I mean, the barrier to entry for mobile
+is a lot lower than people think.
+I think a lot of people kind of, you know,
+when you're coming from the desktop and you're thinking,
+well, I can just put shit straight to, you know,
+to the web or even to steam.
+Like you can kind of get your head around
+what the steps are to do that.
+But as soon as you start thinking mobile
+and dealing with their approval process,
+you might make it bigger in your head than it,
+than it actually is.
+And then I guess, you know, to kind of close that thought out,
+like it's not just that there's a big chunk of the world
+that's not desktop first.
+It's like if you look at the breakdown of revenue,
+mobile is where, is where the money is actually
+the biggest chunk of things being made, so.
+- That's why we said, okay, let's do this.
+It's worth doing, but we don't have,
+indeed, house expertise to do this ourselves.
+- But we wanna make it easy enough for you.
+- Oh, that's, that's great.
+- Next time you won't have to give up that half.
+- Yeah, okay.
+- There's actually some questions like you did,
+like you asked basically to outsource the mobile version
+that you also changed the monetization model
+because we were discussing that before.
+And is that like, are you happy with the result?
+I'm sure you played it and looked at it
+and like what is your kind of impression from it?
+- I was dreading the idea of trying it out actually.
+(laughs)
+They, the monetization is like in the mobile market,
+monetization needs to be thought into the game design.
+And we didn't do this.
+We kind of, yeah, this is contrary to all values.
+So we just let the publisher do that.
+They just do, as we said,
+you have, you have free reign.
+I know that our, our outlet tried the game and said,
+oh my God, they butchered the graphics and so forth.
+But that was necessary to rank it run on the platform,
+of course.
+And also the UI looks completely different.
+I think also that the balancing is different.
+So, so because there's a free and a premium version,
+like this, this dichotomy is there.
+And we're like, okay, it's just how mobile is, I guess,
+in the ecosystem.
+So this is how you make money with mobile games.
+And we just let them do this.
+And, and I kind of, for me, it was like,
+yeah, this is a pure financial decision for us.
+It's not, it's, yeah, my, my game design
+is probably a completely different one
+than the one on the, on the mobile platforms.
+So this is like a little bit, yeah.
+It's like a project, a project child that you left away.
+- Right now there's like the possibility
+with, for example, Xcodeo from Joseph works on that,
+where you can basically like load up your builds
+and on an iPad already and try it out.
+That you do something like this to kind of like
+see how it would work and like,
+talk about it where you like Anna.
+- No, I think we had, we had the other construction sites.
+We had to tend to.
+So, so, yeah, we didn't, we didn't consider it, I think.
+But this is a new information for me, actually,
+this is possible.
+- This Joseph, if you can elaborate about that one.
+- Oh, well, so yeah.
+So this ago is our port of Gado to the,
+to the, to the iPad and the iPhone.
+So you can actually just copy your project files
+over to your iPad or your iPhone,
+load the project up and run it.
+I mean, you can do the editing there as well.
+But like from the standpoint of starting with the desktop,
+it's pretty straightforward.
+And kind of pre-announcing like what I'm announcing
+at my talk, but what the order doesn't matter,
+but we do have a Gado extension now in the asset store
+so that you can just have, as a go,
+push straight to the device.
+So you don't even have to move the project files over
+and you can actually remote debug from Gado
+to iPhone or iPad using Gado.
+- Oh, that's awesome.
+- So you should, you know, and then you can take control
+of it and you don't, it doesn't have to be the prodigal son.
+I think like the count, like,
+I think a lot of people think that and that's like,
+I mean, that's a good business for mobile porting houses
+and like they can probably make decisions
+that maximize the revenue.
+But like if you want to have the experience be
+as close to the original as possible
+and you want to own that experience,
+then you might prefer to do the port yourself
+and choose a model that is maybe closer
+to your original vision.
+So yes, you could maybe do in that purchases
+to make a lot of money, but not feel great about it,
+or maybe you just do a time trial or a few levels for free
+and then say, okay, well, you gotta pay from this point.
+Like that's, you might be a lot more comfortable with that
+and you might not have to change the way the game works
+as much to move to a model like that.
+- Okay, interesting.
+I'm sorry that I took it like before you.
+- Oh, no, no.
+- I didn't know about it.
+- It's had to take a moment to think about like what,
+but you know, it's public, it's out, it's out.
+All right, you can pretend like you're surprised
+if you come to me.
+- Just a real quick, like how long would you say
+it takes an indie team to make a viable product
+on like your certain platform, like Steam, web, mobile,
+like let's say a team of five, which is probably
+like the typical good old kind of team size,
+like four or five people.
+How much work is it to release a viable product
+that gets your return of investment,
+like just an estimate?
+What ballpark are we talking about?
+- So I can take a host of tournament as an example.
+We started the game with two people actually
+from the team the first month,
+then we had the first playable game.
+And then we tested it in the office.
+And one co-worker in the studio
+who wasn't involved in the game, played it.
+And this one month prototype,
+like he stuck to the screen for three hours.
+And we're like, okay, I think we got something there.
+So let's add graphics, let's flash it out.
+Then we were three people for about another five months.
+And then we had a playable demo already
+with two levels with three characters.
+And you could, there were all everything,
+the baseline was in place.
+And then we just published a free demo on Steam
+and looked what happened
+without any big marketing stuff or anything.
+What we did do is like we did send out keys to streamers
+because back then survival likes were like the hype
+and streamers were playing it a lot.
+And so we were like right in the middle of this whole wave.
+Today you would probably not get such a big response
+than we did.
+So the wave is over so you would have to think of something else.
+But back then it worked.
+And we realized, okay, the demo is actually catching up.
+We got like a couple of hundred reviews
+within the first week.
+And we said, okay, cool, let's roll with it.
+Another three months, after three months, we released it.
+And then still three people only.
+We released it in early access
+and it's in early access, we got our money back
+within a couple of weeks of investment.
+The whole, until that point I think the budget was about,
+I don't know, 50K, something like that.
+And we got 70K back shortly after the release.
+And then the streamers kicked in and then blew up.
+So there was a lot of luck involved.
+This is like, you remember survivorship bias.
+There are like things that always factors.
+It was a perfect storm.
+The stars aligned and everything worked out.
+Today wouldn't work that way, of course.
+Also, for example, one thing that we were lucky about
+is that the Apple 4 was announced.
+And our goal was to release two weeks
+before the Apple 4, right?
+We even have had a talk.
+We were in talk with a potential publisher.
+And they said, "No, don't do this."
+And your price is too low and you should sign with us.
+We bankroll you and you move the release six months later
+and you will make much more money with that.
+And we declined because our mind was set on this planet
+and we had no regrets, right?
+We worked out.
+Because the reasoning was that players who looked forward
+to the Apple 4 would itch for something until the release.
+And when we came along with the Apple-like game,
+that this also survival-like and very short-term,
+it would catch players and that worked out as well.
+People mentioned the Apple 4 in our reviews
+like every 10th review, "Oh, better than the Apple 4"
+or something like that, something ridiculous stuff.
+How many months then, from the beginning to the release?
+- The full release. - The full release.
+It was about a year,
+year and a half, more or less, year and a half, yeah.
+But with the first validation, basically, after a month,
+internally and then, excellently, pretty quickly.
+Always validate your games, always.
+On web, a team of five can probably make a game in a month.
+That brings back the revenue.
+Obviously, there are challenges with that.
+But when you've taken a month to make a game,
+the risk's very low.
+And you can then do another game the next month.
+And you start earning money over time.
+And all of them add together.
+And you can, from the studio, quite happily.
+So, if you've got a team of a few people working full-time,
+then a month is a perfectly good estimation
+for making a game that works on the web.
+- That's pretty interesting for in-between projects,
+kind of like making a web game for once in a while.
+How's it with mobile?
+- I don't think I can answer this.
+I mean, it's how much water is in a bucket?
+Like, how much, what do you want to be?
+I think that it is, I think, plenty of people do ship
+a mobile game within a month.
+Probably they're successful money-making ones.
+But when Miguel and I decided that we were going to use a go,
+which is an app, so it's a little bit more than a game.
+Like, he's like, "I think we can probably get something out
+in three or four months."
+And that took about a year and a half.
+So, it's like, you know, scope creep happens.
+So, yeah, I wouldn't touch estimating what it takes a team
+to make a game.
+Yeah.
+So, you said your games on Switch, they have to be, like, good games,
+or how do you call them?
+Like, they have a certain level of quality.
+Like, how long to achieve that?
+- Okay, when I say level of quality,
+I don't mean a huge game, a big game.
+I mean, something that it's not broken, basically.
+I mean, small indie games, solo developers can actually
+make a full game for Switch, no need to make something extra.
+Our mobile game can be really released on indie Switch
+with just a few changes, and basically,
+comparing with the Wii Nintendo Skylines.
+But, well, to happen, I return on an ROI on a video game made for Nintendo Switch.
+Think about Suica, this game could be done into weeks,
+and it's a million copies, three euro in Japan,
+and then in the rest of the world.
+And you could make 1000 Suicas and not make one cent.
+So, I don't have an answer for how much should you,
+I do need to invest on how much time do you need to make a successful game,
+but because the answer is no.
+You can do 10 huge games and not get the ROI.
+And, well, I wish I had a good answer for that.
+- Before we open the questions to the audience,
+I would be interesting to see, like,
+who's actually working on a game right now for Steam or PC in general?
+Like, could they raise your hands?
+There's a lot of hands going up, like, if the camera doesn't see it.
+Who's doing that for web?
+Oh, there's actually some hands going up.
+What about mobile?
+And, like, same as web about, I would assume, and console.
+Any console games working on?
+Okay, there is, like, a very shy hand coming into the air.
+I would now open the panel basically for questions from the audience.
+If anyone wants to know something and ask our panelists something,
+please raise your hands.
+And, Max, comes to you in a second.
+- Thank you very much for your insights.
+Very interesting.
+Now that we have seen the show of hands and are very interested in console,
+there was only one hand.
+What do you think is the reason that many of us
+good old developers don't go console first or don't go to console at all?
+- I think there's a very high barrier of entry to console.
+So it can feel like there's just so much you need to do.
+I need to get into it with Nintendo, Microsoft, Sony.
+I think the barrier to entry is quite high there.
+I think that can probably explain a lot of it.
+- The follow-up on that.
+Do you think this is a perception issue, or is it actually that way?
+- I think it's a little bit of both.
+I have released a game on Xbox.
+It is easier than you think, but it's not easy.
+- Yeah, I agree on that.
+We sim-shipped on multiple consoles, and it was a rough ride for us.
+Because the Godot ecosystem for consoles still has some rough edges,
+but in the end it turned out well.
+But it is not like you press a button and then you push it to the console.
+That's not how it's working.
+Because the hardware is obviously different.
+For example, we have threading in our game,
+and then the threading on the console works differently,
+and it crashes because the stack size is wrong,
+and then stuff like that you have to take care of that.
+So there are small details that still create the technical barrier,
+but there's also a lot of bureaucracy involved,
+because there is a higher bar for quality.
+Your game should pass certain tests.
+Sometimes you also need to adapt certain things.
+For example, there is one requirement,
+one specific one for screen sizes or something like that.
+There is a safe area, and your readable,
+interactable elements shouldn't be inside the safe area of the screen.
+So what we had to do is increase our fixed resolution
+so our UIs fit into that area, just for consoles.
+So this is one example of many that you look into.
+So this is not like you just push a button and it's there.
+And I guess consoles also live from the big polished AAA games
+that they shine on there, and the players are used to finished,
+polished, perfect products, basically.
+And in these, they have like most in these, at least.
+In this I know, they have like this mentality of cam.
+I make a game, I make it quick, I release it,
+and then I get feedback from the players.
+Like they live from the community.
+So it's a little bit different.
+All right, we have time for one more question.
+Well, should I answer that too?
+Because we're in the one doing suits.
+I mean, the dev kits are not available for everyone.
+So you can publish on PC by just buying 99 Yukon values
+on a website, just having FTP.
+You can do it on iPad, buying an iPad, a retail iPad.
+But for Nintendo, for publishing on consoles,
+and only consoles, you have, even if we have in the programs,
+you still have to do a whole process of being accepted
+or going with a publisher or porting, well, a publisher.
+We'll probably need a publisher that will take a huge card
+of because they will have to work a lot on doing this port,
+on doing this marketing, doing the services.
+That's why it's easier to go with another platforms.
+But that maybe the reason it's sometimes easier to sell on consoles
+than other platforms, it's a bit less crowded.
+It's a little crowded, but not that much currently.
+All right, thank you for the interesting panel.
+We don't have sadly not any more time for another question.
+So in about seven minutes, we're going to have the next talk
+from Zimona Mendel about art direction and art direction crash course.
+So see you there soon.
+Get some drinks and thank you very much for the panelists Paul,
+Dom, Joseph, and Pablo.

@@ -1,0 +1,498 @@
+API URL: https://api.media.ccc.de/public/recordings/93426
+Frontend URL: https://media.ccc.de/v/godotfest2025-making-of-cards-in-fogpiercer
+Title: Making of Cards in Fogpiercer
+
+(upbeat music)
+- Thank you very much.
+Yeah, so we are working on a game called Folkpaser
+and it's a deck builder.
+There are other aspects of it, but there is a deck builder
+and we spent a lot of time tweaking the cards.
+but first just to lay down the groundwork I'm Christ of Hello that's a photo of me from a different conference but it was the best photo I had just like it was mentioned co-founded Matt cookies in 2020 really scarb
+Bob in 2023 and now we're making Folkpier sir I used to stream game dev on twitch some of you may have seen those streams but sadly that's a song of the past now
+the team I do stylized 3d tech card UI programming game design you know the usual indie team member setup is what we all do. in terms of what we're going to be looking at it really is straightforward we have 2d cards we have 3d cards but before that we'll go into an overview of the whole thing what parts of the cards are being used in the whole thing.
+So first of all this is Folkpier sir this is a scene from a fight as you can see it's not your usual kind of a deck builder because you've got a grid.
+The cards need to control rather show where on the grid you can use the cards and then you select the cell where you want to use a card and it does its action.
+When you finish a fight you get rewards one of the rewards is adding a card to your deck when you choose the card that you want to add to your deck voilaig it's added and off you go on to the next part.
+Also by the way some of the UI that you're seeing here we've got a demo and the demo is getting an update with that UI probably well I don't know I don't know we'll see it will happen it'll happen.
+Right so this is what a fight looks like another important aspect of where the cards are being shown and where the player interacts with the cards is the shop so you've got your usual lovely roguelike map you enter a station you ride out of a tunnel swaddling to the station right there that's awesome.
+Oh my god every time I see that you get your rewards again when you choose your reward there we are you can go into a shop and when you go into a shop you see cards.
+There's cards everywhere really so we've got trains cards grid and a player hand which means that we need to support both or rather we decided to support both to the end 3D cards which made it all the more fun.
+There are three kinds of visualizations of cards in the game here's the three kinds of cards that we have. The first one is a normal player card you get the player cards from the shop or when upgrading your carriages so they're part of your train you can use them on the grid.
+Then you get instant bonus cards if you choose this one you just get an instant bonus something that helps you right away you never use it instantly.
+Lastly a module card very distinct looks very different that's because that's your permanent upgrade as you're going through your run the module cards give you some of the juiciest abilities such as this one you gain one AP every three exhausted cards that's awesome.
+In terms of the structure as I was going into this I realized how straightforward it was I thought it was going to be much more difficult but no we have two kinds of resources in our game we have card resources and module resources.
+I was going to show the entire resource structure but it got too long but I'll show you too after it and then module resources now then we have a 2D 3D visual and the 2D 3D visual has to support either of those so it doesn't matter what you put in there it can initialize load up with a picture and the description and the title of either a module or a card.
+We could have probably made them the same resource but inheritance right so I've mentioned this a couple of times but the cards are 2D and they're also 3D it's a cause of a headache but also a cause of having to find very interesting solutions to the issue.
+Before we take a deeper look at the 2D cards now the cards in fuckpere sir they're separated very clearly play a hand in a fight 3D.
+The reason is it's a 3D game we have a 3D camera it's going to be the easiest thing in the world to place 3D objects in front of it so that's what we do and also we're much more comfortable with 3D in the dough because we've been using it since 2018-2019
+and we were one of the well I always made 3D games in good though even back then when it wasn't all that fancy as it is now we're living in the golden era so we are comfortable with 3D and then everything else is just a UI
+UI based but what this basically means is that there is a lot of code that is basically doing the same thing because we get 3D visuals and then 2D visuals the code needs to be created for both of those but they're showing the same stuff.
+What's very important about the cards in fuckpere sir is that they do need to communicate a lot of stuff they need to communicate the function rarity type cost amount effects and also they need to be memorable.
+So knowing these things we can move on to how that is done using the cards we have.
+This is an example of a card from the game.
+The way that the function is communicated I think that's straightforward that's right there the text at the bottom.
+The rarity is the background of the card there are three rarities the background of the card changes according to the rarity that's all done through a shader.
+Also the 2D cards there weren't any instant shader parameters in 2D a while ago so all of that was done by passing in information through the color attribute of the color rectangle just color.
+It was incredible and then cost is at the top that's how much AP you have to spend to be able to play that card and we have the amount.
+The amount is only shown when you're choosing a card to add to your deck you need to know how many of those cards are going to be added to your deck.
+We've got effects those are right there and we plan on replacing those with icons in future updates and then of course the memorable part is going to be the illustration.
+Eventually you learn what cards do based on the illustration because you've played enough many times but we have an interesting system which is that we have a very modular way of upgrading the cards.
+It's not preset upgrades you can there's a pool of effects you can add them to the cards which means that just the illustration is not enough.
+So the effects will probably be better as icons maybe also moved up top we will experiment with this.
+Right so this is what using a card looks like in game when you're also using deck building cards right you know use this card choose another card remove it from your hand and you can also see the visuals there and how those are communicated.
+Given that we know roughly what's going on with with this let's take a look at the 2D cards.
+So the 2D cards for example this is a screen where there's a lot of them on the left you have modules on the right you have cards whatever you unlock here is going to be available to you in your run.
+It's just a showcase of the animations and how dynamic they can be you can also hover them with your mouse and they sort of you know they rotate they're like where's the mouse.
+Right now the 2D scene that's the 2D scene originally it didn't have a viewport but now it's being rendered through a viewport the reason is that we wanted to add the shader that makes the cards move depending on the position of the mouse.
+So that added complexity and the way it's done is that within this 2D scene ui control scene we have a panel with a style box texture that's rendering a viewport and there's also a shader applied onto this panel for the fake rotation.
+Then these nodes are just borders shadows things that you can toggle on and off depending on the state of the card sometimes you want to select it highlighted there we are.
+All of this is the actual card content that's where all the effects happen that you do see on the card and because the rotation of the card is based on mouse position but also the effect on the background of the card is based on mouse position.
+Those things are sent in both places to the card scene control it's probably very difficult to read.
+The card scene control at the top the green part and then also the the background that's then being rendered through a viewport.
+And then lastly there are extra elements that we just need sometimes sometimes there's a card in a special place we just want to show oh by the way plus 3 AP so that's what these externals there are doing.
+And there's a very interesting thing that this almost seems redundant but the way the reason why this is the way it's done here there is a there is a main note called card scene.
+You know by the way this is a bit of a rant but I think that the most difficult thing in game dev is naming things and then finding the willpower to go back and rename them when you realize how badly you named them.
+So card scene container and card scene control super clear but what they do is that the actual parent is responsible for animations and then the one beneath it is responsible for correct card visual setup.
+That was dramatic.
+So why the extra parent just you know to showcase this is so that we can do this.
+You'll notice that when the mouse hovers a card not only is it animated as in its scales up and down tweens are awesome but also the actual parent animates its minimum custom size x so that it pushes the other cards away.
+When you leave it it animates it back down. This is only possible because we can scale them separately or rather animate them separately.
+This is what the module screen looks like.
+I'm also looking forward to redesigning that UI but it looks pretty good.
+So yeah so by combining these two things we can animate the size of the size of the element within the container but also the visual element itself.
+Right so yeah so this is basically all it does is in the containers it can be an hbox container and h flow container and it mainly is there for the custom minimum x and then also sending down the signal to animate it.
+And then that's just scaling the card.
+It's actually very straightforward.
+And then another effect that we needed to add to the cards is so at first it was you press a card and then it just the UI disappears you don't know what happened or it gives you an option to duplicate a card.
+Oh duplicate a card you click it and you have no idea what it was added.
+So we created this effect.
+This is an effect created in order to communicate things.
+The transition color is the card type which is good taken from there.
+The amount of disappear.
+All the rise rotation so your mouse no longer controls that rotation and it is used for when cards appear disappear get duplicated get removed and it really helps to communicate what happens.
+There was one thing where you select a card and it is transformed into a random other card.
+So before this you press the card UI disappeared and you're like which one was it you didn't know.
+But with this it works disappears it appears as a different card and you're in the no.
+Right now here we can take a look at this.
+This is showing off how the cards are appearing and disappearing.
+When they appear they get a slide in.
+When they disappear I've got it on fast and ination speed.
+We have a setting for accessibility reasons so that you can speed up the game so it's a bit faster than it usually is.
+But yeah when you select a card the others disappear.
+Right it really helps to ensure that the player understands that yep you selected this one that's the one you get.
+Also if you're ever playing the demo the Civil Engineer module really changes the game it's a great experience.
+And then in terms of experiments we also tried a 3D carousel.
+It was an experiment to see whether we could showcase the cards in this way.
+And that was really hard to put into UI properly because it helps with visibility.
+Because it helps with visibility since you can see all of the cards there.
+Unfortunately putting it into any UI panel was super difficult because it needs a lot of space.
+In theory it should be helping with space but in reality it just didn't fit anywhere.
+So we'll see where and how that goes.
+Maybe we'll use it somewhere we'll see we'll see.
+Right on now that's generally all that there is to the 2D cards and 3D cards check this out.
+This is what a 3D card looks like in the editor it's a 3D object right on there.
+Not as bright it's an actual 3D model.
+The evolution of the 3D cards.
+So first this is the first version of the 3D card this is from the first prototype.
+This is the second iteration we suddenly realized oh wait I want to see the bottom of the card.
+You might not believe me but the bottom of that card over there was about 2 meters long.
+It never ended.
+And then we thought okay let's add the bottom to it.
+And then the final version was what we have now.
+So this is a card where you have all of the information.
+Spacing is a little bit better.
+It's got these really cool effects.
+There's highlights that also changes depending on how you're hovering it with the mouse.
+Good stuff.
+Now one more thing I wanted to say is because we are a 3D first studio the cards began as 3D cards.
+And only when we were almost at this stage is when we created the 2D cards.
+More properly until then there were placeholders.
+Very simple.
+Very straightforward.
+It was for prototyping.
+Until we knew what we wanted.
+Right on here is a video with the cards from the first version of the game.
+I completely understand why on social media it works when you have the before and after.
+Because even when I see this I go wow that's a different game.
+That ending took that really hard.
+Right.
+Yeah and then over to a newer version you can instantly see the difference.
+Can we go back?
+Oh there we are.
+You can really see the difference.
+But forward works immediately.
+That's how the 3D cards evolved over time and where they landed.
+The game looks a little different now but this is enough to communicate what the cards look like at the moment.
+Because I do a lot of 3D I love technical 3D art.
+It's one of my favorite things to show or rather to talk about.
+And it is how the card is constructed.
+This is the 3D model of the card in Blender and that is how it translates over to the game.
+The way this works is I think straightforward but we'll see.
+So I use vertex colors.
+Blue, green, red to be able to map those colors.
+Over to whatever I need in 3D.
+So the green color is used for the card type color.
+Red is used for the background.
+And blue is used as the selection rectangle.
+That selection rectangle which is white only appears when you select the card.
+When you click it when you press it.
+When you don't it's not visible at all.
+And then the card also has UV. The UVs are used so that we can put those fancy semi-parallax visual effects onto the background.
+And then all that together just comes out looking like that.
+I remember that card initially was just a quick experiment but it worked so well that we just looked at that.
+Right now the 3D scene. Contrary to the 2D scene is much simpler because I don't enjoy doing all that much math.
+You can see that I use pivots or empty nodes instead.
+This is the naming that I use in my scenes all the time.
+If there is going to be a pivot parent that is only used for scaling, moving, rotating I call it the visual pivot.
+So as the visual pivot there, rotation pivot because it needed an extra pivot to make it easier in code when we added the support for rotating the card when you're moving the mouse around.
+Now in comparison to the 2D scene you can just see that the complexity is much lower.
+There are some trade-offs. One thing that we are sort of healthily worried about is going to be localisation.
+There's very little space for the card descriptions and when we run into a language where it needs to be longer, I don't know how we solve that in 3D.
+It's going to be fun.
+So the comparison, I mean that speaks for itself.
+This is what the card looks like in its default state in the editor.
+This is everything thrown on top of it. Everything is visible.
+These are all the different things that can be used.
+A little nice extra bonus is that I in the top right corner.
+If you hover your mouse over it and you leave your mouse there for about a second, maybe a second and a half, information about the card pops up just so that you don't need another button to press when you're hovering a card and you want to see more information about it.
+This is what the card looks like from the back.
+It's a lovely Easter egg for some of our players because we leave the developer console enabled.
+Not in the demo but in our players builds.
+Some people discover that there is a dev cam command which turns on the free roam camera and they just fly around the scene and they take a look at the cards and they go, "Oh, you've got the logo there."
+Looks like a real card.
+Right.
+One more thing that we had to work out.
+This is going to look a lot better in the moment.
+One thing that we need to work out is that we started looking at the UI and UX of cards in other deck building games, specifically grid based deck building games.
+And we noticed that a very strong UX element that they had was when you select a card and you're about to go and use it on the grid cell.
+It shows you a little arrow that goes in the direction of that lands on the grid cell that you want to be using.
+This was the first attempt at implementing it. As you can see, I'm moving the wrong end of the arrow here.
+But look, we need to start somewhere.
+Now that quickly turned into this.
+Right.
+So now that is moving about.
+There were further iterations but this is very close to where we are now.
+The latest iteration also has a little circle at the end.
+But yeah, this makes it clear that, okay, you know, I am going to be using this card.
+This is the direction of where I will be using this card.
+Right on.
+This is just to show that some of the effects and also the 3D line that is ensuring that you understand that you're using the cards in the space.
+The sticky bomb, by the way, is a very dangerous card. This was when we started implementing it because if you shoot it on an enemy that is close to your train, you can detonate it right away.
+And if you do, you die.
+So you really need to be tactical with this one. You need to be careful with it.
+Right.
+This was, there is a little bit more but I was going to out tab here just a moment.
+There is one very cool thing, well two very cool things that help us a lot in working with the cards.
+This is a custom tool that we build for the Godot editor. I know it's probably not very visible but basically we made a super simple Excel sheet, the spread sheet in the editor.
+And the only thing it does is that it gives us a very quick overview of all of the cards data.
+So when we go through it, we can make changes very quickly. We can also see whether there is a duplicate ID because they all have a unique ID.
+So these are all the cards. If I scroll down further, the editor also works for units, modules, effects, for everything.
+And it just lets us quickly edit it. In the background, it is nothing fancy. It's just getting a resource.
+I think I can show for example this one. So this is a resource of a unit.
+And the only thing that the resource editor does is it loves the resource and it shows it in a single line.
+This is one half of working with the cards in footpiercer. We needed overview and we needed visibility where we can quickly see the numbers and see whether and how that works.
+This also allows us to create new cards very quickly. You type it here and it gives it the correct name. It shows you whether it's a valid name if it is not.
+Oh wow, I wouldn't want that name. Okay. So that probably works. Let's see. Oh yeah, there we go. Okay. So if it is an invalid name, it tells you it's an invalid name you can't create it.
+But if it is valid, then you can create it. It gets added. It automatically gets a brand new unique ID so that we can work with it in the game.
+And the rest just works by itself. There is another very important aspect of working with the cards, which is every carriage, every locomotive, every driver has their own set of cards.
+It is very difficult to be going from one resource to another to see what cards they have and to change them around. So we created another add on.
+The units add on. This one is a masterpiece. No, it's not. But I was super proud of it because I finally worked out how to do drag and drop in UI.
+Thank you very much. It was painful. So yeah, so here you can see how they're separated. For example, this one over here, that's this by itself is the minigun carriage.
+We call them wagons in our code base, but they're carriages. The first card at the top, that's the card that you get immediately when you activate the carriage. The cards below it are cards that you get as an option when you upgrade a carriage.
+Now, sometimes we decide that we want to test it very quickly. And we move, for example, we move precision shot from here over to there. And that means that we can test this card immediately right after activating the carriage because it gets loaded up immediately as the first thing.
+There's also a shortcut. If you select rest for resource, it opens it up in the inspector over here, as well as artillery. And the same thing also works for drivers and drivers have cards and drivers have a module.
+Enemies as well. You see that some of these are empty. That's intentional. There are some enemies that have a passive effect. When they do, they don't have a card or they have a description.
+When an enemy does have a card, we put it into one of these boxes, such as here. Enemy support, shield, random. That's a card that they use, and they have it immediately unlocked.
+And with that, I think that's basically everything. Last thing is, I mentioned that we use shaders, and if we go over to, I think it's card panel.
+With this one, I'm never sure. But card panel is probably this one. That's the main one. Yes, that's the one. Oh, awesome.
+Yeah, so the shader that we're using is a visual shader. Boom, boom, boom. Fragment. Here we go.
+It looks like a visual shader. I mean, visual shader, they never look pretty, do they? No matter how much you try.
+But they take all of that information that I also mentioned. You know, what's the card color going to be?
+It takes in parameters that are supposed to be used. And then the output is the final color.
+The way we're doing the effect of rarity, I'm just going to mention this one over here, is it doesn't look pretty now, but it looked much, much worse before.
+So thank God for the expression, visual shader node, where you can just type code and make it much simpler.
+So here I have three textures and rarity. This code could probably be improved. I agree, but the way it works is that based on the float of rarity, it decides which of the three textures to mix in what way.
+And it can be made stronger or weaker as well. In terms of that, here's one last scene. That's the card scene 3D.
+And this is, I mentioned that because we're supporting both 2D cards and 3D cards. Sometimes we have to do duplicate work.
+That is the case over here as well. If we take a look at this one, we've got a shader, shader 3D card.
+Fragment again. And you'll notice that it's very similar, but it is a 3D shader. So a fragment shader.
+There's much of it is used. And this is, in my opinion, if we were to do this again, we'd probably do it the same way.
+Working with 3D cards is fantastic. Putting 3D cards into UI is very difficult. So putting the up is fine.
+The real complexity and the main disadvantage of this approach really is that if I change this shader, I'll have to change the other shader.
+There's just no way around it. Perhaps working with God would be better. However, in visual shaders, personally, I get faster iteration speed.
+And because I work better with them, that would really well for me. Right on. So those are the shaders.
+And there was one more fault I had, but I forgot to write it down. Maybe I'll get reminded of it.
+We'll see how that goes. Yeah, I think we're actually good with that. Thank you very much.
+Very interesting talk. We have quite a few minutes left, so if there are questions, feel free to ask.
+That's the first one. Nice. Hi, amazing job with the game. Thank you very much.
+My first question, my only question, actually, is you probably considered to use, since you started with the 3D approach, you sub-viewport at the beginning.
+How did that go? I think the 2D and 3D approach and splitting them is good, but do you have any thoughts about, like,
+something to share about it? So we didn't experiment with it too much. We are using sub-viewport in 2D.
+So for the 2D cards, they are being rendered through a sub-viewport so that we can put a shader on it.
+But for 3D cards, we appreciated the simplicity of working with it, being done just as pure nodes and not having to worry about the translation layer of a sub-viewport that we never tried that.
+Maybe it would be a good thing to try. Maybe when we start doing localization, we'll be forced into it. We'll see.
+Next question. Yeah, great work, great level of polish, amazing. Did you face any optimization issues, performance issues?
+Oh, that's the thing I wanted to talk about, and I forgot. That's amazing.
+Yeah, so we started pooling the cards because the nodes are pretty, well, not heavy, but it's a fairly complex scene.
+So we started pooling the cards, and there was an issue of the viewport being constantly rendered.
+So first, the optimization of pooling then helped because we didn't need to instantiate them and delete them all the time, but it was a micro-optimization.
+But it introduced a new issue, which was the cards back in the pool were still being rendered all the time, so we had to start turning off the rendering of the viewport, the update process of the viewport.
+And that led us to another optimization, which was whenever you hover a card, the viewport is being actively updated.
+When you unhother it after a delay of about 0.5 seconds so that animations can finish, it stops being rendered.
+These things together gave us more than enough of a performance than we need.
+When I run benchmarks, it's, I think, around 100, 120 cards that need to be rendered at the same time before we notice a drop-in performance.
+The chances of having 100 or 120 cards are near zero, so maybe we should work on that a little bit more because it's not zero.
+So, yeah, but these optimizations together gave us what we needed for the performance feed.
+Great talk. Could you open the editor again, please, interesting about the resources editor plugin you created.
+Could you explain, so from what I'm getting here is that you iterated like your project scene tree, and then you created the list format?
+Could you explain it? The way it works is in project settings, we have a setting for, where was it?
+Resource editor, yeah, and there is an array of folders to iterate through.
+So if you want to add a folder to the resource editor view, we add a string of the folder here.
+When it iterates over them, it's a very straightforward process. It spawns this one-line per resource, and then per each exported property, it adds an edit field that corresponds with the property.
+So, yeah, Enums get Enums from the class that they correspond with, there are copies per deck, and you'll notice that it's not perfect because, for example, here it says tier integer custom.
+That's not right. The entire top row is offset in one direction, I think.
+So it's not ideal, but it works because we know how to work with it, and it gives us the visibility that we need.
+But it really just takes that resource, checks exported properties, their usage, and then generates all of these fields according to what the exported property type is, so that we could also change in what we want.
+If there's a picture, you just click that, and it gives you a quick picker, one of the best features ever made.
+And yeah, so that speeds up the process. Does that answer the question? Oh, yeah. All right, nice.
+It's a very similar thing here with units, by the way, where, over here, this entire view was created just for cards and modules and units.
+So here, no setup is necessary. It knows the folder with the cards. It loads all of the cards in here.
+It knows the folder with the modules, and it loads all of the modules here.
+What's very interesting here is, I mentioned this earlier in the talk, naming things is hard.
+So, you know, you gave the file name a name, and then you changed the name, it shows in the UI, and then they're completely different.
+So here, just to be sure, we're showing both of them, right?
+AnkerDown.TRes is the name of the file, and then there, where you see AnkerDown, that's the title taken from the resource that's then shown in the UI.
+So if we can't find one of them, the other one is probably going to correspond with what we're looking for.
+Awesome.
+Could you talk a little bit about your workflow for designing and creating new cards?
+Did the editor tooling help at all with balancing cards against each other for their power?
+So, we work very collaboratively in designing the cards.
+The process is, of course, you get the design aspect, you know, how is this going to work and whatnot.
+But then, one thing that always helps us with designing cards is the speed of iteration.
+One of the best things, I'm super happy you asked about this.
+One of the best things ever is, for example, artillery attack is one of the most basic cards.
+We created another add-on that I forgot to mention.
+This time, it's an inspector add-on.
+When you saw the videos, you noticed that when you hover a card, it shows you a pattern on the grid.
+We created this add-on over here that in the inspector allows you to very quickly change the pattern that it's going to have.
+On the back end, it's just a 2D array of balls.
+It's very straightforward, or rather, it's very simple.
+We could have done something smarter, but this works.
+Yeah, and the cards, their complexity, grew super quickly, we had to stop it.
+For example, every card doesn't have just one kind of pattern.
+It has three patterns.
+It has the pattern for where it can be used on a grid.
+Then it has an AOE pattern.
+When you hover a cell, how many cells are going to be used as the target cells?
+You can select one, and then it's an AOE attack, so it's going to select three cells instead.
+Then there's also move target array, which is what grids are going to be considered for the movement of the enemy
+if this card moves an enemy.
+Then all of those patterns are then supercharged with a thing we call pattern type.
+Instead of defining a custom pattern like this, we also have all of these, which are procedurally generated patterns.
+If I know that this card should only ever target the locomotive naming.
+One half of all, no gap.
+All grid with train gap.
+I don't know what that means anymore.
+Let's go back to the code to check.
+One half of all.
+That's good.
+I'll sort of get that.
+Then these can be combined.
+It's brilliant.
+We can do, for example, all grid.
+Then pattern type AOE has the same types.
+It can be all grid, but the AOE is one half or four, no gap.
+There's a lot of fun with the patterns.
+Those are one of the key elements when we're talking about cards that can be used somewhere on the grid.
+Then we get effects.
+This one doesn't have an effect.
+I think we could maybe go into ratata.
+This card has three effects.
+Exhaust AP per card played and destabilized.
+Effects are things that are on the cards by default, and then they affect the units.
+This is another part where we can iterate very quickly.
+We think, "Oh, wait a second.
+This card could be doing burn damage."
+We quickly add it, try it out.
+It really is the speed of iteration that really helps.
+Of course, this is once we know what we're doing before that.
+We created a formula together with Peter, who's sitting right there.
+We created a formula that we follow when we design, which is every carriage, every locomotive, every driver has a strong theme.
+For example, an artillery carriage is going to deal damage, but it's also going to move enemies.
+Then every card we design has to support the identity of the carriage.
+On top of that, we try to separate the cards.
+You'll be able to see it here with the minigun.
+Here, the first card is red, yellow, yellow, red, red.
+The last three, there's a rectangle gray, and this one is white.
+That's the rarity.
+We always try to do two rare cards and one legendary card per carriage.
+On top of that, we always try to also add one card for an attack carriage, which is going to support its identity through a support card.
+That's why you get the yellow cards.
+They're not attack cards, they are yellow, which means that they don't destroy enemies.
+They help you with a strategy, but that strategy is always going to be specifically helping that carriage.
+With this formula, we always first create the identity for a carriage for the unit, and then everything we design after that has to support it.
+We've got these little extra rules that help us do that further.
+Also, if you see any cards here that are not in the game, if you've played the game, that's because there was a lot of work done in the past for testing units.
+So, just as not to confuse you, there are things that you can't play with.
+Those are things that used to be in the game, but then we turned them off because we wanted to focus much more on the things that are in the game now.
+Does that explain your question?
+Awesome.
+Another question?
+I think we bought one here.
+Thank you.
+So, I have a follow-up regarding this.
+When you -- how is the reloading done?
+When you change a property or whatever in these resources, you use object pooling.
+I imagine that's a bit harder.
+Do you push through the changes, or is it just at every card?
+So, well, object pooling -- this doesn't really affect object pooling unless you have a saved game run.
+So, if you turn the game off in the middle of a run and you load back into it, all of the cards are created exactly as they were when you left the game.
+But if you leave the game, change the properties here, and then you start a new game, the cards are created anew, so they take the new properties.
+Yeah, that's usually not an issue.
+We recently, however, implemented one feature that couldn't save the cards, so suddenly they stopped working altogether, but that's a bug.
+That was the only issue we had.
+With object pooling, there is -- right, so the object pooling that we do also is only for the visuals of the 2D cards.
+The resources don't need it because they're super light.
+There's just very few of them.
+That's an all-right part of it.
+We actually have a class called card deck, since we're talking about naming.
+And the card deck, what he does is -- oh, God, I'm showing my code.
+You know the feeling, right?
+And what he does is -- it just loads all of the cards.
+I think we have it somewhere around here.
+But these aren't the shop cards.
+Yeah, oh, yeah.
+All cards ever made.
+There we go.
+We just loaded it.
+There's the answer to the question.
+All right, fantastic.
+Okay, is there another question?
+Yeah, in the back.
+Hey, great talk.
+Thank you.
+Do you do any kind of unit testing, because you see the word "test" in units, I'm thinking,
+do you do testing simulation, something similar to "Holes of Torment" was talking about?
+So, I don't.
+But there are two other programmers on our team who love unit tests, who put in GUT.
+God, I believe that is for doing unit tests.
+They also try to implement a thing that would go through the game very quickly and, you know,
+click on things multiple times, press a button seven times, because you never do that otherwise,
+and then try to run through the game.
+But they encountered an issue -- I don't want to say something that is incorrect,
+but if I recall correctly, they encountered an issue where the simulation broke
+when the command change scene from file was used.
+We plan on changing the structure of the project in a way that that command is never used,
+but it's not there yet.
+So, we haven't done that part, but it's definitely something on the table.
+And after yesterday's talk, we're now torn, whether to be doing it through unit tests,
+or whether to just have an auto player and just spawn multiple instances,
+because I think that's a great idea.
+So, we'll see where that goes.
+Okay, was there another one?
+>> Hey, thank you.
+In terms of game design, you said each carriage has kind of a theme.
+>> Yeah.
+>> Are you -- when you're designing a theme for a carriage,
+are you thinking about how it could be synergizing with the other carriages,
+or are you just going brute force, make so many carriages that there's going to be
+some sort of interesting combinations?
+>> I would say that we do both, but we use the brute force,
+just create ideas very quickly, just so that we have more to choose from.
+But we have to be very careful about the carriages we add,
+because it's a lot of work, because in our -- in some deck builders,
+you just use a car to -- there's a bit of an effect.
+In our deck builder, the car is connected to a carriage that has a visual.
+Every usage of an attack guard has an animation,
+like with artillery, right, flies out.
+So, it's costly with time, so we've got to be careful.
+We do think about synergies, and we also always think about filling in the gaps
+that we haven't explored yet.
+For example, three extreme examples, I think.
+Artillery is a great all-rounder.
+It allows you to move enemies from all directions,
+but when you move them, you don't deal damage.
+You have to choose, deal damage, or move them.
+You can do both in some situations.
+And then there is another carriage called Minigun, right,
+which is all created as an carriage that should be doing repetitive damage
+to trigger an effect.
+The Minigun has an effect called destabilized.
+When you shoot an enemy, they get that effect.
+If they take another damage, they will move back by one.
+Right, so the idea of that carriage then is repetitive damage.
+The idea of artillery is versatile movement.
+And we have other ideas that we can't wait to explore.
+One of them is, I don't know if I should be saying this.
+Yeah, get in touch with me afterwards if your cure is fantastic.
+You have to take my word for it.
+Awesome.
+Okay, is there a final question?
+Oh, nice.
+Hi.
+So your add-ons really made me happy.
+That's awesome.
+So you also enjoy add-ons.
+Yeah, or at least like data tables and lists.
+I love them.
+So I'm struggling a little bit in Godo because I'm coming from Unreal Engine
+and with the data tables, I really miss that.
+I know there are plugins, but I kind of didn't get into them yet.
+Have you explored that and why did you choose to make it yourself?
+And will you make it available to others?
+That is a great question.
+So I know there is a thing called data tables in Unreal,
+and I think that's a great feature.
+You know, just being able to see the data, have that visibility.
+I think that's fantastic.
+That was also the reason why we went into this.
+The reason...
+This is going to sound so bad.
+The reason why we...
+So we didn't try the other add-ons.
+There is one add-on that is called...
+I forget the name, but it was basically this,
+but it lets you load resources and see them in the table.
+One of the reasons I didn't want to try it is because I didn't like the UI.
+I was particular about like...
+It's wasting space.
+I mean, look at my editor theme.
+I have negative gaps.
+You know, there is nothing here.
+Sometimes I struggle when I want to move that a little bit.
+So I like it when the UI wastes no space.
+And in addition to that, an extra reason was...
+I was pretty confident in being able to create this quickly.
+If I had thought that it would take, I don't know, two weeks.
+Never happening.
+Or if it started to take longer than I thought, maybe then we wouldn't do it.
+But it was put together fairly quickly.
+Also in my spare time on a Sunday because I woke up and I was inspired.
+So yeah.
+And am I going to make this public as an add-on?
+Personally, with this version, no, because this version is hard-coded in some ways
+for the kinds of resources and classes in ForkPiercer.
+But this is something that I really enjoy using.
+So for our next project, we'll probably take a little break and just work on tooling.
+And then recreate this in a more generic way.
+And that I would love to release.
+I can't wait. I can't wait.
+And that, just one last thing, just one last thing.
+Something I am super happy about.
+I'm sorry to be holding everyone back.
+This is just super cool.
+Ah, this is the one.
+We're called mad cookies.
+So we're putting mad everywhere.
+And we've got a folder full of useful utility scripts that we've been creating
+for a long time that are super useful.
+And we call them the mad classes.
+I can't wait for the day when I start a new project.
+I drag and drop over.
+I copy that folder.
+And I have all that power right away.
+I'm like, yeah, weighted random.
+All right.
+Thank you very much, peeps.
+(Applause)

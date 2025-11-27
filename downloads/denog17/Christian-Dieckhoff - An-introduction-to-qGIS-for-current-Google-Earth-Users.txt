@@ -1,0 +1,219 @@
+API URL: https://api.media.ccc.de/public/recordings/93241
+Frontend URL: https://media.ccc.de/v/denog17-79909-an-introduction-to-qgis-for-current-google-earth-users
+Title: An introduction to qGIS for current Google Earth Users
+
+(upbeat music)
+- So, our next presenter is Christian Dikoff.
+He's head of consulting at WDZ, G.M.B., huh?
+A subsidiary of Stadtweck Wolfsburg,
+what I always remember when I see him.
+>> Thank you.
+>> Thank you very much. Thanks for being here. And good morning everybody. I am Chris. I want to guide you with a few basic steps. Um, like, uh, life, how to, uh, how you can figure out how to get away from the Google Earth world, where, uh, how to get away from the Google Earth world, find out how to get away from the Google Earth world.
+For handling all your geo-information.
+Um, why am I doing this?
+Well, uh, I'm working as head of consulting at WDZ.
+Um, um, a network engineer by night, by day, my job is mostly leadership.
+I'm doing this now for over ten years.
+And, um, if you're asking yourself, why does WDZ, the company I've never read in any infrastructure, at last entries or whatever, you need geo-information? Well, um, we're a system of WOPCOM, which is running a city fiber network in Wolfsburg, owned by the Stadtweck Wolfsburg.
+So, um, in case you see us with a green logo instead of a purple one, and don't be wondered, that's part of our job.
+And, um, what is this big problem I want to talk about today?
+Um, the problem is that we all love Google Earth or geo-data, so, let's just give it a try.
+What happens if we open Google Earth?
+And now that happened, what I was expecting, I'm doing, oh no, yeah, perfect, it's working.
+Uh, reliable live demos are great. Um, this is what happening, if you have lots of data in Google Earth, you have to wait and take your time.
+You need a lot of time.
+So, we did this before the talk, actually, to find out how long it will take.
+So, uh, I invite you all to, like, grab a coffee, come back in roughly ten minutes, then it should be loaded, and we could, like, actually use it.
+So, I reached a point where I don't want to spend my time waiting for a tool, especially as the amount of data is constantly growing, if you're, like, expanding your network, and, um, that made me to look out for an alternative.
+And, uh, I spend a lot of time googling, looking on YouTube, and then I found Kugus, which is, like, a very broad, used open source JS solution.
+And, from a talk, uh, at Foskis, I noticed, oh, wait, even though it's a TaylorCon is using Kugus, it, it's quite a large network, it's quite a lot of data, so, it can't be that bad.
+Or it's that curse that, like, nobody else would use it, but I wanted to give it a try.
+And I don't know what it did, I opened it up, and then I had a problem, because I was expecting to see a nice globe and a map, and that I thought I can just import my KMC files and look at them, and I saw things like projects.
+There was a browser with, like, stuff I've never heard about.
+And people instantly start talking about coordinate systems, so that's, like, a lot of complicated stuff.
+And I thought, okay, I opened up a project, and then, uh, no map, damn.
+And this way, it went through, I went through YouTube, I watched hours of tutorials, uh, those tutorials were, like, two hours, three hours long.
+And at the end of those tutorials, I had still no map, I just had some lines, or some, like, mapping tiles or whatever, but I had not the information I wanted.
+And, um, then I stumbled across a tutorial for something very specific, that was just two minutes, 30 seconds long.
+And I was like, hmm, that's the first tutorial, below 15 minutes, I have to look at it.
+And the person used two plugins, that, like, changed everything for me, so I wanted to share that knowledge.
+Um, that person went to the plugin store, which is integrated in CUGUS, and installed the quick map services,
+which is a plugin that enables you to draw in web map services, like with one click.
+So, okay, let's install that, done. And the other thing that, uh, the person used was the OS and Play Search,
+which is the missing link in CUGUS, if you're coming from Google Earth, where you do have a nice search bar, uh, on the top left,
+where you can search things, like streets, addresses, et cetera. Um, so I installed that as well.
+And then things started to look like a bit better, there's a Play Search down here, awesome.
+And also, I now can click web, quick map services, street map, and ta-da, I have a map, finally.
+Whoo! What happens is that you now have a web map service in your CUGUS, which is loading the data as, like, tiles from a speed map.
+And this way, we can now finally use that tool, like, sort of similar. Um, it adds this service as a layer,
+which will become important, you also know layers from, from Google Earth, sort of, um, like your inventory there.
+Um, and the Play Search is now missing, the missing link about information that has a geographical reference,
+but it's not known to CUGUS, because CUGUS does not know addresses, it doesn't know, um, buildings or whatever,
+it just knows, like, points or vector objects and coordinates, and those kind of metadata, but that's it.
+So, you have to use a layer on top of that, and as we all want to deal with things like fiber or ducts and not with
+sophisticated street information about, like, what layers of concrete are used for that street.
+Um, we don't need to deal with it, we can just use plugins that add that as an unknown thing into the software.
+Um, you can just type a street here, and then you can, like, search, and then you can select that,
+can go zoom, and then it zooms in for you, you can also zoom in more if you want.
+Uh, for example, in this case, I've just saw Office.
+And now you can also start to use these information and import this information into CUGUS by just, like, clicking this
+at button down here, and then I have, like, a new object that are now imported into my CUGUS,
+which is, like, this dot you see very small here, and, um, now we can, like, import our data centers or whatever we want,
+and, like, have dots for these important points.
+But the thing is that this dot is very small.
+And now, we all know we make a right click, and then we usually think about something like, oh, okay, damn, how can I now
+change this dot? And then you start looking at tutorials again, and things get complicated, and then you realize it's not that hard.
+Um, every layer in CUGUS has properties.
+And these properties include lots of things like metadata, which you can use if you want to, like,
+start to complex modeling. You can have, like, a small table for every object or for every layer.
+Um, and the big wording thing you have to know in CUGUS if you want to think about style is the symbology.
+You do have a symbol or multiple symbols attached to a layer, and these can be added.
+Um, it can also happen that you have no symbol, or that you have, like, embedded symbols in layers.
+If you're, especially if you're importing KMS or KML data, it's often happening that there are symbols embedded into there.
+So, um, those can't be edited because those are the proprietary ones that are used in the Google Earth world.
+So, you can, usually, if you want to have everything the same, you just say, okay, single symbol, and now you can, like, give it a color.
+And, uh, you can also go ahead and say, okay, I want that, like, five millimeters large,
+and a hundred percent opacity to make it really visible, and you click just okay, and now the dot is large.
+So, it's not that hard, but it's a very important thing you have to know because if you're trying to find it on your own,
+it will take hours and you won't be successful. All right, layers can also be grouped.
+That's an important thing. If you want to organize yourself within CUGUS, you can start adding groups.
+Um, um, you can say we name this group like Office, and we can add our layer into that group.
+We can also create groups within groups, so we can have, like, subgroups and stuff, so this way you can organize yourself in CUGUS.
+But, if we're right away starting with data from the external side, or from external sources like this dot with our Office building,
+you also have to keep in mind that, um, I made a mistake now, that you maybe noticed the dot is missing.
+Layers are stacked to each other, so you should make sure that your base map is always the lowest layer because it can happen that our objects are above other objects.
+So, that's an interest, uh, that's an important thing you have to notice.
+And when dealing with the organization of data, the second thing is that you notice this small symbol here.
+It's a temporary scratch layer that means this layer just exists in memory, and when I now close CUGUS, it will be gone.
+It won't be saved. So, I have to save my data somewhere, and that's the next thing.
+CUGUS is not helping you, like, intuitively with dealing with your data.
+If you are using Google Earth, you all know that you can just save the my places, and then it's stored in a hidden folder somewhere in your application data.
+This is not done by CUGUS.
+It's just references to your disk, and, um, that's something you have to deal with.
+There are certain types to deal with that.
+Uh, we can look at that in the next step when we start with external data, because now you usually want to have, like, your fiber information in CUGUS.
+So, I'm just adding some.
+And how do you do that?
+It's easy. You just have to go to 14 different menus, and then you have to get the right code in that data, and make sure your import form is alright, et cetera.
+No, it's not that hard.
+You just take the data that you got.
+You take the file, you drag it, drop it into CUGUS.
+You wait a moment, and then you see this menu, which is giving you some options about how you can import that data.
+Um, in my case, I don't want to do any specific here.
+I want to have all the data in the group.
+I just say add layers.
+And now the data is opened by CUGUS, and now I got my whole fiber network in Wolsburg, opened up in CUGUS.
+Done.
+It's that easy.
+And I can do the same for point data.
+That's the thing.
+It can happen that you have multiple layers, and you came alpha with, like, point data, and with, um, path data.
+Um, in my case, this data is from another GIS system, so they gave me the point data in another file.
+So I'm adding that as well.
+Now I do have all my splicing points.
+And using this way of importing also can cause quite fast a lot of chaos on your layers.
+So you should make sure that you start organizing stuff there.
+You need to make sure you have some sort of overview because it can get quite fast, quite hard to keep inside what you need.
+Where it is.
+It also can happen that you mix up layers, or that you have, like, a subgroup that is hidden, but a top group you enabled, and there's, like, no implications.
+So if you're enabling a top group, but subgroups are not enabled, you won't see the data.
+So make sure to be really, really cautious about having your organization right.
+And now you need to store that data somewhere.
+If you are, like, me, a person that is just constantly throwing stuff in that download folder and then pulling it in, because there will be the day you have to get rid of your download folder.
+There are two versions of it.
+You spend two days sorting it, or you just throw it away.
+I did that a few weeks ago, and then I opened up my QGIS, and it was looking like this.
+And I looked at it, and I was like, where's all my data?
+And then I realized, oh damn, I deleted my download folder content.
+And I learned the hard way that all that data is not stored somewhere.
+It's just referenced to your disk.
+That's the reason you have this browser down here.
+The KML files are just a reference to your volume in that case.
+And if you look at this browser, there are lots of options in QGIS to deal with data to source data.
+And, I mean, depending on your infrastructure that you got, you have plenty of possibilities.
+In the data source manager, which is that symbol up in the left here, you see there are lots of options.
+I just want to mention, besides the import stuff from the disk, one other thing, which is the web map services.
+You can use a lot of sources that are publicly available with web map services.
+And it's not hard to do that.
+You just can go ahead and say, okay, I want a new web map service.
+They publish the URL, you give it a name, you type in the URL, some require authentication, then you have to add that here.
+And then just click okay, you're done, basically.
+The settings are usually figured out by the tool, if not, the people publish what you have to set.
+Every web map service usually comes with a how to use it in QGIS tutorial, which is very nice.
+And in Germany, for example, you can access the data from the respective officials that are running the cartography in Germany.
+So, in lower-sexity, for example, you have a public version of the Ligenschaftzka tusk, where all the floorings and stuff is in.
+And you can just say, okay, I want to use that, you say connect, and then you can import these web map services also as a layer
+into your project.
+They pop up, and now you see I have a different map than OpenStreetMap, which is now the base map.de, which is a public service in Germany,
+which is providing a base map for all of Germany, for example.
+So, take your time and have a look at web map services.
+They can improve a lot, especially because you also can access the infrastructure plus, which is German public database,
+where you can get on request access to fiber data and cable data and stuff.
+You can also use that as a web map service, so you don't have to use their web tool.
+So, then throw it in QGIS and compare it with your own fiber network to find easily points where you have the possibility of an interconnection, for example.
+But how now to deal with that stuff?
+I imported it, and now I want to have a similar version to my places file, and there's a nice tool in QGIS, which is helping a lot with that,
+which is the data manager, which is a nice toolbox tool, and then you can just go ahead, and so I have not mentioned that.
+If you click on processing toolbox, you have a menu popping up with toolbox, which is like just a collection of a lot of scripts that can help your daily interactions with that tool.
+You can also like measure paths or do like calculations and stuff.
+If you're able to write Python, you will also be able to write your own scripts.
+And the one thing that is really important for the Google Earth people is the package layers tool,
+which is giving you the option just to create a geo package, which is like a sort of collection of geo data,
+and this tool is simply just giving you the possibility to say, OK, I will select everything that I have, click OK,
+and then I can save it to a file that is on my disk, and then this geo package now will contain all the information that I need,
+which is a mistake, probably, or not.
+Select all, and then, yeah, interesting.
+Maybe I found a bug, so just select where you want to store it, and then you have to click Run,
+and now Cubus will create a geo package with all these things you see on the top here, which I selected in that tool,
+and this created geo package file now is containing all of that.
+So I'm just saving it quickly to my demo, and now I will just close my Cubus,
+and I will throw away my scrap layers. I won't save my project. I won't take that with me.
+I'm just reopening up Cubus, and I can now go ahead and just open up a new empty project,
+the same as we did before. We add this OSM, and now I'm doing the lazy part.
+I'm just adding my geo package file that I just created by pulling it in,
+add layers, and now all the data that we had previously is now back in.
+And what you notice is that the style changes that we applied, for example,
+they are also taken with us, so those metadata is sort of stored at some part into those files.
+And those are, in my opinion, the basic steps you need to know to get started with this.
+I want to encourage you all to, like, take a look at it and try it out,
+because I believe that especially geo data is something that we can handle way much better,
+like we are all collecting lots of that. We all have to deal with it day by day,
+and the physical part of our infrastructure is something that we need to be really cautious about,
+as it can become very fast, very vulnerable, especially if we don't take care about points
+where our docs will cross or where, like, other infrastructure can be hidden by construction work.
+So, yeah. Have a look at it, and give it a shot, because, in my opinion, it saved me lots of waiting time,
+and also it gave me a new access to, like, really work with this data.
+There are nice scripts where you can say, hey, give me all crossing points
+of, like, my path is that I currently have imported, so you can add all your network stuff,
+and you can just have a small Python script that will take the work of finding out
+which fibrostrands you have to, like, reorganize to get rid of points where your docs will hit each other and stuff.
+And that's my point so far, and now I think we do have some time for questions, hopefully.
+Yes, sir.
+Do we have some time for questions? Thank you, Christian, for the talk.
+I actually didn't use --
+(Applause)
+So, maybe raise your hand if you have questions.
+We have -- do we have questions from Vengeless?
+There? Yes, there, where is -- I'm Mike.
+Thank you.
+(Applause)
+Hi, Johannes Evele from Bellevue.
+How do you work with other people on Kugis projects?
+Is there just, like, Google KML or KZ files that you put it somewhere in the share and everybody else loads it?
+Or is it something nicer?
+Yeah.
+The way we approach multiple people dealing with the data in there is that, at the moment,
+we are just having a geo package file with, like, all the relevant data from a network that is stored in our next cloud.
+So, it's like the very easy straightforward way, which is also enabling offline usage, which is often a thing.
+But we are currently evaluating to run a Postgres server to store all that into.
+Also, because we are looking at UMAP, which is a version to create custom maps based on open street map,
+that is also using Postgres on below.
+So, yeah, there are plenty of options, and if you really want to have a shared experience,
+there are, like, database services, especially for GIS data that can be used.
+But for now, we are just adopting the shared KML file from the Google Earth times,
+which is probably, like, the lowest hanging fruit.
+But also setting up Postgres and connecting to it and throwing data into it is like a bit of drag and drop,
+so not that hard.
+Thank you. Any more questions in the room?
+Looks like no, so that's a wrap for the talk.
+Thank you, Christian. Again, thank you very much.

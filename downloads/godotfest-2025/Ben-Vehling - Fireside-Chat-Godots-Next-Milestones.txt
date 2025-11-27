@@ -1,0 +1,673 @@
+API URL: https://api.media.ccc.de/public/recordings/93506
+Frontend URL: https://media.ccc.de/v/godotfest2025-fireside-chat-godots-next-milestones
+Title: Fireside Chat – Godot’s Next Milestones
+
+[Music]
+Thank you very much for attending the first Godorfest 2025.
+That means a lot!
+(audience applauding)
+The other day, I was watching,
+I guess it was a YouTube channel, I watched it,
+but like the data comes from the MGTK game jam,
+and it was basically the growth of Godot in the game jam
+for projects from 2020 to 2025 to this year.
+And you could see that every year Godot becomes
+like a little bit more important in this space,
+and it's so important that it's basically not much
+that Godot is the most important game engine,
+at least in the indie or game jam space,
+with a growth rate of 27% in the last five years
+in comparison to Unity who fell down 22%.
+So, thank you.
+(audience applauding)
+I'm now on stage with Rimi Wershard.
+He is not just a project maintainer from the Godot project,
+he's also at W4, the partner for, for example,
+console ports, backend, like all kinds
+of business related stuff in the Godot scene.
+And Matt Ellis from JetBrains, an IDE and CI and tool service
+who basically provides every professional tooling
+you will need as a game studio.
+And I would like to take this opportunity
+to look in front in the future to see basically
+what will happen in this next year in the Godot space,
+what needs to happen in the Godot space
+to make it a competitive game engine
+that a likes of AAA studio could basically work with it
+and it will become not just the map editor
+for a AAA game, but maybe the whole AAA game based on Godot.
+So, coming from that talk,
+what are the goals from the game engine right now?
+What do you have in mind Rimi, especially like
+in the next 12 months, what can we expect?
+- Well, hello everyone, that's a good question.
+I think Godot is in a pretty good state.
+Now, as you mentioned, like there's a lot of new users
+there's like real generational change.
+Well, like a lot of younger users who are starting
+with Godot or like who are learning from their peers'
+experiences like it's actually good to be familiar
+with multiple engines and not just like learn a single one
+because maybe they see that like in 10 years
+maybe using a U engine is not necessarily like always
+going to be the only option and so that it makes sense
+to learn more tools and be more versatile.
+But so for Godot, I think we're at a stage
+where like the engine is maturing from like mostly
+volunteer driven projects where like a lot of super
+passionate, obese and also professionals,
+but like who have an interest in like helping
+shape the engine have been bring Godot to what it is today
+and now there's a need to like go to the next step
+and scale a bit better to like an ever growing community
+like it's doubling in size every year and the requirements
+of that community keep changing because like problems
+get solved, roadblocks get removed,
+but then new new problems come and then people can focus
+on other things as like okay now this is the problem,
+now this is the problem and up until now the foundation
+has been kind of playing catch with this is like okay,
+we solve the first roadblock people live now
+and then they come with a new problem and then we solve
+this problem so Godot kept getting better.
+I think now we're trying to anticipate a bit more,
+do a bit more of like product management and like reach out
+to go to users especially like professionals who are working
+on like commercial games and understand like what are your
+hurdles what what what can we do to make the engine better
+so that we can prioritize and resolve things internally
+to to better address these issues and that goes together
+with like bit more structure within the foundation on working
+on these priorities so because a lot of the work is done
+by volunteers and like it's it's hurting cats like it's
+very difficult to to manage volunteers and yet it works
+like most of the work done in Godot is done by volunteers
+and like that that's amazing but there's a need for for
+maintainers doesn't need for people who can keep this all
+tied together we can help like yeah do the boring job
+sometime of like someone cool made a cool new feature but now
+someone else needs to fix the bugs because that person is no
+longer available to do it that's a responsibility of the
+foundation and that creates that takes an increasingly big
+part of the time but at the same time then Godot gets better
+and better I think like for me the main priority now for Godot
+is stability and like I would say like reliability so like
+it it's really fit apart and sure like if I ask any of you
+you all have a feature you absolutely want that Godot is
+missing but at the same time you're all able to make super
+cool stuff with what's existing and I think what is
+wasting the most time and is like the things that do not work
+more than the things which are missing so that's what we are
+trying to focus on to have like really solid foundation and
+then then we can add more features I mean we always adding
+more features but for me the priority is like fixing the
+bugs well thank you like I'm like making the engine more
+stable making them more reliable is probably in my view
+at least a big step towards like making it attractive for
+bigger studios who work longer on games and bigger studios have
+often bigger needs like in case of maintaining in case of like
+writing codes managing codes and we have our platinum partner
+Jack brains here met the code space is also changing a lot
+and you provide tooling but you have also a focus on something
+that's like often seen with like a happy eye and a sad eye it's
+AI and AI is basically in the way of everything like there are
+in a lot of other parts of software not the way around AI
+how is it looking what do you think is the future with AI and
+good or that's a massive question yeah um
+yeah everyone heard of AI okay um but who's actually using AI
+okay oh it's 50 of the hands I would assume all right then
+and then another one who refuses to use AI I would say 20 percent
+yeah exactly that's a little less than I thought it was going to be to be
+honest AI is a bit of a divisive topic for sure
+there's some people like it some people don't um the key thing
+I think with this is that it is there to help you it's not in there to replace
+you it's there to kind of take away the boilerplate
+let AI do some of that work for you so things like you know
+generating code generating commit messages explaining code is also
+fantastic there as well but more of the boilerplate like
+if it's going to finish off typing the line that you are going to type anyway
+great you know it's just saved me some keystrokes and it can be a whole lot
+uh quicker but the key thing is that it's got to be a bit more reliable
+and useful and suggest the things that you wanted to suggest as well
+so working with something like good doe and with say gd script
+one of the challenges there is that there is less training data than there is
+for other languages other environments other um
+styles of working you know so like enterprise development for example
+there's going to be a whole load of data there which we can use for Java
+for C# for web applications and so on there is a
+little less information there for gd script and for good doe as well
+however there is still plenty of information so the documentation provided
+by the project is fantastic you know that feeds into the AI and can be used
+then to help explain stuff and help you learn things so you can ask
+good questions in a way that it can pull it out of the documentation
+without you having to read the documentation and summarize for you
+um and the gd script itself while there is less data to actually train from
+there's still enough to get good results you know we can still use that for
+training co-completion for example and we know from how we do co-completion
+in other languages we can apply that to this language as well
+so because we can do things sort of in a broad way across
+lots of different languages we can apply it to
+things which are more restricted to a particular environment such as gaming
+such as gdos such as this particular engine here
+so um i think also one of the key things there is um is choice as well so you
+have the freedom to use it if you want to um it can help you for sure
+and it can speed things up it can help you understand some code it can help
+you find issues it can help you do boilerplates there's a whole bunch of things
+it can help you do but you're still the person who's
+writing the game you're still the person who has to come up with
+the creative idea behind all of that and come up with uh you know put in the
+hard work to make the gameplay work uh the AI cannot replace that for you
+you know the AI can help you do that quicker perhaps
+but you're still the person uh behind the scenes
+driving all of that change so i think there's a lot of things it can do for you
+but you're still essential hmm i mean the code gets more and more complex
+in general like talking about for example patricia patricia
+biaga just had a talk about back end services i was coming from
+and uh w4 off hard back end services you stop doing that or you still have it
+yeah we we post that uh because like we had a good product but uh
+the the market demand didn't seem to match like um the expectations
+is it maybe also complexity because like you have to basically two code
+bases you have to maintain at the same time
+one is usually ngd stripped and the good old editor
+and the other one is somewhere else in goal or something like well our like um
+multiplayer offering was actually the goal was that you would just
+keep a single code base so like you would write your server code
+in your go to project ngd script or in c#
+and then uh have the option to use either p2p
+or um dedicated servers because go to as this functionality that you can run
+go to itself as the server and the footprint is
+actually pretty good so like you don't have to write
+a whole server in go or something you can just run go to itself run your
+project then some um some of the game logic is
+tagged as like running on the server some is tagged as running on the client
+so that worked fairly well uh i think that that was super cool
+but i think it still seemed too complex uh like
+and we like to say that like making multiplayer games is like 100 times
+harder than single player and i think with the technology
+we developed it maybe got only 10 times harder but that's still 10 times too
+much um so we we we post that like we still have
+the technology in house let's open source um so people can use it if they want
+but we don't provide any more the the whole whole like hosting package because
+the idea was that there should be economies of scale so like it
+had to be something affordable where people can pay like
+10, 15 bucks a month to have their game hosted so like you can just easily make
+multiplayer games and get them hosted but if you don't have the numbers of
+customers that that take this kind of inexpensive subscription then you cannot
+justify development costs and if you set it up yourself and just
+something like go like i assume you can help with that
+like having different code bases in the same project
+absolutely yes um if you got a programming language we can help you with it
+what would be like a killer feature you would wish
+good or would have even if it's way too complex to integrate and to
+uh put into the project you would wish for there would be
+a make a game button no it's not vibe coding after all
+um killer feature i don't know i think uh
+my wish for guru is to become more accessible to like all members of the
+team uh i think that that was like the the initial
+promise of guru like that's how it had been developed by
+by Juan and Il where like the in Argentina that there was no
+affordable game stack so like they would um go to some studios and provide them
+the technology so it would be kind of like engine for hire
+and they would come and like the engine was basically built from
+talking to the team seeing what kind of tools they need and then building the
+tools that they need and then just put them then together in a package
+but uh Juan and Il being very clever they didn't want to have to
+do all the work themselves of the integrating stuff and then artists come
+with this and please put it in the game artists come uh
+sound designers come with this please put it in the game so they made tools so
+that everyone could build a game and then they could just
+have nothing to do um which worked apparently fairly well
+so that that's i think what led guru to like have a good
+initial popularity aside from being open source it's that there was this
+usability from the start that like everyone could use it
+uh in gd script help with that that it's like very accessible language so you
+can be a game designer and start coding your game you can be a sound designer
+and start coding a game so you don't have to be
+a c++ programmer or c# programmer um and i think gd still has these
+but i think we need to bring it further we need to really reach out like
+everyone who wants to be able to uh especially in bigger teams i think
+because now in these i think like with very different
+profiles they cannot they can figure out how to
+make stuff with gd but in bigger teams they have different expectations on what
+the workflow should be and if you're like 3d artist used to working with and
+real then maybe the experience in gd still might
+might not be like up to up to standards or like if your sound designer used to
+working with f more than y's maybe maybe you're not familiar with what gd
+offers but maybe you are and it's not good enough
+uh so that that's the thing where i would like to see
+more focus and a big part of this is also just a ton of
+small ux work to like remove all these small decisions made by engineers for
+engineers and actually like talk to all of you guys
+and be like okay how can we make this work for everyone
+so it's not a big feature it's more like
+is there a role you would suggest that could do that you talked about like
+maintainer before but is there something
+you wish on your team basically um i'm a big corporate company we want to
+have a ux designer who goes swimming that we need to go towards that i think to
+have like uh ux designers um yeah for now the
+foundation is still like fairly small and it has like uh 10 or 12
+contractors um we would like to have people in charge of
+all our rears of the engine hired by the foundation
+including ux but currently we still have a lot of
+roles to fulfill which require funding and then finding the right candidates
+um so we'll get there but for now we also have a lot of volunteers
+contributors and more and more interest on on the ux side
+um so i think we'll uh we'll be able to make changes that that make things more
+accessible and have a bit more direct communication
+uh like we're talking a lot about this with uh
+me and others of like um go find the developers and then
+get them to tell you like what are the pain forms because game developers are
+so good at just making workarounds like and and that's great like
+you get a tool it has strengths and weaknesses and you should not just
+spend your time trying to report the weaknesses you should just make a game
+but we need them to like get to people and be like can we have a post-mortem of
+like what went well what went wrong especially what went wrong
+um so we can digest that and then um somehow figure out how to
+how to get this improved i would like to see like from the
+audience like who because like that's an interesting point because like
+everyone kind of will manage your way around
+who would say from your like uses a lot of work around like in general and the
+game mentions it's like slowly hand raising from the
+back towards the front a shameful hand like a slowly hand
+and like what what can help to because like when a feature for example is
+developed it's developed with like a specific use case in mind but people
+were like decoupled and you will never have like all the use cases covered
+with like the features you built what would be the solution there like what
+what can kind of make it like i know that for example
+from community posts uh you don't want to have every feature and
+and the good old engine because it gets crowded it gets
+complicated but that would be only possibility wouldn't it to kind of cater
+to everyone who does a workaround yeah
+i don't have a magic recipe for that uh i think what has worked fairly well
+for good or so far is to take our time to like
+get the feedback get the input and like not rush implementations but really try
+to understand like what is needed to solve different use cases and
+what we keep trying to do and need to do more and maybe find better
+where folks to do is like really start from
+what are the problems and not what are the solutions because
+that's typical like xy problem issue where like
+someone has a problem and then they come with a solution and then tell you i
+want to implement this because it solves my problem and it's great
+but we need to hear about the 20 other people who have
+adjacent problems and then see if that solution actually also solves their
+problem or if if they're left uh left out so
+that's that's pretty difficult uh that also leads to like
+bit of inertia like we we wait to have like a good consensus
+on on implementations before really committing to it
+so maybe some of you are following some especially on the gene script side like
+many highly wanted features where there's a lot of
+debates around like what should this actually
+um enable what what are the use cases we want to cater to
+and and that's really difficult like i was also with w4 we work with some
+companies who tell us like hey i want this and then we have to dig a bit and be
+like why do you want this and like can you give us
+concrete use cases of how you would use this
+and then can we like we discuss this together and be like is this really the
+right way to do what you want to do because like there's
+many many different solutions um a way to address that problem
+so it's uh that's one aspect like there's a lot of
+thinking that's needs needs to be done before like committing to an
+implementation uh the other approach is to
+do more experimental stuff and then like implement some things maybe as
+extensions instead of like as part of the engine
+and ask people like please please try this out and see if it works for you and
+that's why there's a lot of great extensions now in the
+community that like we always said like for example
+terrain engine people were like i could also have a terrain engine and we were
+like we don't do that because like first of
+all we don't have someone to do it um and and we think there's too many ways
+to do it and now we have multiple great uh
+implementation of terrain engines that take different approaches
+that are useful for different kind of games as extensions and a lot of people
+are using them and i think that's that's how it
+should be uh there's still some missing parts there to
+really make this um feel fully integrated because that
+that's a bit the downside with extensions is like you
+you have to install them manually you have to go to the asset library and
+install them in every single project where you want to use them
+so something we've been discussing for a long time and still haven't found the
+full consensus on how to implement it or mostly like
+task someone was doing it is uh like global
+addons where you would be able to like add a feature
+that's registered somehow for all of your projects
+and then um that you can use and then it just extends the engine
+uh functionality and you don't have to manually copy it in every single
+project um there's a lot of technical considerations
+there because you you still need it in your exported
+project uh to actually have the feature so it needs to be in your
+target file at some point but there's ways to maybe
+make it feel a bit more um yeah yeah a bit smoother
+yeah how in 2025 we are in the end of 2025 how
+how do you set up your own projects now like
+what is what is kind of the mandatory thing
+you talked about addons uh pipelines when you not make a game jam game maybe
+but like start a serious project what is your setup?
+uh i don't have a lot of time to make serious projects but my setup is uh
+touch project.goto and then i open goto from the comment line
+okay that's not the recommended way to set a project
+uh but yeah my projects are mostly trying to reproduce bugs to fix them
+um so i don't know the question is like how do you guys
+start your projects but like i think there's a lot of um
+there's a lot of interest in like more
+tooling more like external tooling to to like augment what the engine provides
+such as like CI/CD pipelines being able to export your game easily
+um to different platforms um and there's um
+depending on the kind of games you're making there's a lot of components that
+like are not built into goto that you would need
+for example if you're making a mobile game you need to have like all the
+integrations for like the the store platforms the achievements leaderboards
+all these kind of things which are things that the foundation
+is also starting to address a bit more directly uh
+up until recently it was more like we don't work on these because we're
+working on on the engine itself on like how to make the game and not on the
+ecosystem monetization parts uh but we're seeing that it's not
+it's not enough like yeah there's a lot of plugins made by the community
+and but someone makes a plugin for their game and then they maintain it for a
+couple of months and then they stop then 10 months later someone needs it and
+it's updated so then they fork it and then you have like 15 forks of a different
+same functionality um so we're finally starting to
+to put some resources behind that too uh so we can unify
+like uh all these integration like in the central uh repository and then have
+people from the foundation to maintain them so that if you want to make
+a mobile game you always have access to at least
+the first party uh platform integrations um so I think that that should help
+because goro is still not very uh widespreadly
+widespread on uh for mobile games like it's very capable in terms of like
+engine features but all these integrations are really
+a big part of what you need to make mobile games um and a lot of the
+you see a lot of like goro games which are successful on pc
+and then they work with a mobile focus publisher and then that publisher is
+like you know what I have my own templates with like 50
+50 SDKs integrated for like 15 different ad providers and facebook
+login and whatever so I'm just going to reimplement the game in unity because
+that's what my template is using uh which is a bit of a shame but that's
+that's a problem that that requires a bit of I mean we're both from the
+foundation on some of these but ideally from the vendors
+that provide these SDKs uh because like uh we cannot maintain everything and
+like they want they should want go to users to use their services so they
+should eventually provide these but that's that that's a bit of a chicken
+and egg issue because there's not enough go to games on mobile to
+justify it yet maybe but it's growing maybe the single means
+yeah with the infrastructure I mean we we talked about it also with the
+the the uh implementations for good o and like the the build pipelines like
+without a build pipeline basically doing something on mobile that's
+pretty complicated to uh to export your build to do the code signing to
+get it for example to an apple device like without a build pipeline if you
+work every day on a uh on a game that's pretty impossible and
+like therefore we're glad we have like professional tooling partner
+comment and make it possible as well without like setting up
+too complicated um yeah exactly um build pipelines are
+very important the reproducibility of it is the
+being able to repeat a build and have that done the same time same way
+every time is uh you know it's a big deal it's um really useful for
+building more professional games and making sure that it's working
+and also for making sure that your game is going in the right direction
+quality wise as well so you know this this sort of involves testing too so if
+you can get tests into your game and automated testing which is always a
+very difficult thing in games you know i'd love to see more of it it's nice to
+see talks to um over these last two days about uh
+testing as well um it would be great to get more testing in have that as part
+of your pipeline too so you can check stuff in you can see that your game is
+still working hopefully mostly um and you've got a reproducible um
+tool at the end of it and um you know Godot is very good about um
+you know being able to export uh your game as well so it's it makes it
+really quite straightforward and it means that the steps you have to build
+inside your pipeline are really quite um small
+but that just means it's more main uh more manageable
+and you've got less sort of overhead for having to maintain that
+but while i learned a little hack uh for building on mobile uh with a mobile
+or a backend service basically you want to uh build in your pipeline the
+authentication part of of your product and then that it just starts it's
+enough to know like the build is kind of working and connecting and you can play
+it and it saved so many hours of like ua teams
+coming in and like then that nothing is there to play and to test
+so i built pipelines and testing is a great recommendation by the way
+the testing is just huge it's um coming from you know sort of uh
+other areas from game dev there's there's so much testing going on there that's
+when you come and see uh game dev and it's like you know
+hands up who's doing testing and everyone's kind of like
+little bit and a bit sheepish about it um it can be a huge
+a huge win to make sure that things are working but it is also
+a very difficult topic and i think the more
+as an industry uh we can invest in that and understand how to do testing the
+better things will be automated testing that is
+now we basically the engine as in a mature state like i saw uh
+was it Paul Brittman who did a talk about the new music streaming
+service features and got all 4.3 uh and they covered
+capabilities it it becomes like a really mature engine with the new uh
+rendering pipeline as well but tooling is there
+what is missing for like now the first triple a title basically to appear
+besides a big studio with a lot of money
+like in your opinion speculation of course
+um i mean you must have thought about it yeah
+sorry to put you on it's uh it requires i think for triple a
+studio to be able to use go to each requires
+probably an in-house engineering team because that's how they used to work
+and like making changes to the engine to adapt to their pipelines
+because i think go to us very specific pipelines of like okay how do you get
+meshes or like scenes in the game like how do you deal with animation and
+stuff like that and those work like blender folks use them and like
+had to deal with what works what doesn't work i think uh in like the scale of
+like triple a games they would not want to put up with that um i mean
+they're doing it to some extent with like the the portal stuff of battlefield
+uh really impressive how much of stock guru they are using
+uh but i think yeah there needs to be a lot more flexibility in like what you
+can do and um there's a risk that like adding that
+flexibility makes good or less accessible for like
+the the indies or like the other parts of the market so like i don't know if
+good was a vocation to be really like a triple a engine
+i think it can be used by like triple a studio to make
+more smaller smaller games um but like to make a color duty or
+battlefield i don't know um it could happen uh but that that would need to
+come with like yeah some very dedicated engineers
+that want to work together with the foundation
+and uh can find an alignment like how can we shape things
+to work with for our workflows workflows without disrupting
+everything else that makes good or great for indie developers
+so something from the two link side well i wanted to jump in first um i think
+um a key thing there is also experience you know the triple a students
+students the triple a studios need to have experience
+with good though as well and so the the map editor that's fantastic that's
+really really exciting because they're actually shipping something
+they they've built something they've used it and they're shipping
+something in gado and yes it's a small thing
+but it's there it's fantastic they're getting the experience of working with
+it and so they're going to be able to then
+move on and build bigger and better things based on that experience so
+learning how the engine works and shipping something you can't beat shipping
+software once you've shipped it then you know so much more about it and the
+next time around you're going to be able to build something better
+and so experience is is you know just huge
+i was actually super curious if they use the map editor as well as the in-house
+tool for making the maps of they use the frostbite engine for that as well
+so dog fooding is also very important too so yeah hopefully yeah
+and tooling i mean always when i asked studios about why don't you switch to
+unity from unity to gado what what is kind of the
+main reason you you're stopping that it's actually always the tools they
+create that they have and they use and it's always it's too much
+of an effort to recreate everything they basically built
+and to switch to gado yeah that that's why i think like
+a lot of the adoption of gado is driven mostly by
+new people coming to like the market so like students who graduate want to start
+their own in the studio and many of them choose gado
+right away because they tried it as a student and they liked it
+um potentially people who are later from other studios
+or AAA companies and like hey i'm going to start my own
+gado project because they've been playing with it on their free time and
+now they want to to really go all in uh while like
+established studios i think there's a few who have
+migrated to goro but like many of them as you say they have so much
+tooling in-house that it doesn't make sense business-wise to just
+uh move to different technology unless they are really like um
+feeling insecure about about like that business future with unity which
+was the case a couple of years ago but it was quickly
+um the tension was resolved uh so that studio were like okay we
+we still have a good few years to to make business using this
+technology so i think um things are a bit stapler now
+um and and that's great because like i love i love to play games made with
+unity and i want to play more so um but yeah i think it's uh
+it's really hard for for an established studio to really
+approach themselves to a new technology but i started with the data from the
+mgtk game jam and the growth of the goro engine
+basically and soon like if everyone makes a lot of
+advertisement and this year we will next year actually
+have uh being like all even with the unity guys uh and the game jam from the
+created games for the first year like in theory if we stay with the
+projection line yeah this year there was like two
+person difference between unity and goro
+but yeah these are um i mean i don't have hard evidence but my
+perception from talking to people is like game jams like that especially
+gmtk's you have a lot of hobbyists for whom goro might be like
+the first number one choice um and then you have people who use unity
+professionally or unreal professionally but they want to play with goro on their
+free time uh so it's not necessarily a reflection
+of like trends in the industry itself i think it's more like
+showing what people want to use if they get a choice
+and if they have the luxury of making participating in game jams which
+not everyone knows uh so it's really good indication of like
+the interests and the growth of of goro polarity uh but i don't
+know if we can really map that to projections for the industry i think the
+latest state of the industry thing from gdc like they had
+they featured goro for the first time this year and it was at like four
+persons yeah a reported usage i'm i'm expecting next year might be
+six or seven so like the growth is is huge uh but we are not we're not just
+like in two years at like 50 percent or something
+also for partners goro like the game engine that's still growing
+and uh maybe also this event can still grow even if it's really really great
+to have everyone here like to have such a great event with so many people
+it's amazing how many projects actually showcased here how many people
+actually like talk to each other had new project ideas and came together
+and if uh over there max for example i can get a microphone and we can maybe
+also open up uh if there's some questions from the audience uh
+towards the future of goro and the next steps
+um you're very welcome to raise your hand and
+i see one over here for example over there
+does it work yeah okay hi um so you said something really great about
+feedback from developers of games is there any process or maybe some plans
+for you to process any loop feedback loop from developers of
+successful games like halls of tournaments that came and talked here
+um to see what they liked or what they would have liked to have because
+if their games are so successful then they probably have
+good insight into what could help other developers as well
+yeah um we're still figuring out the details but like some of it is
+meeting at events and just chatting and uh hearing about stuff and then asking
+them to to send an email with all their complaints
+um some of it might take the form of like
+uh private discord for like a few invited
+like users who have made like commercial success with goro and then we get their
+feedback and but eventually they're probably also a need for like maybe
+and or some some polling system where like um we currently have like a
+community poll uh every year where but we mostly share this on like social
+media so like you get answers from people who follow goro on social media and that's
+not everyone um so it could be interesting to do a
+bit more work there and like how to get quality data out of the community
+um always still like respecting the the open source ethos of goro like we
+don't necessarily want to like add telemetry and stuff and then
+report anytime someone to make doesn't work around talking earlier
+um but like yeah I think there would be ways to like
+ask a bit more directly people um to provide their feedback with like
+a streamlined process that doesn't take too much time but maybe we can feel a
+form like in 10 minutes and then um then maybe be
+contacted if there's something that's particularly interesting that you
+mentioned and that's um and then the way I would like us to use
+that feedback is to um make some kind of like working
+group around that like we we started doing these for some uh some things
+like uh some mobile SDK integrations that I need for some game we're like
+a few established game developers who reached out and was like okay
+we're making this game for mobile and we're running it to these issues and we
+want to solve them and then we have a small working group
+with like some game developers some uh goro contributors
+and then together we like we iterate faster on like okay
+what's needed let's let's make it happen and then they test it they provide
+feedback so it doesn't have to take a lot of time
+it's still still some time investment from them that they contribute that
+that's a way to contribute to the engine and not everyone can do that
+but with with a few people like that uh basically we managed to make like a
+lot of uh a lot of progress quickly
+I just want to jump in quickly there as well and say this is not a game industry
+specific problem we have a very similar thing you know we want to get feedback
+from people on how our tools work whether it's
+right or any of the tools and that involves
+talking to customers and the customers talking to us as well so there's lots
+of people you see on social media it's like ah it doesn't work and like well
+what are you asking over there for come and talk to us
+you know we want to listen and do these kinds of things
+but um we need customers to talk to us so uh you know if you are doing work
+arounds for things um let the developers know so that
+they can sort of say oh well I didn't even know you were doing a work
+around for that because I didn't know it was broken in that way
+or wasn't fulfilling what you needed it from it
+okay thank you okay so first of all thank you for the
+amazing job you're doing with Godot and you know
+uh my question is um not about AAA studio but
+in general kiddo has been seen as not production ready for the industry
+for the most part in his past do you see a trend of that changing
+for smaller studio i'm not talking big productions but
+something that we can see as an opportunity to actually get a job
+as a Godot developer for a smaller studio they do
+small games if you have a perception from
+from the inside yeah i mean it's it's definitely growing like you can
+see the data on like on steam db for example you can see like data on
+Godot releases on steam and it's growing there
+every year by like 50 to 60 percent so there's like a lot more Godot games
+being made and that's much faster growth than than any like desert growth for
+for other engines too because you know that's in the apocalypse like everyone
+there's more games on steam every year but like the growth for
+unreal is maybe around 10 percent unity maybe five and then Godot is 60
+so it starts from lower numbers obviously so there's still more
+unity and unreal games made every year than Godot but it's catching up with unreal
+and it's really progressing fast so that shows that there's
+that's more more games more studios or more indies
+try choosing to use Godot there's you can also like there's some website
+providing estimates of like revenues of games
+published on steam and then you can also cross-reference that with like
+games made with Godot and then i think for this year last time i checked i was
+around like a hundred million euros cumulated revenue from like
+games on steam and that's a lot more than last year
+in like a hundred times more than a few years ago so
+there's a very big commercial growth
+so on pc for sure on mobile i'm starting to see a bit more
+take-to but yeah it's starting from from like
+it's it's a slower process i feel because as as i mentioned there's still some
+elements which are not as mature on pc it's
+kind of kind of they're already
+and yeah in general events like this also show like
+there's a lot more studios and like many of the studios using Godot are
+hiring more like have more stuff new studios get created so like we
+definitely see a big uptick in commercial usage
+there are several studios actually here right now
+using Godot and it's not always the easiest to find new engineers for that
+because they are like there's a lot of unity engineers like
+basically on the market that you can approach but not as many
+Godot engineers that have maybe a track record or like experience and that
+and for example if you're in Finland you're welcome to talk to me as well
+because we have the same problem there but it's probably in every country that
+there's not so many studios looking for people but like
+they are the studios who are looking it's not as easy to fill the positions
+with more than a student for example or like a very
+junior developer yeah that that's a bit of a problem of
+like visibility of like who needs Godot users
+and who has the expertise the foundation is also working on a job
+ball that should help like connect people so you can say like actually
+i'm looking for someone who knows about Godot
+and then you can come and be like yeah i have eight years of experiencing Godot
+so i'm like a great fit for what you need
+and i'm seeing also like that's a general industry trend that like
+there's a lot more distributed work so like
+can be across countries people like studios are happy to work with people
+in in different countries as as contractors
+so i think there's a lot of opportunities for
+people experience with Godot but they are not always easy to to find
+and sometimes we get studios reaching out and be like can we recommend someone
+that's also difficult because we know a lot of people but like who to
+to pick so having something that's a bit more
+streamlined i think will help studios to find the talent that they need
+and then to also confirm to people that like there is
+jobs if you learn Godot because we still a lot of students still say like yeah
+i like Godot but there's no jobs for Godot so i'm going to learn
+other engines and i'm like you should learn other engines but
+yeah our jobs for Godot so if that's what you want to do you will find them
+yeah thank you so much Jimmy thank you Matt for
+being here at the Godot Fest and being here on the panel on the fireside chat
+as well uh a round of applause before
+thank you thank you.

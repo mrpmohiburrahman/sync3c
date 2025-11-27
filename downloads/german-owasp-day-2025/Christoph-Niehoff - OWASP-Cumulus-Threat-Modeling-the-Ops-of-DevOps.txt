@@ -1,0 +1,141 @@
+API URL: https://api.media.ccc.de/public/recordings/93571
+Frontend URL: https://media.ccc.de/v/god2025-56482-owasp-cumulus-threat-model
+Title: OWASP Cumulus: Threat Modeling the Ops of DevOps
+
+The next speaker is Christoph and Christoph joined us from Munich and with a background
+in physics he is now presenting something more on the gamey fight side of OVASP which
+is a third modeling card game you might think wait a second there is already one but this
+one is different and it covers different parts and one's Christoph returns yes well we even
+the card came here perfect. Great. Thank you very much. And thank you very much for giving me the opportunity to show you our little OAS project thingy that we have here. So maybe.
+A few words to me so I'm Christoph. You just heard I'm once was a physicist but now I turned into a developer and I particularly like DevOps and making secure projects and this is now a little bit of our approach of making DevOps more secure.
+So I'm the project lead of OASQ. So the card games and yeah I'll tell you a little bit about that and yeah my background now is that I work for TNG technology consulting and I don't want to make a commercial for that but it would be important a little bit in the later part
+because this is kind of the background where the game came from where we had kind of the idea to come up with this but yeah so the the outline for today is a little bit I tell you a little bit about the game then we have a small demo and then I have a question for you.
+So what first of all I want to say that I have to go away from the from the speaker that cumulus is not a new idea actually so we stand on the shoulders of giants so there is elevation of privilege which is a very cool game which was the first game of this kind.
+And there's also concopia from OAS there are cloud experts and just building on top of all of this we did this tiny layer which then became cumulus.
+And yeah and I want to start with with a phrase namely that yeah DevOps is built on self responsibility because DevOps means you build your project you're responsible for your project.
+With then also includes security and what I really like is this logo from from corn from cornucopia which just says in depth which was trust and I think this is a very important statement because
+and the idea of cumulus is enabling developers to be self responsible for the for the security of their project.
+So then one often heard the phrase DevSecOps and what does it mean I mean spoiler is I don't like that phrase but you can just go to Google and do Google image search and you find things like this.
+And don't think of secure DevOps in this way I mean on the left picture security is just a different thing that was added and the overlapping area even got smaller with this and this just for me it implies that security makes things harder.
+And the second thing is also security is not even connected to the process it's something different and we shouldn't think of security while building software in this way a better pictures is this, namely think of security as some
+embracing process that is everywhere in your software development and this is kind of the of the mindset that we want to have in cumulus and what's kind of the motivating idea behind that.
+So cumulus is about threat modeling and for those of you who don't know what threat modeling is it's actually very simple there's Adam show stack he is like the super guru of threat modeling and he is the one who also invented this idea of gamifying threat
+and he defines that modeling as a system of four questions what are we building what can go wrong what should we do about that and did we do a decent job.
+And at the core threat modeling I think is the second question what can go wrong because that means we have to understand what the what the problems are to our to our software and our system and where
+problems can be but that's also the hard question.
+And this is I think the part where developers need help and where a lot of frameworks have emerged for example these gamification games.
+And that's where we are with cumulus cumulus is at the second question second question of these four questions.
+So and to help in this question Adam had the idea to gamify it.
+So he invented elevation of privilege which is not in or was but it's really well really well recognized and the idea is to have a card game and let the developers play that card game.
+And while playing the cards each card has a threat written on it and then the developers play the cards they think about the particular threat written on the card and start kind of a brainstorming of the system.
+And by doing that they are kind of motivated to discuss to share their knowledge and their experiences and hopefully they find threats they find things that they did not really think about they write them down and this then leads to a threat modeling process.
+So this is the basic idea of that and yeah I told you I like DevOps and we use DevOps and at TNG we are consulting companies so onboarding is a topic for us.
+So onboarding people were coming from physics like me and for them we had the experience that elevation of privilege is a very great game but it's maybe more game for people who have at least a little bit of experience in security.
+And so many of the people who just came from university did a degree in physics but sometimes did not really understand what the cards meant and that's why I put it here blurry a little bit because it's actually pretty good but sometimes it's
+maybe hard to understand if you don't have the prior knowledge. Then we found that OASP also has Conocopia which is a very similar card game but this is focused on application security.
+So if you look at the DevOps loops it's more on the Dev side of DevOps and that's why we thought okay we have kind of a maybe a hole on the upside and this was then the basic idea to come up with cumulus because that just sits there.
+And then the our vision was you can just use all three of these card games you can even mix them together and get a full coverage over the DevOps life cycle.
+And then okay DevOps what does it mean if you want to secure DevOps there are I think a few areas that you can look at.
+There is automation which is really important in DevOps CI/CD and these things.
+There are the humans involved but there's also design architecture the things that you want to build.
+And you can think a lot about security controls and you get a big picture here you don't have to read that but you can just group things together put some colors in here.
+And this in the end gave us cumulus.
+So again there are cards each card has a threat to the system and you play these cards and by that you're kind of guided through the through the security posture of your of your system.
+And that there are different colors the colors correspond to different threat categories so we have five categories five colors for identity access management CI/CD backup restore monitoring and also one last the purple one which is to be honest the things that did not fit in the other categories some sense.
+And the design decisions that we had was we didn't want to make a vendor independent game so we didn't want to make an AWS game or an Azure game or so so wanted to extract like like the general DevOps and cloud principles.
+And so we didn't want to make a technology dependent game so this would not be a Kubernetes game.
+So in the end we had to find kind of the balance of being general enough to foster discussions and concrete enough to for being helpful and I hope that we kind of found this balance.
+One thing that was important for me was that we wrote all the threats in the we perspective again emphasizing the self responsibility and DevOps because it's not always the bad bad hacker who did something but it's also us the developers who may be missed a chance to secure something.
+So now I have a small demo of how such a game could look like so this is so you're building a some DevOps system in the cloud and don't look at all the details just the point is here you somehow managed to to
+model your system to build all the interactions to write things down. Yeah, so you have users you have developers you're running in the cloud with several cloud technologies and it's complicated and you want to understand what's going on.
+And yeah, there's you that's you you're the developers. So there are Tony Sunita on Juan and they now want to threat model the system and they use just some random game called to air called cumulus.
+And so Tony starts to play card Tony plays the blue 10 which just says we don't limit ingress or egress when running CI pipelines.
+And then they think okay what does mean.
+And then they come up with the idea okay this could be like like firewalling and pipelines and we actually don't limit this so or pipelines can reach the Internet and then via some supply chain attack or whatever can can just load a malicious code.
+We could do something about that so with which one writes this down just a sticky note saying that well pipelines can reach Internet and that's not good.
+So Juan now found a possible threat and that's why he just got a point here and he's happy.
+Then Sunita is playing the next card. She has to play a blue card because that's now the the color of the of the trick.
+And if she has a blue card she plays it she plays the blue eight.
+And this card says we use outdated dependencies from our runtime platform.
+And they start thinking what could this mean and actually we have dependencies scanning for our Kubernetes resources and actually everything looks quite fine.
+But then Sunita has an idea namely for our mobile app just on the on the left top left.
+And we're having this integration with Facebook that people can just look in and just for a long time we did not update the client library.
+And said yeah we should do that so we wrote down another sticky note and Sunita got a point.
+And we only also had an idea, namely, yeah we just got an email that our node.js version in our lambda function on the top is very old and we should update that and we should really make a ticket out of that.
+And that's another thing that they just write down and Tony gets a point.
+Now they run out of ideas and Juan can play the next card.
+He does not have a blue card but he plays a red card and the red card are the drums in this game.
+So first observation is Juan gets a different second point because he now played the highest card the drum card in this round and he makes the trick.
+So he gets a second point.
+And then they start reading our identity access management let's authenticated users or developers grant themselves additional permissions.
+So where could this be a problem?
+I think about that and I think the bad thing would be if developers can just change the database.
+I can do that but at least there are audit logs and at least we know what it happens and then someone will get fired.
+Let's put it like this.
+But then Sunita has a different idea, namely, okay, but our developers can also manipulate logs.
+And this is also a problem because then a developer can manipulate the database, delete the traces,
+and that's a situation that we don't want to have.
+Maybe we can do something about that.
+And so she writes down a different sticky note, gets a second point.
+And now our developers have played one round of the game and what do they have?
+So in the end Sunita and Juan are kind of leading but most important they got this pile of sticky notes.
+Which then in a second step they convert into tickets they can just use as input for the backlog.
+And hopefully in a few weeks all these things will be gone.
+So this is the basic flow of this game.
+People just play the cards, they talk, and while talking they identify issues that they have and where they should take actions from.
+Yeah, just as I mentioned, we have the physical cards and we also have an online version if you want to play that.
+It's just on GitHub you can just deploy it and then you can play the game.
+But you can also get the games online and just, I'm not getting any money off of it.
+So I can just tell you that if you want then Cybersack Games is the place where you can play all these games.
+But we also have a printer friendly version that you can just print in those cells.
+So now I promised you that I have a question for you because I'm thinking about the next steps for this project.
+And one thing that I would like to have is like explanation pages for all the cards.
+So with what do they mean, what could be like examples, what could be mitigations.
+And I would like to have this kind of written down and I'm just looking for people to help.
+Because if you have an interest in cloud and DevOps security then you are the correct persons to help me or to help us.
+Just leave me a message and just as a warning, no one helps me. I have to ask chat GPT and I'm just going to be generating AI slop.
+And no one wants that so I need help.
+And in general this project, the card games, they were created in such a way that we have a GitHub repository and it's as easy as possible to change cards.
+To create pull requests to get in your ideas and that's what I want to have.
+So this would be a community project and there should be rigorous discussions.
+Yeah, you can just create a new pull request. You just have to edit one file to change your card.
+And I invite everyone to just do that.
+And that's all I have. I want to say thank you.
+No, I have something more. Over there, I do have cards printed so if you're interested, just feel free to grab the cards.
+And that's all I have. Thank you.
+[Applause]
+And thanks a lot. We have a couple minutes time for questions before the lunch break begins.
+Thanks for sharing. Do you have experience in how to integrate that into agile rituals?
+I mean, there are several ways you can do that. I mean, the typical way would be to have like game sessions every one or two sprints to do them regularly.
+And then to feed the sticky notes, we just had back into the backlog, prioritize them relative to bug tickets to feature tickets and so get them back into the development flow.
+This is one way, but this always implies that you have kind of management support.
+So someone has to give you the time to do this, to do this, these games.
+We have teams that do not have this support. What they do is they commit themselves to, well, prior to each planning meeting.
+They take, say, okay, we take five minutes, ten minutes, and we just draw one, two, three random cards and discuss these.
+This is like the small way to sneak these things in if you don't have support.
+More questions? Yeah.
+How long does the typical session take? For example, you had the example for free developers.
+Yeah. I mean, you don't finish the game.
+Because, I mean, if you have like a time box of five minutes per card and we have like more than 60 cards, you won't do that.
+But you should just time box the session to, you know, one hour, maybe 90 minutes and just do it regularly.
+So the idea is not to play that game until you're done.
+The idea is to have a continuous process that's always there and to do that all the time because in the end, you want the threat modeling to become like a mindset.
+You want to do that all the time while you come up with new features. You want to integrate that into your way of thinking.
+That's the idea.
+So in this context, what would be a good strategy you would propose to effectively take the feedback, like let's say those sticky notes, like become parts of some backlog, then they either worked on or they're not worked on.
+So on the next session on playing, how do you effectively take into account like, yeah, like we fixed this and is there some more incentive, basically, where you can place like at the game phase for stuff that's already been fixed.
+Like by that, like a point system or something. And for those that effectively were supposed to be fixed, but we're not fixed. Do they do you have a way essentially to reward good behavior, like reward good fixes and potentially like reflect those old ones that have not been addressed.
+So, I mean, threat modeling is like a bigger process. I mean, I said, wait, this game is just the second part, the second question.
+And usually there's a lot of documentation that is, well, after you found the threats, you have to evaluate them and all these, and you have to find a process for that.
+And the game does not give you a process for that. This is just for the second question.
+And, yeah, what I typically do is just somehow as lame as it sounds to create a table of the findings, link driver tickets, whatever, and put the columns in red, green, yellow, whatever.
+Just to have like a visual representation of the security posture of the system.
+And for one client, for example, it was a green field project. And so they started threat modeling. And if you start a green field project, there are a lot of security compromises.
+So basically all this whole table was read. And then over the time the table turned green, green, green are greener. And this was also for the management.
+It was really good to have this transparent way of understanding the security posture and also to understand why certain things have been done.
+One, maybe time for one last short question.
+We have one or two slots still left. So we do. I mean, these are poker cards. It starts from one to two to eight, from two to eight.
+And it depends on for one of the, for a few of these categories, we had more threats and we had to filter out. Not all categories are full.
+For example, monitoring this, at least the three and the two are still empty.
+And yeah, but in the end, it worked out better than expected when we started it.
+And thanks a lot. Let's give a warm round for Christoph.

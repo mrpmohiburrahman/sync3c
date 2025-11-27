@@ -1,0 +1,216 @@
+API URL: https://api.media.ccc.de/public/recordings/93569
+Frontend URL: https://media.ccc.de/v/god2025-56481-phishing-for-passkeys-an-a
+Title: Phishing for Passkeys: An Analysis of WebAuthn and CTAP
+
+Welcome again. So, the next presentation will be by Mikhail Kukuk, and he will talk about
+fishing past geese, and he will go to prison next week. Not because of fishing past geese,
+he's also a working student and an engineer in Enovix, and an amateur actor in a theater
+group which is playing in a prison. So, he does know how to fish for past geese, so
+if you're interested in the security considerations, the risks, and whatever happens between, at
+the seams of security, yeah, listen to Mikhail's presentation about past geese.
+Yeah. Thank you very much for the kind introduction, and for coming by. I hope to not keep you
+from lunch for too long. Before I dive into past geese, let's have a brief recap of fishing
+in general. So, usually fishing works by, you know, attackers tricking their victims into
+opening websites that usually imitate other websites that they know, such as Amazon or
+Facebook. And then the victims think, okay, it looks like what I know, so surely it is
+what I know, let me try and enter my passwords, and in that moment, you know, the attacker
+just steals them and can do whatever they want with those. And ultimately, the only reason
+why this works is because us stupid humans, we only rely on these stupid visual things
+that fishing websites can imitate so easily. And now, some of you might say, well, skill
+issue. Sadly, it's not a skill issue. Even the guy, the person who maintains how I've
+been pawned has been pawned. So, no matter how much you know about fishing, you're not
+really safe because it's social engineering. They're experts at, you know, exerting pressure
+on you, and in those moments, you forget all of your training. Now, luckily, systems are
+a bit smarter. So, password managers, for example, they just look at the URL, and they
+see, okay, it's not what I was expecting. So, no passwords for you. The problem is that
+a stupid humans, we see that, and then we're like, oh, why is my password manager not
+working? Fine, I'll just paste it in manually. So, you know, this is an improvement, but
+it still doesn't really fix the problem. And that's where pass keys come in, as Karimans
+has kind of explained to us, they're really bound to a relying party ID. So, basically,
+to a domain. And whereas for password managers, we can just extract the password with pass
+keys, we can't really extract the private key out of the authenticator. At least, that's
+the way it's designed. And so, that means that if a fishing website comes along and
+says, hey, I want to request authentication for github.com, for example, the browser
+says, nope, you're not github.com, not allowed. And so, the only options website have is to
+request authentication as themselves, in which case, the browser says, okay, and it passes
+the request through to the authenticator, but then the authenticator checks its database
+and sees, well, okay, fishing.com, never seen that before, there are no credentials, sorry,
+can't help you. And the thing that this communication between client and authenticator usually looks
+something like this. So, usually, you have a hardware token, and it's plugged into your
+device, and you can see it, you can touch it, it's great, or maybe it's even inherently
+inside your device, it's your system authenticators, such as Apple's keychain or whatever.
+And this is great. Users can see it, they can trust it, they are sure that the correct
+devices are communicating with each other. The thing is, pass keys also have a feature
+that I haven't mentioned yet, which is this QR authentication, which we've briefly seen
+in cameences talk, where the way this works is the user clicks on login and they get this
+magical QR code, and then they take their phone and scan it, and suddenly the computer
+is signed in. And this is super convenient, especially if you've ever tried to sign into
+like a smart TV or so. Absolutely terrible, this is great, but it's kind of magic. Like,
+how exactly do they communicate? How does this work? And, you know, when I see magic,
+my mischievous brain is like, "Ooh, I can mess with this." And so let's try and mess
+with it. First of all, we need to look at, you know, what this actually is. We need to
+distinguish between two different types of authenticator attachment. We have platform
+attached authenticators, which are, you know, the authenticators that live inside the device
+that also is operating the client, so, you know, again, your Apple keychain, for example.
+And you have cross-platform attached authenticators, such as your hardware token or, you know,
+the phone in the QR code case. And we are just interested in the cross-platform thing,
+because that's where this communication happens. And that is specified by the client to authenticator
+protocol. This protocol, you know, aside from all the cryptographic stuff that you would
+expect, you know, encrypted messages, whatever, also limits what media can be used for transporting
+these messages. And it's limited to, you know, USB, NFC, and Bluetooth low energy. And one
+more that we'll get to in a moment. And the reason for this limitation is that all of
+these media have inherent proximity guarantees, right? USB, you know, you plug one device
+into each other, into the other, it works, like, you know, right here. With NFC, it works
+up to a few centimeters, Bluetooth low energy, maybe a few hundred meters if you're lucky.
+And so limiting it to these transports means that remote attacks are basically impossible,
+which is really great. Now, the thing is for users, a lot of people don't want to have
+to carry around USB tokens. They don't want to have to carry around a USB cable for plugging
+in their phone. If you imagine, like, trying to authenticate with your smart TV and, like,
+find the correct spot for NFC, like, it's a bit of a nuisance. So, you know, Bluetooth
+low energy for users is the most convenient by far. But, of course, it also has its problems.
+Whoops, that was a bit too fast. So, for example, it's slow, right? Packet size is very limited.
+We can't really transport much data. And then it's also kind of unreliable. If you use Bluetooth
+headphones, I'm sure you've had this experience where it feels like, you know, just holding
+your hand the wrong way already makes it lose connection. And so, this kind of raises
+birth to the other transport that I didn't mention, which is the hybrid transport. And
+here the idea is that we use Bluetooth low energy for exactly one packet, and then we
+switch to network, which means we get the proximity guarantee from Bluetooth, and then
+the connection speed and connection quality of the Internet. And that is exactly what
+we have in this QR code thing. So, the QR code contains information on, like, how to connect
+via Bluetooth. Then we have one single Bluetooth packet, and then everything else happens through
+a tunnel server. And, like, what this QR code does is kind of important here. Because the
+QR code contains information, such as some cryptographic keys, that we need for the client
+and the authenticator to be really sure that they're communicating with the correct other
+client or authenticator respectively. So, the client needs to know that, like, you
+know, it wasn't someone else who somehow is trying to send a Bluetooth advert. And so,
+it needs to, sorry, the authenticator needs to prove that it actually has scanned the
+QR code because there's some cryptographic material there. And from the other perspective,
+and this is arguably a bit more important because you don't want to be signing in with
+your phone, and then all of a sudden you sign someone else in, the client also needs to
+prove that it actually generated the QR code that the authenticator then scans. And this
+is great, right? So, now we know, okay, it's the correct devices that are communicating
+with each other because my authenticator knows for sure the client is communicating
+with generated the QR code. This is great. Until that is, you notice that just because
+a client generated a QR code doesn't mean that's the device you scanned it from. And
+this is where the -- this is, like, the crucial idea for the attack I'd like to walk you through.
+So the idea is that an attacker -- where's my mouse? Yeah, good enough. The attacker
+generates a QR code based on the request options that it gets from the server. And then it
+just pipes that QR code through to a phishing page. This is supposed to be read, but I guess
+the projector isn't really handling it well. Anyhow, so this is the phishing page. And then
+the victim just, you know, opens the phishing page, clicks on login, whatever scans the
+QR code, thinking that now it's connecting to its own device because, you know, the QR
+code was from its own device. But instead, you know, the QR code contains information
+that instructs the authenticator to connect to the attacker's client. And once that happens,
+the attacker can just forward the credential response and gets, I don't know, adjacent
+web talk and, for example. And so, you know, this has a bunch of ifs and buts, right?
+In this attack, a victim has a lot of chances to recognize that something's going wrong.
+First of all, they need to fall for the phishing email. They need to fall for the phishing website.
+They need to fall for being forced into this QR code process, right? Because if they could
+just use their hardware token, this entire thing doesn't really work. And so, you know,
+they're being forced into a bunch of things which could work or could be detected. If
+it works, though, they still need to complete, you know, face ID, for example, on their phone
+or some kind of authentication. So, like, it's really a high-effort thing on the victim's
+side. They need to complete many steps. And arguably, the most important if, or buts
+or whatever, is that the attacker needs to be within Bluetooth low-energy range of their
+victim at the time of authentication. So, like, it's not sufficient to be there maybe
+at the time where you send this beer-phishing email. But rather, you need to maybe be in
+the same train, for example, as your victim while the victim is trying to scan the QR
+code. Or you could also just, you know, set up some sort of Bluetooth beacon and maybe
+plant it in the parking lot of the victim's company. So, all of those things would work,
+but still, this is, like, a very high threshold. And so, you know, you might actually care
+about this if you do use past keys already for authentication, perhaps even exclusively.
+And if you expect this kind of, you know, highly skilled and highly motivated attacker
+that will come by in person and either be there at the time of their attack or at least
+plant a Bluetooth beacon somewhere close. And if this is you, you might be like, "Okay,
+this is problematic. I want to disable this QR code thing completely." And so, the question
+is, can we? And to answer this question, we look at the two protocols that are in play
+here, C-Tap and WebAuthn. C-Tap, again, regulates this communication. And sadly, based on C-Tap,
+there is no chance. Because C-Tap happens without any involvement of the relying party,
+which is, you know, kind of a feature because it means you get all of this nice QR code
+stuff for free. You don't have to implement a single thing and you just get it. But in
+this case, it's a bit of a disadvantage because we can't really prevent this attack from happening
+based on C-Tap. Based on WebAuthn, we have a bit more of a chance because WebAuthn has
+two properties, one in the request options and one in the response where we can try to
+prevent hybrid transport from ever happening in the first place. And we can detect after
+the fact whether the authenticator that was used was attached platform or cross-platform.
+And to see whether this actually works, let's have a brief live demo and hope that it works.
+So this is a bit of a complicated setup. Let me -- or let's first just pay attention to
+this website. This is a brief demo that I implemented, which attempts to do this detection,
+and I would like to demonstrate that to you if the demo gods are with me, which they are.
+So here I fire up the QR code, which I will briefly scan. All right. So I'm trying to
+do cross-platform authentication and as soon as I authenticate to my phone, there we go.
+We see this error message, which shows us that the server has detected that cross-platform
+authentication happened, so yay, we can disable it. Great. But if this is so easy, then why
+is there so much other stuff? Well, now we come to kind of the attack of all of this.
+In this attack, this will be an attacker-controlled browser, which is just used to take WebAuthn
+off of my shoulders. I don't want to implement all of this stuff on my own. So I'm just orchestrating
+this browser by the script here, and this will be the victim's browser, right? So the
+victim has this phishing site opened, you know, after being spearfished. And now what
+happens is the attacker tries to generate this QR code based on request options from
+the server, and now the victim gets this QR code, which you can see is different because
+it was just forwarded, but like, of course, in a real phishing attack, the attacker would
+try to make it authentic. Now, I will briefly try to scan the bottom QR code. You'll have
+to believe me that I'm scanning the bottom one. And in just a moment, you'll be able
+to see that, despite me scanning the QR code from the victim's browser, it's the attacker's
+browser that's doing -- that's showing the WebAuthn UI. And once again, this is taking
+way longer than usual, but it's fine. I still have the time. Famous last words. Maybe there's
+just too much happening in this room. All right, fine. I'm calling it. Never mind, then you'll
+just have to believe me that it would have worked, right? I would have been authenticated.
+We would have seen the user data. In fact, I have a blog post written about this, and
+there you have like a recording of this demo, so in case you don't believe me, you can look
+it up there. Anyhow, let's look at why this happens. And the reason for that is very simple
+with my mouse. These are the two objects that I was talking about, right? The request options
+and the response options. And I highlighted with the red alarm thing, which properties
+were interested in using for, you know, prohibiting this QR-based flow. And I also took the liberty
+of highlighting all properties that have integrity protection. Sadly, they're highlighted in gray
+and you can't see them. Basically, it is, you know, this entire box here. Everything
+with the lock symbol and, you know, the sub properties. And you might be able to tell that
+the properties that we would want to use to disable this QR code thing have no integrity
+protection, meaning we can just manipulate them as we wish, and no one has a chance of
+detecting that that's happening. And so that's what I was doing in this brief demo. And sadly,
+that means that also based on WebAuth, we have no chance of disabling it. And so, in
+total, as a relying party, you have no chance. So what other options do we have? Maybe you
+could say, okay, then I'll just limit all authenticators to being these USB hardware
+tokens, right? Because those don't have any cameras. They can't scan anything. I'm good,
+right? Sadly, no. Dennis Kniep has found out that if you plug a hardware token into your
+Android phone, the Android phone will just do the QR code stuff for you and forward all
+of the messages to the hardware key. So on iOS, this doesn't work. But on Android, sadly,
+it does. So even if you limit all of your authenticators to just these hardware keys,
+you're still vulnerable. What other options do we have? Of course, you could somehow add
+more levels of authentication. So for example, you could -- why did this happen? Sorry about
+that. You could make sure that, you know, only devices that have been registered with your
+company are able to maybe even access the website you're trying to protect. And that,
+of course, would work, but that's a lot of effort. Another option would be to improve
+the standards, WebAuth and then CTAP. Sadly -- so there's already a discussion happening
+with the W3C and a few people, including myself, are trying to convince them to, you know,
+improve the standard here and add some integrity protection to these properties. My impression
+is that they don't really feel like this is a necessity. I feel like, you know, this
+is a very high security kind of threat model that Web -- sorry, pass keys aren't really
+designed for. So my impression is that this isn't going to happen anytime soon. So you'd
+have to revert to option 1. And then, of course, there always is this hypothetical third option
+of educating users. And, in fact, we have more chances than with usual passwords to do this.
+Because if you take a very detailed look at this screenshot from Chrome, you'll be able
+to see that the UI that displays the QR code slightly overlaps with the bookmarks UI. And
+this is something that websites cannot do, at least in my knowledge. And because websites
+can do it, that means phishing sites can also not do this. So if you see this kind of overlap,
+that is a 100% guarantee, at least right now, that this is actually rendered by the browser
+and not by some phishing sites. The problem is that if you don't have a bookmark bar,
+this doesn't happen. And if you use a different browser, such as Safari, you know, it's just
+rendered dead in the center of the window, which is well within the space that's controlled
+by the website. So this could be faked by phishing sites. So, in theory, you know, browsers
+could do better here. And users have yet another opportunity to detect that something's wrong,
+right? Because the website would have to imitate this UI instead of it being rendered
+by the browser. But, you know, chances of users detecting this, especially in these,
+like, high pressure scenarios are very slim. And, you know, if we could just rely on user
+vigilance, then pass, sorry, then phishing wouldn't be a problem in the first place.
+So I don't really think this is a good idea to rely on that. And, yeah, that brings me
+to my summary. So, to sum it up, like, regular phishing is still safe. You can't really
+fish pass keys with regular phishing. You need spear phishing, and you need to be there
+in person as an attacker. And that limits this attack to, like, very, very few scenarios.
+But if that is you, you might want to protect against this, in which case, you will probably
+have to add more layers of authentication than just relying on pass keys. That's it so far
+from my side. As I mentioned, I wrote a blog post on this, which feel free to read if you
+want more details, especially about the technical stuff. Yeah, if you have questions, feel free
+to ask them now. Or if you come up with a question later on, there are my contact details.
+Feel free to get in touch. And, yeah, thanks a lot for listening. Enjoy lunch and enjoy
+the rest of the conference.

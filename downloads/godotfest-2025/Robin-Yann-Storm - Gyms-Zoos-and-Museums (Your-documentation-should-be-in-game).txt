@@ -1,0 +1,868 @@
+API URL: https://api.media.ccc.de/public/recordings/93265
+Frontend URL: https://media.ccc.de/v/godotfest2025-gyms-zoos-and-museums-your-documentation-should-be-in-game
+Title: Gyms, Zoos, and Museums
+
+(soft music)
+So, people talk a lot about not reading documentation
+and perhaps you yourself have found experiencing
+similar struggles where you even perhaps write documentation
+only for it to not be read by anyone else either.
+And if you said to any of this,
+then you're probably in good company here.
+And going into this talk,
+I want you to imagine a future where documentation
+doesn't exist to just be forgotten instantly
+where maybe it could live inside the game right there
+to be beholden.
+Robin Jan Storm is a workflow designer and consultant
+and he will introduce how to structure documentation
+so that artists and designers can engage
+with documentation right there in game
+in a model that functions similarly to gyms, zoos,
+and museums.
+Please welcome to the second stage, Robin Jan Storm.
+(audience applauding)
+- Thank you so much.
+So, hi, I'm from a store with gyms, zoos, and museums.
+So, documentation should be in-game.
+So, first of all, who is Robin Jan Storm?
+I ask myself that question sometimes as well.
+So, I have over 15 years of game development experience.
+I will take tools.
+I have a bio-swagger working on the stage theater.
+You still have to hit my hands.
+(audience talking)
+But I have a loud voice.
+(audience laughing)
+I used to be in theater.
+So, I have a loud voice.
+This is better.
+So, hi.
+I have over 15 years of game development experience.
+I was a tool designer at IO Interactive
+working on the Glacier editor.
+Used to build the Hitman games.
+I was a tool designer at Gorilla games,
+working on the Decima editor engine.
+Used to build the Horizon games.
+I was a tool designer at Apple in California,
+working on reality composer, reality converter.
+I was also a co-inventor on Five Patents,
+which you can Google if you'd like.
+And nowadays, I'm a freelance product and UX designer
+as a consultant for various companies.
+And my advice for you too is build in-game documentation.
+Build in-game documentation such as gyms,
+such as zoos, and such as museums.
+And the cool thing is you can even automate
+the creation of that documentation.
+So, why do we need in-game documentation?
+Because at any company, there are games of telephone
+and information gets lost.
+Information like, how far can a player jump?
+Let's say, for example, we ask that.
+And we're making a level, we don't find out
+how far can a player jump.
+Well, we find out that Alex knows this.
+Great, so we go to Alex.
+Alex says, "Actually, Sam knows about it."
+So, great, we go to Sam and Sam.
+So, actually, it's on confluence.
+Okay, so we go to confluence.
+And on confluence, there's a thing that says,
+"Actually, it's on Slack, there's like channel for it."
+So, like, okay, so we go find the channel,
+but it's a private channel.
+So, we can't join.
+So, we have to ask for an invite.
+Now, we've got to find someone who can invite us.
+So, we're going to find that person.
+They finally invite you.
+Great, you're in the Slack channel.
+And finally, you've found it.
+You have your information.
+You've probably gone through this,
+and it's a terrible experience, right?
+So, basically, it's a game of telephone
+and telephone and telephone and telephone,
+going from thing to person to thing to person.
+Takes a while for your question to get answered,
+which also creates so much room for error.
+At any point in time you can get lost,
+be sent to the wrong person, read the wrong thing,
+read something outdated.
+And suddenly, everything's lost.
+And these are for very good questions,
+like how far can a player jump?
+How low can a player crawl?
+What is that animation called?
+In what level is that NPC?
+All very normal questions to ask.
+And the thing is, why are they being asked?
+Well, because everything changes all the time.
+Some call that chaos.
+Some call it a fast-paced environment.
+A lot of people call it agile.
+Whatever you want to call it,
+it's a natural part of iteration.
+This is just how game development works.
+It's okay, like games have constant iteration.
+And this is a good thing.
+This is great.
+We're constantly making our games better.
+But constantly having to update documentation is tough.
+It's not a great part of the experience.
+So, back in the day, I used to be taught
+that a big GDD, a game design document,
+you had to build that and constantly keep it up to date.
+Something would change, update the document.
+Something would change, update the document.
+Those days have passed.
+This is not what you should be doing anymore nowadays.
+Like back in the days, like 90s, 2000s.
+Yes, definitely thing you had to do at the time.
+Not anymore.
+Because the thing you have to think about is,
+are you shipping your documentation?
+Are you shipping your game?
+Like tools and editors have changed a lot since then.
+It's become much, much easier to document things in-game.
+So basically, at the start of a project,
+you should document.
+Please not saying not to document.
+Please document.
+Please write down what you think the game should be.
+But then at some point, you're gonna be moving to the engine.
+That's great.
+So now you're in-game and you're building things.
+And slowly, over time, you're gonna forget to update the documentation.
+And then you're no longer updating it all the more.
+You're just working in-game.
+And slowly, the documentation goes out of date.
+And then you just only have the game there.
+Now at this point, some people will say,
+"Oh no, the documentation is out of date."
+And I'm here to say like, "Don't worry, that's normal."
+But updating it should be easy.
+You should document your game in-game,
+spatially and contextually to your content.
+So instead of updating two things at the same time,
+combine these things into one thing.
+That's a core tenant of workflow design, right?
+Working in context.
+Now, there are a couple of ways to do this.
+And the ones I'll talk about today and the ones I recommend
+are Gym, Zoo, and Museum.
+Now you may know these under different names, such as TestMap,
+Metrics, World, Showcase, Playground, Test Level,
+White Room, a Player Zoo, Gallery, Mechanics Garden,
+which I think is lovely, Mechanics Garden, and Workshop.
+But for ease of use, I would urge you to please
+only stick to these ones, Gym, Zoo, Museum.
+They were established back in the 90s.
+They're still used by companies.
+They're just not often talked about
+'cause they stay internal.
+But these are usually the best words to stick to.
+So we're gonna go through one at a time.
+Chapter one here is Gym.
+So a gym is for character controllers.
+It's for player movement.
+And it's for character animation.
+So here's an example of the game animation sample
+from Unreal 5.
+You can just download this for free and try it out.
+We can see the character can run around.
+And we have some metrics that show things like
+this is one meter and this is two and a half meters.
+And you can climb onto it.
+So Gym allows you to do this kind of thing very easily.
+You can even teleport to another place
+and do some more testing.
+Now again, usually gyms are not released to the public
+and they stay internal during development,
+which is probably why you haven't seen them as much anymore.
+So here's what I've done.
+I created a little gym that showcases the usual elements.
+So just jump distances.
+So in this case, green is a good distance.
+That's easy to jump, orange is a little bit more difficult
+and red is bad.
+It's too far away to jump.
+So don't build your level in that way.
+Now you can imagine just hitting play
+and running through this, making that jump,
+seeing how it functions, understanding it.
+Or here corner cover, green is good, orange is bad.
+Or you know when Assassin's Creed
+you can like run along fences?
+His little section of like,
+hey, these fences are good.
+These fences are bad.
+This is how it works.
+Or another one that happens in a lot of games, edge climbing.
+You know, climb around some kind of cliff, right?
+Well, here's a showcase that allows you to instantly hit play
+and go through that and see how that edge climbing works.
+So games also sometimes release gyms,
+but they kind of do it under a different name
+called a shooting range or something like that.
+For example, here's one from Overwatch 2.
+You can load up with any character you want
+and you can start shooting things to see how they work.
+You can pick up an item and see how it functions.
+For example, have my ultimate instantly ready here.
+So I have to wait enough to put in a console command.
+It just works right away.
+I can also shoot whatever enemy I want.
+I get a really easy interface,
+select what enemy I want to shoot,
+see how these things function.
+Then I can simply activate the ability
+and boom, I can see that everything works.
+Now this is just not for the game players,
+it's also for game developers.
+Or as the young David Hassel once told me,
+you can't ship a game without hitting the gym.
+So a gym is also helpful for smoke testing
+and other automated testing.
+For example, let a character run through it overnight.
+Does the character get stuck?
+Is something wrong?
+Now you have an automated message that kind of goes,
+hey, something's wrong with the character controller.
+Someone should check this out.
+And it's all automatic thanks to a gym.
+Someone asks how far can a player jump
+instead of some really big documents
+that you're gonna have to find some table in there.
+Ugh, terrible.
+Instead, you check the gym
+and you instantly have the information you need.
+How far can a player jump?
+Check the gym and you find it.
+What is the maximum terrain angle?
+Check the gym, you have your answer.
+How much damage does that ability do?
+Check the gym and there's your answer.
+You have a single source of truth.
+So I'm not saying don't document, please document.
+I am saying no what and when to document.
+For example, engineers love reading text documentation,
+especially for APIs, so you have to give this to them.
+You need to write text and give that to them.
+It works great.
+But artisan designers will not read written documentation.
+Except for some reason, narrative designers.
+They do read this.
+They're great with text that they do,
+but everyone else doesn't.
+This is also by genuinely, I think, narrative tools
+have such bad UX because the user base of narrative tools
+like more readily reads docs
+and is more able to get around bad design,
+but that's a story for another time.
+But what makes a good gym?
+It has test cases for all major character environment
+interactions about climbing, bumping into things,
+fences, all those things.
+It has descriptions of the metrics
+right there in the world.
+It has color coding and text clearly explaining
+what everything is.
+And it has teleportation and ease of use.
+It's not like you have to type in a console command,
+find out one level to go to, like,
+fly around the level to find what you need.
+No, you can just teleport right where you need to go.
+So that's the first takeaway being use gyms.
+Now, chapter two, zoo.
+This is for 3D art assets, items, and NPCs,
+for VFX audio and materials, and for Fignettes,
+and art directors.
+So a classic problem with asset browsers
+is that you have a bunch of thumbnails,
+right, just a whole bunch of thumbnails.
+And if we zoom in here, if we look at that siege tower
+at the bottom and the rock above it, which asset is larger?
+We have no idea.
+This siege tower is a little bit longer in the thumb,
+but, like, how much larger?
+Like, in fact, we have no idea what the scale is
+of any of these assets.
+Also, what do they look like in the lighting of the level?
+Like, at dusk, at night, we have no idea.
+So there's some cool things that, for example, Unreal
+does, which combat this problem.
+You can click and rotate on the thumbnail
+to see what an asset looks like right there in the asset
+browser.
+That's cool.
+But still, that rock and ballista,
+are they the same size?
+Are the stairs the same size?
+We have no idea.
+Now, we can rotate the asset to see what
+the bottom of a siege ram looks like.
+Bam, there it is.
+That's pretty cool.
+But I still can't see exactly what its scale is.
+By the way, just a quick thank you
+to Kenny for those creative, common zero assets
+that I'm using here.
+So yeah, let's give a quick shout out to Kenny.
+[APPLAUSE]
+Thank you, Kenny.
+Now, here in Unreal, for example, here's another zoo.
+In the zoo, I can see what the assets look like.
+I can see what their scale is.
+I can see what they look like in lighting.
+You instantly see this information.
+So you know, right away, if this will fit your current level,
+creation, scale, and style.
+I could even set up a day and night cycle
+to see what everything looks like.
+And I could even zoom in on this to find out
+what exactly does that material look like?
+Does it have parallax?
+What exactly does this thing look like?
+I can see it right there.
+You can even do a little vignette on the side,
+made by an art director to showcase, oh, those assets,
+you put them together like this to make sure
+you're congruent with the art style of the game.
+So everything is right there.
+Anyone can open this up and instantly see
+how they should use these art assets.
+So instead of asking, what's the name of that item?
+You have to spawn CR1284 into a console.
+What's the name of that vendor NPC?
+What level are they in again?
+Is it in the city sewers?
+That these coordinates, important questions,
+we take ages of time.
+Again, telephone, telephone, telephone is terrible.
+Instead, you can find everything in the zoo.
+Now, another big problem, generally with asset systems,
+is asset names.
+For example, what would you type into an asset browser
+to find this asset?
+Shout out some names.
+What would you type in?
+Fans, port colors, great one.
+Fans, port colors, anyone else?
+Gate, gray or red?
+So yeah, iron gate, steel gate, what would I find?
+Turns out it's called metal gate.
+Now, what is the difference between metal, steel and iron?
+Does it matter on me trying to find a thing that I need?
+Only searching by asset names is generally a really bad idea,
+especially when you have 10,000 assets or more.
+It generally just becomes a bad thing,
+even if you add loads of tags to them,
+tags still become a problem eventually
+with the amount of tagging that you have,
+and by the work to tag and retag assets, giant problem.
+With the zoo, you don't have to deal with those problems anymore.
+Here's a zoo from Counter-Strike Global Offensive
+for the level DE Nuke, which Valve released.
+And you can see a little text here,
+like, oh, these are all the roof trims.
+What are the names of these roof trims?
+I don't care.
+I don't need to know.
+I can just click on any of these,
+copy and paste them over to my level, and I can use them.
+I also see high poly and low poly versions
+of these wires and cables.
+What are these cables called?
+Don't care.
+I can grab them, instantly use them, see them, debug them.
+It becomes so much easier to work with.
+And that kind of data of grouping those things together,
+grab that data programmatically where possible.
+Like, do it all automatically.
+Like, show that data in-engine next to the asset.
+And again, zoos are usually not released to the public,
+but here's one from Overwatch 2.
+This is like a three-frame segment
+from like a YouTube video they once published.
+And I was like, oh my God, there's a zoo.
+I gotta take a picture.
+So, you know, it doesn't always get released,
+but they do use them.
+And here's another zoo I recently saw
+when it's talked by Larian for Ballowsgate 3.
+You can see in one level how every single helmet
+fits to every race, body type, et cetera,
+but like everything on one go.
+You don't have to like go into the asset browser,
+find the names of all these things,
+try to spawn the right thing.
+It's all there on one level.
+You can see them all right away.
+It's great.
+Or here's one from a blog post
+and a talk that Joel Burgess did
+about level design workflows for Skyrim like years ago.
+Easy to see everything.
+But you don't not only have to do this with 3D models,
+you can also do this for VFX.
+For example, here's a zoo from Skin Deep by Blendo Games.
+We can instantly see all the VFX playing
+instead of one by one instant previewer.
+We can see what they look like.
+We can fly closer to it.
+We can see it like, oh, this is the electric D-fib VFX asset.
+I want to use it.
+Great, copy and paste it over.
+Lovely.
+This process of laying out asset goes back really long ago.
+It's like physical objects and tools.
+It's not just a digital thing.
+Physically, this is called Knowling.
+It was coined by Andrew Crumlow in the 1980s.
+And if you've built things with Legos,
+you've done this yourself.
+For example, here's a LEGO creation knolled by Ren Breyer.
+In this case, putting LEGO pieces next to each other
+and building them a little bit.
+Grabbing the next section, building a little more,
+grabbing the next section, building a little more.
+In fact, there's even a popular video game character
+who has been shown to do this.
+Hitman Agent 47, and the legacy trailer by IO Interactive.
+Look at all those neatly laid out assets.
+Lovely.
+So you can build a zoo for any asset, anything in 3D,
+like including animations.
+For example, here's one for an Unreal character.
+We can see all animations right away,
+which also means we can easily debug them all right away.
+There's no need to know what the animation is called
+until we click in it and then see its name.
+And none of this requires manual work to set up
+if you wanted to.
+For example, here's Asset Placer for Godot, made by Cookie Badger.
+Again, we have that classical problem
+of a whole bunch of assets in an asset browser
+with only thumbnails, no idea what the scale is,
+what they look like in lighting, confusing.
+We right-click on the group.
+We say generate asset zoo.
+That's all we have to do.
+Click in it.
+And instantly, we can see what everything looks like.
+With the scale of each asset is in relation to each other,
+do we want to use this astronaut?
+We can look around, there's no need to know any names,
+it's all automatic.
+Here's another one.
+You can do this for any group of assets.
+Like here, there's a different group.
+Right-click, boom, there we go.
+So, Asset Placer for Godot by Cookie Badger.
+It's great, lovely, works well.
+Now, as you can see, this is not just tool design.
+We're not just designing the tools and how we use them.
+This is workflow design.
+We're designing a workflow that's easier for everyone to use.
+For example, you can also combine this with other things,
+other workflows within editors.
+For example, debugging workflows.
+Here's an asset zoo and Unreal.
+Now, can you point which asset has an issue?
+Extremely easy, right, this is that one right there.
+We can zoom in on it, there's something wrong with the shader,
+cool, we can fix it right away, simple.
+Here's another one, which asset is not loading correctly?
+Great, instances that we know, we can zoom in on it
+and find it and resolve it.
+Great.
+So, zoos are good for this kind of smoke testing
+and automated testing, just as with gyms.
+Like, we can take a screenshot of that zoo every single evening
+and just kind of go, put them side by side,
+how many pixels have changed?
+Well, does that mean that we have a lot of new assets
+or something terribly broken and someone needs to look at this?
+Like, send that bug report, like,
+show those two screenshots to an art director
+and just kind of go, like, hey, something wrong.
+Something wrong or not, something not wrong.
+It's much easier to find than loading up every level,
+going through it, seeing if everything is wrong,
+just, like, load up the zoo.
+So, make a screenshot of the zoo overnight
+and compare them to see changes or errors.
+Now, here's another one.
+Can you find out which asset has a problem here?
+Sorry, it's a trick question, you can't see it.
+But, if I turn on shader complexity,
+now which asset has a problem?
+Super easy to see, right?
+Again, instant, instant, we can see,
+spectral over asset over here
+has a really high shader complexity,
+we should probably fix this, great.
+So, the zoo makes it much easier to work with 3D asset.
+So, what makes a good zoo?
+Well, displaying of assets in a per folder,
+per use and per level basis,
+lighting settings for each level in time of days,
+we can check this as a look correct
+with our materials as well,
+scale references with textures or characters,
+like just put a couple of mannequins,
+a couple of characters next to these assets,
+you have an idea what the size is, and vignettes.
+A little vignette set up by art directors
+that showcase like, oh, this is how you put those assets
+together to be congruent with the art style,
+make sure all the levels look good.
+So, let's take away number two, use zoos.
+Now, chapter three, museum.
+This is for technology and systems,
+for shaders and rendering and for physics and prefabs.
+Here's a little museum example from Unreal Engine.
+Again, you can just download this for free
+as part of Unreal.
+And instantly, for the cloth system,
+we can see like everything and how it's supposed to work.
+We can like load it up and see like,
+oh, this is how the cloth system functions, great.
+Little green question mark two, but click on that.
+You maybe go to more information,
+go to actual documentation for the API system.
+Totally fine.
+Again, instead of starting off with 40 to 50 pages
+on confluence, here it is in one go.
+You can take a look at it.
+In fact, for the physics system in Unreal
+called chaos destruction, look at how big their museum is.
+It's a lot of examples.
+And again, instead of hundreds of pages on confluence,
+you load up one level, take a look through it,
+and you understand how everything works.
+Same thing goes, skin deep also released
+a mod museum to the public recently.
+So they want UGC, they want people from outside of their company,
+also building content for the game.
+Great.
+How do you teach the public about what to do
+and what not to do in your games?
+You don't give them documentation.
+If your developers aren't reading it,
+how are your game players going to read all the documentation?
+They won't.
+So the mod museum solves that.
+So in this case, there's one level you load up the mod museum.
+And from there, you can teleport to every other section
+of the museum and every other section
+that explains how the content is supposed to be used,
+how it's supposed to work, it's much, much easier to work with.
+In this case, I click on it, load up the next level.
+I'm going to turn on no clip here, just to go through it
+a little bit faster.
+This is the metric section of the museum.
+So in this case, say, look, oh, this is what the player with this
+and player height.
+Oh, when they're calling, they look like that.
+There's more information here, like, for example,
+like, oh, this is what the jump height needs to be.
+Like, this is what counter height needs to be.
+So you can easily grab items.
+This is what you can do with clambering.
+All this information is right here.
+It's much easier to understand than reading through some docs.
+You also have things like this, like, for example,
+saying, like, hey, don't build overhangs,
+because it doesn't function well.
+Like, if you do this, then if you sit in there, they're there,
+how is the player supposed to know?
+So don't build levels with overhangs like this.
+There's too much ambiguity, so watch out for this.
+And also, don't do clamber above clamber,
+because then also things get weird,
+and the player gets confused.
+Showing it like this, and also being able to press play
+and instantly try it out, seeing how you get stuck,
+makes it much easier if you understand the level design.
+And to build things yourself.
+It also goes for lighting systems,
+like how does the lighting system work?
+Watch out for this, please do that, please don't do that.
+Please make sure your work behaves in this way,
+much easier to understand.
+And also for scripting.
+For example, there's a little scripting thing,
+and it literally shows you, as it goes through the script,
+of like, oh, first it does that, then it does that,
+and it does it right there in front of you,
+showcases how things work.
+It becomes much easier for everyone to understand
+how systems are supposed to work.
+And again, also good for smoke testing.
+So not big documentation, it just shows how it works.
+So what makes a good museum?
+It functionally displays how the systems work,
+has text explaining those systems,
+and contains links to technical documentation.
+Again, for APIs, engineering things,
+you need to have textual documentation,
+there's no way to avoid that.
+But for everyone else, have the museum,
+and then from there, link to the docs.
+Because as well, if you're trying to look for something
+like, you know how I said, like,
+finding assets by name is difficult?
+Try to find a system's name, like,
+unconscious, like, type in the right thing.
+How are you gonna find it?
+Oh, that thing changed names two weeks ago.
+I gotta find it in Slack, and ask Alex and Sam,
+like, okay, we're back at the beginning.
+Difficult, right?
+Do it via the museum, it becomes much, much easier.
+So, that's number three, use museums.
+So, gyms, zoos, and museums.
+They're not just in-game, they're spatial.
+That takes us to the surprise chapter four,
+spatial documentation.
+This is for everything that you do.
+For example, let's say you're building a level
+in a game in the beginning, and everything's still gray box.
+You have no idea what things look like.
+Put some text in the level.
+Like, explain, like, oh, this is what the human city is.
+This is, like, the farmlands.
+It's dungeon number two, dungeon number one.
+We don't even have names for them yet.
+All the kinds of stuff.
+It becomes much, much easier to understand.
+You can even do this, like, for quest locations.
+Like, oh, here's a human city.
+Here's the quest three, start location.
+So, like, please don't move this, right?
+'Cause things will break if you do.
+You can also use this for bug reports.
+Design changes, general to-do tasks.
+Put them in the level.
+For example, here's C notes for Unity,
+a plugin by Chiro Continicio.
+And in it, you can see, like, oh,
+it places a little marker somewhere.
+And it says, like, oh, the grass is covering the road.
+So someone else has placed this marker.
+And they're like, oh, there's something to fix here.
+So next time a level designer is looking at the level,
+they're gonna go, oh, there's an issue here, an issue here.
+Not looking on Jira, not looking on any kind of
+Kanban system, just finding it right there in the level.
+And we can really, really easily put things in.
+They're like text, screenshots, who placed it,
+when did they place it, link it to whatever Jira system
+you have, so it automatically completes it.
+If you complete it in here, work so much better.
+So to dev-see what they need in the context they need it in.
+And Godotas is really well, for example,
+in this case, I have a Node 3D in Godot.
+And I can right-click that and show open documentation.
+And if I click on that, the documentation's right there
+in the editor, right?
+It's not on a separate page.
+It's right there where I'm already looking.
+And what becomes even more cool is that there's a specific
+thing that I want to find, like a particular property.
+I can literally right-click that property,
+and then say open documentation.
+And it takes me to the exact spot that the documentation
+for that particular function.
+Again, it spatially, contextually,
+where you are already looking.
+So what makes good spatial documentation?
+Well, they're easy to create.
+Mouse, keyboard, controller, even microphone.
+You know, how I like Valve games, you have commentary nodes.
+I mentioned an art director playing through a game,
+and just being like, oh, let me add a little thing here,
+talking to the microphone a little bit.
+There's an issue here, and then I'll go again.
+Maybe it autocompletes the text, maybe the level design.
+It'll listen to it.
+It works so much better.
+And they have screenshots and ticket system integration.
+So you can see what's wrong.
+It automatically links to a ticket
+so a producer can still look at Jira
+because they still love looking at Jira, which is fine.
+Nobody else wants to.
+That's OK.
+As long as it automatically works,
+it makes things much, much easier.
+And they contain links to external data where necessary.
+Like, have things in there, and if there's
+API documentation or something else that
+needs to be external, link it.
+So that's four, build spatial and contextual documentation.
+And we can combine these techniques,
+like peanut butter and chocolate.
+These things can combine into great things,
+like, for example, spatial notes and zoos together.
+Here's another example from C notes by Jira Contenicio.
+You have a zoo and with notes on it that says, oh,
+please change this material.
+Please move this to try this out.
+Or a gym in a zoo.
+For example, by Apex Legends over here,
+you have this little testing area, a little gym.
+But also, all these assets are displayed,
+so I don't have to spawn them with some weird console command.
+I could just pick them up to find them and instantly use them.
+You might be wondering, is there a combination gym,
+zoo, and museum?
+Like, maybe there's one that comes close.
+It was an evening with Infinity Ward by Call of Duty,
+Modern Warfare 2, released in 2009.
+Again, little vignette showcases how things look.
+We can check out these animations.
+We can see all these assets displayed quickly and easily.
+We can also see the guns displayed,
+so we can have a little zoo here and click on these
+and find them.
+There's even a little button somewhere,
+a little big red button that says, do not press.
+And if you press it, they all come to life,
+and you need to start shooting them to survive.
+So it's kind of a combination of all these elements combined.
+So your documentation slowly goes out of date
+instead of that, build a gym, a zoo, a museum,
+and make sure to work spatially.
+Thank you very much.
+[APPLAUSE]
+I'd also like to give a quick thanks to these people
+for all their lovely work and for allowing me
+to use some other work in this presentation.
+Thanks so much, also for feedback.
+Thank you, thank you, thank you.
+And yes, you can connect with me here on LinkedIn.
+If you have any questions about gym, zoos, and museum,
+free to connect.
+Send me a message.
+Always happy to answer questions.
+Thank you, Robin Yang, for this beautiful talk.
+We have time for my one or two Q&A questions
+if any are from the audience.
+Otherwise, we are technically a time of the slot.
+If any of you have any questions?
+Yes.
+This is amazing, thank you.
+When does it break down?
+Is there a way that using gyms and zoos
+kind of becomes too much?
+What does the far side of this look like?
+So you're saying, when does this become an issue,
+like a problem for the development team to work with?
+I think, as with anything, anything can become a problem.
+In this particular case, when it becomes a problem,
+it's mostly when there's not a designated person
+that keeps it up to date.
+For example, what I've seen at companies
+is that if there is a zoo, that is like with all the assets
+set up, and something does change,
+you need to make sure that there's
+an art director or someone who is designed of, hey,
+this person is ever something to make sure this asset zoo is
+up to date.
+So if it isn't updated, if something's missing,
+we know, oh, this person needs to have updated,
+this person needs to look at it and make sure
+that it always functions.
+If that person leaves or just doesn't update
+or it's forgotten, then it also goes out of date,
+as with any documentation.
+It does need that continual updating.
+So to be very clear, this is not free to do.
+It takes time and effort.
+But it definitely has a lot more ROI
+than writing text that no one's going to read.
+But it's still effort.
+Does that answer your question?
+OK.
+Any other questions?
+Oh, yes?
+Yeah, we have.
+Yes.
+Oh.
+Yes.
+Yeah, thanks for the talk.
+It was great.
+Have you seen a company move to that kind of workflow
+and how long did it take?
+Yes, I have.
+It depends on which parts do you like.
+Some companies only use zoos.
+I would like them to also use auto ones, but they only use zoos.
+But use a website that takes about two, three months or so
+for them to sort of get used to it, right?
+Like just this case of like our directing
+needs to get used to like how do I set these things up correctly?
+What is the right grouping that works for our game,
+for our project, for our company culture?
+Make sure that they can easily keep it up to date.
+Make sure people start knowing about it.
+That takes time.
+But once that's all set up, it becomes much, much easier
+for everyone to keep doing it.
+So usually about two, three months,
+I've seen to sort of get that initial ball rolling.
+We have time for one more question.
+Yeah, from the previous--
+I think that person does read the last question.
+Thank you.
+Yeah, does this make sense for 2D games as well?
+Yes, absolutely.
+100%.
+You still need to have that thing where you have everything
+displayed easily.
+Generally, if you're going to 2D games,
+you have some kind of sprite atlas anyway.
+So that can be an easy way of doing it.
+But also especially in the case of the gyms and museums
+part, if there are particular cases of, hey,
+do I get stuck on this one pixel?
+Let's put up a couple of sections in a gym somewhere of,
+hey, can I get past this?
+Can I easily walk through here?
+All those kinds of character controller systems
+are still really good to build gyms for.
+And if you have any particular systems left, for example,
+a combat, a big thing that I've seen
+is I haven't shown this in the talk
+because there's only so much time I have for the talk.
+But for example, an enemy zoo.
+So in this case, you grab all the enemies in the game.
+You literally kind of put them in a zoo,
+where it's like, here's one section.
+Here's another section in the little environment or area
+that is fit for them.
+So you can be like, oh, if I want
+to try a particular combat thing,
+if I want to try how does a particular store work or NPC
+work, load up that one zoo, walk to it, fight that enemy,
+talk with that enemy, work with that enemy.
+There's plenty of games that do the kind of stuff, which
+can't show, but they do this.
+There's a lot of bunch of games that do this
+to make sure that if you have a bunch of NPCs,
+you can easily still work with them.
+So whether 2D or 3D, that's still very helpful
+for those people to do.
+OK, I think we're out of time.
+But if you have any other questions,
+I will be outside.
+Feel free to talk to me anytime.
+I'm happy to answer any questions.
+Thank you so much.
+[APPLAUSE]
+[MUSIC PLAYING]

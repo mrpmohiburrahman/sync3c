@@ -1,0 +1,539 @@
+API URL: https://api.media.ccc.de/public/recordings/93484
+Frontend URL: https://media.ccc.de/v/godotfest2025-keeper-to-keepers-adding-multiplayer-to-dome-keeper
+Title: Keeper to Keepers: Adding Multiplayer to Dome Keeper
+
+(upbeat music)
+- This might be the first Godofist,
+but has any one of you attended Godokon in 2023 here in Munich?
+Then you might know that the game "Domekeeper"
+was already around back then,
+but it was a single player game that has changed.
+All to Chris Wright and Noah who will present you
+how it was to transform a complex existing
+single player game into a multiplayer one.
+Please listen to Chris Wright and Noah.
+(audience applauds)
+- Hello, thank you.
+So yeah, my name is Chris Wright and I'm the founder
+KAR games. We're a small studio, runs Godot. We're in Cincinnati, Ohio. We first released
+our first multiplayer game Drift Space Revival in early access in 2023. We were recently in the
+this year's Godot show reel as we kind of worked towards 1.0. So I spent a lot of time thinking about
+network game systems and I spend even more time being covered in children. So a lot of
+you do know about Domekeeper. If you saw Renee's talk yesterday, you know that it was
+previously Dome Romantique. It built during Ludum Darnay in 72 hours. You probably know that you
+defend yourself against waves of monsters, dig for resources, and upgrade your base to survive.
+They've launched 10 free updates since launching originally in September 2022.
+And more importantly, it's 62,000 lines of GDScript when we started this port. So while
+I might seem simple on the surface, it's actually a lot of deep, complex systems that make it the
+great game that it is. So a lot of times when you have a single player game that people like,
+one of the most requested features, if you could just add multiplayer as if there was just a button
+that you could just click and make that happen. And sometimes it comes across in a lot of ways
+from your players. So I searched the Bip and Bits Discord for people talking about multiplayer
+and co-op. And it was really easy to find just so many different ways that people
+were constantly thinking about this. So I think my favorite one, they really kind of succinctly
+said it, multiplayer when. And they weren't the only ones thinking about it. Actually,
+even before release, the team was thinking about co-op, thinking about how multiplayer can make
+this game even better, thinking about how it can impact the design and the balance and playing
+around a lot with local multiplayer at the time. So how do you start? How do you take this 62,000
+lines of code that were really written with single player in mind and actually transform it into
+a multiplayer experience? What does that even look like? So when we first started our conversations,
+we had to decide what version of multiplayer we were looking for, because it can come in a
+lot of different ways. First off was this local or online, because those can be very different.
+Local, you know, I like to think about multiplayer as two computers when you're online, two computers
+simulating this magic world that you have. But they have to have enough data so they simulate
+it in the exact same way. With local, you can bypass all of that, and not to say that it's easy,
+but it's much easier than online. Is this competitive or friendly, because that can make a huge impact
+on how you actually structure the whole thing and whether you can kind of trust the people you're
+playing with? How many players are there? Obviously minimum two, but going beyond that can have a
+lot of different implications. Are public lobbies, or do you have, you know, can you play with just
+about anyone? Or are you having to invite friends? And are we adding multiplayer to the existing game
+modes? Or is this some sort of special multiplayer experience that we're shipping alongside the game?
+And the last one is, and a lot of people kind of forget about this, is multiplayer something you
+have to decide at the beginning? Or can you decide maybe middle the way through the match?
+And how can that impact everything going on? So local or online multiplayer. So as we talked
+about, local orders are magnitude easier to develop. You don't have to actually simulate the world
+on two computers. You can just add more players to the existing world. And if you do local multiplayer,
+you can use things like Steam Remote Play together to allow them to actually play online as if they're
+on the same computer. But this does have a drawback. There's no equivalent for consoles,
+and there's no equivalent for cross play. So if you have those ambitions, that could be harder.
+If you go online only, it kind of eliminates couch co-op, which can be important for consoles,
+and was just a strong motivation for the team. I know Bipp and Bitts wanted to sit down and play
+together, and that was the original ambition. But in theory, you should be able to mix both,
+but it can be more complex. Competitive or friendly? Or are we concerned about cheaters?
+And honestly, this is one of the biggest decisions you can make, and can change the scope of your
+project entirely. The real question is, can we trust the data that we receive from the people we're
+playing with? Or do we need the only way to combat that is have a fleet of servers who are the
+source of truth. You can't rely on one player to be the host. If they're stimulating the game,
+well, then you constantly have costs, and you have devops, and things like that. And so that
+can be a real-maker break. But some games just are only fun in a competitive way, and some games
+are fun co-op. Choosing how many players you have, think about the data structures in your game.
+You probably need to change some just to go from one to many, but even some can have more
+implications as you go beyond two. And sometimes you might just want to have a data structure that
+says player one and player two. You may not want to make that full one to many transition.
+Sometimes you can have what we call a little sibling mode, so you just give away for someone
+else to interact with your game, to be part of that game, be part of that experience.
+Again, it doesn't have to be the full co-op of Magic Dream that a lot of people are asking for
+to bring that to life. And as you go beyond two people, if you are playing peer-to-peer,
+that puts more stress on the host to talk about the whole game state to everyone who's playing.
+So public lobbies are invite only. So who are these people you're actually going to play with?
+So do you have to deal with jerks on the internet or just my jerk friends? So if you have a friend
+who's going to cheat in a co-op game, that's fine. That's not our problem. But if you add
+public lobbies and you have any sort of competitive mode, even if it's not a competitive leaderboard
+system, it can kind of change the community in a way. But if we don't have public lobbies,
+how are we allowing maybe my Steam player to play with my Xbox player? So that can create some
+additional challenges there. So thinking about the game modes, are we just adding player two or
+player four to the existing game modes? And how is that going to impact the game design and balance?
+Or do we want to create all new game modes that are focused on multiplayer and have different
+challenges? And what are the rules when more players are present? Do things get harder?
+Do things stay the same? How does that impact leaderboards? These are sort of things you have
+to think about when you're approaching this. And so the last one, joining the mid-match.
+So if you think about how each world is simulating your new world that you created,
+what happens if someone comes in the middle? What if I want to join someone who's halfway
+through a game? How do I get them enough data so that they can catch up and act like they're
+right in the middle of the game? Can they catch up? Can we provide enough state for that to happen?
+For DomeKeeper, we thought about this a lot and we realized the issues were more
+come during combat than mining phase. So combat's a lot more high speed, a lot more
+things happening, a lot more things moving. So we talked about potentially limiting it to the
+mining phase. But as things go, we'll see how it shapes out. So going back to our list of goals,
+for DomeKeeper specifically, we decided local or online, let's just do both.
+We had different, you know, different scales. We have a different team, but it may not be the
+right answer for you. Competitive or friendly, we decided friendly. This was the dream what to
+play with our friends. We wanted to bring our friends into this game. We weren't trying to create
+a competitive atmosphere. How many players? So some game modes have made sense to have two,
+some it had four. But as we were play testing, we kind of just left it open ended on the top end.
+And we realized that we're like seven, eight people. It's chaotic, but it's like really good chaos.
+And so if you have like a host who can handle that, it's a lot of fun and we want to invite
+you to try that out yourself. We did invite only lobbies. Again, we just want to make sure that
+you're playing with your friends. We're not creating maybe changing the landscape of the
+fan base in an in bad way. Thinking about our game modes, a lot of the game modes that we had
+make a lot of sense when you bring in a second player. So we did existing with versus and that
+was a lot of fun. And then can a player join mid match? Yes. So we did the work. It's been a lot
+of tedious work to make sure that every system can catch up to the middle of the game. But it
+was worth it just to give people the flexibility. Or if someone drops out, you don't want to have
+to ruin the whole run. So this was our first ever play test with Bip and Bits. I love this
+screenshot because it reminds me of like Power Rangers. Just kind of like hanging out. And we
+had seven of us and we jumped in. I think we were playing. The host was a Lucas laptop on Wi-Fi
+in like a cafe or something terrible. And so we were just like stress testing it in the worst
+possible way. But it ended up just being chaos. And it was so much fun that it kind of changed
+our thought process around the max number of players. Because it ended up, even though certain
+things were easier, we're getting a lot more resources. We had so many more people to fight the
+monsters. It was more of a human problem. So many people would be mining that no one would go back
+up and actually fight the monsters and we would die. Or you'd be collecting resources and someone
+would just go up and spend them all. And then you're like, oh, what were you doing? So it created a
+lot of really interesting challenges for ourselves. And I think it's definitely going to be a really
+fun way to play. So the challenge is as we develop this, how do you go from single player
+to multiplayer without breaking everything in the process? So how do we send the right data at
+the right time without rewriting the whole game? This is going to be really important. There's a
+lot of slides on this. Bandwidth optimization. So once we're sending the right data, how do we
+only send the amount of data that we need? Because the less bandwidth we use, the more players we can
+add. And it just makes it more accessible to a lot of players. How do we avoid writing our netcode
+three times? So we know we wanted to do local games. We knew we wanted to support theme players
+playing together. And as we launch on consoles, we know we want to bring those people into the fold.
+But remember all the stuff I'm talking about today is kind of more for porting an existing
+single player game. I probably have different advice if you're building multiplayer from scratch,
+but there's still things to learn from this. So thinking about our system architecture,
+our clients have no idea where the host is when they first connect. The host doesn't actually know
+where the client is and they're loading state when they first connect. And the thing to remember
+is when you have an offline game, every time you write a line of code, you have access to the data
+you need. Whether it's in that class or you have to go find a weird node somewhere to grab that data,
+the data is available. But that's just not true in an online network game. You don't have all that
+data. You may not even know you need that data. And so every time you approach rewriting functions
+or thinking about functionality, you kind of have to re-challenge every of those assumptions.
+One example is the camera should center itself on the local keeper when I first start the game.
+But if you're a client, your keeper doesn't exist when you connect. So you load the game,
+then you ask the host to make you a keeper. The host responds with all the data you need to
+respond to that keeper, and then you can center the camera. And that might only take one or two
+milliseconds. But it's such an important one. Two milliseconds, the game can crash. You can just
+have a bunch of errors in your debugger. And so you just have to rethink where you're waiting for
+data or what you're doing in the meantime. In addition, we can't actually assume that once a
+client is connected, they're ready to receive all the data you're trying to send them. So if I connect
+to an existing game, I'm in the middle of loading, but the host is trying to tell me about the map,
+the other client's trying to tell me about where their keeper is. And I'm just getting hundreds of
+errors. It's actually slowing down the game, or it ends up causing a crash. So being sure like
+knowing where each client is in their process before you send them that data. So there's two
+approaches you can take in your game when thinking about when and how to send data to the clients.
+You can require all clients to connect in some sort of lobby phase. And that makes sure everyone's
+ready. Everyone says the ghost signal. And then only then you start sending data about like where
+people are. And you send all this reliably ordered so that the game stays in perfect sync.
+But even then if you have a third client, it may load and tries to start sending data about its
+player to client two before client two is had a chance to load everything it needs to get load.
+The other way is you can have each client kind of maintain like a connection state machine
+that says here's where I am in the game flow. Here's what I'm ready for. And each client will
+respect that when trying to do that. It's a lot more boilerplate. But it ends up being like much
+more seen to handle. And this is regardless of whether you're using like good those high level
+multiplayer or using your own multiplayer. Just having that state machine that lets everyone know
+like what you're ready for. So when you send an RPC in good though, if you're using good those
+high level multiplayer, you have to have a node in the same path that has an RPC of the same name.
+It doesn't actually have to be the same type of node. But the path and the function name and the
+function arguments all have to match. And so if you're loading things dynamically, that node
+may not exist when you first send that RPC. And that's where you can get in a lot of trouble.
+You could send all of these RPCs through like a global singleton. But you're kind of ignoring the
+issue of you're sending data to someone who doesn't actually know what to do with it yet.
+So what we do is we have our clients report to both the host and every other client,
+what their state is, what they're ready for. And so that way we know exactly where they are in the
+process. And we can send them exactly what they need. We have different like spawn in sync
+stages. So if you have something that's dynamic. So if I load into the loadout, I'm ready for
+to spawn the keepers. But I'm not necessarily ready to get all the keepers position data.
+So we kind of break those out into two different states. And same with like the level. I'm ready
+for the map. Okay, I'm ready for the keepers. Now give me everything else.
+So we use RPC exclusively. And the reason I say that is because Godot has built in nodes
+like the multiplayer synchronizer, the multiplayer spawner that don't give you this level of control.
+They tap directly into the multiplayer connection. And so as soon as someone connects, they start
+trying to send data. You can kind of hold back the synchronizer by using like the visibility
+functionality. But it's not really what it's meant for. And with the spawner, it's always going to
+want to send all of the nodes that want you to spawn as soon as you connect. So if you're not in
+the right scene, or you're stuck on a loading page, all that data is going to come and this be forgotten.
+So again, if we have our own state machine, we use RPCs to kind of send that data and kind of
+control it a little bit better. And one thing I found as I've helped other people with their
+multiplayer projects is neither of these nodes are going to work if you're going full peer-to-peer.
+So your synchronizer packets will always get there before your spawner packets,
+unless you're routing them through the host. But if you're routing them all through the host,
+then you actually don't get any of the benefits of peer-to-peer.
+So we have our synchronizers. And what they do is they look at the target connection state. So
+they say, hey, here are the two states that I'm going to send data towards. And here's how often
+I'm going to send it, whether it's reliable, whether I periodically want to send like a full
+sync. So if it's a system that can get out of sync pretty easily, we might want to just send
+like a full catch-up packet every so often. Our synchronizers distinguish the first packet they
+send per client. So as someone new comes in, we send them a big catch-up packet. And then from
+then, we kind of send them like more delta updates. In the synchronizer respects,
+Godot's multiplayer authority. So there's certain cases where like you want to control your own
+keeper, since we're a friendly kind of cooperative game, you can just tell us where your keeper is
+and everyone else will respect that. And so that way we can say the keeper to is owned by client to
+when we just respect that. If you're doing more competitive stuff, while a lot of times what you
+do is you'll send inputs and the server will decide where you're at and send that back.
+But since we're more friendly, we can pass the authority back and forth.
+Bandwidth. So Bandwidth is a fun one. How do you actually send the data you need across the network
+to have their simulation, match your simulation? And when getting started, again with an existing
+single-player game, you actually kind of already have this if you have a save system. So you've
+already figured out, here's the data I need to save so that when they load the game, the game's
+back in the same state that it was. And you can use this as a really kind of like poor man's way
+of just getting multiplayer working. You just send the save state over with far the bytes,
+you read it and deserialize it on the other side, and use that to set up your systems. And so you
+kind of have a matching starting point with both your server and your client. But once you get
+that initial state right, how do you keep things in sync going forward? So this is kind of breaking
+down in three different ways. So you can send new states every frame or every time anything changes.
+You could send an RPC every time there's an event that could cause a change, or the systems are
+actually deterministic and will stay in sync on their own, you know, barring something crazy
+happening. And the answer is you probably use all of the above. It just depends on the system that
+you're working, but we'll go through all three. So with state synchronization, it's a super common
+network networking technique, and it's actually required for anything that's non-deterministic,
+like physics and Godot. Even if you use a deterministic physics engine, like Joel,
+its implementation in Godot is not deterministic or hasn't been proven to be deterministic. So
+you're almost always better off having the server simulate all the physics and just send
+these updates. But it's always a balance of bandwidth, interpolation, and prediction.
+But these kind of systems can kind of make or break your multiplayer experience.
+Sorry. So these are typically unreliable packets sent with a fixed interval. So every physics frame.
+Oh, excuse me. Sorry. Too many conversations this week.
+So our first step is we're going to be thoughtful about our bytes. We want to use something like
+packed byte array to give you the tools to create smaller packets. Oh my gosh, I cannot breathe right
+now. Sorry. So when you use packed byte array, it requires you to think about the different
+offsets, so how big is each byte, how big is this data that we're putting into the bytes,
+and can you introduce a lot of bugs. So we added something called packed byte stream,
+which will do all the offset math for you, and as long as you encode and decode in the same order,
+everything comes out great. Someone pointed out you could also use stream peer buffer.
+I don't like the API of that, but it kind of does similar things.
+But we like to add in custom functions on top of packed byte array, like encode vector two,
+encode bool, and that kind of does some of the back end math for you.
+Sometimes you need to go smaller than bytes. So you can go down to the bits,
+and Godot actually gives you all these sort of bitwise operations. So bit shifting,
+not zore, and you can use that computer science degree to pack tons of information
+into different integers. But that's terrible, and it looks like this.
+And it's super buggy, and it's unreadable, even if it is powerful.
+So we wrote a bit packed byte stream. And so it allows you to resize it,
+it allows you to pack different bits. So if you only need nine bits for the size of your integer,
+you can just do that. Packing rotation, we know rotations from zero to tau.
+We can just look at how many bits you want to use to buy that by that, and kind of turn it into
+an integer and back on the way out. And so using this, we're able to get down from, you know,
+from a naive dictionary down to this packed byte array is like saving like 70% from that to a bit
+backed half again. So you can get really small to the amount of data.
+The second way was responding to events. So when your game state only changes
+deterministically, but based on user input, something that RPC can trigger that event on everyone's
+simulation concurrently. So things like hitting tiles, using gadgets, upgrading your base,
+more requests response kind of like HTTP using RPCs.
+But these are all reliable packets because the delivery is going to matter,
+unlike the state updates, which you'll just get the next one if you missed one.
+So deterministic systems, a lot of them could be, but aren't by default.
+So usually when our outcomes are primarily visual, we want to synchronize all these things
+based on RNG. But if we use something that everybody knows, like the monster idea is our seed,
+then we can just send the seed over and rely that the simulation will get the same thing.
+And since these are just visual, we can just send that and just save a ton of bandwidth
+because we don't need to simulate the monster on the host every frame and send that over.
+Our next challenge was deploying on three networks. So again, we wanted to cross play,
+steam, and land. We wanted to support all three, depending on how you're playing.
+Good old ships with the ENET multiplayer peer, which can handle all sort of land situations.
+We decided to build an open source and new steam multiplayer peer. There were a couple out there,
+but they were kind of held back with some of the underlying libraries. And so we built a new one
+on top of that. And so once we had two out of three built-in good old, we're using the multiplayer
+peer system, we decided to fully commit and create a cross play peer that uses the PlayFab party API.
+And so same thing, these multiplayer peers, all they need to do is send packets and make these
+connections. So you as a game developer can just think about what data you're sending.
+You don't have to think about necessarily how they're connecting and how those are getting there.
+So since the last time we gave this talk, I've had six months of working with QA and fixing bugs.
+And I thought it'd be interesting to look at, I went through every commitment we've done
+at that time and thought about like which kind of area we had to fix, what are the things that
+keep coming up. So I'm happy to report, no reported bugs. It was really easy. We had nothing to do.
+No. We had 500 probably more. The QA team of Ralph Yuri is very good. They know the game very
+well. They found some of the most insanely minor bugs, but they are bugs. There are things that
+worked before that didn't after we made a lot of these changes to these systems. And so it's been
+super helpful just to know that we can make these changes. We know that they're going to catch them.
+And we can get the game back to where it was plus, you know, now it's a blur.
+So a lot of these bugs, it's always the things you most expect. So we had eventually to add new
+systems to the game. The biggest one was versus mode. So completely game mode that didn't exist
+changed every data structure in the game because everything had to have a team now.
+So every drop, every gadget, every keeper, every dome. And turns out that can be buggy.
+Secondary stations. So now you can create new stations, have a secondary weapon. These sort of
+things that just weren't in the game before, didn't weren't as battle tested nearly as much as the
+rest of the game. A lot of the bugs were on there. We've had to create dozens of new UI screens.
+So as you're hosting a lobby, joining a lobby, if you're continuing a multiplayer game,
+like a local multiplayer game, you have to choose who's going to be what keeper. There's all these
+different UI screens and those always come with bugs. And versus mode again, because it really,
+it was worth it. It's by far the best way to play honestly, but it really did add a lot of things.
+And there's still some things that I'm not 100% sure we have right. And some of these surprised me.
+So like every sound in the game had to be changed in some way because the game was built with a
+single keeper, a single screen, a single set of speakers of mine. And so many of those things
+just like are just built into so many assumptions. So as we started adding local multiplayer and
+you're having to like blend those sounds, Godot doesn't allow you to have multiple like audio
+listeners. So we have to think about how those sounds are going to play or just online. How
+much are you hearing from your friends? How much are you hearing from the other dome?
+All these things had to be adjusted and tweaked.
+Local multiplayer input is kind of a nightmare. So if you just want to control two characters,
+if two controllers works great. But if you have a game with UI, if you've never done UI with
+controller and Godot, you have this concept of focus. And there's only one focused UI in the
+whole thing to the matter how many of you ports are controllers. So we had to start doing updates
+to Godot core. So we pulled in a pull request that's been open for a while, but isn't maybe
+necessarily the right solution for everyone, but it looked perfect for us, which allowed you to
+have one focus per viewport and allowed us to tap into our input system and only send it to the
+right viewport. That got us most of the way there, but we still had to make more updates around
+when you actually move focus. Godot handles that really deep inside their input system and they're
+really greedy about just saying, "Oh, someone hit right. Everyone should move right." And so we just
+had to start adding more concepts like device ID to those sort of systems to really get it working.
+And again, I'm still not 100% sure this is going to be perfect. The hardest thing with network
+stuff, again, assuming we had the data when we needed, all these ordering issues, race conditions.
+Sometimes you write code, you're like, "I'm going to have A come in and then B is going to happen."
+And sometimes you get B, then A. You can write that code, but sometimes you get B three times,
+and then A. And sometimes A never shows up at all. And just how networking works, unfortunately.
+And so you just have to adapt for that. And these sort of things are just going to keep coming up
+as we continue to play test of a broader audience. And getting this first stage right now, there's
+a ton of issues we've had to fix around. Joining mid-game we talked about, but even loading from a
+save. We've touched enough things, you know, back to versus mode with teams and things like that,
+where like when you load a game in, especially from like an older state, just making sure that
+everything gets put exactly where it needs to be. And honestly fixing like a mid-game issue might
+break loading from a save, and then you have to go back and do it again. So lots of fun there.
+So what are some takeaways for you guys as you think about if you have this single-player game
+you want to make a multiplayer? What do I want you to remember from this talk?
+Define success upfront. So again, not all multiplayer is the same.
+The early decisions that you make that online local competitive and co-op,
+that's how you limit the scope, that's how you can find true success.
+And not every game needs for online matchmaking for the, I just want to play with my friend dream
+to come true. The best thing you can do is talk with your players, talk with your community,
+figure out what it actually is that they want to do, and do the least amount you can to get to that
+point. One thing I recently have been doing a lot of, so with my wife and kids,
+we've been playing a lot of co-op games. We've been playing Stardew, we've been playing Minecraft,
+playing Valheim. And you guys should really sit down with those games, like with two screens side
+by side, and play them to see like how in sync that they actually are. You know, or whatever games
+you like truly love to play multiplayer, because I think you'll be shocked about like how perfect
+they actually are. I think we get into this state, especially when you're developing locally,
+you just have two screens, you want everything to be perfect all the time, and that's just not
+the case. And so using that to kind of set your benchmark can be really important. And you can
+use tools like BandWitch to see how much data they're using to send back and forth. So you can
+help set benchmarks for games in your genre for how much bandwidth you should really be used.
+And you can use tools like Clumsy to like simulate like packet loss and latency. How do these games
+deal with these bad network situations? It might look kind of, you might think bad, but you probably
+never noticed when you're playing before. So knowing you'll never be perfect, I think about
+what is going to be important to you. So most of our network updates are just triggering local
+visuals and sounds. It's making sure that the monster looks like it's getting hit when it's
+getting hit, making sure that the mining block explodes and releases the resources and things
+like that. Because the source of truth is always the host. We basically, there's one game state
+that matters, and that's your host, and we're just trying to give you as much as little information
+as we can to make sure that that shows up on the client. But yeah, it doesn't need to be perfect.
+And honestly, you can be even less perfect in a friendly situation by letting the client
+report their outcome. So and don't keep her if you have a laser and you're shooting a monster
+on your screen, but the host maybe thinks it's missing. You can just trust the client that they're
+hitting it. If they say they hit it and they say that it died, just let it die because we need
+those decisions upfront that no one's going to cheat in your co-op game. And so that just makes
+your life a lot easier as you start to simulate these worlds. But again, it was only because we
+need those decisions upfront. And then leverage the multiplayer peer system. I think it's even
+if you don't want to use like the multiplayer synchronizer, the spawner, you know, just using
+an RPC and these multiplayer peers, it can give you so much flexibility. You write in a network
+agnostic way, so even if you decide to end up using w4 or any of these other like commercial
+things, or you just stick with steam and eNet or webRTC, all of these things, you can just swap
+them in and out really simply because you wrote everything with these multiplayer peers in mind.
+The biggest thing is even if you know that 100% of your users are going to play on steam,
+you want to be able to test with eNet. With Godot 4, you can launch two windows,
+have them connect to each other on eNet automatically with launch parameters,
+and both of them report to the debugger. So you can investigate both state and both remote trees,
+and it makes it so much easier to like find these weird sink issues.
+You can even use tools like clumsy, so even if you're connected local host to local host,
+you can tell it, hey, add 200 milliseconds of latency, add, put in your dropped packets,
+and make sure that everything works to your liking. And so once you get to the end of that,
+then you only need to beg your friends one or two times to make sure that the steam integration
+works. But if you do everything right, then it shouldn't matter whether it's eNet, steam,
+or anything else. And understand whether the peers that you're looking at using are full
+peer-to-peer, because you probably want to use the vanilla nodes in that case.
+Ordering is hard, so I've talked about this a couple times. But more specifically, you can't,
+like, reliable packets are reliable that they come, not necessarily that they're going to get
+there before other packets that you sent. A reliable packet will always wait for the last
+reliable packet to be acknowledged. So if you send, like, hey, spawn this keeper reliably,
+what you want to do, but you send, hey, my keepers here, unreliably, what you also want to do,
+they may show up out of order, and often you almost guarantee that they will. So just write
+your code defensively so that you can actually handle those different kind of scenarios.
+You can also use higher-level nodes, so things like monsters, tiles, drops. We kind of use these
+more higher-level to say, hey, here's where this monster is. And if that client's like,
+I don't know about that one yet, it can just ignore it and move on. That way, we don't have
+to have, like, that connection machine have, like, 50 different states. But basically,
+never assume you have all the data you actually expect to have unless it all comes together as,
+like, one big RPC call. And the most important thing is the state scrappy. Like, don't actually
+rewrite your game from multiplayer. Like, you can get really far by taking advantage of that
+save serialization. You can get really far just by picking small numbers of systems to get started.
+Get back to playable. When we started Domekeeper, we were hyper-focused on getting keepers moving
+and being able to mine. And we were able to do that in less than a week. And it was just really
+motivating for the team to see things move around, and, like, the game just started to come together.
+You couldn't fight anything. You couldn't, like, you know, upgrade anything. But it just,
+we kept the game playable so you can come in and see where things were. Let the small stuff
+say out of sync until, like, the last minute. I don't think we did the weather in Domekeeper
+until, like, a couple months ago. It's just, like, we've had open play tests for a while. No one
+noticed that the weather wasn't in sync. We did it because it's fun. But it didn't need to be.
+And once you solve the core issues, then you start expanding on the content, adding those
+additional systems, and keep growing from there. So thank you. I want to say thank you to the team
+at Bip and Bitch for the opportunity to help them with this amazing game. And thank you for Austin
+and Jacob and the role of your QA team for all the help in making this a reality.
+They are still quite some time for questions, so please raise your hand.
+Thanks for the talk. One question I have is, did you consider balancing the game in a way when
+more keepers are connected? Or did you just let it be and have it easier if more keepers are there?
+Luckily, I get to pass that off back to the Renee. Yeah, there are definitely
+balance changes that are constantly happening in this situation. Like, one of the decisions we made
+early on was just to add a secondary, like, primary weapon. So in the laser, you get two lasers.
+That's fun for laser, but when you have two artillery, the game actually gets, like, way too
+easy. And so I think there's going to be more balance changes happening throughout the play test
+as we kind of balance it with, you know, the crazy hardcore prestige players are just going to always
+do great, but just finding that good balance for what's going to be fun and what's going to be
+maybe a little too overpowered. Yeah. Another question?
+You mentioned the many times that you had QA team and then you introduced a new bug while fixing
+other bug. Yeah. So have you had some unit tests or some other testing ways of how to keep everything
+else, like working while fixing another bug besides the QA or some like the practices that you used
+or something? Yeah. Had we come in and unit tests were already there, of course, that would be great,
+but I think for a project this size, it didn't make a ton of sense to spend months building those
+unit tests out and kind of thing. Because a lot of the bugs that we get from QA were things maybe
+we didn't even know were happening in the game. Like, I feel like an expert at the code base now,
+but I definitely wasn't when I was building a lot of these features. So I think it was more
+important to get into the iteration loop early and make sure the fuel was right rather than
+worry about like very specific bugs, knowing we had a QA team and we had, you know, a great play
+test community too. All right. Yeah.
+I'm sorry. I joined like 10 minutes late, so I don't know if this was already covered, but I'm not
+sure I understand like correctly the architecture of the multiplayer. Is it peer-to-peer? Is there an
+it's all peer-to-peer. There's an host. Yeah, there'll be one host, one player is the host.
+And it can be like there'll be a dedicated server. There's it have to be a player.
+You'll have to be a player. Yeah, there'll be no servers. And I suppose like the steam
+multiplayer is like just like whole punching slash tunneling.
+So we use steam that's called steam networking sockets. And so basically it'll run through
+the steam's relay server so that you don't have to like open ports or anything like that.
+But it also not not punching, if you know, not whole punching, if you know that.
+It's too unreliable, I think, for a lot of games, especially just like no one's once open a port.
+And unfortunately, it's like 50% of the time that like not punching and all that stuff doesn't
+work. I know some people have done like it's done and turned things or using web RTC to like
+find that open path. But most of our all of our players right now are on steam. And so they
+provide this great thing for us. And then we have a good partnership with like Microsoft
+and PlayFab to be able to like leverage that for the cross play.
+I'm wondering, I imagine that a lot of the changes you did also, you have to make changes
+that affect like the local nodes or like changes that might affect the non multiplayer stuff.
+So did you use any design patterns to clearly differentiate between these two or how did you
+kind of avoid regressions in the non multiplayer codebase?
+No, we made a conscious decision to not completely separate out the single player code.
+We had talked about that early on of like we don't like we're afraid to touch it. We don't
+want to break things. But we got guidance from Bip and Bits like no break things like we have
+this fantastic QA team. This is where they're here. They'll find it, promise. So we simplified
+our lives a little bit easier. So a lot of the stuff was battle tested both in single player
+play testing and a multiplayer. So yeah, good question.
+Thanks for our talk. I wanted to ask about the steam multiplayer peer implementation that
+you talked about. Could you talk about what were you to write your own as opposed to using something
+like Godose Steam? Were there any specific constraints that you wanted to implement? Or was it just
+not at the state where it was usable for you? So we wrote our own but we gave it back to Godose
+Steam and made it Gramps from. So what's nice about that is we're able to leverage all the bindings
+that he's already done on them. But like the peer itself is written in C++. So we're actually
+talking to Steam's API directly. But yeah, we had written our PlayFab multiplayer peer and got
+really opinionated on how these peer should work and things like that. And so we wanted to disconnect
+the Steam lobby system from the actual netcode peer. And so what's nice is we can able to now,
+you can handle your own lobbies. Or if you don't want to use Steam lobbies, you can just connect
+people directly and leverage that with the new peer. So yeah.
+He asked my question, but I'm here from Columbus, Ohio. So I'll just say go back guys and thanks
+to the talk. All right. Do we have another question here?
+So you showed us some of the tools that you used to reduce bandwidth. Do you have some sort of
+metric that you can tell us how much work it actually was and which bandwidth you were able to
+reach or had to reach to make a game playable on such bad conditions in a cafe, for example?
+I don't have hard numbers. Like the biggest thing I was worried about is when, so in Don't
+Keeper, when you're carrying like iron and cobalt and things like that, all those are physics
+bodies. And so that's all being simulated. And so we need to send those packets as often as possible.
+We can try and do some prediction or interpolation, but it just starts to feel bad after a certain
+point. So the best way we could do it was just send less data. And so originally, I'm trying to
+think if I can remember the numbers, but I know that from our naive implementation of that just to
+using the packed byte array and packed byte stream, it went down by at least 60 or 70%. And
+then it was a whole other half when we did to the bit pack. But I want to say it's like four kilobytes
+per physics body per second. So if you have someone carrying around 30 things and you're
+connected to seven peers, like they can really get out of control really quickly. And the more
+people you have, the more likely someone's carrying around 30 things. So yeah, it kind of gets
+exponential. So there's probably still more work to be done there if we can, just or maybe at a
+certain level of player count, we just start sending those updates less and less. And so that'll
+just be part of when you have a big team that's going to feel a little worse. Or make them
+non-physics objects, but that's less fun. Thank you for the talk. I was curious about the
+GD script and the C++. You mentioned in the beginning most of the code being in GD script.
+What about C++? And have you chosen C++ just for the usability or performance was also an issue?
+So some of the multiplayer peers, I don't actually don't know if you can write those in GD script.
+But just from, it was part of an engine module. So we just wanted to build it directly into the
+engine. And we had the C++ expertise on the team. But we didn't move any of the major core
+systems from GD script and C++. Almost every gameplay element is still GD script. But we just
+wanted to move all the network code just to be aligned with the ENET stuff. And that's all in
+C++. I don't know what's the worst network condition you've seen the game run smoothly on?
+Honestly, the video that I showed was pretty bad. I don't know if we'll get back too fast.
+But yeah, that was on the laptop. I was in the United States. We were playing from Europe
+over Wi-Fi. Someone might have been on a mobile cell phone. I'm not even sure.
+But yeah, so you could see a couple of times where this was very early back in February. But
+you can definitely see where we're having to interpolate and it'll catch up and kind of do
+things like that. But we've, locally, when we do use clumsy, we'll go to the extremes and say
+50% packet loss in one second. And it feels bad. Of course it's going to. But ideally,
+those network conditions happen for an instant and then kind of come back. At a certain point,
+if you just don't have a good network, you're just not going to have a good time playing a real
+time game. Is there a question left? Hi. So I've worked in a studio where we focused on
+multiplayer games, co-op games most recently. And a lot of the things you said are very familiar,
+so basically the same decisions also, lots of them. So you mentioned in the beginning,
+you might do some things different if you wouldn't basically add it to an existing game, but
+design it from the beginning. What would that be then? I think there's a lot of ways you can
+design some of that first flow around the data structures that you have in place
+around multiple keepers or multiple players and how that interacts.
+Because we were adapting a single player game, we always defaulted to just send it all to the
+host and they'll tell you what should be happening. But I think you could do the RPCs in Godot,
+there's a state called call local, where it allows them to also run code simultaneously.
+And so I think if we had designed this from the start as multiplayer, a lot of these systems
+would be more deterministic out the gate. So they could just try and simulate everything local
+and just have every once in a while have a catch up system or something like that.
+And so really I was just trying to meet the game where it was and just trying to make the
+simulation match on both sides. But I think if I was designing from the beginning, a lot of these
+systems I would just approach less so about like, oh, just tack on synchronization at the end.
+Like when I'm designing for our multiplayer game at our studio, I'll design a system with single
+player in mind just to get the game feel right, just to make sure that it's actually fun.
+And then I usually throw all of that out and then just rethink everything
+at that point. But it's at the very beginning, so it's a lot easier to do, yeah. Thanks.
+Is there any question left? One more on the back.
+No back. Just a very obvious one. Have you thought about adding voice over IP into the game
+networking? We talked about it. That's actually something that you can get for free with play
+fab and cross play. But it ended up just not being important for the team. We just figured
+most players are going to be in discord many ways. So, yeah.
+Yeah. How often do you have to synchronize the world like in the game? Can you also need to
+synchronize the block destruction and recreation? Yeah. So, you know, our keepers and our resources
+were updating every physics frame, so 60 times a second. But everything else is, I think everything
+else is either deterministic or just by by RBC. Yeah. Yeah. But I mean, can you need to
+like re-synchronize it like mid game? Oh, yeah. Yes. We've started doing that more often as we,
+so in some of those poor network conditions, yeah, like even the deterministic stuff can start to
+fall behind. Actually, it's less network condition and more low FPS. So, if a game is just like on
+running on a weaker computer, it may not keep up with that. And so, we've started to add those
+like periodic full synchronizations. And it'd be anywhere from every three to 10 seconds.
+That's usually enough to keep up with that. Yeah. Good question.
+A final question. Great talk. Thank you. Did you have any issues with maximum packet sizes?
+So, synchronizing lots of objects. Did you do any fragmentation, etc.?
+The only time we ever ran into issues is sending the map data during the loading screen to make
+sure you can simulate. So, rather than rely on deterministic procedural generation on the map
+data, we just let the host center at the map and then send it over. That one, luckily, we hit a,
+we didn't have packet size, consideration for ENET or even PlayFab, but Steam, we were hitting
+that like 500 kilobyte limit. But just adding stronger compression was even on our biggest map,
+we were able to get below that. We had played around with breaking those packets up a little more,
+but it ended up being overkill. So, we just stuck with compression. Yeah.
+All right. And please give another round of applause.

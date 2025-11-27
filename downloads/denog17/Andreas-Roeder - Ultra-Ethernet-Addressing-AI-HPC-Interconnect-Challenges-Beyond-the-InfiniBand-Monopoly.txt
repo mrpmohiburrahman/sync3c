@@ -1,0 +1,603 @@
+API URL: https://api.media.ccc.de/public/recordings/93183
+Frontend URL: https://media.ccc.de/v/denog17-78799-ultra-ethernet-addressing-ai-hpc-interconnect-challenges-beyond-the-infiniband-monopoly
+Title: Ultra Ethernet: Addressing AI/HPC Interconnect Challenges Beyond the InfiniBand Monopoly
+
+(upbeat music)
+- Okay, our next speaker, Andreas Ruder.
+He's a networking professional
+with two decades of experience,
+and he is designing, deploying,
+and optimizing scalable networks on the layers two to seven.
+Please give a warm welcome to Andreas.
+(audience applauds)
+- Yeah, I mean, if you want guys,
+come close to the stage.
+Let's have a little bit of fun for, let's say, 20, 25 minutes.
+I will do a presentation.
+The whole purpose of the presentation
+is to give you a brief introduction to all trace in it.
+Some of the people are already aware,
+some already heard it.
+The goal is basically to enable you
+a little bit what's that all about,
+and let's talk a little bit about it.
+About myself, that's me.
+We can skip that easily.
+Just if you want to follow up,
+if you want to basically download the slides,
+feel free to reach out, and let's talk.
+So all of a sudden, now.
+So one of the questions is why we have
+even this kind of talk at D-Knock.
+And if you already think about right now,
+there's a lot of data center build outs.
+There's a lot of connectivity required
+either inside the data center itself, externally, internally.
+And you see that a lot of the people with the rise of AI
+and with the rise of, let's try to use
+all this kind of GPU resources,
+question the current infrastructure,
+question the current design,
+and think about how to move on.
+I will talk a little bit about this kind of technology,
+what basically happened there in the last 15 to 20 years.
+And then later on, we will bridge a little bit
+into why this is even relevant
+and why you should be involved.
+And why I would say you should make an opinion,
+how you should continue
+and how you want to continue later on.
+If you look what happened the last years,
+and maybe this kind of graphic shows from 2005,
+what happened all the time until 2023,
+you see there was a kind of evolution in the data center,
+but we didn't really have a revolution.
+So we had small improvements over time
+where we started with classical sweet year kind of fabrics,
+everybody was still in back in the day's nose,
+access layer, distribution layer, core layer,
+and you just configure VLANs all over the boxes,
+and you try to do that.
+As long as you never need to troubleshoot
+that kind of fabric, everything is good,
+but try to troubleshoot the layer two to mean
+with the spanning tree, that's not fun.
+And over time, we basically said,
+hey, I need to do something in terms of capacity,
+that's where lack and multi-shasseling aggregation
+came into play, where we say,
+hey, we need to scale that a little bit.
+So we said, hey, let's have a little bit more performance,
+we don't want to have oversubscribe links,
+so let's go for spine leaf architectures.
+Then we found a way to build a control plane for all of that,
+and signal our megatresses for layer two,
+or the IP addresses in a multi-tenant scenario for layer three,
+so the entire rise of EVPN and VXLAM,
+where we also had a little bit of talks about that.
+But then there was also a big need
+that we finally need to disaggregate,
+and all of that, and involve automation.
+So you see a constant need over the time
+that we need to do it, and you reach a point
+where you say, hey, most likely the last three,
+four years ago, I mean, you reach a point
+where you build V6-only fabrics, IPv4,
+and most of the datacenter build-outs you do recently
+is not even a discussion anymore,
+and now we finally need to find a way to deal with AI and ML.
+But what is really the driving factor behind is this,
+because in most of the cases, as soon as we have
+a kind of technology disruption,
+as soon as the workload changes in the datacenter,
+as soon as you see a new requirement from your compute
+teams, from your application teams, the work starts.
+Because now you either have a higher tendency,
+more services introduced, more IPN points
+on the compute layer, more bandwidth.
+You need to deal with that.
+And the first one was OpenStack,
+where we basically had a huge rise of VM-based workloads,
+and the entire density of the compute recs,
+started to increase.
+The next layer was Kubernetes by itself,
+where you even increase that further,
+and you go from multiple 20s per server
+to hundreds or even thousands per server,
+in terms of density of endpoints.
+And now a really, really, really big shift
+was from 21 to 22, when a company called OpenAI
+released something to the public called Chet GBT.
+And everybody say, hey, now we need to do something
+with this AI stuff.
+But this has a lot of impacts to the datacenter design.
+Another way to think about that is that.
+So if you see here on the left side,
+that's a very classic kind of architecture.
+You have a datacenter, it's a connect,
+and again, this is simplified.
+You have a spine layer, you have a leaf layer,
+and you have a CPU driven server.
+The CPU driven server is very important,
+because back in the day, CPU was basically the bottleneck.
+It was all about CPU cycles, and how you can
+either offload that, and how you can do that.
+On the right side of the slide, you
+see what you need to build these days.
+First, there is a demarcation where
+you don't build a single converged fabric anymore.
+In most of the cases, these are either two fabrics,
+and later on, I will explain why it's not even two.
+Sometimes it's even four or five different fabrics.
+And then you have something, and it's
+called very often differently in the different marketing
+lingo and in the different companies.
+It depends a little bit to release the white paper.
+But everything where the user connects with the data center
+is called the front end, and everything
+where you have basically your GPU to GPU communication,
+those kind of things, referred as a back end.
+What you also see on the slide indicated by the colors
+is basically that you use a different technology.
+The front end is basically maturity, ethernet, everybody,
+what we do as an industry for the last 20 years.
+On the back end, and for the people
+who are potentially familiar with HPC clusters,
+they know this technology quite well.
+This is driven by Infinity Band and Infinity Link,
+because, therefore, everything is about connecting
+GPU memory to GPU memory.
+You want to write from the memory from one GPU
+to another GPU, and you see that.
+So this breaks your technology domain,
+because at a certain point you realize,
+well, I now have two different competing
+transporting technologies in my data center.
+How do I deal with that?
+What do I do with that?
+And how I even manage all of that.
+And then you want to go from there,
+and sorry, the contrast does really
+look that more smart to this.
+And that's basically the goal of this kind of presentation,
+because the transforming technology
+to replacing Infinity Band in the back end
+is called ultra ethernet.
+Because I will talk a little bit what do you need for that,
+and what are the semantics of it,
+and what are the driving factor.
+Just to outline a little bit, once you solve that kind of puzzle,
+that's basically one of the most final stages you can reach.
+Each of the bar is representing a single fabric by its own.
+In most of the cases, that's how a typical AI-driven cluster
+architecture going to look like, where you have front end
+management storage totally separated.
+So each of them has their totally independent fabric.
+And then you also have the back end architecture.
+Can be based on ethernet, don't need to be.
+But these using also totally different apologies
+for the people coming a little bit from the HPC cluster.
+This is all based on Rails, where you basically say,
+everything is a single hop away.
+Very important.
+But this more is a reference.
+What is ultra ethernet?
+Ultra ethernet is basically a consortium of various companies.
+They came together and say, OK, let's try to agree
+on a common standard on the overall evolution of ethernet.
+And let's try to define it.
+And let's move ethernet as a standard to the next level.
+You see a lot of different logos in there.
+I mean, it's mainly driven by all the different OEM vendors,
+transport vendors, compute vendors, trip vendors.
+So there seems to be a kind of consensus.
+The interesting thing is, even if it was set up initially
+to compete with NVIDIA, because InfiniBand is licensed
+by NVIDIA, and that's the only supplier on the world
+who gives you that.
+They are part of the ultra ethernet consortium,
+because obviously they want to listen,
+and they want to see what's going on,
+and they want to potentially compete.
+Why is this even relevant?
+And what's the problem we try to solve?
+So if you see typical HPC clusters, or AI clusters,
+they are all driven by GPU to GPU communication.
+So you basically write part of your shop from one GPU
+to another GPU.
+That's called Remote Memory Access, RMA.
+And what you basically want to do is,
+you write straight into the memory,
+and you bypass any kind of kernel, any kind of OS,
+because it needs to be really, really fast.
+And just once the information is delivered to the GPU,
+the drop can start, you do all your calculations,
+you finish the job, you give the results back.
+So you want to have really fast drop completion times,
+and the way to do that is GPU to GPU.
+There's one standard, or kind of protocol,
+which is called RMA over IP.
+But people said, hey, yeah, infinite band is fine,
+but I want to at least want to have the same transport layer,
+so please keep at least my IP.
+So you basically do it via RMA over IP.
+The standard for that is converged Ethernet V2,
+so rocky for the people who can follow that.
+In contrast to that, you have the Ethernet ecosystem,
+so everything is almost there, right?
+You have your tooling, you have your operational experience,
+and you know what you do.
+But nevertheless, there's some of things
+where the current implementation of RMA wrecks.
+You don't really have the possibility
+to have multi-passing in the system,
+so it's a very concrete pass everybody needs to follow.
+And there is really a fine,
+or you cannot really have the possibility
+to deliver unordered packets,
+so everything needs to be either in the right order,
+or you need to buffer it, and it's very hard to do.
+I will skip about that one.
+It's just for marketing.
+The focus of ultra-essentities days
+is the entire scale-out scenario,
+so basically you have multiple wrecks,
+and you want to combine that together
+in the single data center.
+There is some references which call scale-out
+between data centers scale across,
+but I will skip that for today.
+One of the goals, and you already see that they try
+to address some of the shortcomings
+from the current RMA implementation is
+we want to have multi-passing,
+so we want to have the possibility
+to use multiple routes.
+We want to have a little bit of congestion control,
+so in case something is either stock,
+or I want to signal any kind of congestion,
+I want to have mechanisms in place,
+we'll do that out of the box.
+I want to at least try to get it looseless.
+I don't want to have any kind of retransmits,
+I don't want to have any kind of lost packets,
+or lost frames.
+So let's try to get that as looseless as possible
+and implement it.
+There is also the goal from a design perspective
+to integrate security, but to be fair and honest,
+as of now, there's not much which happened yet.
+So basically the people come together.
+We as Nokia are also obviously part
+of that kind of consortium and have a contributor.
+All of those kind of references,
+you see it right here, the sources are already there,
+so I just give you a kind of quick dump of the reference sheet,
+what this is all about and how all the different pieces
+belong together, but what they have basically done is they,
+these are the kind of different layers
+we need to talk about it.
+There are some of the important layers
+and some of the less important layers
+I will highlight in the next slides,
+because the maturity of the innovation
+and the maturity of the changes are done in the transport layer.
+And for all the people who are quite familiar,
+which I assume the entire room is, with Ozi,
+I mean, it's exactly the same kind of layout.
+You have seven different layers for us, the transport,
+and then what you do.
+What you see here, there's a big difference
+because inside transport, there are two categories
+which are now part of it.
+One is the so-called packet delivery.
+So that's all about how to move packets from A to B,
+how to deliver them and how to make sure
+that we get this kind of looseless operation
+and we get towards the goals.
+And the other one is congestion management.
+So if I really get stuck,
+it really happens something, what to do about it, right?
+That's a really nice one
+because this indicates basically what you reuse
+from existing technology and what you change.
+So as you see here, the green,
+these are the kind of stuff which already existing, right?
+There's a software layer for the people
+who are coming a little bit from AI and so on.
+This majority of the cases, it's either nickel or wrinkle,
+which is just the four of nickel,
+but it's a de facto standard.
+Then you have the transport layer.
+That's absolutely the blue stuff
+where the maturity of the innovation and change
+actually happens.
+Then you have the network link physical,
+but you see a lot of green stuff which just exists
+and which is augmented by optional stuff from the UEC.
+But that's not really super critical to make it work.
+How it works, so all the sub layers
+are basically inside there from a stack perspective.
+So the usual stock we, as an industry,
+try to tend with every new kind of thing.
+We built just another envelope.
+We built another encapsulation.
+And since IP UDP is cool stuff,
+then let's use that as our transport
+and put all the other stuff on top.
+That's what you also see here.
+So we have basically a normal Ethernet frame,
+with an Ethernet header, IPv4, UDP,
+and then all the blue stuff,
+which is ultra Ethernet transport,
+starts to come in and you have the different layers
+right over there,
+which basically stops within FCS,
+and then you get forward.
+That's very important,
+because this allows you basically to reuse
+same what you do with EVPN,
+VXLUN, and normal forwarding based on IP,
+from a control blame perspective
+and just put a stuff on top of it.
+This is very important,
+because where you see all the different innovation
+right now, from a packet delivery subsystem.
+So what they basically say is,
+we have from the software layer here
+indicated on the left side of the slide,
+to the hardware layer here indicated
+on the right side of the slide,
+this is how the packet will flow inside the system.
+I will not go into any kind of detail,
+because it just should give you an idea
+on how to group things together,
+because now obviously transport,
+congestion management, and also security is one piece together.
+And everything is done on exactly the same header.
+This is just a comparison on Rocky V2,
+so what you said before,
+this is the kind of protocol.
+And as you see here,
+IB stands for InfiniBand.
+So that's what they basically use inside,
+to make that protocol of work.
+And one of the goals is to simplify that a little bit
+with UET transport,
+and you have there the possibility
+to use inside the R.D.M.A. layer,
+which modules that.
+Now coming to the kind of not so trivial part
+from a networking perspective,
+because what we said before,
+everything was flow control,
+and order was very important.
+These days we skipped that completely,
+because what you introduce in the packet delivery subsystem
+is basically four different transport modes.
+And out of the four different transport mode,
+the unordered is the one
+where people get really excited about.
+Because you don't really want to take care anymore,
+if packets are in order,
+and if they need to be stored,
+or if they transport it in the right direction.
+We want to make use of the unordered stuff
+as much as possible,
+and you see that it's basically the,
+I would say almost the de facto standard,
+and a lot of implementation rely on that.
+What's also very important,
+we now, I mean we had this before in the industry,
+we need to identify the packets.
+So what we basically do is we stamp each of them,
+and everybody gets a kind of sequence number.
+We will reuse that later on,
+because what you can do,
+if you can identify the packet by a unique identifier,
+can basically say out of the flow,
+I don't care that much,
+but just give me that kind of piece of information back,
+just recent that particular piece outside of the protocol,
+which is very important.
+Also from that regards,
+there's a difference between basically
+byte stream based or flow control,
+and the best explanation is basically,
+if you think about in the traditional kind of fabric,
+that's what you use in front,
+and you would always use flow.
+You basically have your neck, you have your switch,
+the switch says this is my table,
+I build a hash on this kind of flow,
+I build my next top, and then fire and forget.
+And everything which matches this kind of flow,
+follows this kind of distinguished path.
+We don't do that anymore.
+So we take a nick and basically say,
+take all the ports you have,
+and start to sending all the different packets
+across all the available ports.
+This is basically roughly referred as packet spraying,
+where you say whatever comes,
+take one free link, shout out the packet,
+and send it to the destination.
+Another packet delivery principle, which we said before,
+you basically use the identifier,
+you're using the sequence numbers,
+and basically said, hey, I want to simplify all of that.
+One way would be from a traditional three way handshake,
+what you establish, we eliminating one.
+So you basically sent that with the first packet,
+similar to what you do with other protocols,
+and you see some of the technologies for the people
+who follow a little bit higher stack protocols like quick,
+and so on, some of the ideas are also reused here,
+and brought down to ease on that.
+It's quite similar from a technology perspective.
+This is something I already discussed before,
+where you can do a selective retransmission.
+You don't really need to say,
+I want to get the entire flow back,
+I don't want to get the entire packet back,
+I just want to get this particular piece, right?
+Please give it to me.
+It's highlighted before, and this is just a usual representation
+of a flow chart where you can say,
+well, how this packet string really gonna look like, right?
+Think about, on the left side, there's your switch,
+and these are the different packets on the wire,
+which you can utilize, right?
+Versus, I use whatever comes,
+and I don't care about order.
+And one of the technologies, which allows me to do that,
+because obviously people would say,
+well, if I don't care about order,
+how to make sure that the receiving side
+can even work with that.
+But think about the use case again, right?
+What we want to do is,
+we want to write from memory of a GPU
+to another memory of another GPU.
+So what we also do inside the header,
+we just give it straight the GPU address.
+So therefore, packet order don't matter anymore at all.
+You basically have a direct target
+where you just write,
+think about an envelope street address
+where you deliver every packet,
+and the job of the GPU will anyway just start
+if the last packet will arrive, to be complete.
+So order don't matter in backend fabrics anymore at all.
+This is just an highlight where you see,
+there is a little bit of ideas from the community
+and so on where you say,
+well, if I really need to reorder,
+if flow-based is really a thing,
+and I want to reuse this kind of technology,
+this job will be pushed to the NIC,
+and there where you see a lot of,
+for people who follow a little bit, the NIC market,
+and so on, there's a lot of innovation,
+like Tor from Broadcom,
+where you basically say, okay,
+the major difference between normal NICs
+and this kind of NICs is just the amount
+of buffer and queue sizes,
+because you need to store all this kind of stuff
+in order to be able to reorder.
+We talked a little bit about congestion management.
+As you see, there are two very important things
+where you say, okay, how to deal with congestion
+in case it will occur.
+One of the goals is to avoid it as much as we can.
+So therefore, there are two technologies
+fully integrated into Alt-ray Center.
+One is basically where you say,
+I want to have the possibility to react on the server side.
+So if I feel, hey, I'm gonna guess shit,
+is there a way to signal back to the originating sender,
+hey, I have a problem, I either run out of queue
+or I don't have a problem to deal anymore,
+and there are multiple technologies
+integrated right over there.
+The most common one uses Econ,
+where you basically say, I have a way
+from the receiving side to the sending side
+and say, hey, I run out of queue, please stop sending.
+And so those kind of messages are very important
+because they will traverse back from the receiving side
+to the server side.
+And you can also use these in the immediate hops.
+There will not be that much the case,
+because again, like I said before, if you have a rail,
+it's only one hop.
+There's only one switch port in between the GPUs,
+so therefore it will be a receiving and resounding story.
+But Econ, very important to follow up,
+that's the kind of technology which needs to be supported.
+The other one is basically where you say,
+why not giving out the start of every conversation kudos?
+Everybody gets 10 credits.
+If you send me a packet, you burn one.
+If this packet comes to the other side,
+I give you back one, because now you have another 10 packets
+and you can send.
+As soon as you run out of packets,
+it means me, as on the receiving side of the house,
+haven't received the packet and you don't get anything back,
+so you cannot send it anymore.
+So that's an implementation which is also implemented
+very much and both of this kind of mechanism
+are used in peril.
+What are we trying to achieve?
+Very easy.
+And that's basically if you look into the InfiniBand problem,
+that's how it looks like.
+That's how you what you can consume
+and the idea of the ultra Ethernet consortium
+is basically that we go in and say,
+it doesn't need to be Nokia.
+And to be fair and honest, in a lot of those kind of buckets,
+we are not even present.
+But we want to give you as a customer options.
+We want to discuss about consumptions
+and everybody can build their own ecosystem
+and everybody can own build their own pieces
+and puzzle out how to bring things together.
+That's the goal of this entire technology
+and how to do that.
+And what we also believe really strong as a vendor,
+and this is most likely the only marketing slide
+I really have without calling it out,
+we strongly believe in Ethernet because, as you see,
+I mean, there's a lot of things which come over time
+where we boosted up Ethernet as a technology.
+Coming from switching, going to routing,
+having integrated timing,
+having things like Synchronous Ethernet,
+having another mechanism to do quality of service
+on top of it, so therefore,
+we really believe that Ethernet is here to stay.
+It's a technology which gives you choices
+which has the product ecosystem right now,
+and where most of the people have the skills to operate it.
+And Ethernet will also scale.
+I mean, if you look right now,
+we have bandwidths which reach
+closely 1.6 tera these days in a single interface,
+so therefore, it will be ready
+and it can power up the data center of the future.
+And now, that's the end of my talk.
+I'm happy to get any kind of questions, feel free,
+and I hope you get some kind of impression
+on what the future might gonna look like
+with Ultra Ethernet.
+Thanks.
+(audience applauding)
+- Thank you for this very interesting talk.
+Are there questions?
+- Stefan, yeah, private person.
+Is there any interoperability lab in Europe
+where you can test this stuff?
+- Yes, there are, I mean, first,
+there are a bunch of implementation from different vendors.
+There is a goal to do it in the next ENTC MPLS concres.
+Nevertheless, we wait for some of the vendors to do it.
+What we have done, which is, sorry, no marketing,
+but it's public press,
+where we did external testing authorities
+with an external tester, and we basically said,
+this is the 800 gig connection, I'm pleased tested,
+and the results are quite interesting
+because the overall job completion time
+and the overall performance was even better
+than this RDMA, Rocky V2.
+- So, Stefan again, you mentioned IPv4 and IPv6
+and one of the slides, which was a prepared one.
+- If you ask me personally, IPv4
+is not even a discussion anymore.
+- Thank you very much for this awesome statement.
+Please a warm applause for this talk.
+Thank you.
+(audience applauds)

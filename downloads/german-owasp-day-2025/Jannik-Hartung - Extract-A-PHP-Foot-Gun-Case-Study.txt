@@ -1,0 +1,153 @@
+API URL: https://api.media.ccc.de/public/recordings/93586
+Frontend URL: https://media.ccc.de/v/god2025-56486-extract-a-php-foot-gun-cas
+Title: Extract: A PHP Foot-Gun Case Study
+
+All right, so welcome to the next session.
+This will be presented by Anik, and he even got the best paper award for his research
+at Woot.
+So you're going to see pretty cool research in this talk, and I would say he's also real
+hacker because he's developing Pwn tools and was in the left concity of finals twice.
+So that's quite an accomplishment.
+And with this, the stage is yours.
+Thank you.
+Yes.
+I'm here to talk about one function in PHP.
+It's extract.
+This guy already talked about me, so I will skip this one.
+it. You might wonder why focus on one function in a language. And the idea is kind of simple. You scroll through the documentation and you find random functions in the standard library and you can look at any language but we chose to look at PHP. And then there's the description of how to use the function.
+what it does, but some functions have an additional warning on the page. Like this one, I just put it in, it says warning, do not use extract and untrusted data.
+And we were like, why not? What would happen? What could go wrong? And would people actually use extract and use it and untrusted data and thus not read the documentation?
+you think about writing software you might not really look into this documentation but just the code completion or something. So maybe you won't even see the notification or the warning. So we were hoping to find stuff and to understand this function then we first have to understand what it kind of does before we can go into the details on how to exploit it.
+the data. So we can do that.
+So we just access the local variable key one in this example, and it would still output the value that was originally in the array. So now we can see that this is kind of less typing, I guess.
+So you could use it to pass multiple variables in one variable and still use it as variables afterwards.
+It kind of leads to the question, what happens if the variables already there? So we already have a key one variable in this case here. What would happen?
+And extract actually has multiple modes of operation. The default one as in the flags parameter here is to override the existing variables.
+And you can change this behavior. So in this example we have one variable already defined key one to some value. Then we have an array which has a key one key two. So it could change the value that's already in the variable.
+Now we can kind of have a look at how this would play out with different flags. So the default is override. So we just replace the value and it will just show the new value that comes in the array.
+Then we have the other one, the skip flag that skips any variable that's already defined. So now we still have the old value in that variable.
+And the other way around we can say we only want to change variables that are already there. So now the key two variable is not defined at all so it doesn't have a value.
+And there are more flags and they involve the third argument to extract. It's the prefix one. And when you use those flags the variable name is prepended with the prefix so it's not really that easy to overwrite arbitrary variables. So we won't look at that too much.
+But now this is just explaining how extract works. Where's the problem? The initial warning was about user input. In PHP you usually have HTTP requests and the get or post parameters passed from the request are accessible using this underscore get variable for example for get request parameters.
+So if we would have an application like this where the user input is just put into extract, what could go wrong?
+You can see in this code example that we just used the guess and secret variables. The secret was defined before the extract variable, the extract call.
+And the guess variable is just not there before but it comes out of the request hopefully. So usually you're supposed to not know the secret.
+You can think of this like a little CTF challenge and you don't know the secret but you're supposed to get the correct output and you might just create a request and guess something.
+But that's not correct I guess. And then you try another one or you use this quirk of extract to be able to extract and overwrite any variable and just set your own secret.
+And then you're correct all of the time of course because you can overwrite this variable. And we kind of see that the developer didn't really intend to change the other variable but extract still allows you to do that.
+And PHP has multiple ways to access or control the input sent by the HTTP request. Usually PHP is used as a platform like Wordpress has written it.
+And when you access those websites, the different parts of the request are put into these super global variables.
+Next we always saw before. Now there's posts and cookies. And those are the actual values from these requests requests.
+Otherwise just the first three things combined. So get posts and cookies are all in requests.
+And when you send your own get parameters you always can interact with all the keys and the values. You can set them yourself.
+If you don't have to think about it you can just control it all on your own.
+But then there's this files super global too. When you upload files then there's a fixed structure put into place into the values so you can only define what the file upload is called.
+And if extract would be called on some file thing you might just be able to overwrite a variable but not control what the content of the variable is.
+But it's not just putting strings into get parameters. But PHP has lots of other features to process more interesting forms I guess.
+Like you can put arrays into get parameters.
+And you can just put these parenthesis against behind the same named get parameter and then PHP would concatenate all these values into an array. So now the thing would be an array of one and two.
+And you can go a step further and even put it into like a map or associative array where you put the key that should be the value also in the get requests and PHP would pass it into this structure and actual array of a key value pair.
+So PHP gives you lots of options and possibilities to control all these interactions with the website.
+So now the question is if get like we saw in the example is just put into extract or some subset of the request is extracted.
+What could we actually override in the applications?
+And this question had to be solved not really by hand but we had to automate this.
+So we wrote a static analysis tool to look at a graph representation of the source code.
+You don't really have to understand this graph you just have to see the scale.
+So the left little program is represented by this graph.
+And then you can start looking for patterns on these graphs.
+This is not really a new technique but applied to PHP.
+So we looked first in this graph representation for calls to extract if the application is actually using it at all.
+And then to reduce the load on the search we just start at the extract and go up in the program and see what paths actually reach this extract call and dump all the rest.
+So we kind of reduce the program and the graph to just the interesting paths to this extract call.
+And then we look if on any of these paths to this extract call there are user interactions like the developer used this get variable for example.
+And that way we could reduce the amount of code on that we have to look at to just the actual paths that might be interesting.
+So we scaled this up we looked at around 30,000 CPGs on GitHub on repositories on GitHub and generated the CPG.
+And around 1,300 used extract.
+Repositors used extract and there were around 5,000 calls to extract all of these projects combined.
+Then we used our algorithm algorithm to look at where user input might be involved.
+And there were 43 repositories with user input and in those repositories around 150 calls.
+And those are just calls to the user input so we can't be sure that those are vulnerable.
+So we looked at this smaller number that would be manageable by hand. So we looked at the repositories and we found like 26 vulnerable repositories with around 110 exploitable calls.
+And this kind of shows that this is actually still used in the open source world. I know this might not really be representable for the corporate world where code is not really sociable for me easily on GitHub.
+But the same tools open source you can apply it on your own code.
+And an interesting detail here is the usage of these flags that might be able to make the extract calls more secure.
+In this graph you can see in the blue bars all the calls and which flags they used so all 5,900 calls.
+And the orange ones are just the 146 calls that were involving user input.
+You can see most developers just use extract without bothering with the flags.
+The default value is overwrite so now most people actually just use extract without thinking about any flags or any overwriting semantics.
+But on the other hand you kind of still see too that if people use user input they start to use the flags more too.
+So there are developers out there who actually think about the correct usage of extract.
+But still most of the people just use the default value without any flags.
+Now to go into more detail and get it more into actionable things and patterns to look out.
+I will go into three little snippets of the exportable calls that we found in these open source projects.
+And I will walk you through this. This is a slide with code.
+But this is one of the vulnerable things that we found.
+And this already lets us derive lots of patterns.
+When we first look at the lower part of the code we see that the developer tried to avoid SQL injections by using prepared statements.
+This is honorable and this is good for the security standards.
+So the developer already thought about security while writing this software.
+But then at the top we see that extract was used just on post two.
+So now we can start thinking about what we could change in this code.
+So now when we look below at the line where the actual scale query is, this table variable is just concatenated and not using the prepared statement syntax or any escaping.
+So now we could just add another table to the request and then this would allow us to delete any other thing or like all the users in this database.
+And the developer didn't intend you to actually change the variable at top.
+So the table variable wasn't really in scope of thinking what should be protected.
+But you were still able to do it because extract just allows you to do anything with the values that you provide.
+And the next step is to see that while they actually still extract the post variable, they still use the post variable as an array.
+So this kind of shows that this code was touched probably by multiple people.
+And one person liked the extract call once and the next person implemented another feature and they didn't really know what extract was about and didn't use it.
+So they accessed the variable a different way.
+So this is like code growing over time without people actually knowing what every line does.
+And this is a problem with legacy code all the time, of course.
+But this one, this example is just working with the local variables that the developer intended to just define themselves.
+We can change the table variable.
+But PHP has other variables that are just there all the time.
+And another example is here, we talked about the super global so already the posts and get variables.
+And this example uses extract and get again, insecure.
+You can change any variable but not just the variables defined by the user but by PHP itself too.
+So here you can see that actually you should send a post request to enter the second clause, the second if clause.
+And we can actually reach that by just adding a post variable to our get request parameters.
+And then when we do that we can reach this one with the get request where you can actually change the underscore server variable which is just a global array which contains all the PHP server configuration that you're not supposed to change.
+It's what the server fills in and the user shouldn't change it ever but we can replace it and override it.
+So using a get request we can set a post parameter and replace the server request URI to some other website that we control.
+So this is like a phishing scenario, we have an open redirect this way.
+We can send a link to a victim which looks like a legit link but if it clicks on it the browser redirects to our page.
+And there are more super global that we could look at and it's not just a post but there's this session one too.
+And this is really interesting because the session is a feature in PHP which is persisting information over multiple requests, uses a cookie.
+And if the same cookie is sent again you get the same data in the session object again too.
+So the next example uses this session thing where we can see here first there are some initial values put into the session then extract is called and then some logic happens.
+And now we can see that there's a possibility to delete users but it's gated by this session admin check.
+And now we can just set this session admin flag in our request and this would pass.
+So now we can actually see the page as an admin because we just evaluate.
+Yeah we made ourselves upends.
+And the interesting thing here is that this is stored so now when we have a extract call on one page and it's actually not really interesting what the logic is afterwards we can set ourselves to admin.
+And then on another some other request with the same cookie that we used before we're still admin and can use the admin panel in some other way.
+So this is a privilege isolation problem.
+And when we look at the overall or watching results that we had here we have a vulnerability count way larger than the actual vulnerable calls but that's because one extract call usually has lots of code afterwards.
+And you're able to reach paths or multiple paths is just one extract call so most of them had this reflective access that some variable was output back to you.
+And on this other side lots of applications had this privilege escalation problem where you could set the session variable and that would just translate to other pages too.
+You might think, well this doesn't really bother me this is so just some random old function.
+Nobody nobody uses this anymore right.
+But if you look at the graph here you see the year of the last commit in the repositories where we found these vulnerable calls and they are still actively adding code today so it's not really a problem of the past but legacy code bases still use this feature.
+You might not use it consciously they don't remember that it's in there.
+So how could we go about this and mitigate this.
+We have the option to just remove the function that would be easy but there are more use cases for this function than just what we looked at and you don't have to use it with user input and then it's okay to use it of course.
+On the other side PHP is really hard on backwards compatibility so you're not supposed to just remove stuff but maybe we can change it to be have to have more default as security faults.
+And the idea is that we can just restrict overwriting the super globals so this whole privilege escalation vector is gone and you don't have to worry about changing these steps in your or watching out for these steps in your code so you can override the local variables
+of course but that's not the actual most of the privilege escalation were not about local variables but the super globals.
+And the interesting thing there's this globals variable that's already filtered in the code but all the other super globals is not.
+So maybe that same logic why that one was added could be used for the other ones and everyone would be safer from these vulnerabilities.
+And another idea is that the core problem of the vulnerabilities that an attacker is able to override random variables that the developer didn't intend to do.
+So we could add yet another parameter to extract that would allow the developer to specify which variables are expected to be changed and all the others would be ignored so you couldn't just inject random stuff.
+And now I come to the conclusion what should we learn from this.
+So well yeah the documentation already told us we shouldn't use PHP extract on untrusted data.
+Because there are very many ways to exploit it because you have control over the whole variable space in this area of code where the function is called.
+And as we saw in the actual exploits most of the time the super globals that are expected to be not writable by the request attacker should be protected in a more general fashion to not have people step on this foot gun.
+And what you could do is check your code for legacy functions. I don't know if you all do PHP but there are lots of deprecations all the time and maybe it's better to actually go through the actual code to have less attack surface for all these kind of old vulnerable code that might still be around but you don't really know why it's there.
+And that's it. Thank you.
+[Applause]
+[Applause]
+[Applause]
+The question was if the static analysis tool that we built is actually able to look at these different request paths with multiple sessions and multiple entry points and no that's not on the tool but usually the actual paths where the extract might be called are not that many in the application.
+So you can see if it's possible to overwrite the session that way and then it's usually bad so yeah.
+[Applause]

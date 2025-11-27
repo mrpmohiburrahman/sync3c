@@ -1,0 +1,699 @@
+API URL: https://api.media.ccc.de/public/recordings/93477
+Frontend URL: https://media.ccc.de/v/godotfest2025-raytracing-is-simple-for-2d-games
+Title: Raytracing is simple for 2D games!
+
+(soft music)
+- Next up, we have Janus Yago.
+- Yes.
+- He's the creator of "Blastron Out"
+and has also some of you struggle
+with using nice lighting for 2D games.
+As you might use them for 3D games,
+I think Janus has a cool tool set
+that will help us make 2D games more dynamic,
+especially for lighting.
+And I'm looking forward, I hope you too.
+Yeah, have fun and thank you Janus.
+- All right, thank you very much.
+Hello everyone.
+Thank you.
+So I'm pleased to be here
+and thank you for inviting me again.
+So last time, I was here 2 years ago,
+where there was Kotokon.
+And then I was making a little presentation
+about a demo scene that I made.
+Maybe you have seen this abandoned space of demo scene.
+The recording is also alive.
+You can recheck the video about how I made it.
+But since then, I haven't actually worked on 3D much.
+I still have a game to finish the "Blastron Out" game.
+And therefore, I've added some cool effects to that
+and made this new talk about 2D effects.
+So the name of the talk is Ray Racing,
+it's simple for 2D games.
+And I really, my goal is to make it really simple for you.
+And let's see how it turns out.
+But as I said, there is all the parts about 3D
+in Godot, all the new lighting effects
+are mostly coming for 3D.
+So I think we should really give the 2D games also,
+some love, and try out some Ray Racing on 2D.
+So first of all, actually,
+these lighting systems are not even too new.
+Already in Godot of 3, there is this cool
+dynamic lighting system, where you can have dynamic lights
+and nice soft shadows.
+And these are multiple, like, four layers of shadows,
+but it runs really fast.
+Like 2.5 millisecond fast.
+And this is on my laptop that's on power saver mode.
+And as integrated into graphics,
+so if some of those frame times are not too high,
+it's not necessarily the issue of Godot or its performance,
+but it might be my mistake or more over my pretty regular hardware.
+But this runs fine, and it's pretty easy to set up.
+So you just add points of images or shapes to the other scene.
+And to those images and shapes,
+you add light occluder nodes underneath.
+These light occluder nodes also need to get the shape,
+and this process is a little bit tedious.
+You need to copy it from the original shape and paste it,
+but it can be added.
+It can also be added for tile mops and yeah.
+So simple, great.
+And then points of light sources,
+everything just works out of the box, nothing else needed.
+Now, since Godot 4 came out already quite a while ago,
+I found a post from 2020, from Redus,
+that was that Godot 2D engine gets some several improvements
+from upcoming 4.0.
+And the main headline improvement
+was 2D signed distance fields.
+And these articles also know that they encourage the community
+to take a good use of it and see what they can do.
+So in this talk, I'm trying to fulfill this promise
+and see what we can do with this signed distance field.
+So what is a signed distance field?
+It's pretty much a representation of a distance from any shape.
+And this signed distance field is created in Godot 4
+for those occluder polygons.
+So and this is automatically done.
+You just need to use it so it takes effect.
+So on the signed distance field, this is the same scene,
+this is the same shapes.
+And on the edge of the shape, it has distance values of 0.
+There are also negative values inside the shape.
+And the positive values, the distance values
+are outside the shape.
+And these values are really like the distance,
+but in pretty much in pixel scale.
+And this means that it goes to infinite,
+pretty much whatever size it is.
+But just to draw it on the screen,
+we need to clamp it to the certain range.
+So this is how you do it in cedar.
+That's a cedar.
+I've added a new canvas layer and a color
+rects under it, full screen color rect with the cedar.
+And all the upcoming examples are the same way.
+Just the full screen color rect with a specific cedar.
+And this time, what it does, it has this parameter.
+Then it converts to the screen UV coordinate
+to the distance field coordinate.
+This is necessary because the distance field does not actually
+need to match the screen one to one.
+In cedar, by default, it's rendered a bit larger.
+So you can also sample the distance outside the screen
+and can have nice effects that scale nicely.
+And then here, this value is sampled from this new coordinate.
+And I will divide it by the cutoff so that it's transformed
+between scale 0 to 1.
+So everything above the cutoff is just clamped white.
+All right, easy enough.
+There is actually another pretty cool function
+built into it as well.
+It's the sign distance field normal.
+So as you can see, you can also sample the sign distance
+field from the normal location.
+And if I play into the normal, it pretty much
+tracks you towards the closest stage as well.
+So it might be pretty useful to optimize these algorithms
+later.
+So that we also don't know only how far the HIs,
+but we can also know pretty much exactly where
+the closest HIs by multiplying the normal with the distance
+value.
+Maybe I will use it later.
+And maybe not, we will see.
+So what can you do with it?
+So some very simple things that we can apply.
+We can create ambient occlusion effects.
+So what it is, I'm just sampling the sign distance field
+here, and then smooth stepping to a certain desired range.
+So I'm just taking a part of it that's outside it.
+Smooth step is a really useful function in shaders.
+It's almost like mixed function, but it's smooth.
+It eases in and out.
+And here, what's going on, I'm taking it two times.
+First of all, it's between the width and zero.
+That's the out rate.
+And then also, I'm subtracting the inside values.
+So it doesn't throw the outline on top of the graphics,
+like so, and blending it as well.
+And otherwise, I'm just adding in to top of what's
+ever rendered.
+And some of you might ask, well, it's not ambient occlusion.
+It's like drop shadows.
+Or if I color it really bright, it's like outer glow.
+But really, in 2D, these are the same thing.
+If you just zoom it out, it has a nice shadows,
+nice occlusion to the edges of the geometry.
+So that's why I'm calling it like that.
+You can expand on it, throw outlines.
+Like outlines.
+Quite simple to draw, you just sample the points around.
+However, if you want to draw really large outlines,
+it can get to be tricky.
+And you need to do a lot of sampling.
+So that doesn't work out so well with just sampling
+the local neighborhood in shader.
+However, since we have distance fields,
+we can just sample it and smooth step it so that we
+have this kind of outline shape.
+And yeah, we can go to cool effects with it.
+Maybe really, really give it color.
+We can draw the outlines on top of the mesh.
+Increase its frequencies.
+Playing around with shaders is pretty cool.
+I recommend everyone to play with their shaders
+and see what happy accidents can happen.
+So yeah, about the performance as well, a little bit.
+You see that the performance has cranked up
+to almost 6 milliseconds.
+This is because sampling, the sign distance field,
+itself is fast, but as you sample the first time,
+it actually also needs to generate the distance field.
+And this might take a little bit of computing power.
+It has this cool jump floating algorithm to generate it.
+But it needs to pretty much throw the screen
+a couple of times.
+It's fast, but it takes a little bit of performance.
+So now, let's get to this original example provided
+by this code or blog post.
+And this is exact code that was given there
+to generate this nice angled shadows
+on behind your meshes.
+I'll just copy and paste it here.
+So what's going on here is we need
+to find the closest stage.
+And we need to find it to a certain direction.
+And since we have a certain direction,
+not just the closest stage, we need to find--
+we need to something more complex.
+And the system that's used is called circle or sphere
+tracing, depending regarding whether you do it in 3D
+or 2D space.
+And pretty much you can find any edge in any kind of image.
+You even don't need a distance field.
+If you just do ray marting, pixel by pixel,
+mart throughout the scene until you find the edge.
+But obviously, it won't scale very well.
+And it will not give you the best performance.
+But having the distance field available
+allows us to do it much, much more efficiently.
+So use this circle tracing, which
+means that at any point on this ray mart step pretty much,
+we can always really move to the distance
+of the closest geometry.
+So since we can sample what's the distance in this point,
+we know that at least by the distance,
+we can sample because--
+and we won't hit anything else.
+And then it continued until, eventually,
+it reaches the final geometry edge.
+Yeah, it's much less samples, but still a few.
+And this is how it's done.
+As you can see, in principle, it's pretty simple.
+It just sampled the distance fields.
+So let's take a look at this code.
+First, it just defines the direction vector.
+So from the angle, it multiplies by pi.
+Nowadays, we know that there is also a building constant for pi.
+So I can replace that.
+And then this pretty much moves you
+to the radians where the sine and cosine functions
+are operating.
+And we have a direction vector, a unit vector
+with the direction input.
+We also can sample the starting where
+our starting distance field position is.
+And then start accumulating the distance as we step.
+So in a while loop, it steps.
+In every step, it samples the distance fields
+and adds this distance to the accumulation.
+Until the distance that it finds is smaller than the threshold,
+it has hit inside the mesh where it breaks and returns
+the accumulated distance as the one that's gathered.
+And here we can also see what the ray marching really means
+or what using the ray is just this unit vector.
+And we multiply it by distance and always
+add it on top of the previous coordinates.
+And this last part is just to not throw the distance field
+inside.
+Note that this one inside the geometry.
+So pretty much the same thing that we did earlier with our example.
+So yeah, when you're working with shaders,
+usually you're thinking the opposite direction,
+not how the object occludes the distance,
+but instead we just take a pixel and see what occludes
+this pixel.
+So in this directional shadows, we just
+have one direction where it samples and finds this distance
+field.
+But if you want to create something like ambient occlusion
+or ambient light, we pretty much
+want to sample all the rounds, the pixels
+so they can sample in all directions.
+And then we need a method to do it.
+So here is the base of my own function.
+It's in some step a little bit simpler
+so that it also here creates the ray as it did before.
+And then in this case, I don't specify the maximum distance,
+but instead the maximum number of steps that are allowed to do.
+In certain way it's less optimal, but at least it won't allow us
+to mask some performance issues.
+So it's basically the exact same thing.
+I am sampling the distance fields inside the step.
+And checking if it has hit something,
+if the hit occurs, I've just set the radiance color to 1.
+And return.
+And if not, then I will increase the position by the step
+and moving on to the next trace.
+Yeah, that's pretty simple.
+And by changing the max step, we can also
+see that there is a certain threshold where there are too few steps.
+So the sphere tracing won't reach the actual geometry
+when it's too far away.
+But it pretty much gives you as a good view
+of how many calculations are done.
+In this case, for every pixel, 46 steps.
+Good.
+So let's expand on it.
+And I really hope you didn't mind my little silly
+indentation here.
+It really holds my slides together.
+Since the next slide, we can see what has actually changed.
+And the next step to improve it is just to add more rays.
+So I define a number of rays, we want a trace.
+And to do that, so we have the ray count.
+I also calculate what's the angle between the different rays
+of the-- by having this tau over ray count.
+Tau just means two times pi.
+So it's like a full circle.
+And I have added this outer loop that loops over the ray
+count in this case.
+It also breaks early if the distance field is inside the mesh.
+So just to see it a bit better.
+And then I calculate this exact angle
+by multiplying the step value by the tau of ray count.
+And we have the internals have remained the same.
+Just in the end, I'll sum up all the radians
+and divide it by the ray count.
+So I can clearly see how many rays it has.
+And as we can see, now it can get pretty slow.
+For like 100 rays, it already takes 70 milliseconds.
+And this is still in double digits,
+but reading single digits, digit speed.
+And increasing the max step won't help it either.
+So we need to find some performance optimizations.
+But first, let's optimize the look,
+because our surfaces are not all white.
+Instead, what we can do, we can sample--
+instead of just adding white color,
+we can transform back to the regular UV space
+from the after the ray marked as finished.
+And get where the ray ends.
+And then sample the screen texture.
+Yeah, we have this screen texture here as well.
+And what was actually thrown the color on the background.
+And yeah, that works well.
+And now it starts shine already pretty nicely.
+But I've also summed up the number of steps
+I'm actually making in each position.
+And if I crank it up, you can see that it's pretty white,
+which means it does the maximum number of steps.
+So in this case, when the color is white,
+it does 42 times, 32 samples in for every pixel.
+So quite, quite a lot.
+And by cranking it up, I can thank the FPS again.
+It's always fun.
+Yeah, but I think the more critical issue to worry about
+is that at the moment, the age that we are detecting
+is kind of-- it's not the exact color.
+It's a little bit noisy.
+And that's because while the ray marching ends us,
+usually, exactly on the age of this surface,
+the age is oftentimes idealized.
+And the background also bleeds in.
+So a simple fix to it is just, once we have restate,
+we had a little extra buffer, like two pixel lengths.
+So that we are actually sampling inside the light source
+and not from the middle of summer.
+That's one thing.
+Another thing is that it's hard to see.
+But if I set the ray count to 3, it's actually visible.
+Not really well is that those lines are actually
+a little bit bubbly.
+And that's because I'm still previously
+just accumulating the starting position.
+And it has those floating points errors
+when I just always, always adding a certain distance
+to the starting point.
+So instead, we can do it a little bit differently,
+a little bit better.
+We can just keep the starting location at the same
+and accumulate the floating distance.
+So this will get rid of those floating points,
+accumulative, like errors.
+All right, so now looking pretty good,
+let's get to the next step and see what
+bears the main performance issue,
+because it's still pretty white and does a lot of samples.
+And in this naive approach, what actually happens
+is that for every ray that's going outside the screen,
+it just goes infinitely as far as there are steps to do.
+So and usually pretty far.
+So what we can do, we can transform the screen
+UV a little bit earlier.
+And check is the ray actually inside the screen.
+If it leaves it, then we just stop the ray march.
+And yeah, that's already, as you can see,
+by doing this simple optimization,
+let's crank the numbers high.
+100 ray counts, steps also like 100s.
+It's 6FS, not too nice for my PC.
+OK, I made it too low, so let me restart the demo.
+One moment, please.
+I just deleted the insight, I guess.
+So where were we?
+Yeah, here.
+So once again, let's make it like 100 milliseconds,
+8 frames per second, that's fine.
+I mean, not too fine.
+So putting back in, we are right on the 40 frames per seconds
+mark, so biggest optimization done.
+Not really an optimization, more like my own bug that it
+originally had.
+So all right, that can be doable.
+It already looks nice and smooth.
+And 30 frames per seconds might be OK frame rate for certain
+devices, but I guess gamers probably
+like to have a little bit more.
+So what else can we do instead of just
+ranking up the rays to capture every point?
+And probably the simplest optimization is to noise.
+So we can randomize where exactly we are sampling.
+I hope the noise is also visible on the large screen.
+And here, I have just four rays.
+Everything is exactly as it was in with just four rays.
+But for those rays, I'm adding a little bit of noise
+to the starting location of the rotation, or the rotation,
+so that now it's nice and kind of blends in into the noise.
+And yeah, it runs nice, 60 frames per second.
+No issues there.
+But the noise is still, for me, it's pretty distracting.
+So let's also see the noise.
+This is what the noise looks.
+And I've just found a like some block post node, some hash
+functions for noise.
+If you check from the shader toy algorithms,
+they oftentimes have something similar,
+where you multiply the coordinates by really large numbers
+and then take the sign of it and then the fracture.
+So yeah, it looks like a noise, but it's really not
+a uniform or really not a really cool hash function.
+So you can clearly see that it has some noise in it.
+But that's solvable.
+We simply need to change the coordinate a bit,
+maybe scale the UV scale up out, like 101 maybe.
+And now it starts looking like a nice noise.
+I can't determine any patterns anymore.
+I also had to scale the time.
+Otherwise, if you just scroll, like take the hash of this time,
+otherwise you can see the noise scrolling,
+but if I hash the time as well, then now it
+looks like a white noise, and that's good.
+And yeah, it works, but it's a bit noisy.
+Let's decrease the ray counts as well.
+So what else can we do to really easily improve that?
+And maybe we can use a different noise.
+And to know what other noise is often
+used to solve that such noise issues.
+Well, burning noise is usually very large, like shape,
+and it might look cool.
+But I guess it also has a very distinct pattern
+that's usually displayed in my larger scale.
+So probably not burning noise any other cases.
+Blue noise, exactly.
+So that's regular noise.
+The main issue is it's completely random.
+It has some larger, like darker and lighter spots.
+So instead, we need a blue noise.
+So where can we find the blue noise?
+Blue noise is not a noise that you
+want to calculate in real time.
+It's really slow to do.
+So typically, we need to find some kind of a texture
+to sample it from, so it's pre-calculated.
+And when I search from the Google Blue Noise texture,
+the very first link is from Kalino, from Hugo.
+Oh, cool.
+Let's see what's in this-- who was-- who was a library.
+And it's different blue noises in different resolutions.
+So yeah, just pick one and add you to Shader thanks
+to Hugo.
+So it seems that the open source world is pretty small.
+So let's see.
+Here, I still have four rays.
+Just replace the noise sampling with--
+like, hash function with sampling the noise texture.
+Everything else is still the same, sampling the noise
+texture, and adding some time to that UV value on top.
+And now, overall, we can't see the noise very well.
+If I watch it really closely, it's visible.
+And definitely, if I make a still image of it,
+the blue noise can be visible.
+But it's pretty much so basic for us.
+If I move it right to the left, you
+can probably see some noise now, but maybe not.
+So yeah, it looks nice and almost noise-free,
+because we're using such a good noise.
+And that's what the noise looks, in this case,
+almost invisible.
+So what's next?
+Maybe the performance is still not the best.
+How can we improve that?
+And when I look back on the original profile view,
+then the main issue is where the most performance
+is lost near other surfaces.
+So we don't need to do so many samples when the point is
+far away from the mesh.
+But when the sample is near a surface.
+And that looks a little bit silly.
+It should be like the sampling-- we
+are sampling the point right near the mesh.
+Why does it need to do the most samples there?
+Can someone guess why we need to do most samples
+near our geometry?
+Because the circles are smaller.
+So you have less distance that you cover.
+Yeah, it's less persistence.
+But we are very much should also find it sooner.
+So the actual reason is that we are doing the rays
+in all directions.
+We are also doing the rays on the sideways
+and on top and bottom.
+And when the ray is very close to the surface,
+but not touching, then we need to do a lot of samples
+for this ray.
+Because we can only sample in very short steps.
+So let me see what we can do for it.
+It's a little bit of a hack solution.
+But we can have a specified max step.
+And so when I'm very close to the surface,
+I can make bigger steps.
+Let's see the bog view.
+OK, here it maybe shows it better.
+And pretty much I can see that if I haven't got much closer
+to the surface with my last step,
+then instead I can do a little bit bigger step.
+And as you can see, by increasing the step size,
+it kind of teams down the complexity.
+And it gets much faster.
+But it also has a down side.
+So if the step is too large, it can start showing some artifacts.
+So if those optimization steps are too long,
+then we might miss the surface altogether.
+That's where probably using the normal information
+might become handy to improve it further.
+But to be honest with you, I didn't
+have time to try it out yet.
+So I will leave it up to you as your own exercise
+to see if maybe the steps can optimize even further.
+Now it's pretty fast.
+It runs on my low end laptop with like 9 milliseconds.
+It's surprisingly slow even.
+But it's doable, and we can add it to just add it
+to the background and get the regular limits
+together with the nice global lights.
+But now what you might ask me, or what you were thinking
+about today, is that that's not radiance cascades.
+So you have all heard this cool new features
+of radiance cascades.
+Path of Exile used it, for example.
+Or recently, I think they developed this system.
+So why aren't we using that?
+And the easy, simple solution is that that will go outside
+the boundary of simple.
+So it's a little bit more technical to implement.
+But I can give you a quick overview what it does.
+It uses this little behavior that when we're sampling
+the occluders that are close to the objects,
+then we can do much fewer radial samples.
+And when we are sampling things that are farther away,
+then we need to make more samples,
+but we can do it to much lower resolution.
+So the linear distance of this shadow Penumbra area
+is pretty blurry in there.
+And what it does, it very creatively divides
+these longer rate races and shorter rate races
+into very small resolution, but many long traces
+on very narrow area, and 10 gradually shorter traces
+to the closer areas.
+And plants them together in the process.
+Overall, complexity of it is similar to doing 16 rate samples.
+So same as if I would crank up this parameter here to 16.
+It's still for making the rate races relies on the distance
+field, it's just additional optimization on top of it.
+But with this optimization, it also
+has some sort of artifacts and issues
+that needs to be solved that can have some simplistic distinct
+like halo, halo, around ages, and there are solutions
+to fix it, but these are outside the scope of this little talk.
+However, Godot is not alone.
+There is actually a--
+someone has already implemented it.
+There is this radiance cascade for Godot.
+And you can try it out.
+And get even faster running, like global lighting this way.
+All righty.
+So finally, where my game comes into the system,
+because this example right now was playing around
+with this new Godot for distance distance fields.
+However, I have a little secret.
+The blaston out is still made in Godot 3.
+And I don't have any distance fields there.
+And now it's all a secret.
+It still uses the TLES2, so all the effects--
+I would like to keep that this way.
+And all the effects are relying on very simple calculations.
+So what I did, I begin by also--
+I've wrote this as a ship space.
+And basically, this rate racing works on pixel level,
+where I have two masks.
+One mask is from all the occluders, all the ages.
+And dynamically, I also add the light sources
+on top of this mask.
+And then there is another mask about the background.
+And for the age mask, I want to create these distance fields
+so that I can have this optimized cone racing.
+Now, the problem with it is that when
+I tried the jump floating algorithm,
+it didn't really work really well on TLS2.
+And the problem is that I can't use very high density
+textures, so I can't-- here's like floating point textures.
+And having this eight bit better channel textures
+don't have that resolution needed to run this algorithm nicely.
+So instead, what I did, I just created
+my very simple own distance distance fields that
+just expands like five pixels outside the area.
+And so yeah, I was able to do it in a single pass.
+It's just a few samples.
+And moreover, I am storing the distance field
+in the output channel of this texture
+and the color value in the color channels.
+And what it allows me to optimize a bit
+is that I don't need to sample the color texture separately.
+I can simply sample the distance field texture.
+And when it's close enough, it gives
+me the color in the same sample.
+And yeah, for this pixel-scale screen,
+it was really easy to just draw 100 ends.
+Like even having those smaller steps,
+like five pixels long, was enough to have relatively fast
+speed.
+And then finally, I have another confession.
+Although it works pretty nicely in real time,
+it's a huge waste of, like, lap the battery power or graphics
+card might make too much noise if it gradually
+needs to render this art every frame.
+So I pretty much bake the entire lighting at once.
+And when the light changes, I just
+blend between two different frames.
+And by doing it, it also allows me to sample it
+in really, really large scale.
+So seeing how it looks in plus or not, let's open it up.
+I really should turn the power saver mode off.
+So yeah, to have any questions, maybe you can take the questions.
+We might have one time for one or two.
+And here I'm turning on different lights.
+And then it looks pretty nice.
+Yeah, it was a great talk.
+Thank you for that.
+I got a question.
+So in the traditional Godot to the lighting system,
+you have, for example, unshaded materials.
+You can just set canvas material to unshaded.
+And that works well.
+How would you do this in a SDF-based lighting system
+to have individual sprites being shaded,
+where there's unshaded by SDF lighting?
+Yes, so currently, the only solution that I know of,
+maybe I haven't seen the recent developments,
+but it is to use those light occluder polygons.
+So you need to have some polygon shapes
+to generate the scientists' fields.
+But what you can do-- and there is actually even a macro for that.
+So if you select your sprites, there
+is this menu where you can generate the occluder polygon
+for this sprite.
+It might not do it very precisely.
+It might be quite low poly shape.
+And you need to hand tone it and correct it.
+But you can automatically generate those shapes
+for the regular sprites, yeah.
+All right, are there some more questions?
+Are you still have 10 minutes to launch?
+Wonderful talk.
+This talk kind of blew my mind.
+And I realized I'm completely unprepared
+for what was going on.
+But a couple of quick questions.
+One was, how did you get the shader code to show up
+in the editor?
+It looked like your presentation was in Godot,
+which is fantastic.
+And then secondly, what would be a good way
+to get started with this in the most basic level?
+This is really some pretty advanced and awesome stuff.
+Thanks.
+So how did you get the shader in this slide, pretty much?
+Yeah, so I coded a little plug-in.
+And let me see if I have time to show that.
+Yeah, that's it.
+That is one.
+And I pretty much made my own little class.
+Let's sample ray tracing.
+So yeah, I have my own--
+it uses the code built-in nodes.
+code has this text editor.
+It's already provided by Godot.
+So I simply--
+OK, it's in the UI, right?
+So I made my own little script that just takes the shader
+code, inserts it to the text edit field,
+whatever it was called.
+And then when I change the text,
+it applies the changes back to the shader.
+And all the coloring and cool features,
+these are all built into this text box, pretty much.
+So it's really awesome, but Godot UI provides.
+All right, thank you, Janos, for this awesome presentation.
+I also have to say it's awesome to have it in Godot.
+Yeah, we're going to have lunch break now.
+And afterwards, we're going to hear from Chris
+about how they added multiplayer to Domekeeper.
+Hope to see you all back in this room.
+And another applause to Janos.
+Thank you very much.

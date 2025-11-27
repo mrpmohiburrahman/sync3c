@@ -1,0 +1,271 @@
+API URL: https://api.media.ccc.de/public/recordings/93248
+Frontend URL: https://media.ccc.de/v/denog17-79870-compliance-in-practice-making-nis2-and-iso-27001-work-in-daily-operations
+Title: Compliance in Practice: Making NIS2 and ISO 27001 Work in Daily Operations
+
+(upbeat music)
+- Now we wrap up this session
+with a full-length presentation,
+so we are done with the first-paced lightning talks.
+And our presenter is Matthias Hachke.
+He is an IT security and network infrastructure specialist
+with a strong focus on NIST2 compliance,
+also an active member of the German National Standards
+committee, and today we will learn how we can incorporate NIS 2 and ISO 20 or 1 in our daily operations. Thank you.
+>> Thank you for having me here. So we do just compliance, just all the techy stuff on the compliance side. So, yeah. So if you want to have more information about the NIS part, read our articles in the
+the IACS, so I think I don't do a deep dive about NISTU today because it's my two years
+in the world, so I think I think not really new for all of you. But just some latest news,
+we got from the side from the bonus net tag in tour last Monday, a new security catalog,
+which changes everything from the right to left. We expect that this is the draft version
+we think it will go fast to the final version we expected around February, and then we have
+one year time for adoption. So keep in mind to rebuild your security concept next year.
+And on the other side, we will see that's the parliament seating this week about the NISTU,
+so we expect that NISTU gets one of the final stamps this week. Yeah, it has to then go
+to the bonus card, but this is the important steps to go next. And yeah, we are now one
+year late, or more than one year late. We are already in thinking of getting fines from
+European Union to being late, so let's see if we get this week done. What is NISTU? NISTU
+from a techie perspective is not much. So it's ten measures, you see, and the paragraph
+is on the second piece, A to J, that is the technical measures you have to do with NISTU,
+that's it. So that's pretty basic measures you have to do. Have risk analysis too, incident
+handling, I mean you typically do that. But the important point is, I mean we already
+have it in the telecommunication law, but here explicitly state you have to implement
+state of the art. So and that's not handling anymore out of service boxes, for example.
+That's not state of the art, for example. And on the other side, not on that slide, if
+you don't do that, your management gets in trouble because they can be fined for in their
+personal pocket. So and that's the important part in the NISTU where we expect that hopefully
+something changes because when I'm as an auditor around, I always see typically not the base
+people are the problem to get convinced doing stuff. The most problem is the top management
+to free resources to even have the right mind in place that it's important to get off legacy
+to make things streamlined. So that's the majority problem. And this law will help us
+because of the big fines which are in place, if that's not. Today I will focus on the state
+of the art and just on a tiny piece because we have to have security network and information
+system and acquisition, development maintenance including vulnerability, handling and disclosure.
+And from my point of view, what I see is even as auditon, ISO 2701 is it's always missing
+in the basics. And one of the most basics we have is asset management. So we will see
+later, if you don't have it in your asset management, you can't back up it, you can't
+make configuration management, you can do vulnerability management. And who of you is
+pretty sure he has 100% in asset management? 100% that sounds good, 90%. 10%. I saw this
+company and they already have 2701 certificates. So even the certificate doesn't mean that they
+do a good job, they perhaps have a good auditor, but if it's good security, I don't. So what
+is the negative side and what is it, what you see on the compliance and why it matters?
+And what is typically in the company, compliance is a thing that you draw in blue cressy, we
+always have this discussions. And next line is too, and we have no even more compliance
+stuff to do. This is just baseline security. There is no fancy stuff in that stuff, there
+is no, it's just really basic stuff you should do. So there is no bureaucracy from my point
+of view. And even if you implement it well, it even will streamline some of your processes
+because then you have single source of truth and stuff like that. We will see, mine, you
+have documentation who has good documentation as carrier, who needs more documentation, who
+needs less documentation. Yeah, and there is the right point to find the documentation,
+that is one of the keys I would assume. So compliance is not a project, it's an operating
+mode and the idea is not to do it once a year, whoa, the audit will come. I was working and
+now I can talk about it, I was working a lot of years ago at Vodafone and even you know
+this connect tests where they test the mobile networks and it was always around autumn.
+And one month before the test will be next month, let's go. So that's like the audit,
+so doing nothing for 11 months and then doing a lot of stuff in one month, that's not, you
+should do it, it must be, must be in your daily work. So documentation is fully disconnected
+from operation and we will see that the glue is just missing. So and when we do audits,
+we always see when we speak to the tech people with small checks how many asset element you
+have in that system, does it correlate with your risk analysis, does it correlate with
+your assets in the other and then you just count and you see, oh, there's missing 20% or
+20%? Stuff like that, that's often the case because of, I mean, do asset and axle, who's
+doing asset and axle? No one here, that's pretty nice, well achieved. So, I mean, that's
+the other part moving to the detox talk, perhaps having that an axle. So yeah, that's the symptoms
+we have, always even duplicate documentation across teams. So no really strict documentation
+policy, what is important, what is important. We have policies which are just for the auditor,
+so no value add, so why we have them? If there's no value add, then the question is why they
+are there? We have this panic before the audits and typically it's focused on passing, not
+improving, because if you look at them, the ISO norm, it has a PDC 8 too close, which
+is focusing on steadily improving and if you get that mindset that you don't have to be
+perfect in the first year. So you make your destination and your policies and then you
+can evolve every year to this destination and you just bring in transparency, which helps
+you to stay focused and even show your management and that's this transparency is now the key
+to your management because they have to sign this transparency and then they're exactly
+now where are the risks and the networks and they are personally reliable on that. So perhaps
+that will change something in the budgets and in the discussion of priorities. We will
+see in the next years and in the next ransomware attacks and stuff like that. And for me, security
+is not the latest AI stuff. It's the chain of the base stuff. It's the important thing.
+So how we can do that? Do continuous improving and small steps and that you not can do or
+I have that big new ISMS tool and that solves all my issues? No, you have to find small
+tools which you have small improvement every year and that's not a big bang thing. Have
+a single source of truth in all dimensions. There's only one documentation for one stuff
+in one place and that's the important document at once. And what we discovered is, and there
+why I will show you within the next minutes, document once but right with max machine
+readability. So we discovered when we do documentation, we do it in the meantime with
+Yandler for example and then you see that in the first time it's just for the people
+but then you have the ability to do automation on top of it. So it will then improve over
+the years but you don't have this big bang development two or three years and then get
+a small improvement. And the accountability is important. Who is responsible for what?
+That's often and typically you have in that field two roles. You have the business guy
+who is responsible for X for example for the HR system and then you have the IT department
+doing for the implementation but this accountability is really important. So this is this recubased
+accountability. We need all this with our standard tools, we already have in the companies.
+So track your open stuff in your ticket system, typically all carriers have ticket system.
+Just use it also for the compliance tools. Use the tools. The people are already used
+to add. Not a new extra tool for this purpose and for that purpose. Reuse the basic stuff
+and make it just work. So what is now the focus on the effort piece? So asset is bound
+by invisible glue you can say. So typically you have a process which can be a product
+which can be your HR process which can be your network management process which has
+requirements about availability, about scaling and stuff like that. So this is then directly
+related to the services providing that here. And for example a service as an example can
+be your DNS service which has perhaps high availability requirements on that side but
+the confidentiality perhaps is not as high as your human resources data. So depending
+on that it comes down from the process using. So then you have the DNS system, the service.
+So the services are typically applications you run your company in, not from a service
+perspective as a network carrier. Then these kind of services run on some machines, on
+some systems. And if your service needs special high availability requirements then it's important
+that the systems below also support that. Typically what we often see is that the even
+for the most unimportant system the services below are maximum of high availability with
+a lot of complexity and stuff like that which is not even necessary. So there's all of the
+trade-off make everything extremely high availability or have multiple stages of systems. I mean
+that directly correlates with the cost later. And for the security on that side systems need
+to be in rooms. So I mean you have the most expensive, proximal cluster for example, in
+a data center sitting where the doors open. So then from a security perspective that does
+not really make sense. So this directly somehow is glued together and the room is in some
+facilities. So everything has a dependency to each other and to make this dependency in
+your asset is one important key. So you don't have to repeat yourself because when the process
+needs the SLA of A and then the service below has to inherit bad for example typically.
+Any question to that? If you like to kind of answer questions. Okay so what we typically
+do is from an asset perspective we see a lot of different assets tools around and that's
+good because on the type of the assets it can be a different tool which helps your departments
+to handle the assets. So there is no need from a compliance perspective to have all assets
+in one system. So from another side is if you have open source tools for example which
+are good made for special asset categories use them. And just have for example we typically
+use a Rumber because that's one of the only three available GSC tools which then links
+this asset group is handled there. This asset group is handled there but then we have the
+central point of the glue where the risk management happens. Then we see for example why we have
+people assets so we have your laptops your mobile phones your whatever licenses on your
+laptops say for example you can use a snippet where it then even handles the process of a
+handling giving it out collecting it back from your people and then you have one tool easy
+to use. Other things like MDM can also handle your assets because if you have your laptops
+on the MDM system you don't have to have it explicitly in another system again. So think
+about the single source of truth on that where it can handle perhaps even the snippet it can
+be communicated with the MDM system so you have this extra information there. The netbox is
+grudges for physical hardware and virtualization but then it stops defining services and
+a netbox is not though perhaps someone did it from you but that's not made for that.
+So while in a minute I will show you how we glued that together and you even typically have a lot of
+stuff in the cloud which also needs to be managed somehow which is another part of your I would
+say physical infrastructure and what we typically use is when we when we do stuff is we do a lot
+of stuff in YAML we do the markdown to handle it easily. All these approval workflows are done in
+GitLab because you have a Git even for configuration management or other stuff in your company
+why not using it all the for your compliance when you do the people when they change something they
+do it in a branch then you have a merge request which in approval workflow done I don't need any
+extra boards or stuff like that on then. So let's jump for example in the service catalog
+so what what it is for example I have here a service catalog which is our so it does not show
+up here give me a sec is it big enough for even for the last rows okay cool so that's how we document
+for example from a service catalog perspective our ticket system it's a service so we see this is
+validated to do a Jason Chamber which is all the here in the in the in the Git repo within so even
+this this format of the service catalog which is part of your asset management is easily changeable
+so if you have another type of information you want to store just change your chasing chamber
+and we even see here if you make any mistakes it directly tells you there's something strange
+please change it and that helps to to make a proper documentation on that so even he all of these
+compliance teams who is asset owner who's the asset owner what type of information is in the in
+the service you have confidential information public stuff I mean the website is would be then
+marked as public and then other stuff which you also need for compliance not especially for
+security is your GDPR personal information typically you have another system where the
+asset is stored with your information of your your GDPR in for personal information just stored on
+this asset directly so you don't have another piece of asset in another database where this
+information is stored so you do when do we need to delete stuff for example um to which process
+does this tool belongs if there's a special process this is the glue between the the layers
+I showed you where will be the service deployed so we even do everything with docker compose files
+and yeah that's our host where it will be deployed then this is the the well where the the service
+will be handled and one of the one of the the nice stuff to get your people doing stuff so from us
+um the DNS entries automatically built from the service catalog when it's merged to main so if
+your atman wants to bring in a new service he has to do the documentation because without doing that
+he wouldn't get a DNS entry so some small things will help you within that that the
+documentation is done and if it's done like that it will help you to even do miss um some checks that
+it is the reality and even with um your single sign on or the use authentication mechanisms
+this is the the important part which you see later that helps you to get an overview which
+application is handling the stuff how and you have every information in one piece your SLA
+your metrics how your metrics are pulled from the application how is the logging done how is the
+what backup procedure is used for that kind of service and important stuff how you do the
+vulnerability management because we we have to do vulnerability management and that can be
+done in multiple ways but one way you have to have is you have to trigger your your newsletters
+from your windows and stuff like that but you have to prove that you have done the stuff so here we
+will we see what we what we did that these information will come to our ticket system
+we will see the the documentation we were also so for our users this too has no user
+documentation but and here's a just a link to the vendor documentation even you need any special
+things on top you can do it below in markdown and so you have a small piece which clues it
+together which is in the moment perfectly human readable that's the absolute minimalistic
+you can have the the JSON Chima validation which there's okay it's at least something
+is in there you have with skitlab the the workflow that it can can do the for ice principle
+done that's all the the documentation from a compliance side you need for a service that's it
+and you're done on that side
+so from our side if you make a new service so an engineer creates a new service in the
+certificate log the JSON Chima gets validated then it curates a new branch versus service in
+the get lab then the merge request is opened merge request is approved merge is done ci builds
+the DNS entry and even due to the service catalog it will be although the whole repo is just
+sipped and sent to all admin per email so we even have a backup on each each laptop if you have
+emergency cases in need that information on that so basic tooling you already have in the companies
+which does the most of the compliance stuff not with any overhead i see a lot of companies having
+extra paper folders which need to be updated then you are in the you find outdated information it's
+horrible doing stuff on that side manual yeah the word what we have here
+so they take away embed your complaints into your daily work don't do it once a year
+focus on traceability so if you do it for example everything in get lab the traceability is there
+you need you exactly see how it how did you who did it who did it the approvals what happened
+even if you if i'm in the in in the in the vs code i see that my collectubias did that change
+four weeks ago for that's really easy traceability and even have you see you even have
+have a help help here what is what is allowed to do with just really basic toolings
+okay so that's from my side if you have we have some minutes left for questions
+thank you
+so questions
+it's chris of shallows from tellers networks thanks for the presentation i have just a question
+regarding maybe small businesses so is there any threshold for implementing the NIS compliance
+from a government perspective or regulation from a regulation if you're looking on pure non tk
+gay regulated company it's 15 people uh 50 people or 10 million revenue oh oh oh oh oh oh oh oh oh oh and
+but depending on the because you are part typically on the deple um
+the front management um supply on the supply chain of other NIS two companies they need to
+enforce all the rules on their supply chain so even this will shoot in very much faster because
+they have to change their supply chain policies so you will then no one if you're not compliant
+no one will buy from you anymore that's the the problem of the non NIS two companies okay thanks
+could you turn on the other microphone okay so it's not it's muted
+yes yes yes yeah cuz sent from it from charita belline um the question i've have two questions
+the one is is snipe it is it um production grade ready for a large number of assets
+and the other question is um why do you do this thing or in your example a distinction between
+the servers in netbox and the assets in in in in snipe it because um we have lots of virtual
+servers which could fit in netbox we have lots of hardware servers and hardware things that like
+like laptops and such things which we do in in in snipe it where's the distinction between these
+two things that i tried to do as people as if every asset which is assigned to people
+it's better for example doing it snipped it because it even implements the workflows even
+you hand it out he gets an email he kind of do that i got it and stuff like that and you even
+have the the history who had which item in one time so this is all order plural which you typically
+don't have in service there's other stuff important snipped but you can't do document cables in a
+proper way so that's better done in in netbox for example so that's where you have your domain
+specific features and that you should use
+it's it's it's product ready the the question i think the snip it is nothing if you have a company
+with whatever 200k people working on that i've dealt it but up to one one one hundred thousand
+echol one thousand people i would say okay we have 24 000 employees so yeah but you have to you have
+to double check on your side i mean okay but it for us it has api's which is important from us
+it can't do single sign-on every all application we use is done on single sign-on so that are there
+from a security perspective or some important fact
+hi this is milder with the barter one i understand as soon as you would be a transit provider for me
+and would offer a details protection you would come in as a critical iKT service provider
+and therefore as long as you are a company of any size you would fall on the the door of service
+extensions is there something else for you to do if you would comply to this too
+give me a second because the the important point here comes in with the new bonus that's
+i can tour um document which i showed you
+from monday
+give me a second no no no it's not then
+we have given you a one sec here it is
+link on
+this is always a challenge you know
+so but um the the the the important point here is uh here they they chase you in in three categories
+and more or less starting with 10 people you are in the world welcome okay but maybe you should
+have that discussion over lunch you wanted to do it's yours quick hi it's uh frank from uh
+internet works um you said there should be only one truth uh source of truth for documentation um
+do you have like uh advice uh on what to do when there's six sources
+you stand or typically with um we call it a document pyramid and this document pyramid
+exactly describes what what here hierarchy of documents you have what exactly you have a
+glosser which kind of document means exactly what it is and then you have to slowly start
+typically from the top and then um start changing it over the years you can't do it with one rush
+that you have an in each layer of the pyramid has to have one place to store the stuff and that's
+the important thing and then you then you can manage it i typically if you are more on a on a
+the tech side of the world for example for us markdown does the job i don't need extremely hard
+week is we do everything in markdown check it in in the get lab done so but depending on the people
+are using it perhaps you have the marketing department they won't use markdown but then they
+can use word documents but this is then another other kind of information and you have this central
+centric gateway where it directs you to the proper information and who is all the responsible for
+that documentation better than so this racket thing i showed you that's really important on that
+because you have it outdated and even please delete outdated and uh outdated documentation
+because that's bringing you or bring it to an eye-high folder somewhere hidden behind
+but just make it and really think about what is the absolute minimum you need to have so that
+where we came from to the yaml that's the absolute minimum because the admins won't do more
+okay for more experience thank you very much and i'm sure you will be found by people

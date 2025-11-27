@@ -1,0 +1,342 @@
+API URL: https://api.media.ccc.de/public/recordings/93625
+Frontend URL: https://media.ccc.de/v/god2025-56491-the-trust-trap-security-vo
+Title: The Trust Trap - Security von Coding Assistants
+
+Welcome back everybody. I hope you all had a nice break and are recharged with some coffee
+and some sweets. Now we have here Clemens Hübner. You may have already seen him before
+on the other track. Luckily, he jumped in for one of the speakers who could not attend
+today anymore. And we're thinking about, for his introduction, maybe we can just like, you know,
+replay what has been told on the other side. But no, I'm gonna introduce you properly. So, a warm
+welcome to Clemens. He works at InovEx in the area of security. He is passionate about secure
+development, everything it has to do with, you know, secure development lifecycle and so on. And
+nowadays also taking care about how to develop code securely with the use of AI and with the
+help of AI. We've been hearing quite a lot, specifically also in this room about AI, LLMs or
+MCP servers today, how AI can be security in production and so on. But what about during the
+development lifecycle? And this is where he will be talking about the trust rep, security of coding
+assistants. I kindly ask you to all give Clemens a warm welcome.
+Thanks. Thank you very much for the kind introduction. Great to be back on the other stage. So,
+and welcome you all to my second talk today. The talk I actually submitted. So, we are talking now
+about the security of coding assistants. And I think it was a bit introduced in the keynote
+this morning. And some people were complaining that the positivity was lacking. So, I brought you
+this slide of the huge success story of code AI. So, there are statistics that almost every developer
+in the US is using some kind of AI coding tools nowadays. Almost half of the code that is written
+nowadays is written with the use of AI, so they claim. And it's a huge market as everything
+related to Chennai is. So, that looks quite like a success story, I would say, right?
+So, that's enough for the optimism in my talk today. Let's have a look at the other side of this
+huge success of code AI. So, we have a lot in the news about vibe coding going wrong,
+about prompt injection in coding assistants, about data exploration in vibe coding tools.
+So, we want to have a look at what is behind all of these vulnerabilities. What do we have to
+consider when we want to use AI for coding and how it is possible to make it secure or if it is
+possible. So, I was already introduced. My name is Clemens. I think that's all you need to know.
+Let's dive into the topic. So, let's have a look at this rise of code AI again. So,
+vibe coding, this term was named in the morning already. It's really a new term. I don't know if
+you know, but it was, I think, coined by Andrew Caparti in February this year. So, it's almost
+very old. And he used it in this tweet about this new style of programming where you just formulate
+natural language requirements and do not touch any code yourself and you just go with the vibe
+and see what happens and discard things and see if something works and if not, then you try again.
+So, this is the origin, at least as far as I know, of the term vibe coding.
+But of course, there is older types of code AI. So, back in the days, we had some things
+that were simply auto-completion and I think that is where all the started, where a lot of these
+tools originate from, where some of them, tab 9, for example, now is evolving more into really
+code agents. But back then, it was merely, I take the current line as an import or maybe the current
+method, a signature, whatever, and I predict the next, the next lines, the next part of code. So,
+that was basically auto-completion and then the LLM hype started and people started using
+a chat GPT as a Q&A helper, putting code in there, asking questions, how do I implement that,
+get code back, copy it, put it in their project and started to have this conversational approach
+to coding AI. And then, this evolved and we had this RAC based assistance that were able to
+get more context, so being able to integrate in your project and in the files,
+getting the right files for the right context and returning codes in the bits that were
+more fitting to the actual existing code base. And then, the coding agents came up where the
+big difference is that they are able to use some tools that they are not based on the LLM
+and some RAC for retrieval additional information, but were able to execute some code and also do
+some bigger code changes themselves. And then, the next step would then be the five coding agents
+that operate mainly on natural language where you are theoretically able to get an entire
+application out of them without writing a single line of code or even reading a single line of code
+yourself, but just explaining what you want to do, get an app, try it out, formulate some
+changes or start over, so this is the idea of this vibing era of coding assistance.
+So, a lot of things going on there and I think everyone developing software themselves or
+working with teams that develop software experience a lot of this evolution themselves and I guess
+most of you also thought about how's the security of this coding and assistance and that's what
+we want to delve in today. So, if we have a look at the attack surface of such a coding
+assistant and I will use the terms coding assistant, code agent, code AI a bit. As synonyms in the
+following, you saw that the different types and you may be able to see that some things are more
+relevant for the more evolved types of coding agents, but I will use them right as synonyms.
+So, let's have a look at the attack surface of a typical coding assistant. We have
+usually some kind of user prompt, so the user formulate some stuff, some requirements, maybe an
+entire story they want to do, maybe just fixing some bugs. The coding assistant retrieves some
+context, additional files, everything that is laying in the repository next to it and it combines
+that to a prompt using their own logic, their own system prompt. Basically, what the creators
+of the coding assistant think is the right way to formulate this problem to the LLM and the LLM
+is just getting this entire prompt. As one big prompt you all know, LMs basically just predict
+the next word. So, everything comes in, we have a big prompt and the LLM starts from there and
+predicts the next word, hopefully the answer. But this is a very, very important thing. So,
+everything comes together in this prompt going into the LLM and some of you might already
+spot the issue with different things from different parts being combined there.
+And then, of course, the LLM is not working out of the blue, but it was trained on some data
+back in the day. So, I wanted to show this below the dotted line here. So, also, this
+training data might be interesting when thinking about the attack surface for a coding assistant.
+And then, of course, the coding assistant has the possibility to use some tools to do some
+web searches, to read documentation, to maybe access a database, to access our Git log, to see
+what was there in the past. So, these things might be an output out of the LLM that decides,
+I want to use this tool and the coding assistant uses this tool and it goes back to the LLM
+until we have some kind of output. And these outputs can be some code changes. I think that's
+the obvious thing that comes out of an coding assistant, actual lines of code. But the coding
+assistant might also be able to debug something and to execute some commands or to test our
+software. So, this might also be part of the tool usage during the evaluation, but it might also be
+some kind of result of a run of the coding assistant. So, that's a bit simplified, but general way to
+have a look at the different moving parts in a coding assistant. So, now we want to think about
+at these different areas what might be the security implications we have to talk about.
+And I usually like to not invent everything by myself, but having a look at existing resources.
+So, I thought maybe as web coding or coding assistants are such a big thing,
+maybe there's something by the overs on that. I guess it's not a very specific problem.
+A lot of people using code AIs of what about, do we have a over top 10 for code AI or do we have
+some checklists or some things. And it's quite hard to find resources from over specific on
+on coding AI. There's a lot on JNI in general or even more broader on the machine learning on AI,
+but it's hard to find something really for code AI. So, we will talk about this later. Maybe we
+can change this. But for today, we need to use what is there. And I decided on have a look at the
+over top 10 for LLM applications, very famous project. The little sister of the big over top 10,
+specifically for LLM applications here. And in the end, the coding assistant is just an LLM
+application. So, maybe this helps us to structure the attack surface of our coding assistant. So,
+let's have a look at this top 10. We will not go into detail there. You might already know
+the list. It's a very good starting point if you're interested in LLM security. So, I will not
+explain everything in detail, but we will really focus on what this means for our coding assistant.
+So, the first point and the very famous starting point for LLM vulnerabilities is, of course,
+prompt injection. So, how might prompt injection influence our coding assistant? So, an attacker
+might use prompt injection. So, inserting malicious text into the prompt that is then
+evaluated by the LLM to do some things, the LLM or the entire agent was not designed to do. So,
+that's basically prompt injection. And you can think about direct prompt injections where the attacker
+really puts things in the prompt itself. But in our case, the user, the person that is
+really using the coding assistant is basically the developer. So, that might hack himself. But
+there are other ways where an attacker can put stuff into our prompt. We saw this before. It's not
+just the user prompt. It's also the context of the project that goes into the prompt injection.
+And that's what is interesting for this indirect prompt injection and attacker might try to
+manipulate other files that in the end, in one way or another, land in the context to do such a
+prompt injection. And one very famous thing, are these rules files. I really have to
+make sure I get the plural here, but it's rules file. So, that's right. So, in this rules file,
+you can state some general information for your coding assistant, like a specific pre-prommed where
+you can say, I always use this mock library for mocking in my tests or I want this coding style,
+I want tabs, not spaces, something like that. That's things you can give the coding assistant as
+rules in this rules file. And these files are broadly shared in the internet because it's
+really interesting to get working pre-prommed for this coding assistant. It's very helpful if
+you get some good rules files. So, there's a lot of things in the internet. And, of course,
+people are trying to mess with these files. And there were some occurrences of poisoned rules
+files where with some UTF magic, or some Unicode magic, they hidden some additional prompts here
+that is not visible in a normal editor, but is then evaluated by the LLM later and then
+changes the code and we might plant a backdoor then. And so, this is one way an attacker might
+plant some information in our prompt, but there are also more stealthy ways. This is a very interesting
+paper with a nice name, xoxo, I don't know how cross origin context, I don't know. They use
+this abbreviation because it's nice. What's it about? The attacker is here manipulating
+some files in a different project, but it might be in a dependency you are using in
+your project and that is written by the LLM as part of the context, or it might be in a
+repository next to yours. And they did some semantics preserving changes there, so the code
+itself was not changing, but through some reverse engineering of the weights of the LLM in the end,
+they were able to shift the decisions of the AI assistant in the end to develop authentication
+that is not secure anymore. So, that's a famous attack there. And with the time, the context
+windows of the LLMs are getting bigger and bigger. So, more and more information is loaded into the
+context of all the different dependencies, the documentation for that. You can imagine how
+easy it is to plant some information there and it will all land in the prompt. So, prompt injection
+is a big thing there. And then we heard in the talk before, also about MPMCP server.
+So, that is a way to unify this API between our LLM's and some external tools. But in the end,
+it's also a very convenient way to build up an ecosystem where it's very easy to integrate a new
+foreign MCP server into your coding tool. And even if the tool is not called, just because the MCP
+server advertises its capabilities, these capabilities land in the prompt because the LLM should be able
+to decide if they want to use this tool. And even if it's not used, it's possible that you poison
+your prompt with that. So, in the end, each MCP server has to be trusted. We had a discussion
+before, how could you verify that this MCP server is trusted? I think it's hard to do. You can,
+of course, have a look at the current communication with the MCP server, but you will not notice that
+easily if something changed. So, it's basically like you are downloading an exophile and you are
+looking if it's doing something bad. And then you download it again for the next year, every day,
+and you just hope that nothing changes. So, it's very hard to control and to verify. So, that's not
+really a problem of MCP, but MCP is really making it easy to integrate. So, of us, you will not
+control and you do not know into your coding assistant. So, I think that's an epic issue there.
+Okay. Let's have a look at another problem, the sensitive information disclosure. So, we now know
+how we could influence the prompt. So, now we can think about what can we do if we are able to
+influence or poison the prompt to a prompt injection. So, you all might know the coding AI has access
+to all the code, of course, that might be an interesting intellectual property, of course,
+but it also might be able to have access to the repository, to the GitHub server, to read
+some secrets there, to read some logs, maybe have access to the file system beyond the current
+directory, reading credentials, SSH keys. So, the code AI has access to some sensitive information,
+and there was a nice example on how to explore this Kamo League, where they were not using an
+IDE based coding assistant, but this GitHub co-pilot chat that you are using in the web UI, where you
+can, for example, ask questions about pull requests, and if the pull request comes from an attacker,
+there might be able to place some invisible commands or comments, and then they are getting
+commands in their pull request, and the agent then, of course, runs with the rights of the users,
+and they were able to access other repos, the user is able to access or secrets,
+and then they needed it to extract, but we will come to that later. First of all,
+it's important to understand that the coding assistants and everything that is
+connected with the sensitive data has a possible access to this data, of course.
+All right, let's have a look at the supply chain issues here, place three and over top 10
+for LLMs, so I think it's clear that the code AI itself gets part of your supply chain, right, so
+they are an important development tool, so of course, they should be considered part of your
+software supply chain, and so are the LLMs inside, and we have the problem that is very obvious,
+LLMs are black box, it's not possible to audit them to control what they trained on,
+and if you are using some external LLMs, they change all the time, you might not even notice
+that some things change there, so it's not really reproducible, but of course, the code AI has
+also an influence on the supply chain of the project itself, because they might introduce
+some new dependencies, and that's where this nice thing named slob squirting comes from,
+some of you might know, type of squirting where developers accidentally mess up some names
+of dependencies, of packages, and slob squirting is exploiting that a coding assistant hallucinates
+as every LLM does, and may come up with some dependencies that are not actually existing,
+except an attacker registered them beforehand and planted some malware in there, so there was the
+first occurrence of that, at least I noticed was two years ago where someone noticed that
+searchability was always hallucinating some hugging phase CLI library, I think it was,
+and they tried to register that and then see if people download it and execute a pre-install
+script or something like that, so that's a very big problem with hallucinating parts of your supply
+chain there. All right, so let's have a look at the data and model poisoning, I think
+it's pretty obvious, we talked about the LLMs being a black box, we do not know what the training
+data is in there, so model poisoning is basically if you manipulate weights in an actual model,
+that's only relevant if you're really downloading the model yourself from hugging phase for example,
+and there are a lot of different models there, and I think it's quite hard to see what are the
+rights want for you and it's easy for people to manipulate weights there, so the LLM might
+give you some bad answers later, but the more obvious attack vector is of course through the
+training data, so yeah everything that is used for training might contain some insecure implementations
+or some backdoors, so that's a big problem there, and then there's also the problem with agents,
+if they have access to the web and are looking for solutions for specific problems there,
+there's something coming up like CO poisoning for agents where websites try to lure
+agents onto their sites, giving them wrong advice there, and yeah it's a whole topic how to convince
+an agent that you're the best site for it and not a search engine, but that's also a poisoning issue
+there. Okay let's have a look at this improper output handling, I was mentioning this before when
+we talked about this sensitive information, the code AI is able to access, so now the question
+is how do we get this out of there, if we are able to access a credential or some secure code,
+how can we extract this, and this is where yeah the output handling of the coding agents come in
+place, I mean if you have an agent that is able to do arbitrary requests with a web then it's
+quite quite easy, but if you are restricting your coding agent more thoroughly then you might need
+to leverage some other tools disguised in loading some images that you have put in a markdown file
+for example, and you can of course also use this this vulnerability to yeah do some SQL injections
+in databases, if you are able to manipulate SQL queries to execute arbitrary code, so we will come
+to that later, but first let's have a second look at this Kamolik vulnerability, where they actually
+yeah used a markdown images like small pixels that were then placed in the response of the coding
+assistant matching the secrets they just discovered, and there was a nice bypass of the CSP that
+GitHub employed that should normally prevent such exfiltration because GitHub has its own
+image server that's widely listed in the CSP and they registered their images and they needed
+in there and then used that to exfiltration the data by having a look at what images were loaded
+through this agents, so that's a more disguised way to exfiltration data, but that's the third
+part that is really important when we want to see what the big problem with coding assistants
+are, and there's this nice name, a lethal trifecta, Simon Wilson came up with that,
+it's quite interesting a name, and his analysis is that if you have, oh sorry, I wanted to show
+you this first, if an agent has access to private data and is able to communicate externally and is
+also able or exposed to untrusted content then in this combination you really have a problem because
+it can be manipulated to access data and exfiltration out there, and that's exactly what we have,
+if we have a prompt injection then we are able to use this untrusted content to
+do actions that are not intended, we have this sensitive data disclosure of course we have with
+coding assistants and we have this ability to communicate externally, and I think that's the
+important thing when thinking about how to prevent this lethal trifecta, we will not be able to
+solve prompt injection, I will come to that later, we want the coding assistant to have access to
+the data that's what makes it valuable, so we really need to focus on this communication,
+so but we will cover this later in the countermeasures if I'm having time, so let's go a bit
+faster, the agency thing we already had a glance at it, so just to recap an agent is just an LLM
+with a goal and the possibility to plan things and to execute the call of the LLM's multiple
+times, but the important thing is it has access to tools, and for a coding agent this means it has
+access to a shell maybe to execute some commands, to run tests, to see if everything is working anymore,
+to access logs, to maybe access gyro, the database, everything there, and if you combine this usage
+or access to tools with the possibility of prompt injection then an attacker might do some confused
+deputy attacks where he uses the big capabilities of the agent on abusing the tools that are accessible,
+and I think the famous example for that was Weblet, in summer most of you might know this,
+where this web coding agent was called out in social media, and because it deleted an entire
+production database because it panicked, it later said, so it had access to this prod database,
+it needed everything there, and then to cover it up, it produced some fake data, it lied about,
+it's really fun to read it, if you're not involved then I'm sorry, but for external
+people it's really interesting to read, and that shows if it was unintentionally right, so no
+attacker involved here, it was just the problem of the LLM you can imagine, what this means if an
+attacker really tries to do this on purpose, so that's a problem there. All right, system prompt
+leakage, there was some discussion in the talk before, I think we can sum this up very quickly,
+system prompt can be leaked, there's nothing to do about it, and you should always consider
+your system prompt as public, and I think that's one more commonly known, so I do not really see
+security issue for coding assistance here, similar with this vector and embedding weaknesses, so
+coding assistance use some vector databases to get additional context, attackers might use this to
+manipulate what goes into the context and whatnot, but with the bigger context windows this might not
+even be necessary anymore, but there are also examples on how this works, but now let's come to
+the point number nine, and I think it's sad that it's so so late in this list, because I think
+that's the most interesting part, what most of you thought about when talking about security
+of coding assistance, because we think about what is the code actually doing, how secure is the code
+that the coding assistant is doing, and that's what is basically the misinformation coding
+assistance are delivering, so let's have a look into that in detail, so how secure or how, what is
+the quality of code coming out of this coding assistance, so there's a lot of code coming out
+there, so there's a lot of, yeah, studies about that, there is a general, yeah, decrease in code
+quality visible, more code is generated, the code turns or how often this code changed and deleted
+again is really increasing, you can see this in this study from code clear, get clear here,
+more and more code is added, code is changed more often, but, and the refactoring of the code is
+getting less and less, that might be a quality problem, but maybe it's just a different way that
+wipe coding is, is working, so it's different than today's and maybe it's, it's a bad sign, but I would
+not, I think we, you cannot say for sure, so let's have a look really at the, at the security issues
+here, so there's a big study from where code from the summer where they asked over 100 different
+models to, to write simple code exercises, code tasks and almost half of it failed by introducing
+really some basic over top 10 weaknesses there, also some weaknesses, I really thought that
+might be, might be gone nowadays are coming up, up there and, but what, what really the interesting
+thing here is because they had a look at that many models there, they can, could compare
+the, the newer models from this year to older models, there's old or something like that,
+and while other properties of the models are getting better, security is not a, not improving
+there, so the newer models are not really better than the older, and there's a lot of research going
+on in this, this field, one project I really like is a BackSpange, I think it's from it too hard
+Zurich, and they came up with an open source project where they evaluated different models
+and you can have a look at the tasks, the, the model is given in there, and, but it had a similar
+result there when they published it, this, this May, 62% of all solutions were either incorrect,
+so maybe that's better or they were correct and had a security vulnerability in there,
+but even for, of the secure, correct solutions, around half of them were, were insecure, so
+you can have a look at the, the leaderboard on their website, it's quite interesting, they,
+try, run it again for the new models as well, but you really see that correctness and security is,
+it's not a really high value there, but of course it's, it's hard to compare it, so
+like what is the value of an, of an average developer, is it more than 50%, is it less,
+have a look at the, at the tasks, try it out yourself and then, then decide, so I think it's,
+it's not a good, good value there, but it's, it's hard to say how to compare it, and of course it's
+depending on what model you use and what you are trying to, to implement, so for example there was,
+there's a study that deep-seak, if you're implementing some, some code that is related to
+t-bird for example, suddenly had quite more security bugs in it than if you're developing
+something politically neutral, so that's quite, quite interesting and there, it's hard to tell if
+it's on purpose or if it's just baked in, you, you can just not tell with LLMs, right? So yeah,
+these are some of the, the problems with, with the code coming out of coding assistance.
+I tried to group the most common flaws with, with code AI into top four of code AI or something
+like that, and so these are really the, the most common things you see when you find security bugs
+in AI-generated code, you often see this happy curve path bias, so it just tries to fulfill the
+functionality you, you tell them, and they are missing basic security controls if you're not
+explicitly state that, that you want them, they are just trying to, to build the feature,
+and we have this problem of learned insecurity based on the, the insecure code it was learned on,
+also a lot of legacy patterns, old cipher that are reused, old libraries that are reused,
+things you see on stack overflow that maybe are not not perfect, all this is, is learned in
+security, and you have of course the problem that the, the LLM or the coding assistant might not get
+the, the whole architecture of your app if you do not tell them, so they might not understand
+the trust model or the, the roles and permissions, and they make logical flaws, that's, that's a
+problem there, and of course you have the problem with hallucination, you might catch this because
+the app is not running, but yeah, there were also occurrences of using API's wrong, using
+secure flags in API's wrong, so in the end it was not, not secure anymore, and of course this,
+the slop squatting problem I introduced before, so, but the problem with that is, and that's where I
+come to, to the title of my talk is, maybe that's all fine if we use it correctly, but are we aware
+of this problems, and there's this nice study from Stanford, it's, it's almost two years old now, but
+they checked if people write more insecure code with AI assistants, and they did, but the more
+interesting thing in there, and I think that is still the valid nowadays, and even though they
+wrote more insecure code, they were more convinced that the code they, they wrote with AI is, is
+better than if they wrote it themselves, so this is the, this trust trap I see with using AI
+that people are not aware of the insecurities that comes with this, with this code, so this is
+about the misinformation, I really need to hurry up, I think unbound consumption that's not really
+relevant for, for coding assistance, let's, let's keep that, and let's have a look at a short look
+at the, at the counter matters, how can we deal with this, this problems, and I, I tried to think
+about how good can we solve the different problems, we, we just discovered, I think there are some
+problems, like from injection, like data poisoning that are just inherent to, to the usage of LLMs,
+and it is currently not possible to really, yeah, prevent them, you can only mitigate these problems,
+others you might be able to prevent, if you carefully design your permissions and de-access
+rights, they have, and other things you can, you can prevent by, by conventional countermeasure,
+so for supply chain we, it's a big problem, but we have some ideas and I think they are not so
+different than if you develop software yourself, so I will not be able to go in any detail here,
+but I will share the slides later, so have a look at them here, I also have some
+information on what, what I think are, covers the, the entire process when you want to use your
+coding assistant yourself, from the right prompt engineering, from reviews and tests, but also
+from, from designing before that, but I think I'm, I'm a bit over time, so I hope you got to know
+the different areas, code AI has to be secured, had a look at the different, different areas,
+and now I'm happy to take some questions, thanks a lot.
+Thank you very much Clemens, are there any questions from the room?
+Yes. So thank you for your talk, well it's a bit of provocative question,
+how should there be any, any positive movement in IT security or encoding security, if you have,
+like when, when this whole AI thing started, we had a bunch of code which was not secure and the
+little code which was secure, so as you told the stack overflow effect, and now it's like the AI,
+AI learned from this, created code which is mostly insecure, put it back into the wild and the AI
+keeps learning from this, so how do you think is it possible to, to get, to get out of this loop?
+Yeah, yeah that's a good question, I mean is it really so different than how new developers
+learned, they are also not just looking at the perfect code and learn from that, but they are
+also looking at bad examples at bad stack overflow questions, so maybe that's not so big of a
+difference, I think it's important to understand what the limitations are and then to build processes
+around it to use it in the right way, I don't think that code AI will be the end of software
+security, but it will also not be the beginning of software security, it's just a different tool,
+different kind of writing code and you have to continue with the processes before and after
+they are just there today. Thank you very much, I would say the question could be taken offline,
+thank you very much Catherine, and for the second and last time for today, a warm thank you to
+Clemens. Thank you.

@@ -1,0 +1,1273 @@
+API URL: https://api.media.ccc.de/public/recordings/65950
+Frontend URL: https://media.ccc.de/v/dgna-56069-staatstrojaner-pegasus-und-ns
+Title: Staatstrojaner, Pegasus und NSO Group
+
+(speaks in foreign language)
+(speaks in foreign language)
+Are you ready?
+At least some of you.
+That's great.
+So, are you ready as well, Pocky?
+Great.
+Good.
+Hello.
+(speaks in foreign language)
+(speaks in foreign)
+(speaks in foreign)
+(speaks in foreign)
+(speaks in foreign)
+Security researcher works at Amnesty International Security Lab
+and he had large influence to say so
+at the project Pegasus.
+So, what the project Pegasus is or was?
+There is a nice movie.
+So, we're going to show you this movie.
+So, it makes his and my life easier
+instead of giving a life introduction.
+So, it's a 10 minutes movie and afterwards,
+we're going to discuss about everything
+which was not in the movie and, of course,
+you're also free to ask questions.
+- I will never forget the moment
+that I not just saw the data, but understood.
+- So, for those who need to subtitle, so.
+(upbeat music)
+- It was.
+(upbeat music)
+Once it owns your phone, it owns everything.
+- They can access the camera, the microphone.
+- The old videos, the old photographs,
+they can see what you're writing.
+- The GPS location.
+- Your emails.
+- They can do everything that the user can do and more.
+- In July, 2021, an international consortium
+of over 80 journalists from 17 news organizations
+broke the story of a spyware scandal
+that continues to reverberate around the world.
+At the center of the scandal was a leaked list
+of 50,000 phone numbers.
+Reaching into every corner of civil society,
+the investigation revealed that the list
+included activists, journalists, lawyers,
+and political leaders who had been unlawfully targeted
+by potential client governments
+of Cyber Surveillance Company, NSO Group.
+This is the story of how Amnesty International's
+security lab played a crucial role
+in exposing the forensic evidence
+that proved beyond doubt that the data could be connected
+to cyber attacks from the military grade spyware system
+known as Pegasus.
+(eerie music)
+- What our team focuses on is investigating
+targeted attacks and targeted surveillance
+against human rights defenders, civil society,
+and journalists around the world.
+- The security lab began investigating NSO Group in 2018
+when Pegasus was discovered to have been used to target
+an Amnesty International staff member.
+- If they can target one of the biggest human rights
+organizations in the world without accountability,
+just think what they think they can do
+to other human rights defenders.
+And to me, they infuriated me.
+- As a result of this attack,
+the security lab had the clues they needed
+to discover more about NSO Group and its customers.
+- They managed to identify approximately 600 domain names
+that NSO Group's customers were using
+to deliver these kinds of attacks.
+We also found a handful of other activists
+who had also received similar links at the same time.
+On one of these individuals' devices,
+we found traces of a new kind of attack.
+- It used to be that for Pegasus
+to get infected on your phone,
+you would need to click on a link.
+You know, something related to your work,
+here you're really gonna enjoy this.
+It was very manipulative.
+And then we saw an escalation to what's called the zero click.
+- Zero click meant that Pegasus was able to install itself
+on a target's phone without any interaction from the user,
+making this spyware even more dangerous
+and harder to detect.
+- You know, there's like some smart technologists
+on the other side who spend a lot of time and effort
+trying to create these spyware tools,
+trying to operate them in a way that isn't tactical.
+And so it's definitely an interesting mental battle
+to try and understand what they're doing
+and to understand what kind of mistakes they might have made.
+- Between 2018 and 2020,
+the number of Pegasus victims
+identified by Amnesty International,
+the University of Toronto Citizen Lab
+and other partner organizations was continuing to grow.
+- Even if you haven't been totally owned
+and there's still proof of infection,
+the fact that you've even been targeted
+can have a major psychological impact.
+- They knew everything I said and knew that
+it wasn't really intense.
+- They are threats.
+Of course you have fear.
+- To many, the model is wrong.
+To exactly change your life, change your life.
+- Despite this growing body of evidence
+and the damage being inflicted on human rights defenders,
+the response to concerns about NSO's activities
+had been limited.
+- We had been talking about this issue
+alongside many other civil society partners
+for a really long time.
+And we had essentially driven home the point
+that this is an industry and this is a company
+that by way of transparency,
+it provides very little information
+and so that adds to the atmosphere of impunity.
+- But with the list of 50,000 phone numbers,
+this was about to change.
+Investigative journalists of Forbidden Stories
+were the lead organization on an investigation
+that included the Guardian, Lamond and the Washington Post,
+with Amnesty International as the technical partner.
+- We've put so much effort into building the expertise,
+to be able to do this kind of research.
+And if it had not been for the most years of work
+and years of trying to understand
+how we can do human rights,
+work a little bit differently in this sphere,
+we wouldn't have been as fit for purpose as we were.
+- So what was the reaction of the security lab
+when they first saw the data?
+- Who were those phone numbers?
+Who did they belong to?
+What did this mean?
+I mean, the questions that just started rolling
+through my head were epic,
+but every time we got even like a little bit of an answer
+about what we were looking at,
+that feeling of like, this is important,
+this is really important.
+It just grew and grew and grew.
+- It really drove home the fact that this industry
+is out of control and that we need to retain it in
+because it has massive implications
+for human rights worldwide.
+- Once the investigations into the list of phone numbers
+were underway, it was essential to step up security measures.
+- Not only are you working on a very sensitive human rights
+project, you're working on a sensitive human rights project,
+that concerns one of the largest spyware vendors in the world.
+- The more we realized what we were looking at,
+the more we realized that states wouldn't want
+this information to get out.
+That NSO group certainly wouldn't want this information
+to get out.
+- For all of our meetings, we were making sure
+we didn't have our regular mobile phones
+to write regular laptops in the same room.
+- Then through the course of our investigation,
+we actually found out that a couple of the journalists
+that we were working with had in fact been targeted.
+- As the investigation continued, journalists undertook
+the painstaking task of identifying who the phone numbers
+belonged to, but how many of these people
+had actually been attacked by Pegasus?
+- Based on their groundbreaking work,
+the Security Lab had the tools to provide the answer.
+- We developed some friends with tools
+for extracting data from an iPhone.
+And so over time, we began to identify more and more
+of these unknown suspicious process names,
+and we were able to tie these process names
+back to the Pegasus spyware itself.
+- What that meant is they were actually able to build tools
+that we could then use to remotely access backups of phones
+and quickly, as quickly as possible, do an assessment
+of whether or not there were traces of Pegasus on that phone.
+- This was the turning point in the investigation.
+By July 2021, of the 67 phones that the Security Lab
+had been given access to, 37 showed evidence
+of infiltration by Pegasus.
+As well as 14 heads of state, the wider investigation
+revealed that the phone numbers of at least 180 journalists
+in 20 countries were listed in the data.
+The Pegasus Project also named the 11 countries
+identified as potential NSO group clients.
+And Pegasus was found to have been used to target family members
+of Saudi journalist Jamal Khashoggi prior to his murder
+by agents of the Saudi state.
+The forensic tools developed by the Security Lab
+have since been made open source and installed
+over 70,000 times, allowing users across the globe
+to add to the growing list of confirmed attacks
+and shedding new light on the scale of illegal cyber surveillance.
+So with all of this knowledge and all of the secrecy,
+what was it like when the Pegasus Project
+was ready to go public?
+- Are people gonna see how important this is?
+Not just for civil society and human rights defenders
+around the world, but for like all of us.
+This is a major privacy issue.
+This is something that big tech corporations need to look at,
+that journalists need to look at,
+that everybody needs to look at.
+And is this going to be the moment we hope it is
+to be able to pivot towards actual change?
+- With repercussions that continue to reverberate
+around the world, the revelations of the Pegasus Project
+have been explosive.
+As a result of the investigation, a number of sort of steps
+have been taken in the right direction.
+The US government placed NSO group on its entity list
+for malicious activity.
+Investigations are open in Hungary, Belgium, France.
+The Supreme Court of India has set up a technical committee
+to look into Pegasus targeting.
+There's many more, but I'll stop there.
+- Most recently, thanks to the work of Citizen Lab,
+Apple has filed a lawsuit against NSO Group
+to hold it accountable for the surveillance
+and targeting for Apple users.
+In the face of these revelations,
+NSO has continued to maintain its position,
+that it provides authorized governments
+with technology that helps them combat terror and crime.
+- I'm thrilled to see that the world did take notice, right?
+People do realize that this is important.
+- I feel like this is now crunch time.
+And hence, Amnesty is calling for a moratorium
+on the sale, transfer, export and use of spyware,
+until a proper human rights regulatory regime is put in place.
+- I think people have gotten over a little bit
+of this tech apathy that we see all the time.
+Tech is too big, it's too scary.
+We can't regulate it, it's out of control.
+Not true, right?
+The stuff is built by humans,
+and it can be regulated by humans.
+There is no difference.
+- There's much more, much more to be done.
+Investigations need to be held into providing victims
+with the right remedy and perpetrators
+behind this should be held to account.
+So we need to keep exposing this work.
+We need to keep advocating for regulation.
+And we need to keep reminding everybody that there is hope.
+You know, we can change this system.
+Your rights can be protected.
+Your phone does not need to be a weapon
+against your privacy.
+- All right.
+- All right.
+So a list of 50,000 phone numbers.
+So just many digits to start off.
+I don't know, maybe that's a bit too much movie-like.
+So what I imagine now,
+so a day person walks into your office
+and says here are 50,000 phone numbers.
+So was it like that?
+And what went through your mind?
+I mean, 50,000 numbers, just a bunch of digits.
+What are you going to do with it?
+Or did you know that's the thing?
+- So I think we definitely had mixed emotions.
+'Cause on one side, we knew that we got this list,
+and we thought this is an incredible opportunity
+to really show the full scale of the problem.
+But also, we knew that something concerned about,
+okay, this is a huge list.
+How do we even begin trying to figure out
+what if this data is real?
+If it is actually linked to Pegasus,
+whether we can prove with friends' evidence
+that people can understand
+that these hacks really did occur.
+And then just the logistics of it.
+'Cause I can imagine this was in 2020, 2021
+during the middle of the COVID pandemic.
+So we couldn't travel anywhere.
+We couldn't go physically to go and meet somebody
+to get the device to check their phones.
+And even if we could,
+we needed to do all of this in a global collaboration
+without while keeping this whole investigation secret.
+So you have, as Donna said, as my colleagues here said,
+we have a global scale of the problem.
+So we need to try and figure out
+how do we go and meet people, get this evidence,
+while keeping the whole investigation secret
+and not exposing it to NSO group
+or any of the government customers who used to spyware
+that we were investigating them.
+If we had any leak about this investigation
+before we were ready to publish,
+you could have sabotaged and blocked the whole project.
+So I think this was, yeah, just the scale was just phenomenal.
+But on the other hand, it was just such a relief
+because before this, we were painstakingly trying to find
+one case here, one case there, yeah.
+- So finally, you had a list of,
+a long list of potential victims.
+Is there a new word to search for?
+- Exactly, so I can go back a little bit
+to show how it was different from how we were working previously.
+So we first started working on spyware and surveillance
+at Amnesty in 2017.
+So most people know Amnesty as a human rights organization
+doing campaigning, advocacy work.
+And so I think a lot of people we talk to are a bit surprised
+that Amnesty has technologists and has people doing
+kind of deep technical research.
+But I think at least some people at Amnesty realized
+was that technology is increasingly part of our lives
+and it's also a major human rights risk
+because states have realized they can use technology
+and technological tools to try and control
+and intimidate human rights offenders
+and journalists and activists
+and to try and challenge this technological human rights
+abuses we need to have technologies at Amnesty
+who can really research and document this.
+We first started working on Pegasus in 2018
+when one of our own Amnesty colleagues
+was themselves targeted.
+And so it kind of fell into our lap.
+As you say, this person was working
+on issues related to Saudi Arabia
+and when they got a message on WhatsApp saying,
+hi, I'm an activist from Saudi Arabia.
+We're organizing a protest at Saudi Embassy in DC.
+Please click this link for more information
+and help promote our cause.
+Fortunately, this activist is quite cautious.
+So maybe paranoid and she shared this link to it with us
+instead of clicking on it.
+And when we got this link, we started kind of digging into it
+and that was maybe our first lead
+to start getting into this whole topic
+and especially on NSO.
+- So you were all right.
+Actually already about two years on the Pegasus thing
+to say so when the list showed up.
+- Yeah, exactly.
+So when we first started working on NSO,
+we published a report about our Amnesty colleague
+being targeted and we kind of put the detail
+technical evidence showing how it was linked to NSO.
+But we knew that there wasn't enough
+so we can continue our work.
+We continue trying to track this company
+and trying to find more evidence of these abuses.
+So the next time we found a case of this was in Morocco.
+So we had suspicions that Morocco was using Pegasus,
+spyware to target human rights offenders.
+We know they'd used spyware in the past.
+And so we kind of did a more painstaking approach.
+We looked at the situation in Morocco,
+we're like, okay, who are the 10 most targeted activists
+or targeted journalists who are being most harassed
+by the state, maybe who are being jailed,
+otherwise intimidated.
+And then we just started reaching out to people
+to our Amnesty contacts.
+We said, okay, you're activists here.
+You might be under surveillance
+and we did some forensics.
+We checked their devices and from this
+we were able to find some of the first cases
+of Pegasus surveillance with this forensic proof.
+And what was really disappointing though at the time
+was we found this evidence and we published it.
+And unfortunately, basically nobody cared.
+We tried to talk to media,
+trying to say this is a problem that's happening.
+No media is really ancient and covering it.
+They were like, this is a two technical issue
+or it affects people in Morocco or Azerbaijan
+who is not an interesting story for them.
+And so I think we were at this time really frustrated
+'cause we started to realize how big of a problem
+this was becoming and that so many more countries
+could buy these really sophisticated tools to hack any phone
+and basically nobody knew about it.
+And even when we tried to find some proof of it,
+it still was being kind of ignored or disregarded.
+- So from that perspective,
+once you had the 50,000 phone number list,
+things became big.
+So are you happy with the response you got?
+Or we have expected or hope even for more?
+- No, I definitely think it's really the response
+we've seen and the impact it's had
+has been far greater than we could have imagined.
+And what we've learned since about the scale of the problem
+is also really, yeah, I think shocked us.
+And also we're starting to see some movement
+to have a proper regulation about this software.
+- Yeah, so when we first started working on Pegasus,
+I think we started seeing who were being targeted here.
+We knew it was probably going to be journalists,
+activists, the type of people we work with.
+But none of it is really expected
+when we started getting to the list
+just the scale of the targeting.
+So we're seeing 50,000 people.
+And when we started looking at the list,
+it wasn't just a few journalists,
+it was hundreds of journalists.
+We see opposition politicians being targeted in Hungary,
+in Poland, we see some really heartbreaking stories,
+like the case of Khadija Ismalova,
+who is an Azerbaijanian journalist
+who's been working for years to expose corruption
+under the ideology of Aliyah regime in Azerbaijan.
+And so it wasn't the first time
+that she'd been put under surveillance.
+We've seen previously that state like Azerbaijan
+has been using kind of more low tech tactics.
+In 2012, she was working on a corruption investigation
+into the Aliyah regime.
+And at the time, she, one day, got an envelope in the mail
+with intimate photos of her with her partner.
+And they basically threatened her
+with these surveillance photos that had up her
+from her hidden camera in her apartment,
+saying, "If you don't stop your investigations,
+we'll expose these."
+Or she's a very brave journalist.
+She had a press conference and told
+what kind of intimidation the state was trying to do
+and kind of preempted this.
+And they still try to leak her sense of photos
+to try and intimidate her.
+And so, when we look at, this is one tactic
+that a state like Azerbaijan has used.
+And what we're seeing recently
+is we're just happening more and more around the world.
+So people are using these kinds of surveillance tools,
+not just to collect information,
+but also as tools to try and get ways
+of blackmailing people, intimidating people,
+to use information that's stolen from people's phones
+to leak information to pro-state media
+that tries to defame people
+and damage the reputation
+and also to organize,
+trumped up charges against people to try
+and really describe their work and activism.
+So we see this not just a privacy issue,
+but it's a massive issue on freedom of expression
+and it creates such a chilling effect
+that people cannot organize freely
+and communicate with each other.
+Well, potentially everyone can be a victim.
+So we all don't know,
+except we're running your software.
+But yeah, we don't know what's on our phone.
+So as far as I understand,
+so Pegasus doesn't leave any traces
+for ordinary people on their phones.
+So it's hidden, right?
+Or is there any chance for a person like everyone here
+including me, or if I was our potentially nerd somewhere,
+would we realize if we have Pegasus on our phones?
+- So I think the really scary thing about Pegasus
+is that it's very, very difficult
+to find the traces and to notice it.
+I think when most people think about hacking
+or government hacking, they might imagine
+somebody sending you a phishing email,
+trying to get your passwords
+or maybe sending you an executable file
+and trying to get you to open this.
+And this is something we've seen in the past
+from governments who've kind of developed
+the software themselves.
+What's really scary about Pegasus
+is that they're obviously a very sophisticated company.
+They have millions and millions per year
+that they can spend on research and development
+to buy some of the most sophisticated exploits
+and ways of breaking into basically any iPhone
+and the Android phone in the world.
+We've also, we've had some more scary recently
+as we've seen them changing their tactics.
+Before we see them what's doing,
+what's called a one-click attack.
+And so one-click attack is where,
+like what happened with my amnesty colleague.
+- Link, then you need to click the link.
+- Yes, exactly, send your link and you click the link.
+It's still very easy, it's still very effective
+because it's not like you need to install anything.
+You just click the link and just by opening that link,
+they'll start running some sophisticated browser exploit
+in your phone.
+They can get access to the browser
+and eventually burrow deeply in the phone.
+Once the spyware is there,
+it can basically access anything the user can do.
+And even more, it can read your signal messages,
+it can turn on your microphone, it can turn on your camera,
+it can copy everything it possibly wants from your phone.
+And unfortunately, it's nothing you see on the phone
+that will let you notice is happening.
+It won't necessarily have your battery draining,
+it won't make your phone slow,
+it'll just really silently be able to remove this data.
+And so that's what we saw up until 2018 or 19.
+So we're seeing these kind of one-click attacks.
+In some ways, they were hard to detect,
+but there was still a chance
+because like with our colleague,
+someone would see this link
+and especially if they know they're being under surveillance
+or otherwise being threatened,
+there is some chance that they will notice this
+and come to somebody like a recent stream
+like us at Amnesty or other partner organizations
+and we can dig into this.
+I think what really drastically changed
+our understanding of the problems
+when we realized that NSO was also doing
+what's called a zero-click attack.
+So with a zero-click attack,
+they have a complex way of breaking into a phone
+without the user having to do anything at all.
+So without having to click a link,
+without something else or silently,
+you can be in bed at night
+just by sending them sending messages to your phone,
+they can break into the phone and get access to your data.
+We've seen doing this in multiple different ways.
+The first time we discovered this was in 2019
+where WhatsApp found that the NSO group
+had developed an exploit against WhatsApp
+and in just a two-week period,
+this was used to target 1,400 phones around the world
+completely silently
+and we only discovered this on WhatsApp,
+found the exploit and found the attack
+and then what was quite helpful in this case
+was WhatsApp also, a few months later,
+they began notifying the people that they had discovered
+who had been impacted by this attack.
+- And so the people wouldn't know
+because there would be a WhatsApp message
+which is, I don't know, not displayed
+or once the pegs of software is installed,
+they can manipulate the phone,
+it can remove its own message
+or yeah, so that would be really no trace.
+- Exactly, so in that case,
+there was no trace visible for the user.
+They would simply get a missed video call
+and just in the initial process of trying to make the video call,
+they would be able to deliver their spyware
+into the device itself.
+So I think that what that made us realize
+is that we as Amnesty
+and we as people who were trying to tackle this problem,
+we couldn't kind of wait for people to come to us
+with suspicions and with worries about links
+or attachments of this kind of thing.
+And we realized we had to somehow try to be proactive
+in going to discover this thing in the world
+and we also needed to start developing some tools
+and forensic abilities so that we could check a phone
+that we suspect may be as targeted,
+extract all the data from the phone
+and try to find some ways of identifying
+and tracking the spyware that tries very hard
+not to be identified.
+- So you said, or let me start the other way around,
+so is there, I don't know, some email or contact?
+You want to publish so if someone is,
+or has to feel in his or her phone is threatened
+or what would you suggest people to do that?
+- You know, definitely if you're a journalist or activist
+and you have reasons to be suspicious
+that your phone might be targeted,
+we do have a kind of helpline at our Amnesty Security Lab
+to help support people in checking their devices.
+And then also we as Amnesty, we believe that there is,
+there shouldn't be knowledge that's just kept
+for a small group of people,
+but what we've done that's quite different
+is when we, through the package project
+and our other investigations,
+we develop this capability to detect spyware
+that really no one else had done before.
+We thought it was extremely important
+to publish this openly so that other people
+can use these tools and can also check their own devices
+and help discover other cases
+that maybe we want to discover ourselves.
+And actually that's proved very successful
+and since the package project was released,
+we've seen new cases all around the world
+being discovered using MVT in some of these tools
+that have developed by panel organizations
+in El Salvador, in Poland, in Thailand.
+Now we've seen new cases in Greece
+where many people in the opposition and journalists
+have been attacked with another spyware tool.
+- Another one.
+- Yeah.
+- It never stops.
+So that means also you probably,
+so the Pegasus case did not,
+it's maybe less now in media
+because probably it was 21 and now other things are happening.
+So for ordinary people it's gone,
+but I assume for you it's still in that case the long going
+because well, I think you also released the tool,
+maybe you can say something about that as well,
+but that means an Instagram group knows
+how you know if phones are infected or not.
+So I would assume that they try to go further
+and find new ways to cover again.
+So that means also you would need to update your tools.
+- Yeah, exactly.
+It's always like an arms race in this situation
+because we try and identify who's being
+kind of unlawfully surveilled and targeted with this software.
+And unfortunately NSO group tries to keep making money
+by selling this to states.
+And right now most of the customers who are still customers
+seem to be, yeah,
+states you can imagine who will abuse it.
+Like you've seen the UAE, Saudi Arabia, Jordan, Salvador.
+And so we're always trying to make sure
+that we're still having some ability to detect these cases.
+We have seen a lot of changes in the situation
+since the Pegasus project.
+Back in 2021, we were doing these forensic investigations
+where they see no leads to the Pegasus data.
+But one thing that's been a real help to our research
+and also to other civil society researchers
+is that in 2021 after the Pegasus project,
+Apple decided to really try to also tackle this problem
+they saw that it's not only bad for their users,
+but it's also bad for their business
+if their phones are being tagged all the time.
+And so what they've done is they've also followed the lawsuit
+against NSO group in the court in the US,
+which has been a really promising development.
+They also have a lot more money to hire good lawyers
+than Amnesty might do to keep them,
+to challenge them.
+But I think what's besides the lawsuit,
+what's been super powerful and beneficial
+is they've also started doing notifications.
+So when they identified that somebody
+has potentially been targeted with the spyware,
+they also now send a notification to the target
+saying we suspect you might have been targeted
+by some sophisticated spyware.
+And that's been super helpful for us for our investigations
+'cause people are getting these notifications
+and then they're coming to groups like us,
+other groups like Citizen Lab,
+and we can then do the forensic analysis of their device.
+We can understand, okay, I already been targeted recently,
+we're trying to find a proof of this
+and then we can support them to take different kind of action
+either to promote their case.
+We've also been providing technical evidence
+to let people take legal actions in their country.
+So since then, we've seen in the last year or two,
+more and more cases coming forward in Mexico,
+like in El Salvador, Kazakhstan,
+where people are getting these notifications
+and then can actually try to seek accountability
+for the harms that they're experiencing,
+basically in secret without their knowledge.
+- So we are mentioning the low case.
+Started by Apple, do you know,
+if something moved already and do you know what?
+So I hear that they did it, but I lost the trace
+if already some judgment were made or not, you know?
+- So with the Apple case, it's still progressing quite slowly.
+As I mentioned earlier,
+and so also targeted WhatsApp users
+and there wasn't a lawsuit filed in the US by WhatsApp
+back in 2019.
+So that's been also progressing very slowly.
+NSO has used lots of legal arguments to try and appeal
+to say that this action should not be taken against them.
+They've even taken it to the US Supreme Court
+to try and say that they have sovereign immunity,
+but they can't be sued because they were for governments
+and the governments are not suitable in the US court.
+And so this is quite a fire-fetched argument
+and thankfully the US government
+and the US court system has kind of turned this down.
+And so now it's going to go back to the regular court
+to hopefully get to start having disclosure from the company
+and we'll see some progress around that
+to try and get some accountability.
+'Cause unfortunately there's been many lawsuits.
+Fortunately there's been many lawsuits
+around the world since the package project,
+but unfortunately for many people,
+they're taking legal action against their own government,
+whether in Hungary, in India,
+where they control the court system
+and there hasn't been,
+there's been far too little accountability
+and justice for the victims,
+but I do hope that in some level
+with the new Apple and WhatsApp court cases,
+they can maybe get some disclosure
+and if we don't get accountability for the victims,
+at least we'll get some more information
+about the practice of the company
+and how they've been operating
+and using these tools in a way
+that's completely incompatible with the human rights.
+And do you know if something on the level of actual law,
+making change, so has there been any country
+who stepped up and said oh, now we see
+that this kind of software can also do very harmful,
+so we are going to forbid it in our country.
+I mean, the most countries say well,
+other countries are doing harmful stuff,
+but not ours, right?
+Is one country clever or honest enough to say,
+no, we are not doing that
+and we're forbidding that in our territory
+or I don't know if what possibilities would be.
+- So unfortunately--
+- Yes, would be very surprising.
+- Unfortunately, I don't think we've seen any country
+that's all in our call for a ban on spyware,
+but we have seen a lot of actually quite promising progress
+on regulation and legislation in different countries.
+Probably the first country
+that actually took meaningful action against NSO
+was the US government.
+Again, about two years ago,
+they put NSO on their entity list,
+which basically bans any US company or person
+from working or doing business with NSO
+without a very restrictive license.
+And while it's by itself doesn't put the company
+under business, it shows a very powerful signal
+to NSO Group and the other spyware companies
+that it's not a legitimate business.
+It's not, they like to think of themselves
+as a tech startup and they're just building technology tools.
+But in this show, the US government is seeing them
+as illegitimate in some of the way they've been operating
+and the country they've sold it to are really illegitimate.
+So that's been a promising sign
+and then what's been most promising in Europe
+is the establishment of a committee of inquiry
+in the European Parliament.
+This has been going since early last year.
+It's quite an intensive process
+where they've been having 30 or 40 MEPs
+and they've been really trying to investigate
+and getting to the bottom of this scandal.
+So they've invited people from NSO,
+they've invited money experts, speakers.
+They've also gone now on visits to various countries
+where in Europe, which have abused these tools,
+including Greece, Poland, Hungary,
+and now this week they will go to Spain
+where Pegasus have been abused very widely
+against Catalan activists and civil society.
+I think what's interesting is in,
+we see quite an ironic situation in Spain
+where Spain has been using tools like Pegasus
+for many years to target political opposition.
+But then we saw last year
+that actually the Spanish government themselves
+have come out and said that the Spanish Prime Minister
+was also hacked with Pegasus.
+So it's like what goes around comes around
+and it's in a very strange scenario with these kinds of tools
+where not only are governments using it
+and then getting hacked by also by spyware,
+sometimes the governments are getting hacked
+by the very same tools they were using.
+In that case, media reports say it was likely Morocco
+who was trying to spy on the Spanish Prime Minister
+and so there's a whole kinds of geopolitical
+and other kind of national security risks
+that unfortunately are probably more convincing
+to a lot of these states to start
+putting in better regulation
+on the sale of use and transfer of these
+than when we show evidence that a journalist
+or an activist is being targeted.
+And so we have seen, so Amnesty's main policy call
+is for having a global moratorium
+on the sale of use and transfer of spyware
+and other kinds of surveillance technologies
+until there's a human rights compliant regulatory framework
+in place and so basically,
+that means we think this problem has gone too far
+that the existing rules in place
+are not sufficient to stop the harm
+and we'd like to, all the governments to stop
+using and exporting these tools
+until we put better controls in this.
+To have one good story,
+I think we have seen that more states
+and more at least politicians in the European Union
+are supporting this moratorium call
+and really a lot of people are,
+I tend to realize why this is needed.
+We've also seen that the government of Costa Rica
+has agreed to support the moratorium.
+So there is at least one country
+who's supporting standing on.
+- Well, for maybe not so much supporting countries,
+they usually claim they use it only for the bad guys.
+So for the terrorists, it's definitely not for activists, right?
+And so groups are the same, right?
+We're selling it only to the good states,
+to prevent harm from terrorism and so on.
+So from a NSO perspective,
+I'm kind of playing there, that is adequate.
+Is it technically possible for them?
+Or is it like, well, here is the tool
+and then whatever the buyer does with it, is it?
+Or is it like, well, it's more like a service?
+So please, NSO, so rate is this this person?
+So in the service situation,
+so NSO would actually have the possibility,
+not saying they do it,
+but they would have the possibility
+to select which people are surveyed and which not
+and they could make a claim or that's a journalist.
+So is it possible or is it just some advertising?
+- Why do I share your dream?
+- It's a good question and it seems like NSO
+can never really get their stories straight.
+Sometimes they're like, when there's abuse, they say,
+okay, give us the name of the person or the phone number,
+we'll investigate this and if there's abuse,
+we can check it and if we find it's true,
+we'll cut the customer off and then at other times,
+we say, okay, here's all these abuses,
+these countries have been doing for years
+and they're like, oh, we don't know,
+we couldn't possibly know who the customer is targeting,
+it's a separate system we don't have access to.
+And so, I think they build a system,
+they control the system,
+they know who the customers are,
+they know they're certain the customers
+like Saudi Arabia or the UAE have a long line,
+a long history of human rights abuses,
+not just in general, but also specifically
+with spyware tools and not just with NSO,
+but also previously with finfisher, with hacking teams,
+some companies who have gone before this.
+And we see them just constantly making decisions
+where they are continuing to sell the products
+to provide services to customers who have abused them.
+I think probably the most heartbreaking cases
+is with Saudi Arabia.
+So again, this is, we already showed evidence in 2018
+where it was being used by an embassy staff member
+and another Saudi human rights activist.
+Instead of cutting off Saudi Arabia from using Pegasus,
+they continued having them as a customer.
+And later during the Pegasus project,
+we found that a partner of Jamal Khashoggi's wife
+was targeted with Pegasus in the months
+before his investigation,
+likely to collect information about him, about his family.
+And then even just three days after the murder,
+Saudi Arabia targeted his fiancee
+when she was in the most vulnerable time in her life
+and the target of her and prosecutors and everyone around
+the family trying to cover up their own crimes
+of murdering this journalist.
+And even then NSO did not cut off the customer.
+So it's like with having these outrageous abuses
+and yet they are somehow valuing either the profit
+over the victims or else also we see in a lot of cases,
+there is strategic interest in why NSO and Israel allowed
+a lot of these companies to sell to Morocco or Bahrain
+or Saudi Arabia when we see later,
+it leads to normalization and other kinds of intelligence
+and security sharing at the expense of the victims.
+- Well, this was anyway something which I found strange
+or I'm not sure if Israel as a country
+is able to control it or not,
+but I mean, so Israel is not known to have,
+especially in the Arabic world,
+every country as a friend.
+And how would it be then possible
+or that even these countries are using NSO groups tools?
+So in the end, Israel doesn't care
+or does NSO find a way around that
+and even may do a harm against their own country
+to say so on a higher level?
+So sell it to the country's enemy for the business.
+- So I think with NSO at least from all of what we've seen,
+NSO was not acting rogue as a company,
+they were very much working with the cooperation
+and with the support of the Israeli state.
+NSO spyware is treated like a weapon in Israel,
+so it requires a license to the Ministry of Defense
+before it can be exported to any other country.
+And so as far as we know, what NSO claims at least
+is that every sale of NSO spyware
+and every export to any country who is a customer
+has all been approved by the Ministry of Defense,
+which supposedly has human rights, safeguards in place
+and will take into account their record
+and the risk of misuse.
+In fact, as we see from the hundreds
+and journalists and activists here being targeted,
+that this is not very much not being effective.
+And so in 2020, Amnesty actually filed a lawsuit
+in the Administrative Court in Israel
+to a request that the Israeli Ministry of Defense
+would revoke NSO's export license
+basically because we'd shown that it wasn't
+sufficient safeguards to prevent the abuses.
+Unfortunately, after a few months,
+the court came back and said they,
+first they sealed the complaint.
+So all of the evidence was held in secret,
+which we didn't get access to.
+And then they said, okay, we've talked to the Ministry
+of Defense, we've talked to the company,
+they've assured us that everything is above board,
+perfectly in order, no violations here.
+Not to see here, move along.
+It was quite surprising to see a year later
+after the Pegasus Project, they kind of changed their tune
+and it came out with their hands up being like,
+okay, we know mistakes we've made,
+all these abuses we didn't know about it,
+we couldn't possibly even know about it.
+I think, and then they, at that point,
+they revoked some of the export licenses
+and they limited how many countries
+that NSO and similar companies could export spyware to
+without a kind of further approval process.
+So that was quite helpful
+and it was probably also due
+to the political pressure they were getting from the US
+and from France, where they were,
+these states were themselves, I guess,
+quite angry and quite worried
+that now there are some of their diplomats
+or politicians were being targeted with these tools.
+- All right, if I may,
+I would get back to a bit of kind of a more personal thing
+if I can, so you said,
+and I mean, it was already clear,
+when the list of 50,000 numbers showed up
+and it even said in the video,
+so it was kind of clear, it became a big thing
+in the video, I think, it said,
+you did not bring anymore your phone to the meetings.
+I don't know, I,
+latest at that moment, it sounded also a bit scary
+to where such a project.
+So how was it for you?
+So was it like, ah, now I'm going every day to work
+and I'm turning on my computer
+and playing my games or was it at some point
+and really like, ah, now I need to be very careful
+and check my phone twice, put it somewhere else
+and all that, so did it,
+did it had some impact on you or on your life,
+so did you feel still comfortable or, yeah, I don't know.
+So, yeah, definitely it had a very big impact
+and stress during the project.
+So I'm very mindful that I'm living in Berlin,
+I'm quite privileged and disconnected
+from a lot of the situations
+that some of the people we're working with are based in,
+so I really feel for some of the journalism activists
+in Morocco, Azerbaijan, who really have
+a real physical danger and I personally didn't feel
+that so much with this project,
+but I think we definitely had a big sense of responsibility
+for all the people who had been targeted with this spyware
+to be able to make sure that we did this investigation,
+could show the problem and did it in a way that was safe
+and didn't put anybody at risk
+and so we really put a lot of thought into how we do this
+securely, tangentially without exposing anyone,
+so in terms of practical steps,
+there was a lot of inconvenient technical things
+we needed to do, I remember at one point
+having tree-driven phones, tree laptops,
+and we'd have a regular phone,
+then we'd have a separate device and a laptop
+that would be fully compartmentalized,
+so it would have an anonymous username, anonymous accounts,
+and so the idea was even if somebody figured out
+about the project and knew we were investigating it
+and to try to hack our phones or hack our computers,
+the ideas they'd never get to understand the full scope
+of the project 'cause it wouldn't get access to this
+separate device, I think that was quite fortunate
+'cause in the end we realized that some of the journalists
+we were working with in India had actually been hacked
+during the investigation, so it wasn't paranoid thinking,
+it was people actively being surveilled.
+I think it was quite interesting
+because we also managed to work with some journalists
+who had themselves been victims of spyware,
+I think of one particular case of some journalists in Hungary
+where we started looking through the list,
+we started to try and identify the names,
+and then we see journalists that actually
+some of the people in the project
+recognized and knew I'd worked with in the past,
+and so who better to get to investigate spyware
+than somebody who themselves have been victimized
+and have a personal interest in doing this,
+so I remember at the time, again, during COVID,
+one of the journalists from the Subditch's Lautengen
+flew to Hungary, to Budapest to meet with this journalist
+Shahbox, and they're like, okay, we need to talk to you,
+and they had some pretense in that, okay,
+but you need to leave your phone here,
+and the journalist is quite...
+- Yeah, can anybody worry what's going on here?
+And so then when they left the room from his phone,
+they were like explaining, okay,
+so we have a, we have a species that your phone
+might be under surveillance and spyware,
+and we have this team of Amnesty who helped check your phone
+if you get them all the data from your phone,
+and at first he was also a bit like, hmm...
+- Oh, I wanna give your all your data from your phone?
+- Yeah, so then he, eventually he realized it was,
+it was, we weren't what we're trying to do,
+so he's like, okay, I can share the phone,
+and we got the data from his device remotely,
+analyzed it, and then quite quickly, within 30 minutes,
+we could say, okay, on these 10 dates,
+your phone was being hacked.
+- Yeah. - And of course,
+he was quite... - Oh, then he knew...
+It's not him and Amnesty who had all the data,
+it's someone else as well.
+- Exactly, so at that time he just knew about
+he himself had been hacked,
+and so with the pegs project, they talked to him,
+like, okay, so this must be very shocking as a journalist,
+it's not just your own personal data that's being exposed,
+he was thinking back about, okay,
+who are all the sources I've worked with,
+who are the people that might be at risk now,
+from talking to me that now it's been exposed,
+even though I use signal,
+they still got all the data from my phone,
+but I think he was quite excited to turn the tables
+when we said, okay, it's actually not just your phone,
+but we have a whole list of hundreds of people in Hungary
+who are being put under surveillance here,
+and we want you to help dig into it,
+and you did some of that amazing work
+understanding the full scope of the problem
+and finding many more journalists and activists
+who were being targeted by under the European government.
+- So you were never on the list?
+(laughs)
+- As far as I know, I checked my phone quite regularly,
+and fingers crossed I haven't been hacked,
+but you never quite know.
+- I don't know, yeah.
+- I know there's lots of,
+my colleague in Berlin lives quite nearby,
+so usually when we had some sense of discussion,
+we'd be like, okay, meet you at the usual coffee shop,
+we go in and we go for a walk around the block,
+with no phones or computers on us
+to try and plug things out.
+So sometimes old school is the safest way to go.
+- Yes, yeah, well, also, in Berlin
+in the times of the Cold War.
+- Yeah, speaking of that,
+so do you have any tricks or advices you could share?
+For, I mean, probably most of us,
+the audience is not the main target
+for the existential stuff that we don't know,
+but I mean, of course we learned,
+don't click on a link,
+but is there something else you can do?
+Or is this zero, click?
+You're kind of, I don't know, close,
+I would not know that English.
+- I don't like it, yes.
+- Yes, powerless.
+- Yeah, yes, yeah.
+- So I think with packets and these error clicks,
+unfortunately, yeah, I don't have good news.
+Technically, there's very little you can do
+because they can hack your phone even when it's fully up to date.
+I think the, because there's nothing we can do technically
+to really stop the problem,
+and this just shows why we need to do a lot more politically
+to put in proper regulation on the sale of these tools
+and the development of these tools,
+because it shouldn't be up to each individual person
+to try and protect themselves
+and have their own counter espionage agency
+trying to make themselves safe.
+It should be up to the political systems
+and regulation to make sure that this isn't,
+and enhance the people who are going to abuse it.
+In terms of steps people can take,
+one positive development has been that Apple actually
+also added a new whole new set of features to an iPhone
+that's specifically designed for people who are at high risk
+of being targeted by spyware or other kinds of tiger attacks.
+And so it's an opt-in feature on the iPhone,
+it's called lockdown mode, and if you enable this,
+you can still use your phone perfectly normally,
+but it does make some of the common attacks
+that NSO has used and other,
+what the attacks are using more difficult.
+So one thing it does is now when you get a link in an SMS,
+it won't actually allow you to click on the link.
+So you can't accidentally click and it'll open it,
+it's if you copy and paste a link if you really need it.
+And so this is one way to make these kinds of attacks
+more difficult.
+They also have a feature to make,
+to lock down your iMessage,
+so that these zero-click attacks become more difficult.
+And so it's actually quite impressive that Apple
+have taken the steps to build this into each iPhone
+for all of their billion users.
+And it's already quite helpful because even two years ago,
+this wasn't available.
+And so we were seeing people who are being hacked today,
+we would check their phone, find it's being hacked,
+we even get them a new phone.
+And then three days later, we checked their phone again
+and it's been hacked again,
+'cause there's nearly nothing.
+And then we just felt really powerless,
+we were just like, "Okay, I'm sorry we can't help you."
+And so this is like a 65-year-old woman in activist in France,
+who is the wife of a Moroccan jailed human rights defender,
+and yet here she is in France being harassed day in,
+day out by likely Morocco and trying to break into her phone
+and everything that she could do about it.
+It's really heartbreaking to see this is happening.
+- Well, maybe as a last question, I have to ask that.
+So you became quite a successful hacker,
+so you're also well-known, so there is a YouTube video,
+I don't know how often you've seen.
+I mean, companies like Anasto are looking for with hackers,
+so whatever good means in that moment.
+So did you ever, have you ever been approached,
+or is this in this community at the case
+that people got approached and say, "Well, maybe,
+"come to our side, you might have better salaries,"
+or whatever, or is it kind of clear
+that people who are working for Amnesty International,
+they are quite rock solid with their opinions,
+and it's not worth the time to.
+- Honestly, I'd be interested to see them try
+and see what their approach would be,
+but honestly, I think they would rather,
+at least Anasto would rather see as little of me
+and the rest of the team as possible.
+I know Anasto at the time, I think they were also,
+they thought they were really incredible,
+they could never be caught.
+I think they kind of learned their lesson quite badly,
+that actually they weren't as careful,
+or as hidden as they thought they were,
+and I think it's really causing a lot of problems
+for the companies since our investigation.
+At one point, the company is being estimated value
+at $1.5 billion, and then I heard last year
+that the owner of the company who is a private equity firm,
+they basically said it's valueless
+and try to almost want to write off the debt,
+so that shows that actually there is some potential
+for civil society working together to try
+and really highlight this problem
+and cause some consequences for people
+who are enabling these human rights abuses.
+Unfortunately, the problem isn't over,
+NSO is still around, we're still tracking them.
+There's also a dozen other companies
+in Germany, in Austria, also in Mani and Israel,
+who are trying to develop and sell all these types of tools,
+so it's still an ongoing battle to try and make sure
+that this problem is properly controlled,
+we don't just stop with seeing one company like NSO,
+who's been exposed for this,
+and just, yeah, on the last point,
+I was interested to see that another surveillance company
+that we're monitoring are now hiring rules
+for what they call an operational security engineer,
+which I think is to make sure they don't have the NSO problem,
+I'm getting all of their software burned and exposed.
+- I mean, on the other hand,
+it's also a difficult problem for people
+who are security engineers and like to hack,
+so how to choose your job.
+How can you make, be sure you're on the right side?
+I mean, okay, I've noticed the international,
+but I don't know how many job offers are there,
+with similar ethical standards to say, so.
+- All right, so it looks like, I didn't count,
+but it looks like we have attendance recorded today,
+so I wanna give you also the chance to ask questions,
+but first, to make it more private for us,
+let's say, bye to the stream audience.
+Almost, quickly, I wanna announce the next rounds
+of let's pull it the share out,
+so it's now pretty much monthly.
+I think mostly the third day of the month,
+next will be April 20.
+So if you're new to digital accelerator software,
+or maybe I do this in German,
+it's a bit simpler since the slide is in German,
+but also when you know it,
+in contact, I'm gonna take you to the end
+of the month, once in the month,
+and we'll be able to meet in one thing in contact.
+I'm gonna skip to the end of the month.
+The homepage is in German,
+I'm gonna go to the end of the month,
+and I'm gonna use the letter.
+The one at the first end of the month,
+the QR code brings us to the end of the month,
+and I'm gonna use the letter.
+The end of the month is in the podcast,
+it's a bit different,
+and I should be able to get it in first,
+I'm gonna write the letter,
+it's a bit different, I'm gonna write the letter,
+I'm gonna use the letter from Instagram,
+it's always made the way.
+And I'm gonna go to the end of the month,
+and I'm gonna write the letter,
+and I'm gonna write the letter,
+and I'm gonna write the letter,
+and I'm gonna write the letter,
+and I'm gonna write the letter,
+and I'm gonna write the letter to the end of the month.
+I'm gonna write the letter to the end of the month,
+and I'm gonna write the letter to the end of the month,
+and I'm gonna write the letter to the end of the month.
+(audience applauding)
+- I'm gonna take some questions.
+So...
+[BLANK_AUDIO]

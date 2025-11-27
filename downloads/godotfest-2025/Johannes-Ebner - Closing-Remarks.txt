@@ -1,0 +1,95 @@
+API URL: https://api.media.ccc.de/public/recordings/93498
+Frontend URL: https://media.ccc.de/v/godotfest2025-closing-remarks
+Title: Closing Remarks
+
+So this is it, right?
+That's a wrap.
+I think those two days went by so fast, it felt like one hour to me.
+Sometimes it felt like a bit sleepy hour, I think everybody here is exhausted from the
+amount of talks, from the amount of good conversations.
+But there's positive and negative exhaustion, and I think at least for me I can say it was
+very positive, I'm full of motivation, I'm full of energy.
+I'm looking forward to get back home, to apply all those new ideas, all those inspirational
+conversation that I had, and I hope it's the same for everyone of you.
+, and I'm happy to have you.
+It's especially, I'm especially thankful, because it's the first edition, that means
+it's so much trust that people give you.
+We haven't proved ourselves until now.
+We had just an idea and a lot of PowerPoint slides, but nothing apart from that.
+So I'm really thankful for the trust that we got.
+And I also want to thank the speakers.
+All the speakers, this event would be pretty boring, I mean we are all good at hanging
+out, talking, and nerding out about technical stuff, but with some really good talks it's
+much more entertaining, much more good.
+And also one more thing about the speakers, I'm thankful that they create all those cool
+events for everybody here on the side.
+But all the talks are recorded, so the value and the knowledge that is created for the
+whole world, for every good old developer out there that is starting out or is having
+very specific problems in their development, it's such a big benefit for them too.
+So I think that's a big aspect to give a big round of applause to the speakers.
+And with that I also want to thank for all the talk and workshop submissions that didn't
+make it into the selection, into the final selection, because everybody thought about
+a topic that is interesting, thanks a lot for that.
+And also thanks for the course of proposal, committee that looked through all those talks,
+rated it, thought about it, discussed about it, that was a ton of work.
+So another round of applause for that.
+And I already mentioned all the talks being online, being recorded, being live, and they
+are already live, I don't know how many people there noticed that you can already see a lot
+of the talks online.
+And that's only possible.
+Oh, I was having a little, okay, thanks to the C3 team, to the Cows Computer Club video
+operations center, I was about to say command, but that sounded like PVKK.
+So through the center, they did an amazing job again, it's so great to work with the
+professionals there, it's just like they come in, they're always chill, anything can happen,
+they're always like, yeah, no problem.
+Just the usual business, and that feels great.
+So thanks for them, and that's the URL where you can already see pretty much, it feels like
+all of the talks already.
+Now back one slide, if it works, if I don't miss it, okay, thanks to the Goodo Foundation.
+They supported us a lot with the marketing, they supported us with allowing us doing this
+crazy thing and this idea.
+They also showed up in numbers, which I honestly didn't expect to be so many of the foundation
+here.
+It feels really great, it feels like they endorsed the event and really supported us.
+And I'm also thankful for their support for making a good job, feeling everybody welcome,
+supporting us with the Code of Conduct team, like they added their workforce to make it
+sure that everybody feels welcome, that was really great and nice.
+So thanks again to the foundation.
+Now very specific, thank you.
+Johannes did the opening and he put a spotlight on all the people that were the team, but
+I feel like he didn't get a proper spotlight.
+So now we do that, thanks Johannes, he did so much on the event.
+I don't even know where to start.
+And one more person that didn't get a spotlight, I think so, I'm not quite sure, but in case
+we give like an extra thank you to Steve, who did the community support, who can't be
+here today and also yesterday, he did run all the Discord, like answered tons of messages,
+so one round of applause to Steve.
+And the next one is from my personal heart, I think the biggest one, but I think it's
+not the last one, but almost done, the volunteers, like without them.
+Without them, it's what just not have been possible, not even like remotely.
+So they really carried the whole event, and that was amazing.
+So I have a proposal, that happened to first, yeah, that got merged pretty quickly, I think.
+So I really hope to see you again next year, we really plan on doing it on a yearly basis.
+Of course, we still have to wait for the feedback, so if 90% of you says, well, that
+was horrible, it sucked, then maybe we will reconsider it, but if that's not the case,
+then we will probably hopefully see each other again next year, and I'm not done.
+Wait a second, there's like three very operational things, how you can support us, and I hope
+it works, now we're clicking, click, click, click, click, oh, here we go, feedback would
+be great, we will be sending out an email asking you for feedback, giving probably some kind
+of form where we ask about what did you like, what you didn't like, if you have ideas for
+the next year, that would be very appreciated if you take your time.
+The next point is if you share, if you took photos, if you have stories to share on social
+media, of course we appreciate it, and the last one is, we still have a couple of t-shirts
+out there, so if you didn't get one and you want a nice little memory, we would of course
+love that.
+And now the last slide, yeah, with cash payments, thanks to you, thanks to you for giving us
+the trust, because this is the first edition, like nobody knows what's happening, we could
+like have waited here with a knife and just robbed everyone, but that didn't happen luckily,
+so thanks for your trust, thanks for the long travels that a lot of people had, we really
+appreciate it and it warms my heart to see so many people here coming to us just for the
+idea, and yeah, thanks to you.
+And I like, it's actually not the last slide, that's the last slide.
+I wish everyone safe travels, get home safely, keep the memories to your heart that you made
+this two days, I was about to say weekend, but these two days for me it feels like a weekend,
+but yeah, safe travels, get back home safely, have a good time and thanks to everyone.
+Bye.

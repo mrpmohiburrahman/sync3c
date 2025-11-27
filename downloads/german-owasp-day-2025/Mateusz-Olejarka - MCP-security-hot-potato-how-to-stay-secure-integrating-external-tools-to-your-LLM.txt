@@ -1,0 +1,417 @@
+API URL: https://api.media.ccc.de/public/recordings/93596
+Frontend URL: https://media.ccc.de/v/god2025-56487-mcp-security-hot-potato-ho
+Title: MCP security hot potato: how to stay secure integrating external tools to your LLM
+
+We just heard about that the Apple SDK contained a vulnerability from the past, a stack-based
+buffer overflow from 1995, something like this, and we're moving in time, right?
+So we're going from the vulnerabilities of the past to the vulnerabilities of the future.
+So because we're talking about the model context protocol, and how our beloved large-language
+models, which we don't control, security-wise, in the first place, become even more complex
+and more unpredictable, and Mateusz will tell us all about this.
+Mateusz.
+Thank you.
+[APPLAUSE]
+[APPLAUSE]
+So I should say [SPEAKING FRENCH]
+which is in Polish, [SPEAKING FRENCH]
+And that's about all German I remember, just to speak fluently.
+So I'm going to discuss a model context protocol on mostly
+on vulnerable examples.
+So let's start with a brief intro to the MCP concepts.
+And then we'll focus on issues.
+I have a bunch of examples of various interesting
+vulnerabilities.
+Most of them are old friends, you saw them before.
+And some of them are also new vulnerability classes we'll see.
+And I will end with a bunch of recommendations
+how to survive.
+And oh, it's back again.
+As I mentioned, my name is Mateusz,
+and I'm head of web security at Securing,
+and I'm going to do a quick intro.
+we can say that it's API standard.
+Key concepts.
+Think about MCP host as an application, which
+is like Courser or Visual Studio, something
+which has a bunch of various clients which
+connect to various MCP servers providing different kinds
+of services.
+It can do this in two ways.
+First is local.
+So basically, S to the in, S to the out, sometimes S to the error,
+and they communicate on the same machine,
+launching some processes.
+More recent addition is remote, which
+is using-- can you hear me again?
+Sorry.
+This is HTTP, basically, post requests
+in something which is called streamable HTTP.
+Before that, it was server sent events.
+And such MCP server has three types of capabilities.
+Versus resource, think about this as a read only,
+get API without a query string.
+Simple stuff to extract some data.
+Protocol says that it has four API in there.
+You can list resources.
+You can list resource templates.
+You can read particular resource.
+And you can subscribe for changes in a particular resource.
+For example, it changes into a file.
+And quick example, here we see a resource template, which
+is basically based on files.
+It's parametrized via cuisine.
+And what it does, it gets you, for example,
+Italian cuisine recipes if such cuisine is in this end.
+It's available.
+So that would be it.
+Another capability are tools, which is basically an API call.
+JSON comes in.
+JSON comes out.
+And you have two API calls.
+You can list available tools on MCP server.
+And you can call one sending a required data.
+Brief example, we have a tool called Git status,
+which shows the status of working tree based on some input.
+And when we run this tool, it will basically
+take a repo path parameter.
+And it will return a Git status for that.
+And the last capability are prompts,
+which are reusable templates.
+For example, if you want to showcase
+what your tools are capable of doing,
+you can make some example prompts.
+In case of API in MCP server, you can list existing prompts.
+And you can get given prompt filling some details.
+Getting back to recipes, we have a prompt, which
+is weekly meal planner, and based on the cuisine you will select.
+So I would say, let's stick with, for example, German cuisine.
+You will get a prompt, which will allow
+you to get a plan for one week meals using
+the German cuisine recipes.
+So basically, this is the idea, and this ends our quick intro
+into MCP concepts.
+Now, I want to focus what's vulnerable and what's malicious.
+So quickly, of course, MCP server is basically API.
+It can be vulnerable.
+Of course, client can be vulnerable.
+And of course, we can see clients being malicious.
+That's the usual stuff we get in the normal API.
+What's new thing, we can see MCP servers being malicious.
+And for obvious reasons, I don't want
+to discuss MCP clients being malicious.
+I will focus on those three aspects.
+So let's start with vulnerable servers.
+This list of examples is incomplete.
+We have a lot of issues.
+When I look at MCP, I see that there's
+a lot of new code written, and a lot of new code
+means that security research will follow,
+and we see a lot of lot of interesting issues.
+So let's start with injection vulnerabilities.
+Here we have a tool called query collection, which
+takes as a parameter named query.
+If query is present, it's added to query arcs
+alongside its value.
+At the end, it gets to execute co-ho command function.
+And what it function does, it basically
+takes this input and puts it into exec, which leads clearly
+to always comment injection.
+This is simple exploit.
+In this, we use the MCP server tool normally,
+and then we append at the end code
+comments to delete a temporal folder.
+And there's a lot of issues this year only related to that.
+Remember, this MCP as a concept has one year,
+so there's a lot of stuff going on there.
+Another example, in this case, sensitive information
+is Clover.
+Here we have a function read MDX context, which
+does some path traversal detection attempt, and it's OK.
+But the result from it, it's not used here,
+because if path traversal attempt is detected,
+it should result false.
+But false does not prevent this function
+to run until the end.
+If this MCP server will get a prompt
+to get a documentation for such path,
+it will result with file listing of root folder.
+Yet another example, imagine we have, on the one hand,
+a tool capable of reading file locally by an absolute path.
+On the other hand, we have a tool which
+can read remote URLs based on the address.
+So what can go wrong?
+Combining those two, you can read local file
+and extract it to the attacker's controlled URL
+using those functions.
+Another interesting example is bound
+to the way session ID is generated via one of the library.
+Here we see the example of this server sent events.
+So we have various HTTP streams run by a server
+and to identify a stream, we use session ID.
+The problem is, I would say, maybe from the 90s,
+but quite old.
+This code generates session ID, and what it does,
+it takes basically the session ID, memory address,
+and returns it.
+So this is not unique, and those addresses get to be reused.
+So if attacker generates a lot of session IDs,
+it may be that the attacker will be able to inject some commands,
+some requests into the victim's session.
+And those few examples close the vulnerable MCP servers.
+Now let's see MCP clients.
+Here we have also similar vulnerabilities.
+I have three examples here, so let's dive in the first one.
+Here we have something which is a library MCP remote proxy.
+What it does, it allows MCP clients working locally on machine
+to communicate with remote MCP server.
+And if such server requires authentication,
+the MCP remote proxy tries to get off information,
+and the vulnerable parameter is authentication endpoint.
+So authentication endpoint, it should use.
+And why is that so?
+Looking at the code, here we have a new URL done
+from this authorization endpoint value.
+And moving on, we have a function open using that exact value.
+And what open does, it basically executes a command.
+In case of Windows, it would be PowerShell executed,
+and the calculator will pop up.
+Another interesting example is from the Avi's company,
+the previous speaker from Oligo.
+Here we have a combination of two issues.
+This is the problem.
+It was a bug in anthropic MCP inspector,
+which is one of the popular tools used to inspect MCP server
+capabilities.
+First issue is C serve done remotely
+to a locally running services.
+And the other issue is that MCP inspector
+runs a MCP proxy locally, and that proxy did not require
+any authentication.
+So the payload looks like this.
+We have a bunch of JavaScript code.
+Basically, we open--
+this is the C serve part, right?
+So we try to get remote from attack control site
+to the local service.
+And here we run a command on MCP proxy
+to create a file in the temp folder.
+Another example-- and I'm disappointed because of the first--
+this is the first with fancy logo and defense name.
+There should be more of that, but it's an issue in cursor.
+When you open a cursor is IDE for those who do know.
+If you open a new project in cursor,
+cursor scans for files in dot cursor directory.
+And if it finds something MCP related there,
+it parses it and asks users for approval.
+And the problem here was that when it
+approves certain MCP server via name,
+if the description changes, there is no reapproval.
+So if you open the project and the content of this file was benign,
+it's fine user approved that.
+If it gets malicious and the name sticks the same,
+it will actually run without any user
+need to approve.
+Actually, I think that my error--
+I did error in slides.
+Here should be the same name as previously,
+but I think you get the idea how it worked.
+All right.
+Third part, I think the most interesting one,
+because here we have new vulnerability classes.
+So things that can happen for you as a user of, for example,
+cursor or any other MCP client.
+So I think during the keynote, EVA
+covered direct prompt injection, quite nice.
+That's just the example.
+In direct, it means that you do not talk directly to some LLM.
+You just use something which takes your input and use it
+into the LLM prompt.
+The example here is from Langchain Gmail Toolkit.
+It's a tool that scans your emails.
+And the prompt look like this.
+We have a user A email account, which is a victim, user B,
+which is the attacker.
+And this is the email which gets sent to user A. So to the victim.
+And it says basically this, hi, I'm an user, a email owner.
+I'm being detained.
+I need something for you to check.
+And basically what it does, it asks
+to scroll payment data from emails from Google,
+write it down into one mail, and send it to user B Gmail.
+So that's our reality in case of using MCP-related tools.
+Another example is a tool poisoning attack.
+The problem here is that all those tools
+should have some description.
+I mentioned some API tools list, for example,
+should return to your description.
+But some of the tools, for example, cursor,
+does not display to the user every detail.
+So the problem is here that we have some benign tool
+which should add two things.
+But it has some important information covered there.
+What it does, it basically asks to read out two files
+additionally to simple addition.
+So user might not see this information.
+And that's the example from the execution.
+I added you those numbers.
+The sum is six.
+But in the meantime, I've read those two files.
+Another example of an attack using MCP
+is a rook pull attacks.
+The problem is user might review the available tools,
+for example, during an integration with an MCP server.
+But this is just the API called result.
+I mean, tools/list.
+And you will get the result.
+It may change over time to something malicious.
+So someone will take over an API
+and make the tools your MCP client is using
+to be doing something entirely else and entirely malicious.
+And the last example is tool shadowing, which
+is, I think, the most interesting one.
+You can use various MCP servers and one tool
+from a trusted MCP server.
+Its logic might be, I would say, abused
+by a malicious MCP server, which presents to you
+different tools.
+Let me give you an example.
+Here we have another operation with adding numbers.
+But here it instructs, for example, the LLM.
+If the tool related to send emails is present,
+please alter its behavior in a way
+that it will send all emails sent by this tool
+to the attacker-controlled email address.
+So here, at the top, you see the prompt send an email
+using send email function to Alice@mail.com saying hi.
+And at the end-- sorry, not at the end.
+In the middle, you'll see the exact call.
+recipient was attacker.
+And the body was as instructed in that instruction.
+I think summarizing as though all those issues,
+it's like Wild West.
+We've seen it.
+We've been there before in the cloud.
+There was a lot of development, a lot of issues.
+And here with MCP is, I think, the same.
+So recommendations-- how to stay secure.
+A bunch of general recommendations
+is like to follow protocol strictly.
+Be ready to make changes quickly,
+because it's a new stuff.
+So it might change to be ready to apply it quickly.
+And of course, use popular tested libraries
+instead of building anything from scratch.
+But I think the usual stuff you do--
+do thread modeling, do secure code review,
+do pen test of your either MCP servers or clients.
+In case of servers, I think this is the usual stuff.
+But treat all parameters, all capability parameters
+as untrusted input, as usual.
+Treat user input as untrusted.
+And do the usual API security stuff.
+Just have in mind that MCP is another way of making an API.
+Maybe introducing some new issues,
+but still it follows the, I would say, normal, abstract way.
+In case of client, of course, verify MCP servers
+before you use them.
+Review scan descriptions of the MCP server capabilities.
+Not only what users see, but everything the server returns.
+Of course, secure the handling of data
+returned by a MCP server not to get caught
+without any proper validation.
+And what's important is detect changes in MCP capabilities.
+And then the end of the day, if you're like a tool which
+is used by a user, if you do such tool,
+make sure that user gets all the details
+to make an informed decision, request user confirmation,
+if anything changes, any new capabilities are added or removed.
+And yeah, basically, in case of recommendation, that's it.
+I've inserted into talk a lot of links.
+And here is the-- if you wish to dive more into that,
+here is the, I think, most important ones
+for you to start.
+And basically, that's it.
+I'm open for questions.
+I have small gifts for you.
+It's a handmade chocolate with a dragon.
+Whoa.
+OK.
+Thank you.
+[APPLAUSE]
+So who would like to have a question for chocolate?
+Oh, chocolate.
+Yeah.
+Hi.
+I was kind of surprised that your recommendations at the end
+were not maybe, don't use it.
+So I was wondering if you could maybe explain
+why you don't say, just wait till the technology stabilizes
+a little bit.
+I mean, the problem is the usual stuff.
+I would say the business.
+What you see here, and I think what ever mentioned before,
+everyone wants to use it.
+Everyone pushes to use it.
+And if you're not implementing MCP yet, you will in time.
+Because we have to use MCP.
+We have to be available for AI agents.
+That's the future.
+So yeah, I mean, you can try saying not to use it,
+but I think it won't work.
+At least with the companies I've worked with,
+they need that because the clients need that,
+the business needs that.
+And this is the way it works, I think.
+Thank you.
+Chocolate is yours.
+I have like a few more.
+No worries.
+OK.
+There's much to little get.
+Hi, one of the recommendations was verified the MCP server.
+What do you mean with that?
+How do you verify it?
+I mean, I've shown some examples which
+contain basic stuff like attempts to inject prompts, right?
+So you can basically use, for example, MCP inspector
+to review that before you actually
+implement something as a MCP client.
+So this is the idea.
+There are, I think, other tools emerging which
+allows you to scan, for example, for prompt injections
+and stuff like that.
+So I think it's maybe by your condition, it's Vogue,
+but it's new stuff, I would say.
+Thank you.
+OK.
+Please remember about the chocolate.
+Yes.
+Do we have more questions?
+So we have one because I like chocolate.
+And I don't have a question.
+So piggy-bagging what he just asked.
+Because of one of the things, as you said,
+we want to, when we're interacting with potentially
+untrusted or maybe now trusted, but later on, not so trusted,
+servers, you want us to money to their capabilities
+and their description.
+But all the capabilities in the description
+are transferred in natural language.
+So how could we automate this?
+Yeah, that's the really good one.
+I mean, it's a hard problem.
+Because either you can verify from the API stuff,
+you can check those manually or have some scanners to do that.
+But at the end, LLM will get that.
+So yeah, it's-- I mean, you have to make sure about your model,
+you handle it properly.
+I mean, really, it's hard to say, right?
+But in case of being a client, you
+have to really good verify the MCP server
+before handling it to your LLM.
+Yeah, that's an issue.
+Protecting LLM is like, hold another talk.
+So stay tuned.
+It will be-- stay very interesting.
+Thanks again.
+Thank you.

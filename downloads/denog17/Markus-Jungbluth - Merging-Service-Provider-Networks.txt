@@ -1,0 +1,363 @@
+API URL: https://api.media.ccc.de/public/recordings/93322
+Frontend URL: https://media.ccc.de/v/denog17-72761-merging-service-provider-networks
+Title: Merging Service Provider Networks
+
+(upbeat music)
+- Okay, welcome back.
+Our next speaker is Marcos Jungblud.
+He is a Solution Architect at Santaro
+and he will share his experiences
+on merging different service provider networks
+with a focus on MPLS and IP networks.
+Thank you.
+>> Welcome to my talk. My name is Marcus. There's one other name here, Bastian. We prepared this presentation together and unfortunately, Bastian could make it due to reasons today. So I'll be presenting our work. Alright, let's dive right into it.
+>> We've seen many mergers or acquisitions of service providers in Germany. We have a few headlines here.
+There are many other challenges besides the IPMPS network, optical networks and also social
+aspects of merging engineering teams but this talk will just focus on the IPMPS pod.
+So before we dive into the technical topic, a quick look on why is it interesting for
+service provider to merge to ISPs.
+So one aspect is an extended network footprint.
+So for example, if either one of the ISPs could not cover all of Germany, by merging the networks,
+you can suddenly cover a larger area and provide service to more customers.
+Another aspect can be that if you have a different customer portfolio, for example, one service
+provider focusing on residential and the other one on business, you can combine those portfolios
+and also generate more business there.
+And the third one, probably the most important one, is cost savings.
+So potentially, by merging the networks, you can save on cost for resources or services,
+with a few examples listed here.
+All right, so let's take a look at the technical topic.
+So essentially, when you have the two IP MPLs networks, there's a million ways that you
+can merge them.
+And today, we're going to talk about a selected few.
+And at the end of the day, if you're in this position, it's up to you.
+You need to decide and find the way that is right to get these networks together.
+And I'm putting this statement out there just to make it clear that I'm not telling you you should do it in that way.
+Many times happening a couple of months after the business deal has gone through, that the
+two networks will, as a first step, establish an NNI.
+What is an NNI?
+Well, it's nothing fancy.
+It's just a layer two connection.
+You have a bunch of VLANs on it, sometimes single-stack, sometimes dual-stack, depends
+on what you want.
+And this gets up and running really fast.
+So if you have the requirement to provide end-to-end services for customers that are positioned
+in the two networks, you can basically use this approach to get rapid value, essentially.
+And the concept, and that's one of the bonuses for an NNI is really well understood, both
+by engineers but also by IT systems, because it's very likely that the ISP already has
+an NNI set up to another service provider, so all the processes are probably already
+in place.
+So as you can see here, it's all nice and clean.
+But if you operate this for quite some time, so on day one, it looks like this, on day
+237, it can look something like this.
+You will have multiple NNIs and multiple locations, you will have to monitor their capacity to
+make sure that all the customers that you're passing through them will have enough resources
+for the services that you put on there.
+And you can also have effects like increased latency or traffic tromboneing, for example,
+if you have a customer in Munich with two sides and interconnected two sides in Berlin,
+they will most likely not like it.
+So again, your mileage or experience with this, my worry, depending on the requirements
+that you have, an NNI can be an approach.
+But our experience is that over time, especially with larger networks, they will get hot to
+manage.
+Okay, approach number two.
+This is also something that we've seen is inter-provider or inter-AS.
+And the general idea behind this is not new, essentially use external BGP between two
+autonomous systems to exchange routing information.
+And, well, this is new and you all know it because that's how the internet is built.
+The only difference for inter-provider setups is that instead of only INET unicasts and
+INET 6 unicasts address families, you can also pass service families over it.
+For example, INET VPN or INET 6 VPN.
+And this inter-provider or inter-AS setup comes in three flavors.
+We have option A, B, and C. And they're to be seen in ascending order of maturity and
+scalability with option A being the worst and option C being the best in terms of scalability.
+However, if you look at option C comes at an increased complexity, which is also something
+to consider.
+So, again, this can be a nice approach to generate rapid value if you want to merge
+two networks.
+It is, at least from my experience, more or better, the maintainability of it is better
+than with the NNI and, yeah, you can get good results with it.
+All right.
+Now let's take a look at number three.
+Carrier of carrier VPN.
+This is a good one and I'm sure many of you know carrier of carrier VPNs.
+Not because you ever used them in production, but because you might have taken vendor certifications
+and you were tortured with the theory of it.
+So the idea behind this is that you basically extend the transport plane of one network
+across another already existing network.
+And on a technical level how this works is essentially a layer 3 VPN but with MPLS labels.
+So this means that this instance is completely separated from the carrying network and allows
+that even loopbacks, for example, can overlap.
+So this is also another tool that you can use if you want to bring two networks together
+or if you want to just share the transport infrastructure of the other network with the
+one network you're trying to get in there.
+So now we've looked at three approaches.
+Three approaches that get you relatively quick results.
+But our experience has shown that these three approaches that we've just shown you attend
+to be more like a quick fix, you get rapid value.
+However, in the long run they only really get you halfway there, to be honest.
+So if you implement something like into provider setups or NNIs, the distinct IPMPS networks
+will continue to be distinct and the networks will continue to live on their own administrative
+islands with a somewhat reliable regular service in between them and also from a social aspect
+the teams also tend not to really merge because they're busy doing things on their own islands
+and maintaining them.
+So what we've seen is that the real value add, and again this really depends on what
+you want or need for your network, you can only get if you build permanent structures
+between them, so in the form of bridges for example, and what we've seen is that only
+through this method you can get to a truly merged network, but again this really depends
+on what you want and what you need for your network, if you want to keep them separated
+on the different islands, that's also fine.
+Okay, so how can you build this bridge?
+So if you want to build a bridge, you need a blueprint, so you need a plan how to do it,
+and you need a toolbox, and this toolbox in our case is full of different protocols.
+IGP, independent label distribution, like BGP, labeled unicast, IGP specific label
+distribution like LDP, RSVPTE or second routing, traffic engineering mechanisms, IGP design
+approaches and even static routing.
+So that is basically what we see as the starting point or the general gear that you need to
+build the bridge.
+So I mentioned seamless MPLS, seamless MPLS is nothing new, it's been around for quite
+some time, there's an IT, ITF draft on it, and it's important to understand that it's
+not a specific protocol, it's rather a collection of design ideas that make it possible to
+interconnect different domains or sections of your network, while it's still maintaining
+and that's the important part end-to-end IP MPLS connectivity, so you can subdivide your
+network into certain sections, interconnect them, and enable a scalability or a possibility
+to scale to 100,000 of nodes essentially.
+And one of the key elements that you have with seamless MPLS is the clear separation
+of transport and service planes, so that you don't do not intertwine them and make sure
+that the signaling happens separately and that you can pull them to different locations
+and have different protocols signaling the services and the transport plane.
+And seamless MPLS does that by using a toolbox of already existing protocols, the ones that
+we've seen on the previous slide to achieve the architectures that you want.
+So let's look at a small example, which I named challenge one.
+So what you can see here is a pretty tiny example of a three-layer design for service
+where the network with a core layer, we have an aggregation layer and some edges in the
+access layer of the network.
+And I've marked them, so the core usually have very high-scale devices.
+On the aggregation layer, you have medium to high-scale and in the red area, you have
+low-scale devices.
+And the reason why you have this structure is because service writers have started to
+push out MPLS towards the access edges of the network.
+And the reason I do this is because they want to achieve carrier-grade redundancy for their
+amzons or OLT, so the access equipment.
+And well, you can also use spanning tree if you like, but most of the ISPs would, for
+reasons, rely on routing redundancies, so that's the reason why you often see these setups.
+So in many cases, what they use in these positions are low-scale merchant silicon devices.
+So the reason being that they're relatively inexpensive compared to the cost they would
+have to pay for a full-scale router.
+And if you have a larger amount of them, that makes absolutely sense to put them there.
+And sometimes, just to mention it, with some vendors, you can also place amzons or OLTs
+that have these functionality built in.
+But in any case, what they have or what these solutions have in common is that their scale
+is usually extremely limited along with the feature sets that you can use on these devices.
+So where this is lead us, often in these designs, you will find a flat IGP topology.
+So you will just put all the devices in one IGP and use a label distribution protocol,
+which is usually fine, depending on the scale.
+So there's simply no need to divide your network.
+And while this is still completely fine, you try to merge it with another network.
+So let's say you have ISPB joining with a thousand nodes, and then, well, what happens
+is the high-scale devices will be fine, the medium-scale devices will be fine, but your
+low-scale device will blow up in flames and you will get error messages like this, which
+you do not want to see in production.
+So how do we solve this?
+Well, one approach is to just buy a bigger router.
+The other approach would be to change your design so that you can accommodate for the
+increased scale.
+And the concept or the idea behind this is not new.
+It's been around for quite some time.
+So the scenario that I've just shown can be addressed by separating the low-scale devices
+from the rest of the network, essentially, and you can do so by either using level or
+area concepts of IGP so that you have different sections or domains of your IGP where you
+operate, and then use something which is often called route summarization.
+So instead of sharing all the loopbacks and all the transfer networks from the entire
+IGP, you just send an aggregate route.
+And this way, the access edge devices that you can see here will not be part of the big
+IGP domain, and they will not receive all the prefixes and hence the grip and fib scale
+is drastically reduced.
+So this is cool.
+It works pretty well for unicast.
+For unlabeled unicast, but with MPLS, this is kind of an issue because route summarization
+and MPLS LSPs are not really best friends because usually, labor distribution protocols,
+for example, like LDP, they rely on exact batch /32 and /128, so out of the box they
+will not work with this approach.
+So there's also solution for this, and there's essentially two main approaches that we see
+in this area, which the first one being BGP-labeled unicast, and you can see that this is the
+first tool in our tool box, the wrench, and BGP-labeled unicast is not all that different
+from normal BGP, unicast, with the only difference that it allows you to distribute transport
+labels.
+And it does so by allowing you to include a label alongside the prefix and the next top
+that you advertise in BGP.
+And the way that it works is in this example, that we, for example, have an access edge
+device in a OSPF and LDP, and then we have a kind of border device that is part of both
+the OSPF and anti-ISES domain, and it will distribute its own loop back in the OSPF domain.
+And then the BGP-labeled unicast route that this border or edge device advertises towards
+the low-scale device will then contain the next top of that device that sits in between
+the two IGP domains.
+So this way, the downstream router can then install a transport path that is based upon
+the next top from that device that sits between the two IGP's.
+And more importantly, you will only have, in this example, only have one next top for
+all BGP-labeled unicast routes that you receive, so this 13, 13, 13 prefix will be used for
+all of the routes that this guy over there sends.
+So you no longer need a full IGP redistribution, you can rely on the route summarisation.
+And the most important part is you can easily filter BGP routes that you receive.
+That is a main property, one of the properties that you have with BGP as a distance vector
+routing protocol, which is not that easy to achieve with a link-stay protocol like OSPF
+or ISS, for example.
+So you can easily reduce the rip and fit load.
+Optionally, just to mention it, you can also build these setups completely IGP-less.
+So if you just want BGP-labeled unicast without any IGP-underlay, so to speak, that is also
+possible.
+All right, so let's look at option number two for this.
+And that's the good old reliable hammer, LDP.
+And I'm sure many of you know how LDP works, and maybe not all of you know how the default
+mode is called, I also didn't know that when I started working on it.
+It's called downstream unsolicited.
+And it really describes the way that LDP works, because the way that it works is actually
+pretty dumb.
+Because it will just dump the entire LDP database towards the downstream device once you establish
+the session, so then what is even dumber on the downstream devices, that by default it
+will install all of these faxes, these forwarding equivalent classes on the downstream device.
+So that is an issue when it comes to controlling the scale of your end device.
+Because of this, there is another mode to LDP, which is not that widely known, it's called
+LDP-DOD.
+There's nothing to do with the Department of Defense, but stands for downstream on demand.
+And the idea is that you have to explicitly send a label request, and then only when you've
+done that, get a response with a label mapping.
+So that allows you to control the influx of transport label information that you get
+on the device.
+And this way you can easily control the amount of prefixes and transport labels that you install
+on your box.
+So if you want to use this with route summarization, you also need to make sure that your LDP implementation
+supports the longest match extension, so that this requirement of matching on a exact match
+/32 or 128 no longer exists and that it can match on a default route.
+And some vendors also offer you to automatically request the fax that they need in LDP, so
+that you don't have to build up a list manually.
+And also here if you don't want an IGP, you can also build this completely IGP-less with
+static routing if required.
+All right.
+So what we've now discussed is how to make sure that your network scales, and that nothing
+bad happens when, you know, you join two networks, the IGP domain grows, you have more and more
+devices in there, and you've put mechanisms in place that make sure that low-scale devices
+are not impacted by this.
+And what we've seen in projects where we work with customers is that in many cases for
+them it turned out to be desirable to actually merge their IGP's, and there's a number of
+reasons for this.
+So many times they found out that they want a unification of some kind of inner-core network,
+so that all the transport paths that you have in the network can be used by both ISPs.
+And another reason that we often heard was that, well, simply, it's easier to maintain
+if you merge the IGP's at some point because, well, one network is easier to maintain than
+two networks.
+Another argument that often came up is that you can have a slimmer protocol stack if you
+just merge the IGP's, if you have a complicated inter-provider option C set up, there's lots
+of mechanisms in place, lots of protocols, and you also, and that's the last point, need
+support for BGP labor unit costs across the devices that need to go over the bridge that
+you've put the temporary service that you built.
+Yeah, as mentioned, as a prerequisite, you should implement some kind of mechanisms or
+make sure that your devices can scale, and one important thing to point out is that you
+can also do the IGP merge even if your autonomous systems have not been unified yet.
+And the reason that you can do this or the idea behind this is one of the key aspects
+of CMAS MPLS that the service and the transport planes are separated.
+So how do we do this?
+How do we merge an IGP?
+So it comes with a lot of challenges, the first one being renumbering.
+So in the project that we've seen, we really started to think that the engineers out there
+who make the decisions or the IP address assignments should really start playing the lottery because
+there's lots of prefixes that you can pick from lots of private ranges, but you somehow
+still end up with some overlap for loopbacks or transfer networks in some parts.
+So almost in any of the cases, we would have to do some kind of renumbering, which is a
+bit of annoying because it requires a lot of maintenance windows and you need to change
+the transfer networks, loopbacks, et cetera.
+So if you have second routing set up, nodesits also need to be unique because a duplicate
+nodesit is no fun.
+Other aspects are harmonizing metric values, for example, to make sure that the best path
+selection in your IGP is based upon the same ideas or metrics that you've assigned and
+also other IGP-specific settings, like timers, loop-free alternates, et cetera, so that you
+have one unified experience at the end of the day for all of the participants in the network.
+And of course, in case you have different IGP's, like the one uses OSPF, the other one
+ICS, you have the additional task of transitioning to a new IGP that also could come in as a
+challenge.
+And just to mention it here, usually this is a great opportunity to implement segment routing.
+And in the projects that we have done, we have actually done that and we've had discussions
+with our customers whether or not to take this leap to take this step forward.
+And the cool thing about segment routing is that it gives you a lot of new features,
+like FlexIGO, allowing you to make decisions based on different metrics, for example, latency
+and use them alongside already existing metrics or also TILFL or segment routing traffic engineering.
+And our stance on this is that even if you don't need these features now, it is very
+likely worth the change because the demands towards your network can change in a year
+or maybe in half a year.
+And if you are already working on your IGP, it is advisable to take the step or the leap
+towards segment routing.
+All right, so now we have talked about how to basically merge proof your network to make
+sure how the devices can withstand the increased scale.
+We talked about how to bring together the IGP's.
+And I have done such an IGP merger and I can tell you this was probably the most nerve-wracking
+maintenance window I ever had because it is one of these events where everything can
+go well and you will spend hours being paranoid trying to find out if there is anything going
+wrong or it can be a catastrophe, you completely fail and you will have to roll back everything.
+Because of this, because it is such a sort of a higher risk event, if you do this kind
+of maintenance window, and for one customer that we work with, they had asked us if we
+can simulate such a merger.
+And on a technical level, this should be possible because we have access to both of the link
+state databases, so we collected this information, basically through traffic captures and then
+extracted all the link state PDU, so they were using ISIS.
+And we then edited the link state databases, which was a very annoying process because
+all you can see is a hex dump at the end of the day, to insert some more bits that you
+would have a link between the two link state databases, so essentially merging them so
+that there is an interconnect that is not actually there, but we put it in there artificially.
+And then the challenge was to play out this manipulated link state, this combined link
+state database back to a DUT, which we have done using a modified or hacked version of
+BioRD, I'm not a software engineer, so we did it the worst way possible, we just dumped
+in the array into the code directly, compiled the whole thing and then shoot or shot against
+our DUT and it worked, and we were able to show to the customer, demonstrate to the customer
+that the DUT would work correctly, that we could see all the prefixes, the transfer networks,
+the loopbacks in the routing table, and there were no error messages generated, and then
+they were happy with it, and the end of the story is that all the IGP merger was successful.
+So you might ask yourself, well, you probably have access to an ixia or a spider and tester,
+why didn't you do that, just to quickly cover that, it is possible to do it on ixia, but
+the issue is they require a specific data format, so if we wanted to do this, if we had wanted
+to do this, we would have to convert all the data back into the specific data format and
+then play it out, it was easier for us to hack an existing ixia implementation to achieve
+that.
+All right, that brings me to the end of my talk, and all now, it's up to you, so we've
+heard about the blueprint that being seen as MPLS and told you about the different tools
+that are there, and what I wanted to point out again to sum up my talk is that at the
+end of the day, when you're faced with the challenge of merging two networks, you need
+to make the decision, you need to decide what is right for your network, if you like the
+NNI approach and it works for your network, that is absolutely fine if you want to merge
+the IDPs, that is also fine, and if you like an inter-provider set up of some sort, that
+is also fine.
+At the end of the day, your team and your network just needs to be happy and content
+of the solution.
+All right?
+Thank you.
+Thank you.
+We do have time for questions, please wave there.
+Tom from Decakes.
+You said, hey, we can have OSPF and ISS in the same network as well.
+I would assume it would be double trouble because now you have to know people doing OSPF, you
+know, need to know ISS, you need to redistribute, what's your experience with that, because
+I would assume it would be problematic to do that.
+Yes, of course, I mean, if you have OSPF in some access areas of your network and then
+you have ISS in the core, that is more of a challenge, right, because you need to understand
+both of the IDPs.
+But as mentioned, you can also choose a different approach where you use area or level concepts
+to subdivide the network.
+So that could be one way to address it.
+But yeah, at the end of the day, I totally agree.
+This introduces added complexity.
+But so do many of the other mechanisms that we've presented.
+So, yeah, well, this, you need to, it's a trade-off at the end of the day.
+If I look up again, when we plan to harmonize the IDP protocol and changing the one side
+from OSPF to ISS, to manage both sides having ISS at the end, can this be done in parallel
+to the OSPF protocol without having the one, the other, or will there be something forward
+or something like this?
+Yeah, I can see Oliver over there laughing, because they've actually done exactly that.
+So what you can do is you can have this operate side by side.
+And many vendors have a concept that is called administrative distance or protocol preference.
+So you can set a preference on which kind of protocol should be preferred over the other
+when it comes to installing in the, in the rib.
+So for a temporary setup, yes, you can absolutely run them in parallel to ease a transition to
+a new IDP.
+Okay.
+I don't see any raised hands anymore, and we're all to perfectly on time.
+Thank you very much.
+Thank you.
+[Applause]

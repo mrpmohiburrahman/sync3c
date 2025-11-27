@@ -1,0 +1,916 @@
+API URL: https://api.media.ccc.de/public/recordings/93376
+Frontend URL: https://media.ccc.de/v/godotfest2025-a-peek-under-the-hood-technical-learnings-from-halls-of-torment
+Title: A Peek Under the Hood: Technical Learnings from Halls of Torment
+
+[MUSIC]
+>> Thanks for the great introduction.
+The title is "Speak Under the Hood."
+I would like to give you a deep dive into
+the technicals of Hall of Torment.
+First, a quick introduction.
+I've been already introduced,
+but I kind of shoved it in into my presentation.
+I'm Paul, I'm game designer and programmer,
+and I do a lot of other stuff at Chasing Carrots.
+I joined the company at 2015,
+and I've been the creative director of Halls of Torment.
+And back there, this is me making a Dr. House impression.
+Yeah, if you go on our website,
+this handsome fellow will greet you
+at the top of our website.
+This is not narcissism.
+He didn't do this by choice.
+We kind of, the way I remember it,
+I probably remember it wrong,
+but the way I remember it is that we used to have
+like a show reel of pictures of insights into our studio.
+And with the WordPress update, the plugin broke,
+and it stuck on this one and since then,
+he's sitting there greeting you nicely.
+And why do I introduce Dominic?
+Dominic is our co-founder and tech lead.
+And most of this talk is about his work.
+So whenever I say we did this, we optimized this,
+we implemented the best thing ever.
+It's mostly him, actually.
+So I'm just a messenger.
+I do have our understanding of what's going on,
+yet the details are in his head.
+Yeah, this is our team.
+We are 10 people currently, six full time and four part time.
+And yeah, we've grown again a little bit,
+but we try to keep a small footprint.
+And this is the latest game that we released.
+It came out in out of early access last year in September.
+And just two weeks ago, we released like a DLC,
+and we also released on consoles and on Game Pass.
+And yeah, it was rough.
+No, it wasn't that rough or for ride, actually.
+It was pretty smooth sailing for us with this game.
+We really were pretty quick with the first playable
+and within one month.
+And this is how the game looked like after one month.
+We had a working loop with all the stuff
+after a very short iteration.
+Back there, you see my rendition of the campfire,
+which I was very proud of.
+It took the entirety of five minutes of doing this.
+And it got replaced by something more flashy.
+But yeah, it was completely playable.
+And then after six months, we went into early access.
+And that was like, yeah, this was pretty quick.
+And we had to be quick because our money
+was running out back then.
+And that obviously that situation proved.
+Yeah, what does this talk about?
+Yeah, I'd like to show you how we shipped a commercial game
+or how the innards of a commercially shipped game look like.
+I'd like to talk a little bit about our learnings
+from the development process.
+I will talk about measurement of code performance.
+And I will also talk about performance improvements.
+Only on CPU, GPU is no beast.
+It's a 2D game.
+There is not much going on with shaders or rendering.
+And what is it not about?
+It's always important to exclude certain things
+to fix expectations.
+It's not about beautiful code.
+We didn't have the time to spend on code aesthetics.
+We kind of had to be quick.
+So this is reflected in our structure as well.
+We, yeah, as I said, prepare for some crude stuff.
+It's always easy to say, yeah, we should have done this differently.
+But sometimes you don't know better, right?
+And you have to learn.
+And today, we have ideas how we would improve it today
+and make it better today.
+But yeah, that's in the past.
+It is about the learnings.
+So yeah, I invite you to be critical with me together.
+Yeah, let's dive into the big picture.
+If you open a project in Godot, the first things
+you would look into to understand the game
+is to probably look into the main scene that opens up
+and look at the globals.
+And here, I wanted to pick out the most biggest culprits
+in this area.
+So up there, we have an async resource loader.
+The resource loader, we've implemented a small thing
+that allows us to queue up loading of resources.
+And at some point, when the loading is finished,
+we get a signal and we can just use them
+without any impact on the main thread.
+Then there is like a platform, a platform global
+that allows us to connect to different services,
+mostly Steam, but also console codes and like achievements
+and so forth is handled there.
+We have this global, a big global file
+where everything is tied together.
+This is like the God global, basically.
+Everything happens there.
+Then there is this game state thing
+that is also quite important.
+It tracks basically in which state the game is
+and it informs other nodes about state changes
+and how they should behave.
+They can react to it.
+And there is like everything UI is connected there.
+All UIs are instantiated in here and kept there
+and then switched between in this global thing
+and so on and so on.
+So the others are self-explanatory like FXs and down there,
+as the DLC manager, you might guess what that does.
+Now we have like the entry point
+by how is all of this connected.
+So I talked about the game state.
+So the game said basically a very simple state handler
+with a couple of states and kept in an enum.
+There are much more than I listed here
+but those are the most important ones.
+Yeah, once someone says set state,
+then the state change signal is emitted
+with the previous and the current state
+and everybody can connect to that
+and then just do their thing.
+It's very, very, very basic.
+So when you start the game, the splash screen pops up.
+Then after a short amount of time,
+you land in the overworld.
+You see the campfire with the characters.
+Then you are in the overworld state.
+And right here, you can select different things in the scene
+and that opens up full screen menus
+that are handled by the global menus.
+And those are actually like they are there all the time.
+They are not like removed or deleted or anything.
+They are always there.
+They just react to the global state and then show up.
+And when you enter the game, you're in the game.
+This is where the fighting happens
+and where all the damage is done.
+And there are two outcomes to this.
+Either you die.
+Oh yeah, of course, there's also like a connection
+to the global menus when you pause the game
+or when you open something.
+Then you can die, you can survive.
+And after that, you go back to the overworld
+and this is like the, this is the gist of it.
+This is how the game is structured.
+There's not much more beyond that, right?
+And, but the meat of the game is, of course,
+in this in-game thing.
+This is where the game starts to drop frames
+or whatever or crash or this is the most complex state.
+We are in, okay.
+So what do you need to make a survivor like?
+So for once you need to meet a world,
+where all the action takes place,
+you need a player to deal with the damage.
+You need monsters to absorb all the damage
+and then you need all the bells and whistles
+that basically make it a game like a power-ups
+and effects and explosions.
+And once you have those, the space line,
+you want to add new content.
+So how you do it?
+You take the original, copy them
+and change them a little bit, right?
+So yeah, you get more players,
+get more monsters with different behaviors,
+with some changes and you get more stuff basically
+for the game.
+And after the tenth copy you do and change,
+you realize, huh, maybe we should be able,
+but a little bit more elegant about this.
+We should find a way to make it, yeah, flexible maybe
+and not messy.
+But let's look at the requirements for us
+because there is much more to that.
+For once we have a very elaborate damage system,
+we need to trace damage.
+We need to know where damage comes from
+to track it for quests and for different conditions.
+Also for statistics players want to look at their character
+and see the DPS and what caused how much damage
+and so forth, especially at their end slate.
+And we also have like the problems,
+problem that we have bullets that spawn bullets
+that's both explosions and AOEs.
+And you'd still have to be able to track back
+who did the original damage, who was the originator there.
+So this is also adds to the complication and the complexity.
+And next to that, we have dynamic stats.
+So everything has a stat or not a stat like multiple stats,
+like your character has a whole list of stats.
+Skeletons can have health and speed and damage
+and so forth, projectors as well.
+And you can equip items and you can,
+you can basically unequip items and get power ups
+that are timed, so those also need to be traced
+because players need to know where the stats come from
+and how they are changed.
+And they should be reversible as well.
+So think of power ups that are temporary and so forth.
+And so we need composition.
+That's what we figured out.
+We need to be able to have a modular system.
+So those components need to be reusable, of course.
+They should be able to talk to each other,
+but they should not be interdependent.
+So they should be able to function without knowing
+of other components or being dependent on our components.
+They should work on their own.
+They should also be dynamically composable.
+So if you add a component to an entity,
+it should automatically kind of hook into the system
+and work correctly.
+And yeah, you would think as a software designer
+or software engineer, that's the case for interfaces, right?
+But GDScript doesn't have interfaces,
+so we have to come up with something else, obviously.
+So in the GDScript docs, in the documentation,
+you might stumble upon the concept of duck typing.
+So yeah, when I see a bird that swims like a duck
+and quarks like a duck, I call that bird a duck.
+So, and in my case, I translated it in my head into,
+if an object can be smashed, don't care what it is,
+just smash it.
+And in my opinion, smash typing is a cooler term for that.
+But yeah, basically you look at the name of methods.
+And if something has a method that is called XY,
+then you can call it and use it.
+And you just assume that it's the right function, right?
+So this is a little bit problematic.
+It's basically, if your vocabulary has a certain word,
+I assume you know what it is, right?
+So I can say, it is a little bit iffy and unsafe, right?
+Because you have to stick to certain names
+and you have to make a lot of assumptions.
+So yeah, this is like a little bit, yeah.
+Yeah, we were considering it and thinking,
+okay, this might, this is a source of error,
+but we decided to, whatever, let's go with it.
+Let's build a system upon this entire concept.
+So, and that was fun.
+So how did we do this?
+How did we implement inter-object communication with this?
+So basically, what we did is introduce an intermediate
+immediate here for those components.
+And we are a little bit, back then we were a little bit
+unity-brained because we used to work with unity.
+So in everything you will see here,
+kind of will remind you of unity if you worked with it.
+So we called it thing GameObject.
+And yeah, and then you have like components
+that are part of this, that are children of the GameObject.
+And every game object, every component has a reference
+to that GameObject, basically.
+And via the GameObject, they can indirectly access other
+components via the get method and get signal,
+or has method, or has signal, sorry, methods.
+So they ask the GameObject, hey, do you have any component
+that implements do surgery?
+And the component looks up and looks in its cache
+because we are caching a lot.
+That's what was one of our performance improvements.
+And yes, here you go.
+And so let's look at the GameObject itself.
+It has a couple of very simple functions
+that allows you to connect and disconnect the signals.
+And this is like globally, not globally,
+like locally in the neighborhood,
+in these three of the GameObject.
+So it goes through all the components
+and hooks up your signal, or hooks up to all signals
+that are called this way, basically.
+And there are methods to get children with a certain method,
+that implement a certain method name, in different flavors,
+like, and signals, of course.
+And the last one allows you to get all the components within
+a tree that implement a certain method.
+And yeah, we first did this in GDScript,
+and then we realized, oops, we use it all over the place.
+We use it everywhere, and it slows us down.
+So then we moved it to C++, into a C++ module, actually.
+And later, we also integrated other features
+into it that allowed us to work with dynamic modifiers.
+I will come to that later.
+So after writing a couple of components in the system,
+we noticed that all of the components
+would share a lot of boilerplate within them,
+like initializing and getting the GameObject.
+So we figured, yeah, we should make a base class for that,
+and we did this as well.
+This was also GDScript first, and then at some point,
+we decided, yeah, that needs to be C++ as well,
+because these two things are going hand-in-hand with each other.
+OK, so let's take an example.
+We have this little skeleton that's all over our game.
+And there is this scenery of this,
+and up there, like the root of that is the GameObject.
+I made a little icon, so we can identify, OK,
+this is the GameObject, don't mess it up.
+And let's look at the monster input component.
+That one actually makes decisions for the entire monster,
+and it decides, for example, where the monster wants to go.
+So the monster input says, yeah, dear GameObject, tell me,
+if is there someone that moves the GameObject around?
+And is there something that allows
+me to set the direction where we want to walk to?
+And the GameObject looks it up, and it
+finds the skeleton through the emover
+and returns it as a reference.
+And then in the monster input, it
+can check if something useful returned,
+and then we can set the direction of the monster.
+And similar to that, there are some other components
+that react to certain signals, like when the health change,
+when we get hit, when we are killed, as skeletons do.
+And they ask the GameObject, hey, could you
+connect us to a signal that has this name, like killed or health
+changed?
+And the GameObject says, yeah, there's
+one that's called health.
+You don't know about anything about health,
+but it will connect you to the signal, and everybody's happy.
+And nobody knows anybody except the GameObject
+makes the patching, and there's complete decoupling.
+And the nice thing about the connect signal stuff
+is that it also works retractively.
+So if I connect to a signal, and there is no signal of that name,
+and later on, a component is added with that signal,
+the connection still happens.
+So I only do this once in initialization,
+and the GameObject has a cache of all this stuff pretty neat.
+There are still some problems with that, unfortunately,
+for once, you really need to be consistent with your naming
+for the methods, because the names are defining the function
+that they are like an end good, though, and no editor
+will save you there.
+You have to be very, very strict about it.
+Also, the other thing is that the methods with the signals
+and methods with the same name also
+need to have an identical signature, or your calls
+will go nowhere, and you will have a bad time.
+I'm debugging this.
+And the other thing is that has method
+and has signal are quite expensive.
+So we kind of only do this during initialization,
+like asking the GameObject about certain components.
+We don't do this, like, per frame.
+At the beginning, we did, and then we realized, oops,
+this is not good.
+And we cache a lot of stuff.
+And also, there is this problem of ambiguity.
+So let's say you have multiple components
+that implement the same method.
+Usually, what you get is the GameObject
+will return you the first appearance of a component
+that implements a certain method.
+And maybe you don't want this first one.
+You want to have, like, the third or a bunch of them.
+So yeah, there are a couple of workarounds
+that it doesn't happen often, but we
+did have some problems with that.
+We try to avoid this, that we have components
+with the same interfaces or methods.
+Or we kind of break our pattern there and say, OK,
+in this special case, we have a direct reference
+to a specific component.
+Or there is maybe the possibility
+to differentiate them by other attributes
+and just get all of them at once and then pick the right one
+during initialization, which is also expensive, unfortunately.
+But it's a possibility.
+So a dynamic stats, as I said, everything, almost everything,
+every entity in the game that is a little bit bigger,
+like monsters, characters and bullets and explosions,
+have stats.
+And this is like a selection of stats of the player.
+And they are also modified to see that the green numbers
+are the changes in the character sheet.
+So let's say not only the character has stats,
+but also abilities that a character can have additional stats.
+And let's say the player picks up an ability,
+for example, phantom needles.
+Then you have up, down there, you have a list of keywords.
+And those are categories.
+They basically filter certain modifiers for us.
+And when the player picks up or in a level up picks up a trait,
+the trait also has those keywords.
+And for you, in this instance, this trait
+is specific for phantom needles.
+It doesn't influence the critical bonus of any other ability
+or weapon only this one.
+So we have a filtering system.
+We can do this with elemental damage, fire damage, magic,
+bullets, projectiles, melee, and so forth.
+So this is very important so people, so players,
+can strategize and pick the right upgrades.
+So how did we implement this?
+This is also reused all over the place.
+It was the most performance critical point in our whole thing,
+because you deal damage all the time,
+and damage needs to be calculated, like hundreds
+of times per frame.
+So again, we have our player.
+And they picked up the phantom needle ability.
+The ability has some stats, damage, crit bonus, et cetera,
+and categories.
+And then the player gets the trait.
+Like, these are components that are attached
+to the player game object.
+And the trait says to the game object, hey,
+I have so-called modified value--
+modifier, sorry, I have a modifier.
+Tell every modified value that has the modifier name, crit
+bonus, that they should get plus 20%, right?
+And also, only check the category phantom needle.
+So the game object has a list of all those modified values
+that they get set up during initialization.
+And then it changes those according
+to what the modifier set.
+And inside of those two components,
+we have a data type, actually, like a ref-counted object
+that handles all of this.
+And I just wanted to show you how it looks in code.
+Like, when you have this one component, you create--
+this is inside the phantom needle's ability.
+In the ready, it initializes the game object.
+It creates this modified value.
+And it has, usually, has more than one modified value,
+of course, like damage and time and speed, et cetera.
+And this also registers it with the game object.
+And down there, you-- like, oops, can I go back?
+Yes, I can go back.
+No, I can.
+Yes, I can.
+And down there, you see how you access the value.
+And the same thing, on the sending side, like the modifier,
+it's very analogous.
+And you have like a little create function there.
+You have to set the name for the statistics.
+There is always an additive component
+and a multiplicative component for all modifiers
+and the categories.
+And in the end, you have to tell the game object
+that it has to update all of this.
+So as you might have deduced by now,
+we have forked Godot for ourselves,
+so we can fiddle around with its C++ code.
+And that's not an unusual thing.
+A lot of people do this.
+You can see it like 23,000 forks up there.
+So we were not alone with this, fortunately.
+And we tried GD extension for our stuff,
+but we found out that back then, at least,
+the GD extension interface had some performance overhead
+that we weren't able to accept.
+So we decided to maintain our own fork with modules in there.
+And it's pretty cool because we could also fix stuff ourselves.
+We could integrate pull requests that
+haven't been added to the main branch yet.
+And we also would develop a better understanding
+of the technology we are using, which is always a good thing.
+And also, we made the awful fork public.
+You can access it on GitHub.
+Just make sure that you check out the right branch, which
+is CC for free.
+And it's also useful if you want to look at our profiling
+integration as well.
+So this comes later.
+I will come back to that.
+Yeah, so let's talk about performance.
+So what makes a simple 2D game perform poorly?
+So how can a simple game like that run into performance issues?
+Well, you can see it in the screenshots.
+We have a lot of stuff going on, especially
+towards the end of a run.
+We have hundreds of entities per frame that are destroyed
+and created again.
+So this is where your CPU starts to half and puff.
+Yeah, what it was about to say?
+I lost my material thoughts.
+Anyway, lots of stuff happening.
+And we had to find out where our bottlenecks are.
+We had to speed it up, especially for handheld devices.
+We had to figure out how to make this work.
+And there is this one quote by Michael Abert in his graphics
+programmer, Blackbook.
+He advises us to measure our improvements, of course.
+And I think it's a sound advice to not work blindly,
+like look at what's not working well, improve it,
+and see if your improvement took effect.
+So it's basic advice, but some people don't regard it.
+So we entered profiling, and we quickly
+figured out that the Godot profile wouldn't suffice in our case.
+So what you see there is the Tracy Profiler.
+It's a pretty awesome tool.
+You can up there, you have a bar of all the frames
+that have been recorded.
+And if you drag over there, it also
+creates screenshots for you.
+You can turn off this feature, but we
+liked it to have to see what's going on there.
+And further down, you have this nice flame chart
+that shows you all the call stacks in chronological order.
+And you can inspect them like every call
+and look at how often a certain method gets
+called, how long it is, and so forth.
+It's very, very useful.
+And it was fun to use it, at least in the first two weeks.
+Because after two weeks, we had the most gravest bottlenecks
+done, and then you start grinding at the bones, basically.
+Yeah, there are two types of profiling.
+The one is sampling, which is basically
+you hook up your profiler, and it connects to your game,
+basically like a debugger.
+You need debug symbols for this.
+Problem is you don't get a GD script call stacks for that.
+And then there is instrumented, which we used.
+It needs-- you need to build a good old template for your game
+that has integration hooks compiled in.
+And I'll show you a couple of places where we did this.
+And we also tried different profilers.
+The first profiler we used was Optic, which
+is pretty-- did a pretty decent job.
+Superluminal, very-- yeah, very-- what's the word?
+Yeah, very-- it was very, very good.
+And yeah, impressive, very impressive piece of software.
+Unfortunately, it was paid when we were in proprietary,
+and we wanted to have something leaner and quicker
+than we can use.
+And then we landed at Tracy.
+And Tracy was basically the best thing
+that could happen to us regarding in this situation.
+It's open source.
+It has a very low overhead.
+It's very lean and quick, and it's still
+maintained and gets regular updates.
+Pretty cool.
+So how did we manage to integrate profiling with Tracy?
+So we-- as I said, we needed to integrate profiling
+for GDScript as well, because we have still a lot of GDScript
+code in our game.
+And we started by identifying where
+we want to place all the hooks of Tracy.
+And we created like this profiling header
+that we added to the Godot.
+And this one includes like the Tracy dependencies,
+and it defines a bunch of macros
+that lead to Tracy IP API calls.
+We did this via macros, because we
+would like to be able to switch the profiling on and off
+before compilation, so we could make a profiled template
+and a non-profile template.
+And we also think that it would make sense
+to have something official of this manner,
+like that we would have on profiling template,
+where you could hook up different profilers, or at least
+Tracy, for that matter.
+Yeah.
+And then we would go through the code
+and see where we could put all this macros in Godot
+to get all the information that we needed.
+Some excerpts from that.
+What follows are a couple of places.
+It's not the whole picture.
+I can't give you a whole tutorial
+how to integrate profiling in there.
+But I would tell you that just go to our repository,
+check it out, and go to profiling H. And then you can just
+rip-grab the macros and see where we put them.
+And it will make perfect sense.
+The ify part was to get this to work with scans,
+like the build system, to get the Tracy integration in there.
+So it needs a little bit of understanding of scans,
+but it is absolutely doable.
+So the first thing, in main CPP, you
+want to capture the frames.
+These are the little bars at the top.
+So you just plop in that macro here, profile frame,
+and you're done.
+You get the reading from the frames.
+Then you, of course, you want to also profile memory allocations
+and see how much memory gets allocated and freed.
+So this is in memory.cpp.
+And of course, you need to also trace wherever memory gets freed.
+So this is, again, not the whole picture.
+Then we want to look into all the notifications
+on basic notes, or all notes for that matter.
+So we trace here the ready, the process, and the physics
+process, and in the same file, the x3 and already already
+said ready.
+But back there, that was--
+oh, yeah, physics process, entity, x3, ready.
+And this is the most important part.
+This is our GD script profiling hook.
+This is in GDScript.cpp.
+Whenever a call happens, we run into this.
+And we pass the method name of this call.
+And then we see in Tracy, which GDScript function
+has been called.
+And you would also want to do this in the object CPP file.
+There's another call function that also needs tracing.
+And as I said, whoever is interested in this,
+just check out our repository.
+So how does profiling look like, actually,
+if you're in a typical procedure?
+This is how Tracy looks like if you open it up.
+And so you start tracing, right?
+This is what you see.
+Then you run the game.
+Then if you have integrated the Tracy API in your game
+or in your template, you will see the process pop up
+down there at the bottom, like holes of torment.
+And Tracy will recognize it.
+Then what you have to do is to play your game
+to a point where your slowdown happens.
+So you need to reach the scenario
+where the problems pop up.
+Then you start the process with connect.
+So Tracy will immediately start profiling and recording.
+You don't want to record more than 10 seconds of your game
+because in our case, we had multiple of gigabytes of data
+after a few seconds because there's
+a lot of things going on.
+And at the end, you press stop, and then you can analyze.
+And obviously, those two steps are the work
+intensive ones.
+The other ones are just clicking buttons, right?
+So let's look into that as well.
+So I wanted to give you a little overview
+of how Tracy looks like.
+So just very quickly, very roughly.
+Up there, as I said, the frames, every bar is one frame.
+The red big ones are, of course, the bad ones.
+You want to look into that, what slows you down there.
+And further down, you have this flame chart.
+And it's very, very extensive.
+And you can zoom in and out, and it feels really cool.
+And you have a lot of other tools,
+like you can look into statistics and histograms.
+And you have a lot of analysis tools on your hands.
+I just wanted to give you an idea what's behind this.
+Also, you can look for certain symbols
+and look for methods and see how often they get called,
+how long they get called, and what's the median and the average
+and so forth.
+You get really, really a good picture of what's going on.
+OK, I mentioned the auto player at the very beginning,
+the global at the very start.
+The problem of reaching the part where your game slows down
+is you have to play there.
+And in our case, it was always in the last couple
+of minutes of a run.
+So you can imagine, we don't want to play a game like half
+an hour until we reach spot one and see
+if our improvements have taken effect.
+So we created like a game mode where the game plays itself,
+basically.
+And we could do this also for, not only for profiling,
+but we could also brute force crashes.
+And with detailed logging, we could find out
+where our game crashed.
+So we would run four instances on a single PC of this game
+in auto play mode.
+And it would run even faster than normal
+because we have specific settings there.
+And whenever the game crashed overnight,
+we would have like a lock.
+And we would see what where in which circumstances
+the crashes happened.
+And we catch really a lot of issues with that method.
+It's pretty effective.
+And also, we could identify soft logs in the game,
+which is also like bugs where players get frustrated
+because, oh my god, the final boss didn't spawn
+or the final boss didn't drop the cool item
+or stuff like that.
+And the command line arguments with which we started,
+those auto play instances is fixed FPS 30
+and disabled easing.
+This connects the game from real time synchronization.
+And so every frame gets--
+after a frame is done with calculation,
+it automatically moves to the next frame.
+So the game runs with a maximum possible speed
+on a single core, which is very handy
+because it's faster, obviously.
+So let's cover improvements that we did.
+So obviously, the most impact we were able to achieve
+with moving stuff from GD script to C++.
+And we did this with our component infrastructure,
+as I already mentioned.
+And modifiers and modified values also
+became part of that structure.
+In the beginning, we used nodes for everything
+because we thought this is the good way.
+And apparently, it's not the good way.
+So we moved to ref-counted objects.
+And eventually, we put it into the C++ code
+and made it way faster.
+And there were also some culprits
+among those scripts that were very heavy on performance,
+which was everything that has to do with damage dealing,
+damage calculations, effects in terms of status,
+effects like burn damage or lightning and stuff like that.
+And character and projectile movement,
+those are also per frame stuff that was very performance heavy.
+Then we figured out, hey, our hit detection
+isn't optimal as well because we used area 2Ds for everything.
+So if you have a big AOE and you hit 200 monsters,
+yeah, OK, the damage dealing will slow you down,
+but also you have a lot of those areas.
+And we kind of decided, yeah, let's just
+roll our own hit detection, a very, very simplified
+dump-down detection for only these cases.
+We only use circles.
+We have, instead of the layer system,
+we have a very simple string name-based filtering
+where we can say, OK, the player is in one hit group,
+the monsters are in the other hit group,
+then there are a bunch of other things
+that we want to filter.
+And we also use a very simple grid for space partitioning
+to make it a little bit faster.
+And all of the collision between monsters or characters
+and the environment are still handled with a good O2D physics,
+like the monsters are bumping into each other
+and are blocking each other still box 2D.
+Then we had a lot of stuff that is very simple, very small,
+and pop-up pops up for like half a second,
+and then it disappears again.
+So we have a lot of, for example, like these damage numbers.
+They pop up for maximum a second and they get deleted.
+So we figured out, why don't we just
+put them into an object pool?
+Because obviously, the reset of those small things
+is faster than their initialization.
+This only works for very simple entities
+with that are very common and often.
+They have a very low lifetime and a frequent appearance.
+And their initialization takes like a few steps only.
+And then you get a good gain from that, actually,
+if you pull them.
+And finally, we had a lot of stuff
+that would have a process method implemented.
+But the process, most of the time,
+it wouldn't do anything in the process.
+We would check at the start of the process method,
+oh, is this visible or is there an active flag or something?
+And if not, we just make an early return.
+And this is actually not that good,
+especially if you have a lot of those things.
+So the best practice is to actually set the process mode
+instead of checking a flag in process.
+Because every process call has an overhead.
+Like basically, every function call in GDScript
+has a little overhead.
+And you have lots of calls.
+This little overhead adds up every frame.
+And that basically applies to all methods.
+So if you have an overhead for a lot of monsters,
+for example, you have the movement code.
+And the movement code is handled every frame in process.
+We decided to say, OK, let's save on all those process calls,
+even if they have to happen every frame.
+And we take the body of the process
+and put them into a global static loop.
+And we loop over all the entities
+and execute the code for those.
+And that way you save a lot on the call for the process.
+You can do this not only with process,
+but with all kinds of methods.
+Yeah, so these are the five biggest takeaways, I think.
+There were a lot of more, we stumbled in curious cases,
+which I didn't cover here.
+But yeah.
+And this is where my talk ends abruptly.
+I hope I could give you some useful impulses.
+And thank you for listening.
+And if there are any questions, I open for it.
+Thank you.
+[APPLAUSE]
+And also, one thing, if you have any questions,
+just drop me a mail, and I'll try to answer if I can.
+Yeah, thank you, Paul.
+As I mentioned earlier, all those effects and entities
+look really great and not only on the screen,
+but also optimization-wise, it's really cool.
+Yeah, we have time for two or three questions.
+So if you have questions, raise your hands.
+Of these four optimizations that you have shown,
+which of them have helped?
+How much do you have some rough numbers or ideas?
+Unfortunately, I don't have any metrics.
+We kind of went like--
+the way you optimize this, you look for bottlenecks,
+and then you see, OK, this is slow.
+And then you kind of find a way to reduce the load there.
+And you don't really look at numbers.
+You kind of look at numbers.
+You kind of look at execution time.
+But those execution times are usually
+dependent on your hardware.
+So for us, it didn't make sense to track
+them in a spreadsheet or something.
+But the most impact actually was moving stuff to C++.
+This is the best thing you can do a performance-wise.
+That's why I always tell people, yeah, maybe consider
+forking ago, though, and do your own stuff.
+And learn about the engine.
+Why not?
+Hey, Paul.
+Thank you for the great talk.
+I'd like to know how you feel now about kind of this unity
+centric architecture you came up with,
+which has great decoupling, but then led to having
+to optimize certain things.
+Well, it did its job for a host of children.
+And I've talked with Dominic about it.
+And we realized we would probably make it a lot more
+differently today than we did it back then.
+It was really like our paradigm back then.
+And we realized there are better ways to do it.
+And actually, there was a time where
+we considered making a sequel to the game right after we
+released.
+And Dominic also started prototyping
+like a system that was much better suited for our needs.
+But I would do it differently.
+But it did its job pretty well.
+And it still does.
+So I don't want to downplay it too much.
+Thanks.
+Great talk.
+Wanted to ask about the bonuses and kind of how they interact.
+How does your system handle things
+like additive and multiplicative bonuses
+and potentially removing them and keeping track of the order?
+Is that on every frame?
+Or is it like calculated once when it changes, then apply it?
+Or you talk about that.
+So we only react to changes.
+And we also had one rule that all additive bonuses
+are applied first and then the multiplicative.
+Like we didn't have like additive multiplicative.
+And this would be much way way to complicate it,
+even for the players.
+So typically in ARPGs, this is the way
+it's done like additive first, multiplicative.
+And we always, as I said, only on changes.
+And we cache certain things.
+Like we cache every value in the game object.
+The game object has a couple of caches of stuff
+that's going on.
+And at some point, Dominic even implemented
+like a lookup table for damage because we
+don't have non-deterministic damage.
+So we decided, oh, why don't we just
+save like check sums for certain modifier configurations
+and put the damage number behind it?
+And that actually, in some cases, that sped up the game.
+And it worked.
+So we did stuff like that as well.
+Because we were desperate, we were also
+optimizing for the switch.
+And yeah.
+Hey, great talk.
+Thank you.
+Thank you a lot.
+You already touched upon it in the last sentence you
+said about non-determinism.
+But I would like to ask about the out-of-player
+for performance testing.
+Did you have some way of flocking in determinism in that case?
+Like you looked at the FPS, but the game is still random.
+So the outcome can still be vastly different.
+Yeah, in terms of crashes and stability,
+determinism, non-deterministic stuff
+wasn't a big problem because we were running it very often
+and very quickly and on multiple instances.
+And what we had is like a playlist of stuff
+that the out-of-player has to play.
+So the out-of-player would select the character,
+go into the game, maybe even create a random loadout,
+and select certain abilities that we also
+could pre-determine.
+We had a configuration for those.
+And the out-of-player would just move around
+to key positions in the map and fight.
+And this is all also random, because we have also
+random real procedure generation in the levels.
+So we just tried to cover it stohesically.
+We didn't care about determinism in that case.
+OK.
+And thank you Paul for your talk, for your questions.
+And if you have more questions, you'll still be here.
+Yeah.
+Talk to him.
+Yeah.
+Thank you very much.
+Thank you.
+[APPLAUSE]

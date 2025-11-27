@@ -1,0 +1,322 @@
+API URL: https://api.media.ccc.de/public/recordings/93531
+Frontend URL: https://media.ccc.de/v/god2025-56477-langsec-for-appsec-folks
+Title: LangSec for AppSec folks
+
+Welcome everyone. Hope you had a nice break. I'm Freddy. I'm your session chair today. Next
+presentation is going to be by Lars Hammerschmitt about language security for application security
+folks. Lars did a PhD thesis on injection attacks. So that's sort of his perspective
+into parsing, ejections, languages, et cetera.
+LAS is also working for either digital doing security stuff
+roughly, and yeah, give a warm welcome to LAS.
+[APPLAUSE]
+Hi, thanks a lot.
+Actually, I would have joined the previous talk with what
+I did in the past, or what I'm currently doing.
+the. So I'm building a huge champion's program since 2017. But now I'm trying to talk about LangSAC what I did in my PhD. Actually, this is some years old. So if you find these things like outdated or say, hey, last this is wrong, please raise your hand. And let's talk about it. So what's LangSAC. So first of all, what is software's input or well, there's this phenomenon architecture where this great invention came that we do not have those physical machines which have
+one purpose, but where we can put in data and we call it software, and then these machines
+run it. And that's awesome, but on the other side it's complicated to differentiate when
+it's software and when it's not. And there's this great term of that and far by tongue.
+So processing data, which basically gives the illusion that the machine can control how
+the. So, I'm going to use this input to steer the machine to the position you want it to be. Right? So, the software determines what are the possible states. But the attacker can actually steer it to where he or she wants it to be. So, what is Langsick?
+the.
+and and so the idea of Langsick is like treating all inputs as a form of language, defining it as such and then handling this with proper
+So, one could say, constructing secure passes and unpasses s complex as running your own
+cryptography. So, one should refrain from using, one should refrain from building them yourself, but using them from a library.
+Some definitions here. What is this language I was talking about? Basically here I have this language, which those components talk to each other. So, I'm not talking about programming languages, but you might recognize that.
+these things I'm saying from programming language perspective, but here it's applied to those communication languages. And here we have those unpasses, those light boxes, and
+passes those dark boxes. And in the first part, I'll talk about those dark boxes. So, we are talking about inputs.
+Great recommendation from some years ago on some OWAS website says, don't trust input data. Nice. Okay. So, what I do now? Right?
+Okay. So, next thing is then validate your input. Okay. So, how to validate input? Okay. Always validate input to against the specification except only those things that fit to the specification and if it's not fitting rejected.
+Okay. So, don't be a browser because browsers try to do magic things to make a broken HTML to HTML again and show it. No, that's a bad thing. Don't do so.
+So, about input specification, I got two different approaches here, black lists and white lists. And the question is which one is better? Which one do you like better?
+Oh, okay. It depends why.
+Exactly. And the problem was, yeah?
+Exactly. There could be unknowns. And most of the time, you don't come up with all those unknowns, right? So, that's the problem with those back lists. And as I said before, specify exactly what you accept.
+Right? So, and the whiteness is specifying more exactly what you accept. That's why one should use those whitelist. And one note here, regular expressions can only recognize regular languages. More to this later.
+So, where is Langseck coming from? Back in 2010, FX did a presentation at Blackhead where he exploited again and again flesh. Rest in peace flesh. But he found Langseck by doing so. And he basically found so many bugs that he said, okay, there must be some way of protecting.
+So, he invented the split supply testing, which was a plug into the browser, which basically is a strict parser that recognizes the flesh specification. And it does not crash. It's basically a good written program.
+And then if this matches the specification, it accepts this flesh file and forwards it to the real flesh plugin. And by putting this split supply in between, he managed no further exploitation.
+So, he was not able to exploit any of its bugs anymore. So, by just putting their hardened parser in between, he basically defended all the exploits and found Langseck that way.
+Now it's called content disarm and reconstruction. You might find this useful for your word documents with macros inside where you put in a word file with macros and outcomes word files out macros, basically stripping away the content.
+Langseck is describing some anti-patterns. One of them is the shotgun parser. So, shotgun parser is basically a handwritten parser that integrates deeply into your logic.
+And it's scattered all over the place. And therefore, as I said in the beginning, an attacker can steer this whole program into all those different states.
+And the one thing I brought here is from the Apache Teaker parser collection, the PDF box parser. And it's a handwritten one. And nobody knows if it really complies to PDF specification.
+And that's basically most of the time the problem with those shotgun parsers. You don't know to which format they really match, right? So, we don't know.
+So, the first thing I want to state one should do is don't implement your own parsers. Just don't.
+It's hard. I brought here one of those records for email. And here we, for example, have catastrophic backtracking.
+And which is easily exploitable to a denial of service. It's hard to not do so, right? So, just don't.
+And maybe you heard about polyglots. I got here some polyglot collection where you have files, so binary files, which might have, or which are different files for different parsers.
+So, it's the same binary, but you can put it into a zip parser. And it says, here, it's a zip. And it supports some zip.
+And you put it into a JPEG parser, and it's showing a JPEG. And at the same time, it goes on and on.
+Funky file formats. Very interesting talk some years ago. And, yeah, that's hard, actually.
+How to write a file parser when you are confronted with these kind of things.
+So, if you want to prevent those shotgun parsers, basically use some existing good-known parsers,
+review them, put some fuzzing in there, and then work on that parsed input.
+And if you're really in the position of having your own language made up of some kind, then you have to define this as a grammar.
+Generate some parser and then work again on those things.
+Talking about grammar. Who knows the grammar? Hands up. What's the grammar? Oh, there's one in the back. That's awesome.
+Okay, so grammar is a construct from theoretical computer science used to describe languages.
+And it basically starts with this S saying, here, the file description starts, and then there's this P thingy where it says,
+you can derive from the starting point. You can derive what is constructed here.
+And there you can find those comma and line break thingies, which basically are the keywords in that language that I'm describing.
+So this way, you can describe this language formally and then from that generated parser.
+This is taken from Antla, which is one of those parser generators that describes this one.
+And here, the interesting part is what we do in abstract is all the time we care about those keywords,
+because those keywords are keen and important for injections. Later to that.
+So how this is then looking, basically, this parting in the middle is done by this generated parser.
+On the left, you have the document on the right, you have the parse tree that is generated from the parser,
+and on this parse tree, one should work.
+Meeting Chomsky, Chomsky did a hierarchy of those different language constructs.
+And I said in the beginning, there is this regular expression thingy, most of us know.
+And this is the smallest thingy that is usable for describing languages.
+And so it's called regular. And when you need something more complex, for example, for this CSV thingy,
+you need those context-free thingies where you have those grammars.
+And this is all fine. There are proofs that, from those, there are compilers that can actually generate parsers
+that really do what you do and what you specify in your specifications.
+This is proven, that this is secure.
+But if you move ahead and have a language that is more complex than these context-free, you're doomed, kind of.
+So XML is at some point in this context-sensitive space, which basically says you can always say,
+"Hey, later on there comes something, but save all this thing I'm sending you now, but save it for later,
+you need to parse it later. You can build up state all the time."
+So basically, you at least have a denial-of-service problem there.
+And if you're getting more complex, so for general grammars,
+you need a more powerful machine. And this basically means throwing complete machines,
+so it's basically remote code execution by design.
+And fun fact, natural language is mildly context-sensitive.
+I actually read this up so LLMs are on the doomed side, right?
+So don't wonder if you can't really make them secure because basically you can't make the language secure.
+And the advice here is to never basically use the wrong language, right?
+So there are folks trying to parse HTML with records,
+and basically because HTML is at least context-free, you're doomed, you can't do so.
+It's just not working. You can't recognize this.
+So basically, don't specify complex formats.
+There have been folks who really struggled with this in industry control systems.
+One note on syntax and semantics.
+Here I got a little x6e with me, and basically this is no longer syntax.
+So I was talking about syntax with grammars all the time, right?
+So the application perceives something and recognizes it and says,
+yeah, this is all is fine. But what you do with this,
+which semantic actions you take from that, that is a different part.
+So with x6e, it's the point that, yeah, there is a flaw in the specification thingy,
+but it's on the semantic side. So it's a program can decide if it really executes this,
+so you can configure if you have external entities enabled or not.
+So something from theoretical computer science rise theorem says,
+no trivial semantic property of programs, non-trivial semantic properties of programs are undecidable.
+Meaning you can't, when you have a program and you have another program
+trying to decide something about this other program, you will always fail.
+And this is because programming languages are Turing complete,
+so you can specify anything you want, and this is why it's hard to actually figure out what it's doing.
+So what does it mean? All static code analysis are doomed.
+They can never be perfect because of this, and all dynamic analysis are doomed because of this,
+because they are just programs. They can't find those non-trivial things like vulnerabilities.
+And, of course, antivirus is doomed.
+I mean, there are papers from the 80s proving this, but we are still using it.
+But in the end it's doomed, it's no solution. The real solution would be to actually remove this executable things
+from those formats you transfer. So with an executable program, this is, yeah, I mean,
+when you transfer them you have the problem, but with macros like in five formats,
+just remove those macros in the problem.
+To the second part, and I'm a little short in time, so sorry for that, so we will rush ahead a little.
+I have a little bobby table, so now we're talking about injections. I skipped some of those.
+So the most classical one here is the SQL injection,
+and the common theme you would have seen if I have more time is like,
+whenever I use string concatenation, in my code it's like an injection.
+So when I do code review, I always search for plus, and I've done, basically,
+I don't need any more. You find the interesting spots.
+So how does it look in a formalized way? Imagine on the left side you have a program
+having this abstract, this state, those variables, those pastries,
+in the middle you have this thing on the wire that is moving,
+so the thing on the left side is unpausing this into this format,
+and on the right side it's basically pausing this, so this is data transfer, right?
+So this is how it should look like.
+And then somebody put some nasty keywords of this middle language in this left pastry,
+and all of a sudden on the right we are not receiving the same thing.
+So this is basically in what injections are all about, it's on the unpauser side, there's a bug.
+So when producing this output, the left program did a mistake
+and did not escape these symbols, which are keywords, and therefore the pausing goes wrong.
+So important note, input validation also, it's called input validation,
+it's done when outputting data, and most people got this wrong,
+even from security folks I got a lot of people saying,
+"Yeah, with strict pausing you can solve SQL injections, no you can't."
+So as I already said, these malicious input things are the keywords,
+and the interesting part here is where do we not have keywords, right?
+So in those Mac protocols and IP header stuff,
+then we don't have keywords, so therefore there are no injections.
+And these folks are working with length fields, and length fields are context free,
+so these are safe from that point of view.
+Okay, you have to look about, you don't need to trust those length things that are in there,
+so that you do not end up with buffer overflows, but at least injections are not possible
+on those kind of languages.
+So here a little bit more code.
+In insecure application of how to run parses and unpauser in the top,
+it's basically string concatenation things together to produce some output
+for the second function, and so in the first place there I used string concard,
+which is insecure, and in second place I basically used the regex for this comma thingy,
+which is, "Yeah, this is a parser, but this is a very bad parser, so don't do so."
+Instead of use those libraries, I mean there's a library for CSV.
+Why should I care about encoding quotes and quotes in quotes and all those things?
+I don't need to, there's a library, just use it and work on those objects from the library.
+So the recipe for CQ input handling is basically use those libraries,
+don't write your own encoding, I tried myself and failed, this is really complex at least
+for context-sensitive encoding, like it is in HTML, there are so many contexts,
+and there was a study done, and they found that there was only one implementation in the world
+that did it all right, and it was Google, who had their front page rendered,
+and that thing in all the other HTML frameworks were wrong at some point,
+so folks even who purposely did this wrong in the first place,
+it's really complicated, don't try this yourself, and when using existing languages,
+it's always a good thing, then you're fine with using existing good parsers
+and unpassers, do some fast testing, try to input some keywords in there
+and see if they are encoded, if so, feel lucky, otherwise review the code
+and work on those parse trees you get from those libraries.
+If you're not working on those given protocols, first of all, why?
+I mean, there's a protocol for everything,
+so as a JSON or kept a protocol should work for you, but okay, if you want to do so,
+you have to go the parse with the grammar, define this thing, generate an unpasser parser,
+and work on that thing again.
+In a perfect world, I'm also having this theme here, in a perfect world,
+we should not care about this.
+In a perfect world, all programming languages just provide us those objects,
+and they care about parsing, we don't need to.
+I mean, this is kind of a solving thing, on Wikipedia you find all those formats,
+so why should we care, why do we need to do this ourselves?
+So it would be great if we could just remove string concatenation from all programming languages,
+and just let the programming language support us with some meaningful inputs,
+not bytes, but with those pastries.
+It would be great if programming languages support kind of these things.
+So if you ever happen to be in a research project, then please remember this.
+Meanwhile at Google, they actually applied this,
+and we're eliminating bug classes with this.
+So basically, they find different ones, so just here this injection part is one of those,
+one of those problems, they found there as a fundamental thing that is broken,
+and what they did so is they provide a space where you can't do it wrong.
+So trust the types, it's one of those things.
+So if you build your environment for developers like you can't do it wrong,
+because we have all those things in our environment that it's easier to do it right,
+you no longer fall for those problems.
+So my proposition would be, solve it at the language level,
+but since this is complicated, Google came up with this,
+let's solve it at the platform level, this is what I wanted to say.
+And they start basically say they succeeded with DOM-based cross-site scripting,
+or it's cross-site scripting in general, by just doing so.
+They came up with this environment,
+and so they develop in a safe way.
+So what should AppSec actually learn from LangSec?
+Input validation is the misleading term, that's the first thing.
+It's always complicated to talk to folks when you say input, they say,
+"Ah, yeah, when I read this, and then I care once about this,
+and later on they never care about this, and this is just wrong."
+And I mean all those different injections that call themselves,
+cross-site scripting, command, injection, new name,
+and all those different names don't make it easier.
+So it's all about processing input,
+so you need to do this once at the parsing part, and then a second time
+when rendering some output, and that needs to be done correctly.
+The other thing, computers are just machines,
+and even AI and large-language models are just machines,
+and so Zast and Dast cannot solve undecidable problems and will fail.
+So does antivirus, and therefore there's no tool approach to this.
+One can try, but will fail all the time.
+As I said, the Google approach of eliminating bug class after bug class
+does something that should be done here for those injections.
+And as I said with the Chomsky hierarchy,
+these communication languages above deterministic context-free
+are really remote code execution by design.
+You can't make this any good by implementing those.
+You need to reduce them in order to make this all good again.
+And as the last thing, rolling your own parser
+is like rolling your encryptor, it's just a bad idea.
+And that's it from me.
+Thank you so much.
+(Applause)
+All right, we have plenty of time for questions.
+Please raise your hand if you have questions about Langsec parsing.
+Hi, thank you very much for the talk.
+I have a question, what would you suggest for legacy file formats,
+for example, because there you cannot like apply building a nice grammar
+or a nice from scratch because you have to work with what is already there.
+So what do you also have suggestions regarding this?
+One can always, so if you have a implementation,
+so a parser, which is recognizing something,
+which is where there is no specification,
+you first have to come up with some specification.
+And then you can try which parts of this existing parser
+you can cover with your specification.
+And then at some point, you might notice,
+"Okay, I need more than context-free."
+And at this point where you need more than context-free,
+you basically have to cut this feature.
+So did FX with his Blitz up later,
+where he said, "Yeah, it's not in the specifications,
+so I basically cut this feature."
+Because folks were using extra features, which were basically bugs,
+by the way, and to do some other things, right, which worked,
+but yeah, this is out of specification, so basically cut this.
+And by that, we can basically those existing formats
+bring to specifications that are, yeah, that are implementable.
+And to that one, there was quite some discussions with RFCs.
+If RFCs should actually have those format specifications in them,
+so that one can basically use a generator.
+So once there's this RFC specifying how it looks like,
+and then you can basically generate it from there,
+would be nice, but yeah, never really happened.
+Cool. Any other questions for us?
+Yeah, if you could jump back to that topic,
+why the Dast and SAST are trying to solve an undecidable problem,
+that would be great.
+This one, right?
+The theorem, if you could explain that for, let's say, dows.
+Okay.
+There is a fundamental problem which is called the halting problem,
+which is, so this one is a theorem around this one,
+and the fundamental proof is that there are hard problems to solve
+and there are easier problems to solve.
+And one of those hard problems is this halting problem.
+And you actually, there are proofs that it's impossible
+to actually solve this problem with a computer.
+And because that is, one can reduce,
+and this is what theoretical computer science do all the time,
+and have lots of fun, and to reduce problems on other problems.
+So saying, if I say I have a machine solving that problem,
+I can use that machine to solve these other problems.
+So one can say about relations about those things,
+and there are proofs saying that when you try to analyze programs,
+you always run into this complex class of problems,
+and you always have this problem that Rice's theorem says,
+you can't analyze even the easiest things.
+So one of those easiest things is does my program terminate.
+And those easiest things are impossible to actually do
+with, like, let's say, a smaller machine,
+so it always requires to execute this program
+and to see if it really terminates.
+But this might take forever because you don't know if it terminates.
+And you run into those kinds of problems,
+and as one sees, these are really, really simple problems.
+Like, termination looks like simple in the first place,
+but for those two incomplete languages,
+so for our programming languages we use all the time,
+it's really complex to actually prove this.
+And then there's this twist.
+You could either say, oh, we are doomed,
+or you could say, I use another programming languages.
+So there are programming languages,
+especially for aviation and so on and so forth,
+who say it's important for us to know if we terminate,
+because if I do this in a cockpit,
+I want to have this terminated at some point,
+and my aviation is doing something,
+so it's important for me to terminate this thing
+that is calculating there within, let's say, one second.
+This is bad, second is long, but at least it terminates, right?
+And there are languages where you can actually prove that it's terminating.
+But then you need different programming constraints,
+so it's no longer Turing complete,
+what you use as an input language.
+So we could either do something like Terraform or whatever,
+which is not executable in that way,
+and then do static analysis on that one.
+That's fine.
+Or we say, yeah, okay, static analysis is not the golden thing
+where you can find all those bugs.
+You're welcome.
+Any other questions for us?
+Okay, thank you so much.
+(Applause)
